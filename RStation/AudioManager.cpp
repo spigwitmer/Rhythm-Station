@@ -114,7 +114,7 @@ int sine_wave()
 	alSourcef(sound->source, AL_GAIN, 0.5f); // volume
 
 	alSourcePlay(sound->source);
-	
+
 	sound->Register();
 
 	return 0;

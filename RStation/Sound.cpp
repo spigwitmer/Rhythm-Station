@@ -111,5 +111,6 @@ void Sound::Play()
 	// Attach sound buffer to source & play it
 	alSourcei(sd_sound->source, AL_BUFFER, sd_sound->buffer);
 	alSourcei(sd_sound->source, AL_LOOPING, sd_loop);
+//	alSourcef(sd_sound->source, AL_PITCH, 0.5);
 	alSourcePlay(sd_sound->source);
 }
