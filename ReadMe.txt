@@ -52,8 +52,10 @@ shakesoda+rstation at gmail dot com.
 At the moment linux compiling is pretty straight forward:
   1. Make sure that you have following installed:
     - gl, glew, libglfw
-    - libpng14, zlib, lua
+    - libpng14, zlib
     - openal, freealut, vorbisfile
+    - >=lua-5.1 (optional, if you don't have it just 
+      pass --with-bundled-lua to the configure script)
   2. After cloning, run "autoreconf --install"
   3. Run "./configure"
   4. If everything went well, you can now run "make"
