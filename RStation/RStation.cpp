@@ -57,9 +57,8 @@ void InitWindow(int _width, int _height)
 
 	// The window title will be overridden less than a second from startup anyways.
 	glfwSetWindowTitle("RStation");
-	glfwDisable(GLFW_AUTO_POLL_EVENTS);
-	glfwDisable(GLFW_MOUSE_CURSOR);
 
+	// todo: preference namespace/class (whichever is more appropriate)
 	int vsync = atoi(ini->getValue("Preferences","VSync").c_str());
 	vsync = vsync ? 1 : 0;
 	glfwSwapInterval(vsync); // vsync

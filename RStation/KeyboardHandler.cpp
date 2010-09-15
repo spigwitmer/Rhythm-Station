@@ -38,5 +38,9 @@ void KeyCallback(int key, int action)
 void RegisterKeyboardCallbacks()
 {
 	glfwSetKeyCallback(KeyCallback);
+	
+	// this is more relevant for keyboard than mouse.
+	glfwDisable(GLFW_AUTO_POLL_EVENTS);
+	
 	Log::Print("Registered KeyboardHandler.");
 }

@@ -59,5 +59,8 @@ void RegisterMouseCallbacks()
 	
 	glfwSetMouseButtonCallback(MouseButtonCallback);
 	glfwSetMousePosCallback(MousePosCallback);
+	
+	glfwDisable(GLFW_MOUSE_CURSOR);
+	
 	Log::Print("Registered MouseHandler.");
 }
