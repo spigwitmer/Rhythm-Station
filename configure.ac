@@ -35,7 +35,9 @@ AC_ARG_WITH([bundled_lua],
 AM_CONDITIONAL([WITH_BUNDLED_LUA], [test x$bundled_lua = xyes])
 if test x$bundled_lua != xyes; then
 	PKG_CHECK_MODULES([EXT_LUA],[lua >= 5.1],[],[
-		AC_MSG_ERROR([External lua cannot be used because: '$EXT_LUA_PKG_ERRORS'])
+		PKG_CHECK_MODULES([EXT_LUA],[lua5.1 >= 5.1],[],[
+			AC_MSG_ERROR([External lua cannot be used because: '$EXT_LUA_PKG_ERRORS'])
+		])
 	])
 fi
 
