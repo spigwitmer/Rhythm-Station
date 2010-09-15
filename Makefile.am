@@ -128,11 +128,15 @@ extern/lua-5.1.4/src/print.c
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) -lz
 rstation_SOURCES = $(RSTATION)
+rstation_CPPFLAGS = $(EXT_DEPENDS_CFLAGS)
 
+#
 # Optional bundled lua
+#
 if !WITH_BUNDLED_LUA
 rstation_LDADD += $(EXT_LUA_LIBS)
+rstation_CPPFLAGS += $(EXT_LUA_CFLAGS)
 else
 rstation_SOURCES += $(BUNDLED_LUA)
-rstation_CPPFLAGS = -Iextern/lua-5.1.4/src
+rstation_CPPFLAGS += -Iextern/lua-5.1.4/src
 endif
