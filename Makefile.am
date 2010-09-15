@@ -1,8 +1,12 @@
-# Binaries
+#
+# Stuff to install
+#
 noinst_PROGRAMS = rstation
 
-rstation_LDADD = $(DEPENDENCIES_LIBS) -lz
-rstation_SOURCES= \
+#
+# RStation sources
+#
+RSTATION = \
 RStation/Actor.cpp \
 RStation/Actor.h \
 RStation/AudioManager.cpp \
@@ -58,3 +62,77 @@ RStation/Tween.cpp \
 RStation/Tween.h \
 RStation/Type.cpp \
 RStation/Type.h
+
+#
+# Bundled lua sources
+#
+BUNDLED_LUA = \
+extern/lua-5.1.4/src/lapi.c \
+extern/lua-5.1.4/src/lapi.h \
+extern/lua-5.1.4/src/lauxlib.c \
+extern/lua-5.1.4/src/lauxlib.h \
+extern/lua-5.1.4/src/lbaselib.c \
+extern/lua-5.1.4/src/lcode.c \
+extern/lua-5.1.4/src/lcode.h \
+extern/lua-5.1.4/src/ldblib.c \
+extern/lua-5.1.4/src/ldebug.c \
+extern/lua-5.1.4/src/ldebug.h \
+extern/lua-5.1.4/src/ldo.c \
+extern/lua-5.1.4/src/ldo.h \
+extern/lua-5.1.4/src/ldump.c \
+extern/lua-5.1.4/src/lfunc.c \
+extern/lua-5.1.4/src/lfunc.h \
+extern/lua-5.1.4/src/lgc.c \
+extern/lua-5.1.4/src/lgc.h \
+extern/lua-5.1.4/src/linit.c \
+extern/lua-5.1.4/src/liolib.c \
+extern/lua-5.1.4/src/llex.c \
+extern/lua-5.1.4/src/llex.h \
+extern/lua-5.1.4/src/llimits.h \
+extern/lua-5.1.4/src/lmathlib.c \
+extern/lua-5.1.4/src/lmem.c \
+extern/lua-5.1.4/src/lmem.h \
+extern/lua-5.1.4/src/loadlib.c \
+extern/lua-5.1.4/src/lobject.c \
+extern/lua-5.1.4/src/lobject.h \
+extern/lua-5.1.4/src/lopcodes.c \
+extern/lua-5.1.4/src/lopcodes.h \
+extern/lua-5.1.4/src/loslib.c \
+extern/lua-5.1.4/src/lparser.c \
+extern/lua-5.1.4/src/lparser.h \
+extern/lua-5.1.4/src/lstate.c \
+extern/lua-5.1.4/src/lstate.h \
+extern/lua-5.1.4/src/lstring.c \
+extern/lua-5.1.4/src/lstring.h \
+extern/lua-5.1.4/src/lstrlib.c \
+extern/lua-5.1.4/src/ltable.c \
+extern/lua-5.1.4/src/ltable.h \
+extern/lua-5.1.4/src/ltablib.c \
+extern/lua-5.1.4/src/ltm.c \
+extern/lua-5.1.4/src/ltm.h \
+extern/lua-5.1.4/src/luaconf.h \
+extern/lua-5.1.4/src/lua.h \
+extern/lua-5.1.4/src/lualib.h \
+extern/lua-5.1.4/src/lundump.c \
+extern/lua-5.1.4/src/lundump.h \
+extern/lua-5.1.4/src/lvm.c \
+extern/lua-5.1.4/src/lvm.h \
+extern/lua-5.1.4/src/lzio.c \
+extern/lua-5.1.4/src/lzio.h \
+extern/lua-5.1.4/src/print.c
+#extern/lua-5.1.4/src/lua.c 
+#extern/lua-5.1.4/src/luac.c
+
+#
+# RStation binary
+# 
+rstation_LDADD  = $(EXT_DEPENDS_LIBS) -lz
+rstation_SOURCES = $(RSTATION)
+
+# Optional bundled lua
+if !WITH_BUNDLED_LUA
+rstation_LDADD += $(EXT_LUA_LIBS)
+else
+rstation_SOURCES += $(BUNDLED_LUA)
+rstation_CPPFLAGS = -Iextern/lua-5.1.4/src
+endif
