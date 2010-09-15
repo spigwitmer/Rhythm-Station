@@ -20,10 +20,12 @@ public:
 	void Glow(rgba _col);
 	void Hue(float _hue) { ob_hueShift = _hue; }
 	void Saturation(float _sat) { ob_satShift = _sat; }
+	void Value(float _val) { ob_valShift = _val; }
 	rgba getColor();
 	rgba getGlow();
 	float getHue() { return ob_hueShift; }
 	float getSaturation() { return ob_satShift; }
+	float getValue() { return ob_valShift; }
 
 	int getWidth();
 	int getHeight();
@@ -34,13 +36,13 @@ public:
 	void Draw();
 
 protected:
-	float ob_hueShift, ob_satShift;
+	float ob_hueShift, ob_satShift, ob_valShift;
 	rgba ob_color, ob_glow;
 
 	ImageLoader* ob_texture;
 	ShaderLoader* ob_shader;
 	
-	GLuint ob_buffer, ob_pColor, ob_pGlow, ob_pHueShift, ob_pSatShift;
+	GLuint ob_buffer, ob_pColor, ob_pGlow, ob_pHueShift, ob_pSatShift, ob_pValShift;
 };
 
 #endif

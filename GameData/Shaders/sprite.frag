@@ -1,7 +1,9 @@
+#version 110
 uniform sampler2D tex;
 
 uniform float hue_shift;
 uniform float sat_shift;
+uniform float val_shift;
 
 uniform vec4 add_color;
 uniform vec4 mult_color;
@@ -49,11 +51,7 @@ vec4 toHSV( vec4 color )
 
 vec4 toRGB( vec4 color )
 {
-	/*
-	 * color.r = H
-	 * color.g = S
-	 * color.b = V
-	*/
+	// color.r = H, color.g = S, color.b = V
 	vec4 tmp;
 
 	// using while x > y here locks up my video driver.
@@ -93,7 +91,7 @@ void main()
 	texture += add_color;
 
 	// Only do this if needed.
-	if (hue_shift != 0.0 || sat_shift != 0.0)
+	if (hue_shift != 0.0 || sat_shift != 0.0 || val_shift != 0.0)
 	{
 		/*
 		 * For some reason this makes add/mult color behave oddly.
@@ -102,6 +100,7 @@ void main()
 		texture = toHSV(texture);
 		texture.r += hue_shift;
 		texture.g += sat_shift;
+		texture.b += val_shift;
 		texture = toRGB(texture);
 	}
 

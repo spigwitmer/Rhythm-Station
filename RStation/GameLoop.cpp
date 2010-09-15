@@ -8,10 +8,15 @@
 #include "Screen.h"
 #include "Sprite.h"
 #include "Sound.h"
+#include "Primitives.h"
+#include "RTT.h"
 
 bool bRunning = true;
 
 const int freq = 2; // update x times per second
+
+#include <math.h>
+#include "MathUtils.h"
 
 namespace Game
 {
@@ -48,8 +53,10 @@ namespace Game
 		Log::Print("Loading took: " + timer.strAgo() + " seconds.");
 		// Init is done, flush the log.
 		Log::Write();
-
+		ShaderLoader* post = new ShaderLoader();
+		post->Load("sprite.vert","nothing.frag");
 		double then = glfwGetTime();
+		create_fbo();
 		while(bRunning && glfwGetWindowParam(GLFW_OPENED))
 		{
 			// calculate delta time
@@ -66,8 +73,35 @@ namespace Game
 			Input::Update();
 
 			Scene::Update(delta);
+			glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, get_framebuffer());
+
+			glMatrixMode(GL_PROJECTION);
+			glLoadIdentity();
+
+			int hw = 854/2;
+			int hh = 480/2;
+
+			glOrtho(-hw, hw, hh, -hh, -hw, hw);
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
+			
 			Scene::Draw();
+			glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0); // return to back buffer
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, get_framebuffer_tex());
+			post->Bind();
+			glDisable(GL_CULL_FACE);
+			glPushMatrix();
+				glScalef(1.0, -1.0, 1.0);
+				Primitive::Quad(vec2(854,480));
+			glPopMatrix();
+			post->Unbind();
+			glEnable(GL_CULL_FACE);
+			glBindTexture(GL_TEXTURE_2D, 0);
+			glfwSwapBuffers();
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}
+		delete post;
 		Scene::Clear();
 	}
 }

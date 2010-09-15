@@ -42,6 +42,7 @@ void Sprite::Load(std::string _path)
 	ob_pGlow = glGetUniformLocation(ob_shader->getProgram(), "add_color");
 	ob_pHueShift = glGetUniformLocation(ob_shader->getProgram(), "hue_shift");
 	ob_pSatShift = glGetUniformLocation(ob_shader->getProgram(), "sat_shift");
+	ob_pValShift = glGetUniformLocation(ob_shader->getProgram(), "val_shift");
 }
 
 void Sprite::SetFrames(vec2 frames)
@@ -59,9 +60,9 @@ void Sprite::Draw()
 	ob_shader->Bind();
 	glUniform4f(ob_pGlow, ob_glow.r, ob_glow.g, ob_glow.b, ob_glow.a);
 	glUniform4f(ob_pColor, ob_color.r, ob_color.g, ob_color.b, ob_color.a);
-	
 	glUniform1f(ob_pHueShift, ob_hueShift);
 	glUniform1f(ob_pSatShift, ob_satShift);
+	glUniform1f(ob_pValShift, ob_valShift);
 	
 	Primitive::Quad(vec2(ob_texture->getWidth(), ob_texture->getHeight()));
 	ob_shader->Unbind();

@@ -14,38 +14,34 @@ INILoader* ini = new INILoader();
 
 void GLFWCALL ResizeViewport(int w, int h)
 {
+	// half width, half height.
+	int hw = int(w*0.5f);
+	int hh = int(h*0.5f);
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
 	glViewport(0, 0, w, h);
-
-	// half width, half height.
-	int hw, hh;
-	hw = int(w*0.5f);
-	hh = int(h*0.5f);
 
 	glOrtho(-hw, hw, hh, -hh, -hw, hw);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	// the frame buffer is usually full of junk after resize. clear it.
-	glClear(GL_COLOR_BUFFER_BIT);
-	
 	// (re)register mouse callback.
 	RegisterMouseCallbacks();
 }
 
 void SetInitialStates()
 {
-	glClearColor(0,0,0,1);
-	glEnable(GL_TEXTURE_2D);
+	// the frame buffer is usually full of junk after resize. clear it.
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDepthFunc(GL_LEQUAL);
-	glDisable(GL_LIGHTING);
 }
 
 void InitWindow(int _width, int _height)
@@ -61,6 +57,13 @@ void InitWindow(int _width, int _height)
 	// todo: preference namespace/class (whichever is more appropriate)
 	int vsync = atoi(ini->getValue("Preferences","VSync").c_str());
 	vsync = vsync ? 1 : 0;
+	std::string vs_str;
+	if (vsync)
+		vs_str = "enabled";
+	else
+		vs_str = "disabled";
+
+	Log::Print("VSync: " + vs_str);
 	glfwSwapInterval(vsync); // vsync
 
 	glfwSetWindowSizeCallback(ResizeViewport);
@@ -79,19 +82,19 @@ int main(int argc, char** argv)
 	Audio::Open();
 
 	ini->Load("GameData/Preferences.ini");
-	
+
 	// get the resolution from prefs
 	int width = 854;
 	int height = 480;
 
 	width = atoi(ini->getValue("Preferences","DisplayWidth").c_str());
 	height = atoi(ini->getValue("Preferences","DisplayHeight").c_str());
-	
+
 	InitWindow(width, height);
-	
+
 	// we're done reading the ini, nuke it.
 	delete ini;
-	
+
 	/*
 	 * Shaders are used for a lot here, so of course OpenGL 2.0 is required.
 	 * In the future I may start using Cg, although I like GLSL more it would allow
@@ -109,7 +112,6 @@ int main(int argc, char** argv)
 	SetInitialStates();
 	Game::Run();
 
-	// Clean up
 	glfwTerminate();
 	Audio::Close();
 	Log::Close();
