@@ -49,39 +49,38 @@ void Sound::deleteBuffers()
 
 void Sound::Load(std::string _path)
 {
-	Timer time;
-	ALenum format;
-	ALsizei freq;
-
-	std::vector <char> buffer;
-
-	int bitStream;
-	long bytes;
-	char array[BUFFER_SIZE];
-	FILE *f;
-
+	// make path local and open file
 	std::string path = FileManager::GetFile(_path);
 
-	f = fopen(path.c_str(), "rb");
-
-	if( !f )
+	FILE *f;
+	if (!(f = fopen(path.c_str(), "rb")))
 		return;
 
+	// read ogg info
 	vorbis_info *pInfo;
 	OggVorbis_File oggFile;
 	ov_open(f, &oggFile, NULL, 0);
 	pInfo = ov_info(&oggFile, -1);
 
+	// work out format
+	ALenum format;
 	if (pInfo->channels == 1)
 		format = AL_FORMAT_MONO16;
 	else
 		format = AL_FORMAT_STEREO16;
 
-	freq = pInfo->rate;
+	// sample rate
+	ALsizei freq = pInfo->rate;
 
+	// sound buffer
+	char array[BUFFER_SIZE];
+	std::vector <char> buffer;
+
+	// read ogg data in chunks of BUFFER_SIZE
+	long bytes;
 	while (bytes > 0)
 	{
-		bytes = ov_read(&oggFile, array, BUFFER_SIZE, 0 /* little endian */, 2, 1, &bitStream);
+		bytes = ov_read(&oggFile, array, BUFFER_SIZE, 0 /* little endian */, 2, 1, NULL);
 		buffer.insert(buffer.end(), array, array + bytes);
 	}
 	ov_clear(&oggFile);
@@ -90,7 +89,6 @@ void Sound::Load(std::string _path)
 	alBufferData(sd_sound->buffer, format, &buffer[0], static_cast<ALsizei> (buffer.size()), freq);
 
 	sd_waiting = true;
-	Log::Print("[Sound::Load] Loaded \"" + _path + "\" in " + time.strAgo() + "s");
 }
 
 void Sound::Update(float deltaTime)
