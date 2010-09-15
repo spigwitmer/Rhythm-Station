@@ -6,18 +6,39 @@ AM_SILENT_RULES([yes])
 # Tools to use
 AC_PROG_CXX
 AC_PROG_CC
+AM_PROG_CC_C_O
 
 # Config files to generate
 AC_CONFIG_FILES([
 	Makefile
 ])
 
-PKG_CHECK_MODULES([DEPENDENCIES],[gl glew libglfw libpng14 openal freealut vorbisfile lua],[],[
-	AC_MSG_ERROR([All dependencies were not fulfilled: $DEPENDENCIES_PKG_ERRORS])
+# Check for external dependencies
+PKG_CHECK_MODULES([EXT_DEPENDS],[gl glew libglfw libpng14 openal freealut vorbisfile],[],[
+	AC_MSG_ERROR([All dependencies were not fulfilled: $EXT_DEPENDS_PKG_ERRORS])
 ])
 
+# zlib has to be checked the old way as ubuntu lucid doesn't have zlib.pc
 AC_CHECK_HEADER([zlib.h],[],[
 	AC_MSG_ERROR([All dependencies were not fulfilled: zlib was not found.])	
 ])
+
+# Choose between external and bundled lua
+AC_ARG_WITH([bundled_lua],
+	[  --with-bundled-lua      build against bundled lua],
+	[case "${withval}" in
+		yes)	bundled_lua=yes ;;
+		no)		bundled_lua=no ;;
+		*)		AC_MSG_ERROR([bad value ${withval} for --with-bundled-lua]) ;;
+	esac],[bundled_lua=no])
+
+AM_CONDITIONAL([WITH_BUNDLED_LUA], [test x$bundled_lua = xyes])
+if test x$bundled_lua != xyes; then
+	PKG_CHECK_MODULES([EXT_LUA],[lua >= 5.1],[],[
+		PKG_CHECK_MODULES([EXT_LUA],[lua5.1 >= 5.1],[],[
+			AC_MSG_ERROR([External lua cannot be used because: '$EXT_LUA_PKG_ERRORS'])
+		])
+	])
+fi
 
 AC_OUTPUT
