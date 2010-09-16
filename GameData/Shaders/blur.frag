@@ -1,7 +1,7 @@
 #version 110
 uniform sampler2D Texture0;
 
-const int 6;
+const int num_samples = 6;
 const int samples2 = num_samples / 2;
 
 void main()
