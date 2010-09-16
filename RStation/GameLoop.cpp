@@ -29,10 +29,14 @@ namespace Game
 		Timer timer;
 		Scene::PushScreen(); // push overlay
 		{
-			Sprite *spr = new Sprite();
-			spr->Load("Themes/rstation-logo.png");
-			spr->Glow(rgba(0.25f, 0.25f, 0.25f, 0.0f));
-			spr->Register();
+			Sprite *bg = new Sprite();
+			bg->Load("Themes/bg.png");
+			bg->Register();
+			
+			Sprite *logo = new Sprite();
+			logo->Load("Themes/rstation-logo.png");
+//			logo->Glow(rgba(0.25f, 0.25f, 0.25f, 0.0f));
+			logo->Register();
 
 			Sprite *spr_mouse = new Sprite();
 			spr_mouse->Load("Themes/_arrow.png");
@@ -54,13 +58,15 @@ namespace Game
 		// Init is done, flush the log.
 		Log::Write();
 		ShaderLoader* post = new ShaderLoader();
-		post->Load("sprite.vert","blur.frag");
 		double then = glfwGetTime();
+
 		create_fbo();
-//		GLuint loc = glGetUniformLocation(post->getProgram(),"samples");
-//		float samples[10] = { -0.08, -0.05, -0.03, -0.02, -0.01, 0.01, 0.02, 0.03, 0.05, 0.08 };
+
 		while(bRunning && glfwGetWindowParam(GLFW_OPENED))
 		{
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glLoadIdentity();
+
 			// calculate delta time
 			double now = glfwGetTime();
 			float delta = float(now - then);
@@ -75,6 +81,7 @@ namespace Game
 			Input::Update();
 
 			Scene::Update(delta);
+//			filter->Bind();
 			glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, get_framebuffer());
 
 			glMatrixMode(GL_PROJECTION);
@@ -86,24 +93,15 @@ namespace Game
 			glOrtho(-hw, hw, hh, -hh, -hw, hw);
 			glMatrixMode(GL_MODELVIEW);
 			glLoadIdentity();
-			Scene::Draw();
-			
-//			filter->Draw();
 
-			glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0); // return to back buffer
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, get_framebuffer_tex());
-			post->Bind();
-			// XXX
-			glDisable(GL_CULL_FACE);
-			Primitive::Quad(vec2(854,480));
-			glEnable(GL_CULL_FACE);
-			post->Unbind();
-			glBindTexture(GL_TEXTURE_2D, 0);
+			Scene::Draw();
+
+			draw_fbo();
+
 			glfwSwapBuffers();
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}
 		delete post;
+		delete_fbo();
 		Scene::Clear();
 	}
 }

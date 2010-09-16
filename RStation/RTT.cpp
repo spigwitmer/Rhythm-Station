@@ -1,18 +1,24 @@
 #include <GL/glew.h>
 #include "RTT.h"
 #include "RStation.h"
+#include "ShaderLoader.h"
+#include "Primitives.h"
 
 GLuint color_tex, framebuffer, depth_rb;
 
+ShaderLoader *post;
+
 void create_fbo()
 {
+	post = new ShaderLoader();
+	post->Load("sprite.vert","nothing.frag");
 	glGenTextures(1, &color_tex);
 	glBindTexture(GL_TEXTURE_2D, color_tex);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 854, 480, 0, GL_BGRA, GL_UNSIGNED_BYTE, NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 854, 480, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 
 	glGenFramebuffersEXT(1, &framebuffer);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer);
@@ -33,10 +39,34 @@ void create_fbo()
 		GL_RENDERBUFFER_EXT, depth_rb
 	);
 
-	if (glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT) == GL_FRAMEBUFFER_COMPLETE_EXT)
+	if (glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT) != GL_FRAMEBUFFER_COMPLETE_EXT)
+	{
+		Log::Print("FBO error");
 		return;
+	}
 
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer);
+}
+
+void draw_fbo()
+{
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0); // return to back buffer
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, get_framebuffer_tex());
+	post->Bind();
+	glDisable(GL_CULL_FACE);
+	Primitive::Quad(vec2(854,480));
+	glEnable(GL_CULL_FACE);
+	post->Unbind();
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void delete_fbo()
+{
+	glDeleteTextures(1, &color_tex);
+	glDeleteRenderbuffersEXT(1, &depth_rb);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glDeleteFramebuffersEXT(1, &framebuffer);
 }
 
 GLuint get_framebuffer() { return framebuffer; }
