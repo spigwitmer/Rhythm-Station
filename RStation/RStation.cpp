@@ -70,6 +70,8 @@ void InitWindow(int _width, int _height)
 	RegisterKeyboardCallbacks();
 }
 
+float g_aspectRatio = 0.0f;
+
 // TODO: handle command line args for windows and unix
 #ifdef _WIN32
 int WINAPI WinMain(HINSTANCE d1, HINSTANCE d2, LPSTR d3, int d4)
@@ -89,6 +91,8 @@ int main(int argc, char** argv)
 
 	width = atoi(ini->getValue("Preferences","DisplayWidth").c_str());
 	height = atoi(ini->getValue("Preferences","DisplayHeight").c_str());
+
+	g_aspectRatio = width / height;
 
 	InitWindow(width, height);
 

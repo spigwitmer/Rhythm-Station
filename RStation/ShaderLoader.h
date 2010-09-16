@@ -47,6 +47,8 @@ public:
 private:
 //	std::vector<Uniform> uniforms;
 
+	GLuint pAspect;
+
 	Shader shader;
 };
 

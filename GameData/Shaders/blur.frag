@@ -1,20 +1,23 @@
 #version 110
-uniform sampler2D Texture0;
+uniform sampler2D tex;
+uniform float aspect_ratio;
 
-const int num_samples = 6;
-const int samples2 = num_samples / 2;
+const float blur_factor = 0.005;
+const int samples = 6;
 
 void main()
 {
+	float total_samples = float(((samples)*2)*(samples*2));
 	vec4 texture;
-	for(int i = -samples2; i < samples2; i++)
+	for(int i = -samples; i < samples; i++)
 	{
-		for(int j = -samples2; j < samples2; j++)
+		for(int j = -samples; j < samples; j++)
 		{
 			vec2 texCoords = gl_TexCoord[0].st;
-			texCoords.x += float(i) * 0.0025;
-			texCoords.y += float(j) * 0.0025;
-			texture += texture2D(Texture0, texCoords) / pow(float(num_samples),2.0);
+			texCoords.y = 1.0-texCoords.y;
+			texCoords.x += (float(i) * blur_factor) / aspect_ratio;
+			texCoords.y += float(j) * blur_factor;
+			texture += texture2D(tex, texCoords) / total_samples;
 		}
 	}
 	gl_FragColor = texture;

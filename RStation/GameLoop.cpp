@@ -54,11 +54,11 @@ namespace Game
 		// Init is done, flush the log.
 		Log::Write();
 		ShaderLoader* post = new ShaderLoader();
-		post->Load("radial_blur.vert","radial_blur.frag");
+		post->Load("sprite.vert","blur.frag");
 		double then = glfwGetTime();
 		create_fbo();
-		GLuint loc = glGetUniformLocation(post->getProgram(),"samples");
-		float samples[10] = { -0.08, -0.05, -0.03, -0.02, -0.01, 0.01, 0.02, 0.03, 0.05, 0.08 };
+//		GLuint loc = glGetUniformLocation(post->getProgram(),"samples");
+//		float samples[10] = { -0.08, -0.05, -0.03, -0.02, -0.01, 0.01, 0.02, 0.03, 0.05, 0.08 };
 		while(bRunning && glfwGetWindowParam(GLFW_OPENED))
 		{
 			// calculate delta time
@@ -86,8 +86,10 @@ namespace Game
 			glOrtho(-hw, hw, hh, -hh, -hw, hw);
 			glMatrixMode(GL_MODELVIEW);
 			glLoadIdentity();
-			glUniform1fv(loc,10,samples);
 			Scene::Draw();
+			
+//			filter->Draw();
+
 			glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0); // return to back buffer
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, get_framebuffer_tex());

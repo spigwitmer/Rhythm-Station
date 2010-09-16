@@ -1,3 +1,6 @@
+#ifndef _RSTATION_H_
+#define _RSTATION_H_
+
 #ifdef _WIN32
 #pragma once
 #endif
@@ -14,3 +17,7 @@
 #include <vector>
 #include "Log.h"
 #include "Type.h"
+
+extern float g_aspectRatio;
+
+#endif

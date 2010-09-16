@@ -129,6 +129,7 @@ void ShaderLoader::Load(std::string _vs, std::string _fs, bool reload)
 
 	glUseProgram(shader.ptr);
 	ShaderManager::addShader(shader);
+	pAspect = glGetUniformLocation(shader.ptr, "aspect_ratio");
 }
 
 void ShaderLoader::Load(GLuint _program)
@@ -137,6 +138,7 @@ void ShaderLoader::Load(GLuint _program)
 		return;
 	shader.ptr = _program;
 	glUseProgram(shader.ptr);
+	pAspect = glGetUniformLocation(shader.ptr, "aspect_ratio");
 }
 
 void ShaderLoader::Unload()
@@ -160,6 +162,7 @@ void ShaderLoader::Bind()
 {
 	if ( shader.ptr )
 		glUseProgram(shader.ptr);
+	glUniform1f(pAspect, g_aspectRatio);
 }
 
 void ShaderLoader::Unbind()
