@@ -35,7 +35,7 @@ namespace Game
 			
 			Sprite *logo = new Sprite();
 			logo->Load("Themes/rstation-logo.png");
-//			logo->Glow(rgba(0.25f, 0.25f, 0.25f, 0.0f));
+			logo->Glow(rgba(0.125f, 0.125f, 0.125f, 0.0f));
 			logo->Register();
 
 			Sprite *spr_mouse = new Sprite();
@@ -54,16 +54,27 @@ namespace Game
 			sound->Register();
 		}
 		
+		GLenum err = glGetError();
+		switch (err) {
+			case GL_OUT_OF_MEMORY:
+				Log::Print("GL_OUT_OF_MEMORY");
+				break;
+			default:
+				if (err)
+					printf("GL ERROR: %i\n",err);
+				break;
+		}
+
 		Log::Print("Loading took: " + timer.strAgo() + " seconds.");
 		// Init is done, flush the log.
 		Log::Write();
-		ShaderLoader* post = new ShaderLoader();
 		double then = glfwGetTime();
 
 		create_fbo();
 
 		while(bRunning && glfwGetWindowParam(GLFW_OPENED))
 		{
+			glClearColor(0.5, 0.5, 0.5, 0.5);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glLoadIdentity();
 
@@ -81,18 +92,8 @@ namespace Game
 			Input::Update();
 
 			Scene::Update(delta);
-//			filter->Bind();
+
 			glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, get_framebuffer());
-
-			glMatrixMode(GL_PROJECTION);
-			glLoadIdentity();
-
-			int hw = 854/2;
-			int hh = 480/2;
-
-			glOrtho(-hw, hw, hh, -hh, -hw, hw);
-			glMatrixMode(GL_MODELVIEW);
-			glLoadIdentity();
 
 			Scene::Draw();
 
@@ -100,8 +101,7 @@ namespace Game
 
 			glfwSwapBuffers();
 		}
-		delete post;
-		delete_fbo();
+//		delete_fbo();
 		Scene::Clear();
 	}
 }

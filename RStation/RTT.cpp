@@ -11,14 +11,14 @@ ShaderLoader *post;
 void create_fbo()
 {
 	post = new ShaderLoader();
-	post->Load("sprite.vert","nothing.frag");
+	post->Load("sprite.vert","blur.frag");
 	glGenTextures(1, &color_tex);
 	glBindTexture(GL_TEXTURE_2D, color_tex);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 854, 480, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 854, 480, 0, GL_BGRA, GL_FLOAT, NULL);
 
 	glGenFramebuffersEXT(1, &framebuffer);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer);
@@ -54,6 +54,7 @@ void draw_fbo()
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, get_framebuffer_tex());
 	post->Bind();
+	// XXX
 	glDisable(GL_CULL_FACE);
 	Primitive::Quad(vec2(854,480));
 	glEnable(GL_CULL_FACE);

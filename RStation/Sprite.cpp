@@ -3,9 +3,12 @@
 #include "PNGLoader.h"
 #include "Primitives.h"
 
+// initializing these values is -extremely- important.
+// many hours have been wasted on issues caused by not doing this.
 Sprite::Sprite() :
 	ob_hueShift(0.0f),
 	ob_satShift(0.0f),
+	ob_valShift(0.0f),
 	ob_color(rgba(1.f)),
 	ob_glow(rgba(0.f, 0.f))
 {

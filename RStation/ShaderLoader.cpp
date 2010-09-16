@@ -54,28 +54,18 @@ ShaderLoader::~ShaderLoader()
 
 void ShaderLoader::Load(std::string _vs, std::string _fs, bool reload)
 {
+	if (reload)
+		this->Unload(); // unload everything if reloading.
+
 	shader.path = _vs + "+" + _fs;
 	Shader dupe = ShaderManager::CheckForDuplicates(shader.path);
 
 	if (dupe.ptr)
 	{
 		this->shader = dupe;
+		pAspect = glGetUniformLocation(shader.ptr, "aspect_ratio");
 		this->Bind();
 		return;
-	}
-
-	if (shader.ptr && !reload)
-	{
-		if ( !reload )
-		{
-			Log::DebugPrint("[ShaderLoader::Load] Shader already loaded.");
-			return; // return if this has already been done.
-		}
-		else
-		{
-			this->Unload(); // unload everything if reloading.
-			Log::DebugPrint("[ShaderLoader::Load] Reloading shader.");
-		}
 	}
 
 	_vs = "GameData/Shaders/" + _vs;
@@ -155,6 +145,7 @@ void ShaderLoader::Unload()
 	glDeleteProgram(shader.ptr);
 
 	// ready to reload
+	shader.path = "";
 	shader.ptr = NULL;
 }
 
