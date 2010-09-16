@@ -1,4 +1,5 @@
 #include <GL/glew.h>
+#include <cstdio>
 #include "RStation.h"
 #include <GL/glfw.h>
 #include "GameLoop.h"
