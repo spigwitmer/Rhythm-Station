@@ -9,10 +9,7 @@ Shader ShaderManager::CheckForDuplicates(std::string _path)
 	{
 		Shader cur = sm_shaders[i];
 		if(cur.path == _path)
-		{
-			Log::DebugPrint("[ShaderManager] Shader already loaded. Using existing program." + _path);
 			return cur;
-		}
 	}
 	Shader blank;
 	blank.ptr = NULL;

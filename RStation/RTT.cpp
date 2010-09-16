@@ -11,7 +11,7 @@ ShaderLoader *post;
 void create_fbo()
 {
 	post = new ShaderLoader();
-	post->Load("sprite.vert","blur.frag");
+	post->Load("radial_blur.vert","radial_blur.frag");
 	glGenTextures(1, &color_tex);
 	glBindTexture(GL_TEXTURE_2D, color_tex);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -72,3 +72,17 @@ void delete_fbo()
 
 GLuint get_framebuffer() { return framebuffer; }
 GLuint get_framebuffer_tex() { return color_tex; }
+
+void check_gl_errors()
+{
+	GLenum err = glGetError();
+	switch (err) {
+		case GL_OUT_OF_MEMORY:
+			Log::Print("GL_OUT_OF_MEMORY");
+			break;
+		default:
+			if (err)
+				printf("GL ERROR: %i\n",err);
+			break;
+	}
+}
