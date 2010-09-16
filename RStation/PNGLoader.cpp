@@ -9,7 +9,7 @@ void PNGLoader::Load(std::string _path)
 	Texture dupe = TextureManager::CheckForDuplicates(_path);
 	Texture tex;
 	tex.loader = this;
-	if( dupe.ptr )
+	if (dupe.ptr)
 	{
 		this->setTexture(dupe);
 		return;
@@ -24,7 +24,7 @@ void PNGLoader::Load(std::string _path)
 
 	FILE *pngFile = fopen(_path.c_str(), "rb");
 
-	if(!pngFile)
+	if (!pngFile)
 	{
 		Log::Print("[PNGLoader::Load] File not found.");
 		return;
@@ -34,20 +34,20 @@ void PNGLoader::Load(std::string _path)
 
 	fread(&sig, 8, sizeof(png_byte), pngFile);
 	rewind(pngFile); //so when we init io it won't bitch
-	if(!png_check_sig(sig, 8))
+	if (!png_check_sig(sig, 8))
 		return;
 
 	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL,NULL,NULL);
 
-	if(!png_ptr)
+	if (!png_ptr)
 		return;
 
-	if(setjmp(png_jmpbuf(png_ptr)))
+	if (setjmp(png_jmpbuf(png_ptr)))
 		return;
 
 	info_ptr = png_create_info_struct(png_ptr);
 
-	if(!info_ptr)
+	if (!info_ptr)
 		return;
 
 	png_init_io(png_ptr, pngFile);
@@ -55,19 +55,19 @@ void PNGLoader::Load(std::string _path)
 	bitDepth = png_get_bit_depth(png_ptr, info_ptr);
 	format = png_get_color_type(png_ptr, info_ptr);
 
-	if(format == PNG_COLOR_TYPE_PALETTE)
+	if (format == PNG_COLOR_TYPE_PALETTE)
 		png_set_palette_to_rgb(png_ptr);
 
-	if(format == PNG_COLOR_TYPE_GRAY && bitDepth < 8)
+	if (format == PNG_COLOR_TYPE_GRAY && bitDepth < 8)
 		png_set_expand_gray_1_2_4_to_8(png_ptr);
 
-	if(png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
+	if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
 		png_set_tRNS_to_alpha(png_ptr);
 
-	if(bitDepth == 16)
+	if (bitDepth == 16)
 		png_set_strip_16(png_ptr);
 
-	else if(bitDepth < 8)
+	else if (bitDepth < 8)
 		png_set_packing(png_ptr);
 
 	png_read_update_info(png_ptr, info_ptr);
@@ -78,7 +78,7 @@ void PNGLoader::Load(std::string _path)
 	tex.height = height;
 
 	int ret;
-	switch(format)
+	switch (format)
 	{
 		case PNG_COLOR_TYPE_GRAY:
 			ret = 1;
@@ -96,9 +96,9 @@ void PNGLoader::Load(std::string _path)
 			ret = -1;
 	};
 
-	if(ret == -1)
+	if (ret == -1)
 	{
-		if(png_ptr)
+		if (png_ptr)
 			png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
 		Log::Print("[PNGLoader::Load] File invalid. Is this really a PNG file?");
 		return;
@@ -106,7 +106,7 @@ void PNGLoader::Load(std::string _path)
 	GLubyte *pixels = new GLubyte[tex.width * tex.height * ret];
 	row_pointers = new png_bytep[tex.height];
 	
-	for(unsigned i = 0; i < tex.height; ++i)
+	for (unsigned i = 0; i < tex.height; ++i)
 		row_pointers[i] = (png_bytep)(pixels + (i * tex.width * ret));
 
 	png_read_image(png_ptr, row_pointers);

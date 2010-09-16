@@ -37,11 +37,10 @@ void SetInitialStates()
 	// the frame buffer is usually full of junk after resize. clear it.
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
+	glEnable(GL_TEXTURE_2D); // not needed when shaders are working
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDepthFunc(GL_LEQUAL);
 }
 
 void InitWindow(int _width, int _height)

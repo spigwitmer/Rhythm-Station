@@ -5,15 +5,6 @@
 #include <GL/glfw.h>
 #include "ShaderManager.h"
 
-/*
-struct Uniform
-{
-	std::string name;
-	void* type; // I don't know how to do this part so here's some voids
-	void* data;
-};
-*/
-
 // TODO: support uniforms, more functions, etc.
 class ShaderLoader
 {
@@ -37,18 +28,8 @@ public:
 	// if we would like to store this elsewhere.
 	GLuint getProgram() { return shader.ptr; }
 
-//	void AddUniform(std::string name, float value);
-//	void AddUniform(std::string name, vec2 value);
-//	void AddUniform(std::string name, vec3 value);
-//	void AddUniform(std::string name, rgba value);
-//	void AddUniform(std::string name, mat4 value);
-//	void RemoveUniform(std::string name);
-
 private:
-//	std::vector<Uniform> uniforms;
-
 	GLuint pAspect;
-
 	Shader shader;
 };
 

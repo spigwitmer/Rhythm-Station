@@ -2,8 +2,8 @@
 uniform sampler2D tex;
 uniform float aspect_ratio;
 
-const float blur_factor = 0.005;
-const int samples = 6;
+const float blur_factor = 0.0025;
+const int samples = 4;
 
 void main()
 {

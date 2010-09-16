@@ -4,6 +4,9 @@
 #include "RStation.h"
 
 void create_fbo();
+void delete_fbo();
+void draw_fbo();
+
 GLuint get_framebuffer();
 GLuint get_framebuffer_tex();
 
