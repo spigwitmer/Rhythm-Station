@@ -53,17 +53,8 @@ namespace Game
 			sound->Loop(true);
 			sound->Register();
 		}
-		
-		GLenum err = glGetError();
-		switch (err) {
-			case GL_OUT_OF_MEMORY:
-				Log::Print("GL_OUT_OF_MEMORY");
-				break;
-			default:
-				if (err)
-					printf("GL ERROR: %i\n",err);
-				break;
-		}
+
+		check_gl_errors();
 
 		Log::Print("Loading took: " + timer.strAgo() + " seconds.");
 		// Init is done, flush the log.
@@ -74,7 +65,6 @@ namespace Game
 
 		while(bRunning && glfwGetWindowParam(GLFW_OPENED))
 		{
-			glClearColor(0.5, 0.5, 0.5, 0.5);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glLoadIdentity();
 
@@ -101,7 +91,7 @@ namespace Game
 
 			glfwSwapBuffers();
 		}
-//		delete_fbo();
+		delete_fbo();
 		Scene::Clear();
 	}
 }
