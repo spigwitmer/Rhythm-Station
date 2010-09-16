@@ -26,7 +26,7 @@ void PNGLoader::Load(std::string _path)
 
 	if (!pngFile)
 	{
-		Log::Print("[PNGLoader::Load] File not found.");
+		Log::Print("[PNGLoader::Load] File \"" + tex.path + "\" not found.");
 		return;
 	}
 
