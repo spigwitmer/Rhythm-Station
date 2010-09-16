@@ -66,6 +66,4 @@ void Scene::Draw()
 	// draw all screens and their children
 	for(unsigned i = 0; i<vpScreens.size(); i++)
 		vpScreens[i]->Draw();
-
-	glfwSwapBuffers();
 }

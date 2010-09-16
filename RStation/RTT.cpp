@@ -12,7 +12,7 @@ ShaderLoader *post;
 void create_fbo()
 {
 	post = new ShaderLoader();
-	post->Load("radial_blur.vert","radial_blur.frag");
+	post->Load("sprite.vert","nothing.frag");
 	glGenTextures(1, &color_tex);
 	glBindTexture(GL_TEXTURE_2D, color_tex);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
