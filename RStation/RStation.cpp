@@ -37,9 +37,9 @@ void SetInitialStates()
 	// the frame buffer is usually full of junk after resize. clear it.
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_TEXTURE_2D); // not needed when shaders are working
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
-	glEnable(GL_TEXTURE_2D); // not needed when shaders are working
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
@@ -47,7 +47,7 @@ void InitWindow(int _width, int _height)
 {
 	glfwInit();
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 0);
-	glfwOpenWindow(_width, _height, /* rgba */ 0,0,0,8, /* depth, stencil, mode */ 32,1, GLFW_WINDOW);
+	glfwOpenWindow(_width, _height, /* rgba */ 0,0,0,8, /* depth, stencil, mode */ 24,1, GLFW_WINDOW);
 	glewInit();
 
 	// The window title will be overridden less than a second from startup anyways.
