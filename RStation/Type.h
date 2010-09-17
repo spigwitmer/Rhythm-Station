@@ -3,9 +3,6 @@
 
 #include <string>
 
-// for GLuint and ILuint
-#include <GL/glfw.h>
-
 #ifdef _WIN32
 	#include "stdint.h" // uint32 and such on Windows
 #endif

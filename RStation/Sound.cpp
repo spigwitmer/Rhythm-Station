@@ -10,8 +10,8 @@
 	#include <OpenAL/alc.h>
 	#include <Vorbis/vorbisfile.h>
 #elif __WINDOWS__
-	#include <al.h>
-	#include <alc.h>
+	#include <al/al.h>
+	#include <al/alc.h>
 	#include <vorbis/vorbisfile.h>
 #else
 	#include <AL/al.h>

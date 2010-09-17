@@ -118,7 +118,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="win32\;..\extern\glew\include;..\extern\glfw\include;&quot;..\extern\libpng-1.2.44&quot;;&quot;..\extern\zlib-1.2.5&quot;;&quot;..\extern\lua-5.1.4\src&quot;"
+				AdditionalIncludeDirectories="win32\;..\extern\glew\include;..\extern\glfw\include;&quot;..\extern\libpng-1.2.44&quot;;&quot;..\extern\zlib-1.2.5&quot;;&quot;..\extern\lua-5.1.4\src&quot;;..\extern\OpenAL\include;..\extern\boost_1_44_0;&quot;..\extern\libvorbis-1.3.1\include&quot;;..\extern\libogg\include"
 				PreprocessorDefinitions=" __WINDOWS__;GLEW_STATIC"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -256,6 +256,14 @@
 			</File>
 			<File
 				RelativePath=".\RSUtil.h"
+				>
+			</File>
+			<File
+				RelativePath=".\RTT.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\RTT.h"
 				>
 			</File>
 			<File
