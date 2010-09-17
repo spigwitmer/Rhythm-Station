@@ -2,6 +2,7 @@
 #define _Type_H_
 
 #include <string>
+#include <stdint.h>
 
 #ifdef _WIN32
 	#include "stdint.h" // uint32 and such on Windows
