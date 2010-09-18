@@ -79,7 +79,7 @@ void obj_load(string _path)
 		verts.push_back(tmp_verts[tris[i].v3]);
 	}
 	vec3 max_size;
-	for (int i=0; i<verts_quad.size(); i++) {
+	for (int i=0; i<verts.size(); i++) {
 		max_size.x = max(max_size.x, verts[i].x);
 		max_size.y = max(max_size.y, verts[i].y);
 		max_size.z = max(max_size.z, verts[i].z);
@@ -100,12 +100,6 @@ void obj_draw()
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glVertexPointer(3, GL_FLOAT, 0, &verts[0].x);
 		glDrawArrays(GL_TRIANGLES, 0, verts.size());
-		glDisableClientState(GL_VERTEX_ARRAY);
-
-		// draw quads
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(4, GL_FLOAT, 0, &verts_quad[0].x);
-		glDrawArrays(GL_QUADS, 0, verts_quad.size());
 		glDisableClientState(GL_VERTEX_ARRAY);
 	glPopMatrix();
 	shader->Unbind();
