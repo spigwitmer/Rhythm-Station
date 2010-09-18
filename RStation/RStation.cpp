@@ -46,8 +46,12 @@ void SetInitialStates()
 void InitWindow(int _width, int _height)
 {
 	glfwInit();
-	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 0);
-	glfwOpenWindow(_width, _height, /* rgba */ 0,0,0,8, /* depth, stencil, mode */ 24,1, GLFW_WINDOW);
+	if (glfwOpenWindow(_width, _height, /* rgba */ 0,0,0,8, /* depth, stencil, mode */ 24,1, GLFW_WINDOW))
+	{
+		Log::Print("Window creation failed!");
+		glfwTerminate();
+		exit(-1);
+	}
 	glewInit();
 
 	// The window title will be overridden less than a second from startup anyways.
