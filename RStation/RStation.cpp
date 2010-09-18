@@ -91,7 +91,7 @@ int main(int argc, char** argv)
 
 	for(int i = 0; i < argc; i++)
 	{
-		if (strcmp(argv[i],"--detach-cursor"))
+		if (strcmp(argv[i],"--detach-cursor") == 0)
 		{
 			Log::Print("Disabling cursor.");
 			g_mouse_detached = true;
