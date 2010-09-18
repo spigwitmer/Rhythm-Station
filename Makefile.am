@@ -33,6 +33,8 @@ RStation/MessageManager.cpp \
 RStation/MessageManager.h \
 RStation/MouseHandler.cpp \
 RStation/MouseHandler.h \
+RStation/OBJLoader.cpp \
+RStation/OBJLoader.h \
 RStation/PNGLoader.cpp \
 RStation/PNGLoader.h \
 RStation/Primitives.cpp \
