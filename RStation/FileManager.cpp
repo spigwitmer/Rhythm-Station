@@ -51,7 +51,7 @@ namespace FileManager
 	std::string GetWorkingDirectory()
 	{
 		SetWorkingDirectory();
-		char path[1024];
+		char path[1024] = "./";
 		getcwd(path, 1024);
 		return std::string(path) + "/";
 	}
