@@ -145,18 +145,18 @@ void main(void) {
 		L22 =	vec3(-0.161784, -0.191783, -0.219152);
 	}
 
-	vec3 tnorm = normalize(-gl_Normal);
-	//vec3 tnorm = normalize(gl_NormalMatrix * gl_Normal);
+//	vec3 tnorm = normalize(-gl_Normal);
+	vec3 tnorm = normalize(gl_NormalMatrix * gl_Normal);
 
 	DiffuseColor = C1 * L22 * (tnorm.x * tnorm.x - tnorm.y * tnorm.y) +
 		C3 * L20 * tnorm.z * tnorm.z +
 		C4 * L00 - C5 * L20 +
-		2.0 * C1 * L2m2 * tnorm.x * tnorm.y +
-		2.0 * C1 * L21 * tnorm.x * tnorm.z +
-		2.0 * C1 * L2m1 * tnorm.y * tnorm.z +
-		2.0 * C2 * L11 * tnorm.x +
-		2.0 * C2 * L1m1 * tnorm.y +
-		2.0 * C2 * L10 * tnorm.z;
+		2.0 * C1 * L2m2	* tnorm.x * tnorm.y +
+		2.0 * C1 * L21	* tnorm.x * tnorm.z +
+		2.0 * C1 * L2m1	* tnorm.y * tnorm.z +
+		2.0 * C2 * L11	* tnorm.x +
+		2.0 * C2 * L1m1	* tnorm.y +
+		2.0 * C2 * L10	* tnorm.z;
 	DiffuseColor *= LightIntensity;
 	gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix * gl_Vertex;
 }

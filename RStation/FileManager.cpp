@@ -16,16 +16,19 @@
 
 #include <stdio.h>
 #include <fstream>
+#include <sys/stat.h>
 
 namespace FileManager
 {
 	bool FileExists(std::string _file)
 	{
-		std::fstream filename;
-		filename.open(_file.c_str());
-		bool ret = filename.is_open();
-		filename.close();
-		return ret;
+		struct stat stFileInfo;
+		int iStat;
+
+		iStat = stat(_file.c_str(),&stFileInfo);
+		if(iStat == 0)
+			return true;
+		return false;
 	}
 	void SetWorkingDirectory()
 	{

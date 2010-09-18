@@ -30,6 +30,7 @@
 		EE0346A112435A7D00C51B69 /* stack_content_by_name.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE03468D12435A7D00C51B69 /* stack_content_by_name.cpp */; };
 		EE0346A212435A7D00C51B69 /* weak_ref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE03468E12435A7D00C51B69 /* weak_ref.cpp */; };
 		EE0346A312435A7D00C51B69 /* wrapper_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE03468F12435A7D00C51B69 /* wrapper_base.cpp */; };
+		EE0347001243D72900C51B69 /* OBJLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE0346FF1243D72900C51B69 /* OBJLoader.cpp */; };
 		EE0364E0123C68B20081A309 /* LuaManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE0364DF123C68B20081A309 /* LuaManager.cpp */; };
 		EE1313BE122CFFF000511DD5 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1313BD122CFFF000511DD5 /* Sprite.cpp */; };
 		EE992BB9122B5F1F00884C21 /* bio.icns in Resources */ = {isa = PBXBuildFile; fileRef = EE992BB8122B5F1F00884C21 /* bio.icns */; };
@@ -178,6 +179,8 @@
 		EE03468D12435A7D00C51B69 /* stack_content_by_name.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stack_content_by_name.cpp; sourceTree = "<group>"; };
 		EE03468E12435A7D00C51B69 /* weak_ref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = weak_ref.cpp; sourceTree = "<group>"; };
 		EE03468F12435A7D00C51B69 /* wrapper_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wrapper_base.cpp; sourceTree = "<group>"; };
+		EE0346FE1243D72900C51B69 /* OBJLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJLoader.h; sourceTree = "<group>"; };
+		EE0346FF1243D72900C51B69 /* OBJLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OBJLoader.cpp; sourceTree = "<group>"; };
 		EE0364DE123C68B20081A309 /* LuaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaManager.h; sourceTree = "<group>"; };
 		EE0364DF123C68B20081A309 /* LuaManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaManager.cpp; sourceTree = "<group>"; };
 		EE1313BC122CFFF000511DD5 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
@@ -672,6 +675,8 @@
 				EEF770F91227B12200C6B4E7 /* ImageLoader.h */,
 				EEBD1F66122BBEFF003DB675 /* ShaderLoader.cpp */,
 				EEBD1F65122BBEFF003DB675 /* ShaderLoader.h */,
+				EE0346FE1243D72900C51B69 /* OBJLoader.h */,
+				EE0346FF1243D72900C51B69 /* OBJLoader.cpp */,
 			);
 			name = Loaders;
 			path = RStation;
@@ -924,6 +929,7 @@
 				EE0346A112435A7D00C51B69 /* stack_content_by_name.cpp in Sources */,
 				EE0346A212435A7D00C51B69 /* weak_ref.cpp in Sources */,
 				EE0346A312435A7D00C51B69 /* wrapper_base.cpp in Sources */,
+				EE0347001243D72900C51B69 /* OBJLoader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

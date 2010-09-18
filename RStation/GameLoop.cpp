@@ -11,6 +11,7 @@
 #include "Sound.h"
 #include "Primitives.h"
 #include "RTT.h"
+#include "OBJLoader.h"
 
 bool bRunning = true;
 
@@ -32,12 +33,27 @@ namespace Game
 		{
 			Sprite *bg = new Sprite();
 			bg->Load("Themes/bg.png");
+			bg->Value(-0.5);
 			bg->Register();
-			
-			Sprite *logo = new Sprite();
-			logo->Load("Themes/rstation-logo.png");
-			logo->Glow(rgba(0.125f, 0.125f, 0.125f, 0.0f));
-			logo->Register();
+
+			obj_load("Themes/suzanne.obj");
+
+//			Sprite *logo = new Sprite();
+//			logo->Load("Themes/rstation-logo.png");
+//			logo->Glow(rgba(0.125f, 0.125f, 0.125f, 0.0f));
+//			logo->Register();
+
+			Sprite *button = new Sprite();
+			button->Load("Themes/_button.png");
+			button->Saturation(-1.0);
+			button->Position(vec3(-64,128,0));
+			button->Register();
+
+			Sprite *button2 = new Sprite();
+			button2->Load("Themes/_button.png");
+			button2->Hue(190.0);
+			button2->Position(vec3(64,128,0));
+			button2->Register();
 
 			Sprite *spr_mouse = new Sprite();
 			spr_mouse->Load("Themes/_arrow.png");
@@ -74,7 +90,7 @@ namespace Game
 			float delta = float(now - then);
 
 			// calculate FPS and set window title.
-			if( int(then * freq) != int(now * freq) )
+			if (int(then * freq) != int(now * freq))
 				Util::UpdateWindowTitle(delta);
 
 			then = now;
@@ -87,6 +103,8 @@ namespace Game
 			glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, get_framebuffer());
 
 			Scene::Draw();
+
+			obj_draw();
 
 			draw_fbo();
 

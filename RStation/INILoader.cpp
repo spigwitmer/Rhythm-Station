@@ -3,6 +3,7 @@
 #include "RSUtil.h"
 
 using namespace std;
+using namespace Util;
 
 void INILoader::Load(string _path)
 {
@@ -10,7 +11,7 @@ void INILoader::Load(string _path)
 	_path = FileManager::GetFile(_path);
 	string file_contents = FileManager::GetFileContents(_path);
 
-	vector<string> lines = Util::Split(file_contents, '\n');
+	vector<string> lines = split(file_contents, '\n');
 	for (unsigned i = 0; i<lines.size(); i++)
 	{
 		string line = lines[i];
@@ -27,13 +28,10 @@ void INILoader::Load(string _path)
 		
 		// multi-character comments
 		// // comment
-		size_t pos = line.find("//");
-		if (pos == string::npos)
-			line = line.substr(0,pos);
+		line = chop(line, "//");
+		
 		// -- comment
-		pos = line.find("--");
-		if (pos == string::npos)
-			line = line.substr(0,pos);
+		line = chop(line, "--");
 
 		// sections
 		if (line[0] == '[' && line[line.size()-1] == ']')
@@ -41,7 +39,7 @@ void INILoader::Load(string _path)
 		if (!current_section.empty())
 		{
 			// split key=value pairs and put them in our map
-			pos = line.find("=");
+			size_t pos = line.find("=");
 			if(pos == string::npos)
 				continue;
 			string key = line.substr(0,pos);

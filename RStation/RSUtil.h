@@ -6,7 +6,9 @@
 namespace Util
 {
 	void UpdateWindowTitle(float delta);
-	std::vector<std::string> Split(std::string &str, char delim);
+	std::vector<std::string> split(std::string &str, char delim);
+	std::string chop(std::string str, std::string search);
+	void trim(std::string& str);
 }
 
 #endif
