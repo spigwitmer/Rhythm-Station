@@ -1,6 +1,5 @@
 #include <GL/glew.h>
 #include "RStation.h"
-#include <GL/glew.h>
 #include <GL/glfw.h>
 #include "GameLoop.h"
 #include "AudioManager.h"
