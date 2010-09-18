@@ -9,6 +9,7 @@
 #include "INILoader.h"
 #include "MathUtils.h"
 #include "LuaManager.h"
+#include <cstring>
 
 INILoader* ini = new INILoader();
 
