@@ -54,7 +54,10 @@ void Audio::Open()
 	// open default device.
 	device = alcOpenDevice(NULL);
 	if( !device )
+	{
+		Log::Print("[Audio::Open] Failed to open default sound device.");
 		return;
+	}
 
 	// create device context
 	context = alcCreateContext(device, NULL);
