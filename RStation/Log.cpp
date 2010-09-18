@@ -38,7 +38,7 @@ void Log::Print(std::string input)
 {
 	std::ostringstream out;
 	out << "[";
-	char buf[16];
+	char buf[16] = "";
 	sprintf(buf, "%0.3f", glfwGetTime());
 	out << buf;
 	out << "] ";
