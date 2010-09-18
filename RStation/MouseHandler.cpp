@@ -3,6 +3,7 @@
 #include "MouseHandler.h"
 #include "InputManager.h"
 #include "SceneManager.h"
+#include <cstring>
 
 struct v2int{ int x, y, cx, cy; };
 
