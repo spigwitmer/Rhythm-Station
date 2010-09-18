@@ -4,38 +4,6 @@
 #include <math.h>
 
 // TODO: make some functions for building vertex arrays / VBOs
-struct Vertex {
-	Vertex() : x(0), y(0), z(0) {}
-	Vertex(float _x) : y(0), z(0)
-	{
-		x = _x;
-	}
-	Vertex(float _x, float _y) : z(0)
-	{
-		x = _x;
-		y = _y;
-	}
-	Vertex(float _x, float _y, float _z)
-	{
-		x = _x;
-		y = _y;
-		z = _z;
-	}
-	float x;
-	float y;
-	float z;
-};
-
-struct TexCoord {
-	TexCoord() : u(0), v(0) {}
-	TexCoord(float _u, float _v)
-	{
-		u = _u;
-		v = _v;
-	}
-	float u;
-	float v;
-};
 
 void Primitive::Ngon(float _radius, unsigned _edges)
 {

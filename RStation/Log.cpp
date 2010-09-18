@@ -20,9 +20,12 @@ void Log::Close()
 	logFile.close();
 }
 
+int logcount;
+
 void Log::Write()
 {
 	Print("[Log::Write] Flushing log to disk.");
+	logcount = 0;
 	logFile.flush();
 }
 
@@ -36,6 +39,10 @@ void Log::DebugPrint(std::string input)
 
 void Log::Print(std::string input)
 {
+	// don't fill up our buffer too much between writes.
+	if (++logcount > 500)
+		Log::Write();
+
 	std::ostringstream out;
 	out << "[";
 	char buf[16];
