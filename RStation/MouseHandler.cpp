@@ -42,7 +42,8 @@ void MousePosCallback(int _x, int _y)
 	else if (_y < -screenSize.cy)
 		_y = -screenSize.cy;
 	
-	glfwSetMousePos(_x,_y);
+	if (!g_mouse_detached)
+		glfwSetMousePos(_x,_y);
 	
 	Mouse.x = _x;
 	Mouse.y = _y;
@@ -59,8 +60,12 @@ void RegisterMouseCallbacks()
 	
 	glfwSetMouseButtonCallback(MouseButtonCallback);
 	glfwSetMousePosCallback(MousePosCallback);
-	
-	glfwDisable(GLFW_MOUSE_CURSOR);
-	
+
+	// make this a function
+	if (g_mouse_detached)
+		glfwEnable(GLFW_MOUSE_CURSOR);
+	else
+		glfwDisable(GLFW_MOUSE_CURSOR);
+
 	Log::Print("Registered MouseHandler.");
 }

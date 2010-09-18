@@ -26,6 +26,16 @@ void KeyCallback(int key, int action)
 	event.Key = (KeyAliases)key;
 	event.State = Keys[key];
 
+	// detach cursor on F2
+	if (event.Key == KEY_F2 && event.State == RS_FIRST_PRESS)
+	{
+		g_mouse_detached = !g_mouse_detached;
+		if (g_mouse_detached)
+			glfwEnable(GLFW_MOUSE_CURSOR);
+		else
+			glfwDisable(GLFW_MOUSE_CURSOR);
+	}
+	
 	// flush log on F3
 	if(event.Key == KEY_F3 && event.State == RS_FIRST_PRESS)
 	{

@@ -30,6 +30,12 @@ void Screen::Input(const IEvent &e)
 		if(!vpActorHooks.empty())
 			vpActorHooks.back()->Position(vec3(e.Mouse.x,e.Mouse.y,0));
 	
+	// hide if not attached
+	if (g_mouse_detached)
+		vpActorHooks.back()->Visible(false);
+	else
+		vpActorHooks.back()->Visible(true);
+
 	if(e.Key == KEY_ESC )
 		Game::Terminate();
 }

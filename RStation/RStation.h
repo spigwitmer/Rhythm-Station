@@ -19,5 +19,6 @@
 #include "Type.h"
 
 extern float g_aspectRatio;
+extern bool g_mouse_detached;
 
 #endif

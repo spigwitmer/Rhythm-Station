@@ -12,6 +12,8 @@
 
 INILoader* ini = new INILoader();
 
+bool g_mouse_detached = false;
+
 void GLFWCALL ResizeViewport(int w, int h)
 {
 	// half width, half height.
@@ -85,6 +87,15 @@ int main(int argc, char** argv)
 	// initialize everything needed
 	Log::Open();
 	Audio::Open();
+
+	for(int i = 0; i < argc; i++)
+	{
+		if (strcmp(argv[i],"--detach-cursor"))
+		{
+			Log::Print("Disabling cursor.");
+			g_mouse_detached = true;
+		}
+	}
 
 	ini->Load("GameData/Preferences.ini");
 
