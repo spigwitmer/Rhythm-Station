@@ -59,8 +59,7 @@ void Sound::Load(std::string _path)
 	// read ogg info
 	vorbis_info *pInfo;
 	OggVorbis_File oggFile;
-	int result = ov_open(f, &oggFile, NULL, 0);
-	MessageBoxA(NULL, result == -1 ? "-1" : "not -1", "ogg", MB_OK);
+	ov_open(f, &oggFile, NULL, 0);
 	pInfo = ov_info(&oggFile, -1);
 
 	// work out format
