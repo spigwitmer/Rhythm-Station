@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="win32\;..\extern\glew\include;..\extern\glfw\include;&quot;..\extern\libpng-1.2.44&quot;;&quot;..\extern\zlib-1.2.5&quot;;&quot;..\extern\lua-5.1.4\src&quot;"
+				AdditionalIncludeDirectories="win32\;..\extern\glew\include;..\extern\glfw\include;&quot;..\extern\libpng-1.2.44&quot;;&quot;..\extern\zlib-1.2.5&quot;;&quot;..\extern\lua-5.1.4\src&quot;;..\extern\OpenAL\include;&quot;..\extern\boost-1.39.0&quot;;&quot;..\extern\libvorbis-1.3.1\include&quot;;..\extern\libogg\include"
 				PreprocessorDefinitions=" __WINDOWS__;GLEW_STATIC;_DEBUG_"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,10 +64,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="glew32s.lib GLFW.lib opengl32.lib glu32.lib user32.lib libpng.lib"
-				OutputFile="..\$(ProjectName).exe"
+				AdditionalDependencies="glew32s.lib GLFW.lib opengl32.lib glu32.lib user32.lib libpng.lib zlibd.lib lua.lib"
+				OutputFile="..\$(ProjectName)-debug.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories=".\win32"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\lib\$(PlatformName)\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -100,6 +100,7 @@
 			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -120,7 +121,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="win32\;..\extern\glew\include;..\extern\glfw\include;&quot;..\extern\libpng-1.2.44&quot;;&quot;..\extern\zlib-1.2.5&quot;;&quot;..\extern\lua-5.1.4\src&quot;"
+				AdditionalIncludeDirectories="win32\;..\extern\glew\include;..\extern\glfw\include;&quot;..\extern\libpng-1.2.44&quot;;&quot;..\extern\zlib-1.2.5&quot;;&quot;..\extern\lua-5.1.4\src&quot;;..\extern\OpenAL\include;&quot;..\extern\boost-1.39.0&quot;;&quot;..\extern\libvorbis-1.3.1\include&quot;;..\extern\libogg\include"
 				PreprocessorDefinitions=" __WINDOWS__;GLEW_STATIC;_DEBUG_"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -140,10 +141,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="glew32s.lib GLFW.lib opengl32.lib glu32.lib user32.lib libpng.lib"
-				OutputFile="..\$(ProjectName).exe"
+				AdditionalDependencies="glew32s.lib GLFW.lib opengl32.lib glu32.lib user32.lib libpng.lib zlibd.lib lua.lib"
+				OutputFile="..\$(ProjectName)_x64-debug.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories=".\win32"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\lib\$(PlatformName)\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="17"
@@ -197,7 +198,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="win32\;..\extern\glew\include;..\extern\glfw\include;&quot;..\extern\libpng-1.2.44&quot;;&quot;..\extern\zlib-1.2.5&quot;;&quot;..\extern\lua-5.1.4\src&quot;;..\extern\OpenAL\include;..\extern\boost_1_44_0;&quot;..\extern\libvorbis-1.3.1\include&quot;;..\extern\libogg\include"
+				AdditionalIncludeDirectories="win32\;..\extern\glew\include;..\extern\glfw\include;&quot;..\extern\libpng-1.2.44&quot;;&quot;..\extern\zlib-1.2.5&quot;;&quot;..\extern\lua-5.1.4\src&quot;;..\extern\OpenAL\include;&quot;..\extern\boost-1.39.0&quot;;&quot;..\extern\libvorbis-1.3.1\include&quot;;..\extern\libogg\include"
 				PreprocessorDefinitions=" __WINDOWS__;GLEW_STATIC"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -277,7 +278,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="win32\;..\extern\glew\include;..\extern\glfw\include;&quot;..\extern\libpng-1.2.44&quot;;&quot;..\extern\zlib-1.2.5&quot;;&quot;..\extern\lua-5.1.4\src&quot;;..\extern\OpenAL\include;..\extern\boost_1_44_0;&quot;..\extern\libvorbis-1.3.1\include&quot;;..\extern\libogg\include"
+				AdditionalIncludeDirectories="win32\;..\extern\glew\include;..\extern\glfw\include;&quot;..\extern\libpng-1.2.44&quot;;&quot;..\extern\zlib-1.2.5&quot;;&quot;..\extern\lua-5.1.4\src&quot;;..\extern\OpenAL\include;&quot;..\extern\boost-1.39.0&quot;;&quot;..\extern\libvorbis-1.3.1\include&quot;;..\extern\libogg\include"
 				PreprocessorDefinitions=" __WINDOWS__;GLEW_STATIC"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -345,6 +346,10 @@
 		<ProjectReference
 			ReferencedProjectIdentifier="{92427FC7-9DE9-4C86-B43E-BB67AF03DB12}"
 			RelativePathToProject=".\extern\lua-5.1.4\etc\vs2008\lua.vcproj"
+		/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{DC6C7281-068A-4BEC-8A37-6613198345F5}"
+			RelativePathToProject=".\extern\OpenAL\OpenAL-Windows\OpenAL32\OpenAL32.vcproj"
 		/>
 	</References>
 	<Files>

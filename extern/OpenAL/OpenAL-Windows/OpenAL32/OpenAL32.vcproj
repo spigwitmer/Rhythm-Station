@@ -211,7 +211,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\Debug"
+			OutputDirectory="$(SolutionDir)"
 			IntermediateDirectory=".\Debug"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
@@ -271,7 +271,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="dxguid.lib odbc32.lib odbccp32.lib"
-				OutputFile="Debug/wrap_oal.dll"
+				OutputFile="$(SolutionDir)\wrap_oal32d.dll"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -307,7 +307,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)"
 			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
@@ -367,7 +367,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="dxguid.lib odbc32.lib odbccp32.lib"
-				OutputFile="Debug/wrap_oal.dll"
+				OutputFile="$(SolutionDir)/wrap_oal64d.dll"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"

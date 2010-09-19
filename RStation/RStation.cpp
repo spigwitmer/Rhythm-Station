@@ -80,6 +80,8 @@ float g_aspectRatio = 0.0f;
 
 // TODO: handle command line args for windows and unix
 #ifdef _WIN32
+#define argc __argc
+#define argv __argv
 int WINAPI WinMain(HINSTANCE d1, HINSTANCE d2, LPSTR d3, int d4)
 #else
 int main(int argc, char** argv)
