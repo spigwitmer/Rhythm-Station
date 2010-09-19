@@ -9,6 +9,18 @@ GLuint color_tex, framebuffer, depth_rb;
 
 ShaderLoader *post;
 
+class Filter // : public ShaderLoader
+{
+public:
+	Filter() {}
+	virtual ~Filter() {}
+	void Load() {}
+	void Draw() {}
+private:
+	GLuint framebuffer, depth_buffer, color_tex;
+	ShaderLoader *filter;
+};
+
 void create_fbo()
 {
 	post = new ShaderLoader();
@@ -52,13 +64,14 @@ void create_fbo()
 void draw_fbo()
 {
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0); // return to back buffer
-	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, get_framebuffer_tex());
 	post->Bind();
-	// XXX
-	glDisable(GL_CULL_FACE);
-	Primitive::Quad(vec2(854,480));
-	glEnable(GL_CULL_FACE);
+	
+	// upside-down matrix goodies.
+	glCullFace(GL_FRONT);
+	Primitive::Quad(vec2(854,-480));
+	glCullFace(GL_BACK);
+	
 	post->Unbind();
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
