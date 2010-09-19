@@ -59,7 +59,8 @@ void Sound::Load(std::string _path)
 	// read ogg info
 	vorbis_info *pInfo;
 	OggVorbis_File oggFile;
-	ov_open(f, &oggFile, NULL, 0);
+	int result = ov_open(f, &oggFile, NULL, 0);
+	MessageBoxA(NULL, result == -1 ? "-1" : "not -1", "ogg", MB_OK);
 	pInfo = ov_info(&oggFile, -1);
 
 	// work out format
@@ -77,7 +78,7 @@ void Sound::Load(std::string _path)
 	std::vector <char> buffer;
 
 	// read ogg data in chunks of BUFFER_SIZE
-	long bytes;
+	long bytes = 1;
 	while (bytes > 0)
 	{
 		bytes = ov_read(&oggFile, array, BUFFER_SIZE, 0 /* little endian */, 2, 1, NULL);
@@ -86,7 +87,8 @@ void Sound::Load(std::string _path)
 	ov_clear(&oggFile);
 
 	// upload buffer data
-	alBufferData(sd_sound->buffer, format, &buffer[0], static_cast<ALsizei> (buffer.size()), freq);
+	if ( buffer.size() > 0 )
+		alBufferData(sd_sound->buffer, format, &buffer[0], static_cast<ALsizei> (buffer.size()), freq);
 
 	sd_waiting = true;
 }

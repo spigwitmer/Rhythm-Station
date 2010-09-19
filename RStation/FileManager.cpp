@@ -68,7 +68,10 @@ namespace FileManager
 		std::ifstream file(_path.c_str());
 		
 		if(!file.is_open())
+		{
+			Log::Print("Error opening " + _path + " for writing");
 			return std::string();
+		}
 		
 		while(!file.eof())
 		{

@@ -142,7 +142,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="glew32s.lib GLFW.lib opengl32.lib glu32.lib user32.lib libpng.lib zlibd.lib lua.lib"
-				OutputFile="..\$(ProjectName)_x64-debug.exe"
+				OutputFile="$(SolutionDir)\$(ProjectName)_x64-debug.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\lib\$(PlatformName)\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
@@ -218,7 +218,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="glew32s.lib GLFW.lib opengl32.lib glu32.lib user32.lib libpng.lib zlib.lib lua.lib"
-				OutputFile="..\$(ProjectName).exe"
+				OutputFile="$(SolutionDir)\$(ProjectName).exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\lib\$(PlatformName)\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
@@ -298,7 +298,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="glew.lib GLFW.lib opengl32.lib glu32.lib user32.lib libpng.lib zlib.lib lua.lib"
-				OutputFile="..\$(ProjectName)_x64.exe"
+				OutputFile="$(SolutionDir)\$(ProjectName)_x64.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\lib\$(PlatformName)\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
