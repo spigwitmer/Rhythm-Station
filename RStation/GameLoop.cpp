@@ -30,46 +30,37 @@ namespace Game
 	{
 		Timer timer;
 		Scene::PushScreen(); // push overlay
-		{
-			Sprite *bg = new Sprite();
-			bg->Load("Themes/bg.png");
-			bg->Value(-0.5);
-			bg->Register();
 
-			obj_load("Themes/suzanne.obj");
+		Sprite *sprite = new Sprite();
+		sprite->Load("Themes/rstation-logo.png");
+		sprite->Glow(rgba(0.125f, 0.125f, 0.125f, 0.0f));
+		sprite->Register();
 
-//			Sprite *logo = new Sprite();
-//			logo->Load("Themes/rstation-logo.png");
-//			logo->Glow(rgba(0.125f, 0.125f, 0.125f, 0.0f));
-//			logo->Register();
+		sprite = new Sprite();
+		sprite->Load("Themes/_button.png");
+		sprite->Saturation(-1.0);
+		sprite->Position(vec3(-64,128,0));
+		sprite->Register();
 
-			Sprite *button = new Sprite();
-			button->Load("Themes/_button.png");
-			button->Saturation(-1.0);
-			button->Position(vec3(-64,128,0));
-			button->Register();
+		sprite = new Sprite();
+		sprite->Load("Themes/_button.png");
+		sprite->Hue(200.0);
+		sprite->Position(vec3(64,128,0));
+		sprite->Register();
 
-			Sprite *button2 = new Sprite();
-			button2->Load("Themes/_button.png");
-			button2->Hue(190.0);
-			button2->Position(vec3(64,128,0));
-			button2->Register();
+		// make a proper one later.
+		sprite = new Sprite();
+		sprite->Load("Themes/_arrow.png");
+		sprite->Hook(RS_ATTACH_CURSOR);
+		sprite->Offset(vec3(sprite->getWidth()/13.f,sprite->getHeight()/7.f,0));
+		sprite->Rotate(vec3(0.f,0.f,-27.f));
+		sprite->Scale(vec3(0.35f,0.5f,1.f));
+		sprite->Register();
 
-			Sprite *spr_mouse = new Sprite();
-			spr_mouse->Load("Themes/_arrow.png");
-			spr_mouse->Hook(RS_ATTACH_CURSOR);
-			int w = spr_mouse->getWidth();
-			int h = spr_mouse->getHeight();
-			spr_mouse->Offset(vec3(w/13.f,h/7.f,0)); // not perfect.
-			spr_mouse->Rotate(vec3(0.f,0.f,-27.f));
-			spr_mouse->Scale(vec3(0.35f,0.5f,1.f));
-			spr_mouse->Register();
-
-			Sound *sound = new Sound();
-			sound->Load("Themes/shield-9.ogg");
-			sound->Loop(true);
-			sound->Register();
-		}
+		Sound *sound = new Sound();
+		sound->Load("Themes/shield-9.ogg");
+		sound->Loop(true);
+		sound->Register();
 
 		check_gl_errors();
 
@@ -78,12 +69,12 @@ namespace Game
 		Log::Write();
 		double then = glfwGetTime();
 
-		create_fbo();
+//		create_fbo();
 
 		while(bRunning && glfwGetWindowParam(GLFW_OPENED))
 		{
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glLoadIdentity();
+//			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//			glLoadIdentity();
 
 			// calculate delta time
 			double now = glfwGetTime();
@@ -100,17 +91,15 @@ namespace Game
 
 			Scene::Update(delta);
 
-			glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, get_framebuffer());
+//			glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, get_framebuffer());
 
 			Scene::Draw();
 
-			obj_draw();
-
-			draw_fbo();
+//			draw_fbo();
 
 			glfwSwapBuffers();
 		}
-		delete_fbo();
+//		delete_fbo();
 		Scene::Clear();
 	}
 }
