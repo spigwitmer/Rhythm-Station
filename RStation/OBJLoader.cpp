@@ -17,10 +17,8 @@ struct PolyTri {
 float max_zoom;
 
 // hold verts
-vector<Vertex>	verts;
-
-// hold polygons
-vector<PolyTri>	tris;
+vector<Vertex> verts;
+vector<PolyTri> tris;
 
 ShaderLoader *shader = NULL;
 
@@ -31,9 +29,7 @@ void obj_load(string _path)
 
 	_path = FileManager::GetFile(_path);
 	string file = FileManager::GetFileContents(_path);
-
 	vector<Vertex> tmp_verts;
-
 	vector<string> lines = split(file,'\n');
 	for (int i = 0; i<lines.size(); i++) {
 		// if this line is a comment, skip it.
@@ -96,7 +92,6 @@ void obj_draw()
 	glPushMatrix();
 		glRotatef(180, 1, 0, 0);
 		glScalef(max_zoom, max_zoom, max_zoom);
-		// draw tris
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glVertexPointer(3, GL_FLOAT, 0, &verts[0].x);
 		glDrawArrays(GL_TRIANGLES, 0, verts.size());
