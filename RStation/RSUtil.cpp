@@ -1,7 +1,8 @@
 #include "RStation.h"
-#include <GL/glfw.h>
 #include "RSUtil.h"
+#include <GL/glfw.h>
 #include <sstream>
+#include <stdio.h>
 
 using namespace std;
 
@@ -37,8 +38,6 @@ string Util::chop(string str, string search)
 		str = str.substr(0,pos);
 	return str;
 }
-
-#include <stdio.h>
 
 void Util::trim(string& str)
 {

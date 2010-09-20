@@ -194,7 +194,7 @@
 		EEBD779812393F7900174877 /* INILoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = INILoader.cpp; sourceTree = "<group>"; };
 		EEBD795F12395A2D00174877 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		EEBD796012395A2D00174877 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
-		EEE4225D123E9C3100E471EB /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = "../rs-official/xcode/Libraries/libogg.a"; sourceTree = SOURCE_ROOT; };
+		EEE4225D123E9C3100E471EB /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = RStation/osx/libogg.a; sourceTree = "<group>"; };
 		EEE42283123E9E7100E471EB /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = RStation/osx/libvorbis.a; sourceTree = "<group>"; };
 		EEE42284123E9E7100E471EB /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = RStation/osx/libvorbisfile.a; sourceTree = "<group>"; };
 		EEF40B49121D257D009F8F49 /* GameLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLoop.cpp; sourceTree = "<group>"; };
@@ -1019,13 +1019,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/extern/boost-1.39.0/",
 					"$(PROJECT_DIR)/extern/libpng-1.2.44",
 					"$(PROJECT_DIR)/extern/glew/include",
 					"$(PROJECT_DIR)/extern/luabind-0.8.1",
 					"$(PROJECT_DIR)/extern/glfw/include",
-					/opt/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
@@ -1048,13 +1048,14 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/extern/boost-1.39.0/",
 					"$(PROJECT_DIR)/extern/libpng-1.2.44",
 					"$(PROJECT_DIR)/extern/glew/include",
 					"$(PROJECT_DIR)/extern/luabind-0.8.1",
 					"$(PROJECT_DIR)/extern/glfw/include",
-					/opt/local/include,
+					/opt/local/include/,
 				);
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LIBRARY_SEARCH_PATHS = /opt/local/lib/;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 				SYMROOT = "$(PROJECT_DIR)";
