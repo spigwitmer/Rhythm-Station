@@ -150,15 +150,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B75C4EF1230542800913E60 /* RSUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RSUtil.cpp; sourceTree = "<group>"; };
-		2B75C4F01230542800913E60 /* RSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUtil.h; sourceTree = "<group>"; };
+		2B75C4EF1230542800913E60 /* RSUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RSUtil.cpp; path = RStation/RSUtil.cpp; sourceTree = "<group>"; };
+		2B75C4F01230542800913E60 /* RSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSUtil.h; path = RStation/RSUtil.h; sourceTree = "<group>"; };
 		2B75C4F41230545200913E60 /* TimingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingData.h; sourceTree = "<group>"; };
 		2B75C4F51230545F00913E60 /* TextureManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureManager.cpp; sourceTree = "<group>"; };
 		2B75C4F61230545F00913E60 /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* RStation-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RStation-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* RStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE03415F12415EF400C51B69 /* RTT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTT.h; sourceTree = "<group>"; };
-		EE03416012415EF400C51B69 /* RTT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RTT.cpp; sourceTree = "<group>"; };
+		EE03415F12415EF400C51B69 /* RTT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTT.h; path = RStation/RTT.h; sourceTree = "<group>"; };
+		EE03416012415EF400C51B69 /* RTT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RTT.cpp; path = RStation/RTT.cpp; sourceTree = "<group>"; };
 		EE03467C12435A7D00C51B69 /* class.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class.cpp; sourceTree = "<group>"; };
 		EE03467D12435A7D00C51B69 /* class_info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class_info.cpp; sourceTree = "<group>"; };
 		EE03467E12435A7D00C51B69 /* class_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class_registry.cpp; sourceTree = "<group>"; };
@@ -225,12 +225,12 @@
 		EEF40BEF121D3D95009F8F49 /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = thread.c; path = lib/thread.c; sourceTree = "<group>"; };
 		EEF40BF0121D3D95009F8F49 /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = time.c; path = lib/time.c; sourceTree = "<group>"; };
 		EEF40C05121D3D95009F8F49 /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = window.c; path = lib/window.c; sourceTree = "<group>"; };
-		EEF40DC9121FC5AE009F8F49 /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
-		EEF40DCA121FC5AE009F8F49 /* Actor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Actor.cpp; sourceTree = "<group>"; };
+		EEF40DC9121FC5AE009F8F49 /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Actor.h; path = RStation/Actor.h; sourceTree = "<group>"; };
+		EEF40DCA121FC5AE009F8F49 /* Actor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Actor.cpp; path = RStation/Actor.cpp; sourceTree = "<group>"; };
 		EEF40EDD121FD490009F8F49 /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
 		EEF40EDE121FD490009F8F49 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
-		EEF40EDF121FD490009F8F49 /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
-		EEF40EE0121FD490009F8F49 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		EEF40EDF121FD490009F8F49 /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Log.cpp; path = RStation/Log.cpp; sourceTree = "<group>"; };
+		EEF40EE0121FD490009F8F49 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Log.h; path = RStation/Log.h; sourceTree = "<group>"; };
 		EEF40EF2121FECD8009F8F49 /* MouseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseHandler.h; sourceTree = "<group>"; };
 		EEF40EF3121FECD8009F8F49 /* MouseHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseHandler.cpp; sourceTree = "<group>"; };
 		EEF40EF6121FECF2009F8F49 /* KeyboardHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardHandler.h; sourceTree = "<group>"; };
@@ -297,14 +297,14 @@
 		EEF770BF12265B4E00C6B4E7 /* print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = print.c; path = "lua-5.1.4/src/print.c"; sourceTree = "<group>"; };
 		EEF770F61227ACEA00C6B4E7 /* PNGLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGLoader.h; sourceTree = "<group>"; };
 		EEF770F71227ACEA00C6B4E7 /* PNGLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PNGLoader.cpp; sourceTree = "<group>"; };
-		EEF770F91227B12200C6B4E7 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
-		EEF770FA1227B12200C6B4E7 /* ImageLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageLoader.cpp; sourceTree = "<group>"; };
-		EEF7710D12282B7400C6B4E7 /* Primitives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Primitives.cpp; sourceTree = "<group>"; };
-		EEF7710E12282B7400C6B4E7 /* Primitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Primitives.h; sourceTree = "<group>"; };
-		EEF7710F12282B7400C6B4E7 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
-		EEF7711012282B7400C6B4E7 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
-		EEF7711112282B7400C6B4E7 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
-		EEF7711212282B7400C6B4E7 /* Tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tween.h; sourceTree = "<group>"; };
+		EEF770F91227B12200C6B4E7 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageLoader.h; path = RStation/ImageLoader.h; sourceTree = "<group>"; };
+		EEF770FA1227B12200C6B4E7 /* ImageLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageLoader.cpp; path = RStation/ImageLoader.cpp; sourceTree = "<group>"; };
+		EEF7710D12282B7400C6B4E7 /* Primitives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Primitives.cpp; path = RStation/Primitives.cpp; sourceTree = "<group>"; };
+		EEF7710E12282B7400C6B4E7 /* Primitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Primitives.h; path = RStation/Primitives.h; sourceTree = "<group>"; };
+		EEF7710F12282B7400C6B4E7 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Timer.cpp; path = RStation/Timer.cpp; sourceTree = "<group>"; };
+		EEF7711012282B7400C6B4E7 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Timer.h; path = RStation/Timer.h; sourceTree = "<group>"; };
+		EEF7711112282B7400C6B4E7 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Tween.cpp; path = RStation/Tween.cpp; sourceTree = "<group>"; };
+		EEF7711212282B7400C6B4E7 /* Tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tween.h; path = RStation/Tween.h; sourceTree = "<group>"; };
 		EEF7711312282B7400C6B4E7 /* Type.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type.cpp; sourceTree = "<group>"; };
 		EEF7711412282B7400C6B4E7 /* Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type.h; sourceTree = "<group>"; };
 		EEF7728312282C8800C6B4E7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -313,8 +313,8 @@
 		EEF7728912282C8800C6B4E7 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EEF7729A12282CD100C6B4E7 /* AudioManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioManager.cpp; sourceTree = "<group>"; };
 		EEF7729B12282CD100C6B4E7 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
-		EEF7729E12282D4100C6B4E7 /* MathUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtils.cpp; sourceTree = "<group>"; };
-		EEF7729F12282D4100C6B4E7 /* MathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtils.h; sourceTree = "<group>"; };
+		EEF7729E12282D4100C6B4E7 /* MathUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MathUtils.cpp; path = RStation/MathUtils.cpp; sourceTree = "<group>"; };
+		EEF7729F12282D4100C6B4E7 /* MathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathUtils.h; path = RStation/MathUtils.h; sourceTree = "<group>"; };
 		EEF775B71229A36E00C6B4E7 /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = adler32.c; path = "zlib-1.2.5/adler32.c"; sourceTree = "<group>"; };
 		EEF775B81229A36E00C6B4E7 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = compress.c; path = "zlib-1.2.5/compress.c"; sourceTree = "<group>"; };
 		EEF775B91229A36E00C6B4E7 /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crc32.c; path = "zlib-1.2.5/crc32.c"; sourceTree = "<group>"; };
@@ -468,6 +468,8 @@
 		EEF40B52121D2580009F8F49 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				EEFBF0161247037D0035E8B7 /* Base Classes */,
+				EEFBF00B124702DE0035E8B7 /* Utils */,
 				EEF770EB1227AA3300C6B4E7 /* Loaders */,
 				EEF40DEB121FC636009F8F49 /* Actors */,
 				EEF40D21121DC4D7009F8F49 /* Core */,
@@ -519,25 +521,11 @@
 			children = (
 				EEF40B49121D257D009F8F49 /* GameLoop.cpp */,
 				EEF40B4A121D257D009F8F49 /* GameLoop.h */,
-				EEF40EDF121FD490009F8F49 /* Log.cpp */,
-				EEF40EE0121FD490009F8F49 /* Log.h */,
-				EEF7729E12282D4100C6B4E7 /* MathUtils.cpp */,
-				EEF7729F12282D4100C6B4E7 /* MathUtils.h */,
-				EEF7710D12282B7400C6B4E7 /* Primitives.cpp */,
-				EEF7710E12282B7400C6B4E7 /* Primitives.h */,
 				EEF40B4B121D257D009F8F49 /* RStation.cpp */,
 				EEF40B4C121D257D009F8F49 /* RStation.h */,
-				2B75C4EF1230542800913E60 /* RSUtil.cpp */,
-				2B75C4F01230542800913E60 /* RSUtil.h */,
-				EE03416012415EF400C51B69 /* RTT.cpp */,
-				EE03415F12415EF400C51B69 /* RTT.h */,
 				EEF40FCC1223C79D009F8F49 /* Screen.cpp */,
 				EEF40FCB1223C79D009F8F49 /* Screen.h */,
-				EEF7710F12282B7400C6B4E7 /* Timer.cpp */,
-				EEF7711012282B7400C6B4E7 /* Timer.h */,
 				2B75C4F41230545200913E60 /* TimingData.h */,
-				EEF7711112282B7400C6B4E7 /* Tween.cpp */,
-				EEF7711212282B7400C6B4E7 /* Tween.h */,
 				EEF7711312282B7400C6B4E7 /* Type.cpp */,
 				EEF7711412282B7400C6B4E7 /* Type.h */,
 			);
@@ -548,8 +536,6 @@
 		EEF40DEB121FC636009F8F49 /* Actors */ = {
 			isa = PBXGroup;
 			children = (
-				EEF40DCA121FC5AE009F8F49 /* Actor.cpp */,
-				EEF40DC9121FC5AE009F8F49 /* Actor.h */,
 				EEBD796012395A2D00174877 /* Sound.cpp */,
 				EEBD795F12395A2D00174877 /* Sound.h */,
 				EE1313BD122CFFF000511DD5 /* Sprite.cpp */,
@@ -567,10 +553,10 @@
 				EEF7729B12282CD100C6B4E7 /* AudioManager.h */,
 				EEF40EDD121FD490009F8F49 /* FileManager.cpp */,
 				EEF40EDE121FD490009F8F49 /* FileManager.h */,
-				EEF40EF9121FECFD009F8F49 /* InputManager.h */,
 				EEF40EFA121FECFD009F8F49 /* InputManager.cpp */,
-				EE0364DE123C68B20081A309 /* LuaManager.h */,
+				EEF40EF9121FECFD009F8F49 /* InputManager.h */,
 				EE0364DF123C68B20081A309 /* LuaManager.cpp */,
+				EE0364DE123C68B20081A309 /* LuaManager.h */,
 				EEF40FB2122144B9009F8F49 /* MessageManager.cpp */,
 				EEF40FB3122144B9009F8F49 /* MessageManager.h */,
 				EEF40B4D121D257D009F8F49 /* SceneManager.cpp */,
@@ -669,14 +655,12 @@
 			children = (
 				EEBD779812393F7900174877 /* INILoader.cpp */,
 				EEBD779712393F7900174877 /* INILoader.h */,
+				EE0346FF1243D72900C51B69 /* OBJLoader.cpp */,
+				EE0346FE1243D72900C51B69 /* OBJLoader.h */,
 				EEF770F71227ACEA00C6B4E7 /* PNGLoader.cpp */,
 				EEF770F61227ACEA00C6B4E7 /* PNGLoader.h */,
-				EEF770FA1227B12200C6B4E7 /* ImageLoader.cpp */,
-				EEF770F91227B12200C6B4E7 /* ImageLoader.h */,
 				EEBD1F66122BBEFF003DB675 /* ShaderLoader.cpp */,
 				EEBD1F65122BBEFF003DB675 /* ShaderLoader.h */,
-				EE0346FE1243D72900C51B69 /* OBJLoader.h */,
-				EE0346FF1243D72900C51B69 /* OBJLoader.cpp */,
 			);
 			name = Loaders;
 			path = RStation;
@@ -739,6 +723,38 @@
 				EEF776031229A3E000C6B4E7 /* pngwutil.c */,
 			);
 			name = "libpng-1.2.44";
+			sourceTree = "<group>";
+		};
+		EEFBF00B124702DE0035E8B7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EEF40EDF121FD490009F8F49 /* Log.cpp */,
+				EEF40EE0121FD490009F8F49 /* Log.h */,
+				EEF7729E12282D4100C6B4E7 /* MathUtils.cpp */,
+				EEF7729F12282D4100C6B4E7 /* MathUtils.h */,
+				EEF7710D12282B7400C6B4E7 /* Primitives.cpp */,
+				EEF7710E12282B7400C6B4E7 /* Primitives.h */,
+				2B75C4EF1230542800913E60 /* RSUtil.cpp */,
+				2B75C4F01230542800913E60 /* RSUtil.h */,
+				EE03416012415EF400C51B69 /* RTT.cpp */,
+				EE03415F12415EF400C51B69 /* RTT.h */,
+				EEF7710F12282B7400C6B4E7 /* Timer.cpp */,
+				EEF7711012282B7400C6B4E7 /* Timer.h */,
+				EEF7711112282B7400C6B4E7 /* Tween.cpp */,
+				EEF7711212282B7400C6B4E7 /* Tween.h */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		EEFBF0161247037D0035E8B7 /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EEF40DCA121FC5AE009F8F49 /* Actor.cpp */,
+				EEF40DC9121FC5AE009F8F49 /* Actor.h */,
+				EEF770FA1227B12200C6B4E7 /* ImageLoader.cpp */,
+				EEF770F91227B12200C6B4E7 /* ImageLoader.h */,
+			);
+			name = "Base Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
