@@ -103,12 +103,8 @@ int main(int argc, char** argv)
 	ini->Load("GameData/Preferences.ini");
 
 	// get the resolution from prefs
-	int width = 854;
-	int height = 480;
-
-	width = atoi(ini->getValue("Preferences","DisplayWidth","854").c_str());
-	height = atoi(ini->getValue("Preferences","DisplayHeight","480").c_str());
-
+	int width = atoi(ini->getValue("Preferences","DisplayWidth","854").c_str());
+	int height = atoi(ini->getValue("Preferences","DisplayHeight","480").c_str());
 	g_aspectRatio = width / height;
 
 	InitWindow(width, height);
