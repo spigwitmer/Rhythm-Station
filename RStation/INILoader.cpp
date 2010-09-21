@@ -51,12 +51,12 @@ void INILoader::Load(string _path)
 }
 
 //template <class T>
-string INILoader::getValue(string section, string key)
+string INILoader::getValue(string section, string key, string default_value)
 {
 	if(!ini_data[section].empty())
 	{
 		if(ini_data[section].find(key) != ini_data[section].end())
 			return ini_data[section].find(key)->second;
 	}
-	return string();
+	return default_value;
 }

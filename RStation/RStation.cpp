@@ -61,7 +61,7 @@ void InitWindow(int _width, int _height)
 	glfwSetWindowTitle("RStation");
 
 	// todo: preference namespace/class (whichever is more appropriate)
-	int vsync = atoi(ini->getValue("Preferences","VSync").c_str());
+	int vsync = atoi(ini->getValue("Preferences","VSync","1").c_str());
 	vsync = vsync ? 1 : 0;
 	std::string vs_str;
 	if (vsync)
@@ -106,8 +106,8 @@ int main(int argc, char** argv)
 	int width = 854;
 	int height = 480;
 
-	width = atoi(ini->getValue("Preferences","DisplayWidth").c_str());
-	height = atoi(ini->getValue("Preferences","DisplayHeight").c_str());
+	width = atoi(ini->getValue("Preferences","DisplayWidth","854").c_str());
+	height = atoi(ini->getValue("Preferences","DisplayHeight","480").c_str());
 
 	g_aspectRatio = width / height;
 

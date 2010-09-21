@@ -9,7 +9,7 @@ class INILoader
 public:
 	void Load(std::string path);
 	std::string getKeys();
-	std::string getValue(std::string key, std::string name);
+	std::string getValue(std::string key, std::string name, std::string default_value = "");
 private:
 	std::map<std::string, std::map<std::string, std::string> > ini_data;
 };
