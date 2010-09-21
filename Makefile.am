@@ -127,6 +127,28 @@ extern/lua-5.1.4/src/print.c
 #extern/lua-5.1.4/src/lua.c 
 #extern/lua-5.1.4/src/luac.c
 
+BUNDLED_LUABIND = \
+extern/luabind-0.8.1/src/link_compatibility.cpp \
+extern/luabind-0.8.1/src/implicit_cast.cpp \
+extern/luabind-0.8.1/src/class_rep.cpp \
+extern/luabind-0.8.1/src/stack_content_by_name.cpp \
+extern/luabind-0.8.1/src/ref.cpp \
+extern/luabind-0.8.1/src/scope.cpp \
+extern/luabind-0.8.1/src/find_best_match.cpp \
+extern/luabind-0.8.1/src/object_rep.cpp \
+extern/luabind-0.8.1/src/class_info.cpp \
+extern/luabind-0.8.1/src/function.cpp \
+extern/luabind-0.8.1/src/open.cpp \
+extern/luabind-0.8.1/src/class_registry.cpp \
+extern/luabind-0.8.1/src/weak_ref.cpp \
+extern/luabind-0.8.1/src/error.cpp \
+extern/luabind-0.8.1/src/class.cpp \
+extern/luabind-0.8.1/src/exception_handler.cpp \
+extern/luabind-0.8.1/src/wrapper_base.cpp \
+extern/luabind-0.8.1/src/create_class.cpp \
+extern/luabind-0.8.1/src/pcall.cpp \
+extern/luabind-0.8.1/src/overload_rep.cpp
+
 #
 # RStation binary
 # 
@@ -140,7 +162,18 @@ rstation_CPPFLAGS = $(EXT_DEPENDS_CFLAGS)
 if !WITH_BUNDLED_LUA
 rstation_LDADD += $(EXT_LUA_LIBS)
 rstation_CPPFLAGS += $(EXT_LUA_CFLAGS)
-else
+else # WITH_BUNDLED_LUA (include bundled luabind too)
 rstation_SOURCES += $(BUNDLED_LUA)
 rstation_CPPFLAGS += -Iextern/lua-5.1.4/src
+endif
+
+#
+# Optional bundled luabind (forced when using bundled lua)
+#
+if !WITH_BUNDLED_LUABIND
+rstation_LDADD += $(EXT_LUABIND_LIBS)
+rstation_CPPFLAGS += $(EXT_LUABIND_CFLAGS)
+else # WITH_BUNDLED_LUABIND
+rstation_SOURCES += $(BUNDLED_LUABIND)
+rstation_CPPFLAGS += -Iextern/luabind-0.8.1/
 endif

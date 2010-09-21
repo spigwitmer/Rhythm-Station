@@ -32,12 +32,32 @@ AC_ARG_WITH([bundled_lua],
 		*)		AC_MSG_ERROR([bad value ${withval} for --with-bundled-lua]) ;;
 	esac],[bundled_lua=no])
 
+# Choose between external and bundled luabind
+AC_ARG_WITH([bundled_luabind],
+	[  --with-bundled-luabind  build against bundled lua],
+	[case "${withval}" in
+		yes)	bundled_luabind=yes ;;
+		no)		bundled_luabind=no ;;
+		*)		AC_MSG_ERROR([bad value ${withval} for --with-bundled-luabind]) ;;
+	esac],[bundled_luabind=no])
+
 AM_CONDITIONAL([WITH_BUNDLED_LUA], [test x$bundled_lua = xyes])
 if test x$bundled_lua != xyes; then
 	PKG_CHECK_MODULES([EXT_LUA],[lua >= 5.1],[],[
+		AC_MSG_WARN([External lua dependency cannot be satisfied with 'lua', trying 'lua5.1'])
 		PKG_CHECK_MODULES([EXT_LUA],[lua5.1 >= 5.1],[],[
 			AC_MSG_ERROR([External lua cannot be used because: '$EXT_LUA_PKG_ERRORS'])
 		])
+	])
+else
+	# If building against bundled lua, always build against bundled luabind
+	bundled_luabind=yes
+fi
+
+AM_CONDITIONAL([WITH_BUNDLED_LUABIND], [test x$bundled_luabind = xyes])
+if test x$bundled_luabind != xyes; then
+	PKG_CHECK_MODULES([EXT_LUABIND],[luabind >= 0.8.1],[],[
+		AC_MSG_ERROR([External lua cannot be used because: '$EXT_LUABIND_PKG_ERRORS'])
 	])
 fi
 
