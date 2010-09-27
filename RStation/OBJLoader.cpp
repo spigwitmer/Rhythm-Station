@@ -1,101 +1,109 @@
-#include <GL/glew.h>
 #include "OBJLoader.h"
-#include "RSUtil.h"
 #include "FileManager.h"
-#include "Type.h"
-#include "Primitives.h"
-#include "MathUtils.h"
-#include "ShaderLoader.h"
+#include <math.h>
 
 using namespace std;
-using namespace Util;
+using namespace FileManager;
 
-struct PolyTri {
-	float v1, v2, v3;
-};
-
-float max_zoom;
-
-// hold verts
-vector<Vertex> verts;
-vector<PolyTri> tris;
-
-ShaderLoader *shader = NULL;
-
-void obj_load(string _path)
-{
-	shader = new ShaderLoader();
-	shader->Load("harmonics.vert","harmonics.frag");
-
-	_path = FileManager::GetFile(_path);
-	string file = FileManager::GetFileContents(_path);
-	vector<Vertex> tmp_verts;
-	vector<string> lines = split(file,'\n');
-	for (int i = 0; i<lines.size(); i++) {
-		// if this line is a comment, skip it.
-		if (lines[i][0] == '#')
-			continue;
-
-		// strip comments
-		lines[i] = chop(lines[i],"#");
-
-		// strip any comments later in the line
-		vector<string> line = split(lines[i],' ');
-		Vertex vert;
-		PolyTri tri;
-		if (lines[i][0] == 'v') {
-			if (line.size() != 4) {
-				Log::Print("[OBJLoader::Load] Invalid vertex.");
-				break;
-			}
-			vert.x = atof(line[1].c_str());
-			vert.y =atof(line[2].c_str());
-			vert.z =atof(line[3].c_str());
-			tmp_verts.push_back(vert);
-		}
-		if (lines[i][0] == 'f') {
-			// triangle
-			if (line.size() == 4) {
-				tri.v1 = atoi(line[1].c_str())-1;
-				tri.v2 = atoi(line[2].c_str())-1;
-				tri.v3 = atoi(line[3].c_str())-1;
-				tris.push_back(tri);
-			}
-			// something else entirely
-			else {
-				// probably an ngon. don't bother.
-				Log::Print("[OBJLoader::Load] Quads and NGons aren't supported yet.");
-				break;
-			}
-		}
-	}
-	for (int i = 0; i<tris.size(); i++) {
-		verts.push_back(tmp_verts[tris[i].v1]);
-		verts.push_back(tmp_verts[tris[i].v2]);
-		verts.push_back(tmp_verts[tris[i].v3]);
-	}
-	vec3 max_size;
-	for (int i=0; i<verts.size(); i++) {
-		max_size.x = max(max_size.x, verts[i].x);
-		max_size.y = max(max_size.y, verts[i].y);
-		max_size.z = max(max_size.z, verts[i].z);
-	}
-	max_zoom = max(max_size.x, max_size.y);
-	max_zoom = max(max_zoom, max_size.z);
-	max_zoom = SCALE(max_zoom, 0, max_zoom, 0, 100);
+OBJLoader::OBJLoader() : shader_id(NULL), vbo_id(NULL) {
+	timer.Touch();
+	name = "";
 }
 
-void obj_draw()
-{
-	shader->Bind();
-	glShadeModel(GL_SMOOTH);
-	glPushMatrix();
-		glRotatef(180, 1, 0, 0);
-		glScalef(max_zoom, max_zoom, max_zoom);
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(3, GL_FLOAT, 0, &verts[0].x);
-		glDrawArrays(GL_TRIANGLES, 0, verts.size());
-		glDisableClientState(GL_VERTEX_ARRAY);
-	glPopMatrix();
-	shader->Unbind();
+OBJLoader::~OBJLoader() {
+	Log::Print("Cleaning up mesh " + name);
+}
+
+void OBJLoader::Load(string file) {
+	file = GetFile(file);
+	if (!FileExists(file)) {
+		Log::Print("File \"" + file + "\" not found.");
+		return;
+	}
+	file = GetFileContents(file);
+
+	// store OBJ stuff here before loading up the full mesh var.
+	vector<MeshData> vertices;
+	vector<MeshData> normals;
+	vector<MeshData> coords;
+
+	vector<string> data = Util::split(file, '\n');
+	for (int i = 0; i<data.size(); i++) {
+		string line = Util::chop(data[i], "#");
+		if (line.empty())
+			continue;
+		vector<string> lvec;
+		vector<string> lvec2; // for faces which also need a '/' split
+		MeshData current; // here
+		current.position = vec3(0.f);
+		current.normal = vec3(0.f);
+		current.coord = vec2(0.f);
+		switch (line[0]) {
+			case 'v':
+				if (line[1] == 't') {
+					line = line.substr(3, line.size()-1);
+					lvec = Util::split(line, ' ');
+					current.coord = vec2(atof(lvec[0].c_str()), atof(lvec[1].c_str()));
+					coords.push_back(current);
+				}
+				else if (line[1] == 'n') {
+					line = line.substr(3, line.size()-1);
+					lvec = Util::split(line, ' ');
+					current.normal = vec3(
+						atof(lvec[0].c_str()),
+						atof(lvec[1].c_str()),
+						atof(lvec[2].c_str())
+					);
+					normals.push_back(current);
+				} else {
+					line = line.substr(2, line.size()-1);
+					lvec = Util::split(line, ' ');
+					current.position = vec3(
+						atof(lvec[0].c_str()),
+						atof(lvec[1].c_str()),
+						atof(lvec[2].c_str())
+					);
+					vertices.push_back(current);
+				}
+				break;
+			case 'f':
+				line = line.substr(2,line.size()-1);
+				lvec = Util::split(line, ' ');
+				for (int i = 0; i<lvec.size(); i++) {
+					if (line.find("/") != string::npos) {
+						lvec2 = Util::split(lvec[i], '/');
+						current.position = vertices[atoi(lvec2[0].c_str())-1].position;
+						if (!lvec2[1].empty()) current.coord = coords[atoi(lvec2[1].c_str())-1].coord;
+						if (lvec2.size() == 3) current.normal = normals[atoi(lvec2[2].c_str())-1].normal;
+					}
+					if (!vertices.empty())
+						mesh.push_back(current);
+				}
+				break;
+			default:
+				Log::Print("Unhandled: " + line);
+				break;
+		}
+	}
+	// I'M SORRY FOR THIS IT IS TERRIBLE
+	// read: todo: make it actually a vbo
+	vbo_id = glGenLists(1);
+	glNewList(vbo_id, GL_COMPILE);
+	glBegin(GL_TRIANGLES);
+		for (int i = 0; i<mesh.size(); i++) {
+			// OBJ stores normals reversed
+			glNormal3fv(vec3(0.f)-mesh[i].normal);
+			glTexCoord2fv(mesh[i].coord);
+			glVertex3fv(mesh[i].position);
+		}
+	glEnd();
+	glEndList();
+}
+
+void OBJLoader::Draw() {
+	glCallList(vbo_id);
+}
+
+void OBJLoader::Delete() {
+	glDeleteLists(vbo_id, 1);
 }

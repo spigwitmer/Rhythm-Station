@@ -26,7 +26,7 @@ void Screen::AddHook(Actor* _actor, ActorAttach _attach)
 
 void Screen::Input(const IEvent &e)
 {
-	if (vpActorHooks.size() == 0)
+	if (vpActorHooks.empty())
 		return;
 
 	if(e.Mouse.moving)

@@ -86,7 +86,7 @@ void Sound::Load(std::string _path)
 	ov_clear(&oggFile);
 
 	// upload buffer data
-	if ( buffer.size() > 0 )
+	if (!buffer.empty())
 		alBufferData(sd_sound->buffer, format, &buffer[0], static_cast<ALsizei> (buffer.size()), freq);
 
 	sd_waiting = true;

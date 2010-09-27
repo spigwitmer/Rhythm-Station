@@ -10,6 +10,9 @@
 #include "MathUtils.h"
 #include "LuaManager.h"
 #include <cstring>
+#ifdef __APPLE__
+#include "dialog.h"
+#endif
 
 INILoader* ini = new INILoader();
 
@@ -120,7 +123,12 @@ int main(int argc, char** argv)
 	if (!GLEW_VERSION_2_0)
 	{
 		Log::Print("OpenGL 2.0 is not supported. You may need to update your drivers.");
+	// Dialog needed on other platforms!
+#ifdef __APPLE__
+		Alert(); // exits if not ignored
+#else
 		return 1;
+#endif
 	}
 
 	lua_testLoad();
