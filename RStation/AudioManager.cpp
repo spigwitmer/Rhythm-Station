@@ -42,7 +42,7 @@ void Audio::AddSound(SoundData *_sound)
 
 void Audio::Clear()
 {
-	while(!vpSounds.empty())
+	while (!vpSounds.empty())
 	{
 		delete vpSounds.back();
 		vpSounds.pop_back();
@@ -53,7 +53,7 @@ void Audio::Open()
 {
 	// open default device.
 	device = alcOpenDevice(NULL);
-	if( !device )
+	if (!device)
 	{
 		Log::Print("[Audio::Open] Failed to open default sound device.");
 		return;

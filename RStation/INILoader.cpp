@@ -40,7 +40,7 @@ void INILoader::Load(string _path)
 		{
 			// split key=value pairs and put them in our map
 			size_t pos = line.find("=");
-			if(pos == string::npos)
+			if (pos == string::npos)
 				continue;
 			string key = line.substr(0,pos);
 			string value = line.substr(pos+1,line.size()-1);
@@ -53,9 +53,9 @@ void INILoader::Load(string _path)
 //template <class T>
 string INILoader::getValue(string section, string key, string default_value)
 {
-	if(!ini_data[section].empty())
+	if (!ini_data[section].empty())
 	{
-		if(ini_data[section].find(key) != ini_data[section].end())
+		if (ini_data[section].find(key) != ini_data[section].end())
 			return ini_data[section].find(key)->second;
 	}
 	return default_value;

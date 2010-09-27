@@ -32,12 +32,12 @@ void MouseButtonCallback(int button, int action)
 void MousePosCallback(int _x, int _y)
 {
 	// messy
-	if(_x > screenSize.cx)
+	if (_x > screenSize.cx)
 		_x = screenSize.cx;
 	else if (_x < -screenSize.cx)
 		_x = -screenSize.cx;
 
-	if(_y > screenSize.cy)
+	if (_y > screenSize.cy)
 		_y = screenSize.cy;
 	else if (_y < -screenSize.cy)
 		_y = -screenSize.cy;

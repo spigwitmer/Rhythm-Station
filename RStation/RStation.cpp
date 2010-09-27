@@ -94,7 +94,7 @@ int main(int argc, char** argv)
 	Log::Open();
 	Audio::Open();
 
-	for(int i = 0; i < argc; i++)
+	for (int i = 0; i < argc; i++)
 	{
 		if (strcmp(argv[i],"--detach-cursor") == 0)
 		{

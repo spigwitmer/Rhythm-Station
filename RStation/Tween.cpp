@@ -5,7 +5,7 @@ typedef float (*TweenFn) (float,float,float);
 
 float sleep(float change, float time, float elapsed)
 {
-	if ( elapsed == 1 )
+	if (elapsed == 1)
 		return change;
 	return 0.0f;
 }
@@ -53,7 +53,7 @@ float smooth_cubic(float change, float time, float elapsed)
 TweenFn SetTweenType(int type)
 {
 	TweenFn Tween = NULL;
-	switch ( type )
+	switch ( type)
 	{
 		case TWEEN_SLEEP:
 			Tween = &sleep;
@@ -88,7 +88,7 @@ TweenFn SetTweenType(int type)
 
 float interpolate(int tweentype, float _old, float _new, float duration, float time)
 {
-	if ( duration == 0 )
+	if (duration == 0)
 		return _new; // don't divide by zero and don't bother with doing any math.
 
 	float temp = _old;
@@ -97,8 +97,8 @@ float interpolate(int tweentype, float _old, float _new, float duration, float t
 
 	TweenFn Tween = SetTweenType(tweentype);
 
-	if( Tween )
-		temp -= Tween( change, time, elapsed );
+	if (Tween)
+		temp -= Tween( change, time, elapsed);
 
 	return temp;
 }
@@ -110,7 +110,7 @@ float interpolate(int tweentype, float _old, float _new, float duration, float t
  */
 vec2 interpolate(int tweentype, vec2 _old, vec2 _new, float duration, float time)
 {
-	if ( duration == 0 )
+	if (duration == 0)
 		return _new;
 
 	vec2 temp = _old;
@@ -123,17 +123,17 @@ vec2 interpolate(int tweentype, vec2 _old, vec2 _new, float duration, float time
 
 	TweenFn Tween = SetTweenType(tweentype);
 
-	if( Tween )
+	if (Tween)
 	{
-		temp.x -= Tween( change.x, time, elapsed );
-		temp.y -= Tween( change.y, time, elapsed );
+		temp.x -= Tween( change.x, time, elapsed);
+		temp.y -= Tween( change.y, time, elapsed);
 	}
 	return temp;
 }
 
 vec3 interpolate(int tweentype, vec3 _old, vec3 _new, float duration, float time)
 {
-	if ( duration == 0 )
+	if (duration == 0)
 		return _new;
 
 	vec3 temp = _old;
@@ -146,18 +146,18 @@ vec3 interpolate(int tweentype, vec3 _old, vec3 _new, float duration, float time
 
 	TweenFn Tween = SetTweenType(tweentype);
 
-	if( Tween )
+	if (Tween)
 	{
-		temp.x -= Tween( change.x, time, elapsed );
-		temp.y -= Tween( change.y, time, elapsed );
-		temp.z -= Tween( change.z, time, elapsed );
+		temp.x -= Tween( change.x, time, elapsed);
+		temp.y -= Tween( change.y, time, elapsed);
+		temp.z -= Tween( change.z, time, elapsed);
 	}
 	return temp;
 }
 
 rgba interpolate(int tweentype, rgba _old, rgba _new, float duration, float time)
 {
-	if ( duration == 0 )
+	if (duration == 0)
 		return _new;
 
 	rgba temp = _old;
@@ -171,12 +171,12 @@ rgba interpolate(int tweentype, rgba _old, rgba _new, float duration, float time
 
 	TweenFn Tween = SetTweenType(tweentype);
 
-	if( Tween )
+	if (Tween)
 	{
-		temp.r -= Tween( change.r, time, elapsed );
-		temp.g -= Tween( change.g, time, elapsed );
-		temp.b -= Tween( change.b, time, elapsed );
-		temp.a -= Tween( change.a, time, elapsed );
+		temp.r -= Tween( change.r, time, elapsed);
+		temp.g -= Tween( change.g, time, elapsed);
+		temp.b -= Tween( change.b, time, elapsed);
+		temp.a -= Tween( change.a, time, elapsed);
 	}
 	return temp;
 }

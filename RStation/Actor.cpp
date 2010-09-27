@@ -37,10 +37,10 @@ void Actor::Hook(ActorAttach _attach)
 void Actor::DrawBase()
 {
 	// don't draw this or its children if invisible.
-	if(!ob_visible)
+	if (!ob_visible)
 		return;
 	// XXX: clear the z-buffer if hooked. This should be its own setting.
-	if(isHooked) { glClear(GL_DEPTH_BUFFER_BIT); }
+	if (isHooked) { glClear(GL_DEPTH_BUFFER_BIT); }
 	Matrix::Push();
 		Matrix::Translate(ob_pos.x+ob_offset.x, ob_pos.y+ob_offset.y, ob_pos.z+ob_offset.z);
 		Matrix::Push();

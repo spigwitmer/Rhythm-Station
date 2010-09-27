@@ -115,8 +115,8 @@ void PNGLoader::Load(std::string _path)
 	// upload texture to GPU
 	glGenTextures(1, &tex.ptr); // make it
 	glBindTexture(GL_TEXTURE_2D, tex.ptr); // bind it
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	GLuint glformat;
 	switch(ret)

@@ -6,7 +6,7 @@ Screen::Screen() { }
 
 Screen::~Screen()
 {
-	while(!vpActors.empty())
+	while (!vpActors.empty())
 	{
 		delete vpActors.back();
 		vpActors.pop_back();
@@ -20,7 +20,7 @@ void Screen::AddActor(Actor* _actor)
 
 void Screen::AddHook(Actor* _actor, ActorAttach _attach)
 {
-	if(_attach == RS_ATTACH_CURSOR)
+	if (_attach == RS_ATTACH_CURSOR)
 		vpActorHooks.push_back(_actor);
 }
 
@@ -29,8 +29,8 @@ void Screen::Input(const IEvent &e)
 	if (vpActorHooks.empty())
 		return;
 
-	if(e.Mouse.moving)
-		if(!vpActorHooks.empty())
+	if (e.Mouse.moving)
+		if (!vpActorHooks.empty())
 			vpActorHooks.back()->Position(vec3(e.Mouse.x,e.Mouse.y,0));
 	
 	// hide if not attached
@@ -39,13 +39,13 @@ void Screen::Input(const IEvent &e)
 	else
 		vpActorHooks.back()->Visible(true);
 
-	if(e.Key == KEY_ESC )
+	if (e.Key == KEY_ESC)
 		Game::Terminate();
 }
 
 void Screen::Update(float deltaTime)
 {
-	for(unsigned i = 0; i<vpActors.size(); i++)
+	for (unsigned i = 0; i<vpActors.size(); i++)
 		vpActors[i]->Update(deltaTime);
 }
 
@@ -55,6 +55,6 @@ void Screen::Draw()
 	glClear(GL_DEPTH_BUFFER_BIT);
 	
 	// draw all the actors
-	for(unsigned i = 0; i<vpActors.size(); i++)
+	for (unsigned i = 0; i<vpActors.size(); i++)
 		vpActors[i]->DrawBase();
 }

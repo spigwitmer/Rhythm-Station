@@ -19,7 +19,7 @@ class IMessageSubscriber
 {
 public:
 	virtual ~IMessageSubscriber() { }
-	virtual void HandleMessage( const Message &msg ) { };
+	virtual void HandleMessage( const Message &msg) { };
 	void ClearMessages(const std::string Message = "");
 
 private:
@@ -52,7 +52,7 @@ public:
 	void Subscribe(IMessageSubscriber* pSubscriber, const std::string& Message);
 	void Unsubscribe(IMessageSubscriber* pSubscriber, const std::string& Message);
 	void Broadcast(Message &msg) const;
-	void Broadcast(const std::string& Message ) const;
+	void Broadcast(const std::string& Message) const;
 	bool IsSubscribedToMessage(IMessageSubscriber* pSubscriber, const std::string &sMessage) const;
 };
 

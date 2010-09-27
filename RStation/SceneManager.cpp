@@ -17,7 +17,7 @@ void Scene::PushScreen()
 
 void Scene::PopScreen()
 {
-	if(vpScreens.empty())
+	if (vpScreens.empty())
 	{
 		Log::Print("No Screens to delete!");
 		return;
@@ -35,23 +35,23 @@ Screen* Scene::GetTopScreen()
 
 void Scene::Update(float deltaTime)
 {
-	for(unsigned i = 0; i<vpScreens.size(); i++)
+	for (unsigned i = 0; i<vpScreens.size(); i++)
 		vpScreens[i]->Update(deltaTime);
 }
 
 void Scene::SendInput(IEvent &e)
 {
 	// this happens if mouse wasn't set by the sender.
-	if(e.Mouse.x < -200000)
+	if (e.Mouse.x < -200000)
 		e.Mouse = MouseInfo();
 
-	if(!vpScreens.empty())
+	if (!vpScreens.empty())
 		vpScreens.back()->Input(e);
 }
 
 void Scene::Clear()
 {
-	while(!vpScreens.empty())
+	while (!vpScreens.empty())
 	{
 		PopScreen();
 	}
@@ -64,7 +64,7 @@ void Scene::Draw()
 	glLoadIdentity();
 
 	// draw all screens and their children
-	for(unsigned i = 0; i<vpScreens.size(); i++)
+	for (unsigned i = 0; i<vpScreens.size(); i++)
 		vpScreens[i]->Draw();
 
 	// note: don't do this inside of an FBO

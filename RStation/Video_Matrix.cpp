@@ -62,18 +62,18 @@ bool Matrix::Invert4(float inverse[4][4], float mat[4][4])
 		inverse[i][i] = 1;
 
 	// Copy original matrix so we don't mess it up
-	for(int i = 0; i < 4; i++)
-		for(int j = 0; j <4; j++)
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j <4; j++)
 			tempmat[i][j] = mat[i][j];
 
-	for(int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		// Look for row with max pivot
 		max = fabs(tempmat[i][i]);
 		maxj = i;
-		for(int j = i + 1; j < 4; j++)
+		for (int j = i + 1; j < 4; j++)
 		{
-			if(fabs(tempmat[j][i]) > max)
+			if (fabs(tempmat[j][i]) > max)
 			{
 				max = fabs(tempmat[j][i]);
 				maxj = j;
@@ -82,7 +82,7 @@ bool Matrix::Invert4(float inverse[4][4], float mat[4][4])
 		// Swap rows if necessary
 		if (maxj != i)
 		{
-			for(int k = 0; k < 4; k++)
+			for (int k = 0; k < 4; k++)
 			{
 				SWAP(float, tempmat[i][k], tempmat[maxj][k]);
 				SWAP(float, inverse[i][k], inverse[maxj][k]);
@@ -92,17 +92,17 @@ bool Matrix::Invert4(float inverse[4][4], float mat[4][4])
 		temp = tempmat[i][i];
 		if (temp == 0)
 			return false; // No non-zero pivot
-		for(int k = 0; k < 4; k++)
+		for (int k = 0; k < 4; k++)
 		{
 			tempmat[i][k] = tempmat[i][k]/temp;
 			inverse[i][k] = inverse[i][k]/temp;
 		}
-		for(int j = 0; j < 4; j++)
+		for (int j = 0; j < 4; j++)
 		{
-			if(j != i)
+			if (j != i)
 			{
 				temp = tempmat[j][i];
-				for(int k = 0; k < 4; k++)
+				for (int k = 0; k < 4; k++)
 				{
 					tempmat[j][k] -= tempmat[i][k]*temp;
 					inverse[j][k] -= inverse[i][k]*temp;

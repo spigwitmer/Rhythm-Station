@@ -55,7 +55,7 @@ typedef int64_t	i64;
 struct vec2
 {
 	vec2() {}
-	vec2(float xy ) { x = y = xy; }
+	vec2(float xy) { x = y = xy; }
 	vec2(const float * f)		{ x=f[0]; y=f[1]; }
 	vec2(float x1, float y1)	{ x=x1; y=y1; }
 
@@ -72,7 +72,7 @@ struct vec2
 	// binary operators
 	vec2 operator + (const vec2& other) const	{ return vec2(x+other.x, y+other.y); }
 	vec2 operator - (const vec2& other) const	{ return vec2(x-other.x, y-other.y); }
-	vec2 operator * (float f) const			{ return vec2(x*f, y*f ); }
+	vec2 operator * (float f) const			{ return vec2(x*f, y*f); }
 	vec2 operator / (float f) const			{ return vec2(x/f, y/f); }
 
 	friend vec2 operator * (float f, const vec2& other)	{ return other*f; }
@@ -83,7 +83,7 @@ struct vec2
 struct vec3
 {
 	vec3() {}
-	vec3(float xyz ) { x = y = z = xyz; }
+	vec3(float xyz) { x = y = z = xyz; }
 	vec3(const float * f)			{ x=f[0]; y=f[1]; z=f[2]; }
 	vec3(float x1, float y1, float z1)	{ x=x1; y=y1; z=z1; }
 

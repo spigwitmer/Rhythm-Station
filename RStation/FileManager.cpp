@@ -26,7 +26,7 @@ namespace FileManager
 		int iStat;
 
 		iStat = stat(_file.c_str(),&stFileInfo);
-		if(iStat == 0)
+		if (iStat == 0)
 			return true;
 		return false;
 	}
@@ -41,12 +41,12 @@ namespace FileManager
 		 */
 		char path[1024];
 		CFBundleRef mainBundle = CFBundleGetMainBundle();
-		assert( mainBundle ); // make sure nothing is terribly wrong here.
-		CFURLRef mainBundleURL = CFBundleCopyBundleURL( mainBundle );
-		CFStringRef cfStringRef = CFURLCopyFileSystemPath( mainBundleURL, kCFURLPOSIXPathStyle );
-		CFStringGetCString( cfStringRef, path, 1024, kCFStringEncodingUTF8 );
-		CFRelease( mainBundleURL );
-		CFRelease( cfStringRef );
+		assert( mainBundle); // make sure nothing is terribly wrong here.
+		CFURLRef mainBundleURL = CFBundleCopyBundleURL( mainBundle);
+		CFStringRef cfStringRef = CFURLCopyFileSystemPath( mainBundleURL, kCFURLPOSIXPathStyle);
+		CFStringGetCString( cfStringRef, path, 1024, kCFStringEncodingUTF8);
+		CFRelease( mainBundleURL);
+		CFRelease( cfStringRef);
 		std::string _path = std::string(path) + "/../";
 		chdir(_path.c_str());
 #endif
@@ -67,13 +67,13 @@ namespace FileManager
 		std::string out, buf;
 		std::ifstream file(_path.c_str());
 		
-		if(!file.is_open())
+		if (!file.is_open())
 		{
 			Log::Print("Error opening " + _path + " for writing");
 			return std::string();
 		}
 		
-		while(!file.eof())
+		while (!file.eof())
 		{
 			getline(file, buf);
 			out += buf;

@@ -11,7 +11,7 @@ void Primitive::Ngon(float _radius, unsigned _edges)
 	verts.push_back(Vertex(0.f,0.f,0.f));
 
 	float step = 360 / float(_edges);
-	for(int i = _edges; i >= 0; i--) // reversed so that it faces the correct direction.
+	for (int i = _edges; i >= 0; i--) // reversed so that it faces the correct direction.
 	{
 		float angle = radf(i*step);
 		float x = cosf(angle)*_radius;

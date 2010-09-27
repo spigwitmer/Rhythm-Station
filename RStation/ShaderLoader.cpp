@@ -80,7 +80,7 @@ void ShaderLoader::Load(std::string _vs, std::string _fs, bool reload)
 	_fs = FileManager::GetFileContents(_fs);
 
 	// bad paths!
-	if(_vs.size() == 0 || _fs.size() == 0)
+	if (_vs.size() == 0 || _fs.size() == 0)
 		return;
 
 	// create pointers for our vertex and frag shaders
@@ -124,7 +124,7 @@ void ShaderLoader::Load(std::string _vs, std::string _fs, bool reload)
 
 void ShaderLoader::Load(GLuint _program)
 {
-	if ( shader.ptr == _program )
+	if (shader.ptr == _program)
 		return;
 	shader.ptr = _program;
 	glUseProgram(shader.ptr);
@@ -151,7 +151,7 @@ void ShaderLoader::Unload()
 
 void ShaderLoader::Bind()
 {
-	if ( shader.ptr )
+	if (shader.ptr)
 		glUseProgram(shader.ptr);
 	glUniform1f(pAspect, g_aspectRatio);
 }

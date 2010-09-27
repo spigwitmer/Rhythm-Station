@@ -35,7 +35,7 @@ namespace Game
 
 		Log::Write();
 		double then = glfwGetTime();
-		while(bRunning && glfwGetWindowParam(GLFW_OPENED))
+		while (bRunning && glfwGetWindowParam(GLFW_OPENED))
 		{
 			double now = glfwGetTime();
 			float delta = float(now - then);

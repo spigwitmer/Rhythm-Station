@@ -26,7 +26,7 @@ vector<string> Util::split(string &str, char delim)
 	vector<string> elems;
 	stringstream ss(str);
 	string item;
-	while(getline(ss, item, delim))
+	while (getline(ss, item, delim))
 		elems.push_back(item);
 	return elems;
 }
@@ -44,11 +44,11 @@ void Util::trim(string& str)
 {
 	// remove spaces
 	string::size_type pos = str.find_last_not_of(' ');
-	if(pos != string::npos)
+	if (pos != string::npos)
 	{
 		str.erase(pos + 1);
 		pos = str.find_first_not_of(' ');
-		if(pos != string::npos)
+		if (pos != string::npos)
 			str.erase(0, pos);
 	}
 	else
@@ -56,11 +56,11 @@ void Util::trim(string& str)
 
 	// and tabs
 	pos = str.find_last_not_of('\t');
-	if(pos != string::npos)
+	if (pos != string::npos)
 	{
 		str.erase(pos + 1);
 		pos = str.find_first_not_of('\t');
-		if(pos != string::npos)
+		if (pos != string::npos)
 			str.erase(0, pos);
 	}
 	else
@@ -68,11 +68,11 @@ void Util::trim(string& str)
 	
 	// and newlines
 	pos = str.find_last_not_of('\n');
-	if(pos != string::npos)
+	if (pos != string::npos)
 	{
 		str.erase(pos + 1);
 		pos = str.find_first_not_of('\n');
-		if(pos != string::npos)
+		if (pos != string::npos)
 			str.erase(0, pos);
 	}
 	else

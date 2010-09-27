@@ -15,7 +15,7 @@ std::string convert::toString(double _in)
 std::string convert::toString(bool _in)
 {
 	std::stringstream out;
-	if ( _in )
+	if (_in)
 		out << "true";
 	else
 		out << "false";

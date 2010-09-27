@@ -5,10 +5,10 @@ std::vector<Shader> sm_shaders;
 
 Shader ShaderManager::CheckForDuplicates(std::string _path)
 {
-	for(unsigned i = 0; i<sm_shaders.size(); i++)
+	for (unsigned i = 0; i<sm_shaders.size(); i++)
 	{
 		Shader cur = sm_shaders[i];
-		if(cur.path == _path)
+		if (cur.path == _path)
 			return cur;
 	}
 	Shader blank;
@@ -23,7 +23,7 @@ void ShaderManager::addShader(Shader _shader)
 
 void ShaderManager::clear()
 {
-	while(!sm_shaders.empty())
+	while (!sm_shaders.empty())
 	{
 		sm_shaders.back().loader->Unload();
 		sm_shaders.pop_back();
