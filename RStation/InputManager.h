@@ -10,7 +10,8 @@ namespace Input
 }
 
 // A-Z, for game buttons not text input (use the char callback for that!)
-enum KeyAliases {
+enum KeyAliases
+{
 	KEY_A		= 65,
 	KEY_B		= 66,
 	KEY_C		= 67,
@@ -84,7 +85,8 @@ enum KeyAliases {
 	KEY_F12		= GLFW_KEY_F12,
 };
 
-enum KeyStates {
+enum KeyStates
+{
 	RS_NONE,
 	RS_LET_GO,
 	RS_FIRST_PRESS,
@@ -99,7 +101,8 @@ struct MouseInfo
 	bool moving;
 };
 
-struct IEvent {
+struct IEvent
+{
 	KeyAliases Key;
 	KeyStates State;
 	MouseInfo Mouse;

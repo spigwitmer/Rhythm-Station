@@ -9,12 +9,14 @@
 #include <vector>
 #include "Type.h"
 
-struct MeshData {
+struct MeshData
+{
 	vec3 position, normal;
 	vec2 coord;
 };
 
-class OBJLoader {
+class OBJLoader
+{
 public:
 	OBJLoader();
 	virtual ~OBJLoader();

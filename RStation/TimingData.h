@@ -5,7 +5,8 @@
 
 // please edit this until you think it is sane.
 
-enum NoteType {
+enum NoteType
+{
 	NOTE_TAP,
 	NOTE_HOLD,
 	NOTE_ROLL,
@@ -13,7 +14,8 @@ enum NoteType {
 	NOTE_MINE
 };
 
-enum NoteAttribute {
+enum NoteAttribute
+{
 	NOTE_ATTR_FAKE,
 	NOTE_ATTR_VISIBLE
 };

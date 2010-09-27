@@ -90,7 +90,8 @@ GLuint get_framebuffer_tex() { return color_tex; }
 void check_gl_errors()
 {
 	GLenum err = glGetError();
-	switch (err) {
+	switch (err)
+	{
 		case GL_OUT_OF_MEMORY:
 			Log::Print("GL_OUT_OF_MEMORY");
 			break;

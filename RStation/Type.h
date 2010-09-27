@@ -10,7 +10,8 @@
 
 #include <sstream>
 
-struct Vertex {
+struct Vertex
+{
 	Vertex() : x(0), y(0), z(0) {}
 	Vertex(float _x) : y(0), z(0) { x = _x; }
 	Vertex(float _x, float _y) : z(0)
@@ -27,7 +28,8 @@ struct Vertex {
 	float x, y, z;
 };
 
-struct TexCoord {
+struct TexCoord
+{
 	TexCoord() : u(0), v(0) {}
 	TexCoord(float _u, float _v)
 	{
@@ -52,7 +54,6 @@ typedef int64_t	i64;
 // from stepmania.
 struct vec2
 {
-public:
 	vec2() {}
 	vec2(float xy ) { x = y = xy; }
 	vec2(const float * f)		{ x=f[0]; y=f[1]; }
@@ -81,7 +82,6 @@ public:
 
 struct vec3
 {
-public:
 	vec3() {}
 	vec3(float xyz ) { x = y = z = xyz; }
 	vec3(const float * f)			{ x=f[0]; y=f[1]; z=f[2]; }
@@ -110,7 +110,6 @@ public:
 
 struct rgba
 {
-public:
 	rgba() {}
 	rgba(float _rgb) { r = g = b = _rgb; a = 1.0f; }
 	rgba(float _rgb, float _a) { r = g = b = _rgb; a = _a; }

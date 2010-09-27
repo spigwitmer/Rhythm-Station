@@ -3,11 +3,13 @@
 
 using namespace Video;
 
-void Draw::Begin() {
+void Draw::Begin()
+{
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 }
 
-void Draw::End() {
+void Draw::End()
+{
 	glfwSwapBuffers();
 }

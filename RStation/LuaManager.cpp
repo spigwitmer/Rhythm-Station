@@ -1,7 +1,8 @@
 #include "LuaManager.h"
 #include "FileManager.h"
 
-extern "C" {
+extern "C"
+{
 #include "lua.h"
 #include "lauxlib.h"
 #include "lualib.h"

@@ -4,7 +4,8 @@
 #include "RStation.h"
 #include "MessageManager.h"
 
-enum ActorAttach {
+enum ActorAttach
+{
 	RS_ATTACH_CURSOR
 };
 

@@ -4,7 +4,8 @@
 
 using namespace Video;
 
-void Window::Open() {
+void Window::Open()
+{
 	glfwOpenWindow(960, 600, 8, 8, 8, 8, 8, 0, GLFW_WINDOW);
 
 	// do this immediately after creating the context.
@@ -19,10 +20,12 @@ void Window::Open() {
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT,GL_NICEST);
 }
 
-void Window::Close() {
+void Window::Close()
+{
 	glfwCloseWindow();
 }
 
-void Window::PollEvents() {
+void Window::PollEvents()
+{
 	glfwPollEvents();
 }

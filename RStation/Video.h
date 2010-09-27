@@ -1,13 +1,16 @@
 #ifndef _VIDEO_H_
 #define _VIDEO_H_
 
-namespace Video {
-	namespace Window {
+namespace Video
+{
+	namespace Window
+	{
 		void Open();
 		void Close();
 		void PollEvents();
 	}
-	namespace Matrix {
+	namespace Matrix
+	{
 		void Push();
 		void Pop();
 		void Translate(float x, float y, float z);
@@ -17,7 +20,8 @@ namespace Video {
 		void f16_m4(float m4[4][4], float f16[16]);
 		void m4_f16(float f16[16], float m4[4][4]);
 	}
-	namespace Draw {
+	namespace Draw
+	{
 		void Begin();
 		void End();
 	}
