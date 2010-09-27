@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2B75C4F11230542800913E60 /* RSUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B75C4EF1230542800913E60 /* RSUtil.cpp */; };
 		2B75C4F71230545F00913E60 /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B75C4F51230545F00913E60 /* TextureManager.cpp */; };
-		EE03416112415EF400C51B69 /* RTT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE03416012415EF400C51B69 /* RTT.cpp */; };
 		EE03469012435A7D00C51B69 /* class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE03467C12435A7D00C51B69 /* class.cpp */; };
 		EE03469112435A7D00C51B69 /* class_info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE03467D12435A7D00C51B69 /* class_info.cpp */; };
 		EE03469212435A7D00C51B69 /* class_registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE03467E12435A7D00C51B69 /* class_registry.cpp */; };
@@ -161,8 +160,6 @@
 		2B75C4F61230545F00913E60 /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* RStation-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RStation-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* RStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE03415F12415EF400C51B69 /* RTT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTT.h; path = RStation/RTT.h; sourceTree = "<group>"; };
-		EE03416012415EF400C51B69 /* RTT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RTT.cpp; path = RStation/RTT.cpp; sourceTree = "<group>"; };
 		EE03467C12435A7D00C51B69 /* class.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class.cpp; sourceTree = "<group>"; };
 		EE03467D12435A7D00C51B69 /* class_info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class_info.cpp; sourceTree = "<group>"; };
 		EE03467E12435A7D00C51B69 /* class_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class_registry.cpp; sourceTree = "<group>"; };
@@ -548,8 +545,6 @@
 				EEF40B4C121D257D009F8F49 /* RStation.h */,
 				2B75C4EF1230542800913E60 /* RSUtil.cpp */,
 				2B75C4F01230542800913E60 /* RSUtil.h */,
-				EE03416012415EF400C51B69 /* RTT.cpp */,
-				EE03415F12415EF400C51B69 /* RTT.h */,
 				EEF40FCC1223C79D009F8F49 /* Screen.cpp */,
 				EEF40FCB1223C79D009F8F49 /* Screen.h */,
 				EEF7710F12282B7400C6B4E7 /* Timer.cpp */,
@@ -932,7 +927,6 @@
 				EEBD779912393F7900174877 /* INILoader.cpp in Sources */,
 				EEBD796112395A2D00174877 /* Sound.cpp in Sources */,
 				EE0364E0123C68B20081A309 /* LuaManager.cpp in Sources */,
-				EE03416112415EF400C51B69 /* RTT.cpp in Sources */,
 				EE03469012435A7D00C51B69 /* class.cpp in Sources */,
 				EE03469112435A7D00C51B69 /* class_info.cpp in Sources */,
 				EE03469212435A7D00C51B69 /* class_registry.cpp in Sources */,
