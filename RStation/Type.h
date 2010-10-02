@@ -3,6 +3,8 @@
 
 #include <string>
 #include <stdint.h>
+#include <math.h>
+#include <ostream>
 
 #ifdef _WIN32
 	#include "stdint.h" // uint32 and such on Windows
@@ -10,8 +12,7 @@
 
 #include <sstream>
 
-struct Vertex
-{
+struct Vertex {
 	Vertex() : x(0), y(0), z(0) {}
 	Vertex(float _x) : y(0), z(0) { x = _x; }
 	Vertex(float _x, float _y) : z(0)
@@ -28,8 +29,7 @@ struct Vertex
 	float x, y, z;
 };
 
-struct TexCoord
-{
+struct TexCoord {
 	TexCoord() : u(0), v(0) {}
 	TexCoord(float _u, float _v)
 	{
@@ -54,8 +54,9 @@ typedef int64_t	i64;
 // from stepmania.
 struct vec2
 {
+public:
 	vec2() {}
-	vec2(float xy) { x = y = xy; }
+	vec2(float xy ) { x = y = xy; }
 	vec2(const float * f)		{ x=f[0]; y=f[1]; }
 	vec2(float x1, float y1)	{ x=x1; y=y1; }
 
@@ -72,7 +73,7 @@ struct vec2
 	// binary operators
 	vec2 operator + (const vec2& other) const	{ return vec2(x+other.x, y+other.y); }
 	vec2 operator - (const vec2& other) const	{ return vec2(x-other.x, y-other.y); }
-	vec2 operator * (float f) const			{ return vec2(x*f, y*f); }
+	vec2 operator * (float f) const			{ return vec2(x*f, y*f ); }
 	vec2 operator / (float f) const			{ return vec2(x/f, y/f); }
 
 	friend vec2 operator * (float f, const vec2& other)	{ return other*f; }
@@ -82,13 +83,25 @@ struct vec2
 
 struct vec3
 {
+public:
 	vec3() {}
-	vec3(float xyz) { x = y = z = xyz; }
+	vec3(float xyz ) { x = y = z = xyz; }
 	vec3(const float * f)			{ x=f[0]; y=f[1]; z=f[2]; }
 	vec3(float x1, float y1, float z1)	{ x=x1; y=y1; z=z1; }
 
+	// untilities
+	float dot(const vec3 &v1, const vec3 &v2) { return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; }
+	vec3 cross(const vec3 &a, const vec3 &b)
+	{
+		return vec3 (a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
+	}
+	void normalize()					{ float l = 1.0f/sqrtf(x*x + y*y + z*z); x*=l; y*=l; z*=l; }
+	void flip()							{ x=-x; y=-y; z=-z; }
+	float length()						{ return sqrtf(x*x + y*y + z*z); }
+	float length2()						{ return (x*x + y*y + z*z); }
+
 	// casting
-	operator float* ()				{ return &x; };
+	operator float* ()					{ return &x; };
 	operator const float* () const			{ return &x; };
 
 	// assignment operators
@@ -98,18 +111,27 @@ struct vec3
 	vec3& operator /= (float f)			{ x/=f; y/=f; z/=f; return *this; }
 
 	// binary operators
+	vec3 operator - () const					{ return vec3(-x, -y, -z); }
 	vec3 operator + (const vec3& other) const	{ return vec3(x+other.x, y+other.y, z+other.z); }
 	vec3 operator - (const vec3& other) const	{ return vec3(x-other.x, y-other.y, z-other.z); }
 	vec3 operator * (float f) const			{ return vec3(x*f, y*f, z*f); }
 	vec3 operator / (float f) const			{ return vec3(x/f, y/f, z/f); }
 
 	friend vec3 operator * (float f, const vec3& other)	{ return other*f; }
+	
+	// play nice with streams
+	friend std::ostream& operator<< (std::ostream& os, vec3& vec)
+	{
+		os << "[ " << vec.x << ", " << vec.y << ", " << vec.z << " ]";
+		return os;
+	}
 
 	float x, y, z;
 };
 
 struct rgba
 {
+public:
 	rgba() {}
 	rgba(float _rgb) { r = g = b = _rgb; a = 1.0f; }
 	rgba(float _rgb, float _a) { r = g = b = _rgb; a = _a; }
