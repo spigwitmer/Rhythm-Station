@@ -43,8 +43,6 @@ RStation/RStation.cpp \
 RStation/RStation.h \
 RStation/RSUtil.cpp \
 RStation/RSUtil.h \
-RStation/RTT.cpp \
-RStation/RTT.h \
 RStation/SceneManager.cpp \
 RStation/SceneManager.h \
 RStation/Screen.cpp \
@@ -65,7 +63,11 @@ RStation/TimingData.h \
 RStation/Tween.cpp \
 RStation/Tween.h \
 RStation/Type.cpp \
-RStation/Type.h
+RStation/Type.h \
+RStation/Video.h \
+RStation/Video_Draw.cpp \
+RStation/Video_Matrix.cpp \
+RStation/Video_Window.cpp
 
 #
 # Bundled lua sources
