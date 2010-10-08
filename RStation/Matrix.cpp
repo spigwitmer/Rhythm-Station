@@ -1,7 +1,7 @@
-#include <GL/glfw3.h>
+#include <GL/glew.h>
 #include "Matrix.h"
 #include <math.h>
-#include "Logger.h"
+#include "Log.h"
 #include "MathUtils.h"
 
 // stack size constants
@@ -16,13 +16,7 @@ int stack_depth[matrix_count] = { 0 };
 // the stack itself
 float stack[matrix_count][stack_size][16] = { 0 };
 
-static const float identity_matrix[16] = {
-	1.0, 0.0, 0.0, 0.0,
-	0.0, 1.0, 0.0, 0.0,
-	0.0, 0.0, 1.0, 0.0,
-	0.0, 0.0, 0.0, 1.0
-};
-
+static const float identity_matrix[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
 float current_matrix[16] = { 0.0f };
 
 // useful for debugging.
@@ -98,12 +92,7 @@ void Matrix::Multiply(float mat[16]) {
 }
 
 void Matrix::Translate(float x, float y, float z) {
-	float mat[16] = {
-		1, 0, 0, 0,
-		0, 1, 0, 0,
-		0, 0, 1, 0,
-		x, y, z, 1
-	};
+	float mat[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1 };
 	Matrix::Multiply(mat);
 }
 

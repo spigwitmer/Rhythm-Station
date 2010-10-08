@@ -3,6 +3,10 @@
 
 #include "RStation.h"
 
+#ifndef SWAP
+#define SWAP(type, a, b)	{ type tmp=(a); (a)=(b); (b)=tmp; }
+#endif
+
 // PI is constant, obviously.
 #define PI			3.1415926535897932384626433832795f
 #define PI2			PI*PI
