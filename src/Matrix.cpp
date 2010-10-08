@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include "Matrix.h"
 #include <math.h>
+#include <cstring>
 #include "Logger.h"
 #include "MathUtils.h"
 
