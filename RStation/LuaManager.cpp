@@ -24,9 +24,8 @@ void lua_testLoad()
 	luaopen_math(L);
 	luabind::open(L);
 
-	using namespace FileManager;
-	std::string file = GetFile("Test.lua");
-	if(FileExists(file))
+	std::string file = File->GetFile("Test.lua");
+	if(File->FileExists(file))
 		luaL_dofile(L, file.c_str());
 	else
 		Log->Print("Init Lua file not found.");

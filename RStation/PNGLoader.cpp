@@ -20,7 +20,7 @@ void PNGLoader::Load(std::string _path)
 	int bitDepth, format;
 	
 	tex.path = _path;
-	_path = FileManager::GetFile(_path);
+	_path = File->GetFile(_path);
 
 	FILE *pngFile = fopen(_path.c_str(), "rb");
 

@@ -72,12 +72,12 @@ void ShaderLoader::Load(std::string _vs, std::string _fs, bool reload)
 	_fs = "GameData/Shaders/" + _fs;
 
 	// expand the file paths for vs and fs.
-	_vs = FileManager::GetFile(_vs);
-	_fs = FileManager::GetFile(_fs);
+	_vs = File->GetFile(_vs);
+	_fs = File->GetFile(_fs);
 
 	// load up the files
-	_vs = FileManager::GetFileContents(_vs);
-	_fs = FileManager::GetFileContents(_fs);
+	_vs = File->GetFileContents(_vs);
+	_fs = File->GetFileContents(_fs);
 
 	// bad paths!
 	if (_vs.size() == 0 || _fs.size() == 0)

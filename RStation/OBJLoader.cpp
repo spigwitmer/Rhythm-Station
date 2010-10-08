@@ -3,7 +3,6 @@
 #include <math.h>
 
 using namespace std;
-using namespace FileManager;
 
 OBJLoader::OBJLoader() : shader_id(NULL), vbo_id(NULL)
 {
@@ -18,13 +17,13 @@ OBJLoader::~OBJLoader()
 
 void OBJLoader::Load(string file)
 {
-	file = GetFile(file);
-	if (!FileExists(file))
+	file = File->GetFile(file);
+	if (!File->FileExists(file))
 	{
 		Log->Print("File \"" + file + "\" not found.");
 		return;
 	}
-	file = GetFileContents(file);
+	file = File->GetFileContents(file);
 
 	// store OBJ stuff here before loading up the full mesh var.
 	vector<MeshData> vertices;

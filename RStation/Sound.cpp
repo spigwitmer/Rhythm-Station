@@ -50,7 +50,7 @@ void Sound::deleteBuffers()
 void Sound::Load(std::string _path)
 {
 	// make path local and open file
-	std::string path = FileManager::GetFile(_path);
+	std::string path = File->GetFile(_path);
 
 	FILE *f;
 	if (!(f = fopen(path.c_str(), "rb")))

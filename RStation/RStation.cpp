@@ -6,8 +6,8 @@
 #include "MouseHandler.h"
 #include "AudioManager.h"
 #include "INILoader.h"
-#include "MathUtils.h"
 #include "LuaManager.h"
+#include "FileManager.h"
 #include <cstring>
 #ifdef __APPLE__
 #include "dialog.h"
@@ -92,6 +92,7 @@ int main(int argc, char** argv)
 
 	// initialize everything needed
 	Log = new Logger();
+	File = new FileManager;
 	Audio::Open();
 
 	for (int i = 0; i < argc; i++)

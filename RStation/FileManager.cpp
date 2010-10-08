@@ -18,21 +18,24 @@
 #include <fstream>
 #include <sys/stat.h>
 
-namespace FileManager
-{
-	bool FileExists(std::string _file)
-	{
-		struct stat stFileInfo;
-		int iStat;
+FileManager* File = NULL;
 
-		iStat = stat(_file.c_str(),&stFileInfo);
-		if (iStat == 0)
-			return true;
-		return false;
-	}
-	void SetWorkingDirectory()
-	{
-// gross
+/*
+ * This may not benefit from being a class like Logger does, but I'll give it a shot.
+ */
+bool FileManager::FileExists(std::string _file)
+{
+	struct stat stFileInfo;
+	int iStat;
+
+	iStat = stat(_file.c_str(),&stFileInfo);
+	if (iStat == 0)
+		return true;
+	return false;
+}
+void FileManager::SetWorkingDirectory()
+{
+	// gross
 #ifdef __APPLE__
 	/*
 	 * This function will locate the path to our application on OS X,
@@ -53,36 +56,35 @@ namespace FileManager
 		_path = _path.substr(0,pos);
 	chdir(_path.c_str());
 #endif
-	}
-	std::string GetWorkingDirectory()
+}
+std::string FileManager::GetWorkingDirectory()
+{
+	SetWorkingDirectory();
+	char path[1024] = "./";
+	getcwd(path, 1024);
+	return std::string(path) + "/";
+}
+std::string FileManager::GetFile(std::string _path)
+{
+	return GetWorkingDirectory() + _path;
+}
+std::string FileManager::GetFileContents(std::string _path)
+{
+	std::string out, buf;
+	std::ifstream file(_path.c_str());
+	
+	if (!file.is_open())
 	{
-		SetWorkingDirectory();
-		char path[1024] = "./";
-		getcwd(path, 1024);
-		return std::string(path) + "/";
+		Log->Print("Error opening " + _path + " for writing");
+		return std::string();
 	}
-	std::string GetFile(std::string _path)
+	
+	while (!file.eof())
 	{
-		return GetWorkingDirectory() + _path;
+		getline(file, buf);
+		out += buf;
+		out += "\n";
 	}
-	std::string GetFileContents(std::string _path)
-	{
-		std::string out, buf;
-		std::ifstream file(_path.c_str());
-		
-		if (!file.is_open())
-		{
-			Log->Print("Error opening " + _path + " for writing");
-			return std::string();
-		}
-		
-		while (!file.eof())
-		{
-			getline(file, buf);
-			out += buf;
-			out += "\n";
-		}
-		
-		return out;
-	}
+	
+	return out;
 }

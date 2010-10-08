@@ -5,14 +5,12 @@
 #include "Logger.h"
 #include "FileManager.h"
 
-using namespace FileManager;
-
 Logger* Log = NULL;
 
 Logger::Logger()
 {
-	if (!FileExists(path))
-		path = FileManager::GetFile("RStation-log.txt");
+	if (!File->FileExists(path))
+		path = File->GetFile("RStation-log.txt");
 	logFile.open(path.c_str(), std::fstream::out);
 	Print("Starting RStation");
 	Print("-------------------------------------------------------");
