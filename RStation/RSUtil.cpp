@@ -34,7 +34,7 @@ vector<string> Util::split(string &str, char delim)
 string Util::chop(string str, string search)
 {
 	size_t pos = str.find(search);
-	if (pos == string::npos)
+	if (pos != string::npos)
 		str = str.substr(0,pos);
 	return str;
 }
