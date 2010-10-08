@@ -5,8 +5,10 @@
 
 #ifdef __APPLE__
 #include <OpenAL/al.h>
+#include <OpenAL/alc.h>
 #else
 #include <AL/al.h>
+#include <AL/alc.h>
 #endif
 
 struct SoundData
@@ -26,12 +28,22 @@ struct SoundData
 
 int sine_wave();
 
-namespace Audio
+class AudioManager
 {
+public:
+	AudioManager();
+	virtual ~AudioManager();
+
 	void AddSound(SoundData *sound);
 	void Clear();
-	void Open();
-	void Close();
-}
+
+private:
+	ALCdevice* device;
+	ALCcontext* context;
+
+	std::vector<SoundData*> vpSounds;
+};
+
+extern AudioManager* Audio;
 
 #endif

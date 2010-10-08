@@ -95,8 +95,7 @@ int main(int argc, char** argv)
 	Log = new Logger();
 	File = new FileManager();
 	Scene = new SceneManager();
-
-	Audio::Open();
+	Audio = new AudioManager();
 
 	for (int i = 0; i < argc; i++)
 	{
@@ -143,7 +142,8 @@ int main(int argc, char** argv)
 	Game::Run();
 
 	glfwTerminate();
-	Audio::Close();
+
+	delete Audio;
 	delete Log;
 	return 0;
 }

@@ -1,21 +1,10 @@
-#ifdef __APPLE__
-	#include <OpenAL/al.h>
-	#include <OpenAL/alc.h>
-#else
-	#include <AL/al.h>
-	#include <AL/alc.h>
-#endif
-
 #include "RStation.h"
 #include "AudioManager.h"
 #include <stdio.h>
 #include "MathUtils.h"
 #include <math.h>
 
-ALCdevice* device;
-ALCcontext* context;
-
-std::vector<SoundData*> vpSounds;
+AudioManager* Audio = NULL;
 
 SoundData::SoundData()
 {
@@ -32,24 +21,10 @@ SoundData::~SoundData()
 
 void SoundData::Register()
 {
-	Audio::AddSound(this);
+	Audio->AddSound(this);
 }
 
-void Audio::AddSound(SoundData *_sound)
-{
-	vpSounds.push_back(_sound);
-}
-
-void Audio::Clear()
-{
-	while (!vpSounds.empty())
-	{
-		delete vpSounds.back();
-		vpSounds.pop_back();
-	}
-}
-
-void Audio::Open()
+AudioManager::AudioManager()
 {
 	// open default device.
 	device = alcOpenDevice(NULL);
@@ -67,7 +42,7 @@ void Audio::Open()
 	alGetError();
 }
 
-void Audio::Close()
+AudioManager::~AudioManager()
 {
 	Clear();
 	// clean up
@@ -75,6 +50,21 @@ void Audio::Close()
 	alcDestroyContext(context);
 	alcCloseDevice(device);
 }
+
+void AudioManager::AddSound(SoundData *_sound)
+{
+	vpSounds.push_back(_sound);
+}
+
+void AudioManager::Clear()
+{
+	while (!vpSounds.empty())
+	{
+		delete vpSounds.back();
+		vpSounds.pop_back();
+	}
+}
+
 
 // sound test.
 int sine_wave()
