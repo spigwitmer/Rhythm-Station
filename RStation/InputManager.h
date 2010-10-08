@@ -5,7 +5,6 @@
 
 namespace Input
 {
-	void CheckMouse();
 	void Update();
 }
 
