@@ -3,13 +3,15 @@
 
 #include "Type.h"
 
-enum {
+enum
+{
 	STACK_NORMAL = 0,
 	STACK_UNDERFLOW,
 	STACK_OVERFLOW
 };
 
-enum MatrixType {
+enum MatrixType
+{
 	PROJECTION_MATRIX = 0,
 	MODELVIEW_MATRIX,
 	TEXTURE_MATRIX0,
@@ -22,7 +24,8 @@ enum MatrixType {
 	TEXTURE_MATRIX7,
 };
 
-namespace Matrix {
+namespace Matrix
+{
 	float* GetMatrix();
 	float* GetMatrix(MatrixType mode);
 

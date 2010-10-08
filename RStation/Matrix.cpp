@@ -20,7 +20,8 @@ static const float identity_matrix[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0
 float current_matrix[16] = { 0.0f };
 
 // useful for debugging.
-void Matrix::Print() {
+void Matrix::Print()
+{
 	printf(
 		"%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n",
 		current_matrix[0], current_matrix[1], current_matrix[2], current_matrix[3],
@@ -30,17 +31,21 @@ void Matrix::Print() {
 	);
 }
 
-float* Matrix::GetMatrix() {
+float* Matrix::GetMatrix()
+{
 	return current_matrix;
 }
 
-float* Matrix::GetMatrix(MatrixType mode) {
+float* Matrix::GetMatrix(MatrixType mode)
+{
 	return stack[mode][stack_depth[mode]];
 }
 
 // save current matrix onto the stack
-int Matrix::Push() {
-	if (++stack_depth[matrix_mode] > stack_size) {
+int Matrix::Push()
+{
+	if (++stack_depth[matrix_mode] > stack_size)
+	{
 		stack_depth[matrix_mode] = stack_size;
 		return STACK_OVERFLOW;
 	}
@@ -50,8 +55,10 @@ int Matrix::Push() {
 }
 
 // restore matrix from the stack
-int Matrix::Pop() {
-	if (--stack_depth[matrix_mode] < 0) {
+int Matrix::Pop()
+{
+	if (--stack_depth[matrix_mode] < 0)
+	{
 		stack_depth[matrix_mode] = 0;
 		return STACK_UNDERFLOW;
 	}
@@ -60,22 +67,25 @@ int Matrix::Pop() {
 	return STACK_NORMAL;
 }
 
-int Matrix::MatrixMode(MatrixType mode) {
-	if (mode > matrix_count) {
+int Matrix::MatrixMode(MatrixType mode)
+{
+	if (mode > matrix_count)
 		return 1; // invalid
-	}
+
 	matrix_mode = mode;
 	memcpy(current_matrix, stack[matrix_mode][stack_depth[matrix_mode]], matrix_size);
 
 	return 0;
 }
 
-void Matrix::LoadIdentity() {
+void Matrix::LoadIdentity()
+{
 	memcpy(current_matrix, identity_matrix, matrix_size);
 }
 
 // adapted from mesa
-void Matrix::Multiply(float mat[16]) {
+void Matrix::Multiply(float mat[16])
+{
 	for (int i = 0; i < 4; i++) {
 		const float
 			c0 = current_matrix[i],
@@ -91,17 +101,20 @@ void Matrix::Multiply(float mat[16]) {
 	}
 }
 
-void Matrix::Translate(float x, float y, float z) {
+void Matrix::Translate(float x, float y, float z)
+{
 	float mat[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1 };
 	Matrix::Multiply(mat);
 }
 
-void Matrix::Scale(float x, float y, float z) {
+void Matrix::Scale(float x, float y, float z)
+{
 	float mat[16] = { x, 0, 0, 0, 0, y, 0, 0, 0, 0, z, 0, 0, 0, 0, 1 };
 	Matrix::Multiply(mat);
 }
 
-void Matrix::Rotate(float angle, float x, float y, float z) {
+void Matrix::Rotate(float angle, float x, float y, float z)
+{
 	float c = cosf(radf(angle));
 	float s = sinf(radf(angle));
 	float oc = 1.0f - c;
@@ -117,40 +130,49 @@ void Matrix::Rotate(float angle, float x, float y, float z) {
 }
 
 // vec3 overloads
-void Matrix::Translate(vec3 pos) {
+void Matrix::Translate(vec3 pos)
+{
 	Matrix::Translate(pos.x, pos.y, pos.z);
 }
 
-void Matrix::Rotate(vec3 rot) {
+void Matrix::Rotate(vec3 rot)
+{
 	Matrix::Rotate(rot.x, 1, 0, 0);
 	Matrix::Rotate(rot.y, 0, 1, 0);
 	Matrix::Rotate(rot.z, 0, 0, 1);
 }
 
-void Matrix::Scale(vec3 size) {
+void Matrix::Scale(vec3 size)
+{
 	Matrix::Scale(size.x, size.y, size.z);
 }
 
 // adapted from blender.
-bool Matrix::Invert4(float inverse[4][4], float mat[4][4]) {
+bool Matrix::Invert4(float inverse[4][4], float mat[4][4])
+{
 	float tempmat[4][4];
 
 	memcpy(inverse, identity_matrix, matrix_size); // inverse = identity
 	memcpy(tempmat, mat, matrix_size); // mat -> temp
 
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; i++)
+	{
 		// look for row with max pivot
 		int max = fabs(tempmat[i][i]);
 		int maxj = i;
-		for (int j = i + 1; j < 4; j++) {
-			if (fabs(tempmat[j][i]) > max) {
+		for (int j = i + 1; j < 4; j++)
+		{
+			if (fabs(tempmat[j][i]) > max)
+			{
 				max = fabs(tempmat[j][i]);
 				maxj = j;
 			}
 		}
 		// swap rows if necessary
-		if (maxj != i) {
-			for (int k = 0; k < 4; k++) {
+		if (maxj != i)
+		{
+			for (int k = 0; k < 4; k++)
+			{
 				SWAP(float, tempmat[i][k], tempmat[maxj][k]);
 				SWAP(float, inverse[i][k], inverse[maxj][k]);
 			}
@@ -159,14 +181,18 @@ bool Matrix::Invert4(float inverse[4][4], float mat[4][4]) {
 		double temp = tempmat[i][i];
 		if (temp == 0)
 			return false; // I can't do that, dave.
-		for (int k = 0; k < 4; k++) {
+		for (int k = 0; k < 4; k++)
+		{
 			tempmat[i][k] = tempmat[i][k]/temp;
 			inverse[i][k] = inverse[i][k]/temp;
 		}
-		for (int j = 0; j < 4; j++) {
-			if (j != i) {
+		for (int j = 0; j < 4; j++)
+		{
+			if (j != i)
+			{
 				temp = tempmat[j][i];
-				for (int k = 0; k < 4; k++) {
+				for (int k = 0; k < 4; k++)
+				{
 					tempmat[j][k] -= tempmat[i][k]*temp;
 					inverse[j][k] -= inverse[i][k]*temp;
 				}
@@ -176,7 +202,8 @@ bool Matrix::Invert4(float inverse[4][4], float mat[4][4]) {
 	return true;
 }
 
-bool Matrix::Invert() {
+bool Matrix::Invert()
+{
 	float tmp[4][4];
 	memcpy(tmp, current_matrix, matrix_size);
 	bool success = Matrix::Invert4(tmp, tmp);
@@ -185,7 +212,8 @@ bool Matrix::Invert() {
 	return success;
 }
 
-void Matrix::Perspective(float fov, float aspect, double near, double far) {
+void Matrix::Perspective(float fov, float aspect, double near, double far)
+{
 	float m[4][4] = { 0 };
 	double sine, ctan, delta;
 	double radians = radf(fov * 0.5f);
