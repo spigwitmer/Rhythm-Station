@@ -15,7 +15,7 @@ void SendMouseInput()
 	IEvent event;
 	event.Mouse = Mouse;
 	
-	Scene::SendInput(event);
+	Scene->SendInput(event);
 }
 
 void MouseButtonCallback(int button, int action)

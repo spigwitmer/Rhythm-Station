@@ -16,7 +16,7 @@ namespace Game
 	void Terminate() { bRunning = false; }
 	void Run()
 	{
-		Scene::PushScreen();
+		Scene->PushScreen();
 
 		Sprite *sprite = new Sprite();
 		sprite->Load("Themes/_button.png");
@@ -48,10 +48,10 @@ namespace Game
 
 			// update this first so we're on the right frame
 			Input::Update();
-			Scene::Update(delta);
+			Scene->Update(delta);
 
-			Scene::Draw();
+			Scene->Draw();
 		}
-		Scene::Clear();
+		Scene->Clear();
 	}
 }

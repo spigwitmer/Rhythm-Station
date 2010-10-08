@@ -20,13 +20,13 @@ void Actor::AddChild(Actor *child)
 
 void Actor::Register()
 {
-	Screen* scr = Scene::GetTopScreen();
+	Screen* scr = Scene->GetTopScreen();
 	scr->AddActor(this);
 }
 
 void Actor::Hook(ActorAttach _attach)
 {
-	Screen* scr = Scene::GetTopScreen();
+	Screen* scr = Scene->GetTopScreen();
 	scr->AddHook(this, _attach);
 	isHooked = true;
 }

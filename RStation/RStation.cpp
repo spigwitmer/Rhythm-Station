@@ -8,6 +8,7 @@
 #include "INILoader.h"
 #include "LuaManager.h"
 #include "FileManager.h"
+#include "SceneManager.h"
 #include <cstring>
 #ifdef __APPLE__
 #include "dialog.h"
@@ -92,7 +93,9 @@ int main(int argc, char** argv)
 
 	// initialize everything needed
 	Log = new Logger();
-	File = new FileManager;
+	File = new FileManager();
+	Scene = new SceneManager();
+
 	Audio::Open();
 
 	for (int i = 0; i < argc; i++)
@@ -124,7 +127,8 @@ int main(int argc, char** argv)
 	if (!GLEW_VERSION_2_0)
 	{
 		Log->Print("OpenGL 2.0 is not supported. You may need to update your drivers.");
-	// Dialog needed on other platforms!
+
+		// Dialog needed on other platforms!
 #ifdef __APPLE__
 		Alert(); // exits if not ignored
 #else

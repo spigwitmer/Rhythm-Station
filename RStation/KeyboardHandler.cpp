@@ -42,7 +42,7 @@ void KeyCallback(int key, int action)
 		Log->Write();
 	}
 
-	Scene::SendInput(event);
+	Scene->SendInput(event);
 }
 
 void RegisterKeyboardCallbacks()

@@ -6,16 +6,16 @@
 #include "Sprite.h"
 #include "Timer.h"
 
-std::vector<Screen*> vpScreens;
+SceneManager* Scene = NULL;
 
-void Scene::PushScreen()
+void SceneManager::PushScreen()
 {
 	Screen* scr = new Screen();
 	vpScreens.push_back(scr);
 	Log->Print("[Scene::PushScreen] Pushed a new screen to the stack.");	
 }
 
-void Scene::PopScreen()
+void SceneManager::PopScreen()
 {
 	if (vpScreens.empty())
 	{
@@ -28,18 +28,18 @@ void Scene::PopScreen()
 	Log->Print("[Scene::PopScreen] Deleted top screen.");
 }
 
-Screen* Scene::GetTopScreen()
+Screen* SceneManager::GetTopScreen()
 {
 	return vpScreens.back();
 }
 
-void Scene::Update(float deltaTime)
+void SceneManager::Update(float deltaTime)
 {
 	for (unsigned i = 0; i<vpScreens.size(); i++)
 		vpScreens[i]->Update(deltaTime);
 }
 
-void Scene::SendInput(IEvent &e)
+void SceneManager::SendInput(IEvent &e)
 {
 	// this happens if mouse wasn't set by the sender.
 	if (e.Mouse.x < -200000)
@@ -49,7 +49,7 @@ void Scene::SendInput(IEvent &e)
 		vpScreens.back()->Input(e);
 }
 
-void Scene::Clear()
+void SceneManager::Clear()
 {
 	while (!vpScreens.empty())
 	{
@@ -58,7 +58,7 @@ void Scene::Clear()
 	Log->Print("[Scene::Clear] Cleared all screens.");
 }
 
-void Scene::Draw()
+void SceneManager::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
