@@ -1,6 +1,6 @@
 #include "KeyboardHandler.h"
 #include "SceneManager.h"
-#include "Log.h"
+#include "Logger.h"
 
 KeyStates Keys[GLFW_KEY_LAST] = { RS_FIRST_PRESS };
 
@@ -39,7 +39,7 @@ void KeyCallback(int key, int action)
 	// flush log on F3
 	if (event.Key == KEY_F3 && event.State == RS_FIRST_PRESS)
 	{
-		Log::Write();
+		Log->Write();
 	}
 
 	Scene::SendInput(event);
@@ -52,5 +52,5 @@ void RegisterKeyboardCallbacks()
 	// this is more relevant for keyboard than mouse.
 	glfwDisable(GLFW_AUTO_POLL_EVENTS);
 	
-	Log::Print("Registered KeyboardHandler.");
+	Log->Print("Registered KeyboardHandler.");
 }

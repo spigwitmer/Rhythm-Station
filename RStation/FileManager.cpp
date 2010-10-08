@@ -1,5 +1,5 @@
 #include "FileManager.h"
-#include "Log.h"
+#include "Logger.h"
 
 #ifdef __APPLE__
 #include <CoreFoundation/CoreFoundation.h>
@@ -34,21 +34,24 @@ namespace FileManager
 	{
 // gross
 #ifdef __APPLE__
-		/*
-		 * This function will locate the path to our application on OS X,
-		 * unlike windows you cannot rely on the current working directory
-		 * for locating your configuration files and resources.
-		 */
-		char path[1024];
-		CFBundleRef mainBundle = CFBundleGetMainBundle();
-		assert( mainBundle); // make sure nothing is terribly wrong here.
-		CFURLRef mainBundleURL = CFBundleCopyBundleURL( mainBundle);
-		CFStringRef cfStringRef = CFURLCopyFileSystemPath( mainBundleURL, kCFURLPOSIXPathStyle);
-		CFStringGetCString( cfStringRef, path, 1024, kCFStringEncodingUTF8);
-		CFRelease( mainBundleURL);
-		CFRelease( cfStringRef);
-		std::string _path = std::string(path) + "/../";
-		chdir(_path.c_str());
+	/*
+	 * This function will locate the path to our application on OS X,
+	 * unlike windows you cannot rely on the current working directory
+	 * for locating your configuration files and resources.
+	 */
+	char path[1024];
+	CFBundleRef mainBundle = CFBundleGetMainBundle();
+	assert(mainBundle); // make sure nothing is terribly wrong here.
+	CFURLRef mainBundleURL = CFBundleCopyBundleURL(mainBundle);
+	CFStringRef cfStringRef = CFURLCopyFileSystemPath(mainBundleURL, kCFURLPOSIXPathStyle);
+	CFStringGetCString(cfStringRef, path, 1024, kCFStringEncodingUTF8);
+	CFRelease(mainBundleURL);
+	CFRelease(cfStringRef);
+	std::string _path = path;
+	size_t pos = _path.find_last_of('/');
+	if (pos != std::string::npos)
+		_path = _path.substr(0,pos);
+	chdir(_path.c_str());
 #endif
 	}
 	std::string GetWorkingDirectory()
@@ -69,7 +72,7 @@ namespace FileManager
 		
 		if (!file.is_open())
 		{
-			Log::Print("Error opening " + _path + " for writing");
+			Log->Print("Error opening " + _path + " for writing");
 			return std::string();
 		}
 		

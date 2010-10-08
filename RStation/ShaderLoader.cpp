@@ -109,13 +109,13 @@ void ShaderLoader::Load(std::string _vs, std::string _fs, bool reload)
 	// print out shader logs.
 	std::string log = getShaderLog(shader.vs);
 	if (!log.empty())
-		Log::Print("Vertex shader log: " + log);
+		Log->Print("Vertex shader log: " + log);
 	log = getShaderLog(shader.fs);
 	if (!log.empty())
-		Log::Print("Fragment shader log: " + log);
+		Log->Print("Fragment shader log: " + log);
 	log = getProgramLog(shader.ptr);
 	if (!log.empty())
-		Log::Print("Shader program log: " + log);
+		Log->Print("Shader program log: " + log);
 
 	glUseProgram(shader.ptr);
 	ShaderManager::addShader(shader);

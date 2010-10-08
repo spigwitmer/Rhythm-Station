@@ -36,6 +36,56 @@
 		EE078E4E125101FB00873319 /* dialog.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE078E4D125101FB00873319 /* dialog.mm */; };
 		EE0FAEF8125F01B3006B1C25 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE0FAEF6125F01B3006B1C25 /* Matrix.cpp */; };
 		EE1313BE122CFFF000511DD5 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE1313BD122CFFF000511DD5 /* Sprite.cpp */; };
+		EE139CA8125F1C9A00E2C767 /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BD9121D3D95009F8F49 /* cocoa_enable.m */; };
+		EE139CA9125F1C9A00E2C767 /* cocoa_fullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDA121D3D95009F8F49 /* cocoa_fullscreen.m */; };
+		EE139CAA125F1C9A00E2C767 /* cocoa_glext.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDB121D3D95009F8F49 /* cocoa_glext.m */; };
+		EE139CAB125F1C9A00E2C767 /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDC121D3D95009F8F49 /* cocoa_init.m */; };
+		EE139CAC125F1C9A00E2C767 /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDD121D3D95009F8F49 /* cocoa_joystick.m */; };
+		EE139CAD125F1C9A00E2C767 /* cocoa_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDE121D3D95009F8F49 /* cocoa_thread.c */; };
+		EE139CAE125F1C9A00E2C767 /* cocoa_time.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDF121D3D95009F8F49 /* cocoa_time.m */; };
+		EE139CAF125F1C9A00E2C767 /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE0121D3D95009F8F49 /* cocoa_window.m */; };
+		EE139CB0125F1C9A00E2C767 /* enable.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE5121D3D95009F8F49 /* enable.c */; };
+		EE139CB1125F1C9A00E2C767 /* fullscreen.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE6121D3D95009F8F49 /* fullscreen.c */; };
+		EE139CB2125F1C9A00E2C767 /* glext.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE7121D3D95009F8F49 /* glext.c */; };
+		EE139CB3125F1C9A00E2C767 /* image.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE8121D3D95009F8F49 /* image.c */; };
+		EE139CB4125F1C9A00E2C767 /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE9121D3D95009F8F49 /* init.c */; };
+		EE139CB5125F1C9A00E2C767 /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BEA121D3D95009F8F49 /* input.c */; };
+		EE139CB6125F1C9A00E2C767 /* joystick.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BEC121D3D95009F8F49 /* joystick.c */; };
+		EE139CB7125F1C9A00E2C767 /* stream.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BED121D3D95009F8F49 /* stream.c */; };
+		EE139CB8125F1C9A00E2C767 /* tga.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BEE121D3D95009F8F49 /* tga.c */; };
+		EE139CB9125F1C9A00E2C767 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BEF121D3D95009F8F49 /* thread.c */; };
+		EE139CBA125F1C9A00E2C767 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BF0121D3D95009F8F49 /* time.c */; };
+		EE139CBB125F1C9A00E2C767 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40C05121D3D95009F8F49 /* window.c */; };
+		EE139CBE125F1CAD00E2C767 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7708912265B4E00C6B4E7 /* lapi.c */; };
+		EE139CBF125F1CAD00E2C767 /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7708B12265B4E00C6B4E7 /* lauxlib.c */; };
+		EE139CC0125F1CAD00E2C767 /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7708D12265B4E00C6B4E7 /* lbaselib.c */; };
+		EE139CC1125F1CAD00E2C767 /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7708E12265B4E00C6B4E7 /* lcode.c */; };
+		EE139CC2125F1CAD00E2C767 /* ldblib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709012265B4E00C6B4E7 /* ldblib.c */; };
+		EE139CC3125F1CAD00E2C767 /* ldebug.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709112265B4E00C6B4E7 /* ldebug.c */; };
+		EE139CC4125F1CAD00E2C767 /* ldo.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709312265B4E00C6B4E7 /* ldo.c */; };
+		EE139CC5125F1CAD00E2C767 /* ldump.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709512265B4E00C6B4E7 /* ldump.c */; };
+		EE139CC6125F1CAD00E2C767 /* lfunc.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709612265B4E00C6B4E7 /* lfunc.c */; };
+		EE139CC7125F1CAD00E2C767 /* lgc.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709812265B4E00C6B4E7 /* lgc.c */; };
+		EE139CC8125F1CAD00E2C767 /* linit.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709A12265B4E00C6B4E7 /* linit.c */; };
+		EE139CC9125F1CAD00E2C767 /* liolib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709B12265B4E00C6B4E7 /* liolib.c */; };
+		EE139CCA125F1CAD00E2C767 /* llex.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709C12265B4E00C6B4E7 /* llex.c */; };
+		EE139CCB125F1CAD00E2C767 /* lmathlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709F12265B4E00C6B4E7 /* lmathlib.c */; };
+		EE139CCC125F1CAD00E2C767 /* lmem.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A012265B4E00C6B4E7 /* lmem.c */; };
+		EE139CCD125F1CAD00E2C767 /* loadlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A212265B4E00C6B4E7 /* loadlib.c */; };
+		EE139CCE125F1CAD00E2C767 /* lobject.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A312265B4E00C6B4E7 /* lobject.c */; };
+		EE139CCF125F1CAD00E2C767 /* lopcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A512265B4E00C6B4E7 /* lopcodes.c */; };
+		EE139CD0125F1CAD00E2C767 /* loslib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A712265B4E00C6B4E7 /* loslib.c */; };
+		EE139CD1125F1CAD00E2C767 /* lparser.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A812265B4E00C6B4E7 /* lparser.c */; };
+		EE139CD2125F1CAD00E2C767 /* lstate.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770AA12265B4E00C6B4E7 /* lstate.c */; };
+		EE139CD3125F1CAD00E2C767 /* lstring.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770AC12265B4E00C6B4E7 /* lstring.c */; };
+		EE139CD4125F1CAD00E2C767 /* lstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770AE12265B4E00C6B4E7 /* lstrlib.c */; };
+		EE139CD5125F1CAD00E2C767 /* ltable.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770AF12265B4E00C6B4E7 /* ltable.c */; };
+		EE139CD6125F1CAD00E2C767 /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770B112265B4E00C6B4E7 /* ltablib.c */; };
+		EE139CD7125F1CAD00E2C767 /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770B212265B4E00C6B4E7 /* ltm.c */; };
+		EE139CD8125F1CAD00E2C767 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770B912265B4E00C6B4E7 /* lundump.c */; };
+		EE139CD9125F1CAD00E2C767 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770BB12265B4E00C6B4E7 /* lvm.c */; };
+		EE139CDA125F1CAD00E2C767 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770BD12265B4E00C6B4E7 /* lzio.c */; };
+		EE139CDB125F1CAD00E2C767 /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770BF12265B4E00C6B4E7 /* print.c */; };
 		EE992BB9122B5F1F00884C21 /* bio.icns in Resources */ = {isa = PBXBuildFile; fileRef = EE992BB8122B5F1F00884C21 /* bio.icns */; };
 		EEBD1F67122BBEFF003DB675 /* ShaderLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBD1F66122BBEFF003DB675 /* ShaderLoader.cpp */; };
 		EEBD75AE1238BE1900174877 /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBD75AD1238BE1900174877 /* ShaderManager.cpp */; };
@@ -47,65 +97,15 @@
 		EEF40B4F121D257D009F8F49 /* GameLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40B49121D257D009F8F49 /* GameLoop.cpp */; };
 		EEF40B50121D257D009F8F49 /* RStation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40B4B121D257D009F8F49 /* RStation.cpp */; };
 		EEF40B51121D257D009F8F49 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40B4D121D257D009F8F49 /* SceneManager.cpp */; };
-		EEF40C78121D3D95009F8F49 /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BD9121D3D95009F8F49 /* cocoa_enable.m */; };
-		EEF40C79121D3D95009F8F49 /* cocoa_fullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDA121D3D95009F8F49 /* cocoa_fullscreen.m */; };
-		EEF40C7A121D3D95009F8F49 /* cocoa_glext.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDB121D3D95009F8F49 /* cocoa_glext.m */; };
-		EEF40C7B121D3D95009F8F49 /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDC121D3D95009F8F49 /* cocoa_init.m */; };
-		EEF40C7C121D3D95009F8F49 /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDD121D3D95009F8F49 /* cocoa_joystick.m */; };
-		EEF40C7D121D3D95009F8F49 /* cocoa_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDE121D3D95009F8F49 /* cocoa_thread.c */; };
-		EEF40C7E121D3D95009F8F49 /* cocoa_time.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BDF121D3D95009F8F49 /* cocoa_time.m */; };
-		EEF40C7F121D3D95009F8F49 /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE0121D3D95009F8F49 /* cocoa_window.m */; };
-		EEF40C83121D3D95009F8F49 /* enable.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE5121D3D95009F8F49 /* enable.c */; };
-		EEF40C84121D3D95009F8F49 /* fullscreen.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE6121D3D95009F8F49 /* fullscreen.c */; };
-		EEF40C85121D3D95009F8F49 /* glext.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE7121D3D95009F8F49 /* glext.c */; };
-		EEF40C86121D3D95009F8F49 /* image.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE8121D3D95009F8F49 /* image.c */; };
-		EEF40C87121D3D95009F8F49 /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BE9121D3D95009F8F49 /* init.c */; };
-		EEF40C88121D3D95009F8F49 /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BEA121D3D95009F8F49 /* input.c */; };
-		EEF40C89121D3D95009F8F49 /* joystick.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BEC121D3D95009F8F49 /* joystick.c */; };
-		EEF40C8A121D3D95009F8F49 /* stream.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BED121D3D95009F8F49 /* stream.c */; };
-		EEF40C8B121D3D95009F8F49 /* tga.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BEE121D3D95009F8F49 /* tga.c */; };
-		EEF40C8C121D3D95009F8F49 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BEF121D3D95009F8F49 /* thread.c */; };
-		EEF40C8D121D3D95009F8F49 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40BF0121D3D95009F8F49 /* time.c */; };
-		EEF40CA0121D3D95009F8F49 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40C05121D3D95009F8F49 /* window.c */; };
 		EEF40DCB121FC5AE009F8F49 /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DCA121FC5AE009F8F49 /* Actor.cpp */; };
 		EEF40EE1121FD490009F8F49 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40EDD121FD490009F8F49 /* FileManager.cpp */; };
-		EEF40EE2121FD490009F8F49 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40EDF121FD490009F8F49 /* Log.cpp */; };
+		EEF40EE2121FD490009F8F49 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40EDF121FD490009F8F49 /* Logger.cpp */; };
 		EEF40EF4121FECD8009F8F49 /* MouseHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40EF3121FECD8009F8F49 /* MouseHandler.cpp */; };
 		EEF40EF8121FECF2009F8F49 /* KeyboardHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40EF7121FECF2009F8F49 /* KeyboardHandler.cpp */; };
 		EEF40EFB121FECFD009F8F49 /* InputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40EFA121FECFD009F8F49 /* InputManager.cpp */; };
 		EEF40F2C1220B3DD009F8F49 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F291220B3DD009F8F49 /* glew.c */; };
 		EEF40FB4122144B9009F8F49 /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40FB2122144B9009F8F49 /* MessageManager.cpp */; };
 		EEF40FCD1223C79D009F8F49 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF40FCC1223C79D009F8F49 /* Screen.cpp */; };
-		EEF770C012265B4E00C6B4E7 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7708912265B4E00C6B4E7 /* lapi.c */; };
-		EEF770C112265B4E00C6B4E7 /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7708B12265B4E00C6B4E7 /* lauxlib.c */; };
-		EEF770C212265B4E00C6B4E7 /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7708D12265B4E00C6B4E7 /* lbaselib.c */; };
-		EEF770C312265B4E00C6B4E7 /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7708E12265B4E00C6B4E7 /* lcode.c */; };
-		EEF770C412265B4E00C6B4E7 /* ldblib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709012265B4E00C6B4E7 /* ldblib.c */; };
-		EEF770C512265B4E00C6B4E7 /* ldebug.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709112265B4E00C6B4E7 /* ldebug.c */; };
-		EEF770C612265B4E00C6B4E7 /* ldo.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709312265B4E00C6B4E7 /* ldo.c */; };
-		EEF770C712265B4E00C6B4E7 /* ldump.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709512265B4E00C6B4E7 /* ldump.c */; };
-		EEF770C812265B4E00C6B4E7 /* lfunc.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709612265B4E00C6B4E7 /* lfunc.c */; };
-		EEF770C912265B4E00C6B4E7 /* lgc.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709812265B4E00C6B4E7 /* lgc.c */; };
-		EEF770CA12265B4E00C6B4E7 /* linit.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709A12265B4E00C6B4E7 /* linit.c */; };
-		EEF770CB12265B4E00C6B4E7 /* liolib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709B12265B4E00C6B4E7 /* liolib.c */; };
-		EEF770CC12265B4E00C6B4E7 /* llex.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709C12265B4E00C6B4E7 /* llex.c */; };
-		EEF770CD12265B4E00C6B4E7 /* lmathlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF7709F12265B4E00C6B4E7 /* lmathlib.c */; };
-		EEF770CE12265B4E00C6B4E7 /* lmem.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A012265B4E00C6B4E7 /* lmem.c */; };
-		EEF770CF12265B4E00C6B4E7 /* loadlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A212265B4E00C6B4E7 /* loadlib.c */; };
-		EEF770D012265B4E00C6B4E7 /* lobject.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A312265B4E00C6B4E7 /* lobject.c */; };
-		EEF770D112265B4E00C6B4E7 /* lopcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A512265B4E00C6B4E7 /* lopcodes.c */; };
-		EEF770D212265B4E00C6B4E7 /* loslib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A712265B4E00C6B4E7 /* loslib.c */; };
-		EEF770D312265B4E00C6B4E7 /* lparser.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770A812265B4E00C6B4E7 /* lparser.c */; };
-		EEF770D412265B4E00C6B4E7 /* lstate.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770AA12265B4E00C6B4E7 /* lstate.c */; };
-		EEF770D512265B4E00C6B4E7 /* lstring.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770AC12265B4E00C6B4E7 /* lstring.c */; };
-		EEF770D612265B4E00C6B4E7 /* lstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770AE12265B4E00C6B4E7 /* lstrlib.c */; };
-		EEF770D712265B4E00C6B4E7 /* ltable.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770AF12265B4E00C6B4E7 /* ltable.c */; };
-		EEF770D812265B4E00C6B4E7 /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770B112265B4E00C6B4E7 /* ltablib.c */; };
-		EEF770D912265B4E00C6B4E7 /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770B212265B4E00C6B4E7 /* ltm.c */; };
-		EEF770DC12265B4E00C6B4E7 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770B912265B4E00C6B4E7 /* lundump.c */; };
-		EEF770DD12265B4E00C6B4E7 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770BB12265B4E00C6B4E7 /* lvm.c */; };
-		EEF770DE12265B4E00C6B4E7 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770BD12265B4E00C6B4E7 /* lzio.c */; };
-		EEF770DF12265B4E00C6B4E7 /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = EEF770BF12265B4E00C6B4E7 /* print.c */; };
 		EEF770F81227ACEA00C6B4E7 /* PNGLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF770F71227ACEA00C6B4E7 /* PNGLoader.cpp */; };
 		EEF770FB1227B12200C6B4E7 /* ImageLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF770FA1227B12200C6B4E7 /* ImageLoader.cpp */; };
 		EEF7711512282B7400C6B4E7 /* Primitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF7710D12282B7400C6B4E7 /* Primitives.cpp */; };
@@ -237,8 +237,8 @@
 		EEF40DCA121FC5AE009F8F49 /* Actor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Actor.cpp; path = RStation/Actor.cpp; sourceTree = "<group>"; };
 		EEF40EDD121FD490009F8F49 /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileManager.cpp; path = RStation/FileManager.cpp; sourceTree = "<group>"; };
 		EEF40EDE121FD490009F8F49 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = RStation/FileManager.h; sourceTree = "<group>"; };
-		EEF40EDF121FD490009F8F49 /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Log.cpp; path = RStation/Log.cpp; sourceTree = "<group>"; };
-		EEF40EE0121FD490009F8F49 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Log.h; path = RStation/Log.h; sourceTree = "<group>"; };
+		EEF40EDF121FD490009F8F49 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logger.cpp; path = RStation/Logger.cpp; sourceTree = "<group>"; };
+		EEF40EE0121FD490009F8F49 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logger.h; path = RStation/Logger.h; sourceTree = "<group>"; };
 		EEF40EF2121FECD8009F8F49 /* MouseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MouseHandler.h; path = RStation/MouseHandler.h; sourceTree = "<group>"; };
 		EEF40EF3121FECD8009F8F49 /* MouseHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MouseHandler.cpp; path = RStation/MouseHandler.cpp; sourceTree = "<group>"; };
 		EEF40EF6121FECF2009F8F49 /* KeyboardHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardHandler.h; path = RStation/KeyboardHandler.h; sourceTree = "<group>"; };
@@ -511,8 +511,8 @@
 				EEF40EDE121FD490009F8F49 /* FileManager.h */,
 				EEF40EFA121FECFD009F8F49 /* InputManager.cpp */,
 				EEF40EF9121FECFD009F8F49 /* InputManager.h */,
-				EEF40EDF121FD490009F8F49 /* Log.cpp */,
-				EEF40EE0121FD490009F8F49 /* Log.h */,
+				EEF40EDF121FD490009F8F49 /* Logger.cpp */,
+				EEF40EE0121FD490009F8F49 /* Logger.h */,
 				EEF40FB2122144B9009F8F49 /* MessageManager.cpp */,
 				EEF40FB3122144B9009F8F49 /* MessageManager.h */,
 				EEF40B4D121D257D009F8F49 /* SceneManager.cpp */,
@@ -810,65 +810,15 @@
 				EEF40B4F121D257D009F8F49 /* GameLoop.cpp in Sources */,
 				EEF40B50121D257D009F8F49 /* RStation.cpp in Sources */,
 				EEF40B51121D257D009F8F49 /* SceneManager.cpp in Sources */,
-				EEF40C78121D3D95009F8F49 /* cocoa_enable.m in Sources */,
-				EEF40C79121D3D95009F8F49 /* cocoa_fullscreen.m in Sources */,
-				EEF40C7A121D3D95009F8F49 /* cocoa_glext.m in Sources */,
-				EEF40C7B121D3D95009F8F49 /* cocoa_init.m in Sources */,
-				EEF40C7C121D3D95009F8F49 /* cocoa_joystick.m in Sources */,
-				EEF40C7D121D3D95009F8F49 /* cocoa_thread.c in Sources */,
-				EEF40C7E121D3D95009F8F49 /* cocoa_time.m in Sources */,
-				EEF40C7F121D3D95009F8F49 /* cocoa_window.m in Sources */,
-				EEF40C83121D3D95009F8F49 /* enable.c in Sources */,
-				EEF40C84121D3D95009F8F49 /* fullscreen.c in Sources */,
-				EEF40C85121D3D95009F8F49 /* glext.c in Sources */,
-				EEF40C86121D3D95009F8F49 /* image.c in Sources */,
-				EEF40C87121D3D95009F8F49 /* init.c in Sources */,
-				EEF40C88121D3D95009F8F49 /* input.c in Sources */,
-				EEF40C89121D3D95009F8F49 /* joystick.c in Sources */,
-				EEF40C8A121D3D95009F8F49 /* stream.c in Sources */,
-				EEF40C8B121D3D95009F8F49 /* tga.c in Sources */,
-				EEF40C8C121D3D95009F8F49 /* thread.c in Sources */,
-				EEF40C8D121D3D95009F8F49 /* time.c in Sources */,
-				EEF40CA0121D3D95009F8F49 /* window.c in Sources */,
 				EEF40DCB121FC5AE009F8F49 /* Actor.cpp in Sources */,
 				EEF40EE1121FD490009F8F49 /* FileManager.cpp in Sources */,
-				EEF40EE2121FD490009F8F49 /* Log.cpp in Sources */,
+				EEF40EE2121FD490009F8F49 /* Logger.cpp in Sources */,
 				EEF40EF4121FECD8009F8F49 /* MouseHandler.cpp in Sources */,
 				EEF40EF8121FECF2009F8F49 /* KeyboardHandler.cpp in Sources */,
 				EEF40EFB121FECFD009F8F49 /* InputManager.cpp in Sources */,
 				EEF40F2C1220B3DD009F8F49 /* glew.c in Sources */,
 				EEF40FB4122144B9009F8F49 /* MessageManager.cpp in Sources */,
 				EEF40FCD1223C79D009F8F49 /* Screen.cpp in Sources */,
-				EEF770C012265B4E00C6B4E7 /* lapi.c in Sources */,
-				EEF770C112265B4E00C6B4E7 /* lauxlib.c in Sources */,
-				EEF770C212265B4E00C6B4E7 /* lbaselib.c in Sources */,
-				EEF770C312265B4E00C6B4E7 /* lcode.c in Sources */,
-				EEF770C412265B4E00C6B4E7 /* ldblib.c in Sources */,
-				EEF770C512265B4E00C6B4E7 /* ldebug.c in Sources */,
-				EEF770C612265B4E00C6B4E7 /* ldo.c in Sources */,
-				EEF770C712265B4E00C6B4E7 /* ldump.c in Sources */,
-				EEF770C812265B4E00C6B4E7 /* lfunc.c in Sources */,
-				EEF770C912265B4E00C6B4E7 /* lgc.c in Sources */,
-				EEF770CA12265B4E00C6B4E7 /* linit.c in Sources */,
-				EEF770CB12265B4E00C6B4E7 /* liolib.c in Sources */,
-				EEF770CC12265B4E00C6B4E7 /* llex.c in Sources */,
-				EEF770CD12265B4E00C6B4E7 /* lmathlib.c in Sources */,
-				EEF770CE12265B4E00C6B4E7 /* lmem.c in Sources */,
-				EEF770CF12265B4E00C6B4E7 /* loadlib.c in Sources */,
-				EEF770D012265B4E00C6B4E7 /* lobject.c in Sources */,
-				EEF770D112265B4E00C6B4E7 /* lopcodes.c in Sources */,
-				EEF770D212265B4E00C6B4E7 /* loslib.c in Sources */,
-				EEF770D312265B4E00C6B4E7 /* lparser.c in Sources */,
-				EEF770D412265B4E00C6B4E7 /* lstate.c in Sources */,
-				EEF770D512265B4E00C6B4E7 /* lstring.c in Sources */,
-				EEF770D612265B4E00C6B4E7 /* lstrlib.c in Sources */,
-				EEF770D712265B4E00C6B4E7 /* ltable.c in Sources */,
-				EEF770D812265B4E00C6B4E7 /* ltablib.c in Sources */,
-				EEF770D912265B4E00C6B4E7 /* ltm.c in Sources */,
-				EEF770DC12265B4E00C6B4E7 /* lundump.c in Sources */,
-				EEF770DD12265B4E00C6B4E7 /* lvm.c in Sources */,
-				EEF770DE12265B4E00C6B4E7 /* lzio.c in Sources */,
-				EEF770DF12265B4E00C6B4E7 /* print.c in Sources */,
 				EEF770F81227ACEA00C6B4E7 /* PNGLoader.cpp in Sources */,
 				EEF770FB1227B12200C6B4E7 /* ImageLoader.cpp in Sources */,
 				EEF7711512282B7400C6B4E7 /* Primitives.cpp in Sources */,
@@ -942,6 +892,56 @@
 				EE078E021250FEB700873319 /* Video_Window.cpp in Sources */,
 				EE078E4E125101FB00873319 /* dialog.mm in Sources */,
 				EE0FAEF8125F01B3006B1C25 /* Matrix.cpp in Sources */,
+				EE139CA8125F1C9A00E2C767 /* cocoa_enable.m in Sources */,
+				EE139CA9125F1C9A00E2C767 /* cocoa_fullscreen.m in Sources */,
+				EE139CAA125F1C9A00E2C767 /* cocoa_glext.m in Sources */,
+				EE139CAB125F1C9A00E2C767 /* cocoa_init.m in Sources */,
+				EE139CAC125F1C9A00E2C767 /* cocoa_joystick.m in Sources */,
+				EE139CAD125F1C9A00E2C767 /* cocoa_thread.c in Sources */,
+				EE139CAE125F1C9A00E2C767 /* cocoa_time.m in Sources */,
+				EE139CAF125F1C9A00E2C767 /* cocoa_window.m in Sources */,
+				EE139CB0125F1C9A00E2C767 /* enable.c in Sources */,
+				EE139CB1125F1C9A00E2C767 /* fullscreen.c in Sources */,
+				EE139CB2125F1C9A00E2C767 /* glext.c in Sources */,
+				EE139CB3125F1C9A00E2C767 /* image.c in Sources */,
+				EE139CB4125F1C9A00E2C767 /* init.c in Sources */,
+				EE139CB5125F1C9A00E2C767 /* input.c in Sources */,
+				EE139CB6125F1C9A00E2C767 /* joystick.c in Sources */,
+				EE139CB7125F1C9A00E2C767 /* stream.c in Sources */,
+				EE139CB8125F1C9A00E2C767 /* tga.c in Sources */,
+				EE139CB9125F1C9A00E2C767 /* thread.c in Sources */,
+				EE139CBA125F1C9A00E2C767 /* time.c in Sources */,
+				EE139CBB125F1C9A00E2C767 /* window.c in Sources */,
+				EE139CBE125F1CAD00E2C767 /* lapi.c in Sources */,
+				EE139CBF125F1CAD00E2C767 /* lauxlib.c in Sources */,
+				EE139CC0125F1CAD00E2C767 /* lbaselib.c in Sources */,
+				EE139CC1125F1CAD00E2C767 /* lcode.c in Sources */,
+				EE139CC2125F1CAD00E2C767 /* ldblib.c in Sources */,
+				EE139CC3125F1CAD00E2C767 /* ldebug.c in Sources */,
+				EE139CC4125F1CAD00E2C767 /* ldo.c in Sources */,
+				EE139CC5125F1CAD00E2C767 /* ldump.c in Sources */,
+				EE139CC6125F1CAD00E2C767 /* lfunc.c in Sources */,
+				EE139CC7125F1CAD00E2C767 /* lgc.c in Sources */,
+				EE139CC8125F1CAD00E2C767 /* linit.c in Sources */,
+				EE139CC9125F1CAD00E2C767 /* liolib.c in Sources */,
+				EE139CCA125F1CAD00E2C767 /* llex.c in Sources */,
+				EE139CCB125F1CAD00E2C767 /* lmathlib.c in Sources */,
+				EE139CCC125F1CAD00E2C767 /* lmem.c in Sources */,
+				EE139CCD125F1CAD00E2C767 /* loadlib.c in Sources */,
+				EE139CCE125F1CAD00E2C767 /* lobject.c in Sources */,
+				EE139CCF125F1CAD00E2C767 /* lopcodes.c in Sources */,
+				EE139CD0125F1CAD00E2C767 /* loslib.c in Sources */,
+				EE139CD1125F1CAD00E2C767 /* lparser.c in Sources */,
+				EE139CD2125F1CAD00E2C767 /* lstate.c in Sources */,
+				EE139CD3125F1CAD00E2C767 /* lstring.c in Sources */,
+				EE139CD4125F1CAD00E2C767 /* lstrlib.c in Sources */,
+				EE139CD5125F1CAD00E2C767 /* ltable.c in Sources */,
+				EE139CD6125F1CAD00E2C767 /* ltablib.c in Sources */,
+				EE139CD7125F1CAD00E2C767 /* ltm.c in Sources */,
+				EE139CD8125F1CAD00E2C767 /* lundump.c in Sources */,
+				EE139CD9125F1CAD00E2C767 /* lvm.c in Sources */,
+				EE139CDA125F1CAD00E2C767 /* lzio.c in Sources */,
+				EE139CDB125F1CAD00E2C767 /* print.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

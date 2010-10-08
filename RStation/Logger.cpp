@@ -1,28 +1,31 @@
-#include "Log.h"
-#include "FileManager.h"
 #include <fstream>
 #include <sstream>
 #include <GL/glfw.h>
 #include <stdint.h>
+#include "Logger.h"
+#include "FileManager.h"
 
-std::fstream logFile;
+using namespace FileManager;
 
-void Log::Open()
+Logger* Log = NULL;
+
+Logger::Logger()
 {
-	std::string file = FileManager::GetFile("RStation-log.txt");
-	logFile.open(file.c_str(), std::fstream::out);
+	if (!FileExists(path))
+		path = FileManager::GetFile("RStation-log.txt");
+	logFile.open(path.c_str(), std::fstream::out);
 	Print("Starting RStation");
 	Print("-------------------------------------------------------");
 }
 
-void Log::Close()
+Logger::~Logger()
 {
 	logFile.close();
 }
 
 int logcount;
 
-void Log::Write()
+void Logger::Write()
 {
 	Print("[Log::Write] Flushing log to disk.");
 	logcount = 0;
@@ -30,18 +33,18 @@ void Log::Write()
 }
 
 // don't forget to define _DEBUG_!
-void Log::DebugPrint(std::string input)
+void Logger::DebugPrint(std::string input)
 {
 #if _DEBUG_
 	Print(input+std::string(" (debug)"));
 #endif
 }
 
-void Log::Print(std::string input)
+void Logger::Print(std::string input)
 {
 	// don't fill up our buffer too much between writes.
 	if (++logcount > 500)
-		Log::Write();
+		Write();
 
 	std::ostringstream out;
 	out << "[";

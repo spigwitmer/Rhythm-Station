@@ -3,6 +3,7 @@
 #include "MouseHandler.h"
 #include "InputManager.h"
 #include "SceneManager.h"
+#include "Logger.h"
 
 struct v2int{ int x, y, cx, cy; };
 
@@ -67,5 +68,5 @@ void RegisterMouseCallbacks()
 	else
 		glfwDisable(GLFW_MOUSE_CURSOR);
 
-	Log::Print("Registered MouseHandler.");
+	Log->Print("Registered MouseHandler.");
 }

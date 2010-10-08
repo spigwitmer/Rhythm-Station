@@ -26,7 +26,7 @@ void PNGLoader::Load(std::string _path)
 
 	if (!pngFile)
 	{
-		Log::Print("[PNGLoader::Load] File \"" + tex.path + "\" not found.");
+		Log->Print("[PNGLoader::Load] File \"" + tex.path + "\" not found.");
 		return;
 	}
 
@@ -100,7 +100,7 @@ void PNGLoader::Load(std::string _path)
 	{
 		if (png_ptr)
 			png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-		Log::Print("[PNGLoader::Load] File invalid. Is this really a PNG file?");
+		Log->Print("[PNGLoader::Load] File invalid. Is this really a PNG file?");
 		return;
 	}
 	GLubyte *pixels = new GLubyte[tex.width * tex.height * ret];

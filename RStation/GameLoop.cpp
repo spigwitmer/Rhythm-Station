@@ -33,7 +33,7 @@ namespace Game
 		sprite->Scale(vec3(0.35f,0.5f,1.f));
 		sprite->Register();
 
-		Log::Write();
+		Log->Write();
 		double then = glfwGetTime();
 		while (bRunning && glfwGetWindowParam(GLFW_OPENED))
 		{

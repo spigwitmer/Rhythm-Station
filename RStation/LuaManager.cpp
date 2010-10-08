@@ -1,5 +1,6 @@
 #include "LuaManager.h"
 #include "FileManager.h"
+#include "Logger.h"
 
 extern "C"
 {
@@ -23,7 +24,13 @@ void lua_testLoad()
 	luaopen_math(L);
 	luabind::open(L);
 
-	luaL_dofile(L,FileManager::GetFile("Test.lua").c_str());
+	using namespace FileManager;
+	std::string file = GetFile("Test.lua");
+	if(FileExists(file))
+		luaL_dofile(L, file.c_str());
+	else
+		Log->Print("Init Lua file not found.");
+
 
 //	lua_close(L);
 }

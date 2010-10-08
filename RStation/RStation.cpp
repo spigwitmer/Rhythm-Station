@@ -1,7 +1,6 @@
 #include <GL/glew.h>
 #include <GL/glfw.h>
 #include "RStation.h"
-#include "Log.h"
 #include "GameLoop.h"
 #include "KeyboardHandler.h"
 #include "MouseHandler.h"
@@ -51,10 +50,9 @@ void SetInitialStates()
 
 void InitWindow(int _width, int _height)
 {
-	glfwInit();
 	if (!glfwOpenWindow(_width, _height, /* rgba */ 0,0,0,8, /* depth, stencil, mode */ 24,1, GLFW_WINDOW))
 	{
-		Log::Print("Window creation failed!");
+		Log->Print("Window creation failed!");
 		glfwTerminate();
 		exit(-1);
 	}
@@ -72,7 +70,7 @@ void InitWindow(int _width, int _height)
 	else
 		vs_str = "disabled";
 
-	Log::Print("VSync: " + vs_str);
+	Log->Print("VSync: " + vs_str);
 	glfwSwapInterval(vsync); // vsync
 
 	glfwSetWindowSizeCallback(ResizeViewport);
@@ -90,15 +88,17 @@ int WINAPI WinMain(HINSTANCE d1, HINSTANCE d2, LPSTR d3, int d4)
 int main(int argc, char** argv)
 #endif
 {
+	glfwInit();
+
 	// initialize everything needed
-	Log::Open();
+	Log = new Logger();
 	Audio::Open();
 
 	for (int i = 0; i < argc; i++)
 	{
 		if (strcmp(argv[i],"--detach-cursor") == 0)
 		{
-			Log::Print("Disabling cursor.");
+			Log->Print("Disabling cursor.");
 			g_mouse_detached = true;
 		}
 	}
@@ -122,7 +122,7 @@ int main(int argc, char** argv)
 	 */
 	if (!GLEW_VERSION_2_0)
 	{
-		Log::Print("OpenGL 2.0 is not supported. You may need to update your drivers.");
+		Log->Print("OpenGL 2.0 is not supported. You may need to update your drivers.");
 	// Dialog needed on other platforms!
 #ifdef __APPLE__
 		Alert(); // exits if not ignored
@@ -139,6 +139,6 @@ int main(int argc, char** argv)
 
 	glfwTerminate();
 	Audio::Close();
-	Log::Close();
+	delete Log;
 	return 0;
 }

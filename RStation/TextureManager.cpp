@@ -10,7 +10,7 @@ Texture TextureManager::CheckForDuplicates(std::string _path)
 		Texture cur = tm_textures[i];
 		if (cur.path == _path)
 		{
-			Log::DebugPrint("[TextureManager] Texture already loaded. Using existing copy.");
+			Log->DebugPrint("[TextureManager] Texture already loaded. Using existing copy.");
 			return cur;
 		}
 	}

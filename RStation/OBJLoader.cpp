@@ -13,7 +13,7 @@ OBJLoader::OBJLoader() : shader_id(NULL), vbo_id(NULL)
 
 OBJLoader::~OBJLoader()
 {
-	Log::Print("Cleaning up mesh " + name);
+	Log->Print("Cleaning up mesh " + name);
 }
 
 void OBJLoader::Load(string file)
@@ -21,7 +21,7 @@ void OBJLoader::Load(string file)
 	file = GetFile(file);
 	if (!FileExists(file))
 	{
-		Log::Print("File \"" + file + "\" not found.");
+		Log->Print("File \"" + file + "\" not found.");
 		return;
 	}
 	file = GetFileContents(file);
@@ -93,7 +93,7 @@ void OBJLoader::Load(string file)
 				}
 				break;
 			default:
-				Log::Print("Unhandled: " + line);
+				Log->Print("Unhandled: " + line);
 				break;
 		}
 	}

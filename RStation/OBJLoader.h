@@ -3,7 +3,7 @@
 
 #include "Timer.h"
 #include "FileManager.h"
-#include "Log.h"
+#include "Logger.h"
 #include "RSUtil.h"
 #include <GL/glew.h>
 #include <vector>

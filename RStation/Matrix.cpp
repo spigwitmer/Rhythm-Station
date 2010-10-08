@@ -1,7 +1,7 @@
 #include <GL/glew.h>
 #include "Matrix.h"
 #include <math.h>
-#include "Log.h"
+#include "Logger.h"
 #include "MathUtils.h"
 
 // stack size constants

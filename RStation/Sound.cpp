@@ -2,7 +2,7 @@
 #include "Sound.h"
 #include "FileManager.h"
 #include "SceneManager.h"
-#include "Log.h"
+#include "Logger.h"
 #include "Timer.h"
 
 #ifdef __APPLE__
@@ -31,7 +31,7 @@ Sound::Sound()
 
 	ALenum err = alGetError();
 	if (err)
-		Log::Print("[Sound::Sound] Error generating buffers.");
+		Log->Print("[Sound::Sound] Error generating buffers.");
 	sd_waiting = false;
 }
 

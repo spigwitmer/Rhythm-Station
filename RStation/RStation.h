@@ -15,7 +15,7 @@
 
 #include <cstdlib>
 #include <vector>
-#include "Log.h"
+#include "Logger.h"
 #include "Type.h"
 
 extern float g_aspectRatio;
