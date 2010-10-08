@@ -49,6 +49,7 @@ namespace Game
 			// update this first so we're on the right frame
 			Input::Update();
 			Scene::Update(delta);
+
 			Scene::Draw();
 		}
 		Scene::Clear();

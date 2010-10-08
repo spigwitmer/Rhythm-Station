@@ -111,11 +111,29 @@ void OBJLoader::Load(string file)
 	}
 	glEnd();
 	glEndList();
+
 }
 
 void OBJLoader::Draw()
 {
+	// yuck
 	glCallList(vbo_id);
+/*
+	// future: state batching
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	glVertexPointer(3, GL_FLOAT, sizeof(vec3)+sizeof(vec2), &mesh[0].position.x);
+	glNormalPointer(3, sizeof(vec3)+sizeof(vec2), &mesh[0].normal.x);
+	glTexCoordPointer(2, GL_FLOAT, sizeof(vec3)*2, &mesh[0].coord.x);
+
+	glDrawArrays(GL_TRIANGLES, 0, mesh.size());
+
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
+*/
 }
 
 void OBJLoader::Delete()
