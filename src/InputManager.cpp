@@ -47,8 +47,8 @@ void resizeCallback() {
 
 // TODO
 InputManager::InputManager() {
-	glfwSetKeyCallback(Game->GetWindow(), keyCallback);
-	glfwSetCharCallback(Game->GetWindow(), charCallback);
+	glfwSetKeyCallback(keyCallback);
+	glfwSetCharCallback(charCallback);
 //	glfwSetMousePosCallback(Game->GetWindow(), mPosCallback);
 //	glfwSetMouseButtonCallback(Game->GetWindow(), mButtonCallback);
 //	glfwSetScrollCallback(Game->GetWindow(), mScrollCallback);

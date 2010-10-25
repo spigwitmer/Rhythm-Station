@@ -14,24 +14,6 @@
 		EE915DE31255CB9300F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
 		EE915DE51255CB9300F0B0B3 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE41255CB9300F0B0B3 /* IOKit.framework */; };
 		EE915DE71255CB9300F0B0B3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE61255CB9300F0B0B3 /* OpenGL.framework */; };
-		EE915E1A1255CC6F00F0B0B3 /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EE915DF41255CC4900F0B0B3 /* cocoa_enable.m */; };
-		EE915E1B1255CC6F00F0B0B3 /* cocoa_fullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EE915DF51255CC4900F0B0B3 /* cocoa_fullscreen.m */; };
-		EE915E1C1255CC6F00F0B0B3 /* cocoa_glext.m in Sources */ = {isa = PBXBuildFile; fileRef = EE915DF61255CC4900F0B0B3 /* cocoa_glext.m */; };
-		EE915E1D1255CC6F00F0B0B3 /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = EE915DF71255CC4900F0B0B3 /* cocoa_init.m */; };
-		EE915E1E1255CC6F00F0B0B3 /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = EE915DF81255CC4900F0B0B3 /* cocoa_joystick.m */; };
-		EE915E1F1255CC6F00F0B0B3 /* cocoa_time.m in Sources */ = {isa = PBXBuildFile; fileRef = EE915DF91255CC4900F0B0B3 /* cocoa_time.m */; };
-		EE915E201255CC6F00F0B0B3 /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = EE915DFA1255CC4900F0B0B3 /* cocoa_window.m */; };
-		EE915E211255CC6F00F0B0B3 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = EE915DFC1255CC4900F0B0B3 /* platform.h */; };
-		EE915E221255CC6F00F0B0B3 /* enable.c in Sources */ = {isa = PBXBuildFile; fileRef = EE915DFD1255CC4900F0B0B3 /* enable.c */; };
-		EE915E231255CC6F00F0B0B3 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = EE915DFE1255CC4900F0B0B3 /* error.c */; };
-		EE915E241255CC6F00F0B0B3 /* fullscreen.c in Sources */ = {isa = PBXBuildFile; fileRef = EE915DFF1255CC4900F0B0B3 /* fullscreen.c */; };
-		EE915E251255CC6F00F0B0B3 /* glext.c in Sources */ = {isa = PBXBuildFile; fileRef = EE915E001255CC4900F0B0B3 /* glext.c */; };
-		EE915E261255CC6F00F0B0B3 /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = EE915E011255CC4900F0B0B3 /* init.c */; };
-		EE915E271255CC6F00F0B0B3 /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = EE915E021255CC4900F0B0B3 /* input.c */; };
-		EE915E281255CC6F00F0B0B3 /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = EE915E031255CC4900F0B0B3 /* internal.h */; };
-		EE915E291255CC6F00F0B0B3 /* joystick.c in Sources */ = {isa = PBXBuildFile; fileRef = EE915E041255CC4900F0B0B3 /* joystick.c */; };
-		EE915E2A1255CC6F00F0B0B3 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = EE915E051255CC4900F0B0B3 /* time.c */; };
-		EE915E2B1255CC6F00F0B0B3 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = EE915E061255CC4900F0B0B3 /* window.c */; };
 		EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
 		EE915E511255CD9500F0B0B3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915E501255CD9500F0B0B3 /* main.cpp */; };
 		EE915E9D1255D7A600F0B0B3 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DDF1255CB7B00F0B0B3 /* libglfw3.a */; };
@@ -113,6 +95,24 @@
 		EEC52E441273803E0064054A /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52CA21273803E0064054A /* zutil.c */; };
 		EEC52EBB1273DC390064054A /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC52EB91273DC390064054A /* Screen.cpp */; };
 		EEC52EBE1273DC420064054A /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC52EBC1273DC420064054A /* SceneManager.cpp */; };
+		EEC52F99127559C40064054A /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F68127559C40064054A /* cocoa_enable.m */; };
+		EEC52F9A127559C40064054A /* cocoa_fullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F69127559C40064054A /* cocoa_fullscreen.m */; };
+		EEC52F9B127559C40064054A /* cocoa_gamma.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6A127559C40064054A /* cocoa_gamma.m */; };
+		EEC52F9C127559C40064054A /* cocoa_glext.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6B127559C40064054A /* cocoa_glext.m */; };
+		EEC52F9D127559C40064054A /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6C127559C40064054A /* cocoa_init.m */; };
+		EEC52F9E127559C40064054A /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6D127559C40064054A /* cocoa_joystick.m */; };
+		EEC52F9F127559C40064054A /* cocoa_time.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6E127559C40064054A /* cocoa_time.m */; };
+		EEC52FA0127559C40064054A /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6F127559C40064054A /* cocoa_window.m */; };
+		EEC52FA3127559C40064054A /* enable.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F73127559C40064054A /* enable.c */; };
+		EEC52FA4127559C40064054A /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F74127559C40064054A /* error.c */; };
+		EEC52FA5127559C40064054A /* fullscreen.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F75127559C40064054A /* fullscreen.c */; };
+		EEC52FA6127559C40064054A /* gamma.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F76127559C40064054A /* gamma.c */; };
+		EEC52FA7127559C40064054A /* glext.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F77127559C40064054A /* glext.c */; };
+		EEC52FA8127559C40064054A /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F78127559C40064054A /* init.c */; };
+		EEC52FA9127559C40064054A /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F79127559C40064054A /* input.c */; };
+		EEC52FAA127559C40064054A /* joystick.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7B127559C40064054A /* joystick.c */; };
+		EEC52FAB127559C40064054A /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7C127559C40064054A /* time.c */; };
+		EEC52FB7127559C40064054A /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F8A127559C40064054A /* window.c */; };
 		EECBDE0E125CDB3A00BA2BA4 /* InputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDE0D125CDB3A00BA2BA4 /* InputManager.cpp */; };
 		EECBDF5C125CFC4F00BA2BA4 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */; };
 		EECBDF88125CFFD000BA2BA4 /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF84125CFFD000BA2BA4 /* AudioManager.cpp */; };
@@ -147,25 +147,6 @@
 		EE915DE21255CB9300F0B0B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EE915DE41255CB9300F0B0B3 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE915DE61255CB9300F0B0B3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		EE915DF41255CC4900F0B0B3 /* cocoa_enable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_enable.m; sourceTree = "<group>"; };
-		EE915DF51255CC4900F0B0B3 /* cocoa_fullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_fullscreen.m; sourceTree = "<group>"; };
-		EE915DF61255CC4900F0B0B3 /* cocoa_glext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_glext.m; sourceTree = "<group>"; };
-		EE915DF71255CC4900F0B0B3 /* cocoa_init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_init.m; sourceTree = "<group>"; };
-		EE915DF81255CC4900F0B0B3 /* cocoa_joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_joystick.m; sourceTree = "<group>"; };
-		EE915DF91255CC4900F0B0B3 /* cocoa_time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_time.m; sourceTree = "<group>"; };
-		EE915DFA1255CC4900F0B0B3 /* cocoa_window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_window.m; sourceTree = "<group>"; };
-		EE915DFC1255CC4900F0B0B3 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
-		EE915DFD1255CC4900F0B0B3 /* enable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = enable.c; path = glfw3/src/enable.c; sourceTree = "<group>"; };
-		EE915DFE1255CC4900F0B0B3 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error.c; path = glfw3/src/error.c; sourceTree = "<group>"; };
-		EE915DFF1255CC4900F0B0B3 /* fullscreen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fullscreen.c; path = glfw3/src/fullscreen.c; sourceTree = "<group>"; };
-		EE915E001255CC4900F0B0B3 /* glext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glext.c; path = glfw3/src/glext.c; sourceTree = "<group>"; };
-		EE915E011255CC4900F0B0B3 /* init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = init.c; path = glfw3/src/init.c; sourceTree = "<group>"; };
-		EE915E021255CC4900F0B0B3 /* input.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = input.c; path = glfw3/src/input.c; sourceTree = "<group>"; };
-		EE915E031255CC4900F0B0B3 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal.h; path = glfw3/src/internal.h; sourceTree = "<group>"; };
-		EE915E041255CC4900F0B0B3 /* joystick.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = joystick.c; path = glfw3/src/joystick.c; sourceTree = "<group>"; };
-		EE915E051255CC4900F0B0B3 /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = time.c; path = glfw3/src/time.c; sourceTree = "<group>"; };
-		EE915E061255CC4900F0B0B3 /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = window.c; path = glfw3/src/window.c; sourceTree = "<group>"; };
-		EE915E441255CD1600F0B0B3 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		EE915E501255CD9500F0B0B3 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EE915F461256471E00F0B0B3 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		EE915F471256471E00F0B0B3 /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
@@ -295,6 +276,27 @@
 		EEC52EBA1273DC390064054A /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screen.h; sourceTree = "<group>"; };
 		EEC52EBC1273DC420064054A /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
 		EEC52EBD1273DC420064054A /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
+		EEC52F68127559C40064054A /* cocoa_enable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_enable.m; sourceTree = "<group>"; };
+		EEC52F69127559C40064054A /* cocoa_fullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_fullscreen.m; sourceTree = "<group>"; };
+		EEC52F6A127559C40064054A /* cocoa_gamma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_gamma.m; sourceTree = "<group>"; };
+		EEC52F6B127559C40064054A /* cocoa_glext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_glext.m; sourceTree = "<group>"; };
+		EEC52F6C127559C40064054A /* cocoa_init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_init.m; sourceTree = "<group>"; };
+		EEC52F6D127559C40064054A /* cocoa_joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_joystick.m; sourceTree = "<group>"; };
+		EEC52F6E127559C40064054A /* cocoa_time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_time.m; sourceTree = "<group>"; };
+		EEC52F6F127559C40064054A /* cocoa_window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_window.m; sourceTree = "<group>"; };
+		EEC52F71127559C40064054A /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		EEC52F73127559C40064054A /* enable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enable.c; sourceTree = "<group>"; };
+		EEC52F74127559C40064054A /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
+		EEC52F75127559C40064054A /* fullscreen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fullscreen.c; sourceTree = "<group>"; };
+		EEC52F76127559C40064054A /* gamma.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gamma.c; sourceTree = "<group>"; };
+		EEC52F77127559C40064054A /* glext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glext.c; sourceTree = "<group>"; };
+		EEC52F78127559C40064054A /* init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = init.c; sourceTree = "<group>"; };
+		EEC52F79127559C40064054A /* input.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = input.c; sourceTree = "<group>"; };
+		EEC52F7A127559C40064054A /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
+		EEC52F7B127559C40064054A /* joystick.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = joystick.c; sourceTree = "<group>"; };
+		EEC52F7C127559C40064054A /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = time.c; sourceTree = "<group>"; };
+		EEC52F8A127559C40064054A /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = window.c; sourceTree = "<group>"; };
+		EEC52FD1127559F30064054A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = extern/config.h; sourceTree = SOURCE_ROOT; };
 		EECBDE0C125CDB3A00BA2BA4 /* InputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputManager.h; sourceTree = "<group>"; };
 		EECBDE0D125CDB3A00BA2BA4 /* InputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputManager.cpp; sourceTree = "<group>"; };
 		EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
@@ -414,48 +416,13 @@
 		EE915DED1255CBB100F0B0B3 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				EEC52F65127559C40064054A /* glfw3 */,
 				EEC52A961273803C0064054A /* libpng-1.2.44 */,
 				EEC52B9A1273803D0064054A /* zlib-1.2.5 */,
 				EE0A64221270438600F5F134 /* glew */,
-				EE915E191255CC5C00F0B0B3 /* glfw3 */,
 				EEAB1AA2126F5440004FE58D /* lua-5.1.4 */,
 			);
 			path = extern;
-			sourceTree = "<group>";
-		};
-		EE915DF21255CC4900F0B0B3 /* cocoa */ = {
-			isa = PBXGroup;
-			children = (
-				EE915DF41255CC4900F0B0B3 /* cocoa_enable.m */,
-				EE915DF51255CC4900F0B0B3 /* cocoa_fullscreen.m */,
-				EE915DF61255CC4900F0B0B3 /* cocoa_glext.m */,
-				EE915DF71255CC4900F0B0B3 /* cocoa_init.m */,
-				EE915DF81255CC4900F0B0B3 /* cocoa_joystick.m */,
-				EE915DF91255CC4900F0B0B3 /* cocoa_time.m */,
-				EE915DFA1255CC4900F0B0B3 /* cocoa_window.m */,
-				EE915DFC1255CC4900F0B0B3 /* platform.h */,
-			);
-			name = cocoa;
-			path = glfw3/src/cocoa;
-			sourceTree = "<group>";
-		};
-		EE915E191255CC5C00F0B0B3 /* glfw3 */ = {
-			isa = PBXGroup;
-			children = (
-				EE915E441255CD1600F0B0B3 /* config.h */,
-				EE915DF21255CC4900F0B0B3 /* cocoa */,
-				EE915DFD1255CC4900F0B0B3 /* enable.c */,
-				EE915DFE1255CC4900F0B0B3 /* error.c */,
-				EE915DFF1255CC4900F0B0B3 /* fullscreen.c */,
-				EE915E001255CC4900F0B0B3 /* glext.c */,
-				EE915E011255CC4900F0B0B3 /* init.c */,
-				EE915E021255CC4900F0B0B3 /* input.c */,
-				EE915E031255CC4900F0B0B3 /* internal.h */,
-				EE915E041255CC4900F0B0B3 /* joystick.c */,
-				EE915E051255CC4900F0B0B3 /* time.c */,
-				EE915E061255CC4900F0B0B3 /* window.c */,
-			);
-			name = glfw3;
 			sourceTree = "<group>";
 		};
 		EE9160851256A5F700F0B0B3 /* Singletons */ = {
@@ -634,6 +601,43 @@
 			path = "zlib-1.2.5";
 			sourceTree = "<group>";
 		};
+		EEC52F65127559C40064054A /* glfw3 */ = {
+			isa = PBXGroup;
+			children = (
+				EEC52FD1127559F30064054A /* config.h */,
+				EEC52F66127559C40064054A /* cocoa */,
+				EEC52F73127559C40064054A /* enable.c */,
+				EEC52F74127559C40064054A /* error.c */,
+				EEC52F75127559C40064054A /* fullscreen.c */,
+				EEC52F76127559C40064054A /* gamma.c */,
+				EEC52F77127559C40064054A /* glext.c */,
+				EEC52F78127559C40064054A /* init.c */,
+				EEC52F79127559C40064054A /* input.c */,
+				EEC52F7A127559C40064054A /* internal.h */,
+				EEC52F7B127559C40064054A /* joystick.c */,
+				EEC52F7C127559C40064054A /* time.c */,
+				EEC52F8A127559C40064054A /* window.c */,
+			);
+			name = glfw3;
+			path = glfw3/src;
+			sourceTree = "<group>";
+		};
+		EEC52F66127559C40064054A /* cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				EEC52F68127559C40064054A /* cocoa_enable.m */,
+				EEC52F69127559C40064054A /* cocoa_fullscreen.m */,
+				EEC52F6A127559C40064054A /* cocoa_gamma.m */,
+				EEC52F6B127559C40064054A /* cocoa_glext.m */,
+				EEC52F6C127559C40064054A /* cocoa_init.m */,
+				EEC52F6D127559C40064054A /* cocoa_joystick.m */,
+				EEC52F6E127559C40064054A /* cocoa_time.m */,
+				EEC52F6F127559C40064054A /* cocoa_window.m */,
+				EEC52F71127559C40064054A /* platform.h */,
+			);
+			path = cocoa;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -641,8 +645,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE915E211255CC6F00F0B0B3 /* platform.h in Headers */,
-				EE915E281255CC6F00F0B0B3 /* internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,6 +815,24 @@
 				EEC52E441273803E0064054A /* zutil.c in Sources */,
 				EEC52EBB1273DC390064054A /* Screen.cpp in Sources */,
 				EEC52EBE1273DC420064054A /* SceneManager.cpp in Sources */,
+				EEC52F99127559C40064054A /* cocoa_enable.m in Sources */,
+				EEC52F9A127559C40064054A /* cocoa_fullscreen.m in Sources */,
+				EEC52F9B127559C40064054A /* cocoa_gamma.m in Sources */,
+				EEC52F9C127559C40064054A /* cocoa_glext.m in Sources */,
+				EEC52F9D127559C40064054A /* cocoa_init.m in Sources */,
+				EEC52F9E127559C40064054A /* cocoa_joystick.m in Sources */,
+				EEC52F9F127559C40064054A /* cocoa_time.m in Sources */,
+				EEC52FA0127559C40064054A /* cocoa_window.m in Sources */,
+				EEC52FA3127559C40064054A /* enable.c in Sources */,
+				EEC52FA4127559C40064054A /* error.c in Sources */,
+				EEC52FA5127559C40064054A /* fullscreen.c in Sources */,
+				EEC52FA6127559C40064054A /* gamma.c in Sources */,
+				EEC52FA7127559C40064054A /* glext.c in Sources */,
+				EEC52FA8127559C40064054A /* init.c in Sources */,
+				EEC52FA9127559C40064054A /* input.c in Sources */,
+				EEC52FAA127559C40064054A /* joystick.c in Sources */,
+				EEC52FAB127559C40064054A /* time.c in Sources */,
+				EEC52FB7127559C40064054A /* window.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,22 +840,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE915E1A1255CC6F00F0B0B3 /* cocoa_enable.m in Sources */,
-				EE915E1B1255CC6F00F0B0B3 /* cocoa_fullscreen.m in Sources */,
-				EE915E1C1255CC6F00F0B0B3 /* cocoa_glext.m in Sources */,
-				EE915E1D1255CC6F00F0B0B3 /* cocoa_init.m in Sources */,
-				EE915E1E1255CC6F00F0B0B3 /* cocoa_joystick.m in Sources */,
-				EE915E1F1255CC6F00F0B0B3 /* cocoa_time.m in Sources */,
-				EE915E201255CC6F00F0B0B3 /* cocoa_window.m in Sources */,
-				EE915E221255CC6F00F0B0B3 /* enable.c in Sources */,
-				EE915E231255CC6F00F0B0B3 /* error.c in Sources */,
-				EE915E241255CC6F00F0B0B3 /* fullscreen.c in Sources */,
-				EE915E251255CC6F00F0B0B3 /* glext.c in Sources */,
-				EE915E261255CC6F00F0B0B3 /* init.c in Sources */,
-				EE915E271255CC6F00F0B0B3 /* input.c in Sources */,
-				EE915E291255CC6F00F0B0B3 /* joystick.c in Sources */,
-				EE915E2A1255CC6F00F0B0B3 /* time.c in Sources */,
-				EE915E2B1255CC6F00F0B0B3 /* window.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

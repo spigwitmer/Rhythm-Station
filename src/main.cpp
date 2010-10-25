@@ -43,7 +43,7 @@ int main (int argc, char** argv) {
 	glfwGetDesktopMode(&mode);
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); // 4x MSAA
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 32);
-	window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "");
+	window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "", 0);
 	glfwSwapInterval(1);
 	glewInit();
 
