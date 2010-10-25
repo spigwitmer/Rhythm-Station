@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include "globals.h"
 #include "Object.h"
 #include "GameManager.h"

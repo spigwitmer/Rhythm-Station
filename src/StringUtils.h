@@ -1,6 +1,7 @@
 #ifndef _RSUTIL_H_
 #define _RSUTIL_H_
 
+#include <string>
 #include <vector>
 
 void UpdateWindowTitle(float delta);

@@ -2,6 +2,7 @@
 #include <GL/glfw3.h>
 #include "globals.h"
 #include "Matrix.h"
+#include <cstdio>
 #include <math.h>
 #include <cstring>
 
