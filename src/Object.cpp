@@ -50,7 +50,7 @@ void DeleteQuadBuffers() {
 	glDeleteBuffers(1, &quad_ibo);
 }
 
-Object::Object() : m_texture(), m_color(rgba(1.0)) {
+Object::Object() : m_texture(), m_color(rgba(1.0)), m_vbo(0) {
 	m_shader.SetProjectionMatrix(g_projection_matrix);
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
@@ -68,14 +68,18 @@ void Object::Register() {
 void Object::Load(std::string _path) {	
 	const char* ext = _path.substr(_path.size()-3, _path.size()).c_str();
 	if (!strcmp(ext, "png")) {
-		Log->Print("Path ext is PNG, trying to load.");
+		Log->Print("Loading PNG file...");
 		PNGLoader png;
 		Texture tex = png.Load(_path);
 		if (tex.ptr != 0) {
-			Log->Print("PNG file Loaded successfully.");
+			Log->Print("Loaded successfully.");
 			this->m_texture = tex;
 		}
 		m_mat.Scale(vec3(tex.width/2,tex.height/2,1.0));
+	}
+	else if (!strcmp(ext, "obj")) {
+		Log->Print("Loading OBJ file...");
+		Log->Print("Failed; Not yet implemented.");
 	}
 	else
 		Log->Print("Unknown file type.");
@@ -86,9 +90,24 @@ void Object::HandleMessage(std::string _msg) {
 
 }
 
+void Object::AddState() {
+	if (m_states.find("Init") != m_states.end()) {
+		Log->Print("Found Init.");
+		m_states.find("Init")->second.push_back(m_mat);
+	}
+	else {
+		Log->Print("Init not found. Creating.");
+		std::pair<std::string, std::vector<Matrix> > tmp;
+		tmp.first = "Init";
+		tmp.second.push_back(m_mat);
+		m_states.insert(tmp);
+	}
+}
+
 void Object::Color(rgba col) {
 	m_color = col;
 }
+
 
 // TODO: add to tweens
 void Object::Translate(vec3 pos) {
@@ -107,10 +126,11 @@ void Object::Scale(vec3 scale) {
 void Object::Update(double delta) {
 	m_shader.SetModelViewMatrix(&m_mat);
 
+	if (m_states.find("Init") != m_states.end())
+		Log->Print("test");
+
 	// TODO: only update when needed.
 	Game->QueueRendering();
-
-//	m_mat.Rotate(20 * delta, 1, 0.75, 0);
 
 	return;
 }
@@ -119,19 +139,16 @@ void Object::Draw() {
 	glActiveTexture(GL_TEXTURE0);
 	m_texture.Bind();
 
-	glBindBuffer(GL_ARRAY_BUFFER, quad_vbo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_ibo);
+	if (!m_vbo) {
+		glBindBuffer(GL_ARRAY_BUFFER, quad_vbo);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_ibo);
+	}
 
 	m_shader.Bind();
 	m_shader.SetUniforms();
 
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
 
-	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
-
-//	glUniform4f(m_color_uniform, 1, 1, 1, 1);
-//	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-//	glBindTexture(GL_TEXTURE_2D, 0);
-//	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
-//	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	if (!m_vbo)
+		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
 }

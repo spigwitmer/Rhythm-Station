@@ -5,6 +5,7 @@
 #include "ResourceManager.h"
 #include "Type.h"
 #include "Matrix.h"
+#include "Timer.h"
 #include <vector>
 #include <map>
 
@@ -27,9 +28,13 @@ public:
 	void Rotate(vec3 rot);
 	void Scale(vec3 scale);
 
+	void AddState();
+
 	void HandleMessage(std::string msg);
 	void Update(double delta);
 	void Draw();
+
+	Matrix GetMatrix() { return m_mat; }
 
 private:
 	GLuint m_vbo, m_ibo, m_color_uniform;
@@ -39,6 +44,7 @@ private:
 	Shader m_shader;
 	Matrix m_mat;
 	Texture m_texture;
+	Timer m_timer;
 };
 
 #endif

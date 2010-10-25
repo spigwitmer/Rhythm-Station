@@ -6,6 +6,7 @@
 #include "SceneManager.h"
 #include "Logger.h"
 #include "Timer.h"
+#include <iostream>
 
 GameManager* Game = NULL;
 Matrix* obj = NULL;
@@ -28,11 +29,10 @@ GameManager::GameManager(GLFWwindow window) : m_debug(false), m_bFirstUpdate(tru
 	glfwGetWindowSize(window, &m_width, &m_height);
 
 //	g_projection_matrix->Perspective(60.f, (float)m_width/m_height, 0.1f, 500.f);
-	g_projection_matrix->Ortho(-m_width/2, m_width/2, m_height/2, -m_height/2, -10, 10);
+	g_projection_matrix->Ortho(-m_width/2, m_width/2, m_height/2, -m_height/2, -100, 100);
 }
 
 GameManager::~GameManager() {
-	this->Cleanup();
 	delete g_projection_matrix, obj, quad;
 }
 
@@ -44,8 +44,6 @@ void GameManager::QueueRendering() {
 	m_bQueuedRender = true;
 }
 
-void GameManager::Cleanup() { }
-
 void GameManager::Update(double delta) {
 	m_objects = Resources->GetObjects();
 	for (int i = 0; i<m_objects.size(); i++)
@@ -55,7 +53,7 @@ void GameManager::Update(double delta) {
 void GameManager::Start() {
 	Scene->PushScreen();
 	quad = new Object();
-	quad->Translate(vec3(0,0,-10));
+	quad->Translate(vec3(0,0,-50));
 	std::string path = File->GetFile("test.png");
 	if (File->FileExists(path))
 		quad->Load(path);

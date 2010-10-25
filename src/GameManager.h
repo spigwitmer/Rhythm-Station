@@ -18,9 +18,9 @@ public:
 	void Start();
 	void QueueRendering();
 	void AddObject(Object* object);
-	void Cleanup();
 	void Update(double delta);
 	void Render();
+
 private:
 	GLFWwindow m_window;
 	std::vector<Object*> m_objects;
