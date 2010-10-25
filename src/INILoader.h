@@ -1,7 +1,7 @@
 #ifndef _INI_PARSER_H_
 #define _INI_PARSER_H_
 
-#include "RStation.h"
+#include <string>
 #include <map>
 
 class INILoader

@@ -12,39 +12,9 @@
 
 #include <sstream>
 
-struct Vertex {
-	Vertex() : x(0), y(0), z(0) {}
-	Vertex(float _x) : y(0), z(0) { x = _x; }
-	Vertex(float _x, float _y) : z(0)
-	{
-		x = _x;
-		y = _y;
-	}
-	Vertex(float _x, float _y, float _z)
-	{
-		x = _x;
-		y = _y;
-		z = _z;
-	}
-	float x, y, z;
-};
-
-struct TexCoord {
-	TexCoord() : u(0), v(0) {}
-	TexCoord(float _u, float _v)
-	{
-		u = _u;
-		v = _v;
-	}
-	float u, v;
-};
-
-namespace convert
-{
-	std::string toString(int);
-	std::string toString(double);
-	std::string toString(bool);
-}
+std::string toString(int);
+std::string toString(double);
+std::string toString(bool);
 
 typedef uint32_t u32;
 typedef int32_t i32;
@@ -78,6 +48,13 @@ public:
 
 	friend vec2 operator * (float f, const vec2& other)	{ return other*f; }
 
+	// play nice with streams
+	friend std::ostream& operator<< (std::ostream& os, vec2& vec)
+	{
+		os << "[ " << vec.x << ", " << vec.y << " ]";
+		return os;
+	}
+
 	float x, y;
 };
 
@@ -85,6 +62,7 @@ struct vec3
 {
 public:
 	vec3() {}
+	vec3(vec2 xy) : z(0) { x = xy.x; y = xy.y; }
 	vec3(float xyz ) { x = y = z = xyz; }
 	vec3(const float * f)			{ x=f[0]; y=f[1]; z=f[2]; }
 	vec3(float x1, float y1, float z1)	{ x=x1; y=y1; z=z1; }
@@ -133,15 +111,15 @@ struct rgba
 {
 public:
 	rgba() {}
-	rgba(float _rgb) { r = g = b = _rgb; a = 1.0f; }
-	rgba(float _rgb, float _a) { r = g = b = _rgb; a = _a; }
-	rgba(const float * f)				{ r=f[0]; g=f[1]; b=f[2]; a=f[3]; }
-	rgba(float r1, float g1, float b1) { r=r1; g=g1; b=b1; a=1.0f; }
-	rgba(float r1, float g1, float b1, float a1) { r=r1; g=g1; b=b1; a=a1; }
+	rgba(float _rgb)					{ r = g = b = _rgb; a = 1.0f; }
+	rgba(float _rgb, float _a)				{ r = g = b = _rgb; a = _a; }
+	rgba(const float * f)					{ r=f[0]; g=f[1]; b=f[2]; a=f[3]; }
+	rgba(float r1, float g1, float b1)			{ r=r1; g=g1; b=b1; a=1.0f; }
+	rgba(float r1, float g1, float b1, float a1)	{ r=r1; g=g1; b=b1; a=a1; }
 
 	// casting
 	operator float* ()					{ return &r; };
-	operator const float* () const				{ return &r; };
+	operator const float* () const			{ return &r; };
 
 	// assignment operators
 	rgba& operator += (const rgba& other)	{ r+=other.r; g+=other.g; b+=other.b; a+=other.a; return *this; }
@@ -150,14 +128,39 @@ public:
 	rgba& operator /= (float f)			{ r/=f; g/=f; b/=f; a/=f; return *this; }
 
 	// binary operators
-	rgba operator + (const rgba& other) const	{ return rgba(r+other.r, g+other.g, b+other.b, a+other.a); }
-	rgba operator - (const rgba& other) const	{ return rgba(r-other.r, g-other.g, b-other.b, a-other.a); }
+	rgba operator + (const rgba& other) const{ return rgba(r+other.r, g+other.g, b+other.b, a+other.a); }
+	rgba operator - (const rgba& other) const{ return rgba(r-other.r, g-other.g, b-other.b, a-other.a); }
 	rgba operator * (float f) const			{ return rgba(r*f, g*f, b*f, a*f); }
 	rgba operator / (float f) const			{ return rgba(r/f, g/f, b/f, a/f); }
 
 	friend rgba operator * (float f, const rgba& other)	{ return other*f; }
 
+	// play nice with streams
+	friend std::ostream& operator<< (std::ostream& os, rgba& vec)
+	{
+		os << "[ " << vec.r << ", " << vec.g << ", " << vec.b << ", " << vec.a << " ]";
+		return os;
+	}
+
 	float r, g, b, a;
+};
+
+
+struct Vertex {
+	Vertex() : x(0), y(0), z(0), u(0), v(0) {}
+	Vertex(vec3 xyz) : u(0), v(0) { x = xyz.x; y = xyz.y; z = xyz.z; }
+	Vertex(float _x, float _y) : z(0), u(0), v(0)
+	{
+		x = _x;
+		y = _y;
+	}
+	Vertex(float _x, float _y, float _z)
+	{
+		x = _x;
+		y = _y;
+		z = _z;
+	}
+	float x, y, z, u, v;
 };
 
 #endif

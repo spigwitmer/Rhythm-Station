@@ -1,27 +1,25 @@
 #ifndef _SCREEN_H_
 #define _SCREEN_H_
 
-#include "RStation.h"
+#include <vector>
+#include "ResourceManager.h"
 #include "InputManager.h"
-#include "Actor.h"
+#include "Object.h"
 
-class Screen
-{
+class Screen {
 public:
 	Screen();
 	virtual ~Screen();
 
-	void AddActor(Actor* actor);
-	void AddHook(Actor* actor, ActorAttach attach);
-	
-	virtual void Input(const IEvent &e);
+	void AddObject(Object* object);
+	void Register() { }
+
+//	virtual void Input(const IEvent &e);
 	virtual void Update(float deltaTime);
 	virtual void Draw();
-private:
-	std::vector<Actor*> vpActors;
-	std::vector<Actor*> vpActorHooks;
 
-//	GLuint alphaLoc;
+private:
+	std::vector<Object*> m_vpObjects;
 };
 
 #endif

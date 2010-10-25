@@ -5,10 +5,8 @@
 
 #ifdef __APPLE__
 #include <OpenAL/al.h>
-#include <OpenAL/alc.h>
 #else
 #include <AL/al.h>
-#include <AL/alc.h>
 #endif
 
 struct SoundData
@@ -21,7 +19,7 @@ struct SoundData
 	ALuint buffer;
 	ALuint source;
 	ALenum error;
-	
+
 	// audio file path
 	std::string path;
 };
@@ -31,17 +29,10 @@ int sine_wave();
 class AudioManager
 {
 public:
-	AudioManager();
-	virtual ~AudioManager();
-
 	void AddSound(SoundData *sound);
 	void Clear();
-
-private:
-	ALCdevice* device;
-	ALCcontext* context;
-
-	std::vector<SoundData*> vpSounds;
+	void Open();
+	void Close();
 };
 
 extern AudioManager* Audio;

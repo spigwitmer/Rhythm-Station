@@ -1,9 +1,8 @@
 #include "INILoader.h"
 #include "FileManager.h"
-#include "RSUtil.h"
+#include "StringUtils.h"
 
 using namespace std;
-using namespace Util;
 
 void INILoader::Load(string _path)
 {

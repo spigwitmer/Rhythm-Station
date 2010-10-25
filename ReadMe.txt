@@ -12,24 +12,29 @@ to it later. Currently the code is rather messy and I am working to improve it
 and flesh out some of the stubs. As for coding style, just follow the source
 in the file you're in, generally I write code like so:
 [code]
-// single line comment
-if(foo)
-	bar = baz;
-
 /*
  * Multi-line comment.
+ * Hello there.
  */
-void foo(_bar) : baz()
-{
+void foo(_bar) : baz() {
 	baz = _bar;
-	
+
 	// * on the right
-	int *var = new int[1];
-	delete var;
+	int *pVar = new int[1];
+	delete pVar;
+
+	// omit braces for single-line ifs
+	if (foo == bar)
+		baz();
+	
+	for (int i = 0; i < 20; i++) {
+		why();
+		hello();
+		there(i);
+	}
 }
 
-class Test : public Stuff
-{
+class Test : public Stuff {
 public:
 	Test();
 	virtual ~Test();

@@ -3,30 +3,25 @@
 
 #include "Timer.h"
 #include "FileManager.h"
-#include "Logger.h"
-#include "RSUtil.h"
+#include "StringUtils.h"
 #include <GL/glew.h>
 #include <vector>
 #include "Type.h"
 
-struct MeshData
-{
+struct MeshData {
 	vec3 position, normal;
 	vec2 coord;
 };
 
-class OBJLoader
-{
+class OBJLoader {
 public:
 	OBJLoader();
 	virtual ~OBJLoader();
-	void Load(std::string file);
-	void Draw();
-	void Delete();
+	GLuint Load(std::string file);
 
 private:
 	Timer timer;
-	GLuint shader_id, vbo_id;
+	GLuint vbo_id;
 	std::vector<MeshData> mesh;
 
 	std::string name;

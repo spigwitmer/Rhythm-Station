@@ -2,8 +2,9 @@
 #define _Tween_H_
 
 #include "Type.h"
+#include "Matrix.h"
 
-enum TweenTypes
+enum TweenType
 {
 	TWEEN_SLEEP,
 	TWEEN_LINEAR,
@@ -15,19 +16,9 @@ enum TweenTypes
 	TWEEN_SMOOTH_CUBIC
 };
 
-namespace tweens
-{
-	float linear(float change, float elapsed);
-	float easeIn(float change, float time, float elapsed);
-	float easeOut(float change, float time, float elapsed);
-	float easeSmooth(float change, float time, float elapsed);
-	float easeInCubic(float change, float time, float elapsed);
-	float easeOutCubic(float change, float time, float elapsed);
-	float easeSmoothCubic(float change, float time, float elapsed);
-}
-
-float interpolate(int tweentype, float _old, float _new, float duration, float time);
-vec3 interpolate(int tweentype, vec3 _old, vec3 _new, float duration, float time);
-rgba interpolate(int tweentype, rgba _old, rgba _new, float duration, float time);
+float interpolate(TweenType tween, float _old, float _new, double duration, double time);
+vec3 interpolate(TweenType tween, vec3 _old, vec3 _new, double duration, double time);
+rgba interpolate(TweenType tween, rgba _old, rgba _new, double duration, double time);
+Matrix interpolate(TweenType tween, Matrix _old, Matrix _new, double duration, double time);
 
 #endif

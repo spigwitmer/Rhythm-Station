@@ -1,35 +1,55 @@
-#include "RStation.h"
-#include "AudioManager.h"
-#include <stdio.h>
-#include "MathUtils.h"
+#ifdef __APPLE__
+	#include <OpenAL/al.h>
+	#include <OpenAL/alc.h>
+#else
+	#include <AL/al.h>
+	#include <AL/alc.h>
+#endif
+
+#include <cstring>
 #include <math.h>
+#include <vector>
+#include "AudioManager.h"
+#include "Logger.h"
 
 AudioManager* Audio = NULL;
 
-SoundData::SoundData()
-{
-	alGenBuffers(1, &this->buffer);
-	alGenSources(1, &this->source);
-	this->error = alGetError();
+ALCdevice* device;
+ALCcontext* context;
+
+std::vector<SoundData*> vpSounds;
+
+SoundData::SoundData() {
+	alGenBuffers(1, &buffer);
+	alGenSources(1, &source);
+	error = alGetError();
 }
 
-SoundData::~SoundData()
-{
-	alDeleteBuffers(1, &this->buffer);
-	alDeleteSources(1, &this->source);
+SoundData::~SoundData() {
+	alDeleteBuffers(1, &buffer);
+	alDeleteSources(1, &source);
 }
 
-void SoundData::Register()
-{
+void SoundData::Register() {
 	Audio->AddSound(this);
 }
 
-AudioManager::AudioManager()
-{
+void AudioManager::AddSound(SoundData *_sound) {
+	vpSounds.push_back(_sound);
+}
+
+// finicky
+void AudioManager::Clear() {
+	while (!vpSounds.empty()) {
+		delete vpSounds.back();
+		vpSounds.pop_back();
+	}
+}
+
+void AudioManager::Open() {
 	// open default device.
 	device = alcOpenDevice(NULL);
-	if (!device)
-	{
+	if (!device) {
 		Log->Print("[Audio::Open] Failed to open default sound device.");
 		return;
 	}
@@ -42,8 +62,7 @@ AudioManager::AudioManager()
 	alGetError();
 }
 
-AudioManager::~AudioManager()
-{
+void AudioManager::Close() {
 	Clear();
 	// clean up
 	alcMakeContextCurrent(NULL);
@@ -51,24 +70,8 @@ AudioManager::~AudioManager()
 	alcCloseDevice(device);
 }
 
-void AudioManager::AddSound(SoundData *_sound)
-{
-	vpSounds.push_back(_sound);
-}
-
-void AudioManager::Clear()
-{
-	while (!vpSounds.empty())
-	{
-		delete vpSounds.back();
-		vpSounds.pop_back();
-	}
-}
-
-
 // sound test.
-int sine_wave()
-{
+int sine_wave() {
 	// create the buffers
 	SoundData *sound = new SoundData();
 	if (alGetError() != AL_NO_ERROR)
@@ -80,16 +83,15 @@ int sine_wave()
 	// wave parameters and buffer size
 	unsigned char *sineWave;
 	int samples = 16;
-	int frequency = 200;
+	int frequency = 250;
 	freq = samples * frequency;
 	size = 16384; // 16k buffer
-	
+
 	// build the sine wave
 	sineWave = new unsigned char[size];
-	for (int i = 0; i < size; ++i)
-	{
+	for (int i = 0; i < size; ++i) {
 		float x = i * 360.f / (float)samples;
-		sineWave[i] = sinf(radf(x))*128+128;
+		sineWave[i] = sinf(x * (3.14159 / 180))*128+128;
 	}
 	data = sineWave;
 	delete[] sineWave;

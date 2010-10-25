@@ -20,11 +20,11 @@
 
 FileManager* File = NULL;
 
-/*
- * This may not benefit from being a class like Logger does, but I'll give it a shot.
- */
-bool FileManager::FileExists(std::string _file)
-{
+FileManager::FileManager() {
+	this->SetWorkingDirectory();
+}
+
+bool FileManager::FileExists(std::string _file) {
 	struct stat stFileInfo;
 	int iStat;
 
@@ -33,9 +33,9 @@ bool FileManager::FileExists(std::string _file)
 		return true;
 	return false;
 }
-void FileManager::SetWorkingDirectory()
-{
-	// gross
+
+void FileManager::SetWorkingDirectory() {
+// For OS X, get stuff out of the application bundle (where it is expected to reside)
 #ifdef __APPLE__
 	/*
 	 * This function will locate the path to our application on OS X,
@@ -51,40 +51,36 @@ void FileManager::SetWorkingDirectory()
 	CFRelease(mainBundleURL);
 	CFRelease(cfStringRef);
 	std::string _path = path;
-	size_t pos = _path.find_last_of('/');
-	if (pos != std::string::npos)
-		_path = _path.substr(0,pos);
+	_path += "/Contents/Resources";
 	chdir(_path.c_str());
 #endif
 }
-std::string FileManager::GetWorkingDirectory()
-{
+
+std::string FileManager::GetWorkingDirectory() {
 	SetWorkingDirectory();
 	char path[1024] = "./";
 	getcwd(path, 1024);
 	return std::string(path) + "/";
 }
-std::string FileManager::GetFile(std::string _path)
-{
+
+std::string FileManager::GetFile(std::string _path) {
 	return GetWorkingDirectory() + _path;
 }
-std::string FileManager::GetFileContents(std::string _path)
-{
+
+std::string FileManager::GetFileContents(std::string _path) {
 	std::string out, buf;
 	std::ifstream file(_path.c_str());
-	
-	if (!file.is_open())
-	{
+ 
+	if (!file.is_open()) {
 		Log->Print("Error opening " + _path + " for writing");
 		return std::string();
 	}
-	
-	while (!file.eof())
-	{
+
+	while (!file.eof()) {
 		getline(file, buf);
 		out += buf;
 		out += "\n";
 	}
-	
+
 	return out;
 }

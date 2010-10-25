@@ -1,16 +1,15 @@
 #ifndef _Timer_H_
 #define _Timer_H_
 
-#include "RStation.h"
+#include <string>
 
-class Timer
-{
+class Timer {
 private:
 	double start_time;
-	void setTime();
+
 public:
 	Timer();
-	void Touch() { setTime(); }
+	void Touch();
 	double Ago();
 	std::string strAgo();
 };

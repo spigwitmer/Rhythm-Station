@@ -3,57 +3,41 @@
 
 #include "Type.h"
 
-enum
-{
-	STACK_NORMAL = 0,
-	STACK_UNDERFLOW,
-	STACK_OVERFLOW
-};
+class Matrix {
+public:
+	Matrix();
 
-enum MatrixType
-{
-	PROJECTION_MATRIX = 0,
-	MODELVIEW_MATRIX,
-	TEXTURE_MATRIX0,
-	TEXTURE_MATRIX1,
-	TEXTURE_MATRIX2,
-	TEXTURE_MATRIX3,
-	TEXTURE_MATRIX4,
-	TEXTURE_MATRIX5,
-	TEXTURE_MATRIX6,
-	TEXTURE_MATRIX7,
-};
-
-namespace Matrix
-{
-	float* GetMatrix();
-	float* GetMatrix(MatrixType mode);
-
-	int MatrixMode(MatrixType mode);
-
+	void Load(float m[16]);
+	void SetUniform();
 	void LoadIdentity();
-	void Multiply(float mat[16]);
+
+	// transformations
 	void Translate(float x, float y, float z);
 	void Rotate(float angle, float x, float y, float z);
 	void Scale(float x, float y, float z);
 
-	int Push();
-	int Pop();
-
 	// projection stuff
 	void Perspective(float fov, float aspect, double near, double far);
-
-	// debug
-	void Print();
+	void Ortho(float left, float right, float bottom, float top, float near, float far);
+	void Ortho(float width, float height, vec2 depth = vec2(-5,5)) {
+		this->Ortho(-width/2, width/2, -height/2, height/2, depth.x, depth.y);
+	}
+	void LookAt(vec3 eye, vec3 center, vec3 up);
 
 	// utils
-	bool Invert4(float inverse[4][4], float mat[4][4]);
-	bool Invert(); // invert the current matrix
+	void Print();
+	void Multiply(float m[16]);
 
 	// vec3 overloads
 	void Translate(vec3 pos);
 	void Rotate(vec3 rot);
 	void Scale(vec3 size);
-}
+
+	// doesn't work for (Matrix*)?
+	Matrix& operator * (Matrix &m) { this->Multiply(m.matrix); return *this; }
+	Matrix& operator = (Matrix &m)  { memcpy(matrix, m.matrix, 16*sizeof(float)); return *this; }
+
+	float matrix[16];
+};
 
 #endif

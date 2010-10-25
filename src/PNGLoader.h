@@ -1,13 +1,11 @@
 #ifndef _PNG_LOADER_H_
 #define _PNG_LOADER_H_
 
-#include "RStation.h"
-#include "ImageLoader.h"
+#include "ResourceManager.h"
 
-class PNGLoader : public ImageLoader
-{
+class PNGLoader {
 public:
-	void Load(std::string path);
+	Texture Load(std::string path);
 };
 
 #endif

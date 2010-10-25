@@ -1,49 +1,27 @@
 #include "Tween.h"
+#include "Logger.h"
 #include <math.h>
 
-typedef float (*TweenFn) (float,float,float);
+typedef float (*TweenFn) (float,double,double);
 
-float sleep(float change, float time, float elapsed)
-{
-	if (elapsed == 1)
-		return change;
-	return 0.0f;
-}
+// TODO: these should really be controlled by bezier curves rather than these equations.
+float sleep(float change, double time, double elapsed) { if (elapsed == 1) return change; return 0.0f; }
+float linear(float change, double time, double elapsed) { return change * elapsed; }
+float ease_in(float change, double time, double elapsed) { return change * elapsed * time; }
+float ease_out(float change, double time, double elapsed) { return change * ((1-elapsed)+1) * time; }
 
-float linear(float change, float time, float elapsed)
-{
-	return change * elapsed;
-}
-
-float ease_in(float change, float time, float elapsed)
-{
-	return change * elapsed * time;
-}
-
-float ease_out(float change, float time, float elapsed)
-{
-	return change * ((1-elapsed)+1) * time;
-}
-
-float smooth(float change, float time, float elapsed)
+float smooth(float change, double time, double elapsed)
 {
 	// this might be wrong?
-	if ((elapsed/2) < 1)
+	if ((elapsed/2) < 0.5)
 		return change * powf(elapsed, 2);
 	return change * (powf(elapsed-2, 2) + 2);
 }
 
-float ease_in_cubic(float change, float time, float elapsed)
-{
-	return change * powf(elapsed, 3);
-}
+float ease_in_cubic(float change, double time, double elapsed) { return change * powf(elapsed, 3); }
+float ease_out_cubic(float change, double time, double elapsed) { return change * (powf(elapsed-1, 3)+1); }
 
-float ease_out_cubic(float change, float time, float elapsed)
-{
-	return change * (powf(elapsed-1, 3)+1);
-}
-
-float smooth_cubic(float change, float time, float elapsed)
+float smooth_cubic(float change, double time, double elapsed)
 {
 	if ((elapsed/2) < 1)
 		return change * powf(elapsed, 3);
@@ -81,102 +59,86 @@ TweenFn SetTweenType(int type)
 			break;
 		default:
 			Tween = &linear;
+			Log->Print("Invalid Tween. Defaulting to linear.");
 			break;
 	}
 	return Tween;
 }
 
-float interpolate(int tweentype, float _old, float _new, float duration, float time)
-{
-	if (duration == 0)
+float interpolate(int tweentype, float _old, float _new, double duration, double time) {
+	TweenFn Tween = SetTweenType(tweentype);
+
+	if (duration == 0 || !Tween)
 		return _new; // don't divide by zero and don't bother with doing any math.
 
 	float temp = _old;
-	float elapsed = time / duration;
-	float change = _old - _new; // old - new = difference.
+	double elapsed = time / duration;
 
-	TweenFn Tween = SetTweenType(tweentype);
-
-	if (Tween)
-		temp -= Tween( change, time, elapsed);
+	temp -= Tween( _old - _new, time, elapsed);
 
 	return temp;
 }
 
-/*
- * Overloads for vec2, vec3 and rgba.
- * This is messy, but it's hard to do any better here. I may end up just phasing out these
- * completely and just call interpolate (float) more times in the code that needs this.
- */
-vec2 interpolate(int tweentype, vec2 _old, vec2 _new, float duration, float time)
-{
-	if (duration == 0)
+// Various overloads. A bit repetetive, but convenient.
+vec2 interpolate(int tweentype, vec2 _old, vec2 _new, double duration, double time) {
+	TweenFn Tween = SetTweenType(tweentype);
+
+	if (duration == 0 || !Tween)
 		return _new;
 
 	vec2 temp = _old;
-	float elapsed = time / duration;
+	vec2 change = _old - _new;
+	double elapsed = time / duration;
 
-	// note: vec2 etc need some operators
-	vec2 change;
-	change.x = _old.x - _new.x;
-	change.y = _old.y - _new.y;
-
-	TweenFn Tween = SetTweenType(tweentype);
-
-	if (Tween)
-	{
-		temp.x -= Tween( change.x, time, elapsed);
-		temp.y -= Tween( change.y, time, elapsed);
-	}
+	temp.x -= Tween(change.x, time, elapsed);
+	temp.y -= Tween(change.y, time, elapsed);
 	return temp;
 }
 
-vec3 interpolate(int tweentype, vec3 _old, vec3 _new, float duration, float time)
-{
-	if (duration == 0)
+vec3 interpolate(int tweentype, vec3 _old, vec3 _new, double duration, double time) {
+	TweenFn Tween = SetTweenType(tweentype);
+
+	if (duration == 0 || !Tween)
 		return _new;
 
 	vec3 temp = _old;
-	float elapsed = time / duration;
+	vec3 change = _old - _new;
+	double elapsed = time / duration;
 
-	vec3 change;
-	change.x = _old.x - _new.x;
-	change.y = _old.y - _new.y;
-	change.z = _old.z - _new.z;
-
-	TweenFn Tween = SetTweenType(tweentype);
-
-	if (Tween)
-	{
-		temp.x -= Tween( change.x, time, elapsed);
-		temp.y -= Tween( change.y, time, elapsed);
-		temp.z -= Tween( change.z, time, elapsed);
-	}
+	temp.x -= Tween(change.x, time, elapsed);
+	temp.y -= Tween(change.y, time, elapsed);
+	temp.z -= Tween(change.z, time, elapsed);
 	return temp;
 }
 
-rgba interpolate(int tweentype, rgba _old, rgba _new, float duration, float time)
-{
-	if (duration == 0)
+rgba interpolate(int tweentype, rgba _old, rgba _new, double duration, double time) {
+	TweenFn Tween = SetTweenType(tweentype);
+
+	if (duration == 0 || !Tween)
 		return _new;
 
 	rgba temp = _old;
-	float elapsed = time / duration;
+	rgba change = _old - _new;
+	double elapsed = time / duration;
 
-	rgba change;
-	change.r = _old.r - _new.r;
-	change.g = _old.g - _new.g;
-	change.b = _old.b - _new.b;
-	change.a = _old.a - _new.a;
+	temp.r -= Tween(change.r, time, elapsed);
+	temp.g -= Tween(change.g, time, elapsed);
+	temp.b -= Tween(change.b, time, elapsed);
+	temp.a -= Tween(change.a, time, elapsed);
+	return temp;
+}
 
+Matrix interpolate(int tweentype, Matrix _new, Matrix _old, double duration, double time) {
 	TweenFn Tween = SetTweenType(tweentype);
 
-	if (Tween)
-	{
-		temp.r -= Tween( change.r, time, elapsed);
-		temp.g -= Tween( change.g, time, elapsed);
-		temp.b -= Tween( change.b, time, elapsed);
-		temp.a -= Tween( change.a, time, elapsed);
-	}
+	if (duration == 0 || !Tween)
+		return _new;
+
+	Matrix temp = _old;
+	double elapsed = time / duration;
+
+	for (int i = 0; i<16; i++)
+		temp.matrix[i] -= Tween(_old.matrix[i] - _new.matrix[i], time, elapsed);
+
 	return temp;
 }
