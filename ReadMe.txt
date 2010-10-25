@@ -54,14 +54,25 @@ contact me directly you can do it there, though github, or through email at
 shakesoda+rstation at gmail dot com.
 
 [Compiling on Linux/gcc]
-At the moment linux compiling is pretty straight forward:
   1. Make sure that you have following installed:
-    - gl, glew, libglfw
+    - autotools
+    - cmake (glfw3 git source needs this)
+    - gl, glew
     - libpng14, zlib
     - openal, freealut, vorbisfile
     - >=lua-5.1 (optional, if you don't have it just 
       pass --with-bundled-lua to the configure script)
-  2. After cloning, run "autoreconf --install"
-  3. Run "./configure"
-  4. If everything went well, you can now run "make"
-  5. After compiling, "./rstation"
+  2. Clone current git head with command:
+       git clone git://github.com/shakesoda/Rhythm-Station.git rstation
+  3. After cloning, move to the rstation directory and update glfw3
+     source by running:
+       git submodule init
+       git submodule update
+  4. Prepare glfw3 source by moving to extern/glfw3 directory and running:
+       cmake ./
+  5. Move back to rstation directory and run following to prepare 
+     configure scripts:
+       autoreconf --install
+  6. Run "./configure"
+  7. If everything went well, you can now run "make"
+  8. After compiling, "./rstation"
