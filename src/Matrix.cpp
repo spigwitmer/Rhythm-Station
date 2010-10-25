@@ -12,7 +12,6 @@ float radf(float val) {
 }
 
 static const float identity_matrix[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
-const float matrix_size = sizeof(float) * 16;
 
 Matrix::Matrix() {
 	this->LoadIdentity();
@@ -30,20 +29,18 @@ void Matrix::Print() {
 }
 
 void Matrix::Load(float m[16]) {
-	memcpy(matrix, m, matrix_size);
+	memcpy(matrix, m, sizeof(matrix));
 }
 
 void Matrix::LoadIdentity() {
-	memcpy(matrix, identity_matrix, matrix_size);
+	memcpy(matrix, identity_matrix, sizeof(matrix));
 }
 
 void Matrix::Multiply(float mat[16]) {
 	for (int i = 0; i < 4; i++) {
 		const float
-			c0 = matrix[i],
-			c1 = matrix[4+i],
-			c2 = matrix[8+i],
-			c3 = matrix[12+i];
+			c0 = matrix[i], c1 = matrix[4+i],
+			c2 = matrix[8+i], c3 = matrix[12+i];
 
 		for (int cur = 0; cur < 16; cur+=4)
 			matrix[cur+i] = c0 * mat[cur] + c1 * mat[cur+1] + c2 * mat[cur+2] + c3 * mat[cur+3];
