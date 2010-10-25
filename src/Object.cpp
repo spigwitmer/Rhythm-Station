@@ -12,14 +12,15 @@ GLuint quad_vbo, quad_ibo;
 void GenerateQuadBuffers() {
 	// triangle strip quad
 	GLfloat verts[] = {
-		-1, -1, 0,	0, 0,
-		 1, -1, 0,	1, 0,
-		-1,  1, 0,	0, 1,
-		 1,  1, 0,	1, 1,
+		// pos	tex	 normals
+		-1, -1, 0,	0, 0,	 0, 0, 0,
+		 1, -1, 0,	1, 0,	 0, 0, 0,
+		-1,  1, 0,	0, 1,	 0, 0, 0,
+		 1,  1, 0,	1, 1,	 0, 0, 0,
 	};
 	GLubyte indices[] = { 0, 1, 2, 3 };
 
-	char stride = sizeof(GLfloat) * (3 + 2);
+	char stride = sizeof(GLfloat) * (3 + 2 + 3);
 
 	glGenBuffers(1, &quad_vbo);
 	glGenBuffers(1, &quad_ibo);
@@ -37,6 +38,10 @@ void GenerateQuadBuffers() {
 	// coords
 	glEnableVertexAttribArray(COORD_ARRAY);
 	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, OFFSET(3));
+
+	// normals
+//	glEnableVertexAttribArray(NORMAL_ARRAY);
+//	glVertexAttribPointer(COORD_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(5));
 }
 #undef OFFSET
 
