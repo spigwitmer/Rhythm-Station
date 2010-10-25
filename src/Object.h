@@ -2,6 +2,7 @@
 #define _OBJECT_H_
 
 #include "Shader.h"
+#include "ResourceManager.h"
 #include "Type.h"
 #include "Matrix.h"
 #include <vector>
@@ -31,12 +32,13 @@ public:
 	void Draw();
 
 private:
-	GLuint m_vbo, m_ibo, m_texture, m_color_uniform;
+	GLuint m_vbo, m_ibo, m_color_uniform;
 	std::map<std::string, std::vector<Matrix> > m_states;
 
 	rgba m_color;
 	Shader m_shader;
 	Matrix m_mat;
+	Texture m_texture;
 };
 
 #endif

@@ -4,8 +4,7 @@
 #include "PNGLoader.h"
 #include "Logger.h"
 
-void PNGLoader::Load(std::string _path)
-{
+Texture PNGLoader::Load(std::string _path) {
 	Texture tex;
 	tex.loader = this;
 
@@ -15,14 +14,12 @@ void PNGLoader::Load(std::string _path)
 	int bitDepth, format;
 	
 	tex.path = _path;
-	_path = File->GetFile(_path);
 
 	FILE *pngFile = fopen(_path.c_str(), "rb");
 
-	if (!pngFile)
-	{
+	if (!pngFile) {
 		Log->Print("[PNGLoader::Load] File \"" + tex.path + "\" not found.");
-		return;
+		return Texture();
 	}
 
 	png_byte sig[8];
@@ -30,20 +27,20 @@ void PNGLoader::Load(std::string _path)
 	fread(&sig, 8, sizeof(png_byte), pngFile);
 	rewind(pngFile); //so when we init io it won't bitch
 	if (!png_check_sig(sig, 8))
-		return;
+		return Texture();
 
 	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL,NULL,NULL);
 
 	if (!png_ptr)
-		return;
+		return Texture();
 
 	if (setjmp(png_jmpbuf(png_ptr)))
-		return;
+		return Texture();
 
 	info_ptr = png_create_info_struct(png_ptr);
 
 	if (!info_ptr)
-		return;
+		return Texture();
 
 	png_init_io(png_ptr, pngFile);
 	png_read_info(png_ptr, info_ptr);
@@ -73,8 +70,7 @@ void PNGLoader::Load(std::string _path)
 	tex.height = height;
 
 	int ret;
-	switch (format)
-	{
+	switch (format) {
 		case PNG_COLOR_TYPE_GRAY:
 			ret = 1;
 			break;
@@ -91,12 +87,11 @@ void PNGLoader::Load(std::string _path)
 			ret = -1;
 	};
 
-	if (ret == -1)
-	{
+	if (ret == -1) {
 		if (png_ptr)
 			png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
 		Log->Print("[PNGLoader::Load] File invalid. Is this really a PNG file?");
-		return;
+		return Texture();
 	}
 	GLubyte *pixels = new GLubyte[tex.width * tex.height * ret];
 	row_pointers = new png_bytep[tex.height];
@@ -114,8 +109,7 @@ void PNGLoader::Load(std::string _path)
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	GLuint glformat;
-	switch(ret)
-	{
+	switch(ret) {
 		case 1:
 			glformat = GL_LUMINANCE;
 			break;
@@ -143,4 +137,6 @@ void PNGLoader::Load(std::string _path)
 	fclose(pngFile);
 	delete[] row_pointers;
 	delete[] pixels;
+	
+	return tex;
 }

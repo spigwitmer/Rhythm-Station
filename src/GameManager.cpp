@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "globals.h"
+#include "FileManager.h"
 #include "GameManager.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
@@ -26,7 +27,8 @@ GameManager::GameManager(GLFWwindow window) : m_debug(false), m_bFirstUpdate(tru
 
 	glfwGetWindowSize(window, &m_width, &m_height);
 
-	g_projection_matrix->Perspective(60.f, (float)m_width/m_height, 0.1f, 500.f);
+//	g_projection_matrix->Perspective(60.f, (float)m_width/m_height, 0.1f, 500.f);
+	g_projection_matrix->Ortho(-m_width/2, m_width/2, m_height/2, -m_height/2, -10, 10);
 }
 
 GameManager::~GameManager() {
@@ -52,13 +54,14 @@ void GameManager::Update(double delta) {
 
 void GameManager::Start() {
 	Scene->PushScreen();
-	for (int i = -20; i<20; i++) {
-		quad = new Object();
-		quad->Translate(vec3(i*0.65,0,-10));
-		quad->Rotate(vec3(0,0,22.5));
-		quad->Scale(vec3(1,10,1));
-		quad->Register();			
-	}
+	quad = new Object();
+	quad->Translate(vec3(0,0,-10));
+	std::string path = File->GetFile("test.png");
+	if (File->FileExists(path))
+		quad->Load(path);
+	quad->Register();
+
+	glClearColor(0.25, 0.25, 0.25, 1.0);
 }
 
 void GameManager::Render() {

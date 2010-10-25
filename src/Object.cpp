@@ -4,20 +4,22 @@
 #include "SceneManager.h"
 #include "Screen.h"
 #include "Logger.h"
+#include "PNGLoader.h"
 
 GLuint quad_vbo, quad_ibo;
 
+#define OFFSET(P) (const GLvoid*) (sizeof(GLfloat) * (P))
 void GenerateQuadBuffers() {
-	// generic quad
+	// triangle strip quad
 	GLfloat verts[] = {
-		-1, -1, 0, 0, 0, 0, 0, 0,
-		 1, -1, 0, 1, 0, 0, 0, 0,
-		-1,  1, 0, 0, 1, 0, 0, 0,
-		 1,  1, 0, 1, 1, 0, 0, 0,
+		-1, -1, 0,	0, 0,
+		 1, -1, 0,	1, 0,
+		-1,  1, 0,	0, 1,
+		 1,  1, 0,	1, 1,
 	};
-	GLubyte indices[] = { 0, 8, 16, 24 }; // may be incorrect
+	GLubyte indices[] = { 0, 1, 2, 3 };
 
-	char stride = sizeof(float) * (3 + 2 + 3);
+	char stride = sizeof(GLfloat) * (3 + 2);
 
 	glGenBuffers(1, &quad_vbo);
 	glGenBuffers(1, &quad_ibo);
@@ -29,25 +31,21 @@ void GenerateQuadBuffers() {
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// vertices
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, 0);
+	glEnableVertexAttribArray(VERTEX_ARRAY);
+	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(0));
 
-	// XXX: 0 offset = these don't really work.
 	// coords
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, 0);
-
-	// normals
-	glEnableVertexAttribArray(2);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, 0);
+	glEnableVertexAttribArray(COORD_ARRAY);
+	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, OFFSET(3));
 }
+#undef OFFSET
 
 void DeleteQuadBuffers() {
 	glDeleteBuffers(1, &quad_vbo);
 	glDeleteBuffers(1, &quad_ibo);
 }
 
-Object::Object() : m_texture(0), m_color(rgba(1.0)) {
+Object::Object() : m_texture(), m_color(rgba(1.0)) {
 	m_shader.SetProjectionMatrix(g_projection_matrix);
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
@@ -63,9 +61,17 @@ void Object::Register() {
 }
 
 void Object::Load(std::string _path) {	
-	_path = _path.substr(_path.size()-3, _path.size());
-	if (!strcmp(_path.c_str(), "png"))
-		Log->Print("PNG file detected.");
+	const char* ext = _path.substr(_path.size()-3, _path.size()).c_str();
+	if (!strcmp(ext, "png")) {
+		Log->Print("Path ext is PNG, trying to load.");
+		PNGLoader png;
+		Texture tex = png.Load(_path);
+		if (tex.ptr != 0) {
+			Log->Print("PNG file Loaded successfully.");
+			this->m_texture = tex;
+		}
+		m_mat.Scale(vec3(tex.width/2,tex.height/2,1.0));
+	}
 	else
 		Log->Print("Unknown file type.");
 
@@ -99,21 +105,28 @@ void Object::Update(double delta) {
 	// TODO: only update when needed.
 	Game->QueueRendering();
 
-	m_mat.Rotate(20 * delta, 1, 0.75, 0);
+//	m_mat.Rotate(20 * delta, 1, 0.75, 0);
 
 	return;
 }
 
 void Object::Draw() {
+	glActiveTexture(GL_TEXTURE0);
+	m_texture.Bind();
+
+	glBindBuffer(GL_ARRAY_BUFFER, quad_vbo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_ibo);
+
 	m_shader.Bind();
 	m_shader.SetUniforms();
 
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, m_texture);
+	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
 
-	glBindBuffer(GL_ARRAY_BUFFER, quad_vbo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_ibo);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+//	glUniform4f(m_color_uniform, 1, 1, 1, 1);
+//	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+//	glBindTexture(GL_TEXTURE_2D, 0);
+//	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
+//	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }

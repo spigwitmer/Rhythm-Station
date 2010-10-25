@@ -113,6 +113,7 @@
 		EEC52FAA127559C40064054A /* joystick.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7B127559C40064054A /* joystick.c */; };
 		EEC52FAB127559C40064054A /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7C127559C40064054A /* time.c */; };
 		EEC52FB7127559C40064054A /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F8A127559C40064054A /* window.c */; };
+		EEC530491275803E0064054A /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = EEC530481275803E0064054A /* test.png */; };
 		EECBDE0E125CDB3A00BA2BA4 /* InputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDE0D125CDB3A00BA2BA4 /* InputManager.cpp */; };
 		EECBDF5C125CFC4F00BA2BA4 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */; };
 		EECBDF88125CFFD000BA2BA4 /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF84125CFFD000BA2BA4 /* AudioManager.cpp */; };
@@ -297,6 +298,7 @@
 		EEC52F7C127559C40064054A /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = time.c; sourceTree = "<group>"; };
 		EEC52F8A127559C40064054A /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = window.c; sourceTree = "<group>"; };
 		EEC52FD1127559F30064054A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = extern/config.h; sourceTree = SOURCE_ROOT; };
+		EEC530481275803E0064054A /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		EECBDE0C125CDB3A00BA2BA4 /* InputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputManager.h; sourceTree = "<group>"; };
 		EECBDE0D125CDB3A00BA2BA4 /* InputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputManager.cpp; sourceTree = "<group>"; };
 		EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EEC530481275803E0064054A /* test.png */,
 				EEC5285E127375570064054A /* init.lua */,
 				8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */,
 			);
@@ -721,6 +724,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEC5285F127375570064054A /* init.lua in Resources */,
+				EEC530491275803E0064054A /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

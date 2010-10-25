@@ -49,10 +49,10 @@ int main (int argc, char** argv) {
 
 	// start up all our singletons.
 	Log		= new Logger();
+	File		= new FileManager();
 	Resources	= new ResourceManager();
 	Game	= new GameManager(window);
 	Scene	= new SceneManager();
-	File		= new FileManager();
 	Audio	= new AudioManager();
 	Input	= new InputManager();
 	Lua		= new LuaManager();

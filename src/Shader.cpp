@@ -46,10 +46,13 @@ Shader::Shader() {
 
 	const char* generic_vs[] = {
 		"attribute vec4 VPos;\n"
+		"attribute vec2 VCoords;\n"
 		"uniform mat4 ModelViewMatrix;\n"
 		"uniform mat4 ProjectionMatrix;\n"
 		"\n"
+		"varying vec2 Coords;\n"
 		"void main() {\n"
+		"	Coords = vec2(VCoords);\n"
 		"	gl_Position = ProjectionMatrix * ModelViewMatrix * VPos;\n"
 		"}\n"
 	};
@@ -57,9 +60,11 @@ Shader::Shader() {
 	const char* generic_fs[] = {
 		"uniform sampler2D Texture0;\n"
 		"uniform vec4 Color;\n"
+		"varying vec2 Coords;\n"
 		"\n"
 		"void main() {\n"
-		"	gl_FragColor = vec4(1.0) * Color;\n"
+		"	vec4 texture = texture2D(Texture0, Coords);\n"
+		"	gl_FragColor = texture * vec4(1.0) * Color;\n"
 		"}\n"
 	};
 
@@ -132,7 +137,7 @@ void Shader::Reload() {
 	glAttachShader(ptr, fs);
 
 	glBindAttribLocation(ptr, VERTEX_ARRAY, "VPos");
-//	glBindAttribLocation(ptr, COORD_ARRAY, "VCoord");
+	glBindAttribLocation(ptr, COORD_ARRAY, "VCoords");
 //	glBindAttribLocation(ptr, NORMAL_ARRAY, "VNor");
 //	glBindAttribLocation(ptr, COLOR_ARRAY, "VCol");
 
@@ -144,7 +149,11 @@ void Shader::Reload() {
 	log = getShaderLog(fs);
 	if (!log.empty()) Log->Print("Fragment shader log: " + log);
 	log = getProgramLog(ptr);
-	if (!log.empty()) Log->Print("Shader program log: " + log);
+	if (!log.empty()) {
+		Log->Print("Shader program log: " + log);
+		Log->Print("catastrophic shader error. committing suicide.");
+		exit(-1);
+	}
 
 	this->Bind();
 

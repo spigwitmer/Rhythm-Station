@@ -4,11 +4,15 @@
 #include <string>
 #include <vector>
 #include "Shader.h"
-#include "Object.h"
 
+// some forward-declarations because GCC has issues.
+class Object;
 class PNGLoader;
 
 struct Texture {
+	Texture() {
+		ptr = 0;
+	}
 	void Delete() {
 		glDeleteTextures(1, &ptr);
 	}

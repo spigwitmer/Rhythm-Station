@@ -68,7 +68,6 @@ std::string FileManager::GetFile(std::string _path) {
 }
 
 std::string FileManager::GetFileContents(std::string _path) {
-	Log->Print("Loading: " + _path);
 	std::string out, buf;
 	std::ifstream file(_path.c_str());
  

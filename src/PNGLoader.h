@@ -5,8 +5,7 @@
 
 class PNGLoader {
 public:
-	void Load(std::string path);
-	Texture im_texture;
+	Texture Load(std::string path);
 };
 
 #endif
