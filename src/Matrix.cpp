@@ -37,7 +37,6 @@ void Matrix::LoadIdentity() {
 	memcpy(matrix, identity_matrix, matrix_size);
 }
 
-// adapted from mesa
 void Matrix::Multiply(float mat[16]) {
 	for (int i = 0; i < 4; i++) {
 		const float
@@ -46,15 +45,12 @@ void Matrix::Multiply(float mat[16]) {
 			c2 = matrix[8+i],
 			c3 = matrix[12+i];
 
-		int cur = 0;
-		matrix[cur+i] = c0 * mat[cur] + c1 * mat[cur+1] + c2 * mat[cur+2] + c3 * mat[cur+3]; cur += 4;
-		matrix[cur+i] = c0 * mat[cur] + c1 * mat[cur+1] + c2 * mat[cur+2] + c3 * mat[cur+3]; cur += 4;
-		matrix[cur+i] = c0 * mat[cur] + c1 * mat[cur+1] + c2 * mat[cur+2] + c3 * mat[cur+3]; cur += 4;
-		matrix[cur+i] = c0 * mat[cur] + c1 * mat[cur+1] + c2 * mat[cur+2] + c3 * mat[cur+3];
+		for (int cur = 0; cur < 16; cur+=4)
+			matrix[cur+i] = c0 * mat[cur] + c1 * mat[cur+1] + c2 * mat[cur+2] + c3 * mat[cur+3];
 	}
 }
 
-// next 3 implemented from GL documentation
+// implemented from GL2.1 documentation
 void Matrix::Translate(float x, float y, float z) {
 	float mat[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1 };
 	this->Multiply(mat);
@@ -109,7 +105,7 @@ void Matrix::Ortho(float left, float right, float bottom, float top, float near,
 	this->Multiply(m);
 }
 
-// more from mesa
+// based on Mesa - there is a way to do this with less trig, but I don't remember.
 void Matrix::Perspective(float fov, float aspect, double near, double far) {
 	float m[4][4] = {{0}};
 	double sine, ctan, delta;

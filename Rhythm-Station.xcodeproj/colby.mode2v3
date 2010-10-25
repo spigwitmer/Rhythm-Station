@@ -437,8 +437,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>EEC5281A127364F50064054A</string>
-				<string>EEC5281B127364F50064054A</string>
+				<string>EEC52F4F127556570064054A</string>
+				<string>EEC52F50127556570064054A</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -475,12 +475,8 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>EEC52E5D127382B20064054A</string>
-		<string>EEC52E5E127382B20064054A</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
-		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
-		<string>/Users/colby/repos/ryr/Rhythm-Station.xcodeproj</string>
+		<string>/Users/colby/repos/rhythm-station/Rhythm-Station.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>843 167 476 602 0 0 1440 878 </string>
@@ -641,7 +637,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>&lt;No Editor&gt;</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -697,7 +693,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>EEC5281C127364F50064054A</string>
+				<string>EEC52F51127556570064054A</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
