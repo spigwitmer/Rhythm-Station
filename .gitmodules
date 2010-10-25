@@ -1,0 +1,3 @@
+[submodule "glfw3"]
+        path = extern/glfw3
+        url = git://glfw.git.sourceforge.net/gitroot/glfw/glfw
