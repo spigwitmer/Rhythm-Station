@@ -1,4 +1,5 @@
 #include "ResourceManager.h"
+#include "Object.h"
 
 ResourceManager* Resources = NULL;
 
