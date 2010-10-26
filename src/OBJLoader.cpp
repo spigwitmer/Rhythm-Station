@@ -2,6 +2,7 @@
 #include "Logger.h"
 #include "FileManager.h"
 #include "StringUtils.h"
+#include <cstdlib>
 #include <math.h>
 
 using namespace std;

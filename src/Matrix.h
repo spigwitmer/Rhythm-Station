@@ -1,6 +1,7 @@
 #ifndef _MATRIX_UTILS_H_
 #define _MATRIX_UTILS_H_
 
+#include <cstring>
 #include "Type.h"
 
 class Matrix {

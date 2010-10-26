@@ -1,5 +1,6 @@
 #include <sstream>
 #include <iostream>
+#include <cstdio>
 
 #include <GL/glfw3.h>
 #include "GameManager.h"
