@@ -51,7 +51,7 @@ void DeleteQuadBuffers() {
 	glDeleteBuffers(1, &quad_ibo);
 }
 
-Object::Object() : m_texture(), m_color(rgba(1.0)), m_vbo(0) {
+Object::Object() : m_vbo(0), m_color(rgba(1.0)), m_texture() {
 	m_shader.SetProjectionMatrix(g_projection_matrix);
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
