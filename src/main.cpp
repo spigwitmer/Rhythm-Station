@@ -80,7 +80,7 @@ int main (int argc, char** argv) {
 	double max_delta = (1.0/60.0) * 3.0;
 	while (glfwIsWindow(window)) {
 		double now = glfwGetTime();
-		double delta = now - then;
+		double delta = fabs(now - then);
 
 		// prevent large jumps.
 		if (delta > max_delta) {
