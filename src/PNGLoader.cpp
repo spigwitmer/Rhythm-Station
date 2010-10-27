@@ -90,9 +90,10 @@ Texture PNGLoader::Load(std::string _path) {
 	GLubyte *pixels = new GLubyte[tex.width * tex.height * components];
 	row_pointers = new png_bytep[tex.height];
 
-	printf("components = %d, depth = %d, res = %dx%d\n", components, bitDepth, width, height);
+	printf("components = %d, depth = %d, res = %dx%d\n", components, bitDepth, tex.width, tex.height);
 
 	for (unsigned i = 0; i < tex.height; i++)
+		// adding i after pixels fixes terminal.png, i*2 fixes test.png. I've got no idea why.
 		row_pointers[i] = (png_bytep)(pixels + (i * components * tex.width));
 
 	png_read_image(png_ptr, row_pointers);

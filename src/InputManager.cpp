@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include "GameManager.h"
 #include "Logger.h"
+#include "globals.h"
 
 InputManager* Input = NULL;
 
@@ -41,8 +42,9 @@ void mScrollCallback() {
 }
 
 // on window resize
-void resizeCallback() {
-
+void resizeCallback(GLFWwindow window, int width, int height) {
+	g_projection_matrix->Ortho(-width/2, width/2, height/2, -height/2, -100, 100);
+	Game->QueueRendering();
 }
 
 // TODO
@@ -52,7 +54,7 @@ InputManager::InputManager() {
 //	glfwSetMousePosCallback(Game->GetWindow(), mPosCallback);
 //	glfwSetMouseButtonCallback(Game->GetWindow(), mButtonCallback);
 //	glfwSetScrollCallback(Game->GetWindow(), mScrollCallback);
-//	glfwSetWindowSizeCallback(Game->GetWindow(), resizeCallback);
+	glfwSetWindowSizeCallback(resizeCallback);
 }
 
 InputManager::~InputManager() {

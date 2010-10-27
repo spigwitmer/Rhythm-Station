@@ -25,8 +25,6 @@ private:
 	GLFWwindow m_window;
 	std::vector<Object*> m_objects;
 	bool m_debug, m_bFirstUpdate, m_bQueuedRender;
-
-	int m_width, m_height;
 };
 
 extern GameManager* Game;

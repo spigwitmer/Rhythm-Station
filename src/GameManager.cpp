@@ -24,12 +24,6 @@ GameManager::GameManager(GLFWwindow window) : m_debug(false), m_bFirstUpdate(tru
 	glfwPollEvents();
 
 	g_projection_matrix = new Matrix();
-	g_projection_matrix->LoadIdentity();
-
-	glfwGetWindowSize(window, &m_width, &m_height);
-
-//	g_projection_matrix->Perspective(60.f, (float)m_width/m_height, 0.1f, 500.f);
-	g_projection_matrix->Ortho(-m_width/2, m_width/2, m_height/2, -m_height/2, -100, 100);
 }
 
 GameManager::~GameManager() {
@@ -64,7 +58,7 @@ void GameManager::Start() {
 
 void GameManager::Render() {
 	if (!m_bQueuedRender && !m_bFirstUpdate) {
-		usleep(5000); // reduce CPU usage when not updating.
+		usleep(2500); // reduce CPU usage when not updating.
 		return;
 	}
 	if (m_bFirstUpdate)

@@ -76,6 +76,10 @@ void Object::Load(std::string _path) {
 			Log->Print("Loaded successfully.");
 			this->m_texture = tex;
 		}
+//		if (tex.width % 2)
+//			m_mat.Translate(vec3(-0.125,0,0));
+//		if (tex.height % 2)
+//			m_mat.Translate(vec3(0,-0.125,0));
 		m_mat.Scale(vec3(tex.width/2,tex.height/2,1.0));
 	}
 	else if (!strcmp(ext, "obj")) {
