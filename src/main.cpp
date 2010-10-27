@@ -86,15 +86,18 @@ int main (int argc, char** argv) {
 		double now = glfwGetTime();
 		double delta = fabs(now - then);
 
+		/*
+		 * Update window title 4 times per second.
+		 * Do this before limiting the delta so it always reports the true value.
+		 */
+		if (int(then * 4) != int(now * 4))
+			Util::UpdateWindowTitle(delta);
+
 		// prevent large jumps.
 		if (delta > max_delta) {
 			Log->Print("Frame took too long; time has been limited.");
 			delta = max_delta;
 		}
-
-		// update window title 4 times per second.
-		if (int(then * 4) != int(now * 4))
-			Util::UpdateWindowTitle(delta);
 
 		then = now;
 

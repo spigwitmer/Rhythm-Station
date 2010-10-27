@@ -12,8 +12,6 @@ GameManager* Game = NULL;
 Matrix* obj = NULL;
 Object* quad = NULL;
 
-typedef std::vector<Object*> ob_vec;
-
 GameManager::GameManager(GLFWwindow window) : m_debug(false), m_bFirstUpdate(true) {
 	m_window = window;
 
