@@ -141,7 +141,6 @@ void Shader::Reload() {
 	glBindAttribLocation(ptr, VERTEX_ARRAY, "VPos");
 	glBindAttribLocation(ptr, COORD_ARRAY, "VCoords");
 //	glBindAttribLocation(ptr, NORMAL_ARRAY, "VNor");
-//	glBindAttribLocation(ptr, COLOR_ARRAY, "VCol");
 
 	glLinkProgram(ptr);
 

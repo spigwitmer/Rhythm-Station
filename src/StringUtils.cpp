@@ -50,5 +50,4 @@ void trim(string& str)
 		if(pos != string::npos) str.erase(0, pos);
 	}
 	else str.erase(str.begin(), str.end());
-
 }

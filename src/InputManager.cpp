@@ -12,9 +12,6 @@ std::string str;
 // keyboard. key for specials, char for text input and such.
 void keyCallback(GLFWwindow window, int key, int state) {
 	if (state == GLFW_PRESS) {
-//		double timestamp = glfwGetTime();
-//		printf("[%01.3f] %d\n", timestamp, key);
-
 		if (key == 294) {
 			Log->Print(str);
 			str.clear();
@@ -29,21 +26,22 @@ void charCallback(GLFWwindow window, int key) {
 }
 
 // mouse actions
-void mPosCallback() {
-
+void mPosCallback(GLFWwindow window, int x, int y) {
+	// todo
 }
 
-void mButtonCallback() {
-
+void mButtonCallback(GLFWwindow window, int button, int state) {
+	// todo
 }
 
-void mScrollCallback() {
-
+void mScrollCallback(GLFWwindow window, int scroll, int state) {
+	// todo
+	// + check args on this function.
 }
 
 // on window resize
 void resizeCallback(GLFWwindow window, int width, int height) {
-	g_projection_matrix->Ortho(-width/2, width/2, height/2, -height/2, -100, 100);
+	g_projection_matrix->Ortho(width, height, vec2(-100, 100));
 	Game->QueueRendering();
 }
 
@@ -51,9 +49,9 @@ void resizeCallback(GLFWwindow window, int width, int height) {
 InputManager::InputManager() {
 	glfwSetKeyCallback(keyCallback);
 	glfwSetCharCallback(charCallback);
-//	glfwSetMousePosCallback(Game->GetWindow(), mPosCallback);
-//	glfwSetMouseButtonCallback(Game->GetWindow(), mButtonCallback);
-//	glfwSetScrollCallback(Game->GetWindow(), mScrollCallback);
+	glfwSetMousePosCallback(mPosCallback);
+	glfwSetMouseButtonCallback(mButtonCallback);
+	glfwSetScrollCallback(mScrollCallback);
 	glfwSetWindowSizeCallback(resizeCallback);
 }
 
