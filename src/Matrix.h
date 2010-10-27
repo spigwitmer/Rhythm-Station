@@ -20,7 +20,7 @@ struct Matrix {
 	void Perspective(float fov, float aspect, double near, double far);
 	void Ortho(float left, float right, float bottom, float top, float near, float far);
 	void Ortho(float width, float height, vec2 depth = vec2(-50,50)) {
-		this->Ortho(-width/2, width/2, -height/2, height/2, depth.x, depth.y);
+		this->Ortho(-width/2, width/2, height/2, -height/2, depth.x, depth.y);
 	}
 	void LookAt(vec3 eye, vec3 center, vec3 up);
 
