@@ -54,7 +54,7 @@ void GameManager::Start() {
 	Scene->PushScreen();
 	quad = new Object();
 	quad->Translate(vec3(0,0,-50));
-	std::string path = File->GetFile("test.png");
+	std::string path = File->GetFile("terminal.png");
 	if (File->FileExists(path))
 		quad->Load(path);
 	quad->Register();
@@ -63,8 +63,10 @@ void GameManager::Start() {
 }
 
 void GameManager::Render() {
-	if (!m_bQueuedRender && !m_bFirstUpdate)
+	if (!m_bQueuedRender && !m_bFirstUpdate) {
+		usleep(5000); // reduce CPU usage when not updating.
 		return;
+	}
 	if (m_bFirstUpdate)
 		m_bFirstUpdate = false;
 

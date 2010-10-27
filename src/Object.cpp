@@ -130,10 +130,10 @@ void Object::Update(double delta) {
 	if (m_states.find("Init") != m_states.end())
 		Log->Print("test");
 
+	return;
+
 	// TODO: only update when needed.
 	Game->QueueRendering();
-
-	return;
 }
 
 void Object::Draw() {
