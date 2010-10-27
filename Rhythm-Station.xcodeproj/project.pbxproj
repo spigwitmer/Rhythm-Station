@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
+		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
 		EE7814931271FFAE00B01960 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7814911271FFAE00B01960 /* Tween.cpp */; };
 		EE7815121272144800B01960 /* OBJLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE78150E1272144800B01960 /* OBJLoader.cpp */; };
 		EE7815131272144800B01960 /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7815101272144800B01960 /* StringUtils.cpp */; };
@@ -138,6 +139,7 @@
 		8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Rhythm-Station-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Rhythm-Station.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rhythm-Station.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0A64231270439C00F5F134 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "glew-1.5.6/src/glew.c"; sourceTree = "<group>"; };
+		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
 		EE7814911271FFAE00B01960 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
 		EE7814921271FFAE00B01960 /* Tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tween.h; sourceTree = "<group>"; };
 		EE78150E1272144800B01960 /* OBJLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OBJLoader.cpp; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 		EE915DED1255CBB100F0B0B3 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				EE133B2A1278216F0047069E /* sqlite3.c */,
 				EEC52F65127559C40064054A /* glfw3 */,
 				EEC52A961273803C0064054A /* libpng-1.2.44 */,
 				EEC52B9A1273803D0064054A /* zlib-1.2.5 */,
@@ -837,6 +840,7 @@
 				EEC52FAA127559C40064054A /* joystick.c in Sources */,
 				EEC52FAB127559C40064054A /* time.c in Sources */,
 				EEC52FB7127559C40064054A /* window.c in Sources */,
+				EE133B2B1278216F0047069E /* sqlite3.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,6 +922,7 @@
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/extern/sqlite-3.7.3",
 					"$(PROJECT_DIR)/extern/glew-1.5.6/include",
 					"$(PROJECT_DIR)/extern/glfw3/include",
 					/opt/local/include,

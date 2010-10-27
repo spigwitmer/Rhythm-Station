@@ -7,25 +7,15 @@
 
 // some forward-declarations because GCC has issues.
 class Object;
-class PNGLoader;
 
 struct Texture {
-	Texture() {
-		ptr = 0;
-	}
-	void Delete() {
-		glDeleteTextures(1, &ptr);
-	}
-	void Bind() {
-		glBindTexture(GL_TEXTURE_2D, ptr);
-	}
-	void Unbind() {
-		glBindTexture(GL_TEXTURE_2D, 0);
-	}
+	Texture() : ptr(0) { }
+	void Delete() { glDeleteTextures(1, &ptr); }
+	void Bind() { glBindTexture(GL_TEXTURE_2D, ptr); }
+	void Unbind() { glBindTexture(GL_TEXTURE_2D, 0); }
 	GLuint ptr;
 	std::string path;
 	int width, height;
-	PNGLoader *loader;
 };
 
 class ResourceManager {

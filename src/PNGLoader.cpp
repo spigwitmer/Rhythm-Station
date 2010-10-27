@@ -6,40 +6,35 @@
 
 Texture PNGLoader::Load(std::string _path) {
 	Texture tex;
-	tex.loader = this;
+	tex.path = _path;
 
+	int bitDepth, format;
 	png_structp png_ptr = NULL;
 	png_infop info_ptr = NULL;
 	png_bytep *row_pointers = NULL;
-	int bitDepth, format;
-	
-	tex.path = _path;
+	FILE *pngFile = NULL;
 
-	FILE *pngFile = fopen(_path.c_str(), "rb");
-
-	if (!pngFile) {
-		Log->Print("[PNGLoader::Load] File \"" + tex.path + "\" not found.");
+	if (File->FileExists(_path)) {
+		if(!(pngFile = fopen(_path.c_str(), "rb"))) {
+			Log->Print("Error opening file \"" + _path + "\"");
+			return Texture();
+		}
+	}
+	else {
+		Log->Print("File \"" + _path + "\" not found.");
 		return Texture();
 	}
 
 	png_byte sig[8];
-
 	fread(&sig, 8, sizeof(png_byte), pngFile);
-	rewind(pngFile); //so when we init io it won't bitch
+	rewind(pngFile); // so when we init io it won't bitch
 	if (!png_check_sig(sig, 8))
 		return Texture();
 
 	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL,NULL,NULL);
 
-	if (!png_ptr)
-		return Texture();
-
-	if (setjmp(png_jmpbuf(png_ptr)))
-		return Texture();
-
-	info_ptr = png_create_info_struct(png_ptr);
-
-	if (!info_ptr)
+	if (!png_ptr || setjmp(png_jmpbuf(png_ptr)) ||
+		!(info_ptr = png_create_info_struct(png_ptr)))
 		return Texture();
 
 	png_init_io(png_ptr, pngFile);
@@ -85,7 +80,7 @@ Texture PNGLoader::Load(std::string _path) {
 			break;
 		default:
 			ret = -1;
-	};
+	}
 
 	if (ret == -1) {
 		if (png_ptr)
@@ -93,16 +88,19 @@ Texture PNGLoader::Load(std::string _path) {
 		Log->Print("[PNGLoader::Load] File invalid. Is this really a PNG file?");
 		return Texture();
 	}
+
 	GLubyte *pixels = new GLubyte[tex.width * tex.height * ret];
 	row_pointers = new png_bytep[tex.height];
-	
-	for (unsigned i = 0; i < tex.height; ++i)
-		row_pointers[i] = (png_bytep)(pixels + (i * tex.width * ret));
+
+	for (unsigned i = 0; i < tex.height; i++) {
+		int padding = (ret == 3) ? i*2 : 0;
+		row_pointers[i] = (png_bytep)(pixels + padding + (i * tex.width * ret));
+	}
 
 	png_read_image(png_ptr, row_pointers);
 	png_read_end(png_ptr, NULL);
 
-	// upload texture to GPU
+	// generate pointer, bind, set params, and upload texture to the GPU.
 	glGenTextures(1, &tex.ptr); // make it
 	glBindTexture(GL_TEXTURE_2D, tex.ptr); // bind it
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -110,25 +108,15 @@ Texture PNGLoader::Load(std::string _path) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
-	GLuint glformat;
-	switch(ret) {
-		case 1:
-			glformat = GL_LUMINANCE;
-			break;
-		case 2:
-			glformat = GL_LUMINANCE_ALPHA;
-			break;
-		case 3:
-			glformat = GL_RGB;
-			break;
-		case 4:
-			glformat = GL_RGBA;
-			break;
-		default:
-			glformat = 0; // this shouldn't happen.
-			break;
-	}
-	glTexImage2D(GL_TEXTURE_2D, 0, ret, tex.width, tex.height, 0, glformat, GL_UNSIGNED_BYTE, pixels);
+	// switches take up too much space. time for a little voodoo.
+	GLuint glcolors;
+	(ret == 4) ? (glcolors = GL_RGBA) : 0;
+	(ret == 3) ? (glcolors = GL_RGB) : 0;
+	(ret == 2) ? (glcolors = GL_LUMINANCE_ALPHA) : 0;
+	(ret == 1) ? (glcolors = GL_LUMINANCE) : 0;
+	glTexImage2D(GL_TEXTURE_2D, 0, ret, tex.width, tex.height, 0, glcolors, GL_UNSIGNED_BYTE, pixels);
+
+	// unbind so things are as we found them.
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	// register this so we don't load it again.
