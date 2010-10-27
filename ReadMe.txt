@@ -6,6 +6,9 @@ You shouldn't have any trouble building with MSVC 2008 - provided the project
 files are up to date. The Xcode project is almost always up to date and should
 work just fine at any given time (unless otherwise noted).
 
+- Note: due to some major changes there aren't any VC project files currently.
+ Hopefully in the next week or so we'll get/make some. [2010/10/27]
+
 [Development]
 Don't worry about adding stubs and hacks - just try to get the job done and get
 to it later. Currently the code is rather messy and I am working to improve it
@@ -26,9 +29,8 @@ void foo(_bar) : baz() {
 	// omit braces for single-line ifs
 	if (foo == bar)
 		baz();
-	
+
 	for (int i = 0; i < 20; i++) {
-		why();
 		hello();
 		there(i);
 	}
