@@ -14,6 +14,7 @@ Texture PNGLoader::Load(std::string _path) {
 	png_bytep *row_pointers = NULL;
 	FILE *pngFile = NULL;
 
+	// make sure the file exists!
 	if (File->FileExists(_path)) {
 		if(!(pngFile = fopen(_path.c_str(), "rb"))) {
 			Log->Print("Error opening file \"" + _path + "\"");
@@ -40,9 +41,10 @@ Texture PNGLoader::Load(std::string _path) {
 
 	png_init_io(png_ptr, pngFile);
 	png_read_info(png_ptr, info_ptr);
+
+	// some of the stuff below here seems to not make any difference.
 	bitDepth = png_get_bit_depth(png_ptr, info_ptr);
 	format = png_get_color_type(png_ptr, info_ptr);
-
 	if (format == PNG_COLOR_TYPE_PALETTE)
 		png_set_palette_to_rgb(png_ptr);
 
@@ -56,8 +58,6 @@ Texture PNGLoader::Load(std::string _path) {
 		png_set_strip_16(png_ptr);
 	else if (bitDepth < 8)
 		png_set_packing(png_ptr);
-
-//	png_set_gamma(png_ptr, screen, image);
 
 	png_read_update_info(png_ptr, info_ptr);
 	png_uint_32 width, height;
@@ -90,7 +90,7 @@ Texture PNGLoader::Load(std::string _path) {
 	GLubyte *pixels = new GLubyte[tex.width * tex.height * components];
 	row_pointers = new png_bytep[tex.height];
 
-	printf("components = %d, depth = %d\n", components, bitDepth);
+	printf("components = %d, depth = %d, res = %dx%d\n", components, bitDepth, width, height);
 
 	for (unsigned i = 0; i < tex.height; i++)
 		row_pointers[i] = (png_bytep)(pixels + (i * components * tex.width));
