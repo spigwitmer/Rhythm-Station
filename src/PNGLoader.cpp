@@ -28,6 +28,7 @@ Texture PNGLoader::Load(std::string _path) {
 	png_byte sig[8];
 	fread(&sig, 8, sizeof(png_byte), pngFile);
 	rewind(pngFile); // so when we init io it won't bitch
+
 	if (!png_check_sig(sig, 8))
 		return Texture();
 
@@ -53,9 +54,10 @@ Texture PNGLoader::Load(std::string _path) {
 
 	if (bitDepth == 16)
 		png_set_strip_16(png_ptr);
-
 	else if (bitDepth < 8)
 		png_set_packing(png_ptr);
+
+//	png_set_gamma(png_ptr, screen, image);
 
 	png_read_update_info(png_ptr, info_ptr);
 	png_uint_32 width, height;
@@ -64,45 +66,41 @@ Texture PNGLoader::Load(std::string _path) {
 	tex.width = width;
 	tex.height = height;
 
-	int ret;
+	int components;
 	switch (format) {
 		case PNG_COLOR_TYPE_GRAY:
-			ret = 1;
+			components = 1;
 			break;
 		case PNG_COLOR_TYPE_GRAY_ALPHA:
-			ret = 2;
+			components = 2;
 			break;
 		case PNG_COLOR_TYPE_RGB:
-			ret = 3;
+			components = 3;
 			break;
 		case PNG_COLOR_TYPE_RGB_ALPHA:
-			ret = 4;
+			components = 4;
 			break;
 		default:
-			ret = -1;
-	}
-
-	if (ret == -1) {
-		if (png_ptr)
+			// if we're here, something is wrong!
 			png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-		Log->Print("[PNGLoader::Load] File invalid. Is this really a PNG file?");
-		return Texture();
+			Log->Print("File \"" + _path + "\" is invalid. Is this really a PNG file?");
+			return Texture();
 	}
 
-	GLubyte *pixels = new GLubyte[tex.width * tex.height * ret];
+	GLubyte *pixels = new GLubyte[tex.width * tex.height * components];
 	row_pointers = new png_bytep[tex.height];
 
-	for (unsigned i = 0; i < tex.height; i++) {
-		int padding = (ret == 3) ? i*2 : 0;
-		row_pointers[i] = (png_bytep)(pixels + padding + (i * tex.width * ret));
-	}
+	printf("components = %d, depth = %d\n", components, bitDepth);
+
+	for (unsigned i = 0; i < tex.height; i++)
+		row_pointers[i] = (png_bytep)(pixels + (i * components * tex.width));
 
 	png_read_image(png_ptr, row_pointers);
 	png_read_end(png_ptr, NULL);
 
 	// generate pointer, bind, set params, and upload texture to the GPU.
-	glGenTextures(1, &tex.ptr); // make it
-	glBindTexture(GL_TEXTURE_2D, tex.ptr); // bind it
+	glGenTextures(1, &tex.ptr);
+	glBindTexture(GL_TEXTURE_2D, tex.ptr);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
@@ -110,11 +108,11 @@ Texture PNGLoader::Load(std::string _path) {
 
 	// switches take up too much space. time for a little voodoo.
 	GLuint glcolors;
-	(ret == 4) ? (glcolors = GL_RGBA) : 0;
-	(ret == 3) ? (glcolors = GL_RGB) : 0;
-	(ret == 2) ? (glcolors = GL_LUMINANCE_ALPHA) : 0;
-	(ret == 1) ? (glcolors = GL_LUMINANCE) : 0;
-	glTexImage2D(GL_TEXTURE_2D, 0, ret, tex.width, tex.height, 0, glcolors, GL_UNSIGNED_BYTE, pixels);
+	(components == 4) ? (glcolors = GL_RGBA) : 0;
+	(components == 3) ? (glcolors = GL_RGB) : 0;
+	(components == 2) ? (glcolors = GL_LUMINANCE_ALPHA) : 0;
+	(components == 1) ? (glcolors = GL_LUMINANCE) : 0;
+	glTexImage2D(GL_TEXTURE_2D, 0, components, tex.width, tex.height, 0, glcolors, GL_UNSIGNED_BYTE, pixels);
 
 	// unbind so things are as we found them.
 	glBindTexture(GL_TEXTURE_2D, 0);

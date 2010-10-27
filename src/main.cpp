@@ -47,6 +47,10 @@ int main (int argc, char** argv) {
 	glfwSwapInterval(1);
 	glewInit();
 
+	// make transparency work.
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	// start up all our singletons.
 	Log		= new Logger();
 	File		= new FileManager();

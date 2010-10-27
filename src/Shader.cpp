@@ -66,7 +66,7 @@ Shader::Shader() {
 		"\n"
 		"void main() {\n"
 		"	vec4 texture = texture2D(Texture0, Coords);\n"
-		"	gl_FragColor = texture * vec4(1.0) * Color;\n"
+		"	gl_FragColor = texture * Color;\n"
 		"}\n"
 	};
 
