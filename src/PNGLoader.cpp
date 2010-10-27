@@ -122,7 +122,7 @@ Texture PNGLoader::Load(std::string _path) {
 	Resources->Add(&tex);
 
 	// cleanup
-	png_destroy_read_struct(&png_ptr, &info_ptr, NULL);	
+	png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
 	fclose(pngFile);
 	delete[] row_pointers;
 	delete[] pixels;
