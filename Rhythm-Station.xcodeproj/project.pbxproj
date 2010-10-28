@@ -22,6 +22,23 @@
 		EE07CCEE1279FF1400AAA31F /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = EE07CC1E1279FF1400AAA31F /* pngwrite.c */; };
 		EE07CCEF1279FF1400AAA31F /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = EE07CC1F1279FF1400AAA31F /* pngwtran.c */; };
 		EE07CCF01279FF1400AAA31F /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EE07CC201279FF1400AAA31F /* pngwutil.c */; };
+		EE07CE11127A279000AAA31F /* Class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDC9127A279000AAA31F /* Class.cpp */; };
+		EE07CE12127A279000AAA31F /* ClassHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCA127A279000AAA31F /* ClassHelpers.cpp */; };
+		EE07CE13127A279000AAA31F /* ClassInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCB127A279000AAA31F /* ClassInfo.cpp */; };
+		EE07CE14127A279000AAA31F /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCC127A279000AAA31F /* Debug.cpp */; };
+		EE07CE15127A279000AAA31F /* Error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCD127A279000AAA31F /* Error.cpp */; };
+		EE07CE16127A279000AAA31F /* FuncCall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCE127A279000AAA31F /* FuncCall.cpp */; };
+		EE07CE17127A279000AAA31F /* Hybrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCF127A279000AAA31F /* Hybrid.cpp */; };
+		EE07CE18127A279000AAA31F /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDD0127A279000AAA31F /* Instance.cpp */; };
+		EE07CE19127A279000AAA31F /* Iterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDD1127A279000AAA31F /* Iterator.cpp */; };
+		EE07CE39127A279000AAA31F /* LuaCall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE09127A279000AAA31F /* LuaCall.cpp */; };
+		EE07CE3A127A279000AAA31F /* Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0A127A279000AAA31F /* Manager.cpp */; };
+		EE07CE3B127A279000AAA31F /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0B127A279000AAA31F /* Object.cpp */; };
+		EE07CE3C127A279000AAA31F /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0C127A279000AAA31F /* Script.cpp */; };
+		EE07CE3D127A279000AAA31F /* SLB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0D127A279000AAA31F /* SLB.cpp */; };
+		EE07CE3E127A279000AAA31F /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0E127A279000AAA31F /* Table.cpp */; };
+		EE07CE3F127A279000AAA31F /* Type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0F127A279000AAA31F /* Type.cpp */; };
+		EE07CE40127A279000AAA31F /* Value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE10127A279000AAA31F /* Value.cpp */; };
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
 		EE7814931271FFAE00B01960 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7814911271FFAE00B01960 /* Tween.cpp */; };
@@ -154,6 +171,23 @@
 		EE07CC1E1279FF1400AAA31F /* pngwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwrite.c; sourceTree = "<group>"; };
 		EE07CC1F1279FF1400AAA31F /* pngwtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwtran.c; sourceTree = "<group>"; };
 		EE07CC201279FF1400AAA31F /* pngwutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwutil.c; sourceTree = "<group>"; };
+		EE07CDC9127A279000AAA31F /* Class.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Class.cpp; sourceTree = "<group>"; };
+		EE07CDCA127A279000AAA31F /* ClassHelpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassHelpers.cpp; sourceTree = "<group>"; };
+		EE07CDCB127A279000AAA31F /* ClassInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassInfo.cpp; sourceTree = "<group>"; };
+		EE07CDCC127A279000AAA31F /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
+		EE07CDCD127A279000AAA31F /* Error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Error.cpp; sourceTree = "<group>"; };
+		EE07CDCE127A279000AAA31F /* FuncCall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FuncCall.cpp; sourceTree = "<group>"; };
+		EE07CDCF127A279000AAA31F /* Hybrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hybrid.cpp; sourceTree = "<group>"; };
+		EE07CDD0127A279000AAA31F /* Instance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Instance.cpp; sourceTree = "<group>"; };
+		EE07CDD1127A279000AAA31F /* Iterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Iterator.cpp; sourceTree = "<group>"; };
+		EE07CE09127A279000AAA31F /* LuaCall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaCall.cpp; sourceTree = "<group>"; };
+		EE07CE0A127A279000AAA31F /* Manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Manager.cpp; sourceTree = "<group>"; };
+		EE07CE0B127A279000AAA31F /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
+		EE07CE0C127A279000AAA31F /* Script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Script.cpp; sourceTree = "<group>"; };
+		EE07CE0D127A279000AAA31F /* SLB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SLB.cpp; sourceTree = "<group>"; };
+		EE07CE0E127A279000AAA31F /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
+		EE07CE0F127A279000AAA31F /* Type.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type.cpp; sourceTree = "<group>"; };
+		EE07CE10127A279000AAA31F /* Value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Value.cpp; sourceTree = "<group>"; };
 		EE0A64231270439C00F5F134 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "glew-1.5.6/src/glew.c"; sourceTree = "<group>"; };
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
 		EE7814911271FFAE00B01960 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
@@ -406,12 +440,37 @@
 			path = "libpng-1.4.4";
 			sourceTree = "<group>";
 		};
-		EE0A64221270438600F5F134 /* glew */ = {
+		EE07CDC8127A279000AAA31F /* slb-1.6.3 */ = {
+			isa = PBXGroup;
+			children = (
+				EE07CDC9127A279000AAA31F /* Class.cpp */,
+				EE07CDCA127A279000AAA31F /* ClassHelpers.cpp */,
+				EE07CDCB127A279000AAA31F /* ClassInfo.cpp */,
+				EE07CDCC127A279000AAA31F /* Debug.cpp */,
+				EE07CDCD127A279000AAA31F /* Error.cpp */,
+				EE07CDCE127A279000AAA31F /* FuncCall.cpp */,
+				EE07CDCF127A279000AAA31F /* Hybrid.cpp */,
+				EE07CDD0127A279000AAA31F /* Instance.cpp */,
+				EE07CDD1127A279000AAA31F /* Iterator.cpp */,
+				EE07CE09127A279000AAA31F /* LuaCall.cpp */,
+				EE07CE0A127A279000AAA31F /* Manager.cpp */,
+				EE07CE0B127A279000AAA31F /* Object.cpp */,
+				EE07CE0C127A279000AAA31F /* Script.cpp */,
+				EE07CE0D127A279000AAA31F /* SLB.cpp */,
+				EE07CE0E127A279000AAA31F /* Table.cpp */,
+				EE07CE0F127A279000AAA31F /* Type.cpp */,
+				EE07CE10127A279000AAA31F /* Value.cpp */,
+			);
+			name = "slb-1.6.3";
+			path = "slb-1.63/src";
+			sourceTree = "<group>";
+		};
+		EE0A64221270438600F5F134 /* glew-1.5.6 */ = {
 			isa = PBXGroup;
 			children = (
 				EE0A64231270439C00F5F134 /* glew.c */,
 			);
-			name = glew;
+			name = "glew-1.5.6";
 			sourceTree = "<group>";
 		};
 		EE78150D1272143200B01960 /* Loaders */ = {
@@ -443,7 +502,8 @@
 		EE915DED1255CBB100F0B0B3 /* extern */ = {
 			isa = PBXGroup;
 			children = (
-				EE0A64221270438600F5F134 /* glew */,
+				EE07CDC8127A279000AAA31F /* slb-1.6.3 */,
+				EE0A64221270438600F5F134 /* glew-1.5.6 */,
 				EEC52F65127559C40064054A /* glfw3 */,
 				EE07CB921279FF1400AAA31F /* libpng-1.4.4 */,
 				EEAB1AA2126F5440004FE58D /* lua-5.1.4 */,
@@ -835,6 +895,23 @@
 				EE07CCEE1279FF1400AAA31F /* pngwrite.c in Sources */,
 				EE07CCEF1279FF1400AAA31F /* pngwtran.c in Sources */,
 				EE07CCF01279FF1400AAA31F /* pngwutil.c in Sources */,
+				EE07CE11127A279000AAA31F /* Class.cpp in Sources */,
+				EE07CE12127A279000AAA31F /* ClassHelpers.cpp in Sources */,
+				EE07CE13127A279000AAA31F /* ClassInfo.cpp in Sources */,
+				EE07CE14127A279000AAA31F /* Debug.cpp in Sources */,
+				EE07CE15127A279000AAA31F /* Error.cpp in Sources */,
+				EE07CE16127A279000AAA31F /* FuncCall.cpp in Sources */,
+				EE07CE17127A279000AAA31F /* Hybrid.cpp in Sources */,
+				EE07CE18127A279000AAA31F /* Instance.cpp in Sources */,
+				EE07CE19127A279000AAA31F /* Iterator.cpp in Sources */,
+				EE07CE39127A279000AAA31F /* LuaCall.cpp in Sources */,
+				EE07CE3A127A279000AAA31F /* Manager.cpp in Sources */,
+				EE07CE3B127A279000AAA31F /* Object.cpp in Sources */,
+				EE07CE3C127A279000AAA31F /* Script.cpp in Sources */,
+				EE07CE3D127A279000AAA31F /* SLB.cpp in Sources */,
+				EE07CE3E127A279000AAA31F /* Table.cpp in Sources */,
+				EE07CE3F127A279000AAA31F /* Type.cpp in Sources */,
+				EE07CE40127A279000AAA31F /* Value.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +986,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = SLB_EXTERNAL_LUA;
 				GCC_UNROLL_LOOPS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -916,6 +994,7 @@
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/extern/slb-1.63/include",
 					"$(PROJECT_DIR)/extern/libpng-1.4.4",
 					"$(PROJECT_DIR)/extern/sqlite-3.7.3",
 					"$(PROJECT_DIR)/extern/glew-1.5.6/include",
