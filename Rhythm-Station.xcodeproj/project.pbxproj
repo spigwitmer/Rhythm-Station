@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE07CA281278A05E00AAA31F /* terminal.png in Resources */ = {isa = PBXBuildFile; fileRef = EE07CA271278A05E00AAA31F /* terminal.png */; };
 		EE07CCDD1279FF1400AAA31F /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = EE07CC0A1279FF1400AAA31F /* png.c */; };
 		EE07CCE01279FF1400AAA31F /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = EE07CC0F1279FF1400AAA31F /* pngerror.c */; };
 		EE07CCE11279FF1400AAA31F /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = EE07CC101279FF1400AAA31F /* pngget.c */; };
@@ -137,7 +136,6 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Rhythm-Station-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Rhythm-Station.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rhythm-Station.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE07CA271278A05E00AAA31F /* terminal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal.png; sourceTree = "<group>"; };
 		EE07CC0A1279FF1400AAA31F /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png.c; sourceTree = "<group>"; };
 		EE07CC0B1279FF1400AAA31F /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png.h; sourceTree = "<group>"; };
 		EE07CC0E1279FF1400AAA31F /* pngconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngconf.h; sourceTree = "<group>"; };
@@ -361,7 +359,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EE07CA271278A05E00AAA31F /* terminal.png */,
 				EEC530481275803E0064054A /* test.png */,
 				EEC5285E127375570064054A /* init.lua */,
 				8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */,
@@ -727,7 +724,6 @@
 			files = (
 				EEC5285F127375570064054A /* init.lua in Resources */,
 				EEC530491275803E0064054A /* test.png in Resources */,
-				EE07CA281278A05E00AAA31F /* terminal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
