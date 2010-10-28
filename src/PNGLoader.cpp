@@ -65,11 +65,8 @@ Texture PNGLoader::Load(std::string _path) {
 	png_set_sig_bytes(png_ptr, 8);
 
 	// If we've got tRNS on an RGB image, it's a color key. Make this RGBA.
-	if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)) {
-		// Convert RGB color key to alpha.
+	if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
 		png_set_tRNS_to_alpha(png_ptr);
-		components = 4;
-	}
 
 	// filler for keys
 	png_set_filler(png_ptr, 0xff, PNG_FILLER_AFTER);
