@@ -84,12 +84,7 @@ Texture PNGLoader::Load(std::string _path) {
 
 	GLubyte *pixels = new GLubyte[rowsize * tex.height];
 	for (unsigned i = 0; i < tex.height; i++)
-		/*
-		 * You can fix terminal.png by adding i to pixels, and test.png by adding i*2.
-		 * For some reason the rowsize appears to be misreported in certain cases.
-		*/
 		memcpy(&pixels[i*rowsize], row_pointers[i], rowsize);
-
 
 	// upload texture to GPU
 	glGenTextures(1, &tex.ptr); // make it
