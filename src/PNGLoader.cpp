@@ -64,24 +64,21 @@ Texture PNGLoader::Load(std::string _path) {
 	// Tell libpng how much we did read already
 	png_set_sig_bytes(png_ptr, 8);
 
-	png_read_info(png_ptr, info_ptr);
+
+	// The fast way
+	png_read_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
 
 	tex.width = png_get_image_width(png_ptr,info_ptr);
 	tex.height = png_get_image_height(png_ptr,info_ptr);
 	rowsize = png_get_rowbytes(png_ptr,info_ptr);
 	components = png_get_channels(png_ptr,info_ptr);
-	row_pointers = png_get_rows(png_ptr, info_ptr);
-
 	printf("res: %dx%d, channels: %d\n", tex.width, tex.height, components);
 
-	// The fast way
-	png_read_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
+	row_pointers = png_get_rows(png_ptr, info_ptr);
 
-	Log->Print("test");
-
-	GLubyte *pixels = new GLubyte[rowsize];
+	GLubyte *pixels = new GLubyte[rowsize * tex.height];
 	for (unsigned i = 0; i < tex.height; i++)
-		memcpy(pixels, row_pointers, rowsize);
+		memcpy(&pixels[i*rowsize] +i , row_pointers[i], rowsize);
 		// adding i after pixels fixes terminal.png, i*2 fixes test.png. I've got no idea why.
 //		row_pointers[i] = (png_bytep)(pixels + (i * components * tex.width));
 
