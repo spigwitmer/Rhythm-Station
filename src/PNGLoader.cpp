@@ -7,22 +7,25 @@
 Texture PNGLoader::Load(std::string _path) {
 	Texture tex;
 
+	// png specifics
 	png_structp png_ptr = NULL;
-	png_infop info_ptr = NULL;
-	png_infop end_info = NULL;
+	png_infop info_ptr = NULL, end_info = NULL;
 	png_bytep *row_pointers = NULL;
+	png_byte sig[8];
+
+	// the rest
+	FILE *pngFile = NULL;
+	GLubyte *pixels = NULL;
+	GLuint glformat = 0;
 	int components, rowsize;
 
 	tex.path = _path;
-
-	FILE *pngFile = fopen(_path.c_str(), "rb");
+	pngFile = fopen(_path.c_str(), "rb");
 
 	if (!pngFile) {
 		Log->Print("[PNGLoader::Load] File \"" + tex.path + "\" not found.");
 		return Texture();
 	}
-
-	png_byte sig[8];
 
 	fread(&sig, sizeof(png_byte), 8, pngFile);
 	if (png_sig_cmp(sig, 0, 8)) {
@@ -52,16 +55,15 @@ Texture PNGLoader::Load(std::string _path) {
 		return Texture();
 	}
 
-	// I don't know if we need this but safety first. :)
+	// safety first. :)
 	if (setjmp(png_jmpbuf(png_ptr))) {
 		png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
 		fclose(pngFile);
 		return Texture();
 	}
 
+	// init io and tell libpng we've already read the sig.
 	png_init_io(png_ptr, pngFile);
-
-	// Tell libpng how much we did read already
 	png_set_sig_bytes(png_ptr, 8);
 
 	// If we've got tRNS on an RGB image, it's a color key. Make this RGBA.
@@ -71,18 +73,16 @@ Texture PNGLoader::Load(std::string _path) {
 	// filler for keys
 	png_set_filler(png_ptr, 0xff, PNG_FILLER_AFTER);
 
-	// The fast way
+	// read the file
 	png_read_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
 
 	tex.width = png_get_image_width(png_ptr,info_ptr);
 	tex.height = png_get_image_height(png_ptr,info_ptr);
 	rowsize = png_get_rowbytes(png_ptr,info_ptr);
 	components = png_get_channels(png_ptr,info_ptr);
-	printf("res: %dx%d, channels: %d\n", tex.width, tex.height, components);
-
 	row_pointers = png_get_rows(png_ptr, info_ptr);
 
-	GLubyte *pixels = new GLubyte[rowsize * tex.height];
+	pixels = new GLubyte[rowsize * tex.height];
 	for (unsigned i = 0; i < tex.height; i++)
 		memcpy(&pixels[i*rowsize], row_pointers[i], rowsize);
 
@@ -94,7 +94,6 @@ Texture PNGLoader::Load(std::string _path) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
-	GLuint glformat;
 	switch(components) {
 		case 1:
 			glformat = GL_LUMINANCE;
@@ -102,9 +101,7 @@ Texture PNGLoader::Load(std::string _path) {
 		case 2:
 			glformat = GL_LUMINANCE_ALPHA;
 			break;
-		case 3:
-			glformat = GL_RGB;
-			break;
+		// case 3 would be converted to 4, above.
 		case 4:
 			glformat = GL_RGBA;
 			break;
