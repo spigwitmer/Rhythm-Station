@@ -40,8 +40,8 @@ void GenerateQuadBuffers() {
 	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, OFFSET(3));
 
 	// normals
-//	glEnableVertexAttribArray(NORMAL_ARRAY);
-//	glVertexAttribPointer(COORD_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(5));
+	glEnableVertexAttribArray(NORMAL_ARRAY);
+	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(5));
 }
 #undef OFFSET
 
