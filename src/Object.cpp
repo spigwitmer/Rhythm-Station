@@ -137,5 +137,7 @@ void Object::Draw() {
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
 
 	if (!m_vbo)
+		// TODO: figure out instancing
+//		glDrawElementsInstanced(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
 		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
 }

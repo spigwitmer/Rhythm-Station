@@ -2,7 +2,7 @@
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 
-// all the singletons (we init them here, should do static init?)
+// All the singletons (we init them here, should do static init?)
 #include "AudioManager.h"
 #include "FileManager.h"
 #include "GameManager.h"
@@ -12,7 +12,7 @@
 #include "SceneManager.h"
 #include "Logger.h"
 
-// misc
+// Misc
 #include "HandleArguments.h"
 #include "Object.h"
 
@@ -36,6 +36,12 @@ namespace Util {
 	}
 }
 
+#ifndef DEBUG
+#ifdef _WIN32
+// TODO: Different main.
+#endif
+#endif
+// Initialize everything and set up the GL states used throughout the program.
 int main (int argc, char** argv) {
 	glfwInit();
 
@@ -47,11 +53,11 @@ int main (int argc, char** argv) {
 	glfwSwapInterval(0);
 	glewInit();
 
-	// make transparency work.
+	// Make transparency work!
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	// start up all our singletons.
+	// Start up all our singletons.
 	Log		= new Logger();
 	File		= new FileManager();
 	Resources	= new ResourceManager();
@@ -61,12 +67,12 @@ int main (int argc, char** argv) {
 	Input	= new InputManager();
 	Lua		= new LuaManager();
 
-	// handle the arguments before doing anything else
+	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);
 
 	Audio->Open();
 
-	// generate the vbo for quads
+	// Generate the VBO used by quads.
 	GenerateQuadBuffers();
 
 	std::ostringstream extensions;
@@ -74,10 +80,10 @@ int main (int argc, char** argv) {
 	extensions << glGetString(GL_EXTENSIONS);
 	Log->Print(extensions.str());
 
-	// Is this available on windows only? It isn't on OS X, at least.
+	// Is this only available on windows?
 	if (GLEW_NV_framebuffer_multisample_coverage)
 		Log->Print("CSAA Supported.");
-		// 8x = 8, 4; 8xQ = 8, 8; 16x = 16, 4; 16xQ = 16, 8
+		// 8x = 8, 4; 8xQ = 8, 8; 16x = 16, 4; 16xQ = 16, 8 (this will be elsewhere)
 		// glRenderbufferStorageMultisampleCoverageNV(buffer, 8, 4, GL_RGB, 0, 0);
 	else
 		Log->Print("CSAA Not Supported.");
@@ -85,7 +91,7 @@ int main (int argc, char** argv) {
 	// Start running Lua and begin the first screen.
 	Game->Start();
 
-	// leave all these on, it doesn't seem to do any harm.
+	// Leave all these on, it doesn't seem to do any harm.
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
@@ -97,7 +103,7 @@ int main (int argc, char** argv) {
 		double delta = fabs(now - then);
 
 		/*
-		 * Update window title 4 times per second.
+		 * Check that the window is active and update the title twice per second.
 		 * Do this before limiting the delta so it always reports the true value.
 		 */
 		if (int(then * 2) != int(now * 2)) {
@@ -105,7 +111,7 @@ int main (int argc, char** argv) {
 			Game->SetActive(glfwGetWindowParam(Game->GetWindow(), GLFW_ACTIVE));
 		}
 
-		// prevent large jumps.
+		// Prevent large jumps. Note: audio should be updated before doing this.
 		if (delta > max_delta) {
 			Log->Print("Frame took too long; time has been limited.");
 			delta = max_delta;
@@ -113,13 +119,8 @@ int main (int argc, char** argv) {
 
 		then = now;
 
-		/*
-		 * Update the input immediately before drawing the scene so that
-		 * we're on the correct frame and not one behind.
-		 */
+		// Update input before logic/objects so that it's not running behind.
 		Input->Update();
-
-		// Game should be changed to Scene.
 		Game->Update(delta);
 		Game->Render();
 	}
