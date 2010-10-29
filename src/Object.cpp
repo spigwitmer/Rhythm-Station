@@ -7,7 +7,7 @@
 #include "Logger.h"
 #include "PNGLoader.h"
 
-GLuint quad_vbo, quad_ibo;
+GLuint quad_vbo[2];
 
 #define OFFSET(P) (const GLvoid*) (sizeof(GLfloat) * (P))
 void GenerateQuadBuffers() {
@@ -23,13 +23,12 @@ void GenerateQuadBuffers() {
 
 	char stride = sizeof(GLfloat) * (3 + 2 + 3);
 
-	glGenBuffers(1, &quad_vbo);
-	glGenBuffers(1, &quad_ibo);
-	
-	glBindBuffer(GL_ARRAY_BUFFER, quad_vbo);
+	glGenBuffers(2, quad_vbo);
+
+	glBindBuffer(GL_ARRAY_BUFFER, quad_vbo[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
-	
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_ibo);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_vbo[1]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// vertices
@@ -47,8 +46,7 @@ void GenerateQuadBuffers() {
 #undef OFFSET
 
 void DeleteQuadBuffers() {
-	glDeleteBuffers(1, &quad_vbo);
-	glDeleteBuffers(1, &quad_ibo);
+	glDeleteBuffers(2, quad_vbo);
 }
 
 Object::Object() : m_vbo(0), m_color(rgba(1.0)), m_texture() {
@@ -145,8 +143,8 @@ void Object::Draw() {
 	m_texture.Bind();
 
 	if (!m_vbo) {
-		glBindBuffer(GL_ARRAY_BUFFER, quad_vbo);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_ibo);
+		glBindBuffer(GL_ARRAY_BUFFER, quad_vbo[0]);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_vbo[1]);
 	}
 
 	m_shader.Bind();

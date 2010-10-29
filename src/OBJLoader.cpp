@@ -7,13 +7,13 @@
 
 using namespace std;
 
-OBJLoader::OBJLoader() : vbo_id(NULL), name(0) { /* nada */ }
+OBJLoader::OBJLoader() : vbo_id(), name(0) { /* nada */ }
 
 OBJLoader::~OBJLoader() {
 	Log->Print("Cleaning up mesh " + name);
 }
 
-GLuint OBJLoader::Load(string file) {
+GLuint *OBJLoader::Load(string file) {
 	timer.Touch();
 	file = File->GetFile(file);
 	if (!File->FileExists(file)) {
@@ -85,13 +85,11 @@ GLuint OBJLoader::Load(string file) {
 				break;
 		}
 	}
-	glGenBuffers(1, &vbo_id);
+	glGenBuffers(2, vbo_id);
 
 	// load stuff up
-	// return vbo
+	// return vbo+ibo
+	// make sure normals are flipped due to obj format
 
-//	glNormal3fv(-mesh[i].normal);
-//	glTexCoord2fv(mesh[i].coord);
-//	glVertex3fv(mesh[i].position);
 	return vbo_id;
 }

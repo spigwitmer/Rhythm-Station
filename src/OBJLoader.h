@@ -17,11 +17,11 @@ class OBJLoader {
 public:
 	OBJLoader();
 	virtual ~OBJLoader();
-	GLuint Load(std::string file);
+	GLuint *Load(std::string file);
 
 private:
 	Timer timer;
-	GLuint vbo_id;
+	GLuint vbo_id[2];
 	std::vector<MeshData> mesh;
 
 	std::string name;
