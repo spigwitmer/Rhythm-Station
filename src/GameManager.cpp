@@ -46,7 +46,7 @@ void GameManager::Start() {
 	Scene->PushScreen();
 	quad = new Object();
 	quad->Translate(vec3(0,0,-50));
-	std::string path = File->GetFile("test.png");
+	std::string path = File->GetFile("test_odd.png");
 	if (File->FileExists(path))
 		quad->Load(path);
 	quad->Register();

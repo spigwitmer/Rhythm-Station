@@ -34,6 +34,7 @@
 		EE07CE3B127A279000AAA31F /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0B127A279000AAA31F /* Object.cpp */; };
 		EE07CE3C127A279000AAA31F /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0C127A279000AAA31F /* Script.cpp */; };
 		EE07CE3E127A279000AAA31F /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0E127A279000AAA31F /* Table.cpp */; };
+		EE07CEB1127B3A2900AAA31F /* test_odd.png in Resources */ = {isa = PBXBuildFile; fileRef = EE07CEB0127B3A2900AAA31F /* test_odd.png */; };
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
 		EE7814931271FFAE00B01960 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7814911271FFAE00B01960 /* Tween.cpp */; };
@@ -178,6 +179,7 @@
 		EE07CE0B127A279000AAA31F /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
 		EE07CE0C127A279000AAA31F /* Script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Script.cpp; sourceTree = "<group>"; };
 		EE07CE0E127A279000AAA31F /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
+		EE07CEB0127B3A2900AAA31F /* test_odd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_odd.png; sourceTree = "<group>"; };
 		EE0A64231270439C00F5F134 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "glew-1.5.6/src/glew.c"; sourceTree = "<group>"; };
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
 		EE7814911271FFAE00B01960 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EE07CEB0127B3A2900AAA31F /* test_odd.png */,
 				EEC530481275803E0064054A /* test.png */,
 				EEC5285E127375570064054A /* init.lua */,
 				8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */,
@@ -769,6 +772,7 @@
 			files = (
 				EEC5285F127375570064054A /* init.lua in Resources */,
 				EEC530491275803E0064054A /* test.png in Resources */,
+				EE07CEB1127B3A2900AAA31F /* test_odd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

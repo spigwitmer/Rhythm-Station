@@ -74,10 +74,7 @@ void Object::Load(std::string _path) {
 			Log->Print("Loaded successfully.");
 			this->m_texture = tex;
 		}
-//		if (tex.width % 2)
-//			m_mat.Translate(vec3(-0.125,0,0));
-//		if (tex.height % 2)
-//			m_mat.Translate(vec3(0,-0.125,0));
+		m_mat.Translate(vec3((tex.width % 2) ? 0.5 : 0,(tex.height % 2) ? 0 : 0,0));
 		m_mat.Scale(vec3(tex.width/2,tex.height/2,1.0));
 	}
 	else if (!strcmp(ext, "obj")) {
@@ -94,17 +91,7 @@ void Object::HandleMessage(std::string _msg) {
 }
 
 void Object::AddState() {
-	if (m_states.find("Init") != m_states.end()) {
-		Log->Print("Found Init.");
-		m_states.find("Init")->second.push_back(m_mat);
-	}
-	else {
-		Log->Print("Init not found. Creating.");
-		std::pair<std::string, std::vector<Matrix> > tmp;
-		tmp.first = "Init";
-		tmp.second.push_back(m_mat);
-		m_states.insert(tmp);
-	}
+	m_states["Init"].push_back(m_mat);
 }
 
 void Object::Color(rgba col) {
