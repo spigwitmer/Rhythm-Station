@@ -87,7 +87,7 @@ void Object::Load(std::string _path) {
 }
 
 void Object::HandleMessage(std::string _msg) {
-
+	// TODO
 }
 
 void Object::AddState() {
@@ -116,17 +116,13 @@ void Object::Scale(vec3 scale) {
 void Object::Update(double delta) {
 	m_shader.SetModelViewMatrix(&m_mat);
 
-	if (m_states.find("Init") != m_states.end())
-		Log->Print("test");
-
+	// TODO: only update when needed.
 	return;
 
-	// TODO: only update when needed.
 	Game->QueueRendering();
 }
 
 void Object::Draw() {
-	glActiveTexture(GL_TEXTURE0);
 	m_texture.Bind();
 
 	if (!m_vbo) {
@@ -137,6 +133,7 @@ void Object::Draw() {
 	m_shader.Bind();
 	m_shader.SetUniforms();
 
+	// TODO: possibly use UBO, on HW that supports it.
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
 
 	if (!m_vbo)

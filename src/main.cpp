@@ -69,6 +69,11 @@ int main (int argc, char** argv) {
 	// generate the vbo for quads
 	GenerateQuadBuffers();
 
+	std::ostringstream extensions;
+	extensions << "Available OpenGL extensions: \n";
+	extensions << glGetString(GL_EXTENSIONS);
+	Log->Print(extensions.str());
+
 	// Is this available on windows only? It isn't on OS X, at least.
 	if (GLEW_NV_framebuffer_multisample_coverage)
 		Log->Print("CSAA Supported.");

@@ -119,6 +119,6 @@ Texture PNGLoader::Load(std::string _path) {
 	png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
 	delete[] pixels;
 	fclose(pngFile);
-	
+
 	return tex;
 }
