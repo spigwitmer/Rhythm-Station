@@ -9,7 +9,7 @@ SceneManager* Scene = NULL;
 void SceneManager::PushScreen() {
 	Screen* scr = new Screen();
 	vpScreens.push_back(scr);
-	Log->Print("[Scene::PushScreen] Pushed a new screen to the stack.");	
+	Log->Print("Pushed a new screen to the stack.");	
 }
 
 void SceneManager::PopScreen() {
@@ -20,7 +20,7 @@ void SceneManager::PopScreen() {
 	delete vpScreens.back();
 	vpScreens.pop_back();
 
-	Log->Print("[Scene::PopScreen] Deleted top screen.");
+	Log->Print("Deleted top screen.");
 }
 
 Screen* SceneManager::GetTopScreen() {
@@ -42,7 +42,7 @@ void SceneManager::SendInput(IEvent &e) {
 void SceneManager::Clear() {
 	while (!vpScreens.empty())
 		PopScreen();
-	Log->Print("[Scene::Clear] Cleared all screens.");
+	Log->Print("Cleared all screens.");
 }
 
 void SceneManager::Draw() {

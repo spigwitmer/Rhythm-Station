@@ -44,7 +44,7 @@ int main (int argc, char** argv) {
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); // 4x MSAA
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 32);
 	window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "", 0);
-	glfwSwapInterval(1);
+	glfwSwapInterval(0);
 	glewInit();
 
 	// make transparency work.
@@ -85,6 +85,11 @@ int main (int argc, char** argv) {
 	// Start running Lua and begin the first screen.
 	Game->Start();
 
+	// leave all these on, it doesn't seem to do any harm.
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+
 	double then = 0.0;
 	double max_delta = (1.0/60.0) * 3.0;
 	while (glfwIsWindow(window)) {
@@ -95,8 +100,10 @@ int main (int argc, char** argv) {
 		 * Update window title 4 times per second.
 		 * Do this before limiting the delta so it always reports the true value.
 		 */
-		if (int(then * 4) != int(now * 4))
+		if (int(then * 2) != int(now * 2)) {
 			Util::UpdateWindowTitle(delta);
+			Game->SetActive(glfwGetWindowParam(Game->GetWindow(), GLFW_ACTIVE));
+		}
 
 		// prevent large jumps.
 		if (delta > max_delta) {
@@ -116,6 +123,10 @@ int main (int argc, char** argv) {
 		Game->Update(delta);
 		Game->Render();
 	}
+
+	glDisableClientState(GL_NORMAL_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
 
 	Audio->Close();
 

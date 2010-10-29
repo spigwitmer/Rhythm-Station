@@ -3,7 +3,6 @@
 
 #include <GL/glfw3.h>
 #include <vector>
-#include "Object.h"
 
 class GameManager {
 public:
@@ -14,17 +13,19 @@ public:
 
 	bool IsDebugMode() { return m_debug; }
 	void SetDebugMode(bool debug) { m_debug = debug; }
+	void SetCurrentShader(GLuint _shader) { current_shader = _shader; }
+	GLuint GetCurrentShader() { return current_shader; }
+	void SetActive(bool active) { m_window_active = active; }
 
 	void Start();
 	void QueueRendering();
-	void AddObject(Object* object);
 	void Update(double delta);
 	void Render();
 
 private:
 	GLFWwindow m_window;
-	std::vector<Object*> m_objects;
-	bool m_debug, m_bFirstUpdate, m_bQueuedRender;
+	GLuint current_shader;
+	bool m_debug, m_bFirstUpdate, m_bQueuedRender, m_window_active;
 };
 
 extern GameManager* Game;

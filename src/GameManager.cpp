@@ -5,6 +5,7 @@
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "Logger.h"
+#include "Object.h"
 #include "Timer.h"
 #include <iostream>
 
@@ -12,7 +13,9 @@ GameManager* Game = NULL;
 Matrix* obj = NULL;
 Object* quad = NULL;
 
-GameManager::GameManager(GLFWwindow window) : m_debug(false), m_bFirstUpdate(true) {
+GameManager::GameManager(GLFWwindow window) :
+	current_shader(0), m_debug(false), m_bFirstUpdate(true),
+	m_window_active(true) {
 	m_window = window;
 
 	glfwEnable(window, GLFW_SYSTEM_KEYS); // cmd+q, alt+f4, etc.
@@ -37,16 +40,16 @@ void GameManager::QueueRendering() {
 }
 
 void GameManager::Update(double delta) {
-	m_objects = Resources->GetObjects();
-	for (int i = 0; i<m_objects.size(); i++)
-		m_objects[i]->Update(delta);
+	std::vector<Object*> vpObjects = Resources->GetObjects();
+	for (int i = 0; i<vpObjects.size(); i++)
+		vpObjects[i]->Update(delta);
 }
 
 void GameManager::Start() {
 	Scene->PushScreen();
 	quad = new Object();
 	quad->Translate(vec3(0,0,-50));
-	std::string path = File->GetFile("test_odd.png");
+	std::string path = File->GetFile("test.png");
 	if (File->FileExists(path))
 		quad->Load(path);
 	quad->Register();
@@ -55,7 +58,12 @@ void GameManager::Start() {
 }
 
 void GameManager::Render() {
-	if (!m_bQueuedRender && !m_bFirstUpdate) {
+	/*
+	 * Ideally, we would only redraw objects which need it, however this is still
+	 * useful when there isn't much going on.
+	 * TODO: also slow down when program is in the background.
+	 */
+	if (!m_bQueuedRender && !m_bFirstUpdate || !m_window_active) {
 		usleep(2500); // reduce CPU usage when not updating.
 		return;
 	}
@@ -64,15 +72,7 @@ void GameManager::Render() {
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_NORMAL_ARRAY);
-
 	Scene->Draw();
-
-	glDisableClientState(GL_NORMAL_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
 
 	glfwSwapBuffers();
 

@@ -6,6 +6,7 @@
 #include "Shader.h"
 #include "FileManager.h"
 #include "ResourceManager.h"
+#include "GameManager.h"
 
 std::string getShaderLog(GLuint obj) {
 	int infologLength = 0, charsWritten = 0;
@@ -152,6 +153,7 @@ void Shader::Reload() {
 	log = getProgramLog(ptr);
 	if (!log.empty()) {
 		Log->Print("Shader program log: " + log);
+		// TODO: handle this better.
 		Log->Print("catastrophic shader error. committing suicide.");
 		exit(-1);
 	}
@@ -164,7 +166,10 @@ void Shader::Reload() {
 }
 
 void Shader::Bind() {
-	glUseProgram(ptr);
+	if (ptr != Game->GetCurrentShader()) {
+		glUseProgram(ptr);
+		Game->SetCurrentShader(ptr);
+	}
 }
 
 void Shader::SetUniforms() {

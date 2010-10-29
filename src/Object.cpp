@@ -7,7 +7,7 @@
 #include "Logger.h"
 #include "PNGLoader.h"
 
-GLuint quad_vbo[2];
+static GLuint quad_vbo[2];
 
 #define OFFSET(P) (const GLvoid*) (sizeof(GLfloat) * (P))
 void GenerateQuadBuffers() {
@@ -74,7 +74,7 @@ void Object::Load(std::string _path) {
 			Log->Print("Loaded successfully.");
 			this->m_texture = tex;
 		}
-		m_mat.Translate(vec3((tex.width % 2) ? 0.5 : 0,(tex.height % 2) ? 0 : 0,0));
+//		m_mat.Translate(vec3((tex.width % 2) ? 0.5 : 0,(tex.height % 2) ? 0 : 0,0));
 		m_mat.Scale(vec3(tex.width/2,tex.height/2,1.0));
 	}
 	else if (!strcmp(ext, "obj")) {
