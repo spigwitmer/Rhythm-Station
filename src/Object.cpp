@@ -125,6 +125,7 @@ void Object::Update(double delta) {
 void Object::Draw() {
 	m_texture.Bind();
 
+	// TODO: only bind buffers if the same set isn't already bound.
 	if (!m_vbo) {
 		glBindBuffer(GL_ARRAY_BUFFER, quad_vbo[0]);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_vbo[1]);
@@ -133,11 +134,8 @@ void Object::Draw() {
 	m_shader.Bind();
 	m_shader.SetUniforms();
 
-	// TODO: possibly use UBO, on HW that supports it.
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
 
 	if (!m_vbo)
-		// TODO: figure out instancing
-//		glDrawElementsInstanced(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
 		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
 }
