@@ -1,7 +1,7 @@
 SLB.using(SLB)
 
-function Trace(message)
-	print(string.format("%s %s", TimeStamp(), message))
+function Trace(...)
+	print(TimeStamp() .. " " .. string.format(...))
 end
 
 local test_string = string.format("%s @ %ix%i",
