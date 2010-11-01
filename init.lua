@@ -1,9 +1,15 @@
 SLB.using(SLB)
 
+function Trace(message)
+	print(string.format("%s %s", TimeStamp(), message))
+end
+
 local test_string = string.format("%s @ %ix%i",
 	Version, ScreenWidth, ScreenHeight)
-print(TimeStamp() .. " " ..  test_string)
-print(TimeStamp() .. " Lua says hi!")
+
+Trace(test_string)
+Trace("Lua says hi!")
+
 
 -- note: the order of translate/scale/rotate and loading matters.
 -- this will be fixed soon.
