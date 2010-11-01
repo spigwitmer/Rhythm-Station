@@ -74,8 +74,8 @@ void Object::Load(std::string _path) {
 			Log->Print("Loaded successfully.");
 			this->m_texture = tex;
 		}
-//		m_mat.Translate(vec3((tex.width % 2) ? 0.5 : 0,(tex.height % 2) ? 0 : 0,0));
-		m_mat.Scale(vec3(tex.width/2,tex.height/2,1.0));
+//		m_matrix.Translate(vec3((tex.width % 2) ? 0.5 : 0,(tex.height % 2) ? 0 : 0,0));
+		m_matrix.Scale(vec3(tex.width/2,tex.height/2,1.0));
 	}
 	else if (!strcmp(ext, "obj")) {
 		Log->Print("Loading OBJ file...");
@@ -91,7 +91,7 @@ void Object::HandleMessage(std::string _msg) {
 }
 
 void Object::AddState() {
-	m_states["Init"].push_back(m_mat);
+	m_states["Init"].push_back(m_current);
 }
 
 void Object::Color(rgba col) {
@@ -101,20 +101,20 @@ void Object::Color(rgba col) {
 
 // TODO: add to tweens
 void Object::Translate(vec3 pos) {
-	m_mat.Translate(pos);
+	m_matrix.Translate(pos);
 }
 
 void Object::Rotate(vec3 rot) {
-	m_mat.Rotate(rot);
+	m_matrix.Rotate(rot);
 }
 
 void Object::Scale(vec3 scale) {
-	m_mat.Scale(scale);
+	m_matrix.Scale(scale);
 }
 
 // update tweens and stuff
 void Object::Update(double delta) {
-	m_shader.SetModelViewMatrix(&m_mat);
+	m_shader.SetModelViewMatrix(&m_matrix);
 
 	// TODO: only update when needed.
 	return;

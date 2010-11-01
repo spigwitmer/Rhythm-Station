@@ -13,6 +13,12 @@
 void GenerateQuadBuffers();
 void DeleteQuadBuffers();
 
+struct AnimationState {
+	Matrix matrix;
+	rgba color;
+	bool active;
+};
+
 class Object {
 public:
 	Object();
@@ -34,15 +40,16 @@ public:
 	void Update(double delta);
 	void Draw();
 
-	Matrix GetMatrix() { return m_mat; }
+	Matrix GetMatrix() { return m_matrix; }
 
 private:
 	GLuint m_vbo, m_ibo, m_color_uniform;
-	std::map<std::string, std::vector<Matrix> > m_states;
+	std::map<std::string, std::vector<AnimationState> > m_states;
 
+	AnimationState m_current;
 	rgba m_color;
 	Shader m_shader;
-	Matrix m_mat;
+	Matrix m_matrix;
 	Texture m_texture;
 	Timer m_timer;
 };
