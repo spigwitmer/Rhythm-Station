@@ -52,6 +52,7 @@ Shader::Shader() {
 
 Shader::~Shader() {
 	this->Unbind();
+
 	glDetachShader(ptr, vs);
 	glDetachShader(ptr, fs);
 
@@ -117,7 +118,7 @@ void Shader::Reload() {
 
 	glBindAttribLocation(ptr, VERTEX_ARRAY, "VPos");
 	glBindAttribLocation(ptr, COORD_ARRAY, "VCoords");
-//	glBindAttribLocation(ptr, NORMAL_ARRAY, "VNor");
+	glBindAttribLocation(ptr, NORMAL_ARRAY, "VNor");
 
 	glLinkProgram(ptr);
 
@@ -131,7 +132,7 @@ void Shader::Reload() {
 		Log->Print("Shader program log: " + log);
 		// TODO: handle this better.
 		Log->Print("catastrophic shader error. committing suicide.");
-		exit(-1);
+		exit(2);
 	}
 
 	this->Bind();
