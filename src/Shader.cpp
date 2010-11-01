@@ -45,33 +45,9 @@ Shader::Shader() {
 
 	m_model = new Matrix();
 	m_proj = new Matrix();
+
 	this->SetProjectionMatrix(g_projection_matrix);
-
-	const char* generic_vs[] = {
-		"attribute vec4 VPos;\n"
-		"attribute vec2 VCoords;\n"
-		"uniform mat4 ModelViewMatrix;\n"
-		"uniform mat4 ProjectionMatrix;\n"
-		"varying vec2 Coords;\n"
-		"\n"
-		"void main() {\n"
-		"	Coords = vec2(VCoords);\n"
-		"	gl_Position = ProjectionMatrix * ModelViewMatrix * VPos;\n"
-		"}\n"
-	};
-
-	const char* generic_fs[] = {
-		"uniform sampler2D Texture0;\n"
-		"uniform vec4 Color;\n"
-		"varying vec2 Coords;\n"
-		"\n"
-		"void main() {\n"
-		"	vec4 texture = texture2D(Texture0, Coords);\n"
-		"	gl_FragColor = texture * Color;\n"
-		"}\n"
-	};
-
-	this->Load(generic_vs, generic_fs);
+	this->LoadFromDisk("Data/Shaders/generic.vs", "Data/Shaders/generic.fs");
 }
 
 Shader::~Shader() {
@@ -86,11 +62,11 @@ Shader::~Shader() {
 }
 
 void Shader::SetModelViewMatrix(Matrix *mat) {
-	m_model->Load(mat->matrix);
+	m_model = mat;
 }
 
 void Shader::SetProjectionMatrix(Matrix *mat) {
-	m_proj->Load(mat->matrix);
+	m_proj = mat;
 }
 
 void Shader::LoadFromDisk(std::string _vs, std::string _fs) {
