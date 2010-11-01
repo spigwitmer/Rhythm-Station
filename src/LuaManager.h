@@ -17,6 +17,8 @@ public:
 	void PushString(std::string name, std::string value);
 	void PushNumber(std::string name, double value);
 
+	void Start();
+
 private:
 	lua_State *L;
 };

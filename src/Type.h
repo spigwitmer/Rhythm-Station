@@ -22,9 +22,7 @@ typedef uint64_t u64;
 typedef int64_t	i64;
 
 // from stepmania.
-struct vec2
-{
-public:
+struct vec2 {
 	vec2() {}
 	vec2(float xy ) { x = y = xy; }
 	vec2(const float * f)		{ x=f[0]; y=f[1]; }
@@ -58,9 +56,7 @@ public:
 	float x, y;
 };
 
-struct vec3
-{
-public:
+struct vec3 {
 	vec3() {}
 	vec3(vec2 xy) : z(0) { x = xy.x; y = xy.y; }
 	vec3(float xyz ) { x = y = z = xyz; }
@@ -107,9 +103,7 @@ public:
 	float x, y, z;
 };
 
-struct rgba
-{
-public:
+struct rgba {
 	rgba() {}
 	rgba(float _rgb)					{ r = g = b = _rgb; a = 1.0f; }
 	rgba(float _rgb, float _a)				{ r = g = b = _rgb; a = _a; }
@@ -162,5 +156,7 @@ struct Vertex {
 	}
 	float x, y, z, u, v;
 };
+
+void Type_Binding();
 
 #endif

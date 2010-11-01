@@ -2,6 +2,8 @@
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 
+#include "globals.h"
+
 // All the singletons (we init them here, should do static init?)
 #include "AudioManager.h"
 #include "FileManager.h"
@@ -36,6 +38,8 @@ namespace Util {
 	}
 }
 
+vec2 g_res;
+
 #ifndef DEBUG
 #ifdef _WIN32
 // TODO: Different main.
@@ -52,6 +56,11 @@ int main (int argc, char** argv) {
 	window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "", 0);
 	glfwSwapInterval(0);
 	glewInit();
+
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+	g_res.x = width;
+	g_res.y = height;
 
 	// Make transparency work!
 	glEnable(GL_BLEND);
@@ -90,6 +99,7 @@ int main (int argc, char** argv) {
 
 	// Start running Lua and begin the first screen.
 	Game->Start();
+	Lua->Start();
 
 	// Leave all these on, it doesn't seem to do any harm.
 	glEnableClientState(GL_VERTEX_ARRAY);

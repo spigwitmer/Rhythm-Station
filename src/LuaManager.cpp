@@ -5,6 +5,9 @@
 #include <iostream>
 #include <sstream>
 #include <ostream>
+#include <SLB/SLB.hpp>
+#include "Object.h"
+#include "Type.h"
 
 LuaManager* Lua = NULL;
 
@@ -39,11 +42,19 @@ int luafunc(lua_State *L) {
 LuaManager::LuaManager() {
 	L = lua_open();
 	luaL_openlibs(L);
+	SLB::Manager::getInstance().registerSLB(L);
+
+	// todo: automatically register classes
+	Type_Binding();
+	Object_Binding();
+
 	lua_register(L, "TimeStamp", luafunc);
 	PushInteger("ScreenWidth", 854);
 	PushInteger("ScreenHeight", 480);
 	PushString("Version", "Rhythm Station 0.03 [dev]");
+}
 
+void LuaManager::Start() {
 	std::string file = File->GetFile("init.lua");
 	file = File->GetFileContents(file);
 	luaL_dostring(L, file.c_str());

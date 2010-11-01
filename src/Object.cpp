@@ -2,6 +2,7 @@
 #include "globals.h"
 #include "Object.h"
 #include "GameManager.h"
+#include "FileManager.h"
 #include "SceneManager.h"
 #include "Screen.h"
 #include "Logger.h"
@@ -64,7 +65,8 @@ void Object::Register() {
 	scr->AddObject(this);
 }
 
-void Object::Load(std::string _path) {	
+void Object::Load(std::string _path) {
+	_path = File->GetFile(_path);
 	const char* ext = _path.substr(_path.size()-3, _path.size()).c_str();
 	if (!strcmp(ext, "png")) {
 		Log->Print("Loading PNG file...");
@@ -122,6 +124,13 @@ void Object::Update(double delta) {
 	Game->QueueRendering();
 }
 
+void Object::Perspective(float fov) {
+	Matrix mat;
+	mat.Perspective(fov, g_res.x/g_res.y, 1, 500);
+	mat.Print();
+	m_shader.SetProjectionMatrix(&mat);
+}
+
 void Object::Draw() {
 	m_texture.Bind();
 
@@ -138,4 +147,21 @@ void Object::Draw() {
 
 	if (!m_vbo)
 		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
+}
+
+// Lua
+#include <SLB/SLB.hpp>
+void Object_Binding() {
+	SLB::Class<Object>("Object")
+	// declares an empty constructor
+       .constructor()
+       .set("Load", &Object::Load)
+       .set("Translate", &Object::Translate3f)
+       .set("Rotate", &Object::Rotate3f)
+       .set("Scale", &Object::Scale3f)
+	.set("Color", &Object::Color4f)
+	.set("Perspective", &Object::Perspective)
+	.set("Register", &Object::Register);
+
+	Log->Print("Registered Object class");
 }

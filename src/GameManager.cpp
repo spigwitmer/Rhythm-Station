@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include "globals.h"
-#include "FileManager.h"
 #include "GameManager.h"
-#include "ResourceManager.h"
 #include "SceneManager.h"
 #include "Logger.h"
 #include "Object.h"
@@ -47,13 +45,6 @@ void GameManager::Update(double delta) {
 
 void GameManager::Start() {
 	Scene->PushScreen();
-	quad = new Object();
-	quad->Translate(vec3(0,0,-50));
-	std::string path = File->GetFile("test.png");
-	if (File->FileExists(path))
-		quad->Load(path);
-	quad->Register();
-
 	glClearColor(0.25, 0.25, 0.25, 1.0);
 }
 

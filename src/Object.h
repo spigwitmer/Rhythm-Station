@@ -6,6 +6,7 @@
 #include "Type.h"
 #include "Matrix.h"
 #include "Timer.h"
+#include "Tween.h"
 #include <vector>
 #include <map>
 
@@ -14,8 +15,12 @@ void GenerateQuadBuffers();
 void DeleteQuadBuffers();
 
 struct AnimationState {
+	TweenType tween_type;
+	double duration;
+
 	Matrix matrix;
 	rgba color;
+
 	bool active;
 };
 
@@ -33,6 +38,13 @@ public:
 	void Translate(vec3 pos);
 	void Rotate(vec3 rot);
 	void Scale(vec3 scale);
+
+	void Translate3f(float x, float y, float z) { Translate(vec3(x,y,z)); }
+	void Rotate3f(float x, float y, float z) { Rotate(vec3(x,y,z)); }
+	void Scale3f(float x, float y, float z) { Scale(vec3(x,y,z)); }
+	void Color4f(float r, float g, float b, float a) { m_color = rgba(r,g,b,a); }
+
+	void Perspective(float fov);
 
 	void AddState();
 
@@ -53,5 +65,7 @@ private:
 	Texture m_texture;
 	Timer m_timer;
 };
+
+void Object_Binding();
 
 #endif
