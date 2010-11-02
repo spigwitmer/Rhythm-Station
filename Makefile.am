@@ -84,7 +84,7 @@ extern/glfw3/src/x11/x11_window.c \
 extern/glfw3/include/GL/glext.h \
 extern/glfw3/include/GL/glfw3.h \
 extern/glfw3/include/GL/wglext.h
-libglfw3_a_CPPFLAGS = -Iextern/glfw3/src -Iextern/glfw3/src/x11
+libglfw3_a_CPPFLAGS = -Iextern/glfw3/include -Iextern/glfw3/src -Iextern/glfw3/src/x11
 
 #
 # Bundled SLB
@@ -163,13 +163,14 @@ extern/lua-5.1.4/src/lzio.h \
 extern/lua-5.1.4/src/print.c
 #extern/lua-5.1.4/src/lua.c 
 #extern/lua-5.1.4/src/luac.c
+liblua_a_CPPFLAGS = -Iextern/lua-5.1.4/src
 
 #
 # RStation binary
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) -lz libglfw3.a libslb.a
 rstation_SOURCES = $(RSTATION)
-rstation_CPPFLAGS = $(EXT_DEPENDS_CFLAGS) -Iextern/glfw3/include \-Iextern/glfw/src/x11 -DSLB_EXTERNAL_LUA -Iextern/slb-1.63/include
+rstation_CPPFLAGS = $(EXT_DEPENDS_CFLAGS) $(libglfw3_a_CPPFLAGS) $(libslb_a_CPPFLAGS)
 
 #
 # Optional bundled lua
@@ -181,7 +182,7 @@ libslb_a_CPPFLAGS += $(EXT_LUA_CFLAGS)
 else # WITH_BUNDLED_LUA
 noinst_LIBRARIES += liblua.a
 rstation_LDADD += liblua.a
-rstation_CPPFLAGS += -Iextern/lua-5.1.4/src
+rstation_CPPFLAGS += $(liblua_a_CPPFLAGS)
 libslb_a_LIBADD = liblua.a
-libslb_a_CPPFLAGS += -Iextern/lua-5.1.4/src
+libslb_a_CPPFLAGS += $(liblua_a_CPPFLAGS)
 endif
