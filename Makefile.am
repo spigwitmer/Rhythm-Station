@@ -2,7 +2,7 @@
 # Stuff to install
 #
 noinst_PROGRAMS = rstation
-noinst_LIBRARIES = libglfw3.a
+noinst_LIBRARIES = libglfw3.a libslb.a
 
 #
 # RStation sources
@@ -87,9 +87,27 @@ extern/glfw3/include/GL/wglext.h
 libglfw3_a_CPPFLAGS = -Iextern/glfw3/src -Iextern/glfw3/src/x11
 
 #
+# Bundled SLB
+#
+libslb_a_SOURCES = \
+extern/slb-1.63/src/Error.cpp \
+extern/slb-1.63/src/Hybrid.cpp \
+extern/slb-1.63/src/Object.cpp \
+extern/slb-1.63/src/LuaCall.cpp \
+extern/slb-1.63/src/Manager.cpp \
+extern/slb-1.63/src/Debug.cpp \
+extern/slb-1.63/src/ClassInfo.cpp \
+extern/slb-1.63/src/Table.cpp \
+extern/slb-1.63/src/FuncCall.cpp \
+extern/slb-1.63/src/Instance.cpp \
+extern/slb-1.63/src/Script.cpp \
+extern/slb-1.63/src/Iterator.cpp
+libslb_a_CPPFLAGS = -DSLB_EXTERNAL_LUA -Iextern/slb-1.63/include
+
+#
 # Bundled lua sources
 #
-BUNDLED_LUA = \
+liblua_a_SOURCES = \
 extern/lua-5.1.4/src/lapi.c \
 extern/lua-5.1.4/src/lapi.h \
 extern/lua-5.1.4/src/lauxlib.c \
@@ -149,9 +167,9 @@ extern/lua-5.1.4/src/print.c
 #
 # RStation binary
 # 
-rstation_LDADD  = $(EXT_DEPENDS_LIBS) -lz libglfw3.a
-rstation_SOURCES = $(RSTATION) $(GLFW3_SUBMODULE)
-rstation_CPPFLAGS = $(EXT_DEPENDS_CFLAGS) -Iextern/glfw3/include -Iextern/glfw/src/x11
+rstation_LDADD  = $(EXT_DEPENDS_LIBS) -lz libglfw3.a libslb.a
+rstation_SOURCES = $(RSTATION)
+rstation_CPPFLAGS = $(EXT_DEPENDS_CFLAGS) -Iextern/glfw3/include \-Iextern/glfw/src/x11 -DSLB_EXTERNAL_LUA -Iextern/slb-1.63/include
 
 #
 # Optional bundled lua
@@ -159,7 +177,11 @@ rstation_CPPFLAGS = $(EXT_DEPENDS_CFLAGS) -Iextern/glfw3/include -Iextern/glfw/s
 if !WITH_BUNDLED_LUA
 rstation_LDADD += $(EXT_LUA_LIBS)
 rstation_CPPFLAGS += $(EXT_LUA_CFLAGS)
+libslb_a_CPPFLAGS += $(EXT_LUA_CFLAGS)
 else # WITH_BUNDLED_LUA
-rstation_SOURCES += $(BUNDLED_LUA)
+noinst_LIBRARIES += liblua.a
+rstation_LDADD += liblua.a
 rstation_CPPFLAGS += -Iextern/lua-5.1.4/src
+libslb_a_LIBADD = liblua.a
+libslb_a_CPPFLAGS += -Iextern/lua-5.1.4/src
 endif
