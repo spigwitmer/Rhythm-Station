@@ -56,7 +56,7 @@ LuaManager::LuaManager() {
 
 void LuaManager::Start() {
 	std::string file = File->GetFile("init.lua");
-	file = File->GetFileContents(file);
+	file = "SLB.using(SLB)\n" + File->GetFileContents(file);
 	luaL_dostring(L, file.c_str());
 }
 

@@ -1,5 +1,3 @@
-SLB.using(SLB)
-
 function Trace(...)
 	print(TimeStamp() .. " " .. string.format(...))
 end
