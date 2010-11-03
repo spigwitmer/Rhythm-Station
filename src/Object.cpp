@@ -125,10 +125,10 @@ void Object::Update(double delta) {
 }
 
 void Object::Perspective(float fov) {
-	Matrix mat;
-	mat.Perspective(fov, g_res.x/g_res.y, 1, 500);
-	mat.Print();
-	m_shader.SetProjectionMatrix(&mat);
+	// leaks!
+	Matrix* mat = new Matrix();
+	mat->Perspective(60, 854.0/480.0, 1, 500);
+	m_shader.SetProjectionMatrix(mat);
 }
 
 void Object::Draw() {
@@ -153,7 +153,6 @@ void Object::Draw() {
 #include <SLB/SLB.hpp>
 void Object_Binding() {
 	SLB::Class<Object>("Object")
-	// declares an empty constructor
        .constructor()
        .set("Load", &Object::Load)
        .set("Translate", &Object::Translate3f)
