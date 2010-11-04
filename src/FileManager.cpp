@@ -58,9 +58,11 @@ void FileManager::SetWorkingDirectory() {
 
 std::string FileManager::GetWorkingDirectory() {
 	SetWorkingDirectory();
-	char path[1024] = "./";
-	getcwd(path, 1024);
-	return std::string(path) + "/";
+	char path[1024] = "";
+	if (getcwd(path, 1024) != NULL)
+		return std::string(path) + "/";
+	else
+		return std::string("./");
 }
 
 std::string FileManager::GetFile(std::string _path) {

@@ -27,7 +27,13 @@ Texture PNGLoader::Load(std::string _path) {
 		return Texture();
 	}
 
-	fread(&sig, sizeof(png_byte), 8, pngFile);
+	if (fread(&sig, sizeof(png_byte), 8, pngFile) < 8)
+	{
+		Log->Print("[PNGLoader::Load] Header of the file \"" + tex.path + "\" couldn't be fully read!");
+		fclose(pngFile);
+		return Texture();
+	}
+
 	if (png_sig_cmp(sig, 0, 8)) {
 		Log->Print("[PNGLoader::Load] File \"" + tex.path + "\" is not a valid png file!");
 		fclose(pngFile);
