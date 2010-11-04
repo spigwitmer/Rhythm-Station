@@ -41,7 +41,7 @@ void GameManager::QueueRendering() {
 
 void GameManager::Update(double delta) {
 	std::vector<Object*> vpObjects = Resources->GetObjects();
-	for (int i = 0; i<vpObjects.size(); i++)
+	for (unsigned int i = 0; i<vpObjects.size(); i++)
 		vpObjects[i]->Update(delta);
 }
 
@@ -56,7 +56,7 @@ void GameManager::Render() {
 	 * useful when there isn't much going on.
 	 * TODO: also slow down when program is in the background.
 	 */
-	if (!m_bQueuedRender && !m_bFirstUpdate || !m_window_active) {
+	if ((!m_bQueuedRender && !m_bFirstUpdate) || !m_window_active) {
 		usleep(2500); // reduce CPU usage when not updating.
 		return;
 	}
