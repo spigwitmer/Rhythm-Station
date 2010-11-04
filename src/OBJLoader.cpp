@@ -28,7 +28,7 @@ GLuint *OBJLoader::Load(string file) {
 	vector<MeshData> coords;
 
 	vector<string> data = split(file, '\n');
-	for (int i = 0; i<data.size(); i++) {
+	for (unsigned int i = 0; i<data.size(); i++) {
 		string line = chop(data[i], "#");
 		if (line.empty())
 			continue;
@@ -69,7 +69,7 @@ GLuint *OBJLoader::Load(string file) {
 			case 'f':
 				line = line.substr(2,line.size()-1);
 				lvec = split(line, ' ');
-				for (int i = 0; i<lvec.size(); i++) {
+				for (unsigned int i = 0; i<lvec.size(); i++) {
 					if (line.find("/") != string::npos) {
 						lvec2 = split(lvec[i], '/');
 						current.position = vertices[atoi(lvec2[0].c_str())-1].position;
