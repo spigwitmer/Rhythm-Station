@@ -26,7 +26,9 @@ GameManager::GameManager(GLFWwindow window) :
 }
 
 GameManager::~GameManager() {
-	delete g_projection_matrix, obj, quad;
+	delete g_projection_matrix;
+	delete obj;
+	delete quad;
 }
 
 GLFWwindow GameManager::GetWindow() {
