@@ -15,7 +15,7 @@ struct Texture {
 	void Unbind() { glBindTexture(GL_TEXTURE_2D, 0); }
 	GLuint ptr;
 	std::string path;
-	int width, height;
+	unsigned int width, height;
 };
 
 class ResourceManager {

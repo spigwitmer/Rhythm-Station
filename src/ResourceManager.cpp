@@ -25,13 +25,13 @@ std::vector<Object*> ResourceManager::GetObjects() {
 
 template <class T>
 void ResourceManager::Reload(std::vector<T*> obj) {
-	for (int i = 0; i<obj.size(); i++)
+	for (unsigned int i = 0; i<obj.size(); i++)
 		obj[i]->Reload();
 }
 
 template <class T>
 void ResourceManager::Delete(std::vector<T*> obj) {
-	for (int i = 0; i<obj.size(); i++)
+	for (unsigned int i = 0; i<obj.size(); i++)
 		delete obj[i];
 }
 

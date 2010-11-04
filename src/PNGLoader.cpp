@@ -89,7 +89,7 @@ Texture PNGLoader::Load(std::string _path) {
 	row_pointers = png_get_rows(png_ptr, info_ptr);
 
 	pixels = new GLubyte[rowsize * tex.height];
-	for (unsigned i = 0; i < tex.height; i++)
+	for (unsigned int i = 0; i < tex.height; i++)
 		memcpy(&pixels[i*rowsize], row_pointers[i], rowsize);
 
 	// upload texture to GPU
