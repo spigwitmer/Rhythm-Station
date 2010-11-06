@@ -60,8 +60,8 @@ shakesoda+rstation at gmail dot com.
     - autotools
     - cmake (glfw3 git source needs this)
     - gl, glew
-    - libpng14, zlib
-    - openal, freealut, vorbisfile
+    - libpng (zlib as dependency of libpng)
+    - openal, vorbisfile
     - >=lua-5.1 (optional, if you don't have it just 
       pass --with-bundled-lua to the configure script)
   2. Clone current git head with command:
