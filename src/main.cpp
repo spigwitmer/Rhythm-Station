@@ -101,11 +101,6 @@ int main (int argc, char** argv) {
 	Game->Start();
 	Lua->Start();
 
-	// Leave all these on, it doesn't seem to do any harm.
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_NORMAL_ARRAY);
-
 	double then = 0.0;
 	double max_delta = (1.0/60.0) * 3.0;
 	while (glfwIsWindow(window)) {
@@ -134,10 +129,6 @@ int main (int argc, char** argv) {
 		Game->Update(delta);
 		Game->Render();
 	}
-
-	glDisableClientState(GL_NORMAL_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
 
 	Audio->Close();
 
