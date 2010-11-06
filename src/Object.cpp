@@ -136,14 +136,6 @@ void Object::Draw() {
 	if (!m_vbo) {
 		glBindBuffer(GL_ARRAY_BUFFER, quad_vbo[0]);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_vbo[1]);
-
-		// these should still be enabled from earlier.
-//		glEnableVertexAttribArray(VERTEX_ARRAY);
-		glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, STRIDE, OFFSET(0));
-//		glEnableVertexAttribArray(COORD_ARRAY);
-		glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, STRIDE, OFFSET(3));
-//		glEnableVertexAttribArray(NORMAL_ARRAY);
-		glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, STRIDE, OFFSET(5));
 	}
 
 	m_shader.Bind();
@@ -161,11 +153,11 @@ void Object::Draw() {
 #include <SLB/SLB.hpp>
 void Object_Binding() {
 	SLB::Class<Object>("Object")
-       .constructor()
-       .set("Load", &Object::Load)
-       .set("Translate", &Object::Translate3f)
-       .set("Rotate", &Object::Rotate3f)
-       .set("Scale", &Object::Scale3f)
+	.constructor()
+	.set("Load", &Object::Load)
+	.set("Translate", &Object::Translate3f)
+	.set("Rotate", &Object::Rotate3f)
+	.set("Scale", &Object::Scale3f)
 	.set("Color", &Object::Color4f)
 	.set("Perspective", &Object::Perspective)
 	.set("Register", &Object::Register);
