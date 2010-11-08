@@ -10,10 +10,6 @@
 #include <vector>
 #include <map>
 
-// the fallback buffer used by sprites and quads
-void GenerateQuadBuffers();
-void DeleteQuadBuffers();
-
 struct AnimationState {
 	TweenType tween_type;
 	double duration;
@@ -53,10 +49,14 @@ public:
 private:
 	void QueueUpdate();
 
-	GLuint m_vbo, m_ibo, m_color_uniform;
+	void CreateBuffers();
+	void DeleteBuffers();
+
+	GLuint m_vbo[2], m_color_uniform;
 	std::map<std::string, std::vector<AnimationState> > m_states;
 
 	bool m_bNeedsUpdate;
+	int m_vertices;
 
 	AnimationState	m_current;
 	rgba		m_color;

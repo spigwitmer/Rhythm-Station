@@ -8,11 +8,20 @@
 #include "Logger.h"
 #include "PNGLoader.h"
 
-// look into putting this in object itself, I don't believe it's an issue to end up with
-// a (potentially) large amount of buffers.
-static GLuint quad_vbo[2];
+Object::Object() : m_color(rgba(1.0)), m_rot(vec3(0.0)), m_pos(vec3(0.0)),
+	m_scale(vec3(0.0)), m_texture(), m_bNeedsUpdate(true) {
+	m_shader.SetProjectionMatrix(g_projection_matrix);
+	m_shader.Bind();
+	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
+	CreateBuffers();
+}
+
+Object::~Object() {
+	DeleteBuffers();
+}
+
 #define OFFSET(P) (const GLvoid*) (sizeof(GLfloat) * (P))
-void GenerateQuadBuffers() {
+void Object::CreateBuffers() {
 	// triangle strip quad
 	GLfloat verts[] = {
 		// pos	tex	 normals
@@ -24,13 +33,14 @@ void GenerateQuadBuffers() {
 	// far more useful on complex objects.
 	GLubyte indices[] = { 0, 1, 2, 3 };	
 	GLubyte stride = sizeof(GLfloat) * (3+2+3);
+	m_vertices = int(sizeof(indices) / sizeof(GLubyte));
 
-	glGenBuffers(2, quad_vbo);
+	glGenBuffers(2, m_vbo);
 
-	glBindBuffer(GL_ARRAY_BUFFER, quad_vbo[0]);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_vbo[1]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// vertices
@@ -47,18 +57,8 @@ void GenerateQuadBuffers() {
 }
 #undef OFFSET
 
-void DeleteQuadBuffers() {
-	glDeleteBuffers(2, quad_vbo);
-}
-
-Object::Object() : m_vbo(0), m_color(rgba(1.0)), m_texture(), m_bNeedsUpdate(true) {
-	m_shader.SetProjectionMatrix(g_projection_matrix);
-	m_shader.Bind();
-	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
-}
-
-Object::~Object() {
-	// nothing to clean up yet
+void Object::DeleteBuffers() {
+	glDeleteBuffers(2, m_vbo);
 }
 
 void Object::Register() {
@@ -143,19 +143,15 @@ void Object::Update(double delta) {
 void Object::Draw() {
 	m_texture.Bind();
 
-	// TODO: only bind buffers if the same set isn't already bound.
-	if (!m_vbo) {
-		glBindBuffer(GL_ARRAY_BUFFER, quad_vbo[0]);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_vbo[1]);
-	}
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
 
 	m_shader.Bind();
 	m_shader.SetUniforms();
 
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
 
-	if (!m_vbo)
-		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
+	glDrawElements(GL_TRIANGLE_STRIP, m_vertices, GL_UNSIGNED_BYTE, NULL);
 }
 
 // Lua

@@ -115,6 +115,17 @@ Texture PNGLoader::Load(std::string _path) {
 			glformat = 0; // this shouldn't happen.
 			break;
 	}
+
+	// log some stats
+	std::ostringstream stream;
+	stream << "Texture upload: ";
+
+	char buf[256];
+	sprintf(buf, "resolution = %dx%d, channels = %d.", tex.width, tex.height, components);
+	stream << buf;
+
+	Log->Print(stream.str());
+
 	glTexImage2D(GL_TEXTURE_2D, 0, components, tex.width, tex.height, 0, glformat, GL_UNSIGNED_BYTE, pixels);
 	glBindTexture(GL_TEXTURE_2D, 0);
 

@@ -80,9 +80,6 @@ int main (int argc, char** argv) {
 
 	Audio->Open();
 
-	// Generate the VBO used by quads.
-	GenerateQuadBuffers();
-
 	std::ostringstream extensions;
 	extensions << "Available OpenGL extensions: \n";
 	extensions << glGetString(GL_EXTENSIONS);
@@ -131,8 +128,6 @@ int main (int argc, char** argv) {
 	}
 
 	Audio->Close();
-
-	DeleteQuadBuffers();
 
 	delete Scene;
 	delete Lua;
