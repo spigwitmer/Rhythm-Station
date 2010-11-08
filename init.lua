@@ -20,10 +20,9 @@ Trace("Lua says hi!")
 
 -- yes, the infamous LoadActor from StepMania.
 spr = LoadActor("test.png")
-spr:Translate(-100,0,-100)
+spr:Translate(-160,0,0)
 spr:Scale(0.5,0.5,0.5)
 
 spr = LoadActor("test.png")
-spr:Translate(100,0,-200)
+spr:Translate(160,0,0)
 spr:Scale(0.5,0.5,0.5)
-spr:Perspective(60)

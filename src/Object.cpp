@@ -8,10 +8,10 @@
 #include "Logger.h"
 #include "PNGLoader.h"
 
+// look into putting this in object itself, I don't believe it's an issue to end up with
+// a (potentially) large amount of buffers.
 static GLuint quad_vbo[2];
-
 #define OFFSET(P) (const GLvoid*) (sizeof(GLfloat) * (P))
-#define STRIDE (sizeof(GLfloat) * (3+2+3))
 void GenerateQuadBuffers() {
 	// triangle strip quad
 	GLfloat verts[] = {
@@ -21,7 +21,9 @@ void GenerateQuadBuffers() {
 		-1,  1, 0,	0, 1,	 0, 0, 0,
 		 1,  1, 0,	1, 1,	 0, 0, 0,
 	};
-	GLubyte indices[] = { 0, 1, 2, 3 };
+	// far more useful on complex objects.
+	GLubyte indices[] = { 0, 1, 2, 3 };	
+	GLubyte stride = sizeof(GLfloat) * (3+2+3);
 
 	glGenBuffers(2, quad_vbo);
 
@@ -33,16 +35,17 @@ void GenerateQuadBuffers() {
 
 	// vertices
 	glEnableVertexAttribArray(VERTEX_ARRAY);
-	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, STRIDE, OFFSET(0));
+	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(0));
 
 	// coords
 	glEnableVertexAttribArray(COORD_ARRAY);
-	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, STRIDE, OFFSET(3));
+	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, OFFSET(3));
 
 	// normals
 	glEnableVertexAttribArray(NORMAL_ARRAY);
-	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, STRIDE, OFFSET(5));
+	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(5));
 }
+#undef OFFSET
 
 void DeleteQuadBuffers() {
 	glDeleteBuffers(2, quad_vbo);
@@ -154,8 +157,6 @@ void Object::Draw() {
 	if (!m_vbo)
 		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
 }
-#undef OFFSET
-#undef STRIDE
 
 // Lua
 #include <SLB/SLB.hpp>
