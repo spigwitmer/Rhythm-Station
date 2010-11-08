@@ -48,7 +48,7 @@ void DeleteQuadBuffers() {
 	glDeleteBuffers(2, quad_vbo);
 }
 
-Object::Object() : m_vbo(0), m_color(rgba(1.0)), m_texture() {
+Object::Object() : m_vbo(0), m_color(rgba(1.0)), m_texture(), m_bNeedsUpdate(true) {
 	m_shader.SetProjectionMatrix(g_projection_matrix);
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
@@ -63,6 +63,10 @@ void Object::Register() {
 	scr->AddObject(this);
 }
 
+void Object::QueueUpdate() {
+	m_bNeedsUpdate = true;
+}
+
 void Object::Load(std::string _path) {
 	_path = File->GetFile(_path);
 	const char* ext = _path.substr(_path.size()-3, _path.size()).c_str();
@@ -72,10 +76,8 @@ void Object::Load(std::string _path) {
 		Texture tex = png.Load(_path);
 		if (tex.ptr != 0) {
 			Log->Print("Loaded successfully.");
-			this->m_texture = tex;
+			m_texture = tex;
 		}
-//		m_matrix.Translate(vec3((tex.width % 2) ? 0 : 0.5,(tex.height % 2) ? 0 : 0.5,0));
-		m_matrix.Scale(vec3(tex.width/2,tex.height/2,1.0));
 	}
 	else if (!strcmp(ext, "obj")) {
 		Log->Print("Loading OBJ file...");
@@ -84,6 +86,7 @@ void Object::Load(std::string _path) {
 	else
 		Log->Print("Unknown file type.");
 
+	QueueUpdate();
 }
 
 void Object::HandleMessage(std::string _msg) {
@@ -96,20 +99,24 @@ void Object::AddState() {
 
 void Object::Color(rgba col) {
 	m_color = col;
+	QueueUpdate();
 }
 
 
 // TODO: add to tweens
 void Object::Translate(vec3 pos) {
-	m_matrix.Translate(pos);
+	m_pos = pos;
+	QueueUpdate();
 }
 
 void Object::Rotate(vec3 rot) {
-	m_matrix.Rotate(rot);
+	m_rot = rot;
+	QueueUpdate();
 }
 
 void Object::Scale(vec3 scale) {
-	m_matrix.Scale(scale);
+	m_scale = scale;
+	QueueUpdate();
 }
 
 // update tweens and stuff
@@ -117,16 +124,17 @@ void Object::Update(double delta) {
 	m_shader.SetModelViewMatrix(&m_matrix);
 
 	// TODO: only update when needed.
-	return;
+	if (!m_bNeedsUpdate)
+		return;
+	
+	m_matrix.LoadIdentity();
+	m_matrix.Translate(m_pos);
+	m_matrix.Scale(m_scale);
+	m_matrix.Scale(m_texture.width/2.0f, m_texture.height/2.0f, 1.0);
+	m_matrix.Rotate(m_rot);
+	m_bNeedsUpdate = false;
 
 	Game->QueueRendering();
-}
-
-void Object::Perspective(float fov) {
-	// leaks!
-	Matrix* mat = new Matrix();
-	mat->Perspective(60, 854.0/480.0, 1, 500);
-	m_shader.SetProjectionMatrix(mat);
 }
 
 void Object::Draw() {
@@ -159,7 +167,6 @@ void Object_Binding() {
 	.set("Rotate", &Object::Rotate3f)
 	.set("Scale", &Object::Scale3f)
 	.set("Color", &Object::Color4f)
-	.set("Perspective", &Object::Perspective)
 	.set("Register", &Object::Register);
 
 	Log->Print("Registered Object class");

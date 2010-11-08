@@ -59,8 +59,7 @@ int main (int argc, char** argv) {
 
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
-	g_res.x = width;
-	g_res.y = height;
+	g_res = vec2(width, height);
 
 	// Make transparency work!
 	glEnable(GL_BLEND);
@@ -89,6 +88,7 @@ int main (int argc, char** argv) {
 	extensions << glGetString(GL_EXTENSIONS);
 	Log->Print(extensions.str());
 
+	// move this elsewhere
 	// Is this only available on windows?
 	if (GLEW_NV_framebuffer_multisample_coverage)
 		Log->Print("CSAA Supported.");
