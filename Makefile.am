@@ -26,6 +26,7 @@ src/ResourceManager.cpp \
 src/SceneManager.cpp \
 src/Screen.cpp \
 src/Shader.cpp \
+src/Sound.cpp \
 src/StringUtils.cpp \
 src/Timer.cpp \
 src/Tween.cpp \
