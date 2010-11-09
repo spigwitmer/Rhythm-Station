@@ -9,6 +9,15 @@ function LoadActor(filename)
 	return obj
 end
 
+--[[
+function LoadSound(filename)
+	snd = Sound()
+	snd:Load(filename)
+	snd:Register()
+	return snd
+end
+--]]
+
 local test_string = string.format("%s @ %ix%i",
 	Version, ScreenWidth, ScreenHeight)
 
@@ -26,3 +35,8 @@ spr:Scale(0.5,0.5,0.5)
 spr = LoadActor("test.png")
 spr:Translate(160,0,0)
 spr:Scale(0.5,0.5,0.5)
+
+--[[
+sound = LoadSound("test.ogg")
+sound:Play()
+--]]
