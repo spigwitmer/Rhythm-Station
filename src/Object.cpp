@@ -8,11 +8,20 @@
 #include "Logger.h"
 #include "PNGLoader.h"
 
-static GLuint quad_vbo[2];
+Object::Object() : m_color(rgba(1.0)), m_rot(vec3(0.0)), m_pos(vec3(0.0)),
+	m_scale(vec3(0.0)), m_texture(), m_bNeedsUpdate(true) {
+	m_shader.SetProjectionMatrix(g_projection_matrix);
+	m_shader.Bind();
+	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
+	CreateBuffers();
+}
+
+Object::~Object() {
+	DeleteBuffers();
+}
 
 #define OFFSET(P) (const GLvoid*) (sizeof(GLfloat) * (P))
-#define STRIDE (sizeof(GLfloat) * (3+2+3))
-void GenerateQuadBuffers() {
+void Object::CreateBuffers() {
 	// triangle strip quad
 	GLfloat verts[] = {
 		// pos	tex	 normals
@@ -21,46 +30,44 @@ void GenerateQuadBuffers() {
 		-1,  1, 0,	0, 1,	 0, 0, 0,
 		 1,  1, 0,	1, 1,	 0, 0, 0,
 	};
-	GLubyte indices[] = { 0, 1, 2, 3 };
+	// far more useful on complex objects.
+	GLubyte indices[] = { 0, 1, 2, 3 };	
+	GLubyte stride = sizeof(GLfloat) * (3+2+3);
+	m_vertices = int(sizeof(indices) / sizeof(GLubyte));
 
-	glGenBuffers(2, quad_vbo);
+	glGenBuffers(2, m_vbo);
 
-	glBindBuffer(GL_ARRAY_BUFFER, quad_vbo[0]);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_vbo[1]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// vertices
 	glEnableVertexAttribArray(VERTEX_ARRAY);
-	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, STRIDE, OFFSET(0));
+	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(0));
 
 	// coords
 	glEnableVertexAttribArray(COORD_ARRAY);
-	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, STRIDE, OFFSET(3));
+	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, OFFSET(3));
 
 	// normals
 	glEnableVertexAttribArray(NORMAL_ARRAY);
-	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, STRIDE, OFFSET(5));
+	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(5));
 }
+#undef OFFSET
 
-void DeleteQuadBuffers() {
-	glDeleteBuffers(2, quad_vbo);
-}
-
-Object::Object() : m_vbo(0), m_color(rgba(1.0)), m_texture() {
-	m_shader.SetProjectionMatrix(g_projection_matrix);
-	m_shader.Bind();
-	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
-}
-
-Object::~Object() {
-	// nothing to clean up yet
+void Object::DeleteBuffers() {
+	glDeleteBuffers(2, m_vbo);
 }
 
 void Object::Register() {
 	Screen* scr = Scene->GetTopScreen();
 	scr->AddObject(this);
+}
+
+void Object::QueueUpdate() {
+	m_bNeedsUpdate = true;
 }
 
 void Object::Load(std::string _path) {
@@ -72,10 +79,8 @@ void Object::Load(std::string _path) {
 		Texture tex = png.Load(_path);
 		if (tex.ptr != 0) {
 			Log->Print("Loaded successfully.");
-			this->m_texture = tex;
+			m_texture = tex;
 		}
-//		m_matrix.Translate(vec3((tex.width % 2) ? 0 : 0.5,(tex.height % 2) ? 0 : 0.5,0));
-		m_matrix.Scale(vec3(tex.width/2,tex.height/2,1.0));
 	}
 	else if (!strcmp(ext, "obj")) {
 		Log->Print("Loading OBJ file...");
@@ -84,6 +89,7 @@ void Object::Load(std::string _path) {
 	else
 		Log->Print("Unknown file type.");
 
+	QueueUpdate();
 }
 
 void Object::HandleMessage(std::string _msg) {
@@ -96,20 +102,24 @@ void Object::AddState() {
 
 void Object::Color(rgba col) {
 	m_color = col;
+	QueueUpdate();
 }
 
 
 // TODO: add to tweens
 void Object::Translate(vec3 pos) {
-	m_matrix.Translate(pos);
+	m_pos = pos;
+	QueueUpdate();
 }
 
 void Object::Rotate(vec3 rot) {
-	m_matrix.Rotate(rot);
+	m_rot = rot;
+	QueueUpdate();
 }
 
 void Object::Scale(vec3 scale) {
-	m_matrix.Scale(scale);
+	m_scale = scale;
+	QueueUpdate();
 }
 
 // update tweens and stuff
@@ -117,37 +127,32 @@ void Object::Update(double delta) {
 	m_shader.SetModelViewMatrix(&m_matrix);
 
 	// TODO: only update when needed.
-	return;
+	if (!m_bNeedsUpdate)
+		return;
+	
+	m_matrix.LoadIdentity();
+	m_matrix.Translate(m_pos);
+	m_matrix.Scale(m_scale);
+	m_matrix.Scale(m_texture.width/2.0f, m_texture.height/2.0f, 1.0);
+	m_matrix.Rotate(m_rot);
+	m_bNeedsUpdate = false;
 
 	Game->QueueRendering();
-}
-
-void Object::Perspective(float fov) {
-	// leaks!
-	Matrix* mat = new Matrix();
-	mat->Perspective(60, 854.0/480.0, 1, 500);
-	m_shader.SetProjectionMatrix(mat);
 }
 
 void Object::Draw() {
 	m_texture.Bind();
 
-	// TODO: only bind buffers if the same set isn't already bound.
-	if (!m_vbo) {
-		glBindBuffer(GL_ARRAY_BUFFER, quad_vbo[0]);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad_vbo[1]);
-	}
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
 
 	m_shader.Bind();
 	m_shader.SetUniforms();
 
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
 
-	if (!m_vbo)
-		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
+	glDrawElements(GL_TRIANGLE_STRIP, m_vertices, GL_UNSIGNED_BYTE, NULL);
 }
-#undef OFFSET
-#undef STRIDE
 
 // Lua
 #include <SLB/SLB.hpp>
@@ -159,7 +164,6 @@ void Object_Binding() {
 	.set("Rotate", &Object::Rotate3f)
 	.set("Scale", &Object::Scale3f)
 	.set("Color", &Object::Color4f)
-	.set("Perspective", &Object::Perspective)
 	.set("Register", &Object::Register);
 
 	Log->Print("Registered Object class");

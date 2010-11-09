@@ -36,6 +36,10 @@
 		EE07CE3E127A279000AAA31F /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0E127A279000AAA31F /* Table.cpp */; };
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
+		EE41FEC91288A271001F0C56 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE41FEC71288A271001F0C56 /* Sound.cpp */; };
+		EE41FED91288A6CB001F0C56 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED61288A6CB001F0C56 /* libogg.a */; };
+		EE41FEDA1288A6CC001F0C56 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED71288A6CB001F0C56 /* libvorbis.a */; };
+		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
 		EE7814931271FFAE00B01960 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7814911271FFAE00B01960 /* Tween.cpp */; };
 		EE7815121272144800B01960 /* OBJLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE78150E1272144800B01960 /* OBJLoader.cpp */; };
@@ -181,6 +185,11 @@
 		EE07CE0E127A279000AAA31F /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
 		EE0A64231270439C00F5F134 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "glew-1.5.6/src/glew.c"; sourceTree = "<group>"; };
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
+		EE41FEC71288A271001F0C56 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
+		EE41FEC81288A271001F0C56 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		EE41FED61288A6CB001F0C56 /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = src/osx/libogg.a; sourceTree = "<group>"; };
+		EE41FED71288A6CB001F0C56 /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = src/osx/libvorbis.a; sourceTree = "<group>"; };
+		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		EE7814911271FFAE00B01960 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
 		EE7814921271FFAE00B01960 /* Tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tween.h; sourceTree = "<group>"; };
@@ -345,6 +354,9 @@
 				EE915EA01255D7B200F0B0B3 /* OpenGL.framework in Frameworks */,
 				EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */,
 				EEAB1B18126F5DAF004FE58D /* libfreetype.a in Frameworks */,
+				EE41FED91288A6CB001F0C56 /* libogg.a in Frameworks */,
+				EE41FEDA1288A6CC001F0C56 /* libvorbis.a in Frameworks */,
+				EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +408,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EE41FED61288A6CB001F0C56 /* libogg.a */,
+				EE41FED71288A6CB001F0C56 /* libvorbis.a */,
+				EE41FED81288A6CB001F0C56 /* libvorbisfile.a */,
 				EEAB1B17126F5DAF004FE58D /* libfreetype.a */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				EE915DE21255CB9300F0B0B3 /* Cocoa.framework */,
@@ -537,6 +552,8 @@
 				EEC52EBA1273DC390064054A /* Screen.h */,
 				EE915F81125669ED00F0B0B3 /* Shader.cpp */,
 				EE915F80125669ED00F0B0B3 /* Shader.h */,
+				EE41FEC71288A271001F0C56 /* Sound.cpp */,
+				EE41FEC81288A271001F0C56 /* Sound.h */,
 				EEA552D5125A80920065F811 /* Type.cpp */,
 				EEA552D6125A80920065F811 /* Type.h */,
 			);
@@ -896,6 +913,7 @@
 				EE07CE3B127A279000AAA31F /* Object.cpp in Sources */,
 				EE07CE3C127A279000AAA31F /* Script.cpp in Sources */,
 				EE07CE3E127A279000AAA31F /* Table.cpp in Sources */,
+				EE41FEC91288A271001F0C56 /* Sound.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,6 +955,7 @@
 					/opt/local/lib,
 					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/i386\"",
 					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/x86_64\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "Rhythm-Station";
 			};
@@ -959,6 +978,7 @@
 					/opt/local/lib,
 					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/i386\"",
 					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/x86_64\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "Rhythm-Station";
 			};
