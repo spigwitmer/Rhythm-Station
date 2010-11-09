@@ -8,8 +8,8 @@
 #include "Logger.h"
 #include "PNGLoader.h"
 
-Object::Object() : m_color(rgba(1.0)), m_rot(vec3(0.0)), m_pos(vec3(0.0)),
-	m_scale(vec3(0.0)), m_texture(), m_bNeedsUpdate(true) {
+Object::Object() : m_bNeedsUpdate(true), m_color(rgba(1.0)), m_texture(),
+	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0)) {
 	m_shader.SetProjectionMatrix(g_projection_matrix);
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
