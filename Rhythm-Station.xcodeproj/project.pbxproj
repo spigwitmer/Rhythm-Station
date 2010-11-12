@@ -37,19 +37,13 @@
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
 		EE41FEC91288A271001F0C56 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE41FEC71288A271001F0C56 /* Sound.cpp */; };
-		EE41FED91288A6CB001F0C56 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED61288A6CB001F0C56 /* libogg.a */; };
-		EE41FEDA1288A6CC001F0C56 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED71288A6CB001F0C56 /* libvorbis.a */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
 		EE7814931271FFAE00B01960 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7814911271FFAE00B01960 /* Tween.cpp */; };
 		EE7815121272144800B01960 /* OBJLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE78150E1272144800B01960 /* OBJLoader.cpp */; };
 		EE7815131272144800B01960 /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7815101272144800B01960 /* StringUtils.cpp */; };
-		EE915DE31255CB9300F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
-		EE915DE51255CB9300F0B0B3 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE41255CB9300F0B0B3 /* IOKit.framework */; };
-		EE915DE71255CB9300F0B0B3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE61255CB9300F0B0B3 /* OpenGL.framework */; };
 		EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
 		EE915E511255CD9500F0B0B3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915E501255CD9500F0B0B3 /* main.cpp */; };
-		EE915E9D1255D7A600F0B0B3 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DDF1255CB7B00F0B0B3 /* libglfw3.a */; };
 		EE915EA01255D7B200F0B0B3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE61255CB9300F0B0B3 /* OpenGL.framework */; };
 		EE915F481256471E00F0B0B3 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915F471256471E00F0B0B3 /* GameManager.cpp */; };
 		EE915F7E125668C600F0B0B3 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915F7D125668C600F0B0B3 /* Object.cpp */; };
@@ -111,25 +105,26 @@
 		EEC52E441273803E0064054A /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52CA21273803E0064054A /* zutil.c */; };
 		EEC52EBB1273DC390064054A /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC52EB91273DC390064054A /* Screen.cpp */; };
 		EEC52EBE1273DC420064054A /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC52EBC1273DC420064054A /* SceneManager.cpp */; };
-		EEC52F99127559C40064054A /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F68127559C40064054A /* cocoa_enable.m */; };
-		EEC52F9A127559C40064054A /* cocoa_fullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F69127559C40064054A /* cocoa_fullscreen.m */; };
-		EEC52F9B127559C40064054A /* cocoa_gamma.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6A127559C40064054A /* cocoa_gamma.m */; };
-		EEC52F9C127559C40064054A /* cocoa_glext.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6B127559C40064054A /* cocoa_glext.m */; };
-		EEC52F9D127559C40064054A /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6C127559C40064054A /* cocoa_init.m */; };
-		EEC52F9E127559C40064054A /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6D127559C40064054A /* cocoa_joystick.m */; };
-		EEC52F9F127559C40064054A /* cocoa_time.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6E127559C40064054A /* cocoa_time.m */; };
-		EEC52FA0127559C40064054A /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6F127559C40064054A /* cocoa_window.m */; };
-		EEC52FA3127559C40064054A /* enable.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F73127559C40064054A /* enable.c */; };
-		EEC52FA4127559C40064054A /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F74127559C40064054A /* error.c */; };
-		EEC52FA5127559C40064054A /* fullscreen.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F75127559C40064054A /* fullscreen.c */; };
-		EEC52FA6127559C40064054A /* gamma.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F76127559C40064054A /* gamma.c */; };
-		EEC52FA7127559C40064054A /* glext.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F77127559C40064054A /* glext.c */; };
-		EEC52FA8127559C40064054A /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F78127559C40064054A /* init.c */; };
-		EEC52FA9127559C40064054A /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F79127559C40064054A /* input.c */; };
-		EEC52FAA127559C40064054A /* joystick.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7B127559C40064054A /* joystick.c */; };
-		EEC52FAB127559C40064054A /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7C127559C40064054A /* time.c */; };
-		EEC52FB7127559C40064054A /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F8A127559C40064054A /* window.c */; };
 		EEC530491275803E0064054A /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = EEC530481275803E0064054A /* test.png */; };
+		EEC8D81F128DB44D00351601 /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F68127559C40064054A /* cocoa_enable.m */; };
+		EEC8D820128DB44D00351601 /* cocoa_fullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F69127559C40064054A /* cocoa_fullscreen.m */; };
+		EEC8D821128DB44D00351601 /* cocoa_gamma.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6A127559C40064054A /* cocoa_gamma.m */; };
+		EEC8D822128DB44D00351601 /* cocoa_glext.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6B127559C40064054A /* cocoa_glext.m */; };
+		EEC8D823128DB44D00351601 /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6C127559C40064054A /* cocoa_init.m */; };
+		EEC8D824128DB44D00351601 /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6D127559C40064054A /* cocoa_joystick.m */; };
+		EEC8D825128DB44D00351601 /* cocoa_time.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6E127559C40064054A /* cocoa_time.m */; };
+		EEC8D826128DB44D00351601 /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6F127559C40064054A /* cocoa_window.m */; };
+		EEC8D827128DB44D00351601 /* enable.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F73127559C40064054A /* enable.c */; };
+		EEC8D828128DB44D00351601 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F74127559C40064054A /* error.c */; };
+		EEC8D829128DB44D00351601 /* fullscreen.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F75127559C40064054A /* fullscreen.c */; };
+		EEC8D82A128DB44D00351601 /* gamma.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F76127559C40064054A /* gamma.c */; };
+		EEC8D82B128DB44D00351601 /* glext.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F77127559C40064054A /* glext.c */; };
+		EEC8D82C128DB44D00351601 /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F78127559C40064054A /* init.c */; };
+		EEC8D82D128DB44D00351601 /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F79127559C40064054A /* input.c */; };
+		EEC8D82E128DB44D00351601 /* joystick.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7B127559C40064054A /* joystick.c */; };
+		EEC8D82F128DB44D00351601 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7C127559C40064054A /* time.c */; };
+		EEC8D830128DB44D00351601 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F8A127559C40064054A /* window.c */; };
+		EEC8D84D128DB54200351601 /* SQLiteDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC8D84C128DB54200351601 /* SQLiteDatabase.cpp */; };
 		EECBDE0E125CDB3A00BA2BA4 /* InputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDE0D125CDB3A00BA2BA4 /* InputManager.cpp */; };
 		EECBDF5C125CFC4F00BA2BA4 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */; };
 		EECBDF88125CFFD000BA2BA4 /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF84125CFFD000BA2BA4 /* AudioManager.cpp */; };
@@ -137,18 +132,7 @@
 		EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECBDF9E125D008000BA2BA4 /* OpenAL.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		EE915DE91255CBA000F0B0B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EE915DDE1255CB7B00F0B0B3;
-			remoteInfo = glfw3;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Rhythm-Station-Info.plist"; sourceTree = "<group>"; };
@@ -187,8 +171,6 @@
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
 		EE41FEC71288A271001F0C56 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		EE41FEC81288A271001F0C56 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
-		EE41FED61288A6CB001F0C56 /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = src/osx/libogg.a; sourceTree = "<group>"; };
-		EE41FED71288A6CB001F0C56 /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = src/osx/libvorbis.a; sourceTree = "<group>"; };
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		EE7814911271FFAE00B01960 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
@@ -197,9 +179,7 @@
 		EE78150F1272144800B01960 /* OBJLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJLoader.h; sourceTree = "<group>"; };
 		EE7815101272144800B01960 /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
 		EE7815111272144800B01960 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
-		EE915DDF1255CB7B00F0B0B3 /* libglfw3.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libglfw3.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE915DE21255CB9300F0B0B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		EE915DE41255CB9300F0B0B3 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE915DE61255CB9300F0B0B3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EE915E501255CD9500F0B0B3 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EE915F461256471E00F0B0B3 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
@@ -333,6 +313,8 @@
 		EEC52F8A127559C40064054A /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = window.c; sourceTree = "<group>"; };
 		EEC52FD1127559F30064054A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = extern/config.h; sourceTree = SOURCE_ROOT; };
 		EEC530481275803E0064054A /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		EEC8D84B128DB54200351601 /* SQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteDatabase.h; sourceTree = "<group>"; };
+		EEC8D84C128DB54200351601 /* SQLiteDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLiteDatabase.cpp; sourceTree = "<group>"; };
 		EECBDE0C125CDB3A00BA2BA4 /* InputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputManager.h; sourceTree = "<group>"; };
 		EECBDE0D125CDB3A00BA2BA4 /* InputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputManager.cpp; sourceTree = "<group>"; };
 		EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
@@ -350,23 +332,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */,
-				EE915E9D1255D7A600F0B0B3 /* libglfw3.a in Frameworks */,
 				EE915EA01255D7B200F0B0B3 /* OpenGL.framework in Frameworks */,
 				EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */,
 				EEAB1B18126F5DAF004FE58D /* libfreetype.a in Frameworks */,
-				EE41FED91288A6CB001F0C56 /* libogg.a in Frameworks */,
-				EE41FEDA1288A6CC001F0C56 /* libvorbis.a in Frameworks */,
 				EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EE915DDD1255CB7B00F0B0B3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EE915DE31255CB9300F0B0B3 /* Cocoa.framework in Frameworks */,
-				EE915DE51255CB9300F0B0B3 /* IOKit.framework in Frameworks */,
-				EE915DE71255CB9300F0B0B3 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +346,6 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Rhythm-Station.app */,
-				EE915DDF1255CB7B00F0B0B3 /* libglfw3.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -408,15 +376,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EE41FED61288A6CB001F0C56 /* libogg.a */,
-				EE41FED71288A6CB001F0C56 /* libvorbis.a */,
 				EE41FED81288A6CB001F0C56 /* libvorbisfile.a */,
 				EEAB1B17126F5DAF004FE58D /* libfreetype.a */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				EE915DE21255CB9300F0B0B3 /* Cocoa.framework */,
-				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-				EE915DE41255CB9300F0B0B3 /* IOKit.framework */,
 				EECBDF9E125D008000BA2BA4 /* OpenAL.framework */,
 				EE915DE61255CB9300F0B0B3 /* OpenGL.framework */,
 			);
@@ -565,6 +529,8 @@
 			children = (
 				EEA552C8125A6E4B0065F811 /* HandleArguments.cpp */,
 				EEA552C7125A6E4B0065F811 /* HandleArguments.h */,
+				EEC8D84C128DB54200351601 /* SQLiteDatabase.cpp */,
+				EEC8D84B128DB54200351601 /* SQLiteDatabase.h */,
 				EE7815101272144800B01960 /* StringUtils.cpp */,
 				EE7815111272144800B01960 /* StringUtils.h */,
 				EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */,
@@ -707,16 +673,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		EE915DDB1255CB7B00F0B0B3 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		8D1107260486CEB800E47090 /* Rhythm-Station */ = {
 			isa = PBXNativeTarget;
@@ -729,30 +685,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				EE915DEA1255CBA000F0B0B3 /* PBXTargetDependency */,
 			);
 			name = "Rhythm-Station";
 			productInstallPath = "$(HOME)/Applications";
 			productName = ryr;
 			productReference = 8D1107320486CEB800E47090 /* Rhythm-Station.app */;
 			productType = "com.apple.product-type.application";
-		};
-		EE915DDE1255CB7B00F0B0B3 /* glfw3 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EE915DE81255CB9400F0B0B3 /* Build configuration list for PBXNativeTarget "glfw3" */;
-			buildPhases = (
-				EE915DDB1255CB7B00F0B0B3 /* Headers */,
-				EE915DDC1255CB7B00F0B0B3 /* Sources */,
-				EE915DDD1255CB7B00F0B0B3 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = glfw3;
-			productName = glfw3;
-			productReference = EE915DDF1255CB7B00F0B0B3 /* libglfw3.a */;
-			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -777,7 +715,6 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Rhythm-Station */,
-				EE915DDE1255CB7B00F0B0B3 /* glfw3 */,
 			);
 		};
 /* End PBXProject section */
@@ -867,24 +804,6 @@
 				EEC52E441273803E0064054A /* zutil.c in Sources */,
 				EEC52EBB1273DC390064054A /* Screen.cpp in Sources */,
 				EEC52EBE1273DC420064054A /* SceneManager.cpp in Sources */,
-				EEC52F99127559C40064054A /* cocoa_enable.m in Sources */,
-				EEC52F9A127559C40064054A /* cocoa_fullscreen.m in Sources */,
-				EEC52F9B127559C40064054A /* cocoa_gamma.m in Sources */,
-				EEC52F9C127559C40064054A /* cocoa_glext.m in Sources */,
-				EEC52F9D127559C40064054A /* cocoa_init.m in Sources */,
-				EEC52F9E127559C40064054A /* cocoa_joystick.m in Sources */,
-				EEC52F9F127559C40064054A /* cocoa_time.m in Sources */,
-				EEC52FA0127559C40064054A /* cocoa_window.m in Sources */,
-				EEC52FA3127559C40064054A /* enable.c in Sources */,
-				EEC52FA4127559C40064054A /* error.c in Sources */,
-				EEC52FA5127559C40064054A /* fullscreen.c in Sources */,
-				EEC52FA6127559C40064054A /* gamma.c in Sources */,
-				EEC52FA7127559C40064054A /* glext.c in Sources */,
-				EEC52FA8127559C40064054A /* init.c in Sources */,
-				EEC52FA9127559C40064054A /* input.c in Sources */,
-				EEC52FAA127559C40064054A /* joystick.c in Sources */,
-				EEC52FAB127559C40064054A /* time.c in Sources */,
-				EEC52FB7127559C40064054A /* window.c in Sources */,
 				EE133B2B1278216F0047069E /* sqlite3.c in Sources */,
 				EE07CCDD1279FF1400AAA31F /* png.c in Sources */,
 				EE07CCE01279FF1400AAA31F /* pngerror.c in Sources */,
@@ -914,25 +833,29 @@
 				EE07CE3C127A279000AAA31F /* Script.cpp in Sources */,
 				EE07CE3E127A279000AAA31F /* Table.cpp in Sources */,
 				EE41FEC91288A271001F0C56 /* Sound.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EE915DDC1255CB7B00F0B0B3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				EEC8D81F128DB44D00351601 /* cocoa_enable.m in Sources */,
+				EEC8D820128DB44D00351601 /* cocoa_fullscreen.m in Sources */,
+				EEC8D821128DB44D00351601 /* cocoa_gamma.m in Sources */,
+				EEC8D822128DB44D00351601 /* cocoa_glext.m in Sources */,
+				EEC8D823128DB44D00351601 /* cocoa_init.m in Sources */,
+				EEC8D824128DB44D00351601 /* cocoa_joystick.m in Sources */,
+				EEC8D825128DB44D00351601 /* cocoa_time.m in Sources */,
+				EEC8D826128DB44D00351601 /* cocoa_window.m in Sources */,
+				EEC8D827128DB44D00351601 /* enable.c in Sources */,
+				EEC8D828128DB44D00351601 /* error.c in Sources */,
+				EEC8D829128DB44D00351601 /* fullscreen.c in Sources */,
+				EEC8D82A128DB44D00351601 /* gamma.c in Sources */,
+				EEC8D82B128DB44D00351601 /* glext.c in Sources */,
+				EEC8D82C128DB44D00351601 /* init.c in Sources */,
+				EEC8D82D128DB44D00351601 /* input.c in Sources */,
+				EEC8D82E128DB44D00351601 /* joystick.c in Sources */,
+				EEC8D82F128DB44D00351601 /* time.c in Sources */,
+				EEC8D830128DB44D00351601 /* window.c in Sources */,
+				EEC8D84D128DB54200351601 /* SQLiteDatabase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EE915DEA1255CBA000F0B0B3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EE915DDE1255CB7B00F0B0B3 /* glfw3 */;
-			targetProxy = EE915DE91255CBA000F0B0B3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C01FCF4B08A954540054247B /* Debug */ = {
@@ -996,7 +919,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/extern/slb-1.63/include",
 					"$(PROJECT_DIR)/extern/libpng-1.4.4",
@@ -1023,8 +946,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/extern/slb-1.63/include",
+					"$(PROJECT_DIR)/extern/libpng-1.4.4",
+					"$(PROJECT_DIR)/extern/sqlite-3.7.3",
 					"$(PROJECT_DIR)/extern/glew-1.5.6/include",
 					"$(PROJECT_DIR)/extern/glfw3/include",
 					/opt/local/include,
@@ -1033,48 +959,6 @@
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
-			};
-			name = Release;
-		};
-		EE915DE01255CB7B00F0B0B3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INSTALL_PATH = /usr/local/lib;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = glfw3;
-			};
-			name = Debug;
-		};
-		EE915DE11255CB7B00F0B0B3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				INSTALL_PATH = /usr/local/lib;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = glfw3;
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -1095,15 +979,6 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EE915DE81255CB9400F0B0B3 /* Build configuration list for PBXNativeTarget "glfw3" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EE915DE01255CB7B00F0B0B3 /* Debug */,
-				EE915DE11255CB7B00F0B0B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
