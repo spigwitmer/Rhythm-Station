@@ -6,13 +6,13 @@
 
 class SQLiteDatabase {
 public:
-	void Open();
+	void Open(std::string db);
 	void Close();
-	void Query(std::string fmt, ...);
+	void Query(std::string sql_str);
 private:
 	// Completely guessing at how to implement this. It's 95% likely to be wrong.
-	sqlite3* sqlite_handle;
-	sqlite3_blob** sqlite_blob;
+	sqlite3* db_handle;
+	sqlite3_stmt* last_query;
 };
 
 #endif

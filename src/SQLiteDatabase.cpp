@@ -1,13 +1,18 @@
 #include "SQLiteDatabase.h"
+#include "Logger.h"
 
-void SQLiteDatabase::Open() {
-	sqlite3_blob_open(sqlite_handle, ":memory:", "", "", NULL, NULL, sqlite_blob);
+void SQLiteDatabase::Open(std::string db) {
+	if(sqlite3_open(db.c_str(), &db_handle) != SQLITE_OK)
+		Log->Print("Error opening SQLite Database: \"" + db + "\"");
 }
 
 void SQLiteDatabase::Close() {
-	// todo
+
+	sqlite3_close(db_handle);
 }
 
-void SQLiteDatabase::Query(std::string fmt, ...) {
-	// todo
+void SQLiteDatabase::Query(std::string sql_str) {
+	sqlite3_finalize(last_query);
+	sqlite3_prepare(db_handle, sql_str.c_str(), sql_str.size(), &last_query, NULL);
+	sqlite3_sql(last_query);
 }
