@@ -1,12 +1,10 @@
 #ifndef _TIMING_DATA_H_
 #define _TIMING_DATA_H_
 
-#include "RStation.h"
-
 // please edit this until you think it is sane.
 
-enum NoteType
-{
+// should probably not be stored in a vector. very inefficient for this
+enum NoteType {
 	NOTE_TAP,
 	NOTE_HOLD,
 	NOTE_ROLL,
@@ -14,14 +12,12 @@ enum NoteType
 	NOTE_MINE
 };
 
-enum NoteAttribute
-{
+enum NoteAttribute {
 	NOTE_ATTR_FAKE,
 	NOTE_ATTR_VISIBLE
 };
 
-struct Note
-{
+struct Note {
 	// Generic stuff.
 	NoteType type;
 	std::vector<NoteAttribute> flags;
@@ -35,8 +31,7 @@ struct Note
 	vec3 position;
 };
 
-struct NoteRow
-{
+struct NoteRow {
 	std::vector<Note> notes; // Notes on this row
 	int time; // Time in milliseconds.
 
@@ -44,13 +39,11 @@ struct NoteRow
 	float scroll_speed;
 };
 
-struct NoteRegion
-{
+struct NoteRegion {
 	int combo_rate; // aka tickcount
 	float bpm; // For display purposes, not timing.
 
-	struct TimeSignature
-	{
+	struct TimeSignature {
 		int numerator;
 		int denominator;
 	} time_sig;
@@ -58,8 +51,7 @@ struct NoteRegion
 	int time;
 };
 
-struct TimingData
-{
+struct TimingData {
 	std::vector<NoteRow> note_rows;
 	std::vector<NoteRegion> note_regions;
 
