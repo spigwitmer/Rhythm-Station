@@ -34,7 +34,7 @@ void mButtonCallback(GLFWwindow window, int button, int state) {
 	// todo
 }
 
-void mScrollCallback(GLFWwindow window, int scroll, int state) {
+void mScrollCallback(GLFWwindow window, int x, int y) {
 	// todo
 	// + check args on this function.
 }

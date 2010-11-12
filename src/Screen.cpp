@@ -12,6 +12,11 @@ void Screen::AddObject(Object* _object) {
 	Resources->Add(_object);
 }
 
+void Screen::AddObject(Sound* _sound) {
+	m_vpSounds.push_back(_sound);
+	Resources->Add(_sound);
+}
+
 /*
 void Screen::Input(const IEvent &e) {
 	// todo

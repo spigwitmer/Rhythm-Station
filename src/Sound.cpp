@@ -1,6 +1,7 @@
 #include "Sound.h"
 #include "FileManager.h"
 #include "SceneManager.h"
+#include "Screen.h"
 #include "Logger.h"
 
 #ifdef __APPLE__
@@ -31,6 +32,11 @@ Sound::Sound() {
 Sound::~Sound() {
 	this->deleteBuffers();
 	delete sd_sound;
+}
+
+void Sound::Register() {
+	Screen *scr = Scene->GetTopScreen();
+	scr->AddObject(this);
 }
 
 void Sound::deleteBuffers() {

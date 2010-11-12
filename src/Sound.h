@@ -8,8 +8,7 @@ class Sound : public Object {
 public:
 	Sound();
 	virtual ~Sound();
-	
-	void DrawBase() {}
+	void Register();
 	
 	void deleteBuffers();
 	void Load(std::string _path);
