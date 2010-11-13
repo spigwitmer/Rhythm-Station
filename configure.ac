@@ -15,7 +15,16 @@ AC_CONFIG_FILES([
 ])
 
 # Check for external dependencies
-PKG_CHECK_MODULES([EXT_DEPENDS],[freetype2 gl glew libpng openal vorbisfile xrandr],[],[
+PKG_CHECK_MODULES([EXT_DEPENDS],[
+		freetype2
+		gl 
+		glew 
+		libpng 
+		openal 
+		sqlite3 
+		vorbisfile 
+		xrandr
+	],[],[
 	AC_MSG_ERROR([All dependencies were not fulfilled: $EXT_DEPENDS_PKG_ERRORS])
 ])
 

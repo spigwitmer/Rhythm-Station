@@ -1,36 +1,9 @@
 #
-# Stuff to install
+# Stuff to install (make install not working yet as there's no reason
+# to install rstation to a system yet..)
 #
 noinst_PROGRAMS = rstation
 noinst_LIBRARIES = libglfw3.a libslb.a
-
-#
-# RStation sources
-#
-RSTATION = \
-src/AudioManager.cpp \
-src/FileManager.cpp \
-src/Font.cpp \
-src/GameManager.cpp \
-src/HandleArguments.cpp \
-src/INILoader.cpp \
-src/InputManager.cpp \
-src/Logger.cpp \
-src/LuaManager.cpp \
-src/main.cpp \
-src/Matrix.cpp \
-src/Object.cpp \
-src/OBJLoader.cpp \
-src/PNGLoader.cpp \
-src/ResourceManager.cpp \
-src/SceneManager.cpp \
-src/Screen.cpp \
-src/Shader.cpp \
-src/Sound.cpp \
-src/StringUtils.cpp \
-src/Timer.cpp \
-src/Tween.cpp \
-src/Type.cpp
 
 #
 # Submodule of glfw3 (no packaged release available)
@@ -119,7 +92,31 @@ liblua_a_CPPFLAGS = -Iextern/lua-5.1.4/src
 # RStation binary
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) -lz libglfw3.a libslb.a
-rstation_SOURCES = $(RSTATION)
+rstation_SOURCES = \
+src/AudioManager.cpp \
+src/FileManager.cpp \
+src/Font.cpp \
+src/GameManager.cpp \
+src/HandleArguments.cpp \
+src/INILoader.cpp \
+src/InputManager.cpp \
+src/Logger.cpp \
+src/LuaManager.cpp \
+src/main.cpp \
+src/Matrix.cpp \
+src/Object.cpp \
+src/OBJLoader.cpp \
+src/PNGLoader.cpp \
+src/ResourceManager.cpp \
+src/SceneManager.cpp \
+src/Screen.cpp \
+src/Shader.cpp \
+src/Sound.cpp \
+src/SQLiteDatabase.cpp \
+src/StringUtils.cpp \
+src/Timer.cpp \
+src/Tween.cpp \
+src/Type.cpp
 rstation_CPPFLAGS = $(EXT_DEPENDS_CFLAGS) $(libglfw3_a_CPPFLAGS) $(libslb_a_CPPFLAGS)
 
 #
