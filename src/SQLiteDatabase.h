@@ -10,14 +10,17 @@
  * // make database instance and create db in memory.
  * SQLiteDatabase* db = new SQLiteDatabse();
  * db->Open(":memory:");
+ *
  * // run an sql statement and get results
  * db->Query("SELECT * FROM foo");
  * while(db->Step()) {
- *	map<std::string, std::string> row = db->GetRow();
- *	Log->Print(row["bar"]);
+ * 	map<string, string> row = db->GetRow();
+ * 	Log->Print(row["bar"]);
  * }
+ *
  * // finished
  * db->Close();
+ * delete db;
  */
 
 class SQLiteDatabase {
