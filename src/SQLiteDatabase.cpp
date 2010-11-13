@@ -5,7 +5,7 @@
 
 void SQLiteDatabase::Open(std::string db) {
 	// this can be written as simply if (sqlite3_open), but this is more clear.
-	if(sqlite3_open_v2(db.c_str(), &db_handle, NULL, NULL) != SQLITE_OK)
+	if(sqlite3_open(db.c_str(), &db_handle) != SQLITE_OK)
 		Log->Print("Error opening SQLite Database: \"" + db + "\"");
 }
 
@@ -17,7 +17,6 @@ void SQLiteDatabase::Close() {
 void SQLiteDatabase::Query(std::string sql_str) {
 	// reset query state.
 	sqlite3_finalize(last_query);
-	sqlite3_reset(last_query);
 
 	// prepare the statement and run it
 	sqlite3_prepare_v2(db_handle, sql_str.c_str(), sql_str.size(), &last_query, NULL);

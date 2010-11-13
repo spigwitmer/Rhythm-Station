@@ -8,7 +8,7 @@
 /*
  * Usage:
  * // make database instance and create db in memory.
- * SQLiteDatabase* db = new SQLiteDatabse();
+ * SQLiteDatabase* db = new SQLiteDatabase();
  * db->Open(":memory:");
  *
  * // run an sql statement and get results

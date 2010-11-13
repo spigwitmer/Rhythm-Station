@@ -18,6 +18,9 @@
 #include "HandleArguments.h"
 #include "Object.h"
 
+#include "SQLiteDatabase.h"
+#include <map>
+
 Matrix *g_projection_matrix = NULL;
 GLFWwindow window = 0;
 
@@ -60,6 +63,27 @@ int main (int argc, char** argv) {
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
 	g_res = vec2(width, height);
+
+	// make database instance and create db in memory.
+	SQLiteDatabase* db = new SQLiteDatabase();
+	db->Open(":memory:");
+
+	db->Query("CREATE TABLE 'foo' ('bar' 'TEXT')");
+	db->Step();
+	
+	db->Query("INSERT INTO 'foo' ('bar') VALUES ('baz')");
+	db->Step();
+
+	// run an sql statement and get results
+	db->Query("SELECT * FROM foo");
+	while (db->Step()) {
+		std::map<std::string, std::string> row = db->GetRow();
+		Log->Print(row["bar"]);
+	}
+
+	// finished
+	db->Close();
+	delete db;
 
 	// Make transparency work!
 	glEnable(GL_BLEND);
