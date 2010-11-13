@@ -62,6 +62,7 @@ shakesoda+rstation at gmail dot com.
     - gl, glew
     - libpng (zlib as dependency of libpng)
     - openal, vorbisfile
+    - sqlite3
     - >=lua-5.1 (optional, if you don't have it just 
       pass --with-bundled-lua to the configure script)
   2. Clone current git head with command:
