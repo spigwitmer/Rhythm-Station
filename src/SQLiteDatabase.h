@@ -27,12 +27,12 @@ class SQLiteDatabase {
 public:
 	void Open(std::string db);
 	void Close();
+
 	void Query(std::string sql_str);
 	bool Step();
 	std::map<std::string, std::string> GetRow();
 
 private:
-	// Completely guessing at how to implement this. It's 95% likely to be wrong.
 	sqlite3* db_handle;
 	sqlite3_stmt* last_query;
 };

@@ -49,11 +49,12 @@ bool SQLiteDatabase::Step() {
 
 map<string, string> SQLiteDatabase::GetRow() {
 	map<string, string> results;
+
 	int cols = sqlite3_column_count(last_query);
 	for (int i = 0; i<cols; i++) {
-		// untested and likely broken!
 		string col_name = sqlite3_column_name(last_query, i);
 		results[col_name] = (const char*)sqlite3_column_text(last_query, i);
 	}
+
 	return results;
 }
