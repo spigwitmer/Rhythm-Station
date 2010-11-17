@@ -9,7 +9,7 @@ SceneManager* Scene = NULL;
 void SceneManager::PushScreen() {
 	Screen* scr = new Screen();
 	vpScreens.push_back(scr);
-	Log->Print("Pushed a new screen to the stack.");	
+	Log->Print("Pushed a new screen to the stack.");
 }
 
 void SceneManager::PopScreen() {
@@ -32,12 +32,10 @@ void SceneManager::Update(float deltaTime) {
 		vpScreens[i]->Update(deltaTime);
 }
 
-/*
 void SceneManager::SendInput(IEvent &e) {
 	if (!vpScreens.empty())
 		vpScreens.back()->Input(e);
 }
-*/
 
 void SceneManager::Clear() {
 	while (!vpScreens.empty())

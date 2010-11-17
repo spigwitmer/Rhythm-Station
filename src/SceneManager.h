@@ -11,7 +11,7 @@ public:
 	void PopScreen();
 
 	Screen* GetTopScreen();
-//	void SendInput(IEvent &e);
+	void SendInput(IEvent &e);
 	void Update(float deltaTime);
 	void Draw();
 
