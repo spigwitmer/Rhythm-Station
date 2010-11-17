@@ -70,7 +70,7 @@ int main (int argc, char** argv) {
 
 	db->Query("CREATE TABLE 'foo' ('bar' 'TEXT')");
 	db->Step();
-	
+
 	db->Query("INSERT INTO 'foo' ('bar') VALUES ('baz')");
 	db->Step();
 
