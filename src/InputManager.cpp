@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "InputManager.h"
 #include "GameManager.h"
+#include "LuaManager.h"
 #include "Logger.h"
 #include "globals.h"
 
@@ -12,10 +13,16 @@ std::string str;
 // keyboard. key for specials, char for text input and such.
 void keyCallback(GLFWwindow window, int key, int state) {
 	if (state == GLFW_PRESS) {
+		// testing
+		if (key == 295) {
+			str = str.substr(0,str.length()-1);
+			return;
+		}
 		if (key == 294) {
 			Log->Print(str);
 			str.clear();
 		}
+		printf("key: %d\n", key);
 	}
 }
 
@@ -56,9 +63,14 @@ InputManager::InputManager() {
 }
 
 InputManager::~InputManager() {
-	
+
 }
 
 void InputManager::Update() {
 	glfwPollEvents();
+}
+
+void Input_Binding() {
+	Lua->PushNumber("Key_Escape", 27);
+	Lua->PushNumber("Key_Return", 294);
 }
