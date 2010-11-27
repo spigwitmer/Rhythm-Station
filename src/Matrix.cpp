@@ -20,13 +20,12 @@ Matrix::Matrix() {
 
 // useful for debugging.
 void Matrix::Print() {	
-	printf(
-		"%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n",
-		matrix[0], matrix[1], matrix[2], matrix[3],
-		matrix[4], matrix[5], matrix[6], matrix[7],
-		matrix[8], matrix[9], matrix[10], matrix[11],
-		matrix[12], matrix[13], matrix[14], matrix[15]
-	);
+	for (int i = 0; i<4; i++) {
+		int ind = i<<2;
+		printf("%f %f %f %f\n",
+			matrix[ind], matrix[ind+1], matrix[ind+2], matrix[ind+3]
+		);
+	}
 }
 
 void Matrix::Load(float m[16]) {
@@ -127,7 +126,7 @@ void Matrix::LookAt(vec3 eye, vec3 center, vec3 up) {
 	vec3 forward, side;
 	float m[4][4];
 	forward = center;
-	
+
 	// side = forward x up
 	side = side.cross(forward, up);
 	side.normalize();
@@ -142,7 +141,7 @@ void Matrix::LookAt(vec3 eye, vec3 center, vec3 up) {
 	m[0][0] = side.x;
 	m[1][0] = side.y;
 	m[2][0] = side.z;
-	
+
 	m[0][1] = up.x;
 	m[1][1] = up.y;
 	m[2][1] = up.z;
