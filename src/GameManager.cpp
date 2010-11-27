@@ -54,7 +54,6 @@ void GameManager::Render() {
 	/*
 	 * Ideally, we would only redraw objects which need it, however this is still
 	 * useful when there isn't much going on.
-	 * TODO: also slow down when program is in the background.
 	 */
 	if ((!m_bQueuedRender && !m_bFirstUpdate) || !m_window_active) {
 		usleep(2500); // reduce CPU usage when not updating.
