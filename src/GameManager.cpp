@@ -10,6 +10,7 @@
 GameManager* Game = NULL;
 Matrix* obj = NULL;
 Object* quad = NULL;
+bool lazy_updates = true;
 
 GameManager::GameManager(GLFWwindow window) :
 	current_shader(0), m_debug(false), m_bFirstUpdate(true),
@@ -21,6 +22,10 @@ GameManager::GameManager(GLFWwindow window) :
 
 	// let the OS know we're up and running.
 	glfwPollEvents();
+
+#ifdef DEBUG
+	lazy_updates = false;
+#endif
 
 	g_projection_matrix = new Matrix();
 }
@@ -68,7 +73,7 @@ void GameManager::Render() {
 	 * Ideally, we would only redraw objects which need it, however this is still
 	 * useful when there isn't much going on.
 	 */
-	if ((!m_bQueuedRender && !m_bFirstUpdate) || !m_window_active) {
+	if ((!m_bQueuedRender && !m_bFirstUpdate && lazy_updates) || !m_window_active) {
 		usleep(2500); // reduce CPU usage when not updating.
 		return;
 	}
