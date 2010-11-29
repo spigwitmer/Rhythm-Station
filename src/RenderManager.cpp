@@ -38,3 +38,16 @@ void RenderManager::BindBuffers(GLuint* buffers, Shader* shader) {
 	shader->Bind();
 	shader->SetUniforms();
 }
+
+GLuint* RenderManager::CreateFramebuffer(int samples) {
+	// TODO
+	return 0;
+}
+
+void RenderManager::BindFramebuffer(GLuint* buffers) {
+	// TODO
+}
+
+void RenderManager::DeleteFramebuffer(GLuint* buffers) {
+	// TODO
+}
