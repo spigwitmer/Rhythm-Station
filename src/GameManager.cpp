@@ -50,6 +50,19 @@ void GameManager::Start() {
 	glClearColor(0.25, 0.25, 0.25, 1.0);
 }
 
+void GameManager::UpdateWindowTitle(double delta) {
+	double fps = 1.f / delta;
+
+	std::ostringstream str;
+	str << "Rhythm Station - ";
+	str << "FPS: " << int(fps * 10) * 0.1f << ", ";
+	str << "Delta: " << delta;
+
+	std::string sfps = str.str(); // str.c_str doesn't work?
+
+	glfwSetWindowTitle(m_window, sfps.c_str());
+}
+
 void GameManager::Render() {
 	/*
 	 * Ideally, we would only redraw objects which need it, however this is still

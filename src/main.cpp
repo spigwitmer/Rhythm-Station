@@ -24,23 +24,6 @@
 Matrix *g_projection_matrix = NULL;
 GLFWwindow window = 0;
 
-namespace Util {
-	void UpdateWindowTitle(double delta) {
-		using namespace std;
-
-		double fps = 1.f / delta;
-
-		ostringstream str;
-		str << "Rhythm Station - ";
-		str << "FPS: " << int(fps * 10) * 0.1f << ", ";
-		str << "Delta: " << delta;
-
-		string sfps = str.str(); // str.c_str doesn't work?
-
-		glfwSetWindowTitle(window, sfps.c_str());
-	}
-}
-
 vec2 g_res;
 
 #ifndef DEBUG
@@ -133,7 +116,7 @@ int main (int argc, char** argv) {
 		 * Do this before limiting the delta so it always reports the true value.
 		 */
 		if (int(then * 2) != int(now * 2)) {
-			Util::UpdateWindowTitle(delta);
+			Game->UpdateWindowTitle(delta);
 			Game->SetActive(glfwGetWindowParam(Game->GetWindow(), GLFW_ACTIVE));
 		}
 

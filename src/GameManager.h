@@ -16,6 +16,7 @@ public:
 	void SetCurrentShader(GLuint _shader) { current_shader = _shader; }
 	GLuint GetCurrentShader() { return current_shader; }
 	void SetActive(bool active) { m_window_active = active; }
+	void UpdateWindowTitle(double delta);
 
 	void Start();
 	void QueueRendering();
