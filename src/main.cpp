@@ -1,5 +1,4 @@
 // GL headers
-#include <GL/glew.h>
 #include <GL/glfw3.h>
 
 #include "globals.h"
@@ -34,17 +33,12 @@ int main (int argc, char** argv) {
 	glfwGetDesktopMode(&mode);
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); // 4x MSAA
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 32);
-	GLFWwindow window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "", 0);
-	glfwSwapInterval(0);
-	glewInit();
+	GLFWwindow window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "", NULL);
+	glfwSwapInterval(1);
 
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
 	g_res = vec2(width, height);
-
-	// Make transparency work!
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Start up all our singletons.
 	Log		= new Logger();
@@ -61,17 +55,6 @@ int main (int argc, char** argv) {
 	HandleArguments(argc, argv);
 
 	Audio->Open();
-
-	Log->Print("Available OpenGL extensions: \n" + Renderer->GetExtensions());
-
-	// move this elsewhere
-	// Is this only available on windows?
-	if (GLEW_NV_framebuffer_multisample_coverage) {
-		Log->Print("CSAA Supported.");
-		Renderer->IsExtSupported["CSAA"] = true;
-	}
-	else
-		Log->Print("CSAA Not Supported.");
 
 	// Start running Lua and begin the first screen.
 	Game->Start();

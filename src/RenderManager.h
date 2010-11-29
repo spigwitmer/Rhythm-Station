@@ -6,7 +6,7 @@
 
 class RenderManager {
 public:
-	RenderManager() { }
+	RenderManager();
 	virtual ~RenderManager() { }
 
 	std::string GetExtensions();
