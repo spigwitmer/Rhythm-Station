@@ -23,9 +23,9 @@ typedef int64_t	i64;
 
 // from stepmania.
 struct vec2 {
-	vec2() {}
-	vec2(float xy ) { x = y = xy; }
-	vec2(const float * f)		{ x=f[0]; y=f[1]; }
+	vec2() : x(), y() {}
+	vec2(float xy) { x = y = xy; }
+	vec2(const float *f)		{ x=f[0]; y=f[1]; }
 	vec2(float x1, float y1)	{ x=x1; y=y1; }
 
 	// casting
@@ -57,10 +57,10 @@ struct vec2 {
 };
 
 struct vec3 {
-	vec3() {}
-	vec3(vec2 xy) : z(0) { x = xy.x; y = xy.y; }
-	vec3(float xyz ) { x = y = z = xyz; }
-	vec3(const float * f)			{ x=f[0]; y=f[1]; z=f[2]; }
+	vec3() : x(), y(), z() {}
+	vec3(vec2 xy) : z() { x = xy.x; y = xy.y; }
+	vec3(float xyz) { x = y = z = xyz; }
+	vec3(const float *f)			{ x=f[0]; y=f[1]; z=f[2]; }
 	vec3(float x1, float y1, float z1)	{ x=x1; y=y1; z=z1; }
 
 	// untilities
@@ -104,10 +104,10 @@ struct vec3 {
 };
 
 struct rgba {
-	rgba() {}
+	rgba() : r(), g(), b(), a() {}
 	rgba(float _rgb)					{ r = g = b = _rgb; a = 1.0f; }
 	rgba(float _rgb, float _a)				{ r = g = b = _rgb; a = _a; }
-	rgba(const float * f)					{ r=f[0]; g=f[1]; b=f[2]; a=f[3]; }
+	rgba(const float *f)					{ r=f[0]; g=f[1]; b=f[2]; a=f[3]; }
 	rgba(float r1, float g1, float b1)			{ r=r1; g=g1; b=b1; a=1.0f; }
 	rgba(float r1, float g1, float b1, float a1)	{ r=r1; g=g1; b=b1; a=a1; }
 
@@ -141,9 +141,9 @@ struct rgba {
 
 
 struct Vertex {
-	Vertex() : x(0), y(0), z(0), u(0), v(0) {}
-	Vertex(vec3 xyz) : u(0), v(0) { x = xyz.x; y = xyz.y; z = xyz.z; }
-	Vertex(float _x, float _y) : z(0), u(0), v(0)
+	Vertex() : x(), y(), z(), u(), v() {}
+	Vertex(vec3 xyz) : u(), v() { x = xyz.x; y = xyz.y; z = xyz.z; }
+	Vertex(float _x, float _y) : z(), u(), v()
 	{
 		x = _x;
 		y = _y;
