@@ -9,7 +9,7 @@ struct Matrix {
 
 	void Load(float m[16]);
 	void SetUniform();
-	void LoadIdentity();
+	void Identity();
 
 	// transformations
 	void Translate(float x, float y, float z);

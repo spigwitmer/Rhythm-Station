@@ -130,7 +130,7 @@ void Object::Update(double delta) {
 	if (!m_bNeedsUpdate)
 		return;
 	
-	m_matrix.LoadIdentity();
+	m_matrix.Identity();
 	m_matrix.Translate(m_pos);
 	m_matrix.Scale(m_scale);
 	m_matrix.Scale(m_texture.width/2.0f, m_texture.height/2.0f, 1.0);

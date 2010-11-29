@@ -15,7 +15,7 @@ float radf(float val) {
 static const float identity_matrix[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
 
 Matrix::Matrix() {
-	this->LoadIdentity();
+	this->Identity();
 }
 
 // useful for debugging.
@@ -32,7 +32,7 @@ void Matrix::Load(float m[16]) {
 	memcpy(matrix, m, sizeof(matrix));
 }
 
-void Matrix::LoadIdentity() {
+void Matrix::Identity() {
 	memcpy(matrix, identity_matrix, sizeof(matrix));
 }
 
@@ -136,7 +136,7 @@ void Matrix::LookAt(vec3 eye, vec3 center, vec3 up) {
 
 	forward.flip();
 
-	this->LoadIdentity();
+	this->Identity();
 
 	m[0][0] = side.x;
 	m[1][0] = side.y;
