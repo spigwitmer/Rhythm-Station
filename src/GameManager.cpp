@@ -56,7 +56,7 @@ void GameManager::Start() {
 }
 
 void GameManager::UpdateWindowTitle(double delta) {
-	double fps = 1.f / delta;
+	double fps = 1.0f / delta;
 
 	std::ostringstream str;
 	str << "Rhythm Station - ";

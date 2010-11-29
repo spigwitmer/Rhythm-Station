@@ -85,7 +85,6 @@
 		EEAB1AF9126F5440004FE58D /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AD5126F5440004FE58D /* lvm.c */; };
 		EEAB1AFA126F5440004FE58D /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AD7126F5440004FE58D /* lzio.c */; };
 		EEAB1AFD126F5440004FE58D /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1ADB126F5440004FE58D /* print.c */; };
-		EEAB1B10126F5D1B004FE58D /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1B0E126F5D1B004FE58D /* Font.cpp */; };
 		EEAB1B18126F5DAF004FE58D /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEAB1B17126F5DAF004FE58D /* libfreetype.a */; };
 		EEC5285F127375570064054A /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = EEC5285E127375570064054A /* init.lua */; };
 		EEC5287212737C8F0064054A /* INILoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC5286E12737C8E0064054A /* INILoader.cpp */; };
@@ -134,6 +133,7 @@
 		EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */; };
 		EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */; };
 		EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */; };
+		EEF5A64C12A43AD400ABD8AE /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A64A12A43AD400ABD8AE /* Font.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -260,8 +260,6 @@
 		EEAB1AD7126F5440004FE58D /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
 		EEAB1AD8126F5440004FE58D /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
 		EEAB1ADB126F5440004FE58D /* print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = print.c; sourceTree = "<group>"; };
-		EEAB1B0E126F5D1B004FE58D /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
-		EEAB1B0F126F5D1B004FE58D /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 		EEAB1B17126F5DAF004FE58D /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = /opt/local/lib/libfreetype.a; sourceTree = "<absolute>"; };
 		EEC5285E127375570064054A /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
 		EEC5286E12737C8E0064054A /* INILoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = INILoader.cpp; sourceTree = "<group>"; };
@@ -335,6 +333,8 @@
 		EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft_test.cpp; sourceTree = "<group>"; };
 		EEF5A5E412A42AAF00ABD8AE /* RenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderManager.h; sourceTree = "<group>"; };
 		EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderManager.cpp; sourceTree = "<group>"; };
+		EEF5A64A12A43AD400ABD8AE /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
+		EEF5A64B12A43AD400ABD8AE /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -533,8 +533,8 @@
 		EE9160861256A60100F0B0B3 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
-				EEAB1B0E126F5D1B004FE58D /* Font.cpp */,
-				EEAB1B0F126F5D1B004FE58D /* Font.h */,
+				EEF5A64A12A43AD400ABD8AE /* Font.cpp */,
+				EEF5A64B12A43AD400ABD8AE /* Font.h */,
 				EEA552D1125A7FE30065F811 /* Matrix.cpp */,
 				EEA552D4125A800C0065F811 /* Matrix.h */,
 				EE915F7D125668C600F0B0B3 /* Object.cpp */,
@@ -808,7 +808,6 @@
 				EEAB1AF9126F5440004FE58D /* lvm.c in Sources */,
 				EEAB1AFA126F5440004FE58D /* lzio.c in Sources */,
 				EEAB1AFD126F5440004FE58D /* print.c in Sources */,
-				EEAB1B10126F5D1B004FE58D /* Font.cpp in Sources */,
 				EE0A64241270439C00F5F134 /* glew.c in Sources */,
 				EE7814931271FFAE00B01960 /* Tween.cpp in Sources */,
 				EE7815121272144800B01960 /* OBJLoader.cpp in Sources */,
@@ -882,6 +881,7 @@
 				EE3CEB5E1294504A00A8688C /* ScreenGameplay.cpp in Sources */,
 				EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */,
 				EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */,
+				EEF5A64C12A43AD400ABD8AE /* Font.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -993,6 +993,7 @@
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};
