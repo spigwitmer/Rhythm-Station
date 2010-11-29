@@ -30,3 +30,11 @@ std::string RenderManager::GetExtensions() {
 	extensions << glGetString(GL_EXTENSIONS);
 	return extensions.str();
 }
+
+void RenderManager::BindBuffers(GLuint* buffers, Shader* shader) {
+	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
+
+	shader->Bind();
+	shader->SetUniforms();
+}

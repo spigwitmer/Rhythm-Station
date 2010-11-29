@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "GameManager.h"
 #include "FileManager.h"
+#include "RenderManager.h"
 #include "SceneManager.h"
 #include "Screen.h"
 #include "Logger.h"
@@ -141,16 +142,10 @@ void Object::Update(double delta) {
 }
 
 void Object::Draw() {
+	Renderer->BindBuffers(m_vbo, &m_shader);
 	m_texture.Bind();
 
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
-
-	m_shader.Bind();
-	m_shader.SetUniforms();
-
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
-
 	glDrawElements(GL_TRIANGLE_STRIP, m_vertices, GL_UNSIGNED_BYTE, NULL);
 }
 

@@ -3,6 +3,8 @@
 
 #include <string>
 #include <map>
+#include "Shader.h"
+#include <GL/glfw3.h>
 
 class RenderManager {
 public:
@@ -11,6 +13,7 @@ public:
 
 	std::string GetExtensions();
 	std::map<std::string, bool> IsExtSupported;
+	void BindBuffers(GLuint* buffers, Shader* shader);
 private:
 	void CheckExtensions();
 };
