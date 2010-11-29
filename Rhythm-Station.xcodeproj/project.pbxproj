@@ -36,6 +36,7 @@
 		EE07CE3E127A279000AAA31F /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0E127A279000AAA31F /* Table.cpp */; };
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
+		EE3CEB5E1294504A00A8688C /* ScreenGameplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE3CEB5D1294504A00A8688C /* ScreenGameplay.cpp */; };
 		EE41FEC91288A271001F0C56 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE41FEC71288A271001F0C56 /* Sound.cpp */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
@@ -130,6 +131,9 @@
 		EECBDF88125CFFD000BA2BA4 /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF84125CFFD000BA2BA4 /* AudioManager.cpp */; };
 		EECBDF89125CFFD000BA2BA4 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF86125CFFD000BA2BA4 /* FileManager.cpp */; };
 		EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECBDF9E125D008000BA2BA4 /* OpenAL.framework */; };
+		EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */; };
+		EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */; };
+		EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +173,8 @@
 		EE07CE0E127A279000AAA31F /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
 		EE0A64231270439C00F5F134 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "glew-1.5.6/src/glew.c"; sourceTree = "<group>"; };
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
+		EE3CEB5C1294504A00A8688C /* ScreenGameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenGameplay.h; sourceTree = "<group>"; };
+		EE3CEB5D1294504A00A8688C /* ScreenGameplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScreenGameplay.cpp; sourceTree = "<group>"; };
 		EE41FEC71288A271001F0C56 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		EE41FEC81288A271001F0C56 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
@@ -324,6 +330,11 @@
 		EECBDF86125CFFD000BA2BA4 /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
 		EECBDF87125CFFD000BA2BA4 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		EECBDF9E125D008000BA2BA4 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfftw3.a; sourceTree = "<group>"; };
+		EEF5A4B1129EE62C00ABD8AE /* fft_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft_test.h; sourceTree = "<group>"; };
+		EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft_test.cpp; sourceTree = "<group>"; };
+		EEF5A5E412A42AAF00ABD8AE /* RenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderManager.h; sourceTree = "<group>"; };
+		EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderManager.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +347,7 @@
 				EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */,
 				EEAB1B18126F5DAF004FE58D /* libfreetype.a in Frameworks */,
 				EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */,
+				EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +388,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */,
 				EE41FED81288A6CB001F0C56 /* libvorbisfile.a */,
 				EEAB1B17126F5DAF004FE58D /* libfreetype.a */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
@@ -440,6 +453,15 @@
 			name = "glew-1.5.6";
 			sourceTree = "<group>";
 		};
+		EE3CEB5B1294504200A8688C /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				EE3CEB5D1294504A00A8688C /* ScreenGameplay.cpp */,
+				EE3CEB5C1294504A00A8688C /* ScreenGameplay.h */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
 		EE78150D1272143200B01960 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,12 +478,15 @@
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EE3CEB5B1294504200A8688C /* Screens */,
 				EE78150D1272143200B01960 /* Loaders */,
 				EEA552C6125A6E240065F811 /* Helpers */,
 				EE9160861256A60100F0B0B3 /* Data Structures */,
 				EE9160851256A5F700F0B0B3 /* Singletons */,
 				EE915E501255CD9500F0B0B3 /* main.cpp */,
 				EEAB19231268DB9C004FE58D /* globals.h */,
+				EEF5A4B1129EE62C00ABD8AE /* fft_test.h */,
+				EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -495,6 +520,8 @@
 				EE915FE11256829D00F0B0B3 /* Logger.h */,
 				EEAB1A7A126EDF99004FE58D /* LuaManager.cpp */,
 				EEAB1A79126EDF99004FE58D /* LuaManager.h */,
+				EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */,
+				EEF5A5E412A42AAF00ABD8AE /* RenderManager.h */,
 				EE915F9212567C1600F0B0B3 /* ResourceManager.cpp */,
 				EE915F9112567C1600F0B0B3 /* ResourceManager.h */,
 				EEC52EBC1273DC420064054A /* SceneManager.cpp */,
@@ -852,6 +879,9 @@
 				EEC8D82F128DB44D00351601 /* time.c in Sources */,
 				EEC8D830128DB44D00351601 /* window.c in Sources */,
 				EEC8D84D128DB54200351601 /* SQLiteDatabase.cpp in Sources */,
+				EE3CEB5E1294504A00A8688C /* ScreenGameplay.cpp in Sources */,
+				EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */,
+				EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

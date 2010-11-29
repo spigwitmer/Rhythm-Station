@@ -3,6 +3,7 @@
 #include <GL/glfw3.h>
 
 #include "globals.h"
+#include "HandleArguments.h"
 
 // All the singletons (we init them here, should do static init?)
 #include "AudioManager.h"
@@ -12,17 +13,11 @@
 #include "LuaManager.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
+#include "RenderManager.h"
 #include "Logger.h"
 
-// Misc
-#include "HandleArguments.h"
-#include "Object.h"
-
-#include "SQLiteDatabase.h"
-#include <map>
-
+// ew, globals
 Matrix *g_projection_matrix = NULL;
-GLFWwindow window = 0;
 
 vec2 g_res;
 
@@ -39,34 +34,13 @@ int main (int argc, char** argv) {
 	glfwGetDesktopMode(&mode);
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); // 4x MSAA
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 32);
-	window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "", 0);
+	GLFWwindow window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "", 0);
 	glfwSwapInterval(0);
 	glewInit();
 
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
 	g_res = vec2(width, height);
-
-	// make database instance and create db in memory.
-	SQLiteDatabase* db = new SQLiteDatabase();
-	db->Open(":memory:");
-
-	db->Query("CREATE TABLE 'foo' ('bar' 'TEXT')");
-	db->Step();
-
-	db->Query("INSERT INTO 'foo' ('bar') VALUES ('baz')");
-	db->Step();
-
-	// run an sql statement and get results
-	db->Query("SELECT * FROM foo");
-	while (db->Step()) {
-		std::map<std::string, std::string> row = db->GetRow();
-		Log->Print(row["bar"]);
-	}
-
-	// finished
-	db->Close();
-	delete db;
 
 	// Make transparency work!
 	glEnable(GL_BLEND);
@@ -81,23 +55,21 @@ int main (int argc, char** argv) {
 	Audio	= new AudioManager();
 	Input	= new InputManager();
 	Lua		= new LuaManager();
+	Renderer	= new RenderManager();
 
 	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);
 
 	Audio->Open();
 
-	std::ostringstream extensions;
-	extensions << "Available OpenGL extensions: \n";
-	extensions << glGetString(GL_EXTENSIONS);
-	Log->Print(extensions.str());
+	Log->Print("Available OpenGL extensions: \n" + Renderer->GetExtensions());
 
 	// move this elsewhere
 	// Is this only available on windows?
-	if (GLEW_NV_framebuffer_multisample_coverage)
+	if (GLEW_NV_framebuffer_multisample_coverage) {
 		Log->Print("CSAA Supported.");
-		// 8x = 8, 4; 8xQ = 8, 8; 16x = 16, 4; 16xQ = 16, 8 (this will be elsewhere)
-		// glRenderbufferStorageMultisampleCoverageNV(buffer, 8, 4, GL_RGB, 0, 0);
+		Renderer->IsExtSupported["CSAA"] = true;
+	}
 	else
 		Log->Print("CSAA Not Supported.");
 

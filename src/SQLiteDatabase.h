@@ -11,17 +11,23 @@
  * SQLiteDatabase* db = new SQLiteDatabase();
  * db->Open(":memory:");
  *
+ * // Example queries
+ * db->Query("CREATE TABLE 'foo' ('bar' 'TEXT')");
+ * db->Step();
+ * db->Query("INSERT INTO 'foo' ('bar') VALUES ('baz')");
+ * db->Step();
+ * 
  * // run an sql statement and get results
  * db->Query("SELECT * FROM foo");
- * while(db->Step()) {
- * 	map<string, string> row = db->GetRow();
- * 	Log->Print(row["bar"]);
+ * while (db->Step()) {
+ * 	std::map<std::string, std::string> row = db->GetRow();
+ *	Log->Print(row["bar"]);
  * }
  *
  * // finished
  * db->Close();
  * delete db;
- */
+*/
 
 class SQLiteDatabase {
 public:
