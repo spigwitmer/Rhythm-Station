@@ -1,10 +1,11 @@
 #ifndef _RENDER_MANAGER_H_
 #define _RENDER_MANAGER_H_
 
+#include <GL/glfw3.h>
 #include <string>
 #include <map>
 #include "Shader.h"
-#include <GL/glfw3.h>
+#include "Type.h"
 
 class RenderManager {
 public:
@@ -15,8 +16,9 @@ public:
 	std::map<std::string, bool> IsExtSupported;
 	void BindBuffers(GLuint* buffers, Shader* shader);
 
-	GLuint* CreateFramebuffer(int samples = 1);
+	GLuint* CreateFramebuffer(vec2 size, int samples = 1);
 	void BindFramebuffer(GLuint* buffers);
+	void UnbindFramebuffer();
 	void DeleteFramebuffer(GLuint* buffers);
 
 private:

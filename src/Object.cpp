@@ -21,6 +21,7 @@ Object::~Object() {
 	DeleteBuffers();
 }
 
+// TODO: Move to RenderManager.
 #define OFFSET(P) (const GLvoid*) (sizeof(GLfloat) * (P))
 void Object::CreateBuffers() {
 	// triangle strip quad
