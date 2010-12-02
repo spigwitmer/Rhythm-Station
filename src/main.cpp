@@ -60,14 +60,6 @@ int main (int argc, char** argv) {
 	Game->Start();
 	Lua->Start();
 
-	printf("Joystick present: %d\n", glfwGetJoystickParam(GLFW_JOYSTICK_1, GLFW_PRESENT));
-	int num_buttons = glfwGetJoystickParam(GLFW_JOYSTICK_1, GLFW_BUTTONS);
-	unsigned char buttons[num_buttons];
-	glfwGetJoystickButtons(GLFW_JOYSTICK_1, buttons, num_buttons);
-	for (int i = 0; i<num_buttons; i++) {
-		printf("Button status: %d = %d\n", i, buttons[i]);
-	}
-
 	double then = 0.0;
 	double max_delta = (1.0/60.0) * 3.0;
 	while (glfwIsWindow(window)) {
