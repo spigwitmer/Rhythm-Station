@@ -124,12 +124,12 @@ void Shader::Reload() {
 
 	// print out shader logs.
 	std::string log = getShaderLog(vs);
-	if (!log.empty()) Log->Print("Vertex shader log: " + log);
+	if (!log.empty()) Log->Print("Vertex shader log: %s", log.c_str());
 	log = getShaderLog(fs);
-	if (!log.empty()) Log->Print("Fragment shader log: " + log);
+	if (!log.empty()) Log->Print("Fragment shader log: %s", log.c_str());
 	log = getProgramLog(ptr);
 	if (!log.empty()) {
-		Log->Print("Shader program log: " + log);
+		Log->Print("Shader program log: %s", log.c_str());
 		// TODO: handle this better.
 		Log->Print("catastrophic shader error. committing suicide.");
 		exit(2);

@@ -23,19 +23,19 @@ Texture PNGLoader::Load(std::string _path) {
 	pngFile = fopen(_path.c_str(), "rb");
 
 	if (!pngFile) {
-		Log->Print("[PNGLoader::Load] File \"" + tex.path + "\" not found.");
+		Log->Print("[PNGLoader::Load] File \"%s\" not found.", tex.path.c_str());
 		return Texture();
 	}
 
 	if (fread(&sig, sizeof(png_byte), 8, pngFile) < 8)
 	{
-		Log->Print("[PNGLoader::Load] Header of the file \"" + tex.path + "\" couldn't be fully read!");
+		Log->Print("[PNGLoader::Load] Header of the file \"%s\" couldn't be fully read!", tex.path.c_str());
 		fclose(pngFile);
 		return Texture();
 	}
 
 	if (png_sig_cmp(sig, 0, 8)) {
-		Log->Print("[PNGLoader::Load] File \"" + tex.path + "\" is not a valid png file!");
+		Log->Print("[PNGLoader::Load] File \"%s\" is not a valid png file!", tex.path.c_str());
 		fclose(pngFile);
 		return Texture();
 	}
@@ -117,14 +117,7 @@ Texture PNGLoader::Load(std::string _path) {
 	}
 
 	// log some stats
-	std::ostringstream stream;
-	stream << "Texture upload: ";
-
-	char buf[256];
-	sprintf(buf, "resolution = %dx%d, channels = %d.", tex.width, tex.height, components);
-	stream << buf;
-
-	Log->Print(stream.str());
+	Log->Print("Texture upload: resolution = %dx%d, channels = %d.", tex.width, tex.height, components);
 
 	glTexImage2D(GL_TEXTURE_2D, 0, components, tex.width, tex.height, 0, glformat, GL_UNSIGNED_BYTE, pixels);
 	glBindTexture(GL_TEXTURE_2D, 0);

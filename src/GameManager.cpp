@@ -2,10 +2,12 @@
 #include "globals.h"
 #include "GameManager.h"
 #include "SceneManager.h"
+#include "InputManager.h"
 #include "Logger.h"
 #include "Object.h"
 #include "Timer.h"
 #include <iostream>
+#include "Type.h"
 
 GameManager* Game = NULL;
 Matrix* obj = NULL;

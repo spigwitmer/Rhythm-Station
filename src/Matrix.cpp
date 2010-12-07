@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 #include "globals.h"
+#include "Logger.h"
 #include "Matrix.h"
 #include <cstdio>
 #include <math.h>
@@ -22,7 +23,7 @@ Matrix::Matrix() {
 void Matrix::Print() {	
 	for (int i = 0; i<4; i++) {
 		int ind = i<<2;
-		printf("%f %f %f %f\n",
+		Log->Print("%f %f %f %f",
 			matrix[ind], matrix[ind+1], matrix[ind+2], matrix[ind+3]
 		);
 	}

@@ -8,6 +8,10 @@ RenderManager* Renderer = NULL;
 RenderManager::RenderManager() {
 	glewInit();
 
+	/*
+	 * Don't pass in GetExtensions as a format arg - it could potentially be very,
+	 * very long and use up the buffer.
+	 */
 	Log->Print("Available OpenGL extensions: \n" + GetExtensions());
 
 	if (GLEW_NV_framebuffer_multisample_coverage) {

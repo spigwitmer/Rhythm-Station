@@ -10,14 +10,14 @@ using namespace std;
 OBJLoader::OBJLoader() : vbo_id(), name(0) { /* nada */ }
 
 OBJLoader::~OBJLoader() {
-	Log->Print("Cleaning up mesh " + name);
+	Log->Print("Cleaning up mesh %s.", name.c_str());
 }
 
 GLuint *OBJLoader::Load(string file) {
 	timer.Touch();
 	file = File->GetFile(file);
 	if (!File->FileExists(file)) {
-		Log->Print("File \"" + file + "\" not found.");
+		Log->Print("File \"%s\" not found.", file.c_str());
 		return 0;
 	}
 	file = File->GetFileContents(file);
@@ -81,7 +81,7 @@ GLuint *OBJLoader::Load(string file) {
 				}
 				break;
 			default:
-				Log->Print("Unhandled: " + line);
+				Log->Print("Unhandled: %s", line.c_str());
 				break;
 		}
 	}

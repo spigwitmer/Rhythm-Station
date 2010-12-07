@@ -8,7 +8,7 @@ using namespace std;
 void SQLiteDatabase::Open(string db) {
 	// this can be written as simply if (sqlite3_open), but this is more clear.
 	if(sqlite3_open(db.c_str(), &db_handle) != SQLITE_OK)
-		Log->Print("Error opening SQLite Database: \"" + db + "\"");
+		Log->Print("Error opening SQLite Database: \"%s\"", db.c_str());
 }
 
 void SQLiteDatabase::Close() {

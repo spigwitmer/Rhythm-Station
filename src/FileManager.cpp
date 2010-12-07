@@ -74,7 +74,7 @@ std::string FileManager::GetFileContents(std::string _path) {
 	std::ifstream file(_path.c_str());
 
 	if (!file.is_open()) {
-		Log->Print("Error opening " + _path + " for writing");
+		Log->Print("Error opening %s for writing", _path.c_str());
 		return std::string();
 	}
 
