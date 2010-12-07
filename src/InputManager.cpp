@@ -10,17 +10,6 @@ InputManager* Input = NULL;
 
 std::string str;
 
-struct Controller {
-	int id;
-	float* axes;
-	int num_axes;
-
-	unsigned char* buttons;
-	int num_buttons;
-};
-
-std::vector<Controller> controllers;
-
 // keyboard. key for specials, char for text input and such.
 void keyCallback(GLFWwindow window, int key, int state) {
 	if (state == GLFW_PRESS) {
@@ -85,6 +74,7 @@ InputManager::InputManager() {
 			// I'm not entirely sure this is required, but it's probably not a bad idea.
 			current.axes = new float[current.num_axes];
 			current.buttons = new unsigned char[current.num_buttons];
+			current.timestamp = new double[current.num_buttons];
 
 			// initial update.
 			glfwGetJoystickButtons(i, current.buttons, current.num_buttons);
@@ -116,10 +106,24 @@ InputManager::~InputManager() {
 void InputManager::Update() {
 	glfwPollEvents();
 
-	// update all joystick buttons + axes
+	// update all joystick buttons + axes.
 	for (int i = 0; i<controllers.size(); i++) {
+		// store old values for comparison
+		unsigned char old_buttons[controllers[i].num_buttons];
+		memcpy(old_buttons, controllers[i].buttons, sizeof(old_buttons));
+
+		// update the current values
 		glfwGetJoystickButtons(controllers[i].id, controllers[i].buttons, controllers[i].num_buttons);
 		glfwGetJoystickPos(controllers[i].id, controllers[i].axes, controllers[i].num_axes);
+
+		// and now set timestamp if a button has changed.
+		for (int j = 0; j<controllers[i].num_buttons; j++) {
+			if (old_buttons[j] != controllers[i].buttons[j]) {
+				double cur_time = glfwGetTime();
+				// printf("button: %d (%d -> %d @ %f)\n", j, old_buttons[j], controllers[i].buttons[j], cur_time);
+				controllers[i].timestamp[j] = cur_time;
+			}
+		}
 	}
 }
 
