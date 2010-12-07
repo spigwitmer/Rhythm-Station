@@ -15,13 +15,23 @@ void Logger::DebugPrint(std::string input)
 		Print(input+std::string(" (debug)"));
 }
 
-void Logger::Print(std::string input)
+void Logger::Print(std::string in, ...)
 {
-	char buf[16] = "";
-	sprintf(buf, "%0.3f", glfwGetTime());
+	va_list va;
+
+	// throws an error! ignore it.
+	va_start(va, in.c_str());
+
+	// there has to be a better way to handle this. a long enough print will cause a crash.
+	char buf[in.length() + 2048];
+	vsprintf(buf, in.c_str(), va);
+	va_end(va);
+
+	char buf2[16] = "";
+	sprintf(buf2, "%0.3f", glfwGetTime());
 
 	std::ostringstream out;
-	out << "[" << buf << "] " << input << "\n";
+	out << "[" << buf2 << "] " << buf << "\n";
 
 	std::cout << out.str();
 }	

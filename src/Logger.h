@@ -6,7 +6,7 @@
 class Logger {
 public:
 	void DebugPrint(std::string input);
-	void Print(std::string input);
+	void Print(std::string in, ...);
 };
 
 extern Logger* Log;
