@@ -171,7 +171,9 @@ void InputManager::UpdateControllers() {
 
 		// store old values for comparison
 		unsigned char old_buttons[current->num_buttons];
+		float old_axes[current->num_axes];
 		memcpy(old_buttons, current->buttons_raw, sizeof(old_buttons));
+		memcpy(old_axes, current->axes, sizeof(old_axes));
 
 		// update the current values
 		glfwGetJoystickButtons(current->id, current->buttons_raw, current->num_buttons);
@@ -193,6 +195,11 @@ void InputManager::UpdateControllers() {
 						break;
 				}
 				current->timestamp[j] = cur_time;
+				sendInput = true;
+			}
+		}
+		for (int j = 0; j<current->num_axes; j++) {
+			if (old_axes[j] != current->axes[j] && fabs(current->axes[j]) > 7.5e-2) {
 				sendInput = true;
 			}
 		}
