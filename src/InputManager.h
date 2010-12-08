@@ -3,16 +3,23 @@
 
 #include <vector>
 
-/*
- * should hold the current input state at all times and update for differences
- * to prevent weird things from missing fields.
-*/
+enum KeyState {
+	KEY_NONE = 0,
+	KEY_PRESSED,
+	KEY_HELD,
+	KEY_LETGO
+};
+
 struct Controller {
+	Controller(int id);
+	virtual ~Controller();
+
 	int id;
 	float* axes;
 	int num_axes;
 
-	unsigned char* buttons;
+	KeyState* buttons;
+	unsigned char* buttons_raw;
 	int num_buttons;
 
 	// timestamps for button presses.
@@ -20,9 +27,10 @@ struct Controller {
 };
 
 // this should probably only handle mapped game buttons - not raw input.
-struct IEvent2 {
-	Controller* controllers;
-	int* key;
+struct IEvent {
+	std::vector<Controller*> controllers;
+
+	KeyState* keys;
 	int num_keys;
 
 	double* timestamp;
@@ -35,12 +43,12 @@ public:
 
 	void Update();
 
-	std::vector<Controller> controllers;
-
 private:
 	void DetectControllers();
 	void UpdateControllers();
-//	InputState m_inputState;
+
+	// keep the current state here and send it every time there's an update.
+	IEvent status;
 };
 
 extern InputManager* Input;

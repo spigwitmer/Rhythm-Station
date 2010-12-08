@@ -7,8 +7,6 @@
 #include "Object.h"
 #include "Sound.h"
 
-struct IEvent {};
-
 class Screen {
 public:
 	Screen();
