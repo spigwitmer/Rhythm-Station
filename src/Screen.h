@@ -9,8 +9,8 @@
 
 class Screen {
 public:
-	Screen();
-	virtual ~Screen();
+	Screen() { }
+	virtual ~Screen() { }
 
 	void AddObject(Object* object);
 	void AddObject(Sound* sound);

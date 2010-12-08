@@ -2,10 +2,6 @@
 #include "ResourceManager.h"
 #include "Logger.h"
 
-Screen::Screen() { }
-
-Screen::~Screen() { }
-
 void Screen::AddObject(Object* _object) {
 	m_vpObjects.push_back(_object);
 
