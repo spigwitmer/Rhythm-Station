@@ -37,6 +37,4 @@ void Type_Binding() {
 	.set("x", &vec3::x)
 	.set("y", &vec3::y)
 	.set("z", &vec3::z);
-
-	Log->Print("Registered vec3 class");
 }

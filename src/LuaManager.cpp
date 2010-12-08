@@ -1,6 +1,7 @@
 #include <cstring>
 #include "LuaManager.h"
 #include "FileManager.h"
+#include "RenderManager.h"
 #include <GL/glfw3.h>
 #include <iostream>
 #include <sstream>
@@ -49,9 +50,10 @@ LuaManager::LuaManager() {
 	Object_Binding();
 
 	lua_register(L, "TimeStamp", luafunc);
-	PushInteger("ScreenWidth", 854);
-	PushInteger("ScreenHeight", 480);
-	PushString("Version", "Rhythm Station 0.03 [dev]");
+	PushInteger("ScreenWidth", Renderer->ScreenWidth);
+	PushInteger("ScreenHeight", Renderer->ScreenHeight);
+	PushString("ProductID", "Rhythm Station");
+	PushNumber("Version", 0.03);
 }
 
 void LuaManager::Start() {

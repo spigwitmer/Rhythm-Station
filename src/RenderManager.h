@@ -20,9 +20,9 @@ public:
 	void BindFramebuffer(GLuint* buffers);
 	void UnbindFramebuffer();
 	void DeleteFramebuffer(GLuint* buffers);
-
-private:
 	void CheckExtensions();
+
+	int ScreenWidth, ScreenHeight;
 };
 
 extern RenderManager* Renderer;

@@ -1,7 +1,6 @@
 // GL headers
 #include <GL/glfw3.h>
 
-#include "globals.h"
 #include "HandleArguments.h"
 
 // All the singletons (we init them here, should do static init?)
@@ -17,8 +16,6 @@
 
 // ew, globals
 Matrix *g_projection_matrix = NULL;
-
-vec2 g_res;
 
 #ifndef DEBUG
 #ifdef _WIN32
@@ -36,10 +33,6 @@ int main (int argc, char** argv) {
 	GLFWwindow window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "", NULL);
 	glfwSwapInterval(1);
 
-	int width, height;
-	glfwGetWindowSize(window, &width, &height);
-	g_res = vec2(width, height);
-
 	// Start up all our singletons.
 	Log		= new Logger();
 	File		= new FileManager();
@@ -48,8 +41,8 @@ int main (int argc, char** argv) {
 	Scene	= new SceneManager();
 	Audio	= new AudioManager();
 	Input	= new InputManager();
-	Lua		= new LuaManager();
 	Renderer	= new RenderManager();
+	Lua		= new LuaManager();
 
 	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);

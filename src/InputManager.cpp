@@ -4,7 +4,6 @@
 #include "GameManager.h"
 #include "LuaManager.h"
 #include "Logger.h"
-#include "globals.h"
 
 InputManager* Input = NULL;
 
@@ -48,7 +47,7 @@ void mScrollCallback(GLFWwindow window, int x, int y) {
 
 // on window resize
 void resizeCallback(GLFWwindow window, int width, int height) {
-	g_projection_matrix->Ortho(width, height, vec2(-100, 100));
+	Game->ProjectionMatrix->Ortho(width, height, vec2(-100, 100));
 	Game->QueueRendering();
 }
 

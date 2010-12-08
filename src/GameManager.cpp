@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include "globals.h"
 #include "GameManager.h"
 #include "SceneManager.h"
 #include "InputManager.h"
@@ -29,11 +28,11 @@ GameManager::GameManager(GLFWwindow window) :
 	lazy_updates = false;
 #endif
 
-	g_projection_matrix = new Matrix();
+	ProjectionMatrix = new Matrix();
 }
 
 GameManager::~GameManager() {
-	delete g_projection_matrix;
+	delete ProjectionMatrix;
 	delete obj;
 	delete quad;
 }

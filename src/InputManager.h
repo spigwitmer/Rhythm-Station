@@ -26,6 +26,17 @@ struct Controller {
 	double* timestamp;
 };
 
+struct Mouse {
+	KeyState* buttons;
+	int* buttons_raw;
+
+	// coords
+	int x, y;
+
+	// normalized coords
+	float nx, ny;
+};
+
 // this should probably only handle mapped game buttons - not raw input.
 struct IEvent {
 	std::vector<Controller*> controllers;

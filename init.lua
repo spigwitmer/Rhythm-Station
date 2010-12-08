@@ -18,12 +18,6 @@ function LoadSound(filename)
 end
 --]]
 
-local test_string = string.format("%s @ %ix%i",
-	Version, ScreenWidth, ScreenHeight)
-
-Trace(test_string)
-Trace("Lua says hi!")
-
 -- note: the order of translate/scale/rotate and loading matters.
 -- this will be fixed soon.
 

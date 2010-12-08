@@ -3,6 +3,7 @@
 
 #include <GL/glfw3.h>
 #include <vector>
+#include "Matrix.h"
 
 class GameManager {
 public:
@@ -22,6 +23,8 @@ public:
 	void QueueRendering();
 	void Update(double delta);
 	void Render();
+
+	Matrix* ProjectionMatrix;
 
 private:
 	GLFWwindow m_window;

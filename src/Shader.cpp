@@ -1,7 +1,6 @@
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 #include <cstdlib>
-#include "globals.h"
 #include "Logger.h"
 #include "Shader.h"
 #include "FileManager.h"
@@ -46,7 +45,7 @@ Shader::Shader() {
 	m_model = new Matrix();
 	m_proj = new Matrix();
 
-	this->SetProjectionMatrix(g_projection_matrix);
+	this->SetProjectionMatrix(Game->ProjectionMatrix);
 	this->LoadFromDisk("Data/Shaders/generic.vs", "Data/Shaders/generic.fs");
 }
 

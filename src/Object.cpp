@@ -1,5 +1,4 @@
 #include <GL/glew.h>
-#include "globals.h"
 #include "Object.h"
 #include "GameManager.h"
 #include "FileManager.h"
@@ -11,7 +10,7 @@
 
 Object::Object() : m_bNeedsUpdate(true), m_color(rgba(1.0)), m_texture(),
 	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0)) {
-	m_shader.SetProjectionMatrix(g_projection_matrix);
+	m_shader.SetProjectionMatrix(Game->ProjectionMatrix);
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
 	CreateBuffers();
@@ -161,6 +160,4 @@ void Object_Binding() {
 	.set("Scale", &Object::Scale3f)
 	.set("Color", &Object::Color4f)
 	.set("Register", &Object::Register);
-
-	Log->Print("Registered Object class");
 }
