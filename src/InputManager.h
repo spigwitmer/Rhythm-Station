@@ -19,6 +19,15 @@ struct Controller {
 	double* timestamp;
 };
 
+// this should probably only handle mapped game buttons - not raw input.
+struct IEvent2 {
+	Controller* controllers;
+	int* key;
+	int num_keys;
+
+	double* timestamp;
+};
+
 class InputManager {
 public:
 	InputManager();
@@ -29,6 +38,8 @@ public:
 	std::vector<Controller> controllers;
 
 private:
+	void DetectControllers();
+	void UpdateControllers();
 //	InputState m_inputState;
 };
 

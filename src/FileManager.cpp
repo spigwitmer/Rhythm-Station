@@ -56,6 +56,7 @@ void FileManager::SetWorkingDirectory() {
 #endif
 }
 
+// this will probably be removed later.
 std::string FileManager::GetWorkingDirectory() {
 	SetWorkingDirectory();
 	char path[1024] = "";

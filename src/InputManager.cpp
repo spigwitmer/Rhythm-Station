@@ -22,7 +22,7 @@ void keyCallback(GLFWwindow window, int key, int state) {
 			Log->Print(str);
 			str.clear();
 		}
-		printf("key: %d\n", key);
+		Log->Print("key: %d\n", key);
 	}
 }
 
@@ -60,6 +60,19 @@ InputManager::InputManager() {
 	glfwSetScrollCallback(mScrollCallback);
 	glfwSetWindowSizeCallback(resizeCallback);
 
+	DetectControllers();
+}
+
+InputManager::~InputManager() {
+	// free the memory allocated by the controller inputs
+	for (int i = 0; i<controllers.size(); i++) {
+		delete[] controllers[i].axes;
+		delete[] controllers[i].buttons;
+	}
+	controllers.clear();
+}
+
+void InputManager::DetectControllers() {
 	// find all our joysticks
 	for (int i = 0; i<GLFW_JOYSTICK_LAST; i++) {
 		int present = glfwGetJoystickParam(i, GLFW_PRESENT);
@@ -88,24 +101,12 @@ InputManager::InputManager() {
 	if (controllers.size() > 0) {
 		Log->Print("Controllers found:");
 		for (int i = 0; i<controllers.size(); i++)
-			printf("\tController %d (id=%d, buttons=%d, axes=%d)\n", i+1,
+			Log->InlinePrint("\tController %d (id=%d, buttons=%d, axes=%d)\n", i+1,
 				controllers[i].id, controllers[i].num_buttons, controllers[i].num_axes);
-		printf("\n");
 	}
 }
 
-InputManager::~InputManager() {
-	// free the memory allocated by the controller inputs
-	for (int i = 0; i<controllers.size(); i++) {
-		delete[] controllers[i].axes;
-		delete[] controllers[i].buttons;
-	}
-	controllers.clear();
-}
-
-void InputManager::Update() {
-	glfwPollEvents();
-
+void InputManager::UpdateControllers() {
 	// update all joystick buttons + axes.
 	for (int i = 0; i<controllers.size(); i++) {
 		// store old values for comparison
@@ -125,6 +126,12 @@ void InputManager::Update() {
 			}
 		}
 	}
+}
+
+void InputManager::Update() {
+	glfwPollEvents();
+
+	UpdateControllers();
 }
 
 void Input_Binding() {
