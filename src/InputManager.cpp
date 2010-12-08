@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include "GameManager.h"
 #include "LuaManager.h"
+#include "SceneManager.h"
 #include "Logger.h"
 
 InputManager* Input = NULL;
@@ -11,7 +12,20 @@ std::string str;
 
 // keyboard. key for specials, char for text input and such.
 void keyCallback(GLFWwindow window, int key, int state) {
+	double cur_time = glfwGetTime();
 	if (state == GLFW_PRESS) {
+		switch(Input->status.keys[key]) {
+			case KEY_NONE:
+				Input->status.keys[key] = KEY_PRESSED;
+				break;
+			case KEY_PRESSED:
+				Input->status.keys[key] = KEY_HELD;
+				break;
+			default:
+				break;
+		}
+		Input->status.timestamp[key] = cur_time;
+
 		// testing
 		if (key == 295) {
 			str = str.substr(0,str.length()-1);
@@ -23,6 +37,22 @@ void keyCallback(GLFWwindow window, int key, int state) {
 		}
 		Log->Print("key: %d\n", key);
 	}
+	else {
+		switch (Input->status.keys[key]) {
+			case KEY_PRESSED:
+			case KEY_HELD:
+				Input->status.keys[key] = KEY_LETGO;
+				break;
+			case KEY_LETGO:
+				Input->status.keys[key] = KEY_NONE;
+				break;
+
+			default:
+				break;
+		}
+		Input->status.timestamp[key] = cur_time;
+	}
+	Input->SendEvent();
 }
 
 void charCallback(GLFWwindow window, int key) {
@@ -60,13 +90,21 @@ InputManager::InputManager() {
 	glfwSetWindowSizeCallback(resizeCallback);
 
 	DetectControllers();
+
+	status.keys = new KeyState[GLFW_KEY_LAST];
+	status.timestamp = new double[GLFW_KEY_LAST];
 }
 
 InputManager::~InputManager() {
 	for (int i = 0; i<status.controllers.size(); i++) {
 		delete status.controllers[i];
+		delete[] status.keys;
+		delete[] status.timestamp;
 	}
 	status.controllers.clear();
+	
+	glfwSetKeyCallback(NULL);
+	glfwSetCharCallback(NULL);
 }
 
 Controller::Controller(int _id) {
@@ -95,6 +133,10 @@ Controller::~Controller() {
 	delete[] this->buttons_raw;
 }
 
+void InputManager::SendEvent() {
+	Scene->SendInput(status);
+}
+
 void InputManager::DetectControllers() {
 	// find all our joysticks
 	for (int i = 0; i<GLFW_JOYSTICK_LAST; i++) {
@@ -109,13 +151,14 @@ void InputManager::DetectControllers() {
 	// log what we found
 	if (status.controllers.size() > 0) {
 		Log->Print("Controllers found:");
-		for (int i = 0; i<status.controllers.size(); i++)
+		for (int i = 0; i<status.controllers.size(); i++) {
 			Log->InlinePrint(
 				"\tController %d (id=%d, buttons=%d, axes=%d)\n", i+1,
 				status.controllers[i]->id,
 				status.controllers[i]->num_buttons,
 				status.controllers[i]->num_axes
 			);
+		}
 	}
 }
 

@@ -16,7 +16,7 @@ public:
 	void AddObject(Sound* sound);
 	void Register() { }
 
-	virtual void Input(const IEvent &e) { }
+	virtual void Input(const IEvent &e);
 	void Update(float deltaTime);
 	void Draw();
 

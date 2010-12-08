@@ -53,13 +53,17 @@ public:
 	virtual ~InputManager();
 
 	void Update();
+	void SendEvent();
+
+	/*
+	 * Keep the current state here and send it every time there's an update.
+	 * This needs to be public so that the callbacks can update it.
+	 */
+	IEvent status;
 
 private:
 	void DetectControllers();
 	void UpdateControllers();
-
-	// keep the current state here and send it every time there's an update.
-	IEvent status;
 };
 
 extern InputManager* Input;

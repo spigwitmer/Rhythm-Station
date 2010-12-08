@@ -1,5 +1,6 @@
 #include "Screen.h"
 #include "ResourceManager.h"
+#include "Logger.h"
 
 Screen::Screen() { }
 
@@ -17,11 +18,10 @@ void Screen::AddObject(Sound* _sound) {
 	Resources->Add(_sound);
 }
 
-/*
 void Screen::Input(const IEvent &e) {
 	// todo
+	Log->Print("Recieved Input");
 }
-*/
 
 void Screen::Update(float deltaTime) {
 	// objects are updated by gamemanager
