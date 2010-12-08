@@ -88,6 +88,8 @@ InputManager::InputManager() {
 
 	status.keys = new KeyState[GLFW_KEY_LAST];
 	status.timestamp = new double[GLFW_KEY_LAST];
+
+	queuedUpdate = false;
 }
 
 InputManager::~InputManager() {
@@ -181,29 +183,27 @@ void InputManager::UpdateControllers() {
 			status.controllers[i]->num_axes
 		);
 
+		bool sendInput = false;
+
 		// and now set timestamp if a button has changed.
 		for (int j = 0; j<status.controllers[i]->num_buttons; j++) {
-			if (old_buttons[j] != status.controllers[i]->buttons_raw[j]) {
+			if (old_buttons[j] != status.controllers[i]->buttons_raw[j] || queuedUpdate) {
 				double cur_time = glfwGetTime();
 
-				switch(status.controllers[i]->buttons[j]) {
-					case KEY_NONE:
+				switch(status.controllers[i]->buttons_raw[j]) {
+					case GLFW_PRESS:
 						status.controllers[i]->buttons[j] = KEY_PRESSED;
 						break;
-					case KEY_PRESSED:
-						status.controllers[i]->buttons[j] = KEY_HELD;
-						break;
-					case KEY_HELD:
-						status.controllers[i]->buttons[j] = KEY_LETGO;
-						break;
-					case KEY_LETGO:
+					case GLFW_RELEASE:
 						status.controllers[i]->buttons[j] = KEY_NONE;
 						break;
 				}
 				status.controllers[i]->timestamp[j] = cur_time;
-				SendEvent();
+				sendInput = true;
 			}
 		}
+		if (sendInput)
+			SendEvent();
 	}
 }
 
