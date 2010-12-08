@@ -209,6 +209,6 @@ void InputManager::Update() {
 }
 
 void Input_Binding() {
-	Lua->PushNumber("Key_Escape", 27);
-	Lua->PushNumber("Key_Return", 294);
+	Lua->PushInteger("Key_Escape", 27);
+	Lua->PushInteger("Key_Return", 294);
 }
