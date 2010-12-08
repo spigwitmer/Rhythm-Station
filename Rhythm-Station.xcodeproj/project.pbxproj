@@ -206,7 +206,6 @@
 		EEA552D4125A800C0065F811 /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
 		EEA552D5125A80920065F811 /* Type.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type.cpp; sourceTree = "<group>"; };
 		EEA552D6125A80920065F811 /* Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type.h; sourceTree = "<group>"; };
-		EEAB19231268DB9C004FE58D /* globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = globals.h; sourceTree = "<group>"; };
 		EEAB1A79126EDF99004FE58D /* LuaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaManager.h; sourceTree = "<group>"; };
 		EEAB1A7A126EDF99004FE58D /* LuaManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaManager.cpp; sourceTree = "<group>"; };
 		EEAB1AA3126F5440004FE58D /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
@@ -488,7 +487,6 @@
 				EE9160861256A60100F0B0B3 /* Data Structures */,
 				EE9160851256A5F700F0B0B3 /* Singletons */,
 				EE915E501255CD9500F0B0B3 /* main.cpp */,
-				EEAB19231268DB9C004FE58D /* globals.h */,
 				EEF5A4B1129EE62C00ABD8AE /* fft_test.h */,
 				EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */,
 			);
