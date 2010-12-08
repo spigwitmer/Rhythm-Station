@@ -1,3 +1,4 @@
+#include <GL/glfw3.h>
 #include "Screen.h"
 #include "ResourceManager.h"
 #include "Logger.h"
@@ -16,7 +17,12 @@ void Screen::AddObject(Sound* _sound) {
 
 void Screen::Input(const IEvent &e) {
 	// todo
-	Log->Print("Recieved Input");
+	if (e.controllers.size() > 0) {
+		for (int i = 0; i<e.controllers[0]->num_buttons; i++) {
+			Log->InlinePrint("%d ", e.controllers[0]->buttons[i]);
+		}
+		Log->InlinePrint("\n");
+	}
 }
 
 void Screen::Update(float deltaTime) {

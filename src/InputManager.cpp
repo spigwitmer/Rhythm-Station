@@ -21,8 +21,6 @@ void keyCallback(GLFWwindow window, int key, int state) {
 			case KEY_PRESSED:
 				Input->status.keys[key] = KEY_HELD;
 				break;
-			default:
-				break;
 		}
 		Input->status.timestamp[key] = cur_time;
 
@@ -45,9 +43,6 @@ void keyCallback(GLFWwindow window, int key, int state) {
 				break;
 			case KEY_LETGO:
 				Input->status.keys[key] = KEY_NONE;
-				break;
-
-			default:
 				break;
 		}
 		Input->status.timestamp[key] = cur_time;
@@ -118,6 +113,11 @@ Controller::Controller(int _id) {
 	this->buttons_raw = new unsigned char[this->num_buttons];
 	this->timestamp = new double[this->num_buttons];
 
+	for (int i = 0; i<this->num_buttons; i++) {
+		this->buttons_raw[i] = 0;
+		this->buttons[i] = KEY_NONE;
+	}
+
 	// initial update.
 	glfwGetJoystickButtons(this->id, this->buttons_raw, this->num_buttons);
 	glfwGetJoystickPos(this->id, this->axes, this->num_axes);
@@ -185,8 +185,23 @@ void InputManager::UpdateControllers() {
 		for (int j = 0; j<status.controllers[i]->num_buttons; j++) {
 			if (old_buttons[j] != status.controllers[i]->buttons_raw[j]) {
 				double cur_time = glfwGetTime();
-				// this should send an IEvent, too.
+
+				switch(status.controllers[i]->buttons[j]) {
+					case KEY_NONE:
+						status.controllers[i]->buttons[j] = KEY_PRESSED;
+						break;
+					case KEY_PRESSED:
+						status.controllers[i]->buttons[j] = KEY_HELD;
+						break;
+					case KEY_HELD:
+						status.controllers[i]->buttons[j] = KEY_LETGO;
+						break;
+					case KEY_LETGO:
+						status.controllers[i]->buttons[j] = KEY_NONE;
+						break;
+				}
 				status.controllers[i]->timestamp[j] = cur_time;
+				SendEvent();
 			}
 		}
 	}
