@@ -64,6 +64,8 @@ public:
 private:
 	void DetectControllers();
 	void UpdateControllers();
+
+	bool queuedUpdate;
 };
 
 extern InputManager* Input;

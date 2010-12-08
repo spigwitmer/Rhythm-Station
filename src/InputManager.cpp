@@ -167,38 +167,32 @@ void InputManager::DetectControllers() {
 void InputManager::UpdateControllers() {
 	// update all joystick buttons + axes.
 	for (int i = 0; i<status.controllers.size(); i++) {
+		Controller* current = status.controllers[i];
+
 		// store old values for comparison
-		unsigned char old_buttons[status.controllers[i]->num_buttons];
-		memcpy(old_buttons, status.controllers[i]->buttons_raw, sizeof(old_buttons));
+		unsigned char old_buttons[current->num_buttons];
+		memcpy(old_buttons, current->buttons_raw, sizeof(old_buttons));
 
 		// update the current values
-		glfwGetJoystickButtons(
-			status.controllers[i]->id,
-			status.controllers[i]->buttons_raw,
-			status.controllers[i]->num_buttons
-		);
-		glfwGetJoystickPos(
-			status.controllers[i]->id,
-			status.controllers[i]->axes,
-			status.controllers[i]->num_axes
-		);
+		glfwGetJoystickButtons(current->id, current->buttons_raw, current->num_buttons);
+		glfwGetJoystickPos(current->id, current->axes, current->num_axes);
 
 		bool sendInput = false;
 
 		// and now set timestamp if a button has changed.
-		for (int j = 0; j<status.controllers[i]->num_buttons; j++) {
-			if (old_buttons[j] != status.controllers[i]->buttons_raw[j] || queuedUpdate) {
+		for (int j = 0; j<current->num_buttons; j++) {
+			if (old_buttons[j] != current->buttons_raw[j] || queuedUpdate) {
 				double cur_time = glfwGetTime();
 
-				switch(status.controllers[i]->buttons_raw[j]) {
+				switch(current->buttons_raw[j]) {
 					case GLFW_PRESS:
-						status.controllers[i]->buttons[j] = KEY_PRESSED;
+						current->buttons[j] = KEY_PRESSED;
 						break;
 					case GLFW_RELEASE:
-						status.controllers[i]->buttons[j] = KEY_NONE;
+						current->buttons[j] = KEY_NONE;
 						break;
 				}
-				status.controllers[i]->timestamp[j] = cur_time;
+				current->timestamp[j] = cur_time;
 				sendInput = true;
 			}
 		}
