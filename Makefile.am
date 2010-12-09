@@ -118,7 +118,10 @@ src/StringUtils.cpp \
 src/Timer.cpp \
 src/Tween.cpp \
 src/Type.cpp
-rstation_CPPFLAGS = $(EXT_DEPENDS_CFLAGS) $(libglfw3_a_CPPFLAGS) $(libslb_a_CPPFLAGS)
+rstation_CPPFLAGS = -DDEBUG \
+$(EXT_DEPENDS_CFLAGS) \
+$(libglfw3_a_CPPFLAGS) \
+$(libslb_a_CPPFLAGS)
 
 #
 # Optional bundled lua
