@@ -78,7 +78,7 @@ InputManager::InputManager() {
 }
 
 InputManager::~InputManager() {
-	for (int i = 0; i<status.controllers.size(); i++) {
+	for (unsigned int i = 0; i<status.controllers.size(); i++) {
 		delete status.controllers[i];
 		delete[] status.keys;
 		delete[] status.timestamp;
@@ -138,7 +138,7 @@ void InputManager::DetectControllers() {
 	// log what we found
 	if (status.controllers.size() > 0) {
 		Log->Print("Controllers found:");
-		for (int i = 0; i<status.controllers.size(); i++) {
+		for (unsigned int i = 0; i<status.controllers.size(); i++) {
 			Log->InlinePrint(
 				"\tController %d (id=%d, buttons=%d, axes=%d)\n", i+1,
 				status.controllers[i]->id,
@@ -151,7 +151,7 @@ void InputManager::DetectControllers() {
 
 void InputManager::UpdateControllers() {
 	// update all joystick buttons + axes.
-	for (int i = 0; i<status.controllers.size(); i++) {
+	for (unsigned int i = 0; i<status.controllers.size(); i++) {
 		Controller* current = status.controllers[i];
 
 		// store old values for comparison
