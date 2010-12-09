@@ -40,7 +40,7 @@ std::string getProgramLog(GLuint obj) {
 }
 
 Shader::Shader() {
-	vs = fs = ptr = NULL;
+	vs = fs = ptr = 0;
 
 	m_model = new Matrix();
 	m_proj = new Matrix();
