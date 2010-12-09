@@ -1,6 +1,5 @@
 #include <GL/glew.h>
 #include <GL/glfw3.h>
-#include "globals.h"
 #include "Logger.h"
 #include "Matrix.h"
 #include <cstdio>
