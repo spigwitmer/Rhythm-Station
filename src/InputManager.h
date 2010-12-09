@@ -2,6 +2,8 @@
 #define _INPUT_MANAGER_H_
 
 #include <vector>
+#include <string>
+#include "Type.h"
 
 enum KeyState {
 	KEY_NONE = 0,
@@ -40,6 +42,10 @@ struct Mouse {
 // this should probably only handle mapped game buttons - not raw input.
 struct IEvent {
 	std::vector<Controller*> controllers;
+	std::string cur_string;
+
+	vec2 mouse_pos;
+	vec2 scroll;
 
 	KeyState* keys;
 	int num_keys;

@@ -8,66 +8,51 @@
 
 InputManager* Input = NULL;
 
-std::string str;
-
 // keyboard. key for specials, char for text input and such.
 void keyCallback(GLFWwindow window, int key, int state) {
 	double cur_time = glfwGetTime();
-	if (state == GLFW_PRESS) {
-		switch(Input->status.keys[key]) {
-			case KEY_NONE:
-				Input->status.keys[key] = KEY_PRESSED;
-				break;
-			case KEY_PRESSED:
-				Input->status.keys[key] = KEY_HELD;
-				break;
-		}
-		Input->status.timestamp[key] = cur_time;
-
-		// testing
-		if (key == 295) {
-			str = str.substr(0,str.length()-1);
-			return;
-		}
-		if (key == 294) {
-			Log->Print(str);
-			str.clear();
-		}
-		Log->Print("key: %d\n", key);
+	switch (state) {
+		case GLFW_PRESS:
+			Input->status.keys[key] = KEY_PRESSED;
+			switch (key) {
+				case 294:
+					Log->Print(Input->status.cur_string);
+					Input->status.cur_string.clear();
+					break;
+				case 295: // backspace
+					Input->status.cur_string = Input->status.cur_string.substr(0, Input->status.cur_string.length()-1);
+				default:
+					break;
+			}
+			break;
+		case GLFW_RELEASE:
+			Input->status.keys[key] = KEY_NONE;			
+			break;
 	}
-	else {
-		switch (Input->status.keys[key]) {
-			case KEY_PRESSED:
-			case KEY_HELD:
-				Input->status.keys[key] = KEY_LETGO;
-				break;
-			case KEY_LETGO:
-				Input->status.keys[key] = KEY_NONE;
-				break;
-		}
-		Input->status.timestamp[key] = cur_time;
-	}
+	Input->status.timestamp[key] = cur_time;
 	Input->SendEvent();
 }
 
 void charCallback(GLFWwindow window, int key) {
 	char buf[2];
 	sprintf(buf, "%c", key);
-	str.push_back(buf[0]);
+	Input->status.cur_string.push_back(buf[0]);
 }
 
 // mouse actions
 void mPosCallback(GLFWwindow window, int x, int y) {
-	// todo
+	// crash!
+//	Input->status.mouse_pos = vec2(x, y);
+//	Input->SendEvent();
 }
 
 void mButtonCallback(GLFWwindow window, int button, int state) {
-	// todo
+//	Input->status.mouse_buttons[button];
 }
 
 void mScrollCallback(GLFWwindow window, int x, int y) {
-	// todo
-	// + check args on this function.
+	Input->status.scroll = vec2(x, y);
+	Input->SendEvent();
 }
 
 // on window resize
