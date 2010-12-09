@@ -1,7 +1,4 @@
-#include <sstream>
-#include <iostream>
 #include <cstdio>
-
 #include <GL/glfw3.h>
 #include "GameManager.h"
 #include "Logger.h"
@@ -17,30 +14,30 @@ void Logger::DebugPrint(std::string input) {
 void Logger::Print(std::string in, ...) {
 	va_list va;
 
-	// there has to be a better way to handle this. a long enough print will cause a crash.
-	char buf[in.length() + 2048];
-	va_start(va, in.c_str()); // throws an warning! ignore it.
-	vsprintf(buf, in.c_str(), va);
+	// note: asprintf and vasprintf might not be friendly to non-gcc compilers.
+	char* buf, *buf2;
+	asprintf(&buf, "%0.3f", glfwGetTime());
+
+	// this throws a warning, ignore it.
+	va_start(va, in.c_str());
+	vasprintf(&buf2, in.c_str(), va);
 	va_end(va);
 
-	// timestamp
-	char buf2[16] = "";
-	sprintf(buf2, "%0.3f", glfwGetTime());
+	printf("[%s] %s\n", buf, buf2);
 
-	std::ostringstream out;
-	out << "[" << buf2 << "] " << buf << "\n";
-
-	// tried passing the va_list and making InlinePrint handle this, didn't behave right.
-	std::cout << out.str();
-}	
+	free(buf);
+	free(buf2);
+}
 
 void Logger::InlinePrint(std::string in, ...) {
 	va_list va;
 
+	char* buf;
 	va_start(va, in.c_str());
-	char buf[in.length() + 2048];
-	vsprintf(buf, in.c_str(), va);
+	vasprintf(&buf, in.c_str(), va);
 	va_end(va);
 
-	std::cout << buf;
-}	
+	printf("%s", buf);
+
+	free(buf);
+}
