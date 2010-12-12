@@ -1,6 +1,5 @@
-#include <sstream>
-#include <iostream>
 #include <cstdio>
+#include <cstdlib>
 #include <cstdarg>
 
 #include <GL/glfw3.h>
@@ -17,31 +16,46 @@ void Logger::DebugPrint(std::string input) {
 
 void Logger::Print(std::string in, ...) {
 	va_list va;
+	char staticbuf[1024];
+	char *buf = staticbuf;
 
-	// there has to be a better way to handle this. a long enough print will cause a crash.
-	char buf[in.length() + 2048];
-	va_start(va, in.c_str()); // throws an warning! ignore it.
-	vsprintf(buf, in.c_str(), va);
+	va_start(va, in);
+	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in.c_str(), va) + 1 ;
+	if (need > sizeof(staticbuf)) {
+		// staticbuf wasn't large enough, malloc large enough
+		buf = (char *) malloc(need);
+		va_start(va,in);
+		vsnprintf(buf, need, in.c_str(), va);
+	}
 	va_end(va);
 
-	// timestamp
-	char buf2[16] = "";
-	sprintf(buf2, "%0.3f", glfwGetTime());
+	printf("[%0.3f] %s\n", glfwGetTime(),buf);
 
-	std::ostringstream out;
-	out << "[" << buf2 << "] " << buf << "\n";
-
-	// tried passing the va_list and making InlinePrint handle this, didn't behave right.
-	std::cout << out.str();
-}	
+	// free if we had to malloc more space
+	if (buf != staticbuf) {
+		free(buf);
+	}
+}
 
 void Logger::InlinePrint(std::string in, ...) {
 	va_list va;
+	char staticbuf[1024];
+	char *buf = staticbuf;
 
-	va_start(va, in.c_str());
-	char buf[in.length() + 2048];
-	vsprintf(buf, in.c_str(), va);
+	va_start(va, in);
+	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in.c_str(), va) + 1 ;
+	if (need > sizeof(staticbuf)) {
+		// staticbuf wasn't large enough, malloc large enough
+		buf = (char *) malloc(need);
+		va_start(va,in);
+		vsnprintf(buf, need, in.c_str(), va);
+	}
 	va_end(va);
 
-	std::cout << buf;
-}	
+	printf("%s", buf);
+
+	// free if we had to malloc more space
+	if (buf != staticbuf) {
+		free(buf);
+	}
+}
