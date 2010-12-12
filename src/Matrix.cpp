@@ -1,10 +1,8 @@
-#include <GL/glew.h>
-#include <GL/glfw3.h>
+#include <cstdio>
+#include <cstring>
+#include <math.h>
 #include "Logger.h"
 #include "Matrix.h"
-#include <cstdio>
-#include <math.h>
-#include <cstring>
 
 float radf(float val) {
 	// cast as float so the conversion is explicit.
@@ -30,6 +28,10 @@ void Matrix::Print() {
 
 void Matrix::Load(float m[16]) {
 	memcpy(matrix, m, sizeof(matrix));
+}
+
+void Matrix::Zero() {
+	memset(matrix, 0, sizeof(matrix));
 }
 
 void Matrix::Identity() {

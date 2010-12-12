@@ -10,6 +10,7 @@ struct Matrix {
 	void Load(float m[16]);
 	void SetUniform();
 	void Identity();
+	void Zero();
 
 	// transformations
 	void Translate(float x, float y, float z);
