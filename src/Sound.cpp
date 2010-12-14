@@ -16,7 +16,7 @@
 
 #define BUFFER_SIZE 4096
 
-Sound::Sound() : sd_volume(1.0), sd_pitch(1.0), sd_loop(false) {
+Sound::Sound() : sd_loop(false), sd_pitch(1.0), sd_volume(1.0) {
 	sd_sound = new SoundData();
 
 	// create buffer to load data into
