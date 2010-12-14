@@ -79,7 +79,6 @@ int main (int argc, char** argv) {
 		Input->Update();
 		Game->Update(delta);
 		Scene->Update(delta);
-
 		Game->Render();
 	}
 

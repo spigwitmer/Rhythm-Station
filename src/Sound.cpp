@@ -16,7 +16,7 @@
 
 #define BUFFER_SIZE 4096
 
-Sound::Sound() {
+Sound::Sound() : sd_volume(1.0), sd_pitch(1.0), sd_loop(false) {
 	sd_sound = new SoundData();
 
 	// create buffer to load data into
@@ -44,6 +44,7 @@ void Sound::deleteBuffers() {
 	alDeleteSources(1, &sd_sound->source);
 }
 
+// limited!
 void Sound::Load(std::string _path) {
 	// make path local and open file
 	std::string path = File->GetFile(_path);
@@ -87,7 +88,7 @@ void Sound::Load(std::string _path) {
 	sd_waiting = true;
 }
 
-void Sound::Update(float deltaTime) {
+void Sound::Update(double delta) {
 	ALenum state;
 	alGetSourcei(sd_sound->source, AL_SOURCE_STATE, &state);
 
@@ -104,6 +105,20 @@ void Sound::Play() {
 	// Attach sound buffer to source & play it
 	alSourcei(sd_sound->source, AL_BUFFER, sd_sound->buffer);
 	alSourcei(sd_sound->source, AL_LOOPING, sd_loop);
-//	alSourcef(sd_sound->source, AL_PITCH, 0.5);
+	alSourcef(sd_sound->source, AL_GAIN, sd_volume);
+	alSourcef(sd_sound->source, AL_PITCH, sd_pitch);
 	alSourcePlay(sd_sound->source);
+}
+
+// Lua
+#include <SLB/SLB.hpp>
+
+void Sound_Binding() {
+	SLB::Class<Sound>("Sound")
+	.constructor()
+	.set("Load", &Sound::Load)
+	.set("Volume", &Sound::Volume)
+	.set("Pitch", &Sound::Pitch)
+	.set("Loop", &Sound::Loop)
+	.set("Register", &Sound::Register);
 }

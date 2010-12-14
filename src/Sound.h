@@ -13,7 +13,7 @@ public:
 	void deleteBuffers();
 	void Load(std::string _path);
 	void Play();
-	void Update(float deltaTime);
+	void Update(double delta);
 	
 	void Loop(bool _loop) { sd_loop = _loop; }
 	void Volume(float _volume) { sd_volume = _volume; }
@@ -25,5 +25,7 @@ private:
 	bool sd_loop, sd_waiting;
 	float sd_pan, sd_pitch, sd_volume;
 };
+
+void Sound_Binding();
 
 #endif

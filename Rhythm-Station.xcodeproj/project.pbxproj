@@ -52,6 +52,7 @@
 		EE915F82125669ED00F0B0B3 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915F81125669ED00F0B0B3 /* Shader.cpp */; };
 		EE915F9312567C1600F0B0B3 /* ResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915F9212567C1600F0B0B3 /* ResourceManager.cpp */; };
 		EE915FE21256829D00F0B0B3 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915FE01256829D00F0B0B3 /* Logger.cpp */; };
+		EE945CD812B77CEF0029ADB0 /* shield-9.ogg in Resources */ = {isa = PBXBuildFile; fileRef = EE945CD712B77CEF0029ADB0 /* shield-9.ogg */; };
 		EEA552C9125A6E4B0065F811 /* HandleArguments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA552C8125A6E4B0065F811 /* HandleArguments.cpp */; };
 		EEA552D2125A7FE30065F811 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA552D1125A7FE30065F811 /* Matrix.cpp */; };
 		EEA552D7125A80920065F811 /* Type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA552D5125A80920065F811 /* Type.cpp */; };
@@ -200,6 +201,7 @@
 		EE915F9212567C1600F0B0B3 /* ResourceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResourceManager.cpp; sourceTree = "<group>"; };
 		EE915FE01256829D00F0B0B3 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
 		EE915FE11256829D00F0B0B3 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		EE945CD712B77CEF0029ADB0 /* shield-9.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "shield-9.ogg"; sourceTree = "<group>"; };
 		EEA552C7125A6E4B0065F811 /* HandleArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleArguments.h; sourceTree = "<group>"; };
 		EEA552C8125A6E4B0065F811 /* HandleArguments.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HandleArguments.cpp; sourceTree = "<group>"; };
 		EEA552D1125A7FE30065F811 /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EE945CD712B77CEF0029ADB0 /* shield-9.ogg */,
 				EE747FC5127E55B200E4A8FA /* Data */,
 				EEC530481275803E0064054A /* test.png */,
 				EEC5285E127375570064054A /* init.lua */,
@@ -756,6 +759,7 @@
 				EEC5285F127375570064054A /* init.lua in Resources */,
 				EEC530491275803E0064054A /* test.png in Resources */,
 				EE747FCB127E55B200E4A8FA /* Data in Resources */,
+				EE945CD812B77CEF0029ADB0 /* shield-9.ogg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

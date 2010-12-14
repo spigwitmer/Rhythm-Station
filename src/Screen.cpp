@@ -34,6 +34,9 @@ void Screen::Update(double delta) {
 	for (unsigned i = 0; i<m_vpObjects.size(); i++) {
 		m_vpObjects[i]->Update(delta);
 	}
+	for (unsigned i = 0; i<m_vpSounds.size(); i++) {
+		m_vpSounds[i]->Update(delta);
+	}
 }
 
 void Screen::Draw() {

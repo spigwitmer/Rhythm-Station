@@ -9,6 +9,7 @@
 #include <SLB/SLB.hpp>
 #include "Object.h"
 #include "Type.h"
+#include "Sound.h"
 
 LuaManager* Lua = NULL;
 
@@ -48,6 +49,7 @@ LuaManager::LuaManager() {
 	// todo: automatically register classes
 	Type_Binding();
 	Object_Binding();
+	Sound_Binding();
 
 	lua_register(L, "TimeStamp", luafunc);
 	PushInteger("ScreenWidth", Renderer->ScreenWidth);

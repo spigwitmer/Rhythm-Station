@@ -29,7 +29,7 @@ void Logger::Print(std::string in, ...) {
 	}
 	va_end(va);
 
-	printf("[%0.3f] %s\n", glfwGetTime(),buf);
+	printf("\x1b[%d;1m[%0.3f]\x1b[0m %s\n", FG_RED, glfwGetTime(),buf);
 
 	// free if we had to malloc more space
 	if (buf != staticbuf) {

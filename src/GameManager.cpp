@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "AudioManager.h"
 #include "GameManager.h"
 #include "SceneManager.h"
 #include "InputManager.h"
