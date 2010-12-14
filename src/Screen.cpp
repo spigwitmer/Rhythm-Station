@@ -30,8 +30,10 @@ void Screen::Input(const IEvent &e) {
 	}
 }
 
-void Screen::Update(float deltaTime) {
-	// objects are updated by gamemanager
+void Screen::Update(double delta) {
+	for (unsigned i = 0; i<m_vpObjects.size(); i++) {
+		m_vpObjects[i]->Update(delta);
+	}
 }
 
 void Screen::Draw() {

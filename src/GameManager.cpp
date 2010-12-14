@@ -46,9 +46,7 @@ void GameManager::QueueRendering() {
 }
 
 void GameManager::Update(double delta) {
-	std::vector<Object*> vpObjects = Resources->GetObjects();
-	for (unsigned int i = 0; i<vpObjects.size(); i++)
-		vpObjects[i]->Update(delta);
+	// for non-screen updates.
 }
 
 void GameManager::Start() {
@@ -69,6 +67,7 @@ void GameManager::UpdateWindowTitle(double delta) {
 	glfwSetWindowTitle(m_window, sfps.c_str());
 }
 
+// this should probably be in scenemanager.
 void GameManager::Render() {
 	/*
 	 * Ideally, we would only redraw objects which need it, however this is still

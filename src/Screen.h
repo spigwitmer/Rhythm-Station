@@ -17,7 +17,7 @@ public:
 	void Register() { }
 
 	virtual void Input(const IEvent &e);
-	void Update(float deltaTime);
+	void Update(double delta);
 	void Draw();
 
 private:

@@ -73,12 +73,13 @@ int main (int argc, char** argv) {
 			Log->Print("Frame took too long; time has been limited.");
 			delta = max_delta;
 		}
-
 		then = now;
 
 		// Update input before logic/objects so that it's not running behind.
 		Input->Update();
 		Game->Update(delta);
+		Scene->Update(delta);
+
 		Game->Render();
 	}
 
