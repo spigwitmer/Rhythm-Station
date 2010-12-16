@@ -5,7 +5,7 @@
 #include <CoreFoundation/CoreFoundation.h>
 #endif
 
-#ifdef __WINDOWS__
+#if defined(__WINDOWS__) || defined(_WIN32)
 #include <direct.h>
 #endif
 

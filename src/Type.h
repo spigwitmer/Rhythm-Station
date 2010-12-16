@@ -1,13 +1,19 @@
 #ifndef _Type_H_
 #define _Type_H_
 
+#include "global.h"
 #include <string>
-#include <stdint.h>
 #include <math.h>
 #include <ostream>
 
-#ifdef _WIN32
-	#include "stdint.h" // uint32 and such on Windows
+#ifndef _WIN32
+	#include <stdint.h> // uint32 and such on Windows
+#else
+	// used stdint.h replacements
+	#define uint32_t unsigned long
+	#define uint64_t unsigned long long
+	#define int32_t int
+	#define int64_t long long
 #endif
 
 #include <sstream>
@@ -116,6 +122,7 @@ struct rgba {
 	operator const float* () const			{ return &r; };
 
 	// assignment operators
+	rgba& operator = (const rgba& other)	{ r =other.r; g =other.g; b =other.b; a =other.a; return *this; }
 	rgba& operator += (const rgba& other)	{ r+=other.r; g+=other.g; b+=other.b; a+=other.a; return *this; }
 	rgba& operator -= (const rgba& other)	{ r-=other.r; g-=other.g; b-=other.b; a-=other.a; return *this; }
 	rgba& operator *= (float f)			{ r*=f; g*=f; b*=f; a*=f; return *this; }

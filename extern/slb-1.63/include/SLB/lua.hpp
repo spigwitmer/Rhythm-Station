@@ -29,6 +29,8 @@
 #ifndef __SLB_LUA__
 #define __SLB_LUA__
 
+#pragma warning(disable : 4273)
+
 extern "C" {
 #ifdef SLB_EXTERNAL_LUA
 	#include <lua.h>
@@ -43,7 +45,6 @@ extern "C" {
 	#include "lua/lua.h"
 	#include "lua/lauxlib.h"
 	#include "lua/lualib.h"
-
 #endif
 }
 

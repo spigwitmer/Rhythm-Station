@@ -27,7 +27,7 @@ struct Matrix {
 
 	// utils
 	void Print();
-	void Multiply(float m[16]);
+	void Multiply(const float *m);
 
 	// vec3 overloads
 	void Translate(vec3 pos);
@@ -35,8 +35,8 @@ struct Matrix {
 	void Scale(vec3 size);
 
 	// doesn't work for (Matrix*)?
-	Matrix& operator * (Matrix &m) { this->Multiply(m.matrix); return *this; }
-	Matrix& operator = (Matrix &m)  { memcpy(matrix, m.matrix, 16*sizeof(float)); return *this; }
+	Matrix& operator * (const Matrix &m) { this->Multiply(m.matrix); return *this; }
+	Matrix& operator = (const Matrix &m)  { memcpy(matrix, m.matrix, 16*sizeof(float)); return *this; }
 
 	float matrix[16];
 };

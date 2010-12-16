@@ -155,8 +155,8 @@ void InputManager::UpdateControllers() {
 		Controller* current = status.controllers[i];
 
 		// store old values for comparison
-		unsigned char old_buttons[current->num_buttons];
-		float old_axes[current->num_axes];
+		unsigned char *old_buttons = new unsigned char[current->num_buttons]; // FIXME
+		float *old_axes = new float[current->num_axes]; // FIXME
 		memcpy(old_buttons, current->buttons_raw, sizeof(old_buttons));
 		memcpy(old_axes, current->axes, sizeof(old_axes));
 
@@ -188,6 +188,8 @@ void InputManager::UpdateControllers() {
 				sendInput = true;
 			}
 		}
+		delete [] old_buttons;
+		delete [] old_axes;
 		if (sendInput)
 			SendEvent();
 	}
