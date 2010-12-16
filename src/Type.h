@@ -1,7 +1,6 @@
 #ifndef _Type_H_
 #define _Type_H_
 
-#include "global.h"
 #include <string>
 #include <math.h>
 #include <ostream>
