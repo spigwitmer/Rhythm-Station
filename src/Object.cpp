@@ -88,7 +88,7 @@ void Object::Load(std::string _path) {
 		Log->Print("Failed; Not yet implemented.");
 	}
 	else
-		Log->Print("Unknown file type.");
+		Log->Print("Unknown file type: %s.", ext);
 
 	QueueUpdate();
 }
