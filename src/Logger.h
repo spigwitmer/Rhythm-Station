@@ -17,9 +17,15 @@ enum ConsoleColor {
 
 class Logger {
 public:
+	Logger();
+
 	void DebugPrint(std::string input);
 	void Print(std::string in, ...);
 	void InlinePrint(std::string in, ...);
+private:
+#if 0
+	bool bEnableColors;
+#endif
 };
 
 extern Logger* Log;

@@ -8,6 +8,16 @@
 
 Logger* Log = NULL;
 
+Logger::Logger() {
+#if 0
+	// doesn't work
+	if (getenv("BASH") != NULL)
+		bEnableColors = true;
+	else
+		bEnableColors = false;
+#endif
+}
+
 // don't forget to define _DEBUG_!
 void Logger::DebugPrint(std::string input) {
 	if (Game->IsDebugMode())
@@ -29,7 +39,12 @@ void Logger::Print(std::string in, ...) {
 	}
 	va_end(va);
 
-	printf("\x1b[%d;1m[%0.3f]\x1b[0m %s\n", FG_RED, glfwGetTime(),buf);
+#if 0
+	if (bEnableColors)
+		printf("\x1b[%d;1m[%0.3f]\x1b[0m %s\n", FG_RED, glfwGetTime(),buf);
+	else
+#endif
+		printf("[%0.3f] %s\n",glfwGetTime(),buf);
 
 	// free if we had to malloc more space
 	if (buf != staticbuf) {
