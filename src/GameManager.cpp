@@ -9,6 +9,11 @@
 #include <iostream>
 #include "Type.h"
 
+#if defined(_WIN32) || defined(__WINDOWS__)
+#include <windows.h>
+#define usleep(x) Sleep((x) / 1000)
+#endif
+
 GameManager* Game = NULL;
 Matrix* obj = NULL;
 Object* quad = NULL;

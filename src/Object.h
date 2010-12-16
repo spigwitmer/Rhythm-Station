@@ -11,6 +11,16 @@
 #include <map>
 
 struct AnimationState {
+	AnimationState operator=(const AnimationState &anim)
+	{
+		tween_type = anim.tween_type;
+		duration = anim.duration;
+		matrix = anim.matrix;
+		color = anim.color;
+		active = anim.active;
+		return *this;
+	}
+
 	TweenType tween_type;
 	double duration;
 

@@ -38,7 +38,7 @@ void Matrix::Identity() {
 	memcpy(matrix, identity_matrix, sizeof(matrix));
 }
 
-void Matrix::Multiply(float mat[16]) {
+void Matrix::Multiply(const float *mat) {
 	for (int i = 0; i < 4; i++) {
 		const float c0 = matrix[i], c1 = matrix[4+i],
 			c2 = matrix[8+i], c3 = matrix[12+i];

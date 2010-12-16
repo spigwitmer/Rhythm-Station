@@ -12,14 +12,17 @@
 		<Platform
 			Name="Win32"
 		/>
+		<Platform
+			Name="x64"
+		/>
 	</Platforms>
 	<ToolFiles>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)"
+			IntermediateDirectory="obj\$(ConfigurationName)\$(PlatformName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -41,7 +44,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)extern\glfw3\include&quot;;&quot;$(SolutionDir)extern\glew-1.5.6\include&quot;;&quot;$(SolutionDir)extern\openal\include&quot;;&quot;$(SolutionDir)extern\sqlite-3.7.3&quot;;&quot;$(SolutionDir)extern\libpng-1.4.4&quot;;&quot;$(SolutionDir)extern\lua-5.1.4\src&quot;;&quot;$(SolutionDir)extern\zlib-1.2.5&quot;;&quot;$(SolutionDir)extern\slb-1.63\include&quot;;&quot;$(SolutionDir)extern\libogg-1.2.2\include&quot;;&quot;$(SolutionDir)extern\libvorbis-1.3.2\include&quot;;&quot;$(SolutionDir)extern\freetype-2.4.4\include&quot;"
+				PreprocessorDefinitions="WIN32;SLB_EXTERNAL_LUA;USE_STATIC;GLEW_STATIC;GLEW_BUILD"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -60,6 +64,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="opengl32.lib glu32.lib $(SolutionDir)$(ConfigurationName)\$(PlatformName)\glew.lib $(SolutionDir)$(ConfigurationName)\$(PlatformName)\freetype.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -88,9 +93,83 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(SolutionDir)"
+			IntermediateDirectory="obj\$(ConfigurationName)\$(PlatformName)"
+			ConfigurationType="1"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)extern\glfw3\include&quot;;&quot;$(SolutionDir)extern\glew-1.5.6\include&quot;;&quot;$(SolutionDir)extern\openal\include&quot;;&quot;$(SolutionDir)extern\sqlite-3.7.3&quot;;&quot;$(SolutionDir)extern\libpng-1.4.4&quot;;&quot;$(SolutionDir)extern\lua-5.1.4\src&quot;;&quot;$(SolutionDir)extern\zlib-1.2.5&quot;;&quot;$(SolutionDir)extern\slb-1.63\include&quot;;&quot;$(SolutionDir)extern\libogg-1.2.2\include&quot;;&quot;$(SolutionDir)extern\libvorbis-1.3.2\include&quot;;&quot;$(SolutionDir)extern\freetype-2.4.4\include&quot;"
+				PreprocessorDefinitions="WIN32;SLB_EXTERNAL_LUA;USE_STATIC;GLEW_STATIC;GLEW_BUILD"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="opengl32.lib glu32.lib $(SolutionDir)$(ConfigurationName)\$(PlatformName)\glew.lib $(SolutionDir)$(ConfigurationName)\$(PlatformName)\freetype.lib"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)"
+			IntermediateDirectory="obj\$(ConfigurationName)\$(PlatformName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -114,7 +193,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)extern\glfw3\include&quot;;&quot;$(SolutionDir)extern\glew-1.5.6\include&quot;;&quot;$(SolutionDir)extern\openal\include&quot;;&quot;$(SolutionDir)extern\sqlite-3.7.3&quot;;&quot;$(SolutionDir)extern\libpng-1.4.4&quot;;&quot;$(SolutionDir)extern\lua-5.1.4\src&quot;;&quot;$(SolutionDir)extern\zlib-1.2.5&quot;;&quot;$(SolutionDir)extern\slb-1.63\include&quot;;&quot;$(SolutionDir)extern\libogg-1.2.2\include&quot;;&quot;$(SolutionDir)extern\libvorbis-1.3.2\include&quot;;&quot;$(SolutionDir)extern\freetype-2.4.4\include&quot;"
+				PreprocessorDefinitions="WIN32;SLB_EXTERNAL_LUA;USE_STATIC;GLEW_STATIC;GLEW_BUILD"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -132,12 +212,90 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="opengl32.lib glu32.lib $(SolutionDir)$(ConfigurationName)\$(PlatformName)\glew.lib $(SolutionDir)$(ConfigurationName)\$(PlatformName)\freetype.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="$(SolutionDir)"
+			IntermediateDirectory="obj\$(ConfigurationName)\$(PlatformName)"
+			ConfigurationType="1"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)extern\glfw3\include&quot;;&quot;$(SolutionDir)extern\glew-1.5.6\include&quot;;&quot;$(SolutionDir)extern\openal\include&quot;;&quot;$(SolutionDir)extern\sqlite-3.7.3&quot;;&quot;$(SolutionDir)extern\libpng-1.4.4&quot;;&quot;$(SolutionDir)extern\lua-5.1.4\src&quot;;&quot;$(SolutionDir)extern\zlib-1.2.5&quot;;&quot;$(SolutionDir)extern\slb-1.63\include&quot;;&quot;$(SolutionDir)extern\libogg-1.2.2\include&quot;;&quot;$(SolutionDir)extern\libvorbis-1.3.2\include&quot;;&quot;$(SolutionDir)extern\freetype-2.4.4\include&quot;"
+				PreprocessorDefinitions="WIN32;SLB_EXTERNAL_LUA;USE_STATIC;GLEW_STATIC;GLEW_BUILD"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="opengl32.lib glu32.lib $(SolutionDir)$(ConfigurationName)\$(PlatformName)\glew.lib $(SolutionDir)$(ConfigurationName)\$(PlatformName)\freetype.lib"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -171,7 +329,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\globals.h"
+				RelativePath="..\global.h"
 				>
 			</File>
 			<File
@@ -388,6 +546,22 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+		</Filter>
+		<Filter
+			Name="Small Assets"
+			>
+			<File
+				RelativePath="..\..\extern\sqlite-3.7.3\sqlite3.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\extern\sqlite-3.7.3\sqlite3.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\extern\sqlite-3.7.3\sqlite3ext.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
