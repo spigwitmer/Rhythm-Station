@@ -16,15 +16,6 @@ function LoadSound(filename)
 	return obj
 end
 
---[[
-function LoadSound(filename)
-	snd = Sound()
-	snd:Load(filename)
-	snd:Register()
-	return snd
-end
---]]
-
 local spacing = 64
 
 -- yes, the infamous LoadActor from StepMania.
