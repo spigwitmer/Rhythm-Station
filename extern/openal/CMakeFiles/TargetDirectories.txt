@@ -1,0 +1,2 @@
+/home/pat/rstation/Rhythm-Station/extern/openal/CMakeFiles/OpenAL32.dir
+/home/pat/rstation/Rhythm-Station/extern/openal/CMakeFiles/openal-info.dir

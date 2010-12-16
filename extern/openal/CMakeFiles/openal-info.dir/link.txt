@@ -1,0 +1,1 @@
+/usr/bin/gcc.exe  -g -O2 -funroll-loops -D_DEBUG  -Wl,--enable-auto-import CMakeFiles/openal-info.dir/examples/openal-info.o  -o openal-info.exe -Wl,--out-implib,libopenal-info.dll.a -Wl,--major-image-version,0,--minor-image-version,0  libOpenAL32.dll.a -lwinmm -ldl -lm 
