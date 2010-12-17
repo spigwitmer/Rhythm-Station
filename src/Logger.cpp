@@ -44,12 +44,11 @@ void Logger::Print(std::string in, ...) {
 		printf("\x1b[%d;1m[%0.3f]\x1b[0m %s\n", FG_RED, glfwGetTime(),buf);
 	else
 #endif
-		printf("[%0.3f] %s\n",glfwGetTime(),buf);
+		printf("[%0.3f] %s\n", glfwGetTime(),buf);
 
 	// free if we had to malloc more space
-	if (buf != staticbuf) {
+	if (buf != staticbuf)
 		free(buf);
-	}
 }
 
 void Logger::InlinePrint(std::string in, ...) {
@@ -70,7 +69,6 @@ void Logger::InlinePrint(std::string in, ...) {
 	printf("%s", buf);
 
 	// free if we had to malloc more space
-	if (buf != staticbuf) {
+	if (buf != staticbuf)
 		free(buf);
-	}
 }

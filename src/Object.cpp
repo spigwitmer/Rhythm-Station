@@ -72,20 +72,14 @@ void Object::QueueUpdate() {
 }
 
 void Object::Load(std::string _path) {
-	_path = File->GetFile(_path);
-	const char* ext = _path.substr(_path.size()-3, _path.size()).c_str();
+	std::string path = File->GetFile(_path);
+	const char* ext = path.substr(path.size()-3, path.size()).c_str();
+	Log->Print("Loading \"%s\" (type = %s)", _path.c_str(), ext);
 	if (!strcmp(ext, "png")) {
-		Log->Print("Loading PNG file...");
 		PNGLoader png;
-		Texture tex = png.Load(_path);
-		if (tex.ptr != 0) {
-			Log->Print("Loaded successfully.");
+		Texture tex = png.Load(path);
+		if (tex.ptr != 0)
 			m_texture = tex;
-		}
-	}
-	else if (!strcmp(ext, "obj")) {
-		Log->Print("Loading OBJ file...");
-		Log->Print("Failed; Not yet implemented.");
 	}
 	else
 		Log->Print("Unknown file type: %s.", ext);

@@ -68,8 +68,8 @@ private:
 	bool m_bNeedsUpdate;
 	int m_vertices;
 
-	AnimationState	m_current;
-	rgba		m_color;
+	AnimationState m_current;
+	rgba	m_color;
 	Shader	m_shader;
 	Matrix	m_matrix;
 	Texture	m_texture;

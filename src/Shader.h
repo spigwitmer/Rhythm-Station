@@ -29,14 +29,14 @@ public:
 	void Bind();
 	void Unbind();
 
-	std::string path[2];		// paths for dupe checking.
+	std::string path[2];	// paths for dupe checking.
 
 	GLuint ptr;
 
 private:
-	const char *vss, *fss;		// shader sources, needed so we can rebuild after 
-	GLuint vs, fs,		// shader IDs
-		m_mv_uniform,	// uniforms
+	const char *vss, *fss;	// shader sources, needed so we can rebuild after 
+	GLuint vs, fs,			// shader IDs
+		m_mv_uniform,		// uniforms
 		m_proj_uniform,
 		m_tex_uniform;
 

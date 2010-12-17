@@ -14,6 +14,8 @@
 #include "RenderManager.h"
 #include "Logger.h"
 
+#include "Thread.h"
+
 // ew, globals
 Matrix *g_projection_matrix = NULL;
 
@@ -34,15 +36,15 @@ int main (int argc, char** argv) {
 	glfwSwapInterval(1);
 
 	// Start up all our singletons.
-	Log		= new Logger();
+	Log			= new Logger();
 	File		= new FileManager();
 	Resources	= new ResourceManager();
-	Game	= new GameManager(window);
-	Scene	= new SceneManager();
-	Audio	= new AudioManager();
-	Input	= new InputManager();
+	Game		= new GameManager(window);
+	Scene		= new SceneManager();
+	Audio		= new AudioManager();
+	Input		= new InputManager();
 	Renderer	= new RenderManager();
-	Lua		= new LuaManager();
+	Lua			= new LuaManager();
 
 	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);
@@ -52,6 +54,8 @@ int main (int argc, char** argv) {
 	// Start running Lua and begin the first screen.
 	Game->Start();
 	Lua->Start();
+	
+	test_threads();
 
 	double then = 0.0;
 	double max_delta = (1.0/60.0) * 3.0;
