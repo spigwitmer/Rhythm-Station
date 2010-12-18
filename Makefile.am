@@ -1,3 +1,7 @@
+# Global CFLAGS
+AM_CFLAGS= -Wall -Wno-unknown-pragmas
+AM_CXXFLAGS= $(AM_CFLAGS)
+
 #
 # Stuff to install (make install not working yet as there's no reason
 # to install rstation to a system yet..)
