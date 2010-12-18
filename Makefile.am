@@ -111,10 +111,12 @@ src/RenderManager.cpp \
 src/ResourceManager.cpp \
 src/SceneManager.cpp \
 src/Screen.cpp \
+src/ScreenGameplay.cpp \
 src/Shader.cpp \
 src/Sound.cpp \
 src/SQLiteDatabase.cpp \
 src/StringUtils.cpp \
+src/Thread.cpp \
 src/Timer.cpp \
 src/Tween.cpp \
 src/Type.cpp
