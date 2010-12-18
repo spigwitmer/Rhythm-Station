@@ -1,6 +1,6 @@
 # Initialization
 AC_INIT([Rhythm-Station], [git], [shakeshoda+rstation@gmail.com], [], [http://github.com/shakesoda/Rhythm-Station])
-AM_INIT_AUTOMAKE([foreign no-define -Wall])
+AM_INIT_AUTOMAKE([foreign -Wall])
 AM_SILENT_RULES([yes])
 
 # Tools to use
@@ -13,6 +13,10 @@ AC_PROG_RANLIB
 AC_CONFIG_FILES([
 	Makefile
 ])
+
+# Put automake defines into config.h even though we don't use it atm.
+# (Cleans up non-silent building a lot)
+AC_CONFIG_HEADERS([config.h])
 
 # Check for external dependencies
 PKG_CHECK_MODULES([EXT_DEPENDS],[
