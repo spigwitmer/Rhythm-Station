@@ -1,8 +1,17 @@
-// pthread support. might not be ideal on all platforms.
+// a thin wrapper around pthreads
 
 #ifndef _THREAD_H_
 #define _THREAD_H_
 
-void test_threads();
+class Thread {
+public:
+	void Create(void* func(void*));
+	void Cancel();
+	void Lock();
+	void Unlock();
+
+	pthread_t handle;
+	pthread_mutex_t mutex;
+};
 
 #endif

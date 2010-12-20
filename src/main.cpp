@@ -16,8 +16,29 @@
 
 #include "Thread.h"
 
-// ew, globals
-Matrix *g_projection_matrix = NULL;
+// temp
+void *print_stuff(void *arg) {
+	Thread* t = (Thread*)arg;
+
+	// do stuff
+
+	// lock for whatever reason
+	t->Lock();
+
+	// sync some data
+
+	// and unlock again
+	t->Unlock();
+	return NULL;
+}
+
+void test_threads() {
+	int n_threads = 10;
+	Thread threads[n_threads];
+	for (int i = 0; i<n_threads; i++) {
+		threads[i].Create(&print_stuff);
+	}
+}
 
 #ifndef DEBUG
 #ifdef _WIN32
