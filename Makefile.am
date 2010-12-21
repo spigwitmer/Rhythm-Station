@@ -1,3 +1,7 @@
+# Global CFLAGS
+AM_CFLAGS= -Wall -Wno-unknown-pragmas
+AM_CXXFLAGS= $(AM_CFLAGS)
+
 #
 # Stuff to install (make install not working yet as there's no reason
 # to install rstation to a system yet..)
@@ -111,10 +115,12 @@ src/RenderManager.cpp \
 src/ResourceManager.cpp \
 src/SceneManager.cpp \
 src/Screen.cpp \
+src/ScreenGameplay.cpp \
 src/Shader.cpp \
 src/Sound.cpp \
 src/SQLiteDatabase.cpp \
 src/StringUtils.cpp \
+src/Thread.cpp \
 src/Timer.cpp \
 src/Tween.cpp \
 src/Type.cpp
