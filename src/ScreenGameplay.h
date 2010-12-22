@@ -6,7 +6,8 @@
 #ifndef _SCREEN_GAMEPLAY_H_
 #define _SCREEN_GAMEPLAY_H_
 
-class ScreenGameplay : public Screen {
+class ScreenGameplay : public Screen
+{
 public:
 	ScreenGameplay();
 	virtual ~ScreenGameplay();

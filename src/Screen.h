@@ -7,7 +7,8 @@
 #include "Object.h"
 #include "Sound.h"
 
-class Screen {
+class Screen
+{
 public:
 	Screen() { }
 	virtual ~Screen() { }

@@ -4,7 +4,8 @@
 #include "Object.h"
 #include "AudioManager.h"
 
-class Sound : public Object {
+class Sound : public Object
+{
 public:
 	Sound();
 	virtual ~Sound();

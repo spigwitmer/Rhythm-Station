@@ -9,20 +9,23 @@
 #include "PNGLoader.h"
 
 Object::Object() : m_bNeedsUpdate(true), m_color(rgba(1.0)), m_texture(),
-	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0)) {
+	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0))
+{
 	m_shader.SetProjectionMatrix(Game->ProjectionMatrix);
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
 	CreateBuffers();
 }
 
-Object::~Object() {
+Object::~Object()
+{
 	DeleteBuffers();
 }
 
 // TODO: Move to RenderManager.
 #define OFFSET(P) (const GLvoid*) (sizeof(GLfloat) * (P))
-void Object::CreateBuffers() {
+void Object::CreateBuffers()
+{
 	// triangle strip quad
 	GLfloat verts[] = {
 		// pos	tex	 normals
@@ -58,24 +61,29 @@ void Object::CreateBuffers() {
 }
 #undef OFFSET
 
-void Object::DeleteBuffers() {
+void Object::DeleteBuffers()
+{
 	glDeleteBuffers(2, m_vbo);
 }
 
-void Object::Register() {
+void Object::Register()
+{
 	Screen* scr = Scene->GetTopScreen();
 	scr->AddObject(this);
 }
 
-void Object::QueueUpdate() {
+void Object::QueueUpdate()
+{
 	m_bNeedsUpdate = true;
 }
 
-void Object::Load(std::string _path) {
+void Object::Load(std::string _path)
+{
 	std::string path = File->GetFile(_path);
 	const char* ext = path.substr(path.size()-3, path.size()).c_str();
 	Log->Print("Loading \"%s\" (type = %s)", _path.c_str(), ext);
-	if (!strcmp(ext, "png")) {
+	if (!strcmp(ext, "png"))
+	{
 		PNGLoader png;
 		Texture tex = png.Load(path);
 		if (tex.ptr != 0)
@@ -87,38 +95,45 @@ void Object::Load(std::string _path) {
 	QueueUpdate();
 }
 
-void Object::HandleMessage(std::string _msg) {
+void Object::HandleMessage(std::string _msg)
+{
 	// TODO
 }
 
-void Object::AddState() {
+void Object::AddState()
+{
 	m_states["Init"].push_back(m_current);
 }
 
-void Object::Color(rgba col) {
+void Object::Color(rgba col)
+{
 	m_color = col;
 	QueueUpdate();
 }
 
 
 // TODO: add to tweens
-void Object::Translate(vec3 pos) {
+void Object::Translate(vec3 pos)
+{
 	m_pos = pos;
 	QueueUpdate();
 }
 
-void Object::Rotate(vec3 rot) {
+void Object::Rotate(vec3 rot)
+{
 	m_rot = rot;
 	QueueUpdate();
 }
 
-void Object::Scale(vec3 scale) {
+void Object::Scale(vec3 scale)
+{
 	m_scale = scale;
 	QueueUpdate();
 }
 
 // update tweens and stuff
-void Object::Update(double delta) {
+void Object::Update(double delta)
+{
 	m_shader.SetModelViewMatrix(&m_matrix);
 
 	// TODO: only update when needed.
@@ -128,14 +143,15 @@ void Object::Update(double delta) {
 	m_matrix.Identity();
 	m_matrix.Translate(m_pos);
 	m_matrix.Scale(m_scale);
-	m_matrix.Scale(m_texture.width/2.0f, m_texture.height/2.0f, 1.0);
+	m_matrix.Scale(m_texture.width*0.5f, m_texture.height*0.5f, 1.0);
 	m_matrix.Rotate(m_rot);
 	m_bNeedsUpdate = false;
 
 	Game->QueueRendering();
 }
 
-void Object::Draw() {
+void Object::Draw()
+{
 	Renderer->BindBuffers(m_vbo, &m_shader);
 	m_texture.Bind();
 
@@ -145,7 +161,8 @@ void Object::Draw() {
 
 // Lua
 #include <SLB/SLB.hpp>
-void Object_Binding() {
+void Object_Binding()
+{
 	SLB::Class<Object>("Object")
 	.constructor()
 	.set("Load", &Object::Load)

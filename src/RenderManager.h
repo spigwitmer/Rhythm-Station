@@ -7,7 +7,8 @@
 #include "Shader.h"
 #include "Type.h"
 
-class RenderManager {
+class RenderManager
+{
 public:
 	RenderManager();
 	virtual ~RenderManager() { }

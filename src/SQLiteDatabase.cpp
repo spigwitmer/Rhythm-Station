@@ -5,18 +5,21 @@
 
 using namespace std;
 
-void SQLiteDatabase::Open(string db) {
+void SQLiteDatabase::Open(string db)
+{
 	// this can be written as simply if (sqlite3_open), but this is more clear.
 	if(sqlite3_open(db.c_str(), &db_handle) != SQLITE_OK)
 		Log->Print("Error opening SQLite Database: \"%s\"", db.c_str());
 }
 
-void SQLiteDatabase::Close() {
+void SQLiteDatabase::Close()
+{
 	// close the database.
 	sqlite3_close(db_handle);
 }
 
-void SQLiteDatabase::Query(string sql_str) {
+void SQLiteDatabase::Query(string sql_str)
+{
 	// reset query state.
 	sqlite3_finalize(last_query);
 
@@ -26,12 +29,14 @@ void SQLiteDatabase::Query(string sql_str) {
 }
 
 // returns false until it's done.
-bool SQLiteDatabase::Step() {
+bool SQLiteDatabase::Step()
+{
 	int status = sqlite3_step(last_query);
 	int cols = 0;
 	ostringstream err;
 
-	switch (status) {
+	switch (status)
+	{
 		case SQLITE_ERROR:
 			err << sqlite3_errmsg(db_handle);
 			Log->Print(err.str());
@@ -47,11 +52,13 @@ bool SQLiteDatabase::Step() {
 	return false;
 }
 
-map<string, string> SQLiteDatabase::GetRow() {
+map<string, string> SQLiteDatabase::GetRow()
+{
 	map<string, string> results;
 
 	int cols = sqlite3_column_count(last_query);
-	for (int i = 0; i<cols; i++) {
+	for (int i = 0; i<cols; i++)
+	{
 		string col_name = sqlite3_column_name(last_query, i);
 		results[col_name] = (const char*)sqlite3_column_text(last_query, i);
 	}

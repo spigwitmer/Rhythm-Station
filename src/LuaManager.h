@@ -3,13 +3,15 @@
 
 #include <string>
 
-extern "C" {
+extern "C"
+{
 #include "lua.h"
 #include "lualib.h"
 #include "lauxlib.h"
 }
 
-class LuaManager {
+class LuaManager
+{
 public:
 	LuaManager();
 	virtual ~LuaManager();

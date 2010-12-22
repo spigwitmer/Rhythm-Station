@@ -4,7 +4,8 @@
 #include "Type.h"
 #include "Matrix.h"
 
-enum TweenType {
+enum TweenType
+{
 	TWEEN_SLEEP = 0,
 	TWEEN_LINEAR,
 	TWEEN_EASE_IN, // this and the next are a little disfunctional.

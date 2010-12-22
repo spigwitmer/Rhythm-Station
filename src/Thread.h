@@ -3,7 +3,8 @@
 #ifndef _THREAD_H_
 #define _THREAD_H_
 
-class Thread {
+class Thread
+{
 public:
 	void Create(void* func(void*));
 	void Cancel();

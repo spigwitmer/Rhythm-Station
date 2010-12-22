@@ -16,7 +16,8 @@
 
 #define BUFFER_SIZE 4096
 
-Sound::Sound() : sd_loop(false), sd_pitch(1.0), sd_volume(1.0) {
+Sound::Sound() : sd_loop(false), sd_pitch(1.0), sd_volume(1.0)
+{
 	sd_sound = new SoundData();
 
 	// create buffer to load data into
@@ -29,23 +30,27 @@ Sound::Sound() : sd_loop(false), sd_pitch(1.0), sd_volume(1.0) {
 	sd_waiting = false;
 }
 
-Sound::~Sound() {
+Sound::~Sound()
+{
 	this->deleteBuffers();
 	delete sd_sound;
 }
 
-void Sound::Register() {
+void Sound::Register()
+{
 	Screen *scr = Scene->GetTopScreen();
 	scr->AddObject(this);
 }
 
-void Sound::deleteBuffers() {
+void Sound::deleteBuffers()
+{
 	alDeleteBuffers(1, &sd_sound->buffer);
 	alDeleteSources(1, &sd_sound->source);
 }
 
 // limited!
-void Sound::Load(std::string _path) {
+void Sound::Load(std::string _path)
+{
 	// make path local and open file
 	std::string path = File->GetFile(_path);
 
@@ -75,7 +80,8 @@ void Sound::Load(std::string _path) {
 
 	// read ogg data in chunks of BUFFER_SIZE
 	long bytes = 1;
-	while (bytes > 0) {
+	while (bytes > 0)
+	{
 		bytes = ov_read(&oggFile, array, BUFFER_SIZE, 0 /* little endian */, 2, 1, NULL);
 		buffer.insert(buffer.end(), array, array + bytes);
 	}
@@ -88,20 +94,23 @@ void Sound::Load(std::string _path) {
 	sd_waiting = true;
 }
 
-void Sound::Update(double delta) {
+void Sound::Update(double delta)
+{
 	ALenum state;
 	alGetSourcei(sd_sound->source, AL_SOURCE_STATE, &state);
 
 	if (state == AL_STOPPED)
 		return;
 
-	if (sd_waiting) {
+	if (sd_waiting)
+	{
 		this->Play();
 		sd_waiting = false;
 	}
 }
 
-void Sound::Play() {
+void Sound::Play()
+{
 	// Attach sound buffer to source & play it
 	alSourcei(sd_sound->source, AL_BUFFER, sd_sound->buffer);
 	alSourcei(sd_sound->source, AL_LOOPING, sd_loop);
@@ -113,7 +122,8 @@ void Sound::Play() {
 // Lua
 #include <SLB/SLB.hpp>
 
-void Sound_Binding() {
+void Sound_Binding()
+{
 	SLB::Class<Sound>("Sound")
 	.constructor()
 	.set("Load", &Sound::Load)

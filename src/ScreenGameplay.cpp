@@ -1,18 +1,22 @@
 #include "ScreenGameplay.h"
 #include "GameManager.h"
 
-ScreenGameplay::ScreenGameplay() {
+ScreenGameplay::ScreenGameplay()
+{
 	// TODO
 }
 
-ScreenGameplay::~ScreenGameplay() {
+ScreenGameplay::~ScreenGameplay()
+{
 	// TODO
 }
 
-void ScreenGameplay::Update(double delta) {
+void ScreenGameplay::Update(double delta)
+{
 	Game->QueueRendering();
 }
 
-void ScreenGameplay::Draw() {
+void ScreenGameplay::Draw()
+{
 	// TODO
 }

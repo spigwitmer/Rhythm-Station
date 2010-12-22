@@ -17,7 +17,8 @@
 #include "Thread.h"
 
 // temp
-void *print_stuff(void *arg) {
+void *print_stuff(void *arg)
+{
 	Thread* t = (Thread*)arg;
 
 	// do stuff
@@ -32,12 +33,12 @@ void *print_stuff(void *arg) {
 	return NULL;
 }
 
-void test_threads() {
+void test_threads()
+{
 	int n_threads = 10;
 	Thread threads[n_threads];
-	for (int i = 0; i<n_threads; i++) {
+	for (int i = 0; i<n_threads; i++)
 		threads[i].Create(&print_stuff);
-	}
 }
 
 #ifndef DEBUG
@@ -46,7 +47,8 @@ void test_threads() {
 #endif
 #endif
 // Initialize everything and set up the GL states used throughout the program.
-int main (int argc, char** argv) {
+int main (int argc, char** argv)
+{
 	glfwInit();
 
 	GLFWvidmode mode;
@@ -80,7 +82,8 @@ int main (int argc, char** argv) {
 
 	double then = 0.0;
 	double max_delta = (1.0/60.0) * 3.0;
-	while (glfwIsWindow(window)) {
+	while (glfwIsWindow(window))
+	{
 		double now = glfwGetTime();
 		double delta = fabs(now - then);
 

@@ -26,7 +26,8 @@ std::string toString(bool _in)
 }
 
 #include <SLB/SLB.hpp>
-void Type_Binding() {
+void Type_Binding()
+{
 	SLB::Class<vec3>("vec3")
 	.constructor<float, float, float>()
 	.set("normalize", &vec3::normalize)

@@ -4,7 +4,8 @@
 #include "PNGLoader.h"
 #include "Logger.h"
 
-Texture PNGLoader::Load(std::string _path) {
+Texture PNGLoader::Load(std::string _path)
+{
 	Texture tex;
 
 	// png specifics
@@ -22,7 +23,8 @@ Texture PNGLoader::Load(std::string _path) {
 	tex.path = _path;
 	pngFile = fopen(_path.c_str(), "rb");
 
-	if (!pngFile) {
+	if (!pngFile)
+	{
 		Log->Print("File \"%s\" not found.", tex.path.c_str());
 		return Texture();
 	}
@@ -34,7 +36,8 @@ Texture PNGLoader::Load(std::string _path) {
 		return Texture();
 	}
 
-	if (png_sig_cmp(sig, 0, 8)) {
+	if (png_sig_cmp(sig, 0, 8))
+	{
 		Log->Print("File \"%s\" is not a valid png file!", tex.path.c_str());
 		fclose(pngFile);
 		return Texture();
@@ -42,27 +45,31 @@ Texture PNGLoader::Load(std::string _path) {
 
 	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL,NULL,NULL);
 
-	if (!png_ptr) {
+	if (!png_ptr)
+	{
 		fclose(pngFile);
 		return Texture();
 	}
 
 	info_ptr = png_create_info_struct(png_ptr);
-	if (!info_ptr) {
+	if (!info_ptr)
+	{
 		png_destroy_read_struct(&png_ptr, NULL, NULL);
 		fclose(pngFile);
 		return Texture();
 	}
 
 	end_info = png_create_info_struct(png_ptr);
-	if (!end_info) {
+	if (!end_info)
+	{
 		png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
 		fclose(pngFile);
 		return Texture();
 	}
 
 	// safety first. :)
-	if (setjmp(png_jmpbuf(png_ptr))) {
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
 		png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
 		fclose(pngFile);
 		return Texture();
@@ -100,7 +107,8 @@ Texture PNGLoader::Load(std::string _path) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
-	switch(components) {
+	switch(components)
+	{
 		case 1:
 			glformat = GL_LUMINANCE;
 			break;

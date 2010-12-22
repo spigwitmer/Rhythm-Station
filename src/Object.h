@@ -10,7 +10,8 @@
 #include <vector>
 #include <map>
 
-struct AnimationState {
+struct AnimationState
+{
 	AnimationState operator=(const AnimationState &anim)
 	{
 		tween_type = anim.tween_type;
@@ -30,7 +31,8 @@ struct AnimationState {
 	bool active;
 };
 
-class Object {
+class Object
+{
 public:
 	Object();
 	virtual ~Object();

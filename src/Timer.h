@@ -3,7 +3,8 @@
 
 #include <string>
 
-class Timer {
+class Timer
+{
 private:
 	double start_time;
 

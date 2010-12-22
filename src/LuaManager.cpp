@@ -13,22 +13,26 @@
 
 LuaManager* Lua = NULL;
 
-void LuaManager::PushInteger(std::string name, int value) {
+void LuaManager::PushInteger(std::string name, int value)
+{
 	lua_pushinteger(L, value);
 	lua_setglobal(L, name.c_str());
 }
 
-void LuaManager::PushString(std::string name, std::string value) {
+void LuaManager::PushString(std::string name, std::string value)
+{
 	lua_pushstring(L, value.c_str());
 	lua_setglobal(L, name.c_str());
 }
 
-void LuaManager::PushNumber(std::string name, double value) {
+void LuaManager::PushNumber(std::string name, double value)
+{
 	lua_pushnumber(L, value);
 	lua_setglobal(L, name.c_str());
 }
 
-int luafunc(lua_State *L) {
+int luafunc(lua_State *L)
+{
 	char buf[16] = "";
 	sprintf(buf, "%0.3f", glfwGetTime());
 
@@ -41,7 +45,8 @@ int luafunc(lua_State *L) {
 	return 1;
 }
 
-LuaManager::LuaManager() {
+LuaManager::LuaManager()
+{
 	L = lua_open();
 	luaL_openlibs(L);
 	SLB::Manager::getInstance().registerSLB(L);
@@ -58,13 +63,15 @@ LuaManager::LuaManager() {
 	PushNumber("Version", 0.03);
 }
 
-void LuaManager::Start() {
+void LuaManager::Start()
+{
 	// TODO: Move this mostly to screens.
 	std::string file = File->GetFile("init.lua");
 	file = "SLB.using(SLB)\n" + File->GetFileContents(file);
 	luaL_dostring(L, file.c_str());
 }
 
-LuaManager::~LuaManager() {
+LuaManager::~LuaManager()
+{
 	lua_close(L);
 }

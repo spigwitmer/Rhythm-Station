@@ -27,7 +27,8 @@ typedef uint64_t u64;
 typedef int64_t	i64;
 
 // from stepmania.
-struct vec2 {
+struct vec2
+{
 	vec2() : x(), y() {}
 	vec2(float xy) { x = y = xy; }
 	vec2(const float *f)		{ x=f[0]; y=f[1]; }
@@ -61,7 +62,8 @@ struct vec2 {
 	float x, y;
 };
 
-struct vec3 {
+struct vec3
+{
 	vec3() : x(), y(), z() {}
 	vec3(vec2 xy) : z() { x = xy.x; y = xy.y; }
 	vec3(float xyz) { x = y = z = xyz; }
@@ -108,7 +110,8 @@ struct vec3 {
 	float x, y, z;
 };
 
-struct rgba {
+struct rgba
+{
 	rgba() : r(), g(), b(), a() {}
 	rgba(float _rgb)					{ r = g = b = _rgb; a = 1.0f; }
 	rgba(float _rgb, float _a)				{ r = g = b = _rgb; a = _a; }
@@ -146,7 +149,8 @@ struct rgba {
 };
 
 
-struct Vertex {
+struct Vertex
+{
 	Vertex() : x(), y(), z(), u(), v() {}
 	Vertex(vec3 xyz) : u(), v() { x = xyz.x; y = xyz.y; z = xyz.z; }
 	Vertex(float _x, float _y) : z(), u(), v()

@@ -19,34 +19,41 @@ ALCcontext* context;
 
 std::vector<SoundData*> vpSounds;
 
-SoundData::SoundData() {
+SoundData::SoundData()
+{
 	alGenBuffers(1, &buffer);
 	alGenSources(1, &source);
 	error = alGetError();
 }
 
-SoundData::~SoundData() {
+SoundData::~SoundData()
+{
 	alDeleteBuffers(1, &buffer);
 	alDeleteSources(1, &source);
 }
 
-void SoundData::Register() {
+void SoundData::Register()
+{
 	Audio->AddSound(this);
 }
 
-void AudioManager::AddSound(SoundData *_sound) {
+void AudioManager::AddSound(SoundData *_sound)
+{
 	vpSounds.push_back(_sound);
 }
 
 // finicky
-void AudioManager::Clear() {
-	while (!vpSounds.empty()) {
+void AudioManager::Clear()
+{
+	while (!vpSounds.empty())
+	{
 		delete vpSounds.back();
 		vpSounds.pop_back();
 	}
 }
 
-void AudioManager::Open() {
+void AudioManager::Open()
+{
 	// open default device.
 	device = alcOpenDevice(NULL);
 	if (!device) {
@@ -62,7 +69,8 @@ void AudioManager::Open() {
 	alGetError();
 }
 
-void AudioManager::Close() {
+void AudioManager::Close()
+{
 	Clear();
 	// clean up
 	alcMakeContextCurrent(NULL);
@@ -71,7 +79,8 @@ void AudioManager::Close() {
 }
 
 // sound test.
-int sine_wave() {
+int sine_wave()
+{
 	// create the buffers
 	SoundData *sound = new SoundData();
 	if (alGetError() != AL_NO_ERROR)
@@ -89,7 +98,8 @@ int sine_wave() {
 
 	// build the sine wave
 	sineWave = new unsigned char[size];
-	for (int i = 0; i < size; ++i) {
+	for (int i = 0; i < size; ++i)
+	{
 		float x = i * 360.f / (float)samples;
 		sineWave[i] = sinf(x * (3.14159 / 180))*128+128;
 	}

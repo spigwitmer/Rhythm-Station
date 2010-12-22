@@ -4,7 +4,8 @@
 #include "Logger.h"
 #include "Matrix.h"
 
-float radf(float val) {
+float radf(float val)
+{
 	// cast as float so the conversion is explicit.
 	val = float(val * .017453292f); // PI / 180.f
 	return val;
@@ -12,13 +13,16 @@ float radf(float val) {
 
 static const float identity_matrix[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
 
-Matrix::Matrix() {
+Matrix::Matrix()
+{
 	this->Identity();
 }
 
 // useful for debugging.
-void Matrix::Print() {	
-	for (int i = 0; i<4; i++) {
+void Matrix::Print()
+{
+	for (int i = 0; i<4; i++)
+	{
 		int ind = i<<2;
 		Log->Print("%f %f %f %f",
 			matrix[ind], matrix[ind+1], matrix[ind+2], matrix[ind+3]
@@ -26,20 +30,25 @@ void Matrix::Print() {
 	}
 }
 
-void Matrix::Load(float m[16]) {
+void Matrix::Load(float m[16])
+{
 	memcpy(matrix, m, sizeof(matrix));
 }
 
-void Matrix::Zero() {
+void Matrix::Zero()
+{
 	memset(matrix, 0, sizeof(matrix));
 }
 
-void Matrix::Identity() {
+void Matrix::Identity()
+{
 	memcpy(matrix, identity_matrix, sizeof(matrix));
 }
 
-void Matrix::Multiply(const float *mat) {
-	for (int i = 0; i < 4; i++) {
+void Matrix::Multiply(const float *mat)
+{
+	for (int i = 0; i < 4; i++)
+	{
 		const float c0 = matrix[i], c1 = matrix[4+i],
 			c2 = matrix[8+i], c3 = matrix[12+i];
 
@@ -49,17 +58,20 @@ void Matrix::Multiply(const float *mat) {
 }
 
 // implemented from GL2.1 documentation
-void Matrix::Translate(float x, float y, float z) {
+void Matrix::Translate(float x, float y, float z)
+{
 	float mat[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1 };
 	this->Multiply(mat);
 }
 
-void Matrix::Scale(float x, float y, float z) {
+void Matrix::Scale(float x, float y, float z)
+{
 	float mat[16] = { x, 0, 0, 0, 0, y, 0, 0, 0, 0, z, 0, 0, 0, 0, 1 };
 	this->Multiply(mat);
 }
 
-void Matrix::Rotate(float angle, float x, float y, float z) {
+void Matrix::Rotate(float angle, float x, float y, float z)
+{
 	float c = cosf(radf(angle));
 	float s = sinf(radf(angle));
 	float oc = 1.0 - c;
@@ -75,7 +87,8 @@ void Matrix::Rotate(float angle, float x, float y, float z) {
 }
 
 // overloads
-void Matrix::Translate(vec3 pos) {
+void Matrix::Translate(vec3 pos)
+{
 	this->Translate(pos.x, pos.y, pos.z);
 }
 
@@ -85,11 +98,13 @@ void Matrix::Rotate(vec3 rot) {
 	this->Rotate(rot.z, 0, 0, 1);
 }
 
-void Matrix::Scale(vec3 size) {
+void Matrix::Scale(vec3 size)
+{
 	this->Scale(size.x, size.y, size.z);
 }
 
-void Matrix::Ortho(float left, float right, float bottom, float top, float near, float far) {
+void Matrix::Ortho(float left, float right, float bottom, float top, float near, float far)
+{
 	float tx, ty, tz;
 	tx = -((right+left) / (right-left));
 	ty = -((top+bottom) / (top-bottom));
@@ -104,7 +119,8 @@ void Matrix::Ortho(float left, float right, float bottom, float top, float near,
 }
 
 // based on Mesa - there is a way to do this with less trig, but I don't remember.
-void Matrix::Perspective(float fov, float aspect, double near, double far) {
+void Matrix::Perspective(float fov, float aspect, double near, double far)
+{
 	float m[4][4] = {{0}};
 	double sine, ctan, delta;
 	double radians = radf(fov * 0.5f);
@@ -124,7 +140,8 @@ void Matrix::Perspective(float fov, float aspect, double near, double far) {
 	this->Multiply(&m[0][0]);
 }
 
-void Matrix::LookAt(vec3 eye, vec3 center, vec3 up) {
+void Matrix::LookAt(vec3 eye, vec3 center, vec3 up)
+{
 	vec3 forward, side;
 	float m[4][4];
 	forward = center;

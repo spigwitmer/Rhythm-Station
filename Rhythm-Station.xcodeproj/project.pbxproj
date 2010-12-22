@@ -42,7 +42,6 @@
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
 		EE7814931271FFAE00B01960 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7814911271FFAE00B01960 /* Tween.cpp */; };
-		EE7815121272144800B01960 /* OBJLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE78150E1272144800B01960 /* OBJLoader.cpp */; };
 		EE7815131272144800B01960 /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7815101272144800B01960 /* StringUtils.cpp */; };
 		EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
 		EE915E511255CD9500F0B0B3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915E501255CD9500F0B0B3 /* main.cpp */; };
@@ -136,7 +135,6 @@
 		EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */; };
 		EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */; };
 		EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */; };
-		EEF5A64C12A43AD400ABD8AE /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A64A12A43AD400ABD8AE /* Font.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -185,8 +183,6 @@
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		EE7814911271FFAE00B01960 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
 		EE7814921271FFAE00B01960 /* Tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tween.h; sourceTree = "<group>"; };
-		EE78150E1272144800B01960 /* OBJLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OBJLoader.cpp; sourceTree = "<group>"; };
-		EE78150F1272144800B01960 /* OBJLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJLoader.h; sourceTree = "<group>"; };
 		EE7815101272144800B01960 /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
 		EE7815111272144800B01960 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
 		EE915DE21255CB9300F0B0B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -339,8 +335,6 @@
 		EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft_test.cpp; sourceTree = "<group>"; };
 		EEF5A5E412A42AAF00ABD8AE /* RenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderManager.h; sourceTree = "<group>"; };
 		EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderManager.cpp; sourceTree = "<group>"; };
-		EEF5A64A12A43AD400ABD8AE /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
-		EEF5A64B12A43AD400ABD8AE /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +448,17 @@
 			path = "slb-1.63/src";
 			sourceTree = "<group>";
 		};
+		EE0907A112C096DD00ADFA57 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				EEA552D1125A7FE30065F811 /* Matrix.cpp */,
+				EEA552D4125A800C0065F811 /* Matrix.h */,
+				EE915F81125669ED00F0B0B3 /* Shader.cpp */,
+				EE915F80125669ED00F0B0B3 /* Shader.h */,
+			);
+			name = Renderer;
+			sourceTree = "<group>";
+		};
 		EE0A64221270438600F5F134 /* glew-1.5.6 */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,8 +483,6 @@
 				EEC5286F12737C8F0064054A /* INILoader.h */,
 				EEC5287012737C8F0064054A /* PNGLoader.cpp */,
 				EEC5287112737C8F0064054A /* PNGLoader.h */,
-				EE78150E1272144800B01960 /* OBJLoader.cpp */,
-				EE78150F1272144800B01960 /* OBJLoader.h */,
 			);
 			name = Loaders;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EE0907A112C096DD00ADFA57 /* Renderer */,
 				EE3CEB5B1294504200A8688C /* Screens */,
 				EE78150D1272143200B01960 /* Loaders */,
 				EEA552C6125A6E240065F811 /* Helpers */,
@@ -541,16 +545,10 @@
 		EE9160861256A60100F0B0B3 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
-				EEF5A64A12A43AD400ABD8AE /* Font.cpp */,
-				EEF5A64B12A43AD400ABD8AE /* Font.h */,
-				EEA552D1125A7FE30065F811 /* Matrix.cpp */,
-				EEA552D4125A800C0065F811 /* Matrix.h */,
 				EE915F7D125668C600F0B0B3 /* Object.cpp */,
 				EE915F7C125668C600F0B0B3 /* Object.h */,
 				EEC52EB91273DC390064054A /* Screen.cpp */,
 				EEC52EBA1273DC390064054A /* Screen.h */,
-				EE915F81125669ED00F0B0B3 /* Shader.cpp */,
-				EE915F80125669ED00F0B0B3 /* Shader.h */,
 				EE41FEC71288A271001F0C56 /* Sound.cpp */,
 				EE41FEC81288A271001F0C56 /* Sound.h */,
 				EEA552D5125A80920065F811 /* Type.cpp */,
@@ -821,7 +819,6 @@
 				EEAB1AFD126F5440004FE58D /* print.c in Sources */,
 				EE0A64241270439C00F5F134 /* glew.c in Sources */,
 				EE7814931271FFAE00B01960 /* Tween.cpp in Sources */,
-				EE7815121272144800B01960 /* OBJLoader.cpp in Sources */,
 				EE7815131272144800B01960 /* StringUtils.cpp in Sources */,
 				EEC5287212737C8F0064054A /* INILoader.cpp in Sources */,
 				EEC5287312737C8F0064054A /* PNGLoader.cpp in Sources */,
@@ -892,7 +889,6 @@
 				EE3CEB5E1294504A00A8688C /* ScreenGameplay.cpp in Sources */,
 				EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */,
 				EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */,
-				EEF5A64C12A43AD400ABD8AE /* Font.cpp in Sources */,
 				EE945DF212BA26B70029ADB0 /* Thread.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,7 +21,8 @@ bool lazy_updates = true;
 
 GameManager::GameManager(GLFWwindow window) :
 	current_shader(0), m_debug(false), m_bFirstUpdate(true),
-	m_window_active(true) {
+	m_window_active(true)
+{
 	m_window = window;
 
 	glfwEnable(window, GLFW_SYSTEM_KEYS); // cmd+q, alt+f4, etc.
@@ -37,30 +38,36 @@ GameManager::GameManager(GLFWwindow window) :
 	ProjectionMatrix = new Matrix();
 }
 
-GameManager::~GameManager() {
+GameManager::~GameManager()
+{
 	delete ProjectionMatrix;
 	delete obj;
 	delete quad;
 }
 
-GLFWwindow GameManager::GetWindow() {
+GLFWwindow GameManager::GetWindow()
+{
 	return m_window;
 }
 
-void GameManager::QueueRendering() {
+void GameManager::QueueRendering()
+{
 	m_bQueuedRender = true;
 }
 
-void GameManager::Update(double delta) {
+void GameManager::Update(double delta)
+{
 	// for non-screen updates.
 }
 
-void GameManager::Start() {
+void GameManager::Start()
+{
 	Scene->PushScreen();
 	glClearColor(0.25, 0.25, 0.25, 1.0);
 }
 
-void GameManager::UpdateWindowTitle(double delta) {
+void GameManager::UpdateWindowTitle(double delta)
+{
 	double fps = 1.0f / delta;
 
 	std::ostringstream str;
@@ -74,13 +81,15 @@ void GameManager::UpdateWindowTitle(double delta) {
 }
 
 // this should probably be in scenemanager.
-void GameManager::Render() {
+void GameManager::Render()
+{
 	/*
 	 * Ideally, we would only redraw objects which need it, however this is still
 	 * useful when there isn't much going on.
 	 */
-	if ((!m_bQueuedRender && !m_bFirstUpdate && lazy_updates) || !m_window_active) {
-		usleep(2500); // reduce CPU usage when not updating.
+	if ((!m_bQueuedRender && !m_bFirstUpdate && lazy_updates) || !m_window_active)
+	{
+		usleep(12500); // reduce CPU usage when not updating.
 		return;
 	}
 	if (m_bFirstUpdate)

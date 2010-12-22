@@ -65,7 +65,8 @@ TweenFn SetTweenType(int type)
 	return Tween;
 }
 
-float interpolate(int tweentype, float _old, float _new, double duration, double time) {
+float interpolate(int tweentype, float _old, float _new, double duration, double time)
+{
 	TweenFn Tween = SetTweenType(tweentype);
 
 	if (duration == 0 || !Tween)
@@ -80,7 +81,8 @@ float interpolate(int tweentype, float _old, float _new, double duration, double
 }
 
 // Various overloads. A bit repetetive, but convenient.
-vec2 interpolate(int tweentype, vec2 _old, vec2 _new, double duration, double time) {
+vec2 interpolate(int tweentype, vec2 _old, vec2 _new, double duration, double time)
+{
 	TweenFn Tween = SetTweenType(tweentype);
 
 	if (duration == 0 || !Tween)
@@ -95,7 +97,8 @@ vec2 interpolate(int tweentype, vec2 _old, vec2 _new, double duration, double ti
 	return temp;
 }
 
-vec3 interpolate(int tweentype, vec3 _old, vec3 _new, double duration, double time) {
+vec3 interpolate(int tweentype, vec3 _old, vec3 _new, double duration, double time)
+{
 	TweenFn Tween = SetTweenType(tweentype);
 
 	if (duration == 0 || !Tween)
@@ -111,7 +114,8 @@ vec3 interpolate(int tweentype, vec3 _old, vec3 _new, double duration, double ti
 	return temp;
 }
 
-rgba interpolate(int tweentype, rgba _old, rgba _new, double duration, double time) {
+rgba interpolate(int tweentype, rgba _old, rgba _new, double duration, double time)
+{
 	TweenFn Tween = SetTweenType(tweentype);
 
 	if (duration == 0 || !Tween)
@@ -128,7 +132,8 @@ rgba interpolate(int tweentype, rgba _old, rgba _new, double duration, double ti
 	return temp;
 }
 
-Matrix interpolate(int tweentype, Matrix _new, Matrix _old, double duration, double time) {
+Matrix interpolate(int tweentype, Matrix _new, Matrix _old, double duration, double time)
+{
 	TweenFn Tween = SetTweenType(tweentype);
 
 	if (duration == 0 || !Tween)

@@ -7,14 +7,16 @@
 #include "ResourceManager.h"
 #include "GameManager.h"
 
-std::string getShaderLog(GLuint obj) {
+std::string getShaderLog(GLuint obj)
+{
 	int infologLength = 0, charsWritten = 0;
 	char *infoLog;
 	std::string log;
 
 	glGetShaderiv(obj, GL_INFO_LOG_LENGTH, &infologLength);
 
-	if (infologLength > 0) {
+	if (infologLength > 0)
+	{
 		infoLog = new char[infologLength];
 		glGetShaderInfoLog(obj, infologLength, &charsWritten, infoLog);
 		log = infoLog;
@@ -23,14 +25,16 @@ std::string getShaderLog(GLuint obj) {
 	return log;
 }
 
-std::string getProgramLog(GLuint obj) {
+std::string getProgramLog(GLuint obj)
+{
 	int infologLength = 0, charsWritten = 0;
 	char *infoLog;
 	std::string log;
 
 	glGetProgramiv(obj, GL_INFO_LOG_LENGTH, &infologLength);
 
-	if (infologLength > 0) {
+	if (infologLength > 0)
+	{
 		infoLog = new char[infologLength];
 		glGetProgramInfoLog(obj, infologLength, &charsWritten, infoLog);
 		log = infoLog;
@@ -39,7 +43,8 @@ std::string getProgramLog(GLuint obj) {
 	return log;
 }
 
-Shader::Shader() {
+Shader::Shader()
+{
 	vs = fs = ptr = 0;
 
 	m_model = new Matrix();
@@ -49,7 +54,8 @@ Shader::Shader() {
 	this->LoadFromDisk("Data/Shaders/generic.vs", "Data/Shaders/generic.fs");
 }
 
-Shader::~Shader() {
+Shader::~Shader()
+{
 	this->Unbind();
 
 	glDetachShader(ptr, vs);
@@ -61,15 +67,18 @@ Shader::~Shader() {
 	glDeleteProgram(ptr);
 }
 
-void Shader::SetModelViewMatrix(Matrix *mat) {
+void Shader::SetModelViewMatrix(Matrix *mat)
+{
 	m_model = mat;
 }
 
-void Shader::SetProjectionMatrix(Matrix *mat) {
+void Shader::SetProjectionMatrix(Matrix *mat)
+{
 	m_proj = mat;
 }
 
-void Shader::LoadFromDisk(std::string _vs, std::string _fs) {
+void Shader::LoadFromDisk(std::string _vs, std::string _fs)
+{
 	if (_vs.empty() || _fs.empty())
 		return;
 
@@ -82,14 +91,16 @@ void Shader::LoadFromDisk(std::string _vs, std::string _fs) {
 	this->Load(_vs, _fs);
 }
 
-void Shader::Load(const char** _vs, const char** _fs) {
+void Shader::Load(const char** _vs, const char** _fs)
+{
 	vss = *_vs;
 	fss = *_fs;
 
 	this->Reload();
 }
 
-void Shader::Load(std::string _vs, std::string _fs) {
+void Shader::Load(std::string _vs, std::string _fs)
+{
 	if (_vs.empty() || _fs.empty())
 		return;
 
@@ -99,7 +110,8 @@ void Shader::Load(std::string _vs, std::string _fs) {
 	this->Reload();
 }
 
-void Shader::Reload() {
+void Shader::Reload()
+{
 	// create pointers for our vertex and frag shaders
 	vs = glCreateShader(GL_VERTEX_SHADER);
 	fs = glCreateShader(GL_FRAGMENT_SHADER);
@@ -123,13 +135,19 @@ void Shader::Reload() {
 
 	// print out shader logs.
 	std::string log = getShaderLog(vs);
-	if (!log.empty()) Log->Print("Vertex shader log: %s", log.c_str());
+	if (!log.empty())
+		Log->Print("Vertex shader log: %s", log.c_str());
+
 	log = getShaderLog(fs);
-	if (!log.empty()) Log->Print("Fragment shader log: %s", log.c_str());
+	if (!log.empty())
+		Log->Print("Fragment shader log: %s", log.c_str());
+
 	log = getProgramLog(ptr);
-	if (!log.empty()) {
+	if (!log.empty())
+	{
 		Log->Print("Shader program log: %s", log.c_str());
-		// TODO: handle this better.
+
+		// XXX
 		Log->Print("catastrophic shader error. committing suicide.");
 		exit(2);
 	}
@@ -141,19 +159,23 @@ void Shader::Reload() {
 	m_tex_uniform = glGetUniformLocation(ptr, "Texture0");
 }
 
-void Shader::Bind() {
-	if (ptr != Game->GetCurrentShader()) {
+void Shader::Bind()
+{
+	if (ptr != Game->GetCurrentShader())
+	{
 		glUseProgram(ptr);
 		Game->SetCurrentShader(ptr);
 	}
 }
 
-void Shader::SetUniforms() {
+void Shader::SetUniforms()
+{
 	glUniformMatrix4fv(m_mv_uniform, 1, false, m_model->matrix);
 	glUniformMatrix4fv(m_proj_uniform, 1, false, m_proj->matrix);
 	glUniform1i(m_tex_uniform, 0);
 }
 
-void Shader::Unbind() {
+void Shader::Unbind()
+{
 	glUseProgram(0);
 }

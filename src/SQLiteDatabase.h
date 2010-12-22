@@ -29,7 +29,8 @@
  * delete db;
 */
 
-class SQLiteDatabase {
+class SQLiteDatabase
+{
 public:
 	void Open(std::string db);
 	void Close();

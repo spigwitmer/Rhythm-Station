@@ -7,12 +7,14 @@
 
 RenderManager* Renderer = NULL;
 
-RenderManager::RenderManager() {
+RenderManager::RenderManager()
+{
 	glewInit();
 
 	glfwGetWindowSize(Game->GetWindow(), &ScreenWidth, &ScreenHeight);
 
-	if (GLEW_NV_framebuffer_multisample_coverage) {
+	if (GLEW_NV_framebuffer_multisample_coverage)
+	{
 		Log->Print("CSAA Supported.");
 		IsExtSupported["CSAA"] = true;
 	}
@@ -24,13 +26,15 @@ RenderManager::RenderManager() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-std::string RenderManager::GetExtensions() {
+std::string RenderManager::GetExtensions()
+{
 	std::ostringstream extensions;
 	extensions << glGetString(GL_EXTENSIONS);
 	return extensions.str();
 }
 
-void RenderManager::BindBuffers(GLuint* buffers, Shader* shader) {
+void RenderManager::BindBuffers(GLuint* buffers, Shader* shader)
+{
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
 
@@ -45,9 +49,11 @@ void RenderManager::BindBuffers(GLuint* buffers, Shader* shader) {
 //GLuint framebuffer, depth_tex;
 //int shadowMapWidth = 1024, shadowMapHeight = 1024;
 
-GLuint* RenderManager::CreateFramebuffer(vec2 size, int samples) {
+GLuint* RenderManager::CreateFramebuffer(vec2 size, int samples)
+{
 	// TODO
-	if (IsExtSupported["CSAA"]) {
+	if (IsExtSupported["CSAA"])
+	{
 		// 8x = 8, 4; 8xQ = 8, 8; 16x = 16, 4; 16xQ = 16, 8
 //		glRenderbufferStorageMultisampleCoverageNV(buffer, 8, 4, GL_RGB, 0, 0);
 	}
@@ -82,7 +88,8 @@ GLuint* RenderManager::CreateFramebuffer(vec2 size, int samples) {
 */
 }
 
-void RenderManager::BindFramebuffer(GLuint* buffers) {
+void RenderManager::BindFramebuffer(GLuint* buffers)
+{
 	// TODO
 	/*
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer);
@@ -96,7 +103,8 @@ void RenderManager::BindFramebuffer(GLuint* buffers) {
 }
 
 // switch to the back buffer
-void RenderManager::UnbindFramebuffer() {
+void RenderManager::UnbindFramebuffer()
+{
 /*
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glDrawBuffer(GL_BACK);
@@ -108,7 +116,8 @@ void RenderManager::UnbindFramebuffer() {
 */
 }
 
-void RenderManager::DeleteFramebuffer(GLuint* buffers) {
+void RenderManager::DeleteFramebuffer(GLuint* buffers)
+{
 	// TODO
 /*
 	glDeleteTextures(1, &depth_tex);

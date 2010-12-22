@@ -20,11 +20,13 @@
 
 FileManager* File = NULL;
 
-FileManager::FileManager() {
+FileManager::FileManager()
+{
 	this->SetWorkingDirectory();
 }
 
-bool FileManager::FileExists(std::string _file) {
+bool FileManager::FileExists(std::string _file)
+{
 	struct stat stFileInfo;
 	int iStat;
 
@@ -34,7 +36,8 @@ bool FileManager::FileExists(std::string _file) {
 	return false;
 }
 
-void FileManager::SetWorkingDirectory() {
+void FileManager::SetWorkingDirectory()
+{
 // For OS X, get stuff out of the application bundle (where it is expected to reside)
 #ifdef __APPLE__
 	/*
@@ -57,7 +60,8 @@ void FileManager::SetWorkingDirectory() {
 }
 
 // this will probably be removed later.
-std::string FileManager::GetWorkingDirectory() {
+std::string FileManager::GetWorkingDirectory()
+{
 	SetWorkingDirectory();
 	char path[1024] = "";
 	if (getcwd(path, 1024) != NULL)
@@ -66,20 +70,24 @@ std::string FileManager::GetWorkingDirectory() {
 		return std::string("./");
 }
 
-std::string FileManager::GetFile(std::string _path) {
+std::string FileManager::GetFile(std::string _path)
+{
 	return GetWorkingDirectory() + _path;
 }
 
-std::string FileManager::GetFileContents(std::string _path) {
+std::string FileManager::GetFileContents(std::string _path)
+{
 	std::string out, buf;
 	std::ifstream file(_path.c_str());
 
-	if (!file.is_open()) {
+	if (!file.is_open())
+	{
 		Log->Print("Error opening %s for writing", _path.c_str());
 		return std::string();
 	}
 
-	while (!file.eof()) {
+	while (!file.eof())
+	{
 		getline(file, buf);
 		out += buf;
 		out += "\n";

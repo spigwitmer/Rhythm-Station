@@ -9,12 +9,14 @@
 InputManager* Input = NULL;
 
 // keyboard. key for specials, char for text input and such.
-void keyCallback(GLFWwindow window, int key, int state) {
+void keyCallback(GLFWwindow window, int key, int state)
+{
 	double cur_time = glfwGetTime();
 	switch (state) {
 		case GLFW_PRESS:
 			Input->status.keys[key] = KEY_PRESSED;
-			switch (key) {
+			switch (key)
+			{
 				case 294:
 					Log->Print(Input->status.cur_string);
 					Input->status.cur_string.clear();
@@ -33,35 +35,41 @@ void keyCallback(GLFWwindow window, int key, int state) {
 	Input->SendEvent();
 }
 
-void charCallback(GLFWwindow window, int key) {
+void charCallback(GLFWwindow window, int key)
+{
 	char buf[2];
 	sprintf(buf, "%c", key);
 	Input->status.cur_string.push_back(buf[0]);
 }
 
 // mouse actions
-void mPosCallback(GLFWwindow window, int x, int y) {
+void mPosCallback(GLFWwindow window, int x, int y)
+{
 	// crash!
 //	Input->status.mouse_pos = vec2(x, y);
 //	Input->SendEvent();
 }
 
-void mButtonCallback(GLFWwindow window, int button, int state) {
+void mButtonCallback(GLFWwindow window, int button, int state)
+{
 //	Input->status.mouse_buttons[button];
 }
 
-void mScrollCallback(GLFWwindow window, int x, int y) {
+void mScrollCallback(GLFWwindow window, int x, int y)
+{
 	Input->status.scroll = vec2(x, y);
 	Input->SendEvent();
 }
 
 // on window resize
-void resizeCallback(GLFWwindow window, int width, int height) {
+void resizeCallback(GLFWwindow window, int width, int height)
+{
 	Game->ProjectionMatrix->Ortho(width, height, vec2(-100, 100));
 	Game->QueueRendering();
 }
 
-InputManager::InputManager() {
+InputManager::InputManager()
+{
 	glfwSetKeyCallback(keyCallback);
 	glfwSetCharCallback(charCallback);
 	glfwSetMousePosCallback(mPosCallback);
@@ -77,8 +85,10 @@ InputManager::InputManager() {
 	queuedUpdate = false;
 }
 
-InputManager::~InputManager() {
-	for (unsigned int i = 0; i<status.controllers.size(); i++) {
+InputManager::~InputManager()
+{
+	for (unsigned int i = 0; i<status.controllers.size(); i++)
+	{
 		delete status.controllers[i];
 		delete[] status.keys;
 		delete[] status.timestamp;
@@ -89,7 +99,8 @@ InputManager::~InputManager() {
 	glfwSetCharCallback(NULL);
 }
 
-Controller::Controller(int _id) {
+Controller::Controller(int _id)
+{
 	this->id = _id;
 	this->num_axes = glfwGetJoystickParam(this->id, GLFW_AXES);
 	this->num_buttons = glfwGetJoystickParam(this->id, GLFW_BUTTONS);
@@ -100,7 +111,8 @@ Controller::Controller(int _id) {
 	this->buttons_raw = new unsigned char[this->num_buttons];
 	this->timestamp = new double[this->num_buttons];
 
-	for (int i = 0; i<this->num_buttons; i++) {
+	for (int i = 0; i<this->num_buttons; i++)
+	{
 		this->buttons_raw[i] = 0;
 		this->buttons[i] = KEY_NONE;
 	}
@@ -112,7 +124,8 @@ Controller::Controller(int _id) {
 	Log->Print("Creating controller");
 }
 
-Controller::~Controller() {
+Controller::~Controller()
+{
 	Log->Print("Destroying controller %d", this->id+1);
 
 	delete[] this->axes;
@@ -120,13 +133,16 @@ Controller::~Controller() {
 	delete[] this->buttons_raw;
 }
 
-void InputManager::SendEvent() {
+void InputManager::SendEvent()
+{
 	Scene->SendInput(status);
 }
 
-void InputManager::DetectControllers() {
+void InputManager::DetectControllers()
+{
 	// find all our joysticks
-	for (int i = 0; i<GLFW_JOYSTICK_LAST; i++) {
+	for (int i = 0; i<GLFW_JOYSTICK_LAST; i++)
+	{
 		int present = glfwGetJoystickParam(i, GLFW_PRESENT);
 		if (present) {
 			// joystick/controller was found - register it and get info.
@@ -136,9 +152,11 @@ void InputManager::DetectControllers() {
 	}
 
 	// log what we found
-	if (status.controllers.size() > 0) {
+	if (status.controllers.size() > 0)
+	{
 		Log->Print("Controllers found:");
-		for (unsigned int i = 0; i<status.controllers.size(); i++) {
+		for (unsigned int i = 0; i<status.controllers.size(); i++)
+		{
 			Log->InlinePrint(
 				"\tController %d (id=%d, buttons=%d, axes=%d)\n", i+1,
 				status.controllers[i]->id,
@@ -149,9 +167,11 @@ void InputManager::DetectControllers() {
 	}
 }
 
-void InputManager::UpdateControllers() {
+void InputManager::UpdateControllers()
+{
 	// update all joystick buttons + axes.
-	for (unsigned int i = 0; i<status.controllers.size(); i++) {
+	for (unsigned int i = 0; i<status.controllers.size(); i++)
+	{
 		Controller* current = status.controllers[i];
 
 		// store old values for comparison
@@ -167,11 +187,14 @@ void InputManager::UpdateControllers() {
 		bool sendInput = false;
 
 		// and now set timestamp if a button has changed.
-		for (int j = 0; j<current->num_buttons; j++) {
-			if (old_buttons[j] != current->buttons_raw[j] || queuedUpdate) {
+		for (int j = 0; j<current->num_buttons; j++)
+		{
+			if (old_buttons[j] != current->buttons_raw[j] || queuedUpdate)
+			{
 				double cur_time = glfwGetTime();
 
-				switch(current->buttons_raw[j]) {
+				switch(current->buttons_raw[j])
+				{
 					case GLFW_PRESS:
 						current->buttons[j] = KEY_PRESSED;
 						break;
@@ -183,10 +206,10 @@ void InputManager::UpdateControllers() {
 				sendInput = true;
 			}
 		}
-		for (int j = 0; j<current->num_axes; j++) {
-			if (old_axes[j] != current->axes[j] && fabs(current->axes[j]) > 7.5e-2) {
+		for (int j = 0; j<current->num_axes; j++)
+		{
+			if (old_axes[j] != current->axes[j] && fabs(current->axes[j]) > 7.5e-2)
 				sendInput = true;
-			}
 		}
 		delete [] old_buttons;
 		delete [] old_axes;
@@ -195,14 +218,16 @@ void InputManager::UpdateControllers() {
 	}
 }
 
-void InputManager::Update() {
+void InputManager::Update()
+{
 	glfwPollEvents();
 
 	// controllers aren't driven by a callback - so we have to do it here.
 	UpdateControllers();
 }
 
-void Input_Binding() {
+void Input_Binding()
+{
 	Lua->PushInteger("Key_Escape", 27);
 	Lua->PushInteger("Key_Return", 294);
 }

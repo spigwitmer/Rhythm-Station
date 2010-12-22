@@ -8,7 +8,8 @@
 
 Logger* Log = NULL;
 
-Logger::Logger() {
+Logger::Logger()
+{
 #if 0
 	// doesn't work
 	if (getenv("BASH") != NULL)
@@ -19,19 +20,22 @@ Logger::Logger() {
 }
 
 // don't forget to define _DEBUG_!
-void Logger::DebugPrint(std::string input) {
+void Logger::DebugPrint(std::string input)
+{
 	if (Game->IsDebugMode())
 		Print(input+std::string(" (debug)"));
 }
 
-void Logger::Print(std::string in, ...) {
+void Logger::Print(std::string in, ...)
+{
 	va_list va;
 	char staticbuf[1024];
 	char *buf = staticbuf;
 
 	va_start(va, in);
-	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in.c_str(), va) + 1 ;
-	if (need > sizeof(staticbuf)) {
+	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in.c_str(), va) + 1;
+	if (need > sizeof(staticbuf))
+	{
 		// staticbuf wasn't large enough, malloc large enough
 		buf = (char *) malloc(need);
 		va_start(va,in);
@@ -51,14 +55,16 @@ void Logger::Print(std::string in, ...) {
 		free(buf);
 }
 
-void Logger::InlinePrint(std::string in, ...) {
+void Logger::InlinePrint(std::string in, ...)
+{
 	va_list va;
 	char staticbuf[1024];
 	char *buf = staticbuf;
 
 	va_start(va, in);
-	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in.c_str(), va) + 1 ;
-	if (need > sizeof(staticbuf)) {
+	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in.c_str(), va) + 1;
+	if (need > sizeof(staticbuf))
+	{
 		// staticbuf wasn't large enough, malloc large enough
 		buf = (char *) malloc(need);
 		va_start(va,in);

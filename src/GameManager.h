@@ -5,7 +5,8 @@
 #include <vector>
 #include "Matrix.h"
 
-class GameManager {
+class GameManager
+{
 public:
 	GameManager(GLFWwindow window);
 	virtual ~GameManager();

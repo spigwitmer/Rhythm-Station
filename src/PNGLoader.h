@@ -3,7 +3,8 @@
 
 #include "ResourceManager.h"
 
-class PNGLoader {
+class PNGLoader
+{
 public:
 	Texture Load(std::string path);
 };

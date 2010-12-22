@@ -5,14 +5,16 @@
 #include <string>
 #include "Type.h"
 
-enum KeyState {
+enum KeyState
+{
 	KEY_NONE = 0,
 	KEY_PRESSED,
 	KEY_HELD,
 	KEY_LETGO
 };
 
-struct Controller {
+struct Controller
+{
 	Controller(int id);
 	virtual ~Controller();
 
@@ -28,7 +30,8 @@ struct Controller {
 	double* timestamp;
 };
 
-struct Mouse {
+struct Mouse
+{
 	KeyState* buttons;
 	int* buttons_raw;
 
@@ -40,7 +43,8 @@ struct Mouse {
 };
 
 // this should probably only handle mapped game buttons - not raw input.
-struct IEvent {
+struct IEvent
+{
 	std::vector<Controller*> controllers;
 	std::string cur_string;
 
@@ -53,7 +57,8 @@ struct IEvent {
 	double* timestamp;
 };
 
-class InputManager {
+class InputManager
+{
 public:
 	InputManager();
 	virtual ~InputManager();

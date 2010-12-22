@@ -4,7 +4,8 @@
 #include <cstring>
 #include "Type.h"
 
-struct Matrix {
+struct Matrix
+{
 	Matrix();
 
 	void Load(float m[16]);

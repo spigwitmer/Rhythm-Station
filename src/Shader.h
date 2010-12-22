@@ -5,14 +5,16 @@
 #include <string>
 #include "Matrix.h"
 
-enum {
+enum
+{
 	VERTEX_ARRAY = 0,
 	COORD_ARRAY,
 	NORMAL_ARRAY,
 	COLOR_ARRAY
 };
 
-class Shader {
+class Shader
+{
 public:
 	Shader();
 	virtual ~Shader();
