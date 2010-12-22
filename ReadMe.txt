@@ -19,7 +19,8 @@ in the file you're in, generally I write code like so:
  * Multi-line comment.
  * Hello there.
  */
-void foo(_bar) : baz() {
+void foo(_bar) : baz()
+{
 	baz = _bar;
 
 	// * on the right
@@ -30,13 +31,15 @@ void foo(_bar) : baz() {
 	if (foo == bar)
 		baz();
 
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 20; i++)
+	{
 		hello();
 		there(i);
 	}
 }
 
-class Test : public Stuff {
+class Test : public Stuff
+{
 public:
 	Test();
 	virtual ~Test();
