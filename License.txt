@@ -13,13 +13,13 @@ corec
 Daisuke Master
 Frieza
 infamouspat
+Jason "Wolfman2000" Felds
 Jonathan Payne
 Landon Manning
 LHoT10820
 Mark Cannon
 Matt1360
 Steve Checkoway
-wolfman2000
 
 === License ===
 Copyright (c) 2010 Colby Klein
