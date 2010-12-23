@@ -109,7 +109,6 @@ src/LuaManager.cpp \
 src/main.cpp \
 src/Matrix.cpp \
 src/Object.cpp \
-src/OBJLoader.cpp \
 src/PNGLoader.cpp \
 src/RenderManager.cpp \
 src/ResourceManager.cpp \
