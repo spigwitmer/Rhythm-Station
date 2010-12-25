@@ -14,6 +14,11 @@
 	#include <vorbis/vorbisfile.h>
 #endif
 
+#include <fftw3.h>
+
+// 8k is the smallest size which (consistently) works for me. Use 16k for now.
+#define BUFFER_SIZE 4096*4
+
 class Sound : public Object
 {
 public:
@@ -40,6 +45,9 @@ private:
 
 	bool sd_loop, sd_waiting;
 	float sd_pan, sd_pitch, sd_volume;
+
+	double* in;
+	fftw_complex* out;
 };
 
 void Sound_Binding();

@@ -4,19 +4,25 @@
 #include "Screen.h"
 #include "Logger.h"
 
-#define BUFFER_SIZE 4096*8
-
 Sound::Sound() : sd_loop(false), sd_pitch(1.0), sd_volume(1.0)
 {
 	sd_sound = new SoundData();
 
 	if (alGetError())
 		Log->Print("Error generating sound buffers.");
+
+	in = new double[BUFFER_SIZE];
+	out = new fftw_complex[BUFFER_SIZE];
 }
 
 Sound::~Sound()
 {
 	delete sd_sound;
+
+	// fft stuff
+	fftw_cleanup();
+	delete[] in;
+	delete[] out;
 }
 
 void Sound::Register()
@@ -116,6 +122,8 @@ void Sound::Play()
 /*
  * From: http://www.devmaster.net/articles/openal-tutorials/lesson8.php
  * ...it's not much different from the original.
+ *
+ * Note: This is where it shows that things really should be threaded here.
  */
 bool Sound::Stream(ALuint buffer)
 {
@@ -142,7 +150,19 @@ bool Sound::Stream(ALuint buffer)
 	if(size == 0)
 		return false;
 
-	// do filtering around here
+	for (int i = 0; i<size; i++)
+		in[i] = data[i];
+
+	fftw_plan p = fftw_plan_dft_r2c_1d(size, in, out, FFTW_ESTIMATE);
+	fftw_execute(p);
+	fftw_destroy_plan(p);
+
+	int hsize = size/2;
+	int h10 = hsize/10;
+
+	// make sure the numbers are positive
+	for (int i = 0; i<hsize; i++)
+		in[i] = sqrt(pow(out[i][0],2)+pow(out[i][1],2));
 
 	alBufferData(buffer, sd_sound->format, data, size, sd_sound->rate);
 
