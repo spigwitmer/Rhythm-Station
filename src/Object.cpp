@@ -150,20 +150,20 @@ void Object::Update(double delta)
 	if (m_parent)
 		m_matrix = m_parent->GetMatrix();
 
-	m_shader.SetModelViewMatrix(&m_matrix);
-
 	// TODO: only update when needed.
-	if (!m_bNeedsUpdate)
-		return;
-	
-	m_matrix.Identity();
-	m_matrix.Translate(m_pos);
-	m_matrix.Scale(m_scale);
-	m_matrix.Scale(m_texture.width*0.5f, m_texture.height*0.5f, 1.0);
-	m_matrix.Rotate(m_rot);
-	m_bNeedsUpdate = false;
+	if (m_bNeedsUpdate)
+	{
+		m_matrix.Identity();
+		m_matrix.Translate(m_pos);
+		m_matrix.Scale(m_scale);
+		m_matrix.Scale(m_texture.width*0.5f, m_texture.height*0.5f, 1.0);
+		m_matrix.Rotate(m_rot);
+		m_bNeedsUpdate = false;
 
-	Game->QueueRendering();
+		Game->QueueRendering();
+	}
+
+	m_shader.SetModelViewMatrix(&m_matrix);
 }
 
 void Object::Draw()
