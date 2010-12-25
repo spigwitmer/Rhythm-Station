@@ -15,11 +15,23 @@ Object::Object() : m_bNeedsUpdate(true), m_color(rgba(1.0)), m_texture(),
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
 	CreateBuffers();
+
+	m_parent = NULL;
 }
 
 Object::~Object()
 {
 	DeleteBuffers();
+}
+
+void Object::SetParent(Object* obj)
+{
+	m_parent = obj;
+}
+
+void Object::AddChild(Object* obj)
+{
+	m_children.push_back(obj);
 }
 
 // TODO: Move to RenderManager.
@@ -66,6 +78,7 @@ void Object::DeleteBuffers()
 	glDeleteBuffers(2, m_vbo);
 }
 
+// should this be automatic?
 void Object::Register()
 {
 	Screen* scr = Scene->GetTopScreen();
@@ -134,6 +147,9 @@ void Object::Scale(vec3 scale)
 // update tweens and stuff
 void Object::Update(double delta)
 {
+	if (m_parent)
+		m_matrix = m_parent->GetMatrix();
+
 	m_shader.SetModelViewMatrix(&m_matrix);
 
 	// TODO: only update when needed.

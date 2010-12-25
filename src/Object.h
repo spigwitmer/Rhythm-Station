@@ -40,6 +40,9 @@ public:
 
 	void Load(std::string path);
 
+	void SetParent(Object* obj);
+	void AddChild(Object* obj);
+
 	void Color(rgba col);
 	void Translate(vec3 pos);
 	void Rotate(vec3 rot);
@@ -58,7 +61,7 @@ public:
 
 	Matrix GetMatrix() { return m_matrix; }
 
-private:
+protected:
 	void QueueUpdate();
 
 	void CreateBuffers();
@@ -66,6 +69,7 @@ private:
 
 	GLuint m_vbo[2], m_color_uniform;
 	std::map<std::string, std::vector<AnimationState> > m_states;
+	std::vector<Object*> m_children;
 
 	bool m_bNeedsUpdate;
 	int m_vertices;
@@ -76,6 +80,8 @@ private:
 	Matrix	m_matrix;
 	Texture	m_texture;
 	Timer	m_time;
+
+	Object* m_parent;
 	
 	vec3 m_pos, m_rot, m_scale;
 };
