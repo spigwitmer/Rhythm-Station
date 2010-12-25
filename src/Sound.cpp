@@ -4,119 +4,149 @@
 #include "Screen.h"
 #include "Logger.h"
 
-#ifdef __APPLE__
-	#include <OpenAL/al.h>
-	#include <OpenAL/alc.h>
-	#include <Vorbis/vorbisfile.h>
-#else
-	#include <AL/al.h>
-	#include <AL/alc.h>
-	#include <vorbis/vorbisfile.h>
-#endif
-
-#define BUFFER_SIZE 4096
+#define BUFFER_SIZE 4096*8
 
 Sound::Sound() : sd_loop(false), sd_pitch(1.0), sd_volume(1.0)
 {
 	sd_sound = new SoundData();
 
-	// create buffer to load data into
-	alGenBuffers(1, &sd_sound->buffer);
-	alGenSources(1, &sd_sound->source);
-
-	ALenum err = alGetError();
-	if (err)
-		Log->Print("[Sound::Sound] Error generating buffers.");
-	sd_waiting = false;
+	if (alGetError())
+		Log->Print("Error generating sound buffers.");
 }
 
 Sound::~Sound()
 {
-	this->deleteBuffers();
 	delete sd_sound;
 }
 
 void Sound::Register()
 {
-	Screen *scr = Scene->GetTopScreen();
+	Screen* scr = Scene->GetTopScreen();
 	scr->AddObject(this);
 }
 
-void Sound::deleteBuffers()
-{
-	alDeleteBuffers(1, &sd_sound->buffer);
-	alDeleteSources(1, &sd_sound->source);
-}
-
-// limited!
 void Sound::Load(std::string _path)
 {
 	// make path local and open file
 	std::string path = File->GetFile(_path);
 
-	FILE *f;
-	if (!(f = fopen(path.c_str(), "rb")))
+	FILE* f;
+	if (!(f = fopen(path.c_str(), "rb"))) {
+		Log->Print("Could not open file \"%s\"", path.c_str());
 		return;
+	}
 
 	// read ogg info
-	vorbis_info *pInfo;
-	OggVorbis_File oggFile;
-	ov_open(f, &oggFile, NULL, 0);
-	pInfo = ov_info(&oggFile, -1);
+	vorbis_info *ogg_info;
+	ov_open(f, &ogg_file, NULL, 0);
+	ogg_info = ov_info(&ogg_file, -1);
 
 	// work out format
-	ALenum format;
-	if (pInfo->channels == 1)
-		format = AL_FORMAT_MONO16;
+	if (ogg_info->channels == 1)
+		sd_sound->format = AL_FORMAT_MONO16;
 	else
-		format = AL_FORMAT_STEREO16;
+		sd_sound->format = AL_FORMAT_STEREO16;
 
 	// sample rate
-	ALsizei freq = pInfo->rate;
+	sd_sound->rate = ogg_info->rate;
 
-	// sound buffer
-	char array[BUFFER_SIZE];
-	std::vector <char> buffer;
+	Log->Print("Preparing \"%s\" (rate = %d)", _path.c_str(), sd_sound->rate);
 
-	// read ogg data in chunks of BUFFER_SIZE
-	long bytes = 1;
-	while (bytes > 0)
-	{
-		bytes = ov_read(&oggFile, array, BUFFER_SIZE, 0 /* little endian */, 2, 1, NULL);
-		buffer.insert(buffer.end(), array, array + bytes);
-	}
-	ov_clear(&oggFile);
+	// position/etc
+	alSource3f(sd_sound->source, AL_POSITION, 0.f, 0.f, 0.f);
+	alSource3f(sd_sound->source, AL_VELOCITY, 0.f, 0.f, 0.f);
+	alSource3f(sd_sound->source, AL_DIRECTION, 0.f, 0.f, 0.f);
 
-	// upload buffer data
-	if (!buffer.empty())
-		alBufferData(sd_sound->buffer, format, &buffer[0], static_cast<ALsizei> (buffer.size()), freq);
+	// distortion
+	alSourcef(sd_sound->source, AL_GAIN, sd_volume);
+	alSourcef(sd_sound->source, AL_PITCH, sd_pitch);
 
-	sd_waiting = true;
+	// misc
+	alSourcef(sd_sound->source, AL_ROLLOFF_FACTOR, 0.0);
+	alSourcei(sd_sound->source, AL_LOOPING, sd_loop);
+	alSourcei(sd_sound->source, AL_SOURCE_RELATIVE, true);
+
+	Play();
+}
+
+bool Sound::IsPlaying()
+{
+	ALenum state;
+	alGetSourcei(sd_sound->source, AL_SOURCE_STATE, &state);
+	return (state == AL_PLAYING);
 }
 
 void Sound::Update(double delta)
 {
-	ALenum state;
-	alGetSourcei(sd_sound->source, AL_SOURCE_STATE, &state);
-
-	if (state == AL_STOPPED)
+	if (!IsPlaying())
 		return;
 
-	if (sd_waiting)
+	int processed;
+
+	alGetSourcei(sd_sound->source, AL_BUFFERS_PROCESSED, &processed);
+
+	while(processed--)
 	{
-		this->Play();
-		sd_waiting = false;
+		ALuint buffer;        
+		alSourceUnqueueBuffers(sd_sound->source, 1, &buffer);
+
+		Stream(buffer);
+
+		alSourceQueueBuffers(sd_sound->source, 1, &buffer);
 	}
 }
 
 void Sound::Play()
 {
-	// Attach sound buffer to source & play it
-	alSourcei(sd_sound->source, AL_BUFFER, sd_sound->buffer);
-	alSourcei(sd_sound->source, AL_LOOPING, sd_loop);
-	alSourcef(sd_sound->source, AL_GAIN, sd_volume);
-	alSourcef(sd_sound->source, AL_PITCH, sd_pitch);
+	Log->Print("Playing.");
+
+	if (IsPlaying())
+		return;
+
+	if (!Stream(sd_sound->buffers[0]))
+		return;
+
+	if (!Stream(sd_sound->buffers[1]))
+		return;
+
+	alSourceQueueBuffers(sd_sound->source, 2, sd_sound->buffers);
 	alSourcePlay(sd_sound->source);
+}
+
+/*
+ * From: http://www.devmaster.net/articles/openal-tutorials/lesson8.php
+ * ...it's not much different from the original.
+ */
+bool Sound::Stream(ALuint buffer)
+{
+	char data[BUFFER_SIZE];
+	int size = 0;
+	int section;
+	int result;
+
+	while(size < BUFFER_SIZE)
+	{
+		result = ov_read(&ogg_file, data + size, BUFFER_SIZE - size, 0, 2, 1, &section);
+
+		if(result > 0)
+			size += result;
+		else
+		{
+			if(result < 0)
+				Log->Print("Something is wrong!");
+			else
+				break;
+		}
+	}
+
+	if(size == 0)
+		return false;
+
+	// do filtering around here
+
+	alBufferData(buffer, sd_sound->format, data, size, sd_sound->rate);
+
+	return true;
 }
 
 // Lua

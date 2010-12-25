@@ -80,7 +80,7 @@ int main (int argc, char** argv)
 	
 	test_threads();
 
-	double then = 0.0;
+	double then = glfwGetTime(); // prevent registering a skip on first update
 	double max_delta = (1.0/60.0) * 3.0;
 	while (glfwIsWindow(window))
 	{
@@ -105,7 +105,6 @@ int main (int argc, char** argv)
 
 		// Update input before logic/objects so that it's not running behind.
 		Input->Update();
-		Game->Update(delta);
 		Scene->Update(delta);
 		Game->Render();
 	}

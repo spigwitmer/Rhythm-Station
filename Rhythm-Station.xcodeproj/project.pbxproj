@@ -39,6 +39,7 @@
 		EE3CEB5E1294504A00A8688C /* ScreenGameplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE3CEB5D1294504A00A8688C /* ScreenGameplay.cpp */; };
 		EE41FEC91288A271001F0C56 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE41FEC71288A271001F0C56 /* Sound.cpp */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
+		EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */ = {isa = PBXBuildFile; fileRef = EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
 		EE7814931271FFAE00B01960 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7814911271FFAE00B01960 /* Tween.cpp */; };
@@ -179,6 +180,7 @@
 		EE41FEC71288A271001F0C56 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		EE41FEC81288A271001F0C56 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
+		EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "get-it-by-your-hands.ogg"; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		EE7814911271FFAE00B01960 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */,
 				EE945CD712B77CEF0029ADB0 /* shield-9.ogg */,
 				EE747FC5127E55B200E4A8FA /* Data */,
 				EEC530481275803E0064054A /* test.png */,
@@ -763,6 +766,7 @@
 				EEC530491275803E0064054A /* test.png in Resources */,
 				EE747FCB127E55B200E4A8FA /* Data in Resources */,
 				EE945CD812B77CEF0029ADB0 /* shield-9.ogg in Resources */,
+				EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

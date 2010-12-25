@@ -44,5 +44,5 @@ spr:Rotate(0,0,-90)
 spr:Color(0.5,0.5,0.5,1.0)
 
 
-sound = LoadSound("shield-9.ogg")
+sound = LoadSound("get-it-by-your-hands.ogg")
 sound:Loop(true)

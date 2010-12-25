@@ -16,9 +16,13 @@ struct SoundData
 	void Register();
 	
 	// buffer and source data, error handle (just in case)
-	ALuint buffer;
-	ALuint source;
 	ALenum error;
+	ALuint buffers[2];
+	ALuint source;
+
+	// sampling rate and channels
+	ALsizei rate;
+	ALenum format;
 
 	// audio file path
 	std::string path;

@@ -21,14 +21,14 @@ std::vector<SoundData*> vpSounds;
 
 SoundData::SoundData()
 {
-	alGenBuffers(1, &buffer);
+	alGenBuffers(2, buffers);
 	alGenSources(1, &source);
 	error = alGetError();
 }
 
 SoundData::~SoundData()
 {
-	alDeleteBuffers(1, &buffer);
+	alDeleteBuffers(2, buffers);
 	alDeleteSources(1, &source);
 }
 
@@ -106,13 +106,13 @@ int sine_wave()
 	data = sineWave;
 	delete[] sineWave;
 
-	alBufferData(sound->buffer, AL_FORMAT_STEREO16, data, size, freq);
+	alBufferData(sound->buffers[0], AL_FORMAT_STEREO16, data, size, freq);
 
 	if (alGetError() != AL_NO_ERROR)
 		return -2;
 
 	alSourcei(sound->source, AL_LOOPING, (ALboolean)true);
-	alSourcei(sound->source, AL_BUFFER, sound->buffer);
+	alSourcei(sound->source, AL_BUFFER, sound->buffers[0]);
 	alSourcef(sound->source, AL_GAIN, 0.5f); // volume
 
 	alSourcePlay(sound->source);
