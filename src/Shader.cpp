@@ -128,8 +128,8 @@ void Shader::Reload()
 	glAttachShader(ptr, fs);
 
 	glBindAttribLocation(ptr, VERTEX_ARRAY, "VPos");
-	glBindAttribLocation(ptr, COORD_ARRAY, "VCoords");
 	glBindAttribLocation(ptr, NORMAL_ARRAY, "VNor");
+	glBindAttribLocation(ptr, COORD_ARRAY, "VCoords");
 
 	glLinkProgram(ptr);
 

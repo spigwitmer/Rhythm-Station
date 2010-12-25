@@ -8,9 +8,8 @@
 enum
 {
 	VERTEX_ARRAY = 0,
-	COORD_ARRAY,
 	NORMAL_ARRAY,
-	COLOR_ARRAY
+	COORD_ARRAY
 };
 
 class Shader

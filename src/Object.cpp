@@ -40,42 +40,39 @@ void Object::CreateBuffers()
 {
 	// triangle strip quad
 	GLfloat verts[] = {
-		// pos	tex	 normals
-		-1, -1, 0,	0, 0,	 0, 0, 0,
-		 1, -1, 0,	1, 0,	 0, 0, 0,
-		-1,  1, 0,	0, 1,	 0, 0, 0,
-		 1,  1, 0,	1, 1,	 0, 0, 0,
+		// pos[3] nor[3] tex[2]
+		-1, -1, 0, 0, 0, 0, 0, 0,
+		 1, -1, 0, 0, 0, 0, 1, 0,
+		-1,  1, 0, 0, 0, 0, 0, 1,
+		 1,  1, 0, 0, 0, 0, 1, 1,
 	};
 	// far more useful on complex objects.
-	GLubyte indices[] = { 0, 1, 2, 3 };	
-	GLubyte stride = sizeof(GLfloat) * (3+2+3);
-	m_vertices = int(sizeof(indices) / sizeof(GLubyte));
+	int components = 8;
+	GLubyte stride = sizeof(GLfloat) * components;
+	m_vertices = sizeof(verts) / sizeof(GLfloat) / components;
 
-	glGenBuffers(2, m_vbo);
+	glGenBuffers(1, &m_vbo);
 
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// vertices
 	glEnableVertexAttribArray(VERTEX_ARRAY);
 	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(0));
 
-	// coords
-	glEnableVertexAttribArray(COORD_ARRAY);
-	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, OFFSET(3));
-
 	// normals
 	glEnableVertexAttribArray(NORMAL_ARRAY);
-	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(5));
+	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(3));
+
+	// coords
+	glEnableVertexAttribArray(COORD_ARRAY);
+	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, OFFSET(6));
 }
 #undef OFFSET
 
 void Object::DeleteBuffers()
 {
-	glDeleteBuffers(2, m_vbo);
+	glDeleteBuffers(1, &m_vbo);
 }
 
 // should this be automatic?
@@ -150,7 +147,6 @@ void Object::Update(double delta)
 	if (m_parent)
 		m_matrix = m_parent->GetMatrix();
 
-	// TODO: only update when needed.
 	if (m_bNeedsUpdate)
 	{
 		m_matrix.Identity();
@@ -168,11 +164,15 @@ void Object::Update(double delta)
 
 void Object::Draw()
 {
-	Renderer->BindBuffers(m_vbo, &m_shader);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+
+	m_shader.Bind();
 	m_texture.Bind();
 
+	m_shader.SetUniforms();
+
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
-	glDrawElements(GL_TRIANGLE_STRIP, m_vertices, GL_UNSIGNED_BYTE, NULL);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, m_vertices);
 }
 
 // Lua

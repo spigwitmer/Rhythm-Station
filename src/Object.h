@@ -67,7 +67,7 @@ protected:
 	void CreateBuffers();
 	void DeleteBuffers();
 
-	GLuint m_vbo[2], m_color_uniform;
+	GLuint m_vbo, m_color_uniform;
 	std::map<std::string, std::vector<AnimationState> > m_states;
 	std::vector<Object*> m_children;
 
