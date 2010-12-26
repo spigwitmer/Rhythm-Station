@@ -6,6 +6,8 @@
 class Thread
 {
 public:
+	Thread();
+	~Thread();
 	void Create(void* func(void*));
 	void Cancel();
 	void Lock();
