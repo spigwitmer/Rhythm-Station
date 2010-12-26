@@ -55,11 +55,6 @@ void GameManager::QueueRendering()
 	m_bQueuedRender = true;
 }
 
-void GameManager::Update(double delta)
-{
-	// for non-screen updates.
-}
-
 void GameManager::Start()
 {
 	Scene->PushScreen();

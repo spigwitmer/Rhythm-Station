@@ -24,8 +24,8 @@ public:
 	void UpdateWindowTitle(double delta);
 
 	void Start();
+
 	void QueueRendering();
-	void Update(double delta);
 	void Render();
 
 	Matrix* ProjectionMatrix;
