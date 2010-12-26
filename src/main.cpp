@@ -93,7 +93,7 @@ int main (int argc, char** argv)
 		 */
 		if (int(then * 2) != int(now * 2)) {
 			Game->UpdateWindowTitle(delta);
-			Game->SetActive(glfwGetWindowParam(Game->GetWindow(), GLFW_ACTIVE));
+			Game->SetWindowActive();
 		}
 
 		// Prevent large jumps. Note: audio should be updated before doing this.

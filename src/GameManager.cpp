@@ -87,7 +87,7 @@ void GameManager::Render()
 	 * Ideally, we would only redraw objects which need it, however this is still
 	 * useful when there isn't much going on.
 	 */
-	if ((!m_bQueuedRender && !m_bFirstUpdate && lazy_updates) || !m_window_active)
+	if ((!m_bQueuedRender && !m_bFirstUpdate && lazy_updates) || !IsWindowActive() && !m_bFirstUpdate)
 	{
 		usleep(12500); // reduce CPU usage when not updating.
 		return;

@@ -13,12 +13,14 @@ public:
 	virtual ~GameManager();
 
 	GLFWwindow GetWindow();
+	void SetWindowActive() { m_window_active = glfwGetWindowParam(m_window, GLFW_ACTIVE); }
+	bool IsWindowActive() { return m_window_active; }
 
-	bool IsDebugMode() { return m_debug; }
 	void SetDebugMode(bool debug) { m_debug = debug; }
+	bool IsDebugMode() { return m_debug; }
+
 	void SetCurrentShader(GLuint _shader) { current_shader = _shader; }
 	GLuint GetCurrentShader() { return current_shader; }
-	void SetActive(bool active) { m_window_active = active; }
 	void UpdateWindowTitle(double delta);
 
 	void Start();
