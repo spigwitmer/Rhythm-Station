@@ -68,16 +68,11 @@ void GameManager::Start()
 
 void GameManager::UpdateWindowTitle(double delta)
 {
-	double fps = 1.0f / delta;
+	std::string str = Log->SPrint("Rhythm-Station - FPS: %0.1f, Delta: %0.05f",
+		int((1.0 / delta) * 10) * 0.1f, delta
+	);
 
-	std::ostringstream str;
-	str << "Rhythm Station - ";
-	str << "FPS: " << int(fps * 10) * 0.1f << ", ";
-	str << "Delta: " << delta;
-
-	std::string sfps = str.str(); // str.c_str doesn't work?
-
-	glfwSetWindowTitle(m_window, sfps.c_str());
+	glfwSetWindowTitle(m_window, str.c_str());
 }
 
 // this should probably be in scenemanager.
