@@ -4,6 +4,7 @@
 #include "GameManager.h"
 #include "LuaManager.h"
 #include "SceneManager.h"
+#include "RenderManager.h"
 #include "Logger.h"
 
 InputManager* Input = NULL;
@@ -46,8 +47,15 @@ void charCallback(GLFWwindow window, int key)
 void mPosCallback(GLFWwindow window, int x, int y)
 {
 	// crash!
-//	Input->status.mouse_pos = vec2(x, y);
-//	Input->SendEvent();
+	Log->Print("x = %d, y = %d", x, y);
+//
+//	Input->status.mouse.x = x;
+//	Input->status.mouse.y = y;
+//
+//	Input->status.mouse.nx = float(x / Renderer->ScreenWidth);
+//	Input->status.mouse.ny = float(y / Renderer->ScreenHeight);
+
+	Input->SendEvent();
 }
 
 void mButtonCallback(GLFWwindow window, int button, int state)
@@ -57,7 +65,7 @@ void mButtonCallback(GLFWwindow window, int button, int state)
 
 void mScrollCallback(GLFWwindow window, int x, int y)
 {
-	Input->status.scroll = vec2(x, y);
+	Input->status.mouse.scroll = vec2(x, y);
 	Input->SendEvent();
 }
 
@@ -72,10 +80,10 @@ InputManager::InputManager()
 {
 	glfwSetKeyCallback(keyCallback);
 	glfwSetCharCallback(charCallback);
+	glfwSetWindowSizeCallback(resizeCallback);
 	glfwSetMousePosCallback(mPosCallback);
 	glfwSetMouseButtonCallback(mButtonCallback);
 	glfwSetScrollCallback(mScrollCallback);
-	glfwSetWindowSizeCallback(resizeCallback);
 
 	DetectControllers();
 

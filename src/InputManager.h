@@ -40,6 +40,9 @@ struct Mouse
 
 	// normalized coords
 	float nx, ny;
+
+	vec2 mouse_pos;
+	vec2 scroll;
 };
 
 // this should probably only handle mapped game buttons - not raw input.
@@ -48,8 +51,7 @@ struct IEvent
 	std::vector<Controller*> controllers;
 	std::string cur_string;
 
-	vec2 mouse_pos;
-	vec2 scroll;
+	Mouse mouse;
 
 	KeyState* keys;
 	int num_keys;
