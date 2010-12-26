@@ -2,7 +2,8 @@
 #define _GAME_MANAGER_
 
 #include <GL/glfw3.h>
-#include <vector>
+//#include <vector>
+#include <map>
 #include "Matrix.h"
 
 class GameManager
@@ -26,6 +27,8 @@ public:
 	void Render();
 
 	Matrix* ProjectionMatrix;
+
+	std::map<std::string, bool> IsExtSupported;
 
 private:
 	GLFWwindow m_window;

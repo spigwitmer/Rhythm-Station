@@ -14,7 +14,6 @@ public:
 	virtual ~RenderManager() { }
 
 	std::string GetExtensions();
-	std::map<std::string, bool> IsExtSupported;
 
 	void CheckExtensions();
 

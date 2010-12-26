@@ -16,7 +16,7 @@ RenderManager::RenderManager()
 	if (GLEW_NV_framebuffer_multisample_coverage)
 	{
 		Log->Print("CSAA Supported.");
-		IsExtSupported["CSAA"] = true;
+		Game->IsExtSupported["CSAA"] = true;
 	}
 	else
 		Log->Print("CSAA Not Supported.");
