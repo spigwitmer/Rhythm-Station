@@ -15,7 +15,6 @@ public:
 
 	std::string GetExtensions();
 	std::map<std::string, bool> IsExtSupported;
-	void BindBuffers(GLuint* buffers, Shader* shader);
 
 	void CheckExtensions();
 
