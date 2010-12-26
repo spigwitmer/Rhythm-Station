@@ -17,10 +17,6 @@ public:
 	std::map<std::string, bool> IsExtSupported;
 	void BindBuffers(GLuint* buffers, Shader* shader);
 
-	GLuint* CreateFramebuffer(vec2 size, int samples = 1);
-	void BindFramebuffer(GLuint* buffers);
-	void UnbindFramebuffer();
-	void DeleteFramebuffer(GLuint* buffers);
 	void CheckExtensions();
 
 	int ScreenWidth, ScreenHeight;

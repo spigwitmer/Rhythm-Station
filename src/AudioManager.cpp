@@ -98,7 +98,7 @@ int sine_wave()
 
 	// build the sine wave
 	sineWave = new unsigned char[size];
-	for (int i = 0; i < size; ++i)
+	for (int i = 0; i < size; i++)
 	{
 		float x = i * 360.f / (float)samples;
 		sineWave[i] = sinf(x * (3.14159 / 180))*128+128;
