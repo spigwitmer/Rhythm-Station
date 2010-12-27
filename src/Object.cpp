@@ -164,12 +164,11 @@ void Object::Update(double delta)
 
 void Object::Draw()
 {
+	// need a buffer type, probably.
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
 	m_shader.Bind();
 	m_texture.Bind();
-
-	m_shader.SetUniforms();
 
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, m_vertices);

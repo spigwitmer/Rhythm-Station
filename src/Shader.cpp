@@ -166,6 +166,7 @@ void Shader::Bind()
 		glUseProgram(ptr);
 		Game->SetCurrentShader(ptr);
 	}
+	SetUniforms();
 }
 
 void Shader::SetUniforms()
