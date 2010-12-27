@@ -20,6 +20,7 @@ AC_CONFIG_HEADERS([config.h])
 
 # Check for external dependencies
 PKG_CHECK_MODULES([EXT_DEPENDS],[
+		fftw3_threads
 		freetype2
 		gl 
 		glew 
