@@ -26,11 +26,7 @@ void HandleArguments(int argc, char** argv)
 		}
 		if (!strcmp(argv[i], "--show-extensions"))
 		{
-			/*
-			 * Don't pass in GetExtensions as a format arg - it could potentially be
-			 * very, very long and use up the buffer.
-			 */
-			Log->Print("Available OpenGL extensions: \n" + Renderer->GetExtensions());
+			Log->Print("Available OpenGL extensions: \n%s",Renderer->GetExtensions().c_str());
 			continue;
 		}
 	}

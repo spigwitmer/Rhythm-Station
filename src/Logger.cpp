@@ -23,23 +23,28 @@ Logger::Logger()
 void Logger::DebugPrint(std::string input)
 {
 	if (Game->IsDebugMode())
-		Print(input+std::string(" (debug)"));
+		Print("%s (debug)", input.c_str());
 }
 
-void Logger::Print(std::string in, ...)
+void Logger::Print(std::string in)
+{
+	Print(in.c_str());
+}
+
+void Logger::Print(const char *in, ...)
 {
 	va_list va;
 	char staticbuf[1024];
 	char *buf = staticbuf;
 
 	va_start(va, in);
-	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in.c_str(), va) + 1;
+	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in, va) + 1;
 	if (need > sizeof(staticbuf))
 	{
 		// staticbuf wasn't large enough, malloc large enough
 		buf = (char *) malloc(need);
 		va_start(va,in);
-		vsnprintf(buf, need, in.c_str(), va);
+		vsnprintf(buf, need, in, va);
 	}
 	va_end(va);
 
@@ -55,20 +60,20 @@ void Logger::Print(std::string in, ...)
 		free(buf);
 }
 
-void Logger::InlinePrint(std::string in, ...)
+void Logger::InlinePrint(const char *in, ...)
 {
 	va_list va;
 	char staticbuf[1024];
 	char *buf = staticbuf;
 
 	va_start(va, in);
-	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in.c_str(), va) + 1;
+	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in, va) + 1;
 	if (need > sizeof(staticbuf))
 	{
 		// staticbuf wasn't large enough, malloc large enough
 		buf = (char *) malloc(need);
 		va_start(va,in);
-		vsnprintf(buf, need, in.c_str(), va);
+		vsnprintf(buf, need, in, va);
 	}
 	va_end(va);
 

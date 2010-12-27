@@ -22,8 +22,9 @@ public:
 	Logger();
 
 	void DebugPrint(std::string input);
-	void Print(std::string in, ...);
-	void InlinePrint(std::string in, ...);
+	void Print(const char *in, ...);
+	void Print(std::string in);
+	void InlinePrint(const char *in, ...);
 
 private:
 #if 0
