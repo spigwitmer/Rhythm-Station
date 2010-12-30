@@ -5,14 +5,12 @@ end
 function LoadActor(filename)
 	obj = Object()
 	obj:Load(filename)
-	obj:Register()
 	return obj
 end
 
 function LoadSound(filename)
 	obj = Sound()
 	obj:Load(filename)
-	obj:Register()
 	return obj
 end
 

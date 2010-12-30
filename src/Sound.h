@@ -24,7 +24,6 @@ class Sound : public Object
 public:
 	Sound();
 	virtual ~Sound();
-	void Register();
 
 	void deleteBuffers();
 	void Load(std::string _path);
@@ -37,6 +36,8 @@ public:
 	void Pan(float _pan) { sd_pan = _pan; }
 
 private:
+	void Register();
+
 	SoundData* sd_sound;
 	OggVorbis_File ogg_file;
 

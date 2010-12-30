@@ -58,6 +58,8 @@ int main (int argc, char** argv)
 	GLFWwindow window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "", NULL);
 	glfwSwapInterval(1);
 
+	glEnable(GL_DEPTH_TEST);
+
 	// Start up all our singletons.
 	Log			= new Logger();
 	File		= new FileManager();
@@ -77,7 +79,64 @@ int main (int argc, char** argv)
 	// Start running Lua and begin the first screen.
 	Game->Start();
 	Lua->Start();
-	
+
+	// cube
+	GLfloat verts[] = {
+		 1, -1, -1, 0, 0, 1, 0, 0,
+		 1, -1,  1, 0, 1, 0, 0, 0,
+		-1, -1,  1, 1, 0, 0, 0, 0,
+		-1, -1, -1, 0, 0, 1, 0, 0,
+		 1,  1, -1, 0, 1, 0, 0, 0,
+		 1,  1,  1, 1, 0, 0, 0, 0,
+		-1,  1,  1, 0, 0, 1, 0, 0,
+		-1,  1, -1, 0, 1, 0, 0, 0,
+	};
+	GLubyte indices[] = {
+		4, 0, 3,
+		4, 3, 7,
+		2, 6, 7,
+		2, 7, 3,
+		1, 5, 2,
+		5, 6, 2,
+		0, 4, 1,
+		4, 5, 1,
+		4, 7, 5,
+		7, 6, 5,
+		0, 1, 2,
+		0, 2, 3
+	};
+
+	GLuint vbo[2];
+	GLubyte stride = sizeof(GLfloat) * 8;
+	int numverts = sizeof(indices) / sizeof(GLubyte);
+
+	glGenBuffers(2, vbo);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo[1]);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	// vertices
+	glEnableVertexAttribArray(VERTEX_ARRAY);
+	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
+
+	// normals
+	glEnableVertexAttribArray(NORMAL_ARRAY);
+	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
+
+	// coords
+	glEnableVertexAttribArray(COORD_ARRAY);
+	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
+
+	Object* obj = new Object();
+	obj->DepthClear(true);
+	obj->AssignBuffer(vbo, numverts);
+	obj->Scale(vec3(100));
+	obj->Translate(vec3(0,125,-100));
+	obj->Rotate(vec3(45));
+
 	test_threads();
 
 	double then = glfwGetTime(); // prevent registering a skip on first update
@@ -95,6 +154,10 @@ int main (int argc, char** argv)
 			Game->UpdateWindowTitle(delta);
 			Game->SetWindowActive();
 		}
+
+		// just a test.
+		float rot = sinf(now) * 45;
+		obj->Rotate(vec3(rot));
 
 		// Prevent large jumps. Note: audio should be updated before doing this.
 		if (delta > max_delta) {

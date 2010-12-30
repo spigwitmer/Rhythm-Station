@@ -36,7 +36,6 @@ class Object
 public:
 	Object();
 	virtual ~Object();
-	void Register();
 
 	void Load(std::string path);
 
@@ -54,24 +53,29 @@ public:
 	void Color4f(float r, float g, float b, float a) { m_color = rgba(r,g,b,a); }
 
 	void AddState();
+	void AssignBuffer(GLuint *buf, int verts);
 
 	void HandleMessage(std::string msg);
 	void Update(double delta);
 	void Draw();
 
 	Matrix GetMatrix() { return m_matrix; }
+	
+	void DepthClear(bool enabled);
 
 protected:
+	void Register();
+
 	void QueueUpdate();
 
 	void CreateBuffers();
 	void DeleteBuffers();
 
-	GLuint m_vbo, m_color_uniform;
+	GLuint m_vbo[2], m_color_uniform;
 	std::map<std::string, std::vector<AnimationState> > m_states;
 	std::vector<Object*> m_children;
 
-	bool m_bNeedsUpdate;
+	bool m_bNeedsUpdate, m_bDepthClear;
 	int m_vertices;
 
 	AnimationState m_current;

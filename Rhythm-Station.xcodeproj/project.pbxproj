@@ -44,6 +44,7 @@
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
 		EE7814931271FFAE00B01960 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7814911271FFAE00B01960 /* Tween.cpp */; };
 		EE7815131272144800B01960 /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7815101272144800B01960 /* StringUtils.cpp */; };
+		EE7C9BC412C810500075F4FB /* ScreenMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7C9BC312C810500075F4FB /* ScreenMenu.cpp */; };
 		EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
 		EE915E511255CD9500F0B0B3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915E501255CD9500F0B0B3 /* main.cpp */; };
 		EE915EA01255D7B200F0B0B3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE61255CB9300F0B0B3 /* OpenGL.framework */; };
@@ -187,6 +188,8 @@
 		EE7814921271FFAE00B01960 /* Tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tween.h; sourceTree = "<group>"; };
 		EE7815101272144800B01960 /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
 		EE7815111272144800B01960 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
+		EE7C9BC212C810500075F4FB /* ScreenMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenMenu.h; sourceTree = "<group>"; };
+		EE7C9BC312C810500075F4FB /* ScreenMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScreenMenu.cpp; sourceTree = "<group>"; };
 		EE915DE21255CB9300F0B0B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EE915DE61255CB9300F0B0B3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EE915E501255CD9500F0B0B3 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -475,6 +478,8 @@
 			children = (
 				EE3CEB5D1294504A00A8688C /* ScreenGameplay.cpp */,
 				EE3CEB5C1294504A00A8688C /* ScreenGameplay.h */,
+				EE7C9BC312C810500075F4FB /* ScreenMenu.cpp */,
+				EE7C9BC212C810500075F4FB /* ScreenMenu.h */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -894,6 +899,7 @@
 				EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */,
 				EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */,
 				EE945DF212BA26B70029ADB0 /* Thread.cpp in Sources */,
+				EE7C9BC412C810500075F4FB /* ScreenMenu.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

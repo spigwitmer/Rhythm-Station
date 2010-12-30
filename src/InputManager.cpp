@@ -72,7 +72,7 @@ void mScrollCallback(GLFWwindow window, int x, int y)
 // on window resize
 void resizeCallback(GLFWwindow window, int width, int height)
 {
-	Game->ProjectionMatrix->Ortho(width, height, vec2(-100, 100));
+	Game->ProjectionMatrix->Ortho(width, height, vec2(-500, 500));
 	Game->QueueRendering();
 }
 

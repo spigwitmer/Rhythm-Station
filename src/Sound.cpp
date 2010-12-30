@@ -13,6 +13,8 @@ Sound::Sound() : sd_loop(false), sd_pitch(1.0), sd_volume(1.0)
 
 	in = new double[BUFFER_SIZE];
 	out = new fftw_complex[BUFFER_SIZE];
+
+	Register();
 }
 
 Sound::~Sound()
@@ -179,6 +181,5 @@ void Sound_Binding()
 	.set("Load", &Sound::Load)
 	.set("Volume", &Sound::Volume)
 	.set("Pitch", &Sound::Pitch)
-	.set("Loop", &Sound::Loop)
-	.set("Register", &Sound::Register);
+	.set("Loop", &Sound::Loop);
 }

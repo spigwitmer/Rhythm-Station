@@ -15,8 +15,11 @@ Object::Object() : m_bNeedsUpdate(true), m_color(rgba(1.0)), m_texture(),
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
 	CreateBuffers();
+	m_texture.width = m_texture.height = 1;
 
 	m_parent = NULL;
+
+	Register();
 }
 
 Object::~Object()
@@ -35,47 +38,52 @@ void Object::AddChild(Object* obj)
 }
 
 // TODO: Move to RenderManager.
-#define OFFSET(P) (const GLvoid*) (sizeof(GLfloat) * (P))
+// TODO TODO: just make a util namespace for this stuff.
 void Object::CreateBuffers()
 {
-	// triangle strip quad
+	// quad (2 tris)
 	GLfloat verts[] = {
 		// pos[3] nor[3] tex[2]
 		-1, -1, 0, 0, 0, 0, 0, 0,
-		 1, -1, 0, 0, 0, 0, 1, 0,
 		-1,  1, 0, 0, 0, 0, 0, 1,
+		 1, -1, 0, 0, 0, 0, 1, 0,
 		 1,  1, 0, 0, 0, 0, 1, 1,
 	};
+	GLubyte indices[] = {
+		0, 1, 2,
+		1, 2, 3
+	};
+
 	// far more useful on complex objects.
-	int components = 8;
-	GLubyte stride = sizeof(GLfloat) * components;
-	m_vertices = sizeof(verts) / sizeof(GLfloat) / components;
+	GLubyte stride = sizeof(GLfloat) * 8;
+	m_vertices = sizeof(indices) / sizeof(GLubyte);
 
-	glGenBuffers(1, &m_vbo);
+	glGenBuffers(2, m_vbo);
 
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+	
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// vertices
 	glEnableVertexAttribArray(VERTEX_ARRAY);
-	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(0));
+	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
 
 	// normals
 	glEnableVertexAttribArray(NORMAL_ARRAY);
-	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, OFFSET(3));
+	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
 
 	// coords
 	glEnableVertexAttribArray(COORD_ARRAY);
-	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, OFFSET(6));
+	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
 }
-#undef OFFSET
 
 void Object::DeleteBuffers()
 {
-	glDeleteBuffers(1, &m_vbo);
+	glDeleteBuffers(2, m_vbo);
 }
 
-// should this be automatic?
 void Object::Register()
 {
 	Screen* scr = Scene->GetTopScreen();
@@ -162,16 +170,47 @@ void Object::Update(double delta)
 	m_shader.SetModelViewMatrix(&m_matrix);
 }
 
+void Object::AssignBuffer(GLuint *buf, int verts)
+{
+	m_vbo[0] = buf[0];
+	m_vbo[1] = buf[1];
+	m_vertices = verts;
+
+	QueueUpdate();
+}
+
+void Object::DepthClear(bool enabled)
+{
+	m_bDepthClear = enabled;
+}
+
 void Object::Draw()
 {
+	if (m_bDepthClear)
+		glClear(GL_DEPTH_BUFFER_BIT);
+
+	GLubyte stride = sizeof(GLfloat) * 8;
 	// need a buffer type, probably.
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
+
+	// vertices
+	glEnableVertexAttribArray(VERTEX_ARRAY);
+	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
+
+	// normals
+	glEnableVertexAttribArray(NORMAL_ARRAY);
+	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
+
+	// coords
+	glEnableVertexAttribArray(COORD_ARRAY);
+	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
 
 	m_shader.Bind();
 	m_texture.Bind();
 
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, m_vertices);
+	glDrawElements(GL_TRIANGLES, m_vertices, GL_UNSIGNED_BYTE, NULL);
 }
 
 // Lua
@@ -184,6 +223,5 @@ void Object_Binding()
 	.set("Translate", &Object::Translate3f)
 	.set("Rotate", &Object::Rotate3f)
 	.set("Scale", &Object::Scale3f)
-	.set("Color", &Object::Color4f)
-	.set("Register", &Object::Register);
+	.set("Color", &Object::Color4f);
 }
