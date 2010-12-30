@@ -66,16 +66,8 @@ void Object::CreateBuffers()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	// vertices
-	glEnableVertexAttribArray(VERTEX_ARRAY);
 	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
-
-	// normals
-	glEnableVertexAttribArray(NORMAL_ARRAY);
 	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
-
-	// coords
-	glEnableVertexAttribArray(COORD_ARRAY);
 	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
 }
 
@@ -194,16 +186,8 @@ void Object::Draw()
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
 
-	// vertices
-	glEnableVertexAttribArray(VERTEX_ARRAY);
 	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
-
-	// normals
-	glEnableVertexAttribArray(NORMAL_ARRAY);
 	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
-
-	// coords
-	glEnableVertexAttribArray(COORD_ARRAY);
 	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
 
 	m_shader.Bind();

@@ -80,6 +80,11 @@ int main (int argc, char** argv)
 	Game->Start();
 	Lua->Start();
 
+	// we'll be using these everywhere, enable them and leave it that way.
+	glEnableVertexAttribArray(VERTEX_ARRAY);
+	glEnableVertexAttribArray(NORMAL_ARRAY);
+	glEnableVertexAttribArray(COORD_ARRAY);
+
 	// cube
 	GLfloat verts[] = {
 		 1, -1, -1, 0, 0, 1, 0, 0,
@@ -118,16 +123,8 @@ int main (int argc, char** argv)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo[1]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	// vertices
-	glEnableVertexAttribArray(VERTEX_ARRAY);
 	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
-
-	// normals
-	glEnableVertexAttribArray(NORMAL_ARRAY);
 	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
-
-	// coords
-	glEnableVertexAttribArray(COORD_ARRAY);
 	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
 
 	Object* obj = new Object();
