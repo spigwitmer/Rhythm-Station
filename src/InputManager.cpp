@@ -95,16 +95,17 @@ InputManager::InputManager()
 
 InputManager::~InputManager()
 {
+	glfwSetKeyCallback(NULL);
+	glfwSetCharCallback(NULL);
+
 	for (unsigned int i = 0; i<status.controllers.size(); i++)
 	{
 		delete status.controllers[i];
-		delete[] status.keys;
-		delete[] status.timestamp;
 	}
 	status.controllers.clear();
-	
-	glfwSetKeyCallback(NULL);
-	glfwSetCharCallback(NULL);
+
+	delete[] status.keys;
+	delete[] status.timestamp;
 }
 
 Controller::Controller(int _id)
