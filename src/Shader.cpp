@@ -47,8 +47,9 @@ Shader::Shader()
 {
 	vs = fs = ptr = 0;
 
-	m_model = NULL;
-	m_proj = NULL;
+	// can leak.
+	m_model = new Matrix();
+	m_proj = new Matrix();
 
 	this->SetProjectionMatrix(Game->ProjectionMatrix);
 	this->LoadFromDisk("Data/Shaders/generic.vs", "Data/Shaders/generic.fs");
