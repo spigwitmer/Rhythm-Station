@@ -11,7 +11,12 @@ float radf(float val)
 	return val;
 }
 
-static const float identity_matrix[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
+static const float identity_matrix[4][4] = {
+	{ 1, 0, 0, 0 },
+	{ 0, 1, 0, 0 },
+	{ 0, 0, 1, 0 },
+	{ 0, 0, 0, 1 }
+};
 
 Matrix::Matrix()
 {
@@ -30,7 +35,7 @@ void Matrix::Print()
 	}
 }
 
-void Matrix::Load(float m[16])
+void Matrix::Load(float *m)
 {
 	memcpy(matrix, m, sizeof(matrix));
 }
@@ -60,14 +65,24 @@ void Matrix::Multiply(const float *mat)
 // implemented from GL2.1 documentation
 void Matrix::Translate(float x, float y, float z)
 {
-	float mat[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1 };
-	this->Multiply(mat);
+	float mat[4][4] = {
+		{ 1, 0, 0, 0 },
+		{ 0, 1, 0, 0 },
+		{ 0, 0, 1, 0 },
+		{ x, y, z, 1 }
+	};
+	this->Multiply(&mat[0][0]);
 }
 
 void Matrix::Scale(float x, float y, float z)
 {
-	float mat[16] = { x, 0, 0, 0, 0, y, 0, 0, 0, 0, z, 0, 0, 0, 0, 1 };
-	this->Multiply(mat);
+	float mat[4][4] = {
+		{ x, 0, 0, 0 },
+		{ 0, y, 0, 0 },
+		{ 0, 0, z, 0 },
+		{ 0, 0, 0, 1 }
+	};
+	this->Multiply(&mat[0][0]);
 }
 
 void Matrix::Rotate(float angle, float x, float y, float z)
@@ -77,13 +92,13 @@ void Matrix::Rotate(float angle, float x, float y, float z)
 	float oc = 1.0 - c;
 	float xs, ys, zs;
 	xs = x*s; ys = y*s; zs = z*s;
-	float mat[16] = {
-		x*x*oc + c,	y*x*oc + zs,	(x*z*oc) - ys,	0,
-		x*y*oc - zs,	y*y*oc + c,	(y*z*oc) + xs,	0,
-		x*z*oc + ys,	y*z*oc - xs,	z*z*oc + c, 	0,
-		0, 0, 0, 1
+	float mat[4][4] = {
+		{ x*x*oc + c, y*x*oc + zs, (x*z*oc) - ys, 0, },
+		{ x*y*oc - zs, y*y*oc + c, (y*z*oc) + xs, 0, },
+		{ x*z*oc + ys, y*z*oc - xs, z*z*oc + c, 0, },
+		{ 0, 0, 0, 1 }
 	};
-	this->Multiply(mat);
+	this->Multiply(&mat[0][0]);
 }
 
 // overloads
@@ -109,23 +124,22 @@ void Matrix::Ortho(float left, float right, float bottom, float top, float near,
 	tx = -((right+left) / (right-left));
 	ty = -((top+bottom) / (top-bottom));
 	tz = -((far+near) / (far-near));
-	float m[16] = {
-		2.f / (right - left), 0, 0, 0,
-		0, 2.f / (top - bottom), 0, 0,
-		0, 0, -2.f / (far - near), 0,
-		tx, ty, tz, 1
+	float m[4][4] = {
+		{ 2.f / (right - left), 0, 0, 0 },
+		{ 0, 2.f / (top - bottom), 0, 0 },
+		{ 0, 0, -2.f / (far - near), 0 },
+		{ tx, ty, tz, 1 }
 	};
-	this->Multiply(m);
+	this->Multiply(&m[0][0]);
 }
 
 // based on Mesa - there is a way to do this with less trig, but I don't remember.
 void Matrix::Perspective(float fov, float aspect, double near, double far)
 {
 	float m[4][4] = {{0}};
-	double sine, ctan, delta;
-	double radians = radf(fov * 0.5f);
+	float radians = radf(fov * 0.5f);
+	float sine = sinf(radians), delta = far - near, ctan = 0.0f;
 	delta = far - near;
-	sine = sinf(radians);
 
 	if (delta == 0 || sine == 0 || aspect == 0)
 		return;

@@ -54,7 +54,6 @@
 		EE915F9312567C1600F0B0B3 /* ResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915F9212567C1600F0B0B3 /* ResourceManager.cpp */; };
 		EE915FE21256829D00F0B0B3 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915FE01256829D00F0B0B3 /* Logger.cpp */; };
 		EE945CD812B77CEF0029ADB0 /* shield-9.ogg in Resources */ = {isa = PBXBuildFile; fileRef = EE945CD712B77CEF0029ADB0 /* shield-9.ogg */; };
-		EE945DF212BA26B70029ADB0 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE945DF112BA26B70029ADB0 /* Thread.cpp */; };
 		EEA552C9125A6E4B0065F811 /* HandleArguments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA552C8125A6E4B0065F811 /* HandleArguments.cpp */; };
 		EEA552D2125A7FE30065F811 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA552D1125A7FE30065F811 /* Matrix.cpp */; };
 		EEA552D7125A80920065F811 /* Type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA552D5125A80920065F811 /* Type.cpp */; };
@@ -134,6 +133,7 @@
 		EECBDF88125CFFD000BA2BA4 /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF84125CFFD000BA2BA4 /* AudioManager.cpp */; };
 		EECBDF89125CFFD000BA2BA4 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF86125CFFD000BA2BA4 /* FileManager.cpp */; };
 		EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECBDF9E125D008000BA2BA4 /* OpenAL.framework */; };
+		EED312E712D1262A00A15AC5 /* ThreadGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */; };
 		EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */; };
 		EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */; };
 		EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */; };
@@ -204,8 +204,6 @@
 		EE915FE01256829D00F0B0B3 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
 		EE915FE11256829D00F0B0B3 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		EE945CD712B77CEF0029ADB0 /* shield-9.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "shield-9.ogg"; sourceTree = "<group>"; };
-		EE945DF012BA26B70029ADB0 /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
-		EE945DF112BA26B70029ADB0 /* Thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Thread.cpp; sourceTree = "<group>"; };
 		EEA552C7125A6E4B0065F811 /* HandleArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleArguments.h; sourceTree = "<group>"; };
 		EEA552C8125A6E4B0065F811 /* HandleArguments.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HandleArguments.cpp; sourceTree = "<group>"; };
 		EEA552D1125A7FE30065F811 /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
@@ -335,6 +333,9 @@
 		EECBDF86125CFFD000BA2BA4 /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
 		EECBDF87125CFFD000BA2BA4 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		EECBDF9E125D008000BA2BA4 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadGroup.cpp; sourceTree = "<group>"; };
+		EED312E512D1262A00A15AC5 /* ThreadGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadGroup.h; sourceTree = "<group>"; };
+		EED312E612D1262A00A15AC5 /* TimingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingData.h; sourceTree = "<group>"; };
 		EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfftw3.a; sourceTree = "<group>"; };
 		EEF5A4B1129EE62C00ABD8AE /* fft_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft_test.h; sourceTree = "<group>"; };
 		EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft_test.cpp; sourceTree = "<group>"; };
@@ -559,10 +560,11 @@
 				EEC52EBA1273DC390064054A /* Screen.h */,
 				EE41FEC71288A271001F0C56 /* Sound.cpp */,
 				EE41FEC81288A271001F0C56 /* Sound.h */,
+				EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */,
+				EED312E512D1262A00A15AC5 /* ThreadGroup.h */,
+				EED312E612D1262A00A15AC5 /* TimingData.h */,
 				EEA552D5125A80920065F811 /* Type.cpp */,
 				EEA552D6125A80920065F811 /* Type.h */,
-				EE945DF012BA26B70029ADB0 /* Thread.h */,
-				EE945DF112BA26B70029ADB0 /* Thread.cpp */,
 			);
 			name = "Data Structures";
 			sourceTree = "<group>";
@@ -898,8 +900,8 @@
 				EE3CEB5E1294504A00A8688C /* ScreenGameplay.cpp in Sources */,
 				EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */,
 				EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */,
-				EE945DF212BA26B70029ADB0 /* Thread.cpp in Sources */,
 				EE7C9BC412C810500075F4FB /* ScreenMenu.cpp in Sources */,
+				EED312E712D1262A00A15AC5 /* ThreadGroup.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

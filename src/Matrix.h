@@ -8,7 +8,7 @@ struct Matrix
 {
 	Matrix();
 
-	void Load(float m[16]);
+	void Load(float *m);
 	void SetUniform();
 	void Identity();
 	void Zero();
