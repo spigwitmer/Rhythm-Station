@@ -172,6 +172,7 @@ int main (int argc, char** argv)
 
 	Audio->Close();
 
+	delete obj;
 	delete Scene;
 	delete Lua;
 	delete Game;
