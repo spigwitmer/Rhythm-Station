@@ -47,8 +47,8 @@ Shader::Shader()
 {
 	vs = fs = ptr = 0;
 
-	m_model = new Matrix();
-	m_proj = new Matrix();
+	m_model = NULL;
+	m_proj = NULL;
 
 	this->SetProjectionMatrix(Game->ProjectionMatrix);
 	this->LoadFromDisk("Data/Shaders/generic.vs", "Data/Shaders/generic.fs");
