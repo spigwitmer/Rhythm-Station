@@ -19,6 +19,7 @@ Sound::Sound() : sd_loop(false), sd_pitch(1.0), sd_volume(1.0)
 
 Sound::~Sound()
 {
+	ov_clear(&ogg_file);
 	delete sd_sound;
 
 	// fft stuff
