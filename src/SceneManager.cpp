@@ -6,6 +6,11 @@
 SceneManager* Scene = NULL;
 
 // refactor
+SceneManager::~SceneManager()
+{
+	Clear();
+}
+
 void SceneManager::PushScreen()
 {
 	Screen* scr = new Screen();

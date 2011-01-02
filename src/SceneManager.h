@@ -7,6 +7,7 @@
 class SceneManager
 {
 public:
+	~SceneManager();
 	void PushScreen();
 	void PopScreen();
 
