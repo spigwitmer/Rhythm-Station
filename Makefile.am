@@ -119,7 +119,7 @@ src/Shader.cpp \
 src/Sound.cpp \
 src/SQLiteDatabase.cpp \
 src/StringUtils.cpp \
-src/Thread.cpp \
+src/ThreadGroup.cpp \
 src/Timer.cpp \
 src/Tween.cpp \
 src/Type.cpp

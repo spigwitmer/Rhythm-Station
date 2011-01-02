@@ -1,7 +1,6 @@
 // GL headers
 #include <GL/glew.h>
 #include <GL/glfw3.h>
-
 #include "HandleArguments.h"
 
 // All the singletons (we init them here, should do static init?)
@@ -15,31 +14,39 @@
 #include "RenderManager.h"
 #include "Logger.h"
 
-#include "Thread.h"
+#include "ThreadGroup.h"
 
 // temp
 void *print_stuff(void *arg)
 {
-	Thread* t = (Thread*)arg;
+	ThreadParameters* t = (ThreadParameters*)arg;
 
 	// do stuff
 
 	// lock for whatever reason
-	t->Lock();
+	if(t->group->Lock() == 0)
+	{
+		// sync some data
+		*((int *)(t->argument)) = *((int *)(t->argument)) + 1;
+		// and unlock again
+		t->group->Unlock();
+	}
 
-	// sync some data
-
-	// and unlock again
-	t->Unlock();
 	return NULL;
 }
 
 void test_threads()
 {
-	int n_threads = 10;
-	Thread threads[n_threads];
-	for (int i = 0; i<n_threads; i++)
-		threads[i].Create(&print_stuff);
+	int n_groups = 10, n_threads = 10, sum[n_groups];
+	ThreadGroup threadgroups[n_groups];
+	for (int g = 0; g<n_groups; g++)
+	{
+		sum[g] = 0;
+		for (int t = 1; t<=n_threads; t++)
+			threadgroups[g].CreateThread(&print_stuff,&sum[g]);
+		threadgroups[g].JoinAll();
+		Log->Print("Threadtest sum[%i] = %i",g,sum[g]);
+	}
 }
 
 #ifndef DEBUG
