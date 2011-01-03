@@ -89,7 +89,7 @@ void Object::QueueUpdate()
 
 void Object::Load(std::string _path)
 {
-	std::string path = File->GetFile(_path);
+	std::string path = FileManager::GetFile(_path);
 	const char* ext = path.substr(path.size()-3, path.size()).c_str();
 	Log->Print("Loading \"%s\" (type = %s)", _path.c_str(), ext);
 	if (!strcmp(ext, "png"))

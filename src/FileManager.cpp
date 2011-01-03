@@ -18,13 +18,6 @@
 #include <fstream>
 #include <sys/stat.h>
 
-FileManager* File = NULL;
-
-FileManager::FileManager()
-{
-	this->SetWorkingDirectory();
-}
-
 bool FileManager::FileExists(std::string _file)
 {
 	struct stat stFileInfo;

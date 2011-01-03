@@ -5,7 +5,6 @@
 
 // All the singletons (we init them here, should do static init?)
 #include "AudioManager.h"
-#include "FileManager.h"
 #include "GameManager.h"
 #include "InputManager.h"
 #include "LuaManager.h"
@@ -70,7 +69,6 @@ int main (int argc, char** argv)
 
 	// Start up all our singletons.
 	Log			= new Logger();
-	File		= new FileManager();
 	Resources	= new ResourceManager();
 	Game		= new GameManager(window);
 	Scene		= new SceneManager();
@@ -186,7 +184,6 @@ int main (int argc, char** argv)
 	delete Audio;
 	delete Input;
 	delete Resources;
-	delete File;
 	delete Log;
 
 	glfwTerminate();

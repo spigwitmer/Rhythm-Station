@@ -83,11 +83,11 @@ void Shader::LoadFromDisk(std::string _vs, std::string _fs)
 	if (_vs.empty() || _fs.empty())
 		return;
 
-	_vs = File->GetFile(_vs);
-	_vs = File->GetFileContents(_vs);
+	_vs = FileManager::GetFile(_vs);
+	_vs = FileManager::GetFileContents(_vs);
 
-	_fs = File->GetFile(_fs);
-	_fs = File->GetFileContents(_fs);
+	_fs = FileManager::GetFile(_fs);
+	_fs = FileManager::GetFileContents(_fs);
 
 	this->Load(_vs, _fs);
 }

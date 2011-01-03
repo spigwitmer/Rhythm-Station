@@ -7,8 +7,8 @@ using namespace std;
 void INILoader::Load(string _path)
 {
 	string current_section = "";
-	_path = File->GetFile(_path);
-	string file_contents = File->GetFileContents(_path);
+	_path = FileManager::GetFile(_path);
+	string file_contents = FileManager::GetFileContents(_path);
 
 	vector<string> lines = split(file_contents, '\n');
 	for (unsigned i = 0; i<lines.size(); i++)

@@ -3,11 +3,8 @@
 
 #include <string>
 
-class FileManager
+namespace FileManager
 {
-public:
-	FileManager();
-
 	bool FileExists(std::string);
 	void SetWorkingDirectory();
 
@@ -16,7 +13,5 @@ public:
 	std::string GetThemeFile(std::string);
 	std::string GetFileContents(std::string);
 };
-
-extern FileManager* File;
 
 #endif
