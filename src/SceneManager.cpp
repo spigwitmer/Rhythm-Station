@@ -3,13 +3,7 @@
 #include "SceneManager.h"
 #include "Logger.h"
 
-SceneManager* Scene = NULL;
-
-// refactor
-SceneManager::~SceneManager()
-{
-	Clear();
-}
+std::vector<Screen*> vpScreens;
 
 void SceneManager::PushScreen()
 {

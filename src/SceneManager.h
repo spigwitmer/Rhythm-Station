@@ -4,10 +4,8 @@
 #include "InputManager.h"
 #include "Screen.h"
 
-class SceneManager
+namespace SceneManager
 {
-public:
-	~SceneManager();
 	void PushScreen();
 	void PopScreen();
 
@@ -17,11 +15,6 @@ public:
 	void Draw();
 
 	void Clear();
-
-private:
-	std::vector<Screen*> vpScreens;
 };
-
-extern SceneManager* Scene;
 
 #endif

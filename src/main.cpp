@@ -70,7 +70,6 @@ int main (int argc, char** argv)
 	// Start up all our singletons.
 	Log			= new Logger();
 	Game		= new GameManager(window);
-	Scene		= new SceneManager();
 	Audio		= new AudioManager();
 	Input		= new InputManager();
 	Renderer	= new RenderManager();
@@ -170,14 +169,16 @@ int main (int argc, char** argv)
 
 		// Update input before logic/objects so that it's not running behind.
 		Input->Update();
-		Scene->Update(delta);
+		SceneManager::Update(delta);
 		Game->Render();
 	}
 
 	Audio->Close();
 
 	delete obj;
-	delete Scene;
+
+	SceneManager::Clear();
+
 	delete Lua;
 	delete Game;
 	delete Audio;

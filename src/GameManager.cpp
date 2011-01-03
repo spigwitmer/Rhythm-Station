@@ -57,7 +57,7 @@ void GameManager::QueueRendering()
 
 void GameManager::Start()
 {
-	Scene->PushScreen();
+	SceneManager::PushScreen();
 	glClearColor(0.25, 0.25, 0.25, 1.0);
 }
 
@@ -87,7 +87,7 @@ void GameManager::Render()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	Scene->Draw();
+	SceneManager::Draw();
 
 	glfwSwapBuffers();
 

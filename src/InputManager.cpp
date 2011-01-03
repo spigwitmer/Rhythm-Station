@@ -144,7 +144,7 @@ Controller::~Controller()
 
 void InputManager::SendEvent()
 {
-	Scene->SendInput(status);
+	SceneManager::SendInput(status);
 }
 
 void InputManager::DetectControllers()

@@ -30,7 +30,7 @@ Sound::~Sound()
 
 void Sound::Register()
 {
-	Screen* scr = Scene->GetTopScreen();
+	Screen* scr = SceneManager::GetTopScreen();
 	scr->AddObject(this);
 }
 

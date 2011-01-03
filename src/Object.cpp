@@ -78,7 +78,7 @@ void Object::DeleteBuffers()
 
 void Object::Register()
 {
-	Screen* scr = Scene->GetTopScreen();
+	Screen* scr = SceneManager::GetTopScreen();
 	scr->AddObject(this);
 }
 
