@@ -69,7 +69,6 @@ int main (int argc, char** argv)
 
 	// Start up all our singletons.
 	Log			= new Logger();
-	Resources	= new ResourceManager();
 	Game		= new GameManager(window);
 	Scene		= new SceneManager();
 	Audio		= new AudioManager();
@@ -183,7 +182,6 @@ int main (int argc, char** argv)
 	delete Game;
 	delete Audio;
 	delete Input;
-	delete Resources;
 	delete Log;
 
 	glfwTerminate();

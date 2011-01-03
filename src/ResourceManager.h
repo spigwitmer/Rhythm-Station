@@ -19,9 +19,8 @@ struct Texture
 	unsigned int width, height;
 };
 
-class ResourceManager
+namespace ResourceManager
 {
-public:
 	void Add(Object* object);
 	void Add(Texture* texture);
 	void Add(Shader* shader);
@@ -31,16 +30,8 @@ public:
 	void ClearAll();
 	void ReloadAll();
 
-private:
 	template<class T> void Delete(std::vector<T*> obj);
 	template<class T> void Reload(std::vector<T*> obj);
-
-	// all the scene stuff.
-	std::vector<Object*> m_objects;
-	std::vector<Texture*> m_textures;
-	std::vector<Shader*> m_shaders;
 };
-
-extern ResourceManager* Resources;
 
 #endif

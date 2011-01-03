@@ -1,7 +1,10 @@
 #include "ResourceManager.h"
 #include "Object.h"
 
-ResourceManager* Resources = NULL;
+// all the scene stuff.
+std::vector<Object*> m_objects;
+std::vector<Texture*> m_textures;
+std::vector<Shader*> m_shaders;
 
 void ResourceManager::CheckDuplicate(std::string path)
 {
