@@ -70,7 +70,6 @@ int main (int argc, char** argv)
 	// Start up all our singletons.
 	Log			= new Logger();
 	Game		= new GameManager(window);
-	Audio		= new AudioManager();
 	Input		= new InputManager();
 	Renderer	= new RenderManager();
 	Lua			= new LuaManager();
@@ -78,7 +77,7 @@ int main (int argc, char** argv)
 	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);
 
-	Audio->Open();
+	AudioManager::Open();
 
 	// Start running Lua and begin the first screen.
 	Game->Start();
@@ -173,7 +172,7 @@ int main (int argc, char** argv)
 		Game->Render();
 	}
 
-	Audio->Close();
+	AudioManager::Close();
 
 	delete obj;
 
@@ -181,8 +180,8 @@ int main (int argc, char** argv)
 
 	delete Lua;
 	delete Game;
-	delete Audio;
 	delete Input;
+	delete Renderer;
 	delete Log;
 
 	glfwTerminate();

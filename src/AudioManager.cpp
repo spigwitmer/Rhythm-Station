@@ -12,8 +12,6 @@
 #include "AudioManager.h"
 #include "Logger.h"
 
-AudioManager* Audio = NULL;
-
 ALCdevice* device;
 ALCcontext* context;
 
@@ -34,7 +32,7 @@ SoundData::~SoundData()
 
 void SoundData::Register()
 {
-	Audio->AddSound(this);
+	AudioManager::AddSound(this);
 }
 
 void AudioManager::AddSound(SoundData *_sound)

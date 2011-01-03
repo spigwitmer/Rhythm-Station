@@ -30,15 +30,12 @@ struct SoundData
 
 int sine_wave();
 
-class AudioManager
+namespace AudioManager
 {
-public:
 	void AddSound(SoundData *sound);
 	void Clear();
 	void Open();
 	void Close();
 };
-
-extern AudioManager* Audio;
 
 #endif
