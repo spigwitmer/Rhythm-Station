@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include "AudioManager.h"
 #include "GameManager.h"
-#include "SceneManager.h"
 #include "InputManager.h"
 #include "Logger.h"
 #include "Object.h"
@@ -57,17 +56,26 @@ void GameManager::QueueRendering()
 
 void GameManager::Start()
 {
-	SceneManager::PushScreen();
+	vpScreens.push_back(new Screen());
 	glClearColor(0.25, 0.25, 0.25, 1.0);
+}
+
+void GameManager::Update(double delta)
+{
+	for (size_t i = 0; i<vpScreens.size(); i++)
+		vpScreens[i]->Update(delta);
 }
 
 void GameManager::UpdateWindowTitle(double delta)
 {
-	std::string str = Log->SPrint("Rhythm-Station - FPS: %0.1f, Delta: %0.05f",
-		int((1.0 / delta) * 10) * 0.1f, delta
-	);
+	glfwSetWindowTitle(m_window, Log->SPrint("Rhythm-Station - FPS: %0.1f, Delta: %0.05f",
+		int((1.0 / delta) * 10) * 0.1f, delta).c_str());
+}
 
-	glfwSetWindowTitle(m_window, str.c_str());
+void GameManager::SendInput(const IEvent &e)
+{
+	for (size_t i = 0; i<vpScreens.size(); i++)
+		vpScreens[i]->Input(e);
 }
 
 // this should probably be in scenemanager.
@@ -87,7 +95,8 @@ void GameManager::Render()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	SceneManager::Draw();
+	for (size_t i = 0; i<vpScreens.size(); i++)
+		vpScreens[i]->Draw();
 
 	glfwSwapBuffers();
 

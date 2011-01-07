@@ -3,7 +3,6 @@
 #include "InputManager.h"
 #include "GameManager.h"
 #include "LuaManager.h"
-#include "SceneManager.h"
 #include "RenderManager.h"
 #include "Logger.h"
 
@@ -144,7 +143,7 @@ Controller::~Controller()
 
 void InputManager::SendEvent()
 {
-	SceneManager::SendInput(status);
+	Game->SendInput(status);
 }
 
 void InputManager::DetectControllers()

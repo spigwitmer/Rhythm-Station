@@ -2,9 +2,11 @@
 #define _GAME_MANAGER_
 
 #include <GL/glfw3.h>
-//#include <vector>
+#include <vector>
 #include <map>
 #include "Matrix.h"
+#include "InputManager.h"
+#include "Screen.h"
 
 class GameManager
 {
@@ -25,6 +27,10 @@ public:
 
 	void Start();
 
+	Screen* GetTopScreen() { return vpScreens.back(); }
+	void SendInput(const IEvent &e);
+	void Update(double delta);
+
 	void QueueRendering();
 	void Render();
 
@@ -36,6 +42,8 @@ private:
 	GLFWwindow m_window;
 	GLuint current_shader;
 	bool m_debug, m_bFirstUpdate, m_bQueuedRender, m_window_active;
+
+	std::vector<Screen*> vpScreens;
 };
 
 extern GameManager* Game;

@@ -1,6 +1,6 @@
 #include "Sound.h"
+#include "GameManager.h"
 #include "FileManager.h"
-#include "SceneManager.h"
 #include "Screen.h"
 #include "Logger.h"
 
@@ -30,7 +30,7 @@ Sound::~Sound()
 
 void Sound::Register()
 {
-	Screen* scr = SceneManager::GetTopScreen();
+	Screen* scr = Game->GetTopScreen();
 	scr->AddObject(this);
 }
 
@@ -137,7 +137,7 @@ bool Sound::Stream(ALuint buffer)
 
 	while(size < BUFFER_SIZE)
 	{
-		result = ov_read(&ogg_file, data + size, BUFFER_SIZE - size, 0, 2, 1, &section);
+		result = ov_read(&ogg_file, &data[size], BUFFER_SIZE - size, 0, 2, 1, &section);
 
 		if(result > 0)
 			size += result;

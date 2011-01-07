@@ -3,7 +3,6 @@
 #include "GameManager.h"
 #include "FileManager.h"
 #include "RenderManager.h"
-#include "SceneManager.h"
 #include "Screen.h"
 #include "Logger.h"
 #include "PNGLoader.h"
@@ -78,7 +77,7 @@ void Object::DeleteBuffers()
 
 void Object::Register()
 {
-	Screen* scr = SceneManager::GetTopScreen();
+	Screen* scr = Game->GetTopScreen();
 	scr->AddObject(this);
 }
 

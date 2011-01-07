@@ -9,7 +9,6 @@
 #include "InputManager.h"
 #include "LuaManager.h"
 #include "ResourceManager.h"
-#include "SceneManager.h"
 #include "RenderManager.h"
 #include "Logger.h"
 
@@ -130,12 +129,16 @@ int main (int argc, char** argv)
 	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
 	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
 
-	Object* obj = new Object();
-	obj->DepthClear(true);
-	obj->AssignBuffer(vbo, numverts);
-	obj->Scale(vec3(100));
-	obj->Translate(vec3(0,125,-100));
-	obj->Rotate(vec3(45));
+	Object *obj1 = new Object(), *obj2 = new Object();
+	obj1->DepthClear(true);
+	obj1->AssignBuffer(vbo, numverts);
+	obj1->Scale(vec3(100));
+	obj1->Translate(vec3(-200,125,-100));
+
+	obj2->DepthClear(true);
+	obj2->AssignBuffer(vbo, numverts);
+	obj2->Scale(vec3(100));
+	obj2->Translate(vec3(200,125,-100));
 
 	test_threads();
 
@@ -157,7 +160,8 @@ int main (int argc, char** argv)
 
 		// just a test.
 		float rot = sinf(now) * 45;
-		obj->Rotate(vec3(rot));
+		obj1->Rotate(vec3(45,0,45));
+		obj2->Rotate(vec3(45,0,45));
 
 		// Prevent large jumps. Note: audio should be updated before doing this.
 		if (delta > max_delta) {
@@ -166,18 +170,16 @@ int main (int argc, char** argv)
 		}
 		then = now;
 
-		// Update input before logic/objects so that it's not running behind.
-		Input->Update();
-		SceneManager::Update(delta);
+		Game->Update(delta);
+
+		Input->Update(); // objects will update on the message
 		Game->Render();
 	}
 
 	AudioManager::Close();
 
-	delete obj;
-
-	SceneManager::Clear();
-
+	delete obj1;
+	delete obj2;
 	delete Lua;
 	delete Game;
 	delete Input;

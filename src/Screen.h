@@ -5,9 +5,10 @@
 #include "ResourceManager.h"
 #include "InputManager.h"
 #include "Object.h"
+#include "Message.h"
 #include "Sound.h"
 
-class Screen
+class Screen : public MessageListener
 {
 public:
 	Screen() { }

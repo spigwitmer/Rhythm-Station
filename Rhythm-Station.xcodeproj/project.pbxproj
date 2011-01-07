@@ -39,6 +39,10 @@
 		EE3CEB5E1294504A00A8688C /* ScreenGameplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE3CEB5D1294504A00A8688C /* ScreenGameplay.cpp */; };
 		EE41FEC91288A271001F0C56 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE41FEC71288A271001F0C56 /* Sound.cpp */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
+		EE48488A12D716EA00534E26 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48488412D716EA00534E26 /* Application.cpp */; };
+		EE48488B12D716EA00534E26 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48488612D716EA00534E26 /* Mesh.cpp */; };
+		EE48488C12D716EA00534E26 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48488812D716EA00534E26 /* Message.cpp */; };
+		EE48489412D7178D00534E26 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48489212D7178D00534E26 /* Window.cpp */; };
 		EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */ = {isa = PBXBuildFile; fileRef = EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
@@ -107,7 +111,6 @@
 		EEC52E311273803E0064054A /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52C8B1273803E0064054A /* uncompr.c */; };
 		EEC52E441273803E0064054A /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52CA21273803E0064054A /* zutil.c */; };
 		EEC52EBB1273DC390064054A /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC52EB91273DC390064054A /* Screen.cpp */; };
-		EEC52EBE1273DC420064054A /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC52EBC1273DC420064054A /* SceneManager.cpp */; };
 		EEC530491275803E0064054A /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = EEC530481275803E0064054A /* test.png */; };
 		EEC8D81F128DB44D00351601 /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F68127559C40064054A /* cocoa_enable.m */; };
 		EEC8D820128DB44D00351601 /* cocoa_fullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F69127559C40064054A /* cocoa_fullscreen.m */; };
@@ -181,6 +184,17 @@
 		EE41FEC71288A271001F0C56 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		EE41FEC81288A271001F0C56 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
+		EE48488412D716EA00534E26 /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
+		EE48488512D716EA00534E26 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		EE48488612D716EA00534E26 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		EE48488712D716EA00534E26 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
+		EE48488812D716EA00534E26 /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
+		EE48488912D716EA00534E26 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		EE48489012D7178D00534E26 /* InputEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputEvent.h; sourceTree = "<group>"; };
+		EE48489112D7178D00534E26 /* MathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtils.h; sourceTree = "<group>"; };
+		EE48489212D7178D00534E26 /* Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
+		EE48489312D7178D00534E26 /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
+		EE4848A412D717B800534E26 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "get-it-by-your-hands.ogg"; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -298,8 +312,6 @@
 		EEC52CA31273803E0064054A /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
 		EEC52EB91273DC390064054A /* Screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
 		EEC52EBA1273DC390064054A /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screen.h; sourceTree = "<group>"; };
-		EEC52EBC1273DC420064054A /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
-		EEC52EBD1273DC420064054A /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
 		EEC52F68127559C40064054A /* cocoa_enable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_enable.m; sourceTree = "<group>"; };
 		EEC52F69127559C40064054A /* cocoa_fullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_fullscreen.m; sourceTree = "<group>"; };
 		EEC52F6A127559C40064054A /* cocoa_gamma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_gamma.m; sourceTree = "<group>"; };
@@ -455,15 +467,19 @@
 			path = "slb-1.63/src";
 			sourceTree = "<group>";
 		};
-		EE0907A112C096DD00ADFA57 /* Renderer */ = {
+		EE0907A112C096DD00ADFA57 /* Display */ = {
 			isa = PBXGroup;
 			children = (
+				EE48489012D7178D00534E26 /* InputEvent.h */,
+				EE48489112D7178D00534E26 /* MathUtils.h */,
 				EEA552D1125A7FE30065F811 /* Matrix.cpp */,
 				EEA552D4125A800C0065F811 /* Matrix.h */,
 				EE915F81125669ED00F0B0B3 /* Shader.cpp */,
 				EE915F80125669ED00F0B0B3 /* Shader.h */,
+				EE48489212D7178D00534E26 /* Window.cpp */,
+				EE48489312D7178D00534E26 /* Window.h */,
 			);
-			name = Renderer;
+			name = Display;
 			sourceTree = "<group>";
 		};
 		EE0A64221270438600F5F134 /* glew-1.5.6 */ = {
@@ -485,6 +501,15 @@
 			name = Screens;
 			sourceTree = "<group>";
 		};
+		EE4848E012D72A1600534E26 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				EE48488412D716EA00534E26 /* Application.cpp */,
+				EE48488512D716EA00534E26 /* Application.h */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
 		EE78150D1272143200B01960 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,7 +524,8 @@
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				EE0907A112C096DD00ADFA57 /* Renderer */,
+				EE4848E012D72A1600534E26 /* Application */,
+				EE0907A112C096DD00ADFA57 /* Display */,
 				EE3CEB5B1294504200A8688C /* Screens */,
 				EE78150D1272143200B01960 /* Loaders */,
 				EEA552C6125A6E240065F811 /* Helpers */,
@@ -545,8 +571,6 @@
 				EEF5A5E412A42AAF00ABD8AE /* RenderManager.h */,
 				EE915F9212567C1600F0B0B3 /* ResourceManager.cpp */,
 				EE915F9112567C1600F0B0B3 /* ResourceManager.h */,
-				EEC52EBC1273DC420064054A /* SceneManager.cpp */,
-				EEC52EBD1273DC420064054A /* SceneManager.h */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -554,10 +578,15 @@
 		EE9160861256A60100F0B0B3 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
+				EE48488612D716EA00534E26 /* Mesh.cpp */,
+				EE48488712D716EA00534E26 /* Mesh.h */,
+				EE48488812D716EA00534E26 /* Message.cpp */,
+				EE48488912D716EA00534E26 /* Message.h */,
 				EE915F7D125668C600F0B0B3 /* Object.cpp */,
 				EE915F7C125668C600F0B0B3 /* Object.h */,
 				EEC52EB91273DC390064054A /* Screen.cpp */,
 				EEC52EBA1273DC390064054A /* Screen.h */,
+				EE4848A412D717B800534E26 /* Singleton.h */,
 				EE41FEC71288A271001F0C56 /* Sound.cpp */,
 				EE41FEC81288A271001F0C56 /* Sound.h */,
 				EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */,
@@ -848,7 +877,6 @@
 				EEC52E311273803E0064054A /* uncompr.c in Sources */,
 				EEC52E441273803E0064054A /* zutil.c in Sources */,
 				EEC52EBB1273DC390064054A /* Screen.cpp in Sources */,
-				EEC52EBE1273DC420064054A /* SceneManager.cpp in Sources */,
 				EE133B2B1278216F0047069E /* sqlite3.c in Sources */,
 				EE07CCDD1279FF1400AAA31F /* png.c in Sources */,
 				EE07CCE01279FF1400AAA31F /* pngerror.c in Sources */,
@@ -902,6 +930,10 @@
 				EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */,
 				EE7C9BC412C810500075F4FB /* ScreenMenu.cpp in Sources */,
 				EED312E712D1262A00A15AC5 /* ThreadGroup.cpp in Sources */,
+				EE48488A12D716EA00534E26 /* Application.cpp in Sources */,
+				EE48488B12D716EA00534E26 /* Mesh.cpp in Sources */,
+				EE48488C12D716EA00534E26 /* Message.cpp in Sources */,
+				EE48489412D7178D00534E26 /* Window.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
