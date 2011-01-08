@@ -1,7 +1,6 @@
 #include <cstring>
 #include "HandleArguments.h"
 #include "GameManager.h"
-#include "RenderManager.h"
 #include "Logger.h"
 
 void HandleArguments(int argc, char** argv)
@@ -26,7 +25,7 @@ void HandleArguments(int argc, char** argv)
 		}
 		if (!strcmp(argv[i], "--show-extensions"))
 		{
-			Log->Print("Available OpenGL extensions: \n%s",Renderer->GetExtensions().c_str());
+			Log->Print("Available OpenGL extensions: \n%s", Game->GetExtensions().c_str());
 			continue;
 		}
 	}

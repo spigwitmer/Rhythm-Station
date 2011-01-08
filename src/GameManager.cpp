@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include <stdlib.h>
 #include "AudioManager.h"
 #include "GameManager.h"
@@ -30,6 +31,22 @@ GameManager::GameManager(GLFWwindow window) :
 	// let the OS know we're up and running.
 	glfwPollEvents();
 
+	glewInit();
+
+	glfwGetWindowSize(window, &ScreenWidth, &ScreenHeight);
+
+	if (GLEW_NV_framebuffer_multisample_coverage)
+	{
+		Log->Print("CSAA Supported.");
+		Game->IsExtSupported["CSAA"] = true;
+	}
+	else
+		Log->Print("CSAA Not Supported.");
+
+	// Make transparency work!
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 #ifdef DEBUG
 	lazy_updates = false;
 #endif
@@ -43,6 +60,14 @@ GameManager::~GameManager()
 	delete obj;
 	delete quad;
 }
+
+std::string GameManager::GetExtensions()
+{
+	std::ostringstream extensions;
+	extensions << glGetString(GL_EXTENSIONS);
+	return extensions.str();
+}
+
 
 GLFWwindow GameManager::GetWindow()
 {

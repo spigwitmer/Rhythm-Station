@@ -2,7 +2,6 @@
 #include "Object.h"
 #include "GameManager.h"
 #include "FileManager.h"
-#include "RenderManager.h"
 #include "Screen.h"
 #include "Logger.h"
 #include "PNGLoader.h"

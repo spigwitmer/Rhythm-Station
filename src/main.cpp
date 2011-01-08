@@ -9,7 +9,6 @@
 #include "InputManager.h"
 #include "LuaManager.h"
 #include "ResourceManager.h"
-#include "RenderManager.h"
 #include "Logger.h"
 
 #include "ThreadGroup.h"
@@ -70,7 +69,6 @@ int main (int argc, char** argv)
 	Log			= new Logger();
 	Game		= new GameManager(window);
 	Input		= new InputManager();
-	Renderer	= new RenderManager();
 	Lua			= new LuaManager();
 
 	// Handle the arguments before doing anything else
@@ -183,7 +181,6 @@ int main (int argc, char** argv)
 	delete Lua;
 	delete Game;
 	delete Input;
-	delete Renderer;
 	delete Log;
 
 	glfwTerminate();

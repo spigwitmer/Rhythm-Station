@@ -38,6 +38,12 @@ public:
 
 	std::map<std::string, bool> IsExtSupported;
 
+	std::string GetExtensions();
+	
+	void CheckExtensions();
+	
+	int ScreenWidth, ScreenHeight;
+
 private:
 	GLFWwindow m_window;
 	GLuint current_shader;

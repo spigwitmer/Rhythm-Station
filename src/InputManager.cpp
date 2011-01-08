@@ -3,13 +3,12 @@
 #include "InputManager.h"
 #include "GameManager.h"
 #include "LuaManager.h"
-#include "RenderManager.h"
 #include "Logger.h"
 
 InputManager* Input = NULL;
 
 // keyboard. key for specials, char for text input and such.
-void keyCallback(GLFWwindow window, int key, int state)
+static void _keyCallback(GLFWwindow window, int key, int state)
 {
 	double cur_time = glfwGetTime();
 	switch (state) {
@@ -35,7 +34,7 @@ void keyCallback(GLFWwindow window, int key, int state)
 	Input->SendEvent();
 }
 
-void charCallback(GLFWwindow window, int key)
+static void _charCallback(GLFWwindow window, int key)
 {
 	char buf[2];
 	sprintf(buf, "%c", key);
@@ -43,7 +42,7 @@ void charCallback(GLFWwindow window, int key)
 }
 
 // mouse actions
-void mPosCallback(GLFWwindow window, int x, int y)
+static void _mPosCallback(GLFWwindow window, int x, int y)
 {
 //	Log->Print("x = %d, y = %d", x, y);
 
@@ -57,19 +56,19 @@ void mPosCallback(GLFWwindow window, int x, int y)
 	Input->SendEvent();
 }
 
-void mButtonCallback(GLFWwindow window, int button, int state)
+static void _mButtonCallback(GLFWwindow window, int button, int state)
 {
 //	Input->status.mouse_buttons[button];
 }
 
-void mScrollCallback(GLFWwindow window, int x, int y)
+static void _mScrollCallback(GLFWwindow window, int x, int y)
 {
 	Input->status.mouse.scroll = vec2(x, y);
 	Input->SendEvent();
 }
 
 // on window resize
-void resizeCallback(GLFWwindow window, int width, int height)
+static void _resizeCallback(GLFWwindow window, int width, int height)
 {
 	Game->ProjectionMatrix->Ortho(width, height, vec2(-500, 500));
 	Game->QueueRendering();
@@ -77,12 +76,12 @@ void resizeCallback(GLFWwindow window, int width, int height)
 
 InputManager::InputManager()
 {
-	glfwSetKeyCallback(keyCallback);
-	glfwSetCharCallback(charCallback);
-	glfwSetWindowSizeCallback(resizeCallback);
-	glfwSetMousePosCallback(mPosCallback);
-	glfwSetMouseButtonCallback(mButtonCallback);
-	glfwSetScrollCallback(mScrollCallback);
+	glfwSetKeyCallback(_keyCallback);
+	glfwSetCharCallback(_charCallback);
+	glfwSetWindowSizeCallback(_resizeCallback);
+	glfwSetMousePosCallback(_mPosCallback);
+	glfwSetMouseButtonCallback(_mButtonCallback);
+	glfwSetScrollCallback(_mScrollCallback);
 
 	DetectControllers();
 

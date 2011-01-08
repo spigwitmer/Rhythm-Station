@@ -139,7 +139,6 @@
 		EED312E712D1262A00A15AC5 /* ThreadGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */; };
 		EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */; };
 		EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */; };
-		EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -351,8 +350,6 @@
 		EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfftw3.a; sourceTree = "<group>"; };
 		EEF5A4B1129EE62C00ABD8AE /* fft_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft_test.h; sourceTree = "<group>"; };
 		EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft_test.cpp; sourceTree = "<group>"; };
-		EEF5A5E412A42AAF00ABD8AE /* RenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderManager.h; sourceTree = "<group>"; };
-		EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderManager.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -567,8 +564,6 @@
 				EE915FE11256829D00F0B0B3 /* Logger.h */,
 				EEAB1A7A126EDF99004FE58D /* LuaManager.cpp */,
 				EEAB1A79126EDF99004FE58D /* LuaManager.h */,
-				EEF5A5E512A42AAF00ABD8AE /* RenderManager.cpp */,
-				EEF5A5E412A42AAF00ABD8AE /* RenderManager.h */,
 				EE915F9212567C1600F0B0B3 /* ResourceManager.cpp */,
 				EE915F9112567C1600F0B0B3 /* ResourceManager.h */,
 			);
@@ -927,7 +922,6 @@
 				EEC8D84D128DB54200351601 /* SQLiteDatabase.cpp in Sources */,
 				EE3CEB5E1294504A00A8688C /* ScreenGameplay.cpp in Sources */,
 				EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */,
-				EEF5A5E612A42AAF00ABD8AE /* RenderManager.cpp in Sources */,
 				EE7C9BC412C810500075F4FB /* ScreenMenu.cpp in Sources */,
 				EED312E712D1262A00A15AC5 /* ThreadGroup.cpp in Sources */,
 				EE48488A12D716EA00534E26 /* Application.cpp in Sources */,

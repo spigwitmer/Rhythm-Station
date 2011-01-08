@@ -1,11 +1,9 @@
 #include <cstring>
 #include "LuaManager.h"
+#include "GameManager.h"
 #include "FileManager.h"
-#include "RenderManager.h"
 #include <GL/glfw3.h>
-#include <iostream>
-#include <sstream>
-#include <ostream>
+#include "Logger.h"
 #include <SLB/SLB.hpp>
 #include "Object.h"
 #include "Type.h"
@@ -33,14 +31,9 @@ void LuaManager::PushNumber(std::string name, double value)
 
 int luafunc(lua_State *L)
 {
-	char buf[16] = "";
-	sprintf(buf, "%0.3f", glfwGetTime());
+	std::string str = Log->SPrint("[%0.3f]", glfwGetTime());
 
-	std::ostringstream out;
-	out << "[" << buf << "]";
-
-	std::string tmp = out.str();
-	lua_pushstring(L, tmp.c_str());
+	lua_pushstring(L, str.c_str());
 
 	return 1;
 }
@@ -57,8 +50,8 @@ LuaManager::LuaManager()
 	Sound_Binding();
 
 	lua_register(L, "TimeStamp", luafunc);
-	PushInteger("ScreenWidth", Renderer->ScreenWidth);
-	PushInteger("ScreenHeight", Renderer->ScreenHeight);
+	PushInteger("ScreenWidth", Game->ScreenWidth);
+	PushInteger("ScreenHeight", Game->ScreenHeight);
 	PushString("ProductID", "Rhythm Station");
 	PushNumber("Version", 0.03);
 }
