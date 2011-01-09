@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include "Mesh.h"
 
 void Mesh::Load(MeshData *data, unsigned *indices, unsigned n_verts, unsigned n_indices)
