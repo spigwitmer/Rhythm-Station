@@ -1,6 +1,6 @@
 #include "Mesh.h"
 
-void Mesh::Load(MeshData *data, unsigned *indices, unsigned verts)
+void Mesh::Load(MeshData *data, unsigned *indices, unsigned n_verts, unsigned n_indices)
 {
 	bool gen_indices = false;
 
@@ -9,22 +9,22 @@ void Mesh::Load(MeshData *data, unsigned *indices, unsigned verts)
 
 	glGenBuffers(2, buffers);
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(MeshData) * verts, &data[0].Position.x, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(MeshData) * n_verts, &data[0].Position.x, GL_STATIC_DRAW);
 
 	// Generate indices if none exist, otherwise upload normally.
 	if (gen_indices)
 	{
 		// If we don't have an index buffer, it's probably just 0-n
-		indices = new unsigned[verts];
-		for (unsigned i = 0; i<verts; i++)
+		indices = new unsigned[n_verts];
+		for (unsigned i = 0; i<n_verts; i++)
 			indices[i] = i;
 	}
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * verts, &indices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * n_indices, &indices[0], GL_STATIC_DRAW);
 
-	delete[] data;
-	delete[] indices;
+	if (gen_indices)
+		delete[] indices;
 
 	loaded = true;
 }

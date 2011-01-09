@@ -11,10 +11,10 @@ struct MeshData
 	vec2 TexCoord;
 };
 
-class Mesh
+struct Mesh
 {
 	// Create a VBO and upload the given data.
-	void Load(MeshData *data, unsigned *indices, unsigned verts);
+	void Load(MeshData *data, unsigned *indices, unsigned n_verts, unsigned n_indices);
 	void Free();
 
 	void Draw();

@@ -10,8 +10,11 @@
 #include "LuaManager.h"
 #include "ResourceManager.h"
 #include "Logger.h"
+#include "Window.h"
 
 #include "ThreadGroup.h"
+
+#include "Mesh.h"
 
 // temp
 void *print_stuff(void *arg)
@@ -46,28 +49,18 @@ void test_threads()
 	}
 }
 
-#ifndef DEBUG
-#ifdef _WIN32
-// TODO: Different main.
-#endif
-#endif
 // Initialize everything and set up the GL states used throughout the program.
 int main (int argc, char** argv)
 {
 	glfwInit();
 
-	GLFWvidmode mode;
-	glfwGetDesktopMode(&mode);
-	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); // 4x MSAA
-	glfwOpenWindowHint(GLFW_DEPTH_BITS, 32);
-	GLFWwindow window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "", NULL);
+	Window::Create(854, 480);
 	glfwSwapInterval(1);
-
 	glEnable(GL_DEPTH_TEST);
 
 	// Start up all our singletons.
 	Log			= new Logger();
-	Game		= new GameManager(window);
+	Game		= new GameManager(Window::GetWindow());
 	Input		= new InputManager();
 	Lua			= new LuaManager();
 
@@ -85,18 +78,20 @@ int main (int argc, char** argv)
 	glEnableVertexAttribArray(NORMAL_ARRAY);
 	glEnableVertexAttribArray(COORD_ARRAY);
 
-	// cube
-	GLfloat verts[] = {
+	// Testing.
+	float vertices[] =
+	{
 		 1, -1, -1, 0, 0, 1, 0, 0,
 		 1, -1,  1, 0, 1, 0, 0, 0,
-		-1, -1,  1, 1, 0, 0, 0, 0,
+		-1, -1,  1, 1, 1, 0, 0, 0,
 		-1, -1, -1, 0, 0, 1, 0, 0,
 		 1,  1, -1, 0, 1, 0, 0, 0,
 		 1,  1,  1, 1, 0, 0, 0, 0,
 		-1,  1,  1, 0, 0, 1, 0, 0,
-		-1,  1, -1, 0, 1, 0, 0, 0,
+		-1,  1, -1, 0, 1, 0, 0, 0
 	};
-	GLubyte indices[] = {
+
+	unsigned indices[] = {
 		4, 0, 3,
 		4, 3, 7,
 		2, 6, 7,
@@ -111,38 +106,17 @@ int main (int argc, char** argv)
 		0, 2, 3
 	};
 
-	GLuint vbo[2];
-	GLubyte stride = sizeof(GLfloat) * 8;
-	int numverts = sizeof(indices) / sizeof(GLubyte);
-
-	glGenBuffers(2, vbo);
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo[1]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
-	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
-	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
-
-	Object *obj1 = new Object(), *obj2 = new Object();
-	obj1->DepthClear(true);
-	obj1->AssignBuffer(vbo, numverts);
-	obj1->Scale(vec3(100));
-	obj1->Translate(vec3(-200,125,-100));
-
-	obj2->DepthClear(true);
-	obj2->AssignBuffer(vbo, numverts);
-	obj2->Scale(vec3(100));
-	obj2->Translate(vec3(200,125,-100));
+	MeshData verts[8];
+	memcpy(&verts[0].Position.x, vertices, sizeof(float) * 8 * 8);	
+	
+	Mesh cube;
+	cube.Load(verts, indices, 8, 3*12);
 
 	test_threads();
 
 	double then = glfwGetTime(); // prevent registering a skip on first update
 	double max_delta = (1.0/60.0) * 3.0;
-	while (glfwIsWindow(window))
+	while (glfwIsWindow(Window::GetWindow()))
 	{
 		double now = glfwGetTime();
 		double delta = fabs(now - then);
@@ -155,11 +129,6 @@ int main (int argc, char** argv)
 			Game->UpdateWindowTitle(delta);
 			Game->SetWindowActive();
 		}
-
-		// just a test.
-		float rot = sinf(now) * 45;
-		obj1->Rotate(vec3(45,0,45));
-		obj2->Rotate(vec3(45,0,45));
 
 		// Prevent large jumps. Note: audio should be updated before doing this.
 		if (delta > max_delta) {
@@ -176,8 +145,6 @@ int main (int argc, char** argv)
 
 	AudioManager::Close();
 
-	delete obj1;
-	delete obj2;
 	delete Lua;
 	delete Game;
 	delete Input;
