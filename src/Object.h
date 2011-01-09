@@ -2,6 +2,7 @@
 #define _OBJECT_H_
 
 #include "Shader.h"
+#include "Message.h"
 #include "ResourceManager.h"
 #include "Type.h"
 #include "Matrix.h"
@@ -31,7 +32,7 @@ struct AnimationState
 	bool active;
 };
 
-class Object
+class Object : public MessageListener
 {
 public:
 	Object();

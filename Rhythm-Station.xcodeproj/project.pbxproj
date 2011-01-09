@@ -38,10 +38,10 @@
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
 		EE41FEC91288A271001F0C56 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE41FEC71288A271001F0C56 /* Sound.cpp */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
-		EE48488A12D716EA00534E26 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48488412D716EA00534E26 /* Application.cpp */; };
 		EE48488B12D716EA00534E26 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48488612D716EA00534E26 /* Mesh.cpp */; };
 		EE48488C12D716EA00534E26 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48488812D716EA00534E26 /* Message.cpp */; };
 		EE48489412D7178D00534E26 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48489212D7178D00534E26 /* Window.cpp */; };
+		EE4849B612D9CC7A00534E26 /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4849B512D9CC7A00534E26 /* MessageManager.cpp */; };
 		EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */ = {isa = PBXBuildFile; fileRef = EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
@@ -179,8 +179,6 @@
 		EE41FEC71288A271001F0C56 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		EE41FEC81288A271001F0C56 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
-		EE48488412D716EA00534E26 /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
-		EE48488512D716EA00534E26 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		EE48488612D716EA00534E26 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		EE48488712D716EA00534E26 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		EE48488812D716EA00534E26 /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
@@ -188,6 +186,8 @@
 		EE48489212D7178D00534E26 /* Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
 		EE48489312D7178D00534E26 /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
 		EE4848A412D717B800534E26 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		EE4849B412D9CC7A00534E26 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		EE4849B512D9CC7A00534E26 /* MessageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageManager.cpp; sourceTree = "<group>"; };
 		EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "get-it-by-your-hands.ogg"; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -477,15 +477,6 @@
 			name = "glew-1.5.6";
 			sourceTree = "<group>";
 		};
-		EE4848E012D72A1600534E26 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				EE48488412D716EA00534E26 /* Application.cpp */,
-				EE48488512D716EA00534E26 /* Application.h */,
-			);
-			name = Application;
-			sourceTree = "<group>";
-		};
 		EE78150D1272143200B01960 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,7 +491,6 @@
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				EE4848E012D72A1600534E26 /* Application */,
 				EE0907A112C096DD00ADFA57 /* Display */,
 				EE78150D1272143200B01960 /* Loaders */,
 				EEA552C6125A6E240065F811 /* Helpers */,
@@ -544,6 +534,8 @@
 				EEAB1A79126EDF99004FE58D /* LuaManager.h */,
 				EE915F9212567C1600F0B0B3 /* ResourceManager.cpp */,
 				EE915F9112567C1600F0B0B3 /* ResourceManager.h */,
+				EE4849B412D9CC7A00534E26 /* MessageManager.h */,
+				EE4849B512D9CC7A00534E26 /* MessageManager.cpp */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -900,10 +892,10 @@
 				EEC8D84D128DB54200351601 /* SQLiteDatabase.cpp in Sources */,
 				EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */,
 				EED312E712D1262A00A15AC5 /* ThreadGroup.cpp in Sources */,
-				EE48488A12D716EA00534E26 /* Application.cpp in Sources */,
 				EE48488B12D716EA00534E26 /* Mesh.cpp in Sources */,
 				EE48488C12D716EA00534E26 /* Message.cpp in Sources */,
 				EE48489412D7178D00534E26 /* Window.cpp in Sources */,
+				EE4849B612D9CC7A00534E26 /* MessageManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

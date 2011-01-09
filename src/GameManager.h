@@ -33,7 +33,7 @@ public:
 
 	void QueueRendering();
 	void Render();
-
+	
 	Matrix* ProjectionMatrix;
 
 	std::map<std::string, bool> IsExtSupported;

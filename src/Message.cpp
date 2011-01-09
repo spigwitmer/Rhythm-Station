@@ -1,8 +1,8 @@
-#include "Application.h"
+#include "MessageManager.h"
 #include "Message.h"
 
 void Message::Send()
 {
-	Application* app = Application::getInstance();
-	app->DispatchMessage(*this);
+	MessageManager* sender = MessageManager::getInstance();
+	sender->DispatchMessage(*this);
 }
