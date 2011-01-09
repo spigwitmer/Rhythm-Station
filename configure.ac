@@ -20,7 +20,6 @@ AC_CONFIG_HEADERS([config.h])
 
 # Check for external dependencies
 PKG_CHECK_MODULES([EXT_DEPENDS],[
-		fftw3_threads
 		freetype2
 		gl 
 		glew 
@@ -50,11 +49,19 @@ AC_ARG_WITH([bundled_lua],
 AM_CONDITIONAL([WITH_BUNDLED_LUA], [test x$bundled_lua = xyes])
 if test x$bundled_lua != xyes; then
 	PKG_CHECK_MODULES([EXT_LUA],[lua >= 5.1],[],[
-		AC_MSG_WARN([External lua dependency cannot be satisfied with 'lua', trying 'lua5.1'])
+		AC_MSG_WARN([External lua dependency couldn't be satisfied with 'lua', trying 'lua5.1'])
 		PKG_CHECK_MODULES([EXT_LUA],[lua5.1 >= 5.1],[],[
 			AC_MSG_ERROR([External lua cannot be used because: '$EXT_LUA_PKG_ERRORS'])
 		])
 	])
 fi
+
+# fftw3 (default to threaded version)
+PKG_CHECK_MODULES([FFTW3],[fftw3_threads],[],[
+	AC_MSG_WARN([fftw3 dependency couldn't be satisfied with 'fftw3_threads', trying 'fftw3'])
+	PKG_CHECK_MODULES([FFTW3],[fftw3],[],[
+		AC_MSG_ERROR([fftw3 dependency was not fulfilled: '$FFTW3_PKG_ERRORS'])
+	])
+])
 
 AC_OUTPUT
