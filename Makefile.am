@@ -108,13 +108,13 @@ src/Logger.cpp \
 src/LuaManager.cpp \
 src/main.cpp \
 src/Matrix.cpp \
+src/Mesh.cpp \
+src/Message.cpp \
+src/MessageManager.cpp \
 src/Object.cpp \
 src/PNGLoader.cpp \
-src/RenderManager.cpp \
 src/ResourceManager.cpp \
-src/SceneManager.cpp \
 src/Screen.cpp \
-src/ScreenGameplay.cpp \
 src/Shader.cpp \
 src/Sound.cpp \
 src/SQLiteDatabase.cpp \
@@ -122,7 +122,8 @@ src/StringUtils.cpp \
 src/ThreadGroup.cpp \
 src/Timer.cpp \
 src/Tween.cpp \
-src/Type.cpp
+src/Type.cpp \
+src/Window.cpp
 rstation_CPPFLAGS = -DDEBUG \
 $(EXT_DEPENDS_CFLAGS) \
 $(libglfw3_a_CPPFLAGS) \
