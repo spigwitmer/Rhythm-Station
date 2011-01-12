@@ -64,7 +64,7 @@ shakesoda+rstation at gmail dot com.
     - cmake (glfw3 git source needs this)
     - gl, glew
     - libpng (zlib as dependency of libpng)
-    - openal, vorbisfile
+    - openal, vorbisfile, fftw3
     - sqlite3
     - >=lua-5.1 (optional, if you don't have it just 
       pass --with-bundled-lua to the configure script)
@@ -82,3 +82,9 @@ shakesoda+rstation at gmail dot com.
   6. Run "./configure"
   7. If everything went well, you can now run "make"
   8. After compiling, "./rstation"
+
+Ubuntu users need to have atleast these packages installed 
+in order to compile rstation:
+build-essential, autoconf, libglew1.5-dev, cmake, libxrandr-dev, libpng-dev, 
+libopenal-dev, libfftw3-dev, libvorbis-dev, libfreetype6-dev, libsqlite3-dev,  
+liblua5.1-0-dev (optional)

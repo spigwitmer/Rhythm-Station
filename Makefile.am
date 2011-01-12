@@ -95,7 +95,7 @@ liblua_a_CPPFLAGS = -Iextern/lua-5.1.4/src
 #
 # RStation binary
 # 
-rstation_LDADD  = $(EXT_DEPENDS_LIBS) -lz libglfw3.a libslb.a
+rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a
 rstation_SOURCES = \
 src/AudioManager.cpp \
 src/FileManager.cpp \
@@ -126,6 +126,7 @@ src/Type.cpp \
 src/Window.cpp
 rstation_CPPFLAGS = -DDEBUG \
 $(EXT_DEPENDS_CFLAGS) \
+$(FFTW3_CFLAGS) \
 $(libglfw3_a_CPPFLAGS) \
 $(libslb_a_CPPFLAGS)
 
