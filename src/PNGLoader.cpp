@@ -131,7 +131,7 @@ Texture PNGLoader::Load(std::string _path)
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	// register this so we don't load it again.
-	ResourceManager::Add(&tex);
+	ResourceManager::Add(tex);
 
 	// cleanup
 	png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);

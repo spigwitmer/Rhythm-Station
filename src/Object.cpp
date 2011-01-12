@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include "Object.h"
 #include "GameManager.h"
+#include "ResourceManager.h"
 #include "FileManager.h"
 #include "Screen.h"
 #include "Logger.h"
@@ -92,8 +93,13 @@ void Object::Load(std::string _path)
 	Log->Print("Loading \"%s\" (type = %s)", _path.c_str(), ext);
 	if (!strcmp(ext, "png"))
 	{
-		PNGLoader png;
-		Texture tex = png.Load(path);
+		Texture tex;
+		if (!ResourceManager::CheckDuplicateTexture(path,tex))
+		{
+			PNGLoader png;
+			tex = png.Load(path);
+		}
+
 		if (tex.ptr != 0)
 			m_texture = tex;
 	}

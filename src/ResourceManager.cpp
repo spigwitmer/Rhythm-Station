@@ -1,14 +1,24 @@
+#include <vector>
 #include "ResourceManager.h"
 #include "Object.h"
 
 // all the scene stuff.
 std::vector<Object*> m_objects;
-std::vector<Texture*> m_textures;
+std::vector<Texture> m_textures;
 std::vector<Shader*> m_shaders;
 
-void ResourceManager::CheckDuplicate(std::string path)
+bool ResourceManager::CheckDuplicateTexture(std::string path, Texture& texture)
 {
-	
+	std::vector<Texture>::reverse_iterator rit;
+	for (rit = m_textures.rbegin(); rit < m_textures.rend(); ++rit)
+	{
+		if (path.compare((*rit).path) == 0)
+		{
+			texture = *rit;
+			return true;
+		}
+	}
+	return false;
 }
 
 void ResourceManager::Add(Object* object)
@@ -21,7 +31,7 @@ void ResourceManager::Add(Shader* shader)
 	m_shaders.push_back(shader);
 }
 
-void ResourceManager::Add(Texture* texture)
+void ResourceManager::Add(Texture texture)
 {
 	m_textures.push_back(texture);
 }
@@ -59,5 +69,4 @@ void ResourceManager::ClearAll()
 {
 	Delete<Shader> (m_shaders);
 	Delete<Object> (m_objects);
-	Delete<Texture> (m_textures);
 }
