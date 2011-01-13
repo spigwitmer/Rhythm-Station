@@ -22,10 +22,10 @@ struct Texture
 namespace ResourceManager
 {
 	void Add(Object* object);
-	void Add(Texture* texture);
+	void Add(Texture texture);
 	void Add(Shader* shader);
 	std::vector<Object*> GetObjects();
-	void CheckDuplicate(std::string path);
+	bool CheckDuplicateTexture(std::string path,Texture& texture);
 	void ClearObjects();
 	void ClearAll();
 	void ReloadAll();

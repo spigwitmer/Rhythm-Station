@@ -56,6 +56,11 @@ GameManager::GameManager(GLFWwindow window) :
 
 GameManager::~GameManager()
 {
+	while (!vpScreens.empty())
+	{
+		delete vpScreens.back();
+		vpScreens.pop_back();
+	}
 	delete ProjectionMatrix;
 	delete obj;
 	delete quad;
