@@ -160,12 +160,15 @@ bool Sound::Stream(ALuint buffer)
 	fftw_execute(p);
 	fftw_destroy_plan(p);
 
-	int hsize = size/2;
-	int h10 = hsize/10;
-
-	// make sure the numbers are positive
-	for (int i = 0; i<hsize; i++)
+	for (int i = 0; i<(size/2)/10; i++)
+	{
+		// make sure the numbers are positive.
 		in[i] = sqrt(pow(out[i][0],2)+pow(out[i][1],2));
+		
+		// normalize
+		in[i] /= sd_sound->rate*0.5;
+		printf("%5.5f\n", in[i]);
+	}
 
 	alBufferData(buffer, sd_sound->format, data, size, sd_sound->rate);
 

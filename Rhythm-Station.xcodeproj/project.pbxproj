@@ -532,10 +532,10 @@
 				EE915FE11256829D00F0B0B3 /* Logger.h */,
 				EEAB1A7A126EDF99004FE58D /* LuaManager.cpp */,
 				EEAB1A79126EDF99004FE58D /* LuaManager.h */,
+				EE4849B512D9CC7A00534E26 /* MessageManager.cpp */,
+				EE4849B412D9CC7A00534E26 /* MessageManager.h */,
 				EE915F9212567C1600F0B0B3 /* ResourceManager.cpp */,
 				EE915F9112567C1600F0B0B3 /* ResourceManager.h */,
-				EE4849B412D9CC7A00534E26 /* MessageManager.h */,
-				EE4849B512D9CC7A00534E26 /* MessageManager.cpp */,
 			);
 			name = Managers;
 			sourceTree = "<group>";

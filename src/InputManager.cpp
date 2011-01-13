@@ -47,8 +47,8 @@ static void _mPosCallback(GLFWwindow window, int x, int y)
 //	Log->Print("x = %d, y = %d", x, y);
 
 	// crash!
-//	Input->status.mouse.x = x;
-//	Input->status.mouse.y = y;
+	//	Input->status.mouse.x = x;
+	//Input->status.mouse.y = y;
 
 //	Input->status.mouse.nx = float(x / Renderer->ScreenWidth);
 //	Input->status.mouse.ny = float(y / Renderer->ScreenHeight);
