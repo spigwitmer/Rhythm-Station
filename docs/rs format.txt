@@ -1,0 +1,13 @@
+title No One On Earth
+artist Above & Beyond
+bpm 0 120
+bpm 5000 140
+chart hard
+row 1000 0 0 0 1
+row 1300 0 1 0 0
+row 1420 0 1 0 1
+row 1550 1 1 0 0
+row 1600 0 1 0 0
+row 1650 0 0 1 0
+row 1700 0 1 0 0
+row 1750 0 0 1 0
