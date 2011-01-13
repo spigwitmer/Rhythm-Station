@@ -160,10 +160,12 @@ bool Sound::Stream(ALuint buffer)
 	fftw_execute(p);
 	fftw_destroy_plan(p);
 
-	for (int i = 0; i<(size/2)/10; i++)
+	int bands = 20;
+	int skip = size/2/bands;
+	for (int i = 0; i<bands; i++)
 	{
 		// make sure the numbers are positive.
-		in[i] = sqrt(pow(out[i][0],2)+pow(out[i][1],2));
+		in[i] = sqrt(pow(out[i*skip][0],2)+pow(out[i*skip][1],2));
 		
 		// normalize
 		in[i] /= sd_sound->rate*0.5;
