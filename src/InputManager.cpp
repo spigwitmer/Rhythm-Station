@@ -44,11 +44,10 @@ static void _charCallback(GLFWwindow window, int key)
 // mouse actions
 static void _mPosCallback(GLFWwindow window, int x, int y)
 {
-//	Log->Print("x = %d, y = %d", x, y);
+	Log->Print("x = %d, y = %d", x, y);
 
-	// crash!
-	//	Input->status.mouse.x = x;
-	//Input->status.mouse.y = y;
+	Input->status.mouse.x = x;
+	Input->status.mouse.y = y;
 
 //	Input->status.mouse.nx = float(x / Renderer->ScreenWidth);
 //	Input->status.mouse.ny = float(y / Renderer->ScreenHeight);
@@ -76,13 +75,6 @@ static void _resizeCallback(GLFWwindow window, int width, int height)
 
 InputManager::InputManager()
 {
-	glfwSetKeyCallback(_keyCallback);
-	glfwSetCharCallback(_charCallback);
-	glfwSetWindowSizeCallback(_resizeCallback);
-	glfwSetMousePosCallback(_mPosCallback);
-	glfwSetMouseButtonCallback(_mButtonCallback);
-	glfwSetScrollCallback(_mScrollCallback);
-
 	DetectControllers();
 
 	status.keys = new KeyState[GLFW_KEY_LAST];
@@ -91,10 +83,24 @@ InputManager::InputManager()
 	queuedUpdate = false;
 }
 
+void InputManager::Connect()
+{
+	glfwSetKeyCallback(_keyCallback);
+	glfwSetCharCallback(_charCallback);
+	glfwSetWindowSizeCallback(_resizeCallback);
+	glfwSetMousePosCallback(_mPosCallback);
+	glfwSetMouseButtonCallback(_mButtonCallback);
+	ggilfwSetScrollCallback(_mScrollCallback);
+}
+
 InputManager::~InputManager()
 {
 	glfwSetKeyCallback(NULL);
 	glfwSetCharCallback(NULL);
+	glfwSetWindowSizeCallback(NULL);
+	glfwSetMousePosCallback(NULL);
+	glfwSetMouseButtonCallback(NULL);
+	glfwSetScrollCallback(NULL);
 
 	for (unsigned int i = 0; i<status.controllers.size(); i++)
 	{

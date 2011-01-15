@@ -65,6 +65,7 @@ public:
 	InputManager();
 	virtual ~InputManager();
 
+	void Connect();
 	void Update();
 	void SendEvent();
 

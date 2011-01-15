@@ -64,6 +64,9 @@ int main (int argc, char** argv)
 	Input		= new InputManager();
 	Lua			= new LuaManager();
 
+	// Connect event callbacks
+	Input->Connect();
+
 	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);
 
