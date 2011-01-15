@@ -24,6 +24,8 @@ Object::Object() : m_bNeedsUpdate(true), m_color(rgba(1.0)), m_texture(),
 Object::~Object()
 {
 	DeleteBuffers();
+	if (m_texture.ptr != 0)
+		ResourceManager::FreeResource(m_texture);
 }
 
 void Object::SetParent(Object* obj)
@@ -94,10 +96,12 @@ void Object::Load(std::string _path)
 	if (!strcmp(ext, "png"))
 	{
 		Texture tex;
-		if (!ResourceManager::CheckDuplicateTexture(path,tex))
+		if (!ResourceManager::GetResource(path,tex))
 		{
 			PNGLoader png;
 			tex = png.Load(path);
+			// register this so we don't load it again.
+			ResourceManager::Add(tex);
 		}
 
 		if (tex.ptr != 0)

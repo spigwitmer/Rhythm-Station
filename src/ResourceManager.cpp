@@ -7,18 +7,36 @@ std::vector<Object*> m_objects;
 std::vector<Texture> m_textures;
 std::vector<Shader*> m_shaders;
 
-bool ResourceManager::CheckDuplicateTexture(std::string path, Texture& texture)
+bool ResourceManager::GetResource(std::string path, Texture& texture)
 {
 	std::vector<Texture>::reverse_iterator rit;
 	for (rit = m_textures.rbegin(); rit < m_textures.rend(); ++rit)
 	{
 		if (path.compare((*rit).path) == 0)
 		{
+			(*rit).usecount++;
 			texture = *rit;
 			return true;
 		}
 	}
 	return false;
+}
+
+bool ResourceManager::GetResource(std::string path, Shader* shader)
+{
+	// TODO
+	return false;
+}
+
+void ResourceManager::FreeResource(Texture texture)
+{
+	std::vector<Texture>::iterator it;
+	for (it = m_textures.begin(); it < m_textures.end(); ++it)
+	{
+		if (texture.path.compare((*it).path) == 0)
+			if (--(*it).usecount == 0)
+				m_textures.erase(it);
+	}
 }
 
 void ResourceManager::Add(Object* object)

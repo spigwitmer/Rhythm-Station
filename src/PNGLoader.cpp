@@ -130,9 +130,6 @@ Texture PNGLoader::Load(std::string _path)
 	glTexImage2D(GL_TEXTURE_2D, 0, components, tex.width, tex.height, 0, glformat, GL_UNSIGNED_BYTE, pixels);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	// register this so we don't load it again.
-	ResourceManager::Add(tex);
-
 	// cleanup
 	png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
 	delete[] pixels;
