@@ -90,7 +90,7 @@ void InputManager::Connect()
 	glfwSetWindowSizeCallback(_resizeCallback);
 	glfwSetMousePosCallback(_mPosCallback);
 	glfwSetMouseButtonCallback(_mButtonCallback);
-	ggilfwSetScrollCallback(_mScrollCallback);
+	glfwSetScrollCallback(_mScrollCallback);
 }
 
 InputManager::~InputManager()
