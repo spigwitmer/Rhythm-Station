@@ -78,6 +78,8 @@ InputManager::InputManager()
 	DetectControllers();
 
 	status.keys = new KeyState[GLFW_KEY_LAST];
+	for (unsigned i = 0; i < GLFW_KEY_LAST; ++i)
+		status.keys[i] = KEY_NONE;
 	status.timestamp = new double[GLFW_KEY_LAST];
 
 	queuedUpdate = false;
