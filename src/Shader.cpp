@@ -45,7 +45,7 @@ std::string getProgramLog(GLuint obj)
 
 Shader::Shader()
 {
-	vs = fs = ptr = 0;
+	vs = fs = ptr = m_mv_uniform = m_proj_uniform = m_tex_uniform = 0;
 
 	// can leak.
 	m_model = new Matrix();

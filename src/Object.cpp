@@ -7,7 +7,7 @@
 #include "Logger.h"
 #include "PNGLoader.h"
 
-Object::Object() : m_bNeedsUpdate(true), m_color(rgba(1.0)), m_texture(),
+Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)), m_texture(),
 	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0))
 {
 	m_shader.SetProjectionMatrix(Game->ProjectionMatrix);
@@ -91,9 +91,9 @@ void Object::QueueUpdate()
 void Object::Load(std::string _path)
 {
 	std::string path = FileManager::GetFile(_path);
-	const char* ext = path.substr(path.size()-3, path.size()).c_str();
-	Log->Print("Loading \"%s\" (type = %s)", _path.c_str(), ext);
-	if (!strcmp(ext, "png"))
+	std::string ext = path.substr(path.size()-3, path.size());
+	Log->Print("Loading \"%s\" (type = %s)", _path.c_str(), ext.c_str());
+	if (ext.compare("png") == 0)
 	{
 		Texture tex;
 		if (!ResourceManager::GetResource(path,tex))
@@ -108,7 +108,7 @@ void Object::Load(std::string _path)
 			m_texture = tex;
 	}
 	else
-		Log->Print("Unknown file type: %s.", ext);
+		Log->Print("Unknown file type: %s.", ext.c_str());
 
 	QueueUpdate();
 }
