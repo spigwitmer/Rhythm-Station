@@ -241,9 +241,3 @@ void InputManager::Update()
 	// controllers aren't driven by a callback - so we have to do it here.
 	UpdateControllers();
 }
-
-void Input_Binding()
-{
-	Lua->PushInteger("Key_Escape", 27);
-	Lua->PushInteger("Key_Return", 294);
-}
