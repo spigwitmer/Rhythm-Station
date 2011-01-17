@@ -60,3 +60,38 @@ void Mesh::Draw()
 
 	glDrawElements(GL_TRIANGLES, num_verts, GL_UNSIGNED_INT, NULL);
 }
+/*
+// Testing.
+float vertices[] =
+{
+	1, -1, -1, 0, 0, 1, 0, 0,
+	1, -1,  1, 0, 1, 0, 0, 0,
+	-1, -1,  1, 1, 1, 0, 0, 0,
+	-1, -1, -1, 0, 0, 1, 0, 0,
+	1,  1, -1, 0, 1, 0, 0, 0,
+	1,  1,  1, 1, 0, 0, 0, 0,
+	-1,  1,  1, 0, 0, 1, 0, 0,
+	-1,  1, -1, 0, 1, 0, 0, 0
+};
+
+unsigned indices[] = {
+	4, 0, 3,
+	4, 3, 7,
+	2, 6, 7,
+	2, 7, 3,
+	1, 5, 2,
+	5, 6, 2,
+	0, 4, 1,
+	4, 5, 1,
+	4, 7, 5,
+	7, 6, 5,
+	0, 1, 2,
+	0, 2, 3
+};
+
+MeshData verts[8];
+memcpy(&verts[0].Position.x, vertices, sizeof(float) * 8 * 8);	
+
+Mesh cube;
+cube.Load(verts, indices, 8, 3*12);
+*/

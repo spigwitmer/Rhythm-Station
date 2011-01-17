@@ -1,67 +1,31 @@
 #include <cstring>
 #include "LuaManager.h"
-#include "GameManager.h"
 #include "FileManager.h"
-#include <GL/glfw3.h>
 #include "Logger.h"
-#include <SLB/SLB.hpp>
-#include "Object.h"
-#include "Type.h"
-#include "Sound.h"
 
 LuaManager* Lua = NULL;
-
-void LuaManager::PushInteger(std::string name, int value)
-{
-	lua_pushinteger(L, value);
-	lua_setglobal(L, name.c_str());
-}
-
-void LuaManager::PushString(std::string name, std::string value)
-{
-	lua_pushstring(L, value.c_str());
-	lua_setglobal(L, name.c_str());
-}
-
-void LuaManager::PushNumber(std::string name, double value)
-{
-	lua_pushnumber(L, value);
-	lua_setglobal(L, name.c_str());
-}
-
-int luafunc(lua_State *L)
-{
-	std::string str = Log->SPrint("[%0.3f]", glfwGetTime());
-
-	lua_pushstring(L, str.c_str());
-
-	return 1;
-}
 
 LuaManager::LuaManager()
 {
 	L = lua_open();
 	luaL_openlibs(L);
-	SLB::Manager::getInstance().registerSLB(L);
-
-	// todo: automatically register classes
-	Type_Binding();
-	Object_Binding();
-	Sound_Binding();
-
-	lua_register(L, "TimeStamp", luafunc);
-	PushInteger("ScreenWidth", Game->ScreenWidth);
-	PushInteger("ScreenHeight", Game->ScreenHeight);
-	PushString("ProductID", "Rhythm Station");
-	PushNumber("Version", 0.03);
 }
 
-void LuaManager::Start()
+void LuaManager::Run(const char* path)
 {
-	// TODO: Move this mostly to screens.
-	std::string file = FileManager::GetFile("init.lua");
-	file = "SLB.using(SLB)\n" + FileManager::GetFileContents(file);
-	luaL_dostring(L, file.c_str());
+	// Fix path and get contents
+	std::string file = FileManager::GetFile(path);
+	file = FileManager::GetFileContents(file);
+	
+	// Load into Lua, run.
+	luaL_loadstring(L, file.c_str());
+	int status = lua_pcall(L, 0, LUA_MULTRET, 0);
+	if (!status)
+		return;
+	
+	// If we're here, something is wrong.
+	Log->Print("***** Lua runtime error in %s *****", path);
+	Log->Print(lua_tostring(L, -1));
 }
 
 LuaManager::~LuaManager()

@@ -15,11 +15,8 @@ class LuaManager
 public:
 	LuaManager();
 	virtual ~LuaManager();
-	void PushInteger(std::string name, int value);
-	void PushString(std::string name, std::string value);
-	void PushNumber(std::string name, double value);
 
-	void Start();
+	void Run(const char* file);
 
 private:
 	lua_State *L;

@@ -12,43 +12,6 @@
 #include "Logger.h"
 #include "Window.h"
 
-#include "ThreadGroup.h"
-
-#include "Mesh.h"
-
-// temp
-void *print_stuff(void *arg)
-{
-	ThreadParameters* t = (ThreadParameters*)arg;
-
-	// do stuff
-
-	// lock for whatever reason
-	if(t->group->Lock() == 0)
-	{
-		// sync some data
-		*((int *)(t->argument)) = *((int *)(t->argument)) + 1;
-		// and unlock again
-		t->group->Unlock();
-	}
-
-	return NULL;
-}
-
-void test_threads()
-{
-	int n_groups = 10, n_threads = 10, sum[n_groups];
-	ThreadGroup threadgroups[n_groups];
-	for (int g = 0; g<n_groups; g++)
-	{
-		sum[g] = 0;
-		for (int t = 1; t<=n_threads; t++)
-			threadgroups[g].CreateThread(&print_stuff,&sum[g]);
-		threadgroups[g].JoinAll();
-		Log->Print("Threadtest sum[%i] = %i",g,sum[g]);
-	}
-}
-
 // Initialize everything and set up the GL states used throughout the program.
 int main (int argc, char** argv)
 {
@@ -74,48 +37,12 @@ int main (int argc, char** argv)
 
 	// Start running Lua and begin the first screen.
 	Game->Start();
-	Lua->Start();
+	Lua->Run("init.lua");
 
 	// we'll be using these everywhere, enable them and leave it that way.
 	glEnableVertexAttribArray(VERTEX_ARRAY);
 	glEnableVertexAttribArray(NORMAL_ARRAY);
 	glEnableVertexAttribArray(COORD_ARRAY);
-
-	// Testing.
-	float vertices[] =
-	{
-		 1, -1, -1, 0, 0, 1, 0, 0,
-		 1, -1,  1, 0, 1, 0, 0, 0,
-		-1, -1,  1, 1, 1, 0, 0, 0,
-		-1, -1, -1, 0, 0, 1, 0, 0,
-		 1,  1, -1, 0, 1, 0, 0, 0,
-		 1,  1,  1, 1, 0, 0, 0, 0,
-		-1,  1,  1, 0, 0, 1, 0, 0,
-		-1,  1, -1, 0, 1, 0, 0, 0
-	};
-
-	unsigned indices[] = {
-		4, 0, 3,
-		4, 3, 7,
-		2, 6, 7,
-		2, 7, 3,
-		1, 5, 2,
-		5, 6, 2,
-		0, 4, 1,
-		4, 5, 1,
-		4, 7, 5,
-		7, 6, 5,
-		0, 1, 2,
-		0, 2, 3
-	};
-
-	MeshData verts[8];
-	memcpy(&verts[0].Position.x, vertices, sizeof(float) * 8 * 8);	
-	
-	Mesh cube;
-	cube.Load(verts, indices, 8, 3*12);
-
-	test_threads();
 
 	double then = glfwGetTime(); // prevent registering a skip on first update
 	double max_delta = (1.0/60.0) * 3.0;

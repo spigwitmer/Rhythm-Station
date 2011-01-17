@@ -56,3 +56,38 @@ int ThreadGroup::Unlock()
 {
 	return pthread_mutex_unlock(&lock);
 }
+
+/*
+// temp
+void *print_stuff(void *arg)
+{
+	ThreadParameters* t = (ThreadParameters*)arg;
+	
+	// do stuff
+	
+	// lock for whatever reason
+	if(t->group->Lock() == 0)
+	{
+		// sync some data
+		*((int *)(t->argument)) = *((int *)(t->argument)) + 1;
+		// and unlock again
+		t->group->Unlock();
+	}
+	
+	return NULL;
+}
+
+void test_threads()
+{
+	int n_groups = 10, n_threads = 10, sum[n_groups];
+	ThreadGroup threadgroups[n_groups];
+	for (int g = 0; g<n_groups; g++)
+	{
+		sum[g] = 0;
+		for (int t = 1; t<=n_threads; t++)
+			threadgroups[g].CreateThread(&print_stuff,&sum[g]);
+		threadgroups[g].JoinAll();
+		Log->Print("Threadtest sum[%i] = %i",g,sum[g]);
+	}
+}
+*/

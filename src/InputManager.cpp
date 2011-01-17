@@ -44,7 +44,7 @@ static void _charCallback(GLFWwindow window, int key)
 // mouse actions
 static void _mPosCallback(GLFWwindow window, int x, int y)
 {
-	Log->Print("x = %d, y = %d", x, y);
+	// Log->Print("x = %d, y = %d", x, y);
 
 	Input->status.mouse.x = x;
 	Input->status.mouse.y = y;
