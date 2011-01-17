@@ -7,7 +7,7 @@
 #include "Logger.h"
 #include "PNGLoader.h"
 
-Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(true), m_color(rgba(1.0)), m_texture(),
+Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)), m_texture(),
 	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0))
 {
 	m_shader.SetProjectionMatrix(Game->ProjectionMatrix);
