@@ -49,15 +49,16 @@ static void _mPosCallback(GLFWwindow window, int x, int y)
 	Input->status.mouse.x = x;
 	Input->status.mouse.y = y;
 
-//	Input->status.mouse.nx = float(x / Renderer->ScreenWidth);
-//	Input->status.mouse.ny = float(y / Renderer->ScreenHeight);
+	Input->status.mouse.nx = float(x / Game->ScreenWidth);
+	Input->status.mouse.ny = float(y / Game->ScreenHeight);
 
 	Input->SendEvent();
 }
 
 static void _mButtonCallback(GLFWwindow window, int button, int state)
 {
-//	Input->status.mouse_buttons[button];
+	Input->status.mouse.buttons[button] = state == GLFW_PRESS ? KEY_PRESSED : KEY_NONE;
+	Input->SendEvent();
 }
 
 static void _mScrollCallback(GLFWwindow window, int x, int y)
@@ -79,6 +80,7 @@ InputManager::InputManager()
 
 	status.keys = new KeyState[GLFW_KEY_LAST];
 	status.timestamp = new double[GLFW_KEY_LAST];
+	status.mouse.buttons = new KeyState[GLFW_MOUSE_BUTTON_LAST];
 
 	queuedUpdate = false;
 }
@@ -90,7 +92,7 @@ void InputManager::Connect()
 	glfwSetWindowSizeCallback(_resizeCallback);
 	glfwSetMousePosCallback(_mPosCallback);
 	glfwSetMouseButtonCallback(_mButtonCallback);
-	ggilfwSetScrollCallback(_mScrollCallback);
+	glfwSetScrollCallback(_mScrollCallback);
 }
 
 InputManager::~InputManager()
@@ -108,6 +110,7 @@ InputManager::~InputManager()
 	}
 	status.controllers.clear();
 
+	delete[] status.mouse.buttons;
 	delete[] status.keys;
 	delete[] status.timestamp;
 }
@@ -123,7 +126,7 @@ Controller::Controller(int _id)
 	this->buttons = new KeyState[this->num_buttons];
 	this->buttons_raw = new unsigned char[this->num_buttons];
 	this->timestamp = new double[this->num_buttons];
-
+	
 	for (int i = 0; i<this->num_buttons; i++)
 	{
 		this->buttons_raw[i] = 0;

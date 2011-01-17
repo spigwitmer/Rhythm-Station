@@ -169,7 +169,8 @@ bool Sound::Stream(ALuint buffer)
 		
 		// normalize
 		in[i] /= sd_sound->rate*0.5;
-		printf("%5.5f\n", in[i]);
+
+		// TODO: send this places.
 	}
 
 	alBufferData(buffer, sd_sound->format, data, size, sd_sound->rate);

@@ -33,7 +33,6 @@ struct Controller
 struct Mouse
 {
 	KeyState* buttons;
-	int* buttons_raw;
 
 	// coords
 	int x, y;
