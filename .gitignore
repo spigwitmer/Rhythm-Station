@@ -45,3 +45,18 @@ BuildLog.htm
 *.lib
 *.idb
 *.cache
+
+# automake stuff
+Makefile.in
+Makefile
+aclocal.m4
+compile
+config.h.in
+config.h
+config.status
+stamp-h1
+configure
+depcomp
+install-sh
+missing
+.deps
