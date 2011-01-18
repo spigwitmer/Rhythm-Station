@@ -5,10 +5,27 @@
 typedef float (*TweenFn) (float,double,double);
 
 // TODO: these should really be controlled by bezier curves rather than these equations.
-float sleep(float change, double time, double elapsed) { if (elapsed == 1) return change; return 0.0f; }
-float linear(float change, double time, double elapsed) { return change * elapsed; }
-float ease_in(float change, double time, double elapsed) { return change * elapsed * time; }
-float ease_out(float change, double time, double elapsed) { return change * ((1-elapsed)+1) * time; }
+float sleep(float change, double time, double elapsed)
+{
+	if (elapsed == 1)
+		return change;
+	return 0.0f;
+}
+
+float linear(float change, double time, double elapsed)
+{
+	return change * elapsed;
+}
+
+float ease_in(float change, double time, double elapsed)
+{
+	return change * elapsed * time;
+}
+
+float ease_out(float change, double time, double elapsed)
+{
+	return change * ((1-elapsed)+1) * time;
+}
 
 float smooth(float change, double time, double elapsed)
 {
@@ -18,8 +35,15 @@ float smooth(float change, double time, double elapsed)
 	return change * (powf(elapsed-2, 2) + 2);
 }
 
-float ease_in_cubic(float change, double time, double elapsed) { return change * powf(elapsed, 3); }
-float ease_out_cubic(float change, double time, double elapsed) { return change * (powf(elapsed-1, 3)+1); }
+float ease_in_cubic(float change, double time, double elapsed)
+{
+	return change * powf(elapsed, 3);
+}
+
+float ease_out_cubic(float change, double time, double elapsed)
+{
+	return change * (powf(elapsed-1, 3)+1);
+}
 
 float smooth_cubic(float change, double time, double elapsed)
 {
@@ -31,7 +55,7 @@ float smooth_cubic(float change, double time, double elapsed)
 TweenFn SetTweenType(int type)
 {
 	TweenFn Tween = NULL;
-	switch ( type)
+	switch (type)
 	{
 		case TWEEN_SLEEP:
 			Tween = &sleep;
@@ -75,7 +99,7 @@ float interpolate(int tweentype, float _old, float _new, double duration, double
 	float temp = _old;
 	double elapsed = time / duration;
 
-	temp -= Tween( _old - _new, time, elapsed);
+	temp -= Tween(_old - _new, time, elapsed);
 
 	return temp;
 }
