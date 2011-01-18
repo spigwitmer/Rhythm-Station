@@ -11,6 +11,8 @@
 *.exe
 *.app
 *.o
+*.a
+rstation
 
 build/
 *.build
