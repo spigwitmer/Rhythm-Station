@@ -137,7 +137,6 @@
 		EED312E712D1262A00A15AC5 /* ThreadGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */; };
 		EEE249EE12E77C9D007685C4 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEE249ED12E77C9D007685C4 /* Font.cpp */; };
 		EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */; };
-		EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -343,8 +342,6 @@
 		EEE249EC12E77C9D007685C4 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 		EEE249ED12E77C9D007685C4 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfftw3.a; sourceTree = "<group>"; };
-		EEF5A4B1129EE62C00ABD8AE /* fft_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft_test.h; sourceTree = "<group>"; };
-		EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft_test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -500,8 +497,6 @@
 				EE9160861256A60100F0B0B3 /* Data Structures */,
 				EE9160851256A5F700F0B0B3 /* Managers */,
 				EE915E501255CD9500F0B0B3 /* main.cpp */,
-				EEF5A4B1129EE62C00ABD8AE /* fft_test.h */,
-				EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -895,7 +890,6 @@
 				EEC8D82F128DB44D00351601 /* time.c in Sources */,
 				EEC8D830128DB44D00351601 /* window.c in Sources */,
 				EEC8D84D128DB54200351601 /* SQLiteDatabase.cpp in Sources */,
-				EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */,
 				EED312E712D1262A00A15AC5 /* ThreadGroup.cpp in Sources */,
 				EE48488B12D716EA00534E26 /* Mesh.cpp in Sources */,
 				EE48488C12D716EA00534E26 /* Message.cpp in Sources */,
