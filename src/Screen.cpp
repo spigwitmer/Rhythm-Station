@@ -20,6 +20,7 @@ void Screen::AddObject(Sound* _sound)
 void Screen::Input(const IEvent &e)
 {
 	// todo
+/*
 	if (e.controllers.size() > 0)
 	{
 		for (int i = 0; i < e.controllers[0]->num_buttons; i++)
@@ -31,6 +32,7 @@ void Screen::Input(const IEvent &e)
 	}
 	if (e.keys['W'] == KEY_PRESSED)
 		Log->Print("W is annoying (time: %f)", e.timestamp['W']);
+*/
 }
 
 void Screen::Update(double delta)
