@@ -32,7 +32,6 @@ void SQLiteDatabase::Query(string sql_str)
 bool SQLiteDatabase::Step()
 {
 	int status = sqlite3_step(last_query);
-	int cols = 0;
 	ostringstream err;
 
 	switch (status)
