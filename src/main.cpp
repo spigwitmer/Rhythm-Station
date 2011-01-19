@@ -18,7 +18,7 @@ int main (int argc, char** argv)
 	glfwInit();
 
 	Window::Create(854, 480);
-	glfwSwapInterval(1);
+//	glfwSwapInterval(1);
 	glEnable(GL_DEPTH_TEST);
 
 	// Start up all our singletons.

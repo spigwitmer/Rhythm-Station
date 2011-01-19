@@ -38,8 +38,7 @@ void Object::AddChild(Object* obj)
 	m_children.push_back(obj);
 }
 
-// TODO: Move to RenderManager.
-// TODO TODO: just make a util namespace for this stuff.
+// TODO: Use Mesh for this.
 void Object::CreateBuffers()
 {
 	// quad (2 tris)

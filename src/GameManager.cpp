@@ -116,13 +116,13 @@ void GameManager::Render()
 	 * Ideally, we would only redraw objects which need it, however this is still
 	 * useful when there isn't much going on.
 	 */
-	if ((!m_bQueuedRender && !m_bFirstUpdate && lazy_updates) || (!IsWindowActive() && !m_bFirstUpdate))
-	{
-		usleep(12500); // reduce CPU usage when not updating.
-		return;
-	}
-	if (m_bFirstUpdate)
-		m_bFirstUpdate = false;
+//	if ((!m_bQueuedRender && !m_bFirstUpdate && lazy_updates) || (!IsWindowActive() && !m_bFirstUpdate))
+//	{
+//		usleep(12500); // reduce CPU usage when not updating.
+//		return;
+//	}
+//	if (m_bFirstUpdate)
+//		m_bFirstUpdate = false;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
