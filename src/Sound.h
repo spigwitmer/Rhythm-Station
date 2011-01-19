@@ -34,6 +34,7 @@ public:
 	void Volume(float _volume) { sd_volume = _volume; }
 	void Pitch(float _pitch) { sd_pitch = _pitch; }
 	void Pan(float _pan) { sd_pan = _pan; }
+	void UseEqualizer(bool enabled);
 
 private:
 	void Register();
@@ -44,7 +45,7 @@ private:
 	bool Stream(ALuint buffer);
 	bool IsPlaying();
 
-	bool sd_loop, sd_waiting;
+	bool m_use_eq, sd_loop, sd_waiting;
 	float sd_pan, sd_pitch, sd_volume;
 
 	double* in;

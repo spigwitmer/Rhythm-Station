@@ -4,7 +4,7 @@
 #include "Screen.h"
 #include "Logger.h"
 
-Sound::Sound() : sd_loop(false), sd_pitch(1.0), sd_volume(1.0)
+Sound::Sound() : m_use_eq(false), sd_loop(false), sd_pitch(1.0), sd_volume(1.0)
 {
 	sd_sound = new SoundData();
 
@@ -153,29 +153,36 @@ bool Sound::Stream(ALuint buffer)
 	if(size == 0)
 		return false;
 
-	for (int i = 0; i<size; i++)
-		in[i] = data[i];
-
-	fftw_plan p = fftw_plan_dft_r2c_1d(size, in, out, FFTW_ESTIMATE);
-	fftw_execute(p);
-	fftw_destroy_plan(p);
-
-	int bands = 20;
-	int skip = size/2/bands;
-	for (int i = 0; i<bands; i++)
+	if (m_use_eq)
 	{
-		// shit just got real ( http://xkcd.com/849/ )
-		in[i] = sqrt(pow(out[i*skip][0],2)+pow(out[i*skip][1],2));
-		
-		// normalize
-		in[i] /= sd_sound->rate*0.5;
+		for (int i = 0; i<size; i++)
+			in[i] = data[i];
 
-		// TODO: send this places.
+		fftw_plan p = fftw_plan_dft_r2c_1d(size, in, out, FFTW_ESTIMATE);
+		fftw_execute(p);
+		fftw_destroy_plan(p);
+
+		int bands = 20;
+		int skip = size/2/bands;
+		for (int i = 0; i<bands; i++)
+		{
+			// shit just got real ( http://xkcd.com/849/ )
+			in[i] = sqrt(pow(out[i*skip][0],2)+pow(out[i*skip][1],2));
+			
+			// normalize
+			in[i] /= sd_sound->rate*0.5;
+		}
+		memcpy(Game->CurrentEqualizerFrame, in, sizeof(double) * bands);
 	}
 
 	alBufferData(buffer, sd_sound->format, data, size, sd_sound->rate);
 
 	return true;
+}
+
+void Sound::UseEqualizer(bool enabled)
+{
+	m_use_eq = enabled;
 }
 
 // Lua
@@ -185,6 +192,7 @@ void Sound_Binding()
 {
 	SLB::Class<Sound>("Sound")
 	.constructor()
+	.set("UseEqualizer", &Sound::UseEqualizer)
 	.set("Load", &Sound::Load)
 	.set("Volume", &Sound::Volume)
 	.set("Pitch", &Sound::Pitch)

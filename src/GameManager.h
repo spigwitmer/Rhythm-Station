@@ -44,6 +44,8 @@ public:
 	
 	int ScreenWidth, ScreenHeight;
 
+	double CurrentEqualizerFrame[20];
+	
 private:
 	GLFWwindow m_window;
 	GLuint current_shader;

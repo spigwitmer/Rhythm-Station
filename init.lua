@@ -40,3 +40,4 @@ spr:Color(0.5,0.5,0.5,1.0)
 
 sound = LoadSound("get-it-by-your-hands.ogg")
 sound:Loop(true)
+sound:UseEqualizer(true)

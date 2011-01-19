@@ -25,16 +25,16 @@ GameManager::GameManager(GLFWwindow window) :
 {
 	m_window = window;
 
-	glfwEnable(window, GLFW_SYSTEM_KEYS); // cmd+q, alt+f4, etc.
-	glfwEnable(window, GLFW_MOUSE_CURSOR); // normal mouse
+	// Don't take over mouse, alt+f4/cmd+q, etc.
+	glfwEnable(window, GLFW_SYSTEM_KEYS);
+	glfwEnable(window, GLFW_MOUSE_CURSOR);
 
 	// let the OS know we're up and running.
 	glfwPollEvents();
-
-	glewInit();
-
 	glfwGetWindowSize(window, &ScreenWidth, &ScreenHeight);
 
+	// Check for some extensions (just CSAA right now)
+	glewInit();
 	if (GLEW_NV_framebuffer_multisample_coverage)
 	{
 		Log->Print("CSAA Supported.");
@@ -61,6 +61,7 @@ GameManager::~GameManager()
 		delete vpScreens.back();
 		vpScreens.pop_back();
 	}
+	
 	delete ProjectionMatrix;
 	delete obj;
 	delete quad;

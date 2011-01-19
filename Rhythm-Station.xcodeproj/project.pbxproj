@@ -135,6 +135,7 @@
 		EECBDF89125CFFD000BA2BA4 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EECBDF86125CFFD000BA2BA4 /* FileManager.cpp */; };
 		EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECBDF9E125D008000BA2BA4 /* OpenAL.framework */; };
 		EED312E712D1262A00A15AC5 /* ThreadGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */; };
+		EEE249EE12E77C9D007685C4 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEE249ED12E77C9D007685C4 /* Font.cpp */; };
 		EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */; };
 		EEF5A4B3129EE62C00ABD8AE /* fft_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */; };
 /* End PBXBuildFile section */
@@ -339,6 +340,8 @@
 		EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadGroup.cpp; sourceTree = "<group>"; };
 		EED312E512D1262A00A15AC5 /* ThreadGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadGroup.h; sourceTree = "<group>"; };
 		EED312E612D1262A00A15AC5 /* TimingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingData.h; sourceTree = "<group>"; };
+		EEE249EC12E77C9D007685C4 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
+		EEE249ED12E77C9D007685C4 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfftw3.a; sourceTree = "<group>"; };
 		EEF5A4B1129EE62C00ABD8AE /* fft_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft_test.h; sourceTree = "<group>"; };
 		EEF5A4B2129EE62C00ABD8AE /* fft_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft_test.cpp; sourceTree = "<group>"; };
@@ -543,6 +546,8 @@
 		EE9160861256A60100F0B0B3 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
+				EEE249ED12E77C9D007685C4 /* Font.cpp */,
+				EEE249EC12E77C9D007685C4 /* Font.h */,
 				EE48488612D716EA00534E26 /* Mesh.cpp */,
 				EE48488712D716EA00534E26 /* Mesh.h */,
 				EE48488812D716EA00534E26 /* Message.cpp */,
@@ -896,6 +901,7 @@
 				EE48488C12D716EA00534E26 /* Message.cpp in Sources */,
 				EE48489412D7178D00534E26 /* Window.cpp in Sources */,
 				EE4849B612D9CC7A00534E26 /* MessageManager.cpp in Sources */,
+				EEE249EE12E77C9D007685C4 /* Font.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
