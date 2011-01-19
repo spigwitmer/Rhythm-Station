@@ -186,6 +186,7 @@ void Object::DepthClear(bool enabled)
 
 void Object::Draw()
 {
+	// Use so 3D objects don't collide.
 	if (m_bDepthClear)
 		glClear(GL_DEPTH_BUFFER_BIT);
 

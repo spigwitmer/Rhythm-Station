@@ -1,7 +1,3 @@
-function Trace(...)
-	print(TimeStamp() .. " " .. string.format(...))
-end
-
 function LoadActor(filename)
 	obj = Object()
 	obj:Load(filename)

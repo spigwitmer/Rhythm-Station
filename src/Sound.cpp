@@ -164,7 +164,7 @@ bool Sound::Stream(ALuint buffer)
 	int skip = size/2/bands;
 	for (int i = 0; i<bands; i++)
 	{
-		// make sure the numbers are positive.
+		// shit just got real ( http://xkcd.com/849/ )
 		in[i] = sqrt(pow(out[i*skip][0],2)+pow(out[i*skip][1],2));
 		
 		// normalize
