@@ -8,15 +8,8 @@
 
 Logger* Log = NULL;
 
-Logger::Logger()
+Logger::Logger() : m_bUseColors(false), m_cColor(FG_RED)
 {
-#if 0
-	// doesn't work
-	if (getenv("BASH") != NULL)
-		bEnableColors = true;
-	else
-		bEnableColors = false;
-#endif
 }
 
 // don't forget to define _DEBUG_!
@@ -33,7 +26,7 @@ std::string Logger::SPrint(const char* in, ...)
 	char *buf = staticbuf;
 
 	va_start(va, in);
-	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in, va) + 1;
+	unsigned int need = vsnprintf(buf, sizeof(staticbuf), in, va) + 1;
 	if (need > sizeof(staticbuf))
 	{
 		// staticbuf wasn't large enough, malloc large enough
@@ -57,6 +50,16 @@ void Logger::Print(std::string in)
 	Print(in.c_str());
 }
 
+void Logger::UseColors(bool enabled)
+{
+	m_bUseColors = enabled;
+}
+
+void Logger::SetColor(ConsoleColor color)
+{
+	m_cColor = color;
+}
+
 void Logger::Print(const char *in, ...)
 {
 	va_list va;
@@ -64,7 +67,7 @@ void Logger::Print(const char *in, ...)
 	char *buf = staticbuf;
 
 	va_start(va, in);
-	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in, va) + 1;
+	unsigned int need = vsnprintf(buf, sizeof(staticbuf), in, va) + 1;
 	if (need > sizeof(staticbuf))
 	{
 		// staticbuf wasn't large enough, malloc large enough
@@ -74,12 +77,10 @@ void Logger::Print(const char *in, ...)
 	}
 	va_end(va);
 
-#if 0
-	if (bEnableColors)
-		printf("\x1b[%d;1m[%0.3f]\x1b[0m %s\n", FG_RED, glfwGetTime(),buf);
+	if (m_bUseColors)
+		printf("[%0.3f] \x1b[%d;1m%s\x1b[0m\n", glfwGetTime(), m_cColor, buf);
 	else
-#endif
-		printf("[%0.3f] %s\n", glfwGetTime(),buf);
+		printf("[%0.3f] %s\n", glfwGetTime(), buf);
 
 	// free if we had to malloc more space
 	if (buf != staticbuf)
@@ -93,7 +94,7 @@ void Logger::InlinePrint(const char *in, ...)
 	char *buf = staticbuf;
 
 	va_start(va, in);
-	unsigned int need = vsnprintf(buf, sizeof(staticbuf),in, va) + 1;
+	unsigned int need = vsnprintf(buf, sizeof(staticbuf), in, va) + 1;
 	if (need > sizeof(staticbuf))
 	{
 		// staticbuf wasn't large enough, malloc large enough

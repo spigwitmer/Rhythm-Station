@@ -28,10 +28,12 @@ public:
 	void Print(std::string in);
 	void InlinePrint(const char *in, ...);
 
+	void UseColors(bool enabled);
+	void SetColor(ConsoleColor color);
+
 private:
-#if 0
-	bool bEnableColors;
-#endif
+	ConsoleColor m_cColor;
+	bool m_bUseColors;
 };
 
 extern Logger* Log;
