@@ -459,10 +459,18 @@
 		EE0907A112C096DD00ADFA57 /* Display */ = {
 			isa = PBXGroup;
 			children = (
-				EEA552D1125A7FE30065F811 /* Matrix.cpp */,
-				EEA552D4125A800C0065F811 /* Matrix.h */,
+				EEE249ED12E77C9D007685C4 /* Font.cpp */,
+				EEE249EC12E77C9D007685C4 /* Font.h */,
+				EE48488612D716EA00534E26 /* Mesh.cpp */,
+				EE48488712D716EA00534E26 /* Mesh.h */,
+				EE915F7D125668C600F0B0B3 /* Object.cpp */,
+				EE915F7C125668C600F0B0B3 /* Object.h */,
+				EEC52EB91273DC390064054A /* Screen.cpp */,
+				EEC52EBA1273DC390064054A /* Screen.h */,
 				EE915F81125669ED00F0B0B3 /* Shader.cpp */,
 				EE915F80125669ED00F0B0B3 /* Shader.h */,
+				EE41FEC71288A271001F0C56 /* Sound.cpp */,
+				EE41FEC81288A271001F0C56 /* Sound.h */,
 				EE48489212D7178D00534E26 /* Window.cpp */,
 				EE48489312D7178D00534E26 /* Window.h */,
 			);
@@ -491,6 +499,8 @@
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EEE24A4412E7A841007685C4 /* Math */,
+				EEE24A4312E7A828007685C4 /* Database */,
 				EE0907A112C096DD00ADFA57 /* Display */,
 				EE78150D1272143200B01960 /* Loaders */,
 				EEA552C6125A6E240065F811 /* Helpers */,
@@ -541,21 +551,13 @@
 		EE9160861256A60100F0B0B3 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
-				EEE249ED12E77C9D007685C4 /* Font.cpp */,
-				EEE249EC12E77C9D007685C4 /* Font.h */,
-				EE48488612D716EA00534E26 /* Mesh.cpp */,
-				EE48488712D716EA00534E26 /* Mesh.h */,
 				EE48488812D716EA00534E26 /* Message.cpp */,
 				EE48488912D716EA00534E26 /* Message.h */,
-				EE915F7D125668C600F0B0B3 /* Object.cpp */,
-				EE915F7C125668C600F0B0B3 /* Object.h */,
-				EEC52EB91273DC390064054A /* Screen.cpp */,
-				EEC52EBA1273DC390064054A /* Screen.h */,
 				EE4848A412D717B800534E26 /* Singleton.h */,
-				EE41FEC71288A271001F0C56 /* Sound.cpp */,
-				EE41FEC81288A271001F0C56 /* Sound.h */,
 				EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */,
 				EED312E512D1262A00A15AC5 /* ThreadGroup.h */,
+				EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */,
+				EECBDF5B125CFC4F00BA2BA4 /* Timer.h */,
 				EED312E612D1262A00A15AC5 /* TimingData.h */,
 				EEA552D5125A80920065F811 /* Type.cpp */,
 				EEA552D6125A80920065F811 /* Type.h */,
@@ -568,14 +570,8 @@
 			children = (
 				EEA552C8125A6E4B0065F811 /* HandleArguments.cpp */,
 				EEA552C7125A6E4B0065F811 /* HandleArguments.h */,
-				EEC8D84C128DB54200351601 /* SQLiteDatabase.cpp */,
-				EEC8D84B128DB54200351601 /* SQLiteDatabase.h */,
 				EE7815101272144800B01960 /* StringUtils.cpp */,
 				EE7815111272144800B01960 /* StringUtils.h */,
-				EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */,
-				EECBDF5B125CFC4F00BA2BA4 /* Timer.h */,
-				EE7814911271FFAE00B01960 /* Tween.cpp */,
-				EE7814921271FFAE00B01960 /* Tween.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -708,6 +704,26 @@
 				EEC52F71127559C40064054A /* platform.h */,
 			);
 			path = cocoa;
+			sourceTree = "<group>";
+		};
+		EEE24A4312E7A828007685C4 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				EEC8D84C128DB54200351601 /* SQLiteDatabase.cpp */,
+				EEC8D84B128DB54200351601 /* SQLiteDatabase.h */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		EEE24A4412E7A841007685C4 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				EEA552D1125A7FE30065F811 /* Matrix.cpp */,
+				EEA552D4125A800C0065F811 /* Matrix.h */,
+				EE7814911271FFAE00B01960 /* Tween.cpp */,
+				EE7814921271FFAE00B01960 /* Tween.h */,
+			);
+			name = Math;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
