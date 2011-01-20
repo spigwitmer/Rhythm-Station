@@ -8,7 +8,7 @@
 
 Logger* Log = NULL;
 
-Logger::Logger() : m_bUseColors(false), m_cColor(FG_RED)
+Logger::Logger() : m_cColor(FG_RED), m_bUseColors(false)
 {
 }
 
