@@ -54,11 +54,6 @@ void Object::AddChild(Object* obj)
 	m_children.push_back(obj);
 }
 
-void Object::DeleteBuffers()
-{
-	mesh.Free();
-}
-
 void Object::Register()
 {
 	Screen* scr = Game->GetTopScreen();

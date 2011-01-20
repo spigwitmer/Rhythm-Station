@@ -70,14 +70,8 @@ protected:
 
 	void QueueUpdate();
 
-	void CreateBuffers();
-	void DeleteBuffers();
-
-	// new
-	Mesh mesh;
-	
-	// old
-	GLuint m_vbo[2], m_color_uniform;
+	Mesh mesh;	
+	GLuint m_color_uniform;
 
 	std::map<std::string, std::vector<AnimationState> > m_states;
 	std::vector<Object*> m_children;
