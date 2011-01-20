@@ -17,26 +17,21 @@ spr = LoadActor("Data/arrow.png")
 spr:Translate(-1.5*spacing,0,0)
 spr:Scale(0.5,0.5,0.5)
 spr:Rotate(0,0,90)
-spr:Color(0.5,0.5,0.5,1.0)
 
 spr = LoadActor("Data/arrow.png")
 spr:Translate(-0.5*spacing,0,0)
 spr:Scale(0.5,0.5,0.5)
 spr:Rotate(0,0,0)
-spr:Color(0.5,0.5,0.5,1.0)
 
 spr = LoadActor("Data/arrow.png")
 spr:Translate(0.5*spacing,0,0)
 spr:Scale(0.5,0.5,0.5)
 spr:Rotate(0,0,180)
-spr:Color(0.5,0.5,0.5,1.0)
 
 spr = LoadActor("Data/arrow.png")
 spr:Translate(1.5*spacing,0,0)
 spr:Scale(0.5,0.5,0.5)
 spr:Rotate(0,0,-90)
-spr:Color(0.5,0.5,0.5,1.0)
-
 
 sound = LoadSound("get-it-by-your-hands.ogg")
 sound:Loop(true)

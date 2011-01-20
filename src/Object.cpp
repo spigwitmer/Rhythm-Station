@@ -8,22 +8,38 @@
 #include "PNGLoader.h"
 
 Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)), m_texture(),
-	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0))
+m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0))
 {
 	m_shader.SetProjectionMatrix(Game->ProjectionMatrix);
 	m_shader.Bind();
-	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
-	CreateBuffers();
+	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");	
 	m_texture.width = m_texture.height = 1;
-
 	m_parent = NULL;
-
+	
+	// Create a VBO (1u square)
+	MeshData verts[4];
+	float vertices[] = {
+		-0.5, -0.5, 0, 0, 0, 0, 0, 0,
+		-0.5,  0.5, 0, 0, 0, 0, 0, 1,
+		0.5, -0.5, 0, 0, 0, 0, 1, 0,
+		0.5,  0.5, 0, 0, 0, 0, 1, 1,
+	};
+	
+	unsigned indices[] = {
+		0, 1, 2,
+		1, 2, 3
+	};
+	
+	memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
+	mesh.Load(verts, indices, 4, 6);
+	
 	Register();
 }
 
 Object::~Object()
 {
-	DeleteBuffers();
+	mesh.Free();
+
 	if (m_texture.ptr != 0)
 		ResourceManager::FreeResource(m_texture);
 }
@@ -38,42 +54,9 @@ void Object::AddChild(Object* obj)
 	m_children.push_back(obj);
 }
 
-// TODO: Use Mesh for this.
-void Object::CreateBuffers()
-{
-	// quad (2 tris)
-	GLfloat verts[] = {
-		// pos[3] nor[3] tex[2]
-		-1, -1, 0, 0, 0, 0, 0, 0,
-		-1,  1, 0, 0, 0, 0, 0, 1,
-		 1, -1, 0, 0, 0, 0, 1, 0,
-		 1,  1, 0, 0, 0, 0, 1, 1,
-	};
-	GLubyte indices[] = {
-		0, 1, 2,
-		1, 2, 3
-	};
-
-	// far more useful on complex objects.
-	GLubyte stride = sizeof(GLfloat) * 8;
-	m_vertices = sizeof(indices) / sizeof(GLubyte);
-
-	glGenBuffers(2, m_vbo);
-
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
-	
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
-	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
-	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
-}
-
 void Object::DeleteBuffers()
 {
-	glDeleteBuffers(2, m_vbo);
+	mesh.Free();
 }
 
 void Object::Register()
@@ -102,13 +85,13 @@ void Object::Load(std::string _path)
 			// register this so we don't load it again.
 			ResourceManager::Add(tex);
 		}
-
+		
 		if (tex.ptr != 0)
 			m_texture = tex;
 	}
 	else
 		Log->Print("Unknown file type: %s.", ext.c_str());
-
+	
 	QueueUpdate();
 }
 
@@ -153,29 +136,20 @@ void Object::Update(double delta)
 {
 	if (m_parent)
 		m_matrix = m_parent->GetMatrix();
-
+	
 	if (m_bNeedsUpdate)
 	{
 		m_matrix.Identity();
 		m_matrix.Translate(m_pos);
 		m_matrix.Scale(m_scale);
-		m_matrix.Scale(m_texture.width*0.5f, m_texture.height*0.5f, 1.0);
+		m_matrix.Scale(m_texture.width, m_texture.height, 1.0);
 		m_matrix.Rotate(m_rot);
 		m_bNeedsUpdate = false;
-
+		
 		Game->QueueRendering();
 	}
-
+	
 	m_shader.SetModelViewMatrix(&m_matrix);
-}
-
-void Object::AssignBuffer(GLuint *buf, int verts)
-{
-	m_vbo[0] = buf[0];
-	m_vbo[1] = buf[1];
-	m_vertices = verts;
-
-	QueueUpdate();
 }
 
 void Object::DepthClear(bool enabled)
@@ -188,21 +162,14 @@ void Object::Draw()
 	// Use so 3D objects don't collide.
 	if (m_bDepthClear)
 		glClear(GL_DEPTH_BUFFER_BIT);
-
-	GLubyte stride = sizeof(GLfloat) * 8;
-	// need a buffer type, probably.
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vbo[1]);
-
-	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
-	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
-	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
-
+	
+	// Bind shader and set uniforms
 	m_shader.Bind();
 	m_texture.Bind();
-
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
-	glDrawElements(GL_TRIANGLES, m_vertices, GL_UNSIGNED_BYTE, NULL);
+	
+	// Draw!
+	mesh.Draw();
 }
 
 // Lua

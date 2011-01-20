@@ -5,6 +5,7 @@
 #include "Message.h"
 #include "ResourceManager.h"
 #include "Type.h"
+#include "Mesh.h"
 #include "Matrix.h"
 #include "Timer.h"
 #include "Tween.h"
@@ -72,7 +73,12 @@ protected:
 	void CreateBuffers();
 	void DeleteBuffers();
 
+	// new
+	Mesh mesh;
+	
+	// old
 	GLuint m_vbo[2], m_color_uniform;
+
 	std::map<std::string, std::vector<AnimationState> > m_states;
 	std::vector<Object*> m_children;
 
