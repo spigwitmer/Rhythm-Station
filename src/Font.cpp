@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include "Mesh.h"
 #include "Logger.h"
 #include "Font.h"
@@ -21,7 +22,7 @@ void Font::Set(std::string str)
 	std::vector<MeshData> verts;
 	mesh.num_verts = str.length()*4;
 	
-	for (int i = 0; i<str.length(); i++)
+	for (unsigned int i = 0; i<str.length(); i++)
 	{
 		// TODO: Font crap.
 	}
