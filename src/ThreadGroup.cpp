@@ -15,13 +15,14 @@ ThreadGroup::~ThreadGroup()
 {
 	if (!threads.empty())
 		JoinAll();
+		
 	pthread_mutex_destroy(&lock);
 	pthread_mutexattr_destroy(&attr);
 }
 
-int ThreadGroup::CreateThread(void *func(void*),void *arg)
+int ThreadGroup::CreateThread(void *func(void *),void *arg)
 {
-	Thread* thread = new Thread;
+	Thread *thread = new Thread;
 	threads.push_back(thread);
 	thread->parameters.group = this;
 	thread->parameters.argument = arg;
@@ -34,6 +35,7 @@ int ThreadGroup::JoinAll()
 	while (!threads.empty())
 	{
 		int rc = pthread_join(threads.back()->handle,NULL);
+		
 		if (rc == 0)
 		{
 			delete threads.back();
@@ -44,6 +46,7 @@ int ThreadGroup::JoinAll()
 			return rc;
 		}
 	}
+	
 	return 0;
 }
 
@@ -62,9 +65,9 @@ int ThreadGroup::Unlock()
 void *print_stuff(void *arg)
 {
 	ThreadParameters* t = (ThreadParameters*)arg;
-	
+
 	// do stuff
-	
+
 	// lock for whatever reason
 	if(t->group->Lock() == 0)
 	{
@@ -73,7 +76,7 @@ void *print_stuff(void *arg)
 		// and unlock again
 		t->group->Unlock();
 	}
-	
+
 	return NULL;
 }
 

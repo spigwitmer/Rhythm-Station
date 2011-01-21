@@ -14,9 +14,9 @@
 #define usleep(x) Sleep((x) / 1000)
 #endif
 
-GameManager* Game = NULL;
-Matrix* obj = NULL;
-Object* quad = NULL;
+GameManager *Game = NULL;
+Matrix *obj = NULL;
+Object *quad = NULL;
 bool lazy_updates = true;
 
 GameManager::GameManager(GLFWwindow window) :
@@ -24,17 +24,15 @@ GameManager::GameManager(GLFWwindow window) :
 	m_window_active(true)
 {
 	m_window = window;
-
 	// Don't take over mouse, alt+f4/cmd+q, etc.
 	glfwEnable(window, GLFW_SYSTEM_KEYS);
 	glfwEnable(window, GLFW_MOUSE_CURSOR);
-
 	// let the OS know we're up and running.
 	glfwPollEvents();
 	glfwGetWindowSize(window, &ScreenWidth, &ScreenHeight);
-
 	// Check for some extensions (just CSAA right now)
 	glewInit();
+	
 	if (GLEW_NV_framebuffer_multisample_coverage)
 	{
 		Log->Print("CSAA Supported.");
@@ -42,15 +40,13 @@ GameManager::GameManager(GLFWwindow window) :
 	}
 	else
 		Log->Print("CSAA Not Supported.");
-
+		
 	// Make transparency work!
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 #ifdef DEBUG
 	lazy_updates = false;
 #endif
-
 	ProjectionMatrix = new Matrix();
 }
 
@@ -100,7 +96,7 @@ void GameManager::Update(double delta)
 void GameManager::UpdateWindowTitle(double delta)
 {
 	glfwSetWindowTitle(m_window, Log->SPrint("Rhythm-Station - FPS: %0.1f, Delta: %0.05f",
-		int((1.0 / delta) * 10) * 0.1f, delta).c_str());
+	                   int((1.0 / delta) * 10) * 0.1f, delta).c_str());
 }
 
 void GameManager::SendInput(const IEvent &e)
@@ -121,16 +117,16 @@ void GameManager::Render()
 		usleep(12500); // reduce CPU usage when not updating.
 		return;
 	}
+	
 	if (m_bFirstUpdate)
 		m_bFirstUpdate = false;
-
+		
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	
 	for (size_t i = 0; i<vpScreens.size(); i++)
 		vpScreens[i]->Draw();
-
+		
 	glfwSwapBuffers();
-
 	// done rendering, don't do it again until requested.
 	m_bQueuedRender = false;
 }

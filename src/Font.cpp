@@ -18,7 +18,6 @@ void Font::Set(std::string str)
 	}
 	
 	m_text = str;
-	
 	std::vector<MeshData> verts;
 	mesh.num_verts = str.length()*4;
 	

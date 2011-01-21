@@ -16,7 +16,7 @@
  * db->Step();
  * db->Query("INSERT INTO 'foo' ('bar') VALUES ('baz')");
  * db->Step();
- * 
+ *
  * // run an sql statement and get results
  * db->Query("SELECT * FROM foo");
  * while (db->Step()) {
@@ -34,14 +34,14 @@ class SQLiteDatabase
 public:
 	void Open(std::string db);
 	void Close();
-
+	
 	void Query(std::string sql_str);
 	bool Step();
 	std::map<std::string, std::string> GetRow();
-
+	
 private:
-	sqlite3* db_handle;
-	sqlite3_stmt* last_query;
+	sqlite3 *db_handle;
+	sqlite3_stmt *last_query;
 };
 
 #endif

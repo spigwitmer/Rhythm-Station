@@ -20,22 +20,22 @@ class Logger
 {
 public:
 	Logger();
-
-
+	
+	
 	std::string SPrint(const char *in, ...);
 	void DebugPrint(std::string input);
 	void Print(const char *in, ...);
 	void Print(std::string in);
 	void InlinePrint(const char *in, ...);
-
+	
 	void UseColors(bool enabled);
 	void SetColor(ConsoleColor color);
-
+	
 private:
 	ConsoleColor m_cColor;
 	bool m_bUseColors;
 };
 
-extern Logger* Log;
+extern Logger *Log;
 
 #endif

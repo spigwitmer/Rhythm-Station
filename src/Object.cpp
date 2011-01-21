@@ -8,14 +8,13 @@
 #include "PNGLoader.h"
 
 Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)), m_texture(),
-m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0))
+	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0))
 {
 	m_shader.SetProjectionMatrix(Game->ProjectionMatrix);
 	m_shader.Bind();
-	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");	
+	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
 	m_texture.width = m_texture.height = 1;
 	m_parent = NULL;
-	
 	// Create a VBO (1u square)
 	MeshData verts[4];
 	float vertices[] = {
@@ -24,39 +23,36 @@ m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0))
 		0.5, -0.5, 0, 0, 0, 0, 1, 0,
 		0.5,  0.5, 0, 0, 0, 0, 1, 1,
 	};
-	
 	unsigned indices[] = {
 		0, 1, 2,
 		1, 2, 3
 	};
-	
 	memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
 	mesh.Load(verts, indices, 4, 6);
-	
 	Register();
 }
 
 Object::~Object()
 {
 	mesh.Free();
-
+	
 	if (m_texture.ptr != 0)
 		ResourceManager::FreeResource(m_texture);
 }
 
-void Object::SetParent(Object* obj)
+void Object::SetParent(Object *obj)
 {
 	m_parent = obj;
 }
 
-void Object::AddChild(Object* obj)
+void Object::AddChild(Object *obj)
 {
 	m_children.push_back(obj);
 }
 
 void Object::Register()
 {
-	Screen* scr = Game->GetTopScreen();
+	Screen *scr = Game->GetTopScreen();
 	scr->AddObject(this);
 }
 
@@ -70,9 +66,11 @@ void Object::Load(std::string _path)
 	std::string path = FileManager::GetFile(_path);
 	std::string ext = path.substr(path.size()-3, path.size());
 	Log->Print("Loading \"%s\" (type = %s)", _path.c_str(), ext.c_str());
+	
 	if (ext.compare("png") == 0)
 	{
 		Texture tex;
+		
 		if (!ResourceManager::GetResource(path,tex))
 		{
 			PNGLoader png;
@@ -86,7 +84,7 @@ void Object::Load(std::string _path)
 	}
 	else
 		Log->Print("Unknown file type: %s.", ext.c_str());
-	
+		
 	QueueUpdate();
 }
 
@@ -131,7 +129,7 @@ void Object::Update(double delta)
 {
 	if (m_parent)
 		m_matrix = m_parent->GetMatrix();
-	
+		
 	if (m_bNeedsUpdate)
 	{
 		m_matrix.Identity();
@@ -140,7 +138,6 @@ void Object::Update(double delta)
 		m_matrix.Scale(m_texture.width, m_texture.height, 1.0);
 		m_matrix.Rotate(m_rot);
 		m_bNeedsUpdate = false;
-		
 		Game->QueueRendering();
 	}
 	
@@ -157,12 +154,11 @@ void Object::Draw()
 	// Use so 3D objects don't collide.
 	if (m_bDepthClear)
 		glClear(GL_DEPTH_BUFFER_BIT);
-	
+		
 	// Bind shader and set uniforms
 	m_shader.Bind();
 	m_texture.Bind();
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
-	
 	// Draw!
 	mesh.Draw();
 }

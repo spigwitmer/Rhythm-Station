@@ -3,6 +3,6 @@
 
 void Message::Send()
 {
-	MessageManager* sender = MessageManager::getInstance();
+	MessageManager *sender = MessageManager::getInstance();
 	sender->DispatchMessage(*this);
 }

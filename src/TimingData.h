@@ -24,10 +24,10 @@ struct Note
 	// Generic stuff.
 	NoteType type;
 	std::vector<NoteAttribute> flags;
-
+	
 	int column;	// For games which use columns (e.g. StepMania)
 	int width;	// cover multiple columns
-
+	
 	// For mouse-based games which use coords (osu!-esque)
 	float scale;
 	vec3 position;
@@ -37,7 +37,7 @@ struct NoteRow
 {
 	std::vector<Note> notes;	// Notes on this row
 	int time;					// Time in milliseconds.
-
+	
 	// This is independent of time - use for stops, delays, warping, whatever.
 	float scroll_speed;
 };
@@ -46,13 +46,13 @@ struct NoteRegion
 {
 	int combo_rate; // aka tickcount
 	float bpm;		// For display purposes, not timing.
-
+	
 	struct TimeSignature
 	{
 		int numerator;
 		int denominator;
 	} time_sig;
-
+	
 	int time;
 };
 
@@ -60,7 +60,7 @@ struct TimingData
 {
 	std::vector<NoteRow> note_rows;
 	std::vector<NoteRegion> note_regions;
-
+	
 	int timing_offset;
 };
 

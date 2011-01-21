@@ -18,10 +18,12 @@ std::string toString(double _in)
 std::string toString(bool _in)
 {
 	std::stringstream out;
+	
 	if ( _in )
 		out << "true";
 	else
 		out << "false";
+		
 	return out.str();
 }
 

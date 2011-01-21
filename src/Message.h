@@ -7,8 +7,8 @@
 struct Message
 {
 	std::string name;
-	std::map<std::string, void*> data;
-
+	std::map<std::string, void *> data;
+	
 	// send message to all listeners
 	void Send();
 };

@@ -20,19 +20,19 @@ typedef struct _Thread
 
 class ThreadGroup
 {
-	private:
-		pthread_mutexattr_t attr;
-		pthread_mutex_t lock;
-		std::vector<Thread*> threads;
-
-	public:
-		ThreadGroup();
-		~ThreadGroup();
-
-		int CreateThread(void *func(void*),void *arg);
-		int JoinAll();
-		int Lock();
-		int Unlock();
+private:
+	pthread_mutexattr_t attr;
+	pthread_mutex_t lock;
+	std::vector<Thread *> threads;
+	
+public:
+	ThreadGroup();
+	~ThreadGroup();
+	
+	int CreateThread(void *func(void *),void *arg);
+	int JoinAll();
+	int Lock();
+	int Unlock();
 };
 
 #endif

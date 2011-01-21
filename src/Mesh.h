@@ -19,12 +19,12 @@ struct Mesh
 	
 	// Clean up
 	void Free();
-
+	
 	void Draw();
-
+	
 	GLuint buffers[2];
 	unsigned num_verts;
-
+	
 	bool loaded;
 };
 

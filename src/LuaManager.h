@@ -15,13 +15,13 @@ class LuaManager
 public:
 	LuaManager();
 	virtual ~LuaManager();
-
-	void Run(const char* file);
-
+	
+	void Run(const char *file);
+	
 private:
 	lua_State *L;
 };
 
-extern LuaManager* Lua;
+extern LuaManager *Lua;
 
 #endif

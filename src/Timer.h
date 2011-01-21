@@ -7,7 +7,7 @@ class Timer
 {
 private:
 	double start_time;
-
+	
 public:
 	Timer();
 	void Touch();

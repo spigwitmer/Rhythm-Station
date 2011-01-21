@@ -17,29 +17,29 @@ struct Controller
 {
 	Controller(int id);
 	virtual ~Controller();
-
+	
 	int id;
-	float* axes;
+	float *axes;
 	int num_axes;
-
-	KeyState* buttons;
-	unsigned char* buttons_raw;
+	
+	KeyState *buttons;
+	unsigned char *buttons_raw;
 	int num_buttons;
-
+	
 	// timestamps for button presses.
-	double* timestamp;
+	double *timestamp;
 };
 
 struct Mouse
 {
-	KeyState* buttons;
-
+	KeyState *buttons;
+	
 	// coords
 	int x, y;
-
+	
 	// normalized coords
 	float nx, ny;
-
+	
 	vec2 mouse_pos;
 	vec2 scroll;
 };
@@ -47,15 +47,15 @@ struct Mouse
 // this should probably only handle mapped game buttons - not raw input.
 struct IEvent
 {
-	std::vector<Controller*> controllers;
+	std::vector<Controller *> controllers;
 	std::string cur_string;
-
+	
 	Mouse mouse;
-
-	KeyState* keys;
+	
+	KeyState *keys;
 	int num_keys;
-
-	double* timestamp;
+	
+	double *timestamp;
 };
 
 class InputManager
@@ -63,24 +63,24 @@ class InputManager
 public:
 	InputManager();
 	virtual ~InputManager();
-
+	
 	void Connect();
 	void Update();
 	void SendEvent();
-
+	
 	/*
 	 * Keep the current state here and send it every time there's an update.
 	 * This needs to be public so that the callbacks can update it.
 	 */
 	IEvent status;
-
+	
 private:
 	void DetectControllers();
 	void UpdateControllers();
-
+	
 	bool queuedUpdate;
 };
 
-extern InputManager* Input;
+extern InputManager *Input;
 
 #endif

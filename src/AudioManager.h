@@ -19,11 +19,11 @@ struct SoundData
 	ALenum error;
 	ALuint buffers[2];
 	ALuint source;
-
+	
 	// sampling rate and channels
 	ALsizei rate;
 	ALenum format;
-
+	
 	// audio file path
 	std::string path;
 };

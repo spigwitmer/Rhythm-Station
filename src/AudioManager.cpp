@@ -1,9 +1,9 @@
 #ifdef __APPLE__
-	#include <OpenAL/al.h>
-	#include <OpenAL/alc.h>
+#include <OpenAL/al.h>
+#include <OpenAL/alc.h>
 #else
-	#include <AL/al.h>
-	#include <AL/alc.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 #endif
 
 #include <cstring>
@@ -12,10 +12,10 @@
 #include "AudioManager.h"
 #include "Logger.h"
 
-ALCdevice* device;
-ALCcontext* context;
+ALCdevice *device;
+ALCcontext *context;
 
-std::vector<SoundData*> vpSounds;
+std::vector<SoundData *> vpSounds;
 
 SoundData::SoundData()
 {
@@ -54,15 +54,15 @@ void AudioManager::Open()
 {
 	// open default device.
 	device = alcOpenDevice(NULL);
+	
 	if (!device) {
 		Log->Print("[Audio::Open] Failed to open default sound device.");
 		return;
 	}
-
+	
 	// create device context
 	context = alcCreateContext(device, NULL);
 	alcMakeContextCurrent(context);
-
 	// clear errors
 	alGetError();
 }
@@ -81,41 +81,38 @@ int sine_wave()
 {
 	// create the buffers
 	SoundData *sound = new SoundData();
+	
 	if (alGetError() != AL_NO_ERROR)
 		return -1;
-
+		
 	ALsizei size, freq;
 	ALvoid *data;
-
 	// wave parameters and buffer size
 	unsigned char *sineWave;
 	int samples = 16;
 	int frequency = 250;
 	freq = samples * frequency;
 	size = 16384; // 16k buffer
-
 	// build the sine wave
 	sineWave = new unsigned char[size];
+	
 	for (int i = 0; i < size; i++)
 	{
 		float x = i * 360.f / (float)samples;
 		sineWave[i] = sinf(x * (3.14159 / 180))*128+128;
 	}
+	
 	data = sineWave;
 	delete[] sineWave;
-
 	alBufferData(sound->buffers[0], AL_FORMAT_STEREO16, data, size, freq);
-
+	
 	if (alGetError() != AL_NO_ERROR)
 		return -2;
-
+		
 	alSourcei(sound->source, AL_LOOPING, (ALboolean)true);
 	alSourcei(sound->source, AL_BUFFER, sound->buffers[0]);
 	alSourcef(sound->source, AL_GAIN, 0.5f); // volume
-
 	alSourcePlay(sound->source);
-
 	sound->Register();
-
 	return 0;
 }

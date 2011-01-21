@@ -3,13 +3,14 @@
 #include "Object.h"
 
 // all the scene stuff.
-std::vector<Object*> m_objects;
+std::vector<Object *> m_objects;
 std::vector<Texture> m_textures;
-std::vector<Shader*> m_shaders;
+std::vector<Shader *> m_shaders;
 
-bool ResourceManager::GetResource(std::string path, Texture& texture)
+bool ResourceManager::GetResource(std::string path, Texture &texture)
 {
 	std::vector<Texture>::reverse_iterator rit;
+	
 	for (rit = m_textures.rbegin(); rit < m_textures.rend(); ++rit)
 	{
 		if (path.compare((*rit).path) == 0)
@@ -19,10 +20,11 @@ bool ResourceManager::GetResource(std::string path, Texture& texture)
 			return true;
 		}
 	}
+	
 	return false;
 }
 
-bool ResourceManager::GetResource(std::string path, Shader* shader)
+bool ResourceManager::GetResource(std::string path, Shader *shader)
 {
 	// TODO
 	return false;
@@ -31,6 +33,7 @@ bool ResourceManager::GetResource(std::string path, Shader* shader)
 void ResourceManager::FreeResource(Texture texture)
 {
 	std::vector<Texture>::iterator it;
+	
 	for (it = m_textures.begin(); it < m_textures.end(); ++it)
 	{
 		if (texture.path.compare((*it).path) == 0)
@@ -39,12 +42,12 @@ void ResourceManager::FreeResource(Texture texture)
 	}
 }
 
-void ResourceManager::Add(Object* object)
+void ResourceManager::Add(Object *object)
 {
 	m_objects.push_back(object);
 }
 
-void ResourceManager::Add(Shader* shader)
+void ResourceManager::Add(Shader *shader)
 {
 	m_shaders.push_back(shader);
 }
@@ -54,20 +57,20 @@ void ResourceManager::Add(Texture texture)
 	m_textures.push_back(texture);
 }
 
-std::vector<Object*> ResourceManager::GetObjects()
+std::vector<Object *> ResourceManager::GetObjects()
 {
 	return m_objects;
 }
 
 template <class T>
-void ResourceManager::Reload(std::vector<T*> obj)
+void ResourceManager::Reload(std::vector<T *> obj)
 {
 	for (unsigned int i = 0; i<obj.size(); i++)
 		obj[i]->Reload();
 }
 
 template <class T>
-void ResourceManager::Delete(std::vector<T*> obj)
+void ResourceManager::Delete(std::vector<T *> obj)
 {
 	for (unsigned int i = 0; i<obj.size(); i++)
 		delete obj[i];
