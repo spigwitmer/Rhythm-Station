@@ -7,7 +7,7 @@
 float radf(float val)
 {
 	// cast as float so the conversion is explicit.
-	val = float(val * .017453292f); // PI / 180.f
+	val = float(val * 0.017453292f); // PI / 180.f
 	return val;
 }
 
@@ -29,9 +29,7 @@ void Matrix::Print()
 	for (int i = 0; i<4; i++)
 	{
 		int ind = i<<2;
-		Log->Print("%f %f %f %f",
-		           matrix[ind], matrix[ind+1], matrix[ind+2], matrix[ind+3]
-		          );
+		Log->Print("%f %f %f %f", matrix[ind], matrix[ind+1], matrix[ind+2], matrix[ind+3]);
 	}
 }
 
@@ -91,13 +89,13 @@ void Matrix::Rotate(float angle, float x, float y, float z)
 	float s = sinf(radf(angle));
 	float oc = 1.0 - c;
 	float xs, ys, zs;
-	xs = x*s;
-	ys = y*s;
-	zs = z*s;
+	xs = x * s;
+	ys = y * s;
+	zs = z * s;
 	float mat[4][4] = {
-		{ x *x *oc + c, y *x *oc + zs, (x *z *oc) - ys, 0, },
-		{ x *y *oc - zs, y *y *oc + c, (y *z *oc) + xs, 0, },
-		{ x *z *oc + ys, y *z *oc - xs, z *z *oc + c, 0, },
+		{ x * x * oc + c, y * x * oc + zs, (x * z * oc) - ys, 0, },
+		{ x * y * oc - zs, y * y * oc + c, (y * z * oc) + xs, 0, },
+		{ x * z * oc + ys, y * z * oc - xs, z * z * oc + c, 0, },
 		{ 0, 0, 0, 1 }
 	};
 	this->Multiply(&mat[0][0]);
@@ -152,6 +150,7 @@ void Matrix::Perspective(float fov, float aspect, double near, double far)
 	m[2][2] = -(far + near) / delta;
 	m[2][3] = -1;
 	m[3][2] = -2 * near * far / delta;
+	
 	this->Multiply(&m[0][0]);
 }
 
@@ -160,12 +159,15 @@ void Matrix::LookAt(vec3 eye, vec3 center, vec3 up)
 	vec3 forward, side;
 	float m[4][4];
 	forward = center;
+	
 	// side = forward x up
 	side = side.cross(forward, up);
 	side.normalize();
+	
 	// up = side x forward
 	up = up.cross(side, forward);
 	forward.flip();
+	
 	this->Identity();
 	m[0][0] = side.x;
 	m[1][0] = side.y;
@@ -176,6 +178,7 @@ void Matrix::LookAt(vec3 eye, vec3 center, vec3 up)
 	m[0][2] = forward.x;
 	m[1][2] = forward.y;
 	m[2][2] = forward.z;
+	
 	this->Multiply(&m[0][0]);
 	this->Translate(-eye);
 }

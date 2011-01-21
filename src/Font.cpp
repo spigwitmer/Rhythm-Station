@@ -28,5 +28,5 @@ void Font::Set(std::string str)
 	
 	// TODO: Update buffers
 	glBindBuffer(GL_ARRAY_BUFFER, mesh.buffers[0]);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(MeshData)*verts.size(), &verts[0].Position.x);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(MeshData) * verts.size(), &verts[0].Position.x);
 }

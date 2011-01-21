@@ -20,6 +20,7 @@ Sound::~Sound()
 {
 	ov_clear(&ogg_file);
 	delete sd_sound;
+	
 	// fft stuff
 	fftw_cleanup();
 	delete[] in;
@@ -57,13 +58,16 @@ void Sound::Load(std::string _path)
 	// sample rate
 	sd_sound->rate = ogg_info->rate;
 	Log->Print("Preparing \"%s\" (rate = %d)", _path.c_str(), sd_sound->rate);
+	
 	// position/etc
 	alSource3f(sd_sound->source, AL_POSITION, 0.f, 0.f, 0.f);
 	alSource3f(sd_sound->source, AL_VELOCITY, 0.f, 0.f, 0.f);
 	alSource3f(sd_sound->source, AL_DIRECTION, 0.f, 0.f, 0.f);
+	
 	// distortion
 	alSourcef(sd_sound->source, AL_GAIN, sd_volume);
 	alSourcef(sd_sound->source, AL_PITCH, sd_pitch);
+	
 	// misc
 	alSourcef(sd_sound->source, AL_ROLLOFF_FACTOR, 0.0);
 	alSourcei(sd_sound->source, AL_LOOPING, sd_loop);
@@ -151,6 +155,7 @@ bool Sound::Stream(ALuint buffer)
 		fftw_plan p = fftw_plan_dft_r2c_1d(size, in, out, FFTW_ESTIMATE);
 		fftw_execute(p);
 		fftw_destroy_plan(p);
+		
 		int bands = 20;
 		int skip = size/2/bands;
 		

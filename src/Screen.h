@@ -11,9 +11,6 @@
 class Screen : public MessageListener
 {
 public:
-	Screen() { }
-	virtual ~Screen() { }
-	
 	void AddObject(Object *object);
 	void AddObject(Sound *sound);
 	void Register() { }
@@ -23,8 +20,8 @@ public:
 	void Draw();
 	
 private:
-	std::vector<Object *> m_vpObjects;
-	std::vector<Sound *> m_vpSounds;
+	std::vector<Object*> m_vpObjects;
+	std::vector<Sound*> m_vpSounds;
 };
 
 #endif

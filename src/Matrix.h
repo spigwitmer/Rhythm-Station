@@ -41,7 +41,7 @@ struct Matrix
 		return *this;
 	}
 	Matrix &operator = (const Matrix &m)  {
-		memcpy(matrix, m.matrix, 16*sizeof(float));
+		memcpy(matrix, m.matrix, 16 * sizeof(float));
 		return *this;
 	}
 	

@@ -107,18 +107,23 @@ void Shader::Reload()
 	// create pointers for our vertex and frag shaders
 	vs = glCreateShader(GL_VERTEX_SHADER);
 	fs = glCreateShader(GL_FRAGMENT_SHADER);
+	
 	glShaderSource(vs, 1, &vss, NULL);
 	glShaderSource(fs, 1, &fss, NULL);
+	
 	glCompileShader(vs);
 	glCompileShader(fs);
+	
 	// create program, attach shaders, link.
 	ptr = glCreateProgram();
 	glAttachShader(ptr, vs);
 	glAttachShader(ptr, fs);
+	
 	glBindAttribLocation(ptr, VERTEX_ARRAY, "VPos");
 	glBindAttribLocation(ptr, NORMAL_ARRAY, "VNor");
 	glBindAttribLocation(ptr, COORD_ARRAY, "VCoords");
 	glLinkProgram(ptr);
+	
 	// print out shader logs.
 	std::string log = getShaderLog(vs);
 	

@@ -10,11 +10,12 @@
 Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)), m_texture(),
 	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0))
 {
-	m_shader.SetProjectionMatrix(Game->ProjectionMatrix);
+	m_shader.SetProjectionMatrix(Game->ProjectionMatrix); // XXX
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
 	m_texture.width = m_texture.height = 1;
 	m_parent = NULL;
+	
 	// Create a VBO (1u square)
 	MeshData verts[4];
 	float vertices[] = {
@@ -29,6 +30,8 @@ Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)
 	};
 	memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
 	mesh.Load(verts, indices, 4, 6);
+	
+	// Register in scene.
 	Register();
 }
 
@@ -129,7 +132,7 @@ void Object::Update(double delta)
 {
 	if (m_parent)
 		m_matrix = m_parent->GetMatrix();
-		
+	
 	if (m_bNeedsUpdate)
 	{
 		m_matrix.Identity();
@@ -154,7 +157,7 @@ void Object::Draw()
 	// Use so 3D objects don't collide.
 	if (m_bDepthClear)
 		glClear(GL_DEPTH_BUFFER_BIT);
-		
+	
 	// Bind shader and set uniforms
 	m_shader.Bind();
 	m_texture.Bind();

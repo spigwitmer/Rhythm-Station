@@ -7,7 +7,7 @@ void Mesh::Load(MeshData *data, unsigned *indices, unsigned n_verts, unsigned n_
 	// Delete old data if we've already loaded something.
 	if (loaded)
 		Free();
-		
+	
 	// Decide if we need to generate our own indices.
 	bool gen_indices = false;
 	
@@ -31,7 +31,7 @@ void Mesh::Load(MeshData *data, unsigned *indices, unsigned n_verts, unsigned n_
 	
 	if (gen_indices)
 		delete[] indices;
-		
+	
 	num_verts = n_indices;
 	loaded = true;
 }
@@ -58,13 +58,13 @@ void Mesh::Draw()
 	// Don't try to draw an unloaded mesh.
 	if (!loaded)
 		return;
-		
+	
 	GLubyte stride = sizeof(GLfloat) * 8;
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
-	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid *) (sizeof(GLfloat) * (0)));
-	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid *) (sizeof(GLfloat) * (3)));
-	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid *) (sizeof(GLfloat) * (6)));
+	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
+	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
+	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
 	glDrawElements(GL_TRIANGLES, num_verts, GL_UNSIGNED_INT, NULL);
 }
 
@@ -97,5 +97,5 @@ void Mesh::LoadCube()
 	};
 	MeshData verts[8];
 	memcpy(&verts[0].Position.x, vertices, sizeof(float) * 8 * 8);
-	Load(verts, indices, 8, 3*12);
+	Load(verts, indices, 8, 3 * 12);
 }
