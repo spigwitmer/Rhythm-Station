@@ -13,6 +13,8 @@ struct MeshData
 
 struct Mesh
 {
+	Mesh() : loaded(false) { }
+	
 	// Create a VBO and upload the given data.
 	void Load(MeshData *data, unsigned *indices, unsigned n_verts, unsigned n_indices);
 	void LoadCube(); // for testing.
