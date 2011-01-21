@@ -19,19 +19,24 @@ int main (int argc, char **argv)
 	Window::Create(854, 480);
 	glfwSwapInterval(1);
 	glEnable(GL_DEPTH_TEST);
+	
 	// Start up all our singletons.
 	Log			= new Logger();
 	Game		= new GameManager(Window::GetWindow());
 	Input		= new InputManager();
 	Lua			= new LuaManager();
+	
 	// Connect event callbacks
 	Input->Connect();
+	
 	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);
 	AudioManager::Open();
+	
 	// Start running Lua and begin the first screen.
 	Game->Start();
 	Lua->Run("init.lua");
+	
 	// we'll be using these everywhere, enable them and leave it that way.
 	glEnableVertexAttribArray(VERTEX_ARRAY);
 	glEnableVertexAttribArray(NORMAL_ARRAY);
@@ -66,10 +71,13 @@ int main (int argc, char **argv)
 	}
 	
 	AudioManager::Close();
+	
 	delete Lua;
 	delete Game;
 	delete Input;
 	delete Log;
+	
 	glfwTerminate();
+	
 	return 0;
 }

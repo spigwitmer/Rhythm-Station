@@ -23,6 +23,7 @@ void Mesh::Load(MeshData *data, unsigned *indices, unsigned n_verts, unsigned n_
 	
 	// Get buffer IDs
 	glGenBuffers(2, buffers);
+	
 	// Upload data.
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(MeshData) * n_verts, &data[0].Position.x, GL_STATIC_DRAW);

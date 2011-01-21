@@ -499,13 +499,13 @@
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				EEE24A4412E7A841007685C4 /* Math */,
+				EE9160861256A60100F0B0B3 /* Data Structures */,
 				EEE24A4312E7A828007685C4 /* Database */,
 				EE0907A112C096DD00ADFA57 /* Display */,
-				EE78150D1272143200B01960 /* Loaders */,
 				EEA552C6125A6E240065F811 /* Helpers */,
-				EE9160861256A60100F0B0B3 /* Data Structures */,
+				EE78150D1272143200B01960 /* Loaders */,
 				EE9160851256A5F700F0B0B3 /* Managers */,
+				EEE24A4412E7A841007685C4 /* Math */,
 				EE915E501255CD9500F0B0B3 /* main.cpp */,
 			);
 			path = src;
