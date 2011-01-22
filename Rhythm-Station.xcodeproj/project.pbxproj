@@ -42,6 +42,9 @@
 		EE48488C12D716EA00534E26 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48488812D716EA00534E26 /* Message.cpp */; };
 		EE48489412D7178D00534E26 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48489212D7178D00534E26 /* Window.cpp */; };
 		EE4849B612D9CC7A00534E26 /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4849B512D9CC7A00534E26 /* MessageManager.cpp */; };
+		EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = EE51F2E812EB4B74003A241E /* ConvertUTF.c */; };
+		EE51F31012EB4BBE003A241E /* INIFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F30E12EB4BBE003A241E /* INIFile.cpp */; };
+		EE51F31612EB4BE7003A241E /* PreferencesFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F31412EB4BE7003A241E /* PreferencesFile.cpp */; };
 		EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */ = {isa = PBXBuildFile; fileRef = EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
@@ -92,7 +95,6 @@
 		EEAB1AFD126F5440004FE58D /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1ADB126F5440004FE58D /* print.c */; };
 		EEAB1B18126F5DAF004FE58D /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEAB1B17126F5DAF004FE58D /* libfreetype.a */; };
 		EEC5285F127375570064054A /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = EEC5285E127375570064054A /* init.lua */; };
-		EEC5287212737C8F0064054A /* INILoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC5286E12737C8E0064054A /* INILoader.cpp */; };
 		EEC5287312737C8F0064054A /* PNGLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC5287012737C8F0064054A /* PNGLoader.cpp */; };
 		EEC52D7B1273803E0064054A /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52B9B1273803D0064054A /* adler32.c */; };
 		EEC52DF71273803E0064054A /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52C3F1273803E0064054A /* crc32.c */; };
@@ -188,6 +190,13 @@
 		EE4848A412D717B800534E26 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		EE4849B412D9CC7A00534E26 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
 		EE4849B512D9CC7A00534E26 /* MessageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageManager.cpp; sourceTree = "<group>"; };
+		EE51F2E812EB4B74003A241E /* ConvertUTF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ConvertUTF.c; sourceTree = "<group>"; };
+		EE51F2E912EB4B74003A241E /* ConvertUTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertUTF.h; sourceTree = "<group>"; };
+		EE51F2EF12EB4B74003A241E /* SimpleIni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleIni.h; sourceTree = "<group>"; };
+		EE51F30E12EB4BBE003A241E /* INIFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = INIFile.cpp; sourceTree = "<group>"; };
+		EE51F30F12EB4BBE003A241E /* INIFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INIFile.h; sourceTree = "<group>"; };
+		EE51F31412EB4BE7003A241E /* PreferencesFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PreferencesFile.cpp; sourceTree = "<group>"; };
+		EE51F31512EB4BE7003A241E /* PreferencesFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesFile.h; sourceTree = "<group>"; };
 		EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "get-it-by-your-hands.ogg"; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -272,8 +281,6 @@
 		EEAB1ADB126F5440004FE58D /* print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = print.c; sourceTree = "<group>"; };
 		EEAB1B17126F5DAF004FE58D /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = /opt/local/lib/libfreetype.a; sourceTree = "<absolute>"; };
 		EEC5285E127375570064054A /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
-		EEC5286E12737C8E0064054A /* INILoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = INILoader.cpp; sourceTree = "<group>"; };
-		EEC5286F12737C8F0064054A /* INILoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INILoader.h; sourceTree = "<group>"; };
 		EEC5287012737C8F0064054A /* PNGLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PNGLoader.cpp; sourceTree = "<group>"; };
 		EEC5287112737C8F0064054A /* PNGLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGLoader.h; sourceTree = "<group>"; };
 		EEC52B9B1273803D0064054A /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
@@ -485,11 +492,23 @@
 			name = "glew-1.5.6";
 			sourceTree = "<group>";
 		};
+		EE51F2E712EB4B74003A241E /* simpleini-4.13 */ = {
+			isa = PBXGroup;
+			children = (
+				EE51F2E812EB4B74003A241E /* ConvertUTF.c */,
+				EE51F2E912EB4B74003A241E /* ConvertUTF.h */,
+				EE51F2EF12EB4B74003A241E /* SimpleIni.h */,
+			);
+			path = "simpleini-4.13";
+			sourceTree = "<group>";
+		};
 		EE78150D1272143200B01960 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
-				EEC5286E12737C8E0064054A /* INILoader.cpp */,
-				EEC5286F12737C8F0064054A /* INILoader.h */,
+				EE51F31412EB4BE7003A241E /* PreferencesFile.cpp */,
+				EE51F31512EB4BE7003A241E /* PreferencesFile.h */,
+				EE51F30E12EB4BBE003A241E /* INIFile.cpp */,
+				EE51F30F12EB4BBE003A241E /* INIFile.h */,
 				EEC5287012737C8F0064054A /* PNGLoader.cpp */,
 				EEC5287112737C8F0064054A /* PNGLoader.h */,
 			);
@@ -514,6 +533,7 @@
 		EE915DED1255CBB100F0B0B3 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				EE51F2E712EB4B74003A241E /* simpleini-4.13 */,
 				EE07CDC8127A279000AAA31F /* slb-1.6.3 */,
 				EE0A64221270438600F5F134 /* glew-1.5.6 */,
 				EEC52F65127559C40064054A /* glfw3 */,
@@ -841,7 +861,6 @@
 				EE0A64241270439C00F5F134 /* glew.c in Sources */,
 				EE7814931271FFAE00B01960 /* Tween.cpp in Sources */,
 				EE7815131272144800B01960 /* StringUtils.cpp in Sources */,
-				EEC5287212737C8F0064054A /* INILoader.cpp in Sources */,
 				EEC5287312737C8F0064054A /* PNGLoader.cpp in Sources */,
 				EEC52D7B1273803E0064054A /* adler32.c in Sources */,
 				EEC52DF71273803E0064054A /* crc32.c in Sources */,
@@ -912,6 +931,9 @@
 				EE48489412D7178D00534E26 /* Window.cpp in Sources */,
 				EE4849B612D9CC7A00534E26 /* MessageManager.cpp in Sources */,
 				EEE249EE12E77C9D007685C4 /* Font.cpp in Sources */,
+				EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */,
+				EE51F31012EB4BBE003A241E /* INIFile.cpp in Sources */,
+				EE51F31612EB4BE7003A241E /* PreferencesFile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
