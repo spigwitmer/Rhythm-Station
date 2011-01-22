@@ -2,7 +2,7 @@
 #include "Logger.h"
 #include "PreferencesFile.h"
 
-PreferencesFile* Preferences = NULL;
+PreferencesFile *Preferences = NULL;
 
 PreferencesFile::PreferencesFile(std::string _path) : INIFile(_path)
 {
