@@ -102,7 +102,7 @@ src/FileManager.cpp \
 src/Font.cpp \
 src/GameManager.cpp \
 src/HandleArguments.cpp \
-src/INILoader.cpp \
+src/INIFile.cpp \
 src/InputManager.cpp \
 src/Logger.cpp \
 src/LuaManager.cpp \
@@ -113,6 +113,7 @@ src/Message.cpp \
 src/MessageManager.cpp \
 src/Object.cpp \
 src/PNGLoader.cpp \
+src/PreferencesFile.cpp \
 src/ResourceManager.cpp \
 src/Screen.cpp \
 src/Shader.cpp \
@@ -128,7 +129,8 @@ rstation_CPPFLAGS = -DDEBUG \
 $(EXT_DEPENDS_CFLAGS) \
 $(FFTW3_CFLAGS) \
 $(libglfw3_a_CPPFLAGS) \
-$(libslb_a_CPPFLAGS)
+$(libslb_a_CPPFLAGS) \
+-Iextern/simpleini-4.13
 
 #
 # Optional bundled lua

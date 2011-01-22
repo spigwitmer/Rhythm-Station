@@ -11,17 +11,25 @@
 #include "ResourceManager.h"
 #include "Logger.h"
 #include "Window.h"
+#include "PreferencesFile.h"
 
 // Initialize everything and set up the GL states used throughout the program.
 int main (int argc, char **argv)
 {
+	// Startup Logger singleton first
+	Log = new Logger();
+	
+	// Load Preferences
+	Preferences = new PreferencesFile("Preferences.ini");
+	
 	glfwInit();
-	Window::Create(854, 480);
+	Window::Create(
+		Preferences->GetLongValue("Graphics","windowWidth"),
+		Preferences->GetLongValue("Graphics","windowHeight"));
 	glfwSwapInterval(1);
 	glEnable(GL_DEPTH_TEST);
 	
 	// Start up all our singletons.
-	Log			= new Logger();
 	Game		= new GameManager(Window::GetWindow());
 	Input		= new InputManager();
 	Lua			= new LuaManager();
@@ -76,6 +84,7 @@ int main (int argc, char **argv)
 	delete Game;
 	delete Input;
 	delete Log;
+	delete Preferences;
 	
 	glfwTerminate();
 	
