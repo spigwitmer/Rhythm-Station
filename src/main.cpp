@@ -24,15 +24,16 @@ int main (int argc, char **argv)
 	
 	glfwInit();
 	Window::Create(
-		Preferences->GetLongValue("Graphics","windowWidth"),
-		Preferences->GetLongValue("Graphics","windowHeight"));
-	glfwSwapInterval(1);
+		Preferences->GetLongValue("Graphics", "WindowWidth"),
+		Preferences->GetLongValue("Graphics", "WindowHeight"),
+		Preferences->GetBoolValue("Graphics", "FullScreen"));
+	glfwSwapInterval(Preferences->GetBoolValue("Graphics", "VSync"));
 	glEnable(GL_DEPTH_TEST);
 	
 	// Start up all our singletons.
-	Game		= new GameManager(Window::GetWindow());
-	Input		= new InputManager();
-	Lua			= new LuaManager();
+	Game	= new GameManager(Window::GetWindow());
+	Input	= new InputManager();
+	Lua		= new LuaManager();
 	
 	// Connect event callbacks
 	Input->Connect();
@@ -49,11 +50,15 @@ int main (int argc, char **argv)
 	glEnableVertexAttribArray(VERTEX_ARRAY);
 	glEnableVertexAttribArray(NORMAL_ARRAY);
 	glEnableVertexAttribArray(COORD_ARRAY);
+	
 	double then = glfwGetTime(); // prevent registering a skip on first update
 	double max_delta = (1.0/60.0) * 3.0;
 	
 	while (glfwIsWindow(Window::GetWindow()))
 	{
+		if (glfwGetKey(Window::GetWindow(), GLFW_KEY_ESC))
+			break;
+
 		double now = glfwGetTime();
 		double delta = fabs(now - then);
 		

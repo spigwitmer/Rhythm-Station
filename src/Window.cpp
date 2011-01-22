@@ -34,7 +34,8 @@ bool Window::Create(int width, int height, bool fullscreen)
 	// Make sure we aren't defaulting to something useless.
 	glfwOpenWindowHint(GLFW_ALPHA_BITS, 8);
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 32);
-	hwnd = glfwOpenWindow(width, height, GLFW_WINDOWED, "", NULL);
+	int fs = fullscreen ? GLFW_FULLSCREEN : GLFW_WINDOWED;
+	hwnd = glfwOpenWindow(width, height, fs, "", NULL);
 	
 	if (!hwnd)
 		return false;

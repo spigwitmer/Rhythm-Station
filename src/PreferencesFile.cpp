@@ -20,6 +20,8 @@ PreferencesFile::~PreferencesFile()
 
 void PreferencesFile::SetDefaults()
 {
-	this->SetValue("Graphics","windowWidth",854);
-	this->SetValue("Graphics","windowHeight",480);
+	this->SetValue("Graphics", "WindowWidth", 854);
+	this->SetValue("Graphics", "WindowHeight", 480);
+	this->SetValue("Graphics", "VSync", true);
+	this->SetValue("Graphics", "FullScreen", false);
 }

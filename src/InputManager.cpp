@@ -73,8 +73,8 @@ static void _mScrollCallback(GLFWwindow window, int x, int y)
 // on window resize
 static void _resizeCallback(GLFWwindow window, int width, int height)
 {
-	Preferences->SetValue("Graphics","windowWidth",width);
-	Preferences->SetValue("Graphics","windowHeight",height);
+	Preferences->SetValue("Graphics", "WindowWidth", width);
+	Preferences->SetValue("Graphics", "WindowHeight", height);
 	Game->ProjectionMatrix->Ortho(width, height, vec2(-500, 500));
 	Game->QueueRendering();
 }
