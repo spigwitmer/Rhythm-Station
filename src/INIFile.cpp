@@ -5,6 +5,7 @@
 
 INIFile::INIFile(std::string _path)
 {
+	this->relpath = _path;
 	this->path = FileManager::GetFile(_path);
 	this->backend.SetUnicode();
 }
@@ -13,12 +14,12 @@ bool INIFile::Load()
 {
 	if (!FileManager::FileExists(this->path))
 	{
-		Log->Print("Ini file '%s' doesn't exists.",this->path.c_str());
+		Log->Print("Ini-file '%s' doesn't exists.",this->relpath.c_str());
 		return false;
 	}
 	if (this->backend.LoadFile(this->path.c_str()) < 0)
 	{
-		Log->Print("Ini file '%s' couldn't be loaded.",this->path.c_str());
+		Log->Print("Ini-file '%s' couldn't be loaded.",this->relpath.c_str());
 		return false;
 	}
 	return true;
@@ -28,7 +29,7 @@ bool INIFile::Save()
 {
 	if (this->backend.SaveFile(this->path.c_str()) < 0)
 	{
-		Log->Print("Ini file '%s' couldn't be written.",this->path.c_str());
+		Log->Print("Ini-file '%s' couldn't be written.",this->relpath.c_str());
 		return false;
 	}
 	return true;
@@ -94,4 +95,3 @@ bool INIFile::SetValue(const char* section,
 		return false;
 	return true;
 }
-

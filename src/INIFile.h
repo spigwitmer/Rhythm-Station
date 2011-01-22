@@ -47,6 +47,7 @@ public:
 		bool value,
 		const char* comment = NULL);
 private:
+	std::string relpath;
 	std::string path;
 	CSimpleIniCaseA backend;
 };
