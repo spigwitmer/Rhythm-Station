@@ -42,11 +42,6 @@ void ResourceManager::FreeResource(Texture texture)
 	}
 }
 
-void ResourceManager::Add(Object *object)
-{
-	m_objects.push_back(object);
-}
-
 void ResourceManager::Add(Shader *shader)
 {
 	m_shaders.push_back(shader);
@@ -55,11 +50,6 @@ void ResourceManager::Add(Shader *shader)
 void ResourceManager::Add(Texture texture)
 {
 	m_textures.push_back(texture);
-}
-
-std::vector<Object *> ResourceManager::GetObjects()
-{
-	return m_objects;
 }
 
 template <class T>
@@ -79,11 +69,6 @@ void ResourceManager::Delete(std::vector<T *> obj)
 void ResourceManager::ReloadAll()
 {
 	Reload<Shader> (m_shaders);
-}
-
-void ResourceManager::ClearObjects()
-{
-	Delete<Object> (m_objects);
 }
 
 void ResourceManager::ClearAll()

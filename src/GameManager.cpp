@@ -24,12 +24,15 @@ GameManager::GameManager(GLFWwindow window) :
 	m_window_active(true)
 {
 	m_window = window;
+	
 	// Don't take over mouse, alt+f4/cmd+q, etc.
 	glfwEnable(window, GLFW_SYSTEM_KEYS);
 	glfwEnable(window, GLFW_MOUSE_CURSOR);
+	
 	// let the OS know we're up and running.
 	glfwPollEvents();
 	glfwGetWindowSize(window, &ScreenWidth, &ScreenHeight);
+	
 	// Check for some extensions (just CSAA right now)
 	glewInit();
 	

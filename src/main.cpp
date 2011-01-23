@@ -40,6 +40,7 @@ int main (int argc, char **argv)
 	
 	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);
+	
 	AudioManager::Open();
 	
 	// Start running Lua and begin the first screen.
