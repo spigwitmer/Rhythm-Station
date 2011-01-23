@@ -73,13 +73,14 @@ static void _mScrollCallback(GLFWwindow window, int x, int y)
 // on window resize
 static void _resizeCallback(GLFWwindow window, int width, int height)
 {
+	Log->Print("Changing size: %dx%d", width, height);
+
 	// Set new size preference (should this only be saved explicitely by user?)
 	Preferences->SetValue("Graphics", "WindowWidth", width);
 	Preferences->SetValue("Graphics", "WindowHeight", height);
 	
 	// Set new projection matrix, queue screen update.
-	Game->ProjectionMatrix->Identity();
-	Game->ProjectionMatrix->Ortho(width, height, vec2(-500, 500));
+	Game->ProjectionMatrix->Ortho(width, height);
 	
 	Game->QueueRendering();
 }
@@ -200,11 +201,13 @@ void InputManager::UpdateControllers()
 	for (unsigned int i = 0; i<status.controllers.size(); i++)
 	{
 		Controller *current = status.controllers[i];
+		
 		// store old values for comparison
 		unsigned char *old_buttons = new unsigned char[current->num_buttons]; // FIXME
 		float *old_axes = new float[current->num_axes]; // FIXME
 		memcpy(old_buttons, current->buttons_raw, sizeof(old_buttons));
 		memcpy(old_axes, current->axes, sizeof(old_axes));
+		
 		// update the current values
 		glfwGetJoystickButtons(current->id, current->buttons_raw, current->num_buttons);
 		glfwGetJoystickPos(current->id, current->axes, current->num_axes);
@@ -249,6 +252,8 @@ void InputManager::UpdateControllers()
 void InputManager::Update()
 {
 	glfwPollEvents();
+	
 	// controllers aren't driven by a callback - so we have to do it here.
+	// this *REALLY* should be threaded at some point.
 	UpdateControllers();
 }

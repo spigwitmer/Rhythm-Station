@@ -120,6 +120,7 @@ void Matrix::Scale(vec3 size)
 
 void Matrix::Ortho(float left, float right, float bottom, float top, float near, float far)
 {
+	this->Identity();
 	float tx, ty, tz;
 	tx = -((right+left) / (right-left));
 	ty = -((top+bottom) / (top-bottom));
