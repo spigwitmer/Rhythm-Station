@@ -69,7 +69,6 @@ std::string GameManager::GetExtensions()
 	return extensions.str();
 }
 
-
 GLFWwindow GameManager::GetWindow()
 {
 	return m_window;

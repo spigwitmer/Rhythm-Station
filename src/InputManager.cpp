@@ -73,9 +73,14 @@ static void _mScrollCallback(GLFWwindow window, int x, int y)
 // on window resize
 static void _resizeCallback(GLFWwindow window, int width, int height)
 {
+	// Set new size preference (should this only be saved explicitely by user?)
 	Preferences->SetValue("Graphics", "WindowWidth", width);
 	Preferences->SetValue("Graphics", "WindowHeight", height);
+	
+	// Set new projection matrix, queue screen update.
+	Game->ProjectionMatrix->Identity();
 	Game->ProjectionMatrix->Ortho(width, height, vec2(-500, 500));
+	
 	Game->QueueRendering();
 }
 
