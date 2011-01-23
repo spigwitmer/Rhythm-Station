@@ -4,7 +4,7 @@
 #include "Screen.h"
 #include "Logger.h"
 
-Sound::Sound() : m_use_eq(false), sd_loop(false), sd_pitch(1.0), sd_volume(1.0)
+Sound::Sound() : m_use_eq(false), sd_loop(false), loaded(false), sd_pitch(1.0), sd_volume(1.0)
 {
 	sd_sound = new SoundData();
 	
@@ -18,7 +18,9 @@ Sound::Sound() : m_use_eq(false), sd_loop(false), sd_pitch(1.0), sd_volume(1.0)
 
 Sound::~Sound()
 {
-	ov_clear(&ogg_file);
+	if (loaded)
+		ov_clear(&ogg_file);
+
 	delete sd_sound;
 	
 	// fft stuff
@@ -72,7 +74,10 @@ void Sound::Load(std::string _path)
 	alSourcef(sd_sound->source, AL_ROLLOFF_FACTOR, 0.0);
 	alSourcei(sd_sound->source, AL_LOOPING, sd_loop);
 	alSourcei(sd_sound->source, AL_SOURCE_RELATIVE, true);
-	Play();
+	
+	loaded = true;
+	
+	Play();	
 }
 
 bool Sound::IsPlaying()

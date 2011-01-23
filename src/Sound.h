@@ -53,7 +53,7 @@ private:
 	bool Stream(ALuint buffer);
 	bool IsPlaying();
 	
-	bool m_use_eq, sd_loop, sd_waiting;
+	bool m_use_eq, sd_loop, sd_waiting, loaded;
 	float sd_pan, sd_pitch, sd_volume;
 	
 	double *in;
