@@ -15,8 +15,6 @@
 #endif
 
 GameManager *Game = NULL;
-Matrix *obj = NULL;
-Object *quad = NULL;
 bool lazy_updates = true;
 
 GameManager::GameManager(GLFWwindow window) :
@@ -62,8 +60,6 @@ GameManager::~GameManager()
 	}
 	
 	delete ProjectionMatrix;
-	delete obj;
-	delete quad;
 }
 
 std::string GameManager::GetExtensions()

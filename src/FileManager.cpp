@@ -47,6 +47,7 @@ void FileManager::SetWorkingDirectory()
 	CFStringGetCString(cfStringRef, path, 1024, kCFStringEncodingUTF8);
 	CFRelease(mainBundleURL);
 	CFRelease(cfStringRef);
+	
 	std::string _path = path;
 	_path += "/Contents/Resources";
 	chdir(_path.c_str());

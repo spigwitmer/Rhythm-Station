@@ -28,8 +28,6 @@ struct SoundData
 	std::string path;
 };
 
-int sine_wave();
-
 namespace AudioManager
 {
 	void AddSound(SoundData *sound);
