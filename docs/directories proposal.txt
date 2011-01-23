@@ -1,0 +1,22 @@
+Directory design idea (at least for linux)
+------------------------------------------
+
+Global rstation files
+  - data [/usr/share/rstation/]
+    * shaders
+    * etc.
+  - shared user files [/var/lib/rstation/]
+    * user profiles
+    * global preferences (system defaults)
+  - user files [~/.rstation/]
+    * user overriden preferences
+  
+Game specific files 
+  - data [/usr/share/rstation/games/<gameid>/]
+    * themes
+    * songs
+    * etc.
+  - shared user files [/var/lib/rstation/games/<gameid>/]
+    * high scores etc.
+  - user files [~/.rstation/games/<gameid>/]
+    *
