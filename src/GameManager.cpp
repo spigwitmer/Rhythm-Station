@@ -125,6 +125,7 @@ void GameManager::Render()
 		vpScreens[i]->Draw();
 		
 	glfwSwapBuffers();
+	
 	// done rendering, don't do it again until requested.
 	m_bQueuedRender = false;
 }

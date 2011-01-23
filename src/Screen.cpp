@@ -1,6 +1,5 @@
 #include <GL/glfw3.h>
 #include "Screen.h"
-#include "ResourceManager.h"
 #include "Logger.h"
 
 void Screen::AddObject(Object *_object)

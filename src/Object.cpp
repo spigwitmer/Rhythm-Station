@@ -78,6 +78,7 @@ void Object::Load(std::string _path)
 		{
 			PNGLoader png;
 			tex = png.Load(path);
+			
 			// register this so we don't load it again.
 			ResourceManager::Add(tex);
 		}
@@ -162,6 +163,7 @@ void Object::Draw()
 	m_shader.Bind();
 	m_texture.Bind();
 	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
+	
 	// Draw!
 	mesh.Draw();
 }

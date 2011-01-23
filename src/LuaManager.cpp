@@ -12,6 +12,7 @@ LuaManager::LuaManager()
 {
 	L = lua_open();
 	luaL_openlibs(L);
+	
 	// Register stuff with Lua.
 	SLB::Manager::getInstance().registerSLB(L);
 	Object_Binding();
@@ -29,6 +30,7 @@ void LuaManager::Run(const char *path)
 	std::string file = FileManager::GetFile(path);
 	file = FileManager::GetFileContents(file);
 	file = "SLB.using(SLB)\n" + file;
+	
 	// Load into Lua, run.
 	luaL_loadstring(L, file.c_str());
 	int status = lua_pcall(L, 0, LUA_MULTRET, 0);
@@ -38,7 +40,8 @@ void LuaManager::Run(const char *path)
 		
 	// If we're here, something is wrong.
 	Log->Print("***** Lua runtime error in %s *****", path);
-	// pop error message from the stack.
 	Log->Print(lua_tostring(L, -1));
+	
+	// pop error message from the stack.
 	lua_pop(L, 1);
 }
