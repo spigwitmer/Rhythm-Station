@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include <GL/glfw3.h>
 #include "Message.h"
 #include "Logger.h"
@@ -9,7 +10,7 @@ GLFWwindow hwnd = 0;
 bool focused = false;
 
 bool Window::Create(int width, int height, bool fullscreen)
-{
+{	
 	// AA makes things pretty
 	if (Preferences->GetBoolValue("Graphics", "AntiAliasing"))
 		glfwOpenWindowHint(GLFW_FSAA_SAMPLES, Preferences->GetLongValue("Graphics", "AntiAliasingSamples"));
@@ -19,6 +20,8 @@ bool Window::Create(int width, int height, bool fullscreen)
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 32);
 	int fs = fullscreen ? GLFW_FULLSCREEN : GLFW_WINDOWED;
 	hwnd = glfwOpenWindow(width, height, fs, "", NULL);
+	
+	glewInit();
 	
 	int status = glfwGetError();
 	if (status != GLFW_NO_ERROR)

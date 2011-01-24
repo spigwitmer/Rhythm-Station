@@ -32,12 +32,10 @@ GameManager::GameManager(GLFWwindow window) :
 	glfwGetWindowSize(window, &ScreenWidth, &ScreenHeight);
 	
 	// Check for some extensions (just CSAA right now)
-	glewInit();
-	
 	if (GLEW_NV_framebuffer_multisample_coverage)
 	{
 		Log->Print("CSAA Supported.");
-		Game->IsExtSupported["CSAA"] = true;
+		IsExtSupported["CSAA"] = true;
 	}
 	else
 		Log->Print("CSAA Not Supported.");
