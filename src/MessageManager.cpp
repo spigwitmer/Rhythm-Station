@@ -1,21 +1,23 @@
 #include "MessageManager.h"
 
-void MessageManager::StartListening(std::string event, MessageListener *scr)
+// I can't stand long types.
+typedef std::vector<MessageListener*>::iterator MessageIterator;
+
+void MessageManager::StartListening(std::string event, MessageListener *obj)
 {
-	vpEventListeners[event].push_back(scr);
+	vpEventListeners[event].push_back(obj);
 }
 
 void MessageManager::StopListening(std::string event, MessageListener *scr)
 {
-	// cut down some typing.
 	std::vector<MessageListener *> listeners = vpEventListeners[event];
-	
+
 	// find the screen and remove it.
-	for (size_t i = listeners.size(); i>0; --i)
+	for (MessageIterator it = listeners.end(); it != listeners.begin(); it--)
 	{
-		if (listeners[i] == scr)
+		if (*it == scr)
 		{
-			listeners.erase(listeners.begin()+i);
+			listeners.erase(it);
 			break;
 		}
 	}
@@ -23,8 +25,8 @@ void MessageManager::StopListening(std::string event, MessageListener *scr)
 
 void MessageManager::DispatchMessage(Message &msg)
 {
-	std::vector<MessageListener *> listeners = vpEventListeners[msg.name];
+	std::vector<MessageListener*> listeners = vpEventListeners[msg.name];
 	
-	for (size_t i = 0; i<listeners.size(); i++)
-		listeners[i]->HandleMessage(msg);
+	for (MessageIterator it = listeners.begin(); it != listeners.end(); it++)
+		(*it)->HandleMessage(msg);
 }
