@@ -84,6 +84,7 @@ Texture PNGLoader::Load(std::string _path)
 		
 	// filler for keys
 	png_set_filler(png_ptr, 0xff, PNG_FILLER_AFTER);
+	
 	// read the file
 	png_read_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
 	tex.width = png_get_image_width(png_ptr,info_ptr);
@@ -96,7 +97,7 @@ Texture PNGLoader::Load(std::string _path)
 	for (unsigned int i = 0; i < tex.height; i++)
 		memcpy(&pixels[i*rowsize], row_pointers[i], rowsize);
 		
-	// upload texture to GPU
+	// prepare texture for uploading to GPU
 	glGenTextures(1, &tex.ptr); // make it
 	glBindTexture(GL_TEXTURE_2D, tex.ptr); // bind it
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -123,8 +124,10 @@ Texture PNGLoader::Load(std::string _path)
 	
 	// log some stats
 	Log->Print("Uploading texture (res = %dx%d, channels = %d)", tex.width, tex.height, components);
+	
+	// finally upload the texture
 	glTexImage2D(GL_TEXTURE_2D, 0, components, tex.width, tex.height, 0, glformat, GL_UNSIGNED_BYTE, pixels);
-	glBindTexture(GL_TEXTURE_2D, 0);
+
 	// cleanup
 	png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
 	delete[] pixels;
