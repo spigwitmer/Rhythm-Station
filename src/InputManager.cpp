@@ -6,6 +6,7 @@
 #include "INIFile.h"
 #include "Logger.h"
 #include "PreferencesFile.h"
+#include "Window.h"
 
 InputManager *Input = NULL;
 
@@ -73,7 +74,7 @@ static void _mScrollCallback(GLFWwindow window, int x, int y)
 // on window resize
 static void _resizeCallback(GLFWwindow window, int width, int height)
 {
-	Log->Print("Changing size: %dx%d", width, height);
+	glfwSetWindowTitle(Window::GetWindow(), Log->SPrint("%dx%d", width, height).c_str());
 
 	// Set new size preference (should this only be saved explicitely by user?)
 	Preferences->SetValue("Graphics", "WindowWidth", width);
@@ -118,9 +119,7 @@ InputManager::~InputManager()
 	glfwSetScrollCallback(NULL);
 	
 	for (unsigned int i = 0; i<status.controllers.size(); i++)
-	{
 		delete status.controllers[i];
-	}
 	
 	status.controllers.clear();
 	delete[] status.mouse.buttons;
