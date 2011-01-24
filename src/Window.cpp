@@ -7,25 +7,6 @@
 GLFWwindow hwnd = 0;
 bool focused = false;
 
-// internal stuff, don't need to access it elsewhere.
-static void _SetFocus(GLFWwindow window, int status)
-{
-	focused = (status == GL_TRUE) ? true : false;
-	
-	Message msg;
-	msg.name = "WindowFocused";
-	msg.data["Focused"] = (void *)focused;
-	msg.Send();
-}
-
-static void _SetSize(GLFWwindow window, int x, int y)
-{
-	Message msg;
-	msg.name = "WindowResized";
-	msg.data["Size"] = (void *)vec2(x, y);
-	msg.Send();
-}
-
 bool Window::Create(int width, int height, bool fullscreen)
 {
 	// AA makes things pretty
@@ -37,12 +18,12 @@ bool Window::Create(int width, int height, bool fullscreen)
 	int fs = fullscreen ? GLFW_FULLSCREEN : GLFW_WINDOWED;
 	hwnd = glfwOpenWindow(width, height, fs, "", NULL);
 	
+	int status = glfwGetError();
+	if (status != GLFW_NO_ERROR)
+		Log->Print(glfwErrorString(status));
+	
 	if (!hwnd)
 		return false;
-		
-	// Set callbacks.
-	glfwSetWindowFocusCallback(&_SetFocus);
-	glfwSetWindowSizeCallback(&_SetSize);
 	
 	Message msg;
 	msg.name = "WindowOpened";
