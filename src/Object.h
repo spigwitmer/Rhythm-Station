@@ -75,6 +75,17 @@ public:
 	
 	void DepthClear(bool enabled);
 	
+	vec3 GetTranslation() {
+		return m_pos;
+	}
+	vec3 GetRotation() {
+		return m_rot;
+	}
+	vec3 GetScale() {
+		return m_scale;
+	}
+	
+	
 protected:
 	void Register();
 	

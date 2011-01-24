@@ -8,7 +8,7 @@
 #include "PNGLoader.h"
 
 Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)), m_texture(),
-	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(0.0))
+	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(1.0))
 {
 	m_shader.SetProjectionMatrix(Game->ProjectionMatrix); // XXX
 	m_shader.Bind();
@@ -131,16 +131,24 @@ void Object::Scale(vec3 scale)
 // update tweens and stuff
 void Object::Update(double delta)
 {
-	if (m_parent)
-		m_matrix = m_parent->GetMatrix();
-	
 	if (m_bNeedsUpdate)
 	{
 		m_matrix.Identity();
+		
+		// if we have a parent, copy the translation/rotation/scale.
+		if (m_parent)
+			m_matrix.Translate(m_parent->GetTranslation());
 		m_matrix.Translate(m_pos);
+		
+		if (m_parent)
+			m_matrix.Scale(m_parent->GetScale());
 		m_matrix.Scale(m_scale);
 		m_matrix.Scale(m_texture.width, m_texture.height, 1.0);
+		
+		if (m_parent)
+			m_matrix.Rotate(m_parent->GetRotation());
 		m_matrix.Rotate(m_rot);
+		
 		m_bNeedsUpdate = false;
 		Game->QueueRendering();
 	}
@@ -178,5 +186,6 @@ void Object_Binding()
 	.set("Translate", &Object::Translate3f)
 	.set("Rotate", &Object::Rotate3f)
 	.set("Scale", &Object::Scale3f)
+	.set("Parent", &Object::SetParent)
 	.set("Color", &Object::Color4f);
 }
