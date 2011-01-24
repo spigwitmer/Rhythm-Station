@@ -16,8 +16,8 @@
 
 #include <fftw3.h>
 
-// 8k is the smallest size which (consistently) works for me. Use 16k for now.
-#define BUFFER_SIZE 4096*4
+// 8k is the smallest size which (consistently) works for me. Use 32k for now.
+#define BUFFER_SIZE 4096*8
 
 class Sound : public Object
 {

@@ -168,6 +168,7 @@ bool Sound::Stream(ALuint buffer)
 		{
 			// shit just got real ( http://xkcd.com/849/ )
 			in[i] = sqrt(pow(out[i*skip][0],2)+pow(out[i*skip][1],2));
+			
 			// normalize
 			in[i] /= sd_sound->rate*0.5;
 		}

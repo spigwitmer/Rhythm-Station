@@ -17,7 +17,7 @@ struct SoundData
 	
 	// buffer and source data, error handle (just in case)
 	ALenum error;
-	ALuint buffers[4];
+	ALuint buffers[2];
 	ALuint source;
 	
 	// sampling rate and channels
