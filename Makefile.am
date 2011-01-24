@@ -97,7 +97,6 @@ liblua_a_CPPFLAGS = -Iextern/lua-5.1.4/src
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a
 rstation_SOURCES = \
-src/AudioManager.cpp \
 src/FileManager.cpp \
 src/Font.cpp \
 src/GameManager.cpp \
@@ -112,12 +111,13 @@ src/Mesh.cpp \
 src/Message.cpp \
 src/MessageManager.cpp \
 src/Object.cpp \
-src/PNGLoader.cpp \
+src/PNGFile.cpp \
 src/PreferencesFile.cpp \
 src/ResourceManager.cpp \
 src/Screen.cpp \
 src/Shader.cpp \
 src/Sound.cpp \
+src/SoundManager.cpp \
 src/SQLiteDatabase.cpp \
 src/StringUtils.cpp \
 src/ThreadGroup.cpp \
