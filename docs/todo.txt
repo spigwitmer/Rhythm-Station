@@ -1,0 +1,36 @@
+TODO: (note: not complete, of course)
+Essential:
+- Font support
+	- Needed for menus and such.
+	- Needed for on-screen stats.
+	- Needed for text, obviously.
+- Menu screens
+	- Make the game do something!
+- Support for loading some note format
+	- Doesn't really matter which.
+- Gameplay (!)
+	- The point.
+	- Depends on supporting a note format, really.
+	- We'll need a way to ensure things stay synced eventually.
+- Scripting
+	- Lua support exists, but is very, very primitive and not very useful
+		at the moment.
+	- I don't particularly know how to go about most of this. - Colby
+
+Convenient:
+- Organization
+	- The source folder is messy
+	- Things should probably be renamed to be more consistent and/or
+		more descriptive.
+	- The window callbacks really shouldn't be in InputManager. That's bad.
+- Threading
+	- Namely for keeping audio from dropping out and input accurate.
+	- Threaded loading would be good (ideally, the screen could continue
+		updating during a loading screen and still go faster than if it
+		were single-threaded).
+- OBJ loader should come back
+
+Buggy/bad behavior:
+- Resizing the window causes things to be scaled wrong. Weird!
+- Audio drops out if anything causes the game to stall (resizing, loading, etc)
+- Preferences added when there is an existing Preferences.ini don't get added.

@@ -7,11 +7,13 @@
 Texture PNGLoader::Load(std::string _path)
 {
 	Texture tex;
+	
 	// png specifics
 	png_structp png_ptr = NULL;
 	png_infop info_ptr = NULL, end_info = NULL;
 	png_bytep *row_pointers = NULL;
 	png_byte sig[8];
+	
 	// the rest
 	FILE *pngFile = NULL;
 	GLubyte *pixels = NULL;
