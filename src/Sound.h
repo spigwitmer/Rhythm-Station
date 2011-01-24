@@ -1,9 +1,6 @@
 #ifndef _SOUND_H_
 #define _SOUND_H_
 
-#include "Object.h"
-#include "AudioManager.h"
-
 #ifdef __APPLE__
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
@@ -15,6 +12,9 @@
 #endif
 
 #include <fftw3.h>
+
+#include "Object.h"
+#include "SoundManager.h"
 
 // 8k is the smallest size which (consistently) works for me. Use 32k for now.
 #define BUFFER_SIZE 4096*8

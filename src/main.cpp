@@ -4,7 +4,7 @@
 #include "HandleArguments.h"
 
 // All the singletons (we init them here, should do static init?)
-#include "AudioManager.h"
+#include "SoundManager.h"
 #include "GameManager.h"
 #include "InputManager.h"
 #include "LuaManager.h"
@@ -41,7 +41,7 @@ int main (int argc, char **argv)
 	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);
 	
-	AudioManager::Open();
+	SoundManager::Open();
 	
 	// Start running Lua and begin the first screen.
 	Game->Start();
@@ -84,7 +84,7 @@ int main (int argc, char **argv)
 		Game->Render();
 	}
 	
-	AudioManager::Close();
+	SoundManager::Close();
 	
 	delete Lua;
 	delete Game;

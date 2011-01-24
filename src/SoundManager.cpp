@@ -9,7 +9,7 @@
 #include <cstring>
 #include <math.h>
 #include <vector>
-#include "AudioManager.h"
+#include "SoundManager.h"
 #include "Logger.h"
 
 ALCdevice *device;
@@ -32,16 +32,16 @@ SoundData::~SoundData()
 
 void SoundData::Register()
 {
-	AudioManager::AddSound(this);
+	SoundManager::AddSound(this);
 }
 
-void AudioManager::AddSound(SoundData *_sound)
+void SoundManager::AddSound(SoundData *_sound)
 {
 	vpSounds.push_back(_sound);
 }
 
 // finicky
-void AudioManager::Clear()
+void SoundManager::Clear()
 {
 	while (!vpSounds.empty())
 	{
@@ -50,7 +50,7 @@ void AudioManager::Clear()
 	}
 }
 
-void AudioManager::Open()
+void SoundManager::Open()
 {
 	// open default device.
 	device = alcOpenDevice(NULL);
@@ -68,7 +68,7 @@ void AudioManager::Open()
 	alGetError();
 }
 
-void AudioManager::Close()
+void SoundManager::Close()
 {
 	Clear();
 	

@@ -28,7 +28,7 @@ struct SoundData
 	std::string path;
 };
 
-namespace AudioManager
+namespace SoundManager
 {
 	void AddSound(SoundData *sound);
 	void Clear();

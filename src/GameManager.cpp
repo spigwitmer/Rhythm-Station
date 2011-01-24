@@ -1,6 +1,6 @@
 #include <GL/glew.h>
 #include <stdlib.h>
-#include "AudioManager.h"
+#include "SoundManager.h"
 #include "GameManager.h"
 #include "InputManager.h"
 #include "Logger.h"

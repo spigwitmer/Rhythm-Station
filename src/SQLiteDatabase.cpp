@@ -22,6 +22,7 @@ void SQLiteDatabase::Query(string sql_str)
 {
 	// reset query state.
 	sqlite3_finalize(last_query);
+	
 	// prepare the statement and run it
 	sqlite3_prepare_v2(db_handle, sql_str.c_str(), sql_str.size(), &last_query, NULL);
 	sqlite3_sql(last_query);
