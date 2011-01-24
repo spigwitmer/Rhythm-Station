@@ -5,7 +5,7 @@
 #include "FileManager.h"
 #include "Screen.h"
 #include "Logger.h"
-#include "PNGLoader.h"
+#include "PNGFile.h"
 
 Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)), m_texture(),
 	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(1.0))
@@ -76,7 +76,7 @@ void Object::Load(std::string _path)
 		
 		if (!ResourceManager::GetResource(path,tex))
 		{
-			PNGLoader png;
+			PNGFile png;
 			tex = png.Load(path);
 			
 			// register this so we don't load it again.

@@ -95,7 +95,7 @@
 		EEAB1AFD126F5440004FE58D /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1ADB126F5440004FE58D /* print.c */; };
 		EEAB1B18126F5DAF004FE58D /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEAB1B17126F5DAF004FE58D /* libfreetype.a */; };
 		EEC5285F127375570064054A /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = EEC5285E127375570064054A /* init.lua */; };
-		EEC5287312737C8F0064054A /* PNGLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC5287012737C8F0064054A /* PNGLoader.cpp */; };
+		EEC5287312737C8F0064054A /* PNGFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC5287012737C8F0064054A /* PNGFile.cpp */; };
 		EEC52D7B1273803E0064054A /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52B9B1273803D0064054A /* adler32.c */; };
 		EEC52DF71273803E0064054A /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52C3F1273803E0064054A /* crc32.c */; };
 		EEC52DF81273803E0064054A /* deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52C411273803E0064054A /* deflate.c */; };
@@ -280,8 +280,8 @@
 		EEAB1ADB126F5440004FE58D /* print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = print.c; sourceTree = "<group>"; };
 		EEAB1B17126F5DAF004FE58D /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = /opt/local/lib/libfreetype.a; sourceTree = "<absolute>"; };
 		EEC5285E127375570064054A /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
-		EEC5287012737C8F0064054A /* PNGLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PNGLoader.cpp; sourceTree = "<group>"; };
-		EEC5287112737C8F0064054A /* PNGLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGLoader.h; sourceTree = "<group>"; };
+		EEC5287012737C8F0064054A /* PNGFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PNGFile.cpp; sourceTree = "<group>"; };
+		EEC5287112737C8F0064054A /* PNGFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGFile.h; sourceTree = "<group>"; };
 		EEC52B9B1273803D0064054A /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
 		EEC52C3F1273803E0064054A /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc32.c; sourceTree = "<group>"; };
 		EEC52C401273803E0064054A /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
@@ -504,8 +504,8 @@
 				EE51F31512EB4BE7003A241E /* PreferencesFile.h */,
 				EE51F30E12EB4BBE003A241E /* INIFile.cpp */,
 				EE51F30F12EB4BBE003A241E /* INIFile.h */,
-				EEC5287012737C8F0064054A /* PNGLoader.cpp */,
-				EEC5287112737C8F0064054A /* PNGLoader.h */,
+				EEC5287012737C8F0064054A /* PNGFile.cpp */,
+				EEC5287112737C8F0064054A /* PNGFile.h */,
 			);
 			name = Loaders;
 			sourceTree = "<group>";
@@ -857,7 +857,7 @@
 				EE0A64241270439C00F5F134 /* glew.c in Sources */,
 				EE7814931271FFAE00B01960 /* Tween.cpp in Sources */,
 				EE7815131272144800B01960 /* StringUtils.cpp in Sources */,
-				EEC5287312737C8F0064054A /* PNGLoader.cpp in Sources */,
+				EEC5287312737C8F0064054A /* PNGFile.cpp in Sources */,
 				EEC52D7B1273803E0064054A /* adler32.c in Sources */,
 				EEC52DF71273803E0064054A /* crc32.c in Sources */,
 				EEC52DF81273803E0064054A /* deflate.c in Sources */,

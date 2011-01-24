@@ -1,10 +1,10 @@
 #include <GL/glfw3.h>
 #include <png.h>
 #include "FileManager.h"
-#include "PNGLoader.h"
+#include "PNGFile.h"
 #include "Logger.h"
 
-Texture PNGLoader::Load(std::string _path)
+Texture PNGFile::Load(std::string _path)
 {
 	Texture tex;
 	
