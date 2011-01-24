@@ -12,8 +12,8 @@ bool focused = false;
 bool Window::Create(int width, int height, bool fullscreen)
 {	
 	// AA makes things pretty
-	if (Preferences->GetBoolValue("Graphics", "AntiAliasing"))
-		glfwOpenWindowHint(GLFW_FSAA_SAMPLES, Preferences->GetLongValue("Graphics", "AntiAliasingSamples"));
+	if (Preferences->GetBoolValue("Graphics", "AntiAliasing", false))
+		glfwOpenWindowHint(GLFW_FSAA_SAMPLES, Preferences->GetLongValue("Graphics", "AntiAliasingSamples", 4));
 	
 	// Make sure we aren't defaulting to something useless.
 	glfwOpenWindowHint(GLFW_ALPHA_BITS, 8);

@@ -24,10 +24,10 @@ int main (int argc, char **argv)
 	
 	glfwInit();
 	Window::Create(
-		Preferences->GetLongValue("Graphics", "WindowWidth"),
-		Preferences->GetLongValue("Graphics", "WindowHeight"),
-		Preferences->GetBoolValue("Graphics", "FullScreen"));
-	glfwSwapInterval(Preferences->GetBoolValue("Graphics", "VSync"));
+		Preferences->GetLongValue("Graphics", "WindowWidth", 854),
+		Preferences->GetLongValue("Graphics", "WindowHeight", 480),
+		Preferences->GetBoolValue("Graphics", "FullScreen"), false);
+	glfwSwapInterval(Preferences->GetBoolValue("Graphics", "VSync"), true);
 	glEnable(GL_DEPTH_TEST);
 	
 	// Start up all our singletons.

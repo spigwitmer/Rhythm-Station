@@ -65,7 +65,7 @@ private:
 	GLuint current_shader;
 	bool m_debug, m_bFirstUpdate, m_bQueuedRender, m_window_active;
 	
-	std::vector<Screen *> vpScreens;
+	std::vector<Screen*> vpScreens;
 };
 
 extern GameManager *Game;

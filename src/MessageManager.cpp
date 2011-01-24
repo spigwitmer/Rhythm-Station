@@ -13,7 +13,7 @@ void MessageManager::StopListening(std::string event, MessageListener *scr)
 	std::vector<MessageListener *> listeners = vpEventListeners[event];
 
 	// find the screen and remove it.
-	for (MessageIterator it = listeners.end(); it != listeners.begin(); it--)
+	for (MessageIterator it = listeners.begin(); it != listeners.end(); ++it)
 	{
 		if (*it == scr)
 		{
@@ -27,6 +27,6 @@ void MessageManager::DispatchMessage(Message &msg)
 {
 	std::vector<MessageListener*> listeners = vpEventListeners[msg.name];
 	
-	for (MessageIterator it = listeners.begin(); it != listeners.end(); it++)
+	for (MessageIterator it = listeners.begin(); it != listeners.end(); ++it)
 		(*it)->HandleMessage(msg);
 }
