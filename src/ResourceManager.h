@@ -28,14 +28,11 @@ struct Texture
 
 namespace ResourceManager
 {
-	void Add(Object *object);
 	void Add(Texture texture);
 	void Add(Shader *shader);
-	std::vector<Object *> GetObjects();
 	bool GetResource(std::string path,Texture &texture);
 	bool GetResource(std::string path,Shader *texture);
 	void FreeResource(Texture texture);
-	void ClearObjects();
 	void ClearAll();
 	void ReloadAll();
 	

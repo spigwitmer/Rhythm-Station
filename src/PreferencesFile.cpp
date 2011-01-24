@@ -24,4 +24,6 @@ void PreferencesFile::SetDefaults()
 	this->SetValue("Graphics", "WindowHeight", 480);
 	this->SetValue("Graphics", "VSync", true);
 	this->SetValue("Graphics", "FullScreen", false);
+	this->SetValue("Graphics", "AntiAliasing", true);
+	this->SetValue("Graphics", "AntiAliasingSamples", 4);
 }

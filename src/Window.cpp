@@ -2,6 +2,7 @@
 #include "Message.h"
 #include "Logger.h"
 #include "Window.h"
+#include "PreferencesFile.h"
 #include "Type.h"
 
 GLFWwindow hwnd = 0;
@@ -10,7 +11,8 @@ bool focused = false;
 bool Window::Create(int width, int height, bool fullscreen)
 {
 	// AA makes things pretty
-	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4);
+	if (Preferences->GetBoolValue("Graphics", "AntiAliasing"))
+		glfwOpenWindowHint(GLFW_FSAA_SAMPLES, Preferences->GetLongValue("Graphics", "AntiAliasingSamples"));
 	
 	// Make sure we aren't defaulting to something useless.
 	glfwOpenWindowHint(GLFW_ALPHA_BITS, 8);
