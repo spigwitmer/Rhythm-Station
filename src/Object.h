@@ -14,6 +14,14 @@
 
 struct AnimationState
 {
+	AnimationState()
+	{
+		tween_type = TWEEN_LINEAR;
+		duration = 0.0;
+		pos = vec3(0.0);
+		rot = vec3(0.0);
+		scale = vec3(1.0);
+	}
 	AnimationState operator=(const AnimationState &anim)
 	{
 		tween_type = anim.tween_type;
@@ -29,6 +37,7 @@ struct AnimationState
 	
 	Matrix matrix;
 	rgba color;
+	vec3 pos, rot, scale;
 	
 	bool active;
 };
@@ -94,8 +103,8 @@ protected:
 	Mesh mesh;
 	GLuint m_color_uniform;
 	
-	std::map<std::string, std::vector<AnimationState> > m_states;
-	std::vector<Object *> m_children;
+	std::vector<AnimationState> m_states;
+	std::vector<Object*> m_children;
 	
 	bool m_bNeedsUpdate, m_bDepthClear;
 	int m_vertices;

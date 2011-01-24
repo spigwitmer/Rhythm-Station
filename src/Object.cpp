@@ -33,6 +33,7 @@ Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)
 	
 	// Register in scene.
 	Register();
+	AddState();
 }
 
 Object::~Object()
@@ -99,12 +100,16 @@ void Object::HandleMessage(std::string _msg)
 
 void Object::AddState()
 {
-	m_states["Init"].push_back(m_current);
+	// Push a copy of the current state onto the back.
+	AnimationState state;
+	if (m_states.size() > 0)
+		state = m_states.back();
+	m_states.push_back(state);
 }
 
 void Object::Color(rgba col)
 {
-	m_color = col;
+	m_states.back().color = col;
 	QueueUpdate();
 }
 
@@ -112,25 +117,37 @@ void Object::Color(rgba col)
 // TODO: add to tweens
 void Object::Translate(vec3 pos)
 {
-	m_pos = pos;
+	m_states.back().pos = pos;
 	QueueUpdate();
 }
 
 void Object::Rotate(vec3 rot)
 {
-	m_rot = rot;
+	m_states.back().rot = rot;
 	QueueUpdate();
 }
 
 void Object::Scale(vec3 scale)
 {
-	m_scale = scale;
+	m_states.back().scale = scale;
 	QueueUpdate();
 }
 
 // update tweens and stuff
 void Object::Update(double delta)
 {
+/*
+	if (m_states.size() >= 2)
+	{
+	}
+	else
+*/
+	{
+		m_pos = m_states.back().pos;
+		m_rot = m_states.back().rot;
+		m_scale = m_states.back().scale;
+	}
+
 	if (m_bNeedsUpdate)
 	{
 		m_matrix.Identity();
