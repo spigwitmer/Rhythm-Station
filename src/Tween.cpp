@@ -94,7 +94,7 @@ TweenFn SetTweenType(int type)
 	return Tween;
 }
 
-float interpolate(int tweentype, float _old, float _new, double duration, double time)
+float interpolate(TweenType tweentype, float _old, float _new, double duration, double time)
 {
 	TweenFn Tween = SetTweenType(tweentype);
 	
@@ -108,7 +108,7 @@ float interpolate(int tweentype, float _old, float _new, double duration, double
 }
 
 // Various overloads. A bit repetetive, but convenient.
-vec2 interpolate(int tweentype, vec2 _old, vec2 _new, double duration, double time)
+vec2 interpolate(TweenType tweentype, vec2 _old, vec2 _new, double duration, double time)
 {
 	TweenFn Tween = SetTweenType(tweentype);
 	
@@ -123,7 +123,7 @@ vec2 interpolate(int tweentype, vec2 _old, vec2 _new, double duration, double ti
 	return temp;
 }
 
-vec3 interpolate(int tweentype, vec3 _old, vec3 _new, double duration, double time)
+vec3 interpolate(TweenType tweentype, vec3 _old, vec3 _new, double duration, double time)
 {
 	TweenFn Tween = SetTweenType(tweentype);
 	
@@ -139,7 +139,7 @@ vec3 interpolate(int tweentype, vec3 _old, vec3 _new, double duration, double ti
 	return temp;
 }
 
-rgba interpolate(int tweentype, rgba _old, rgba _new, double duration, double time)
+rgba interpolate(TweenType tweentype, rgba _old, rgba _new, double duration, double time)
 {
 	TweenFn Tween = SetTweenType(tweentype);
 	
@@ -156,7 +156,7 @@ rgba interpolate(int tweentype, rgba _old, rgba _new, double duration, double ti
 	return temp;
 }
 
-Matrix interpolate(int tweentype, Matrix _new, Matrix _old, double duration, double time)
+Matrix interpolate(TweenType tweentype, Matrix _new, Matrix _old, double duration, double time)
 {
 	TweenFn Tween = SetTweenType(tweentype);
 	

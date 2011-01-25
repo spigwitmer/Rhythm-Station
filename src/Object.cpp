@@ -8,29 +8,14 @@
 #include "PNGFile.h"
 
 Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)), m_texture(),
-	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(1.0))
+	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(1.0)), m_frame(0)
 {
 	m_shader.SetProjectionMatrix(Game->ProjectionMatrix); // XXX
 	m_shader.Bind();
 	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
 	m_texture.width = m_texture.height = 1;
 	m_parent = NULL;
-	
-	// Create a VBO (1u square)
-	MeshData verts[4];
-	float vertices[] = {
-		-0.5, -0.5, 0, 0, 0, 0, 0, 0,
-		-0.5,  0.5, 0, 0, 0, 0, 0, 1,
-		0.5, -0.5, 0, 0, 0, 0, 1, 0,
-		0.5,  0.5, 0, 0, 0, 0, 1, 1,
-	};
-	unsigned indices[] = {
-		0, 1, 2,
-		1, 2, 3
-	};
-	memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
-	mesh.Load(verts, indices, 4, 6);
-	
+		
 	// Register in scene.
 	Register();
 	AddState();
@@ -73,10 +58,26 @@ void Object::Load(std::string _path)
 	
 	if (ext.compare("png") == 0)
 	{
+		// XXX: All sprites could be using the same 1u square here.
+		// Create a VBO (1u square)
+		MeshData verts[4];
+		float vertices[] = {
+			-0.5, -0.5, 0, 0, 0, 0, 0, 0,
+			-0.5,  0.5, 0, 0, 0, 0, 0, 1,
+			0.5, -0.5, 0, 0, 0, 0, 1, 0,
+			0.5,  0.5, 0, 0, 0, 0, 1, 1,
+		};
+		unsigned indices[] = {
+			0, 1, 2,
+			1, 2, 3
+		};
+		memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
+		mesh.Load(verts, indices, 4, 6);
+
 		Texture tex;
 		
 		if (!ResourceManager::GetResource(path,tex))
-		{
+		{			
 			PNGFile png;
 			tex = png.Load(path);
 			
@@ -136,12 +137,32 @@ void Object::Scale(vec3 scale)
 // update tweens and stuff
 void Object::Update(double delta)
 {
-/*
-	if (m_states.size() >= 2)
+	double time = m_timer.Ago();
+
+	if (m_states.size() > m_frame+1)
 	{
+		if (time > m_states.back().duration)
+			m_frame++;
+		else
+		{
+			m_pos = interpolate(m_states[m_frame-1].tween_type,
+								m_states[m_frame-1].pos,
+								m_states[m_frame].pos,
+								m_states[m_frame-1].duration, time);
+			
+			m_rot = interpolate(m_states[m_frame-1].tween_type,
+								m_states[m_frame-1].rot,
+								m_states[m_frame].rot,
+								m_states[m_frame-1].duration, time);
+			
+			m_scale = interpolate(m_states[m_frame].tween_type,
+								m_states[m_frame-1].scale,
+								m_states[m_frame].scale,
+								m_states[m_frame-1].duration, time);
+			QueueUpdate();
+		}
 	}
 	else
-*/
 	{
 		m_pos = m_states.back().pos;
 		m_rot = m_states.back().rot;

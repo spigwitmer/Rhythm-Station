@@ -109,12 +109,14 @@ protected:
 	bool m_bNeedsUpdate, m_bDepthClear;
 	int m_vertices;
 	
+	unsigned m_frame;
+	
 	AnimationState m_current;
 	rgba	m_color;
 	Shader	m_shader;
 	Matrix	m_matrix;
 	Texture	m_texture;
-	Timer	m_time;
+	Timer	m_timer;
 	
 	Object *m_parent;
 	
