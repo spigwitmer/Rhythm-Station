@@ -14,32 +14,25 @@
 
 struct AnimationState
 {
-	AnimationState()
+	AnimationState() : type(TWEEN_SLEEP), duration(0.0), position(vec3(0.0)),
+		rotation(vec3(0.0)), scale(vec3(1.0)), color(rgba(1.0))
+	{ }
+	AnimationState operator = (const AnimationState &anim)
 	{
-		tween_type = TWEEN_LINEAR;
-		duration = 0.0;
-		pos = vec3(0.0);
-		rot = vec3(0.0);
-		scale = vec3(1.0);
-	}
-	AnimationState operator=(const AnimationState &anim)
-	{
-		tween_type = anim.tween_type;
+		type = anim.type;
 		duration = anim.duration;
-		matrix = anim.matrix;
 		color = anim.color;
-		active = anim.active;
+		position = anim.position;
+		rotation = anim.rotation;
+		scale = anim.scale;
 		return *this;
 	}
 	
-	TweenType tween_type;
+	TweenType type;
 	double duration;
 	
-	Matrix matrix;
 	rgba color;
-	vec3 pos, rot, scale;
-	
-	bool active;
+	vec3 position, rotation, scale;
 };
 
 class Object : public MessageListener
@@ -50,29 +43,15 @@ public:
 	
 	void Load(std::string path);
 	
-	void SetParent(Object *obj);
-	void AddChild(Object *obj);
+	void setParent(Object *obj);
+	void addChild(Object *obj);
 	
-	void Color(rgba col);
-	void Translate(vec3 pos);
-	void Rotate(vec3 rot);
-	void Scale(vec3 scale);
+	void setPosition(float x, float y, float z);
+	void setRotation(float x, float y, float z);
+	void setScale(float x, float y, float z);
+	void setColor(float r, float g, float b, float a);
 	
-	void Translate3f(float x, float y, float z) {
-		Translate(vec3(x,y,z));
-	}
-	void Rotate3f(float x, float y, float z) {
-		Rotate(vec3(x,y,z));
-	}
-	void Scale3f(float x, float y, float z) {
-		Scale(vec3(x,y,z));
-	}
-	void Color4f(float r, float g, float b, float a) {
-		m_color = rgba(r,g,b,a);
-	}
-	
-	void AddState();
-	void AssignBuffer(GLuint *buf, int verts);
+	void addState(int tweentype, double length);
 	
 	void HandleMessage(std::string msg);
 	void Update(double delta);
@@ -84,13 +63,13 @@ public:
 	
 	void DepthClear(bool enabled);
 	
-	vec3 GetTranslation() {
+	vec3 getTranslation() {
 		return m_pos;
 	}
-	vec3 GetRotation() {
+	vec3 getRotation() {
 		return m_rot;
 	}
-	vec3 GetScale() {
+	vec3 getScale() {
 		return m_scale;
 	}
 	
@@ -107,11 +86,9 @@ protected:
 	std::vector<Object*> m_children;
 	
 	bool m_bNeedsUpdate, m_bDepthClear;
-	int m_vertices;
 	
 	unsigned m_frame;
 	
-	AnimationState m_current;
 	rgba	m_color;
 	Shader	m_shader;
 	Matrix	m_matrix;

@@ -16,33 +16,20 @@ sound:Loop(true)
 sound:UseEqualizer(true)
 
 loc = Object()
-loc:Translate(0,-160,0)
+loc:setPosition(0,-160,0)
 
 spr = LoadActor("Data/logo.png")
-spr:Translate(0,0,0)
+spr:setPosition(0,0,0)
 
 local spacing = 64
+local rotations = { 90, 0, 180, -90 }
 
-spr = LoadActor("Data/arrow.png")
-spr:Translate(-1.5*spacing,0,0)
-spr:Scale(0.5,0.5,0.5)
-spr:Rotate(0,0,90)
-spr:Parent(loc)
-
-spr = LoadActor("Data/arrow.png")
-spr:Translate(-0.5*spacing,0,0)
-spr:Scale(0.5,0.5,0.5)
-spr:Rotate(0,0,0)
-spr:Parent(loc)
-
-spr = LoadActor("Data/arrow.png")
-spr:Translate(0.5*spacing,0,0)
-spr:Scale(0.5,0.5,0.5)
-spr:Rotate(0,0,180)
-spr:Parent(loc)
-
-spr = LoadActor("Data/arrow.png")
-spr:Translate(1.5*spacing,0,0)
-spr:Scale(0.5,0.5,0.5)
-spr:Rotate(0,0,-90)
-spr:Parent(loc)
+for i = 0,3 do
+	spr = LoadActor("Data/arrow.png")
+	spr:setPosition(spacing*(i-1.5),0,0)
+	spr:setScale(0.5,0.5,0.5)
+	spr:setRotate(0,0,rotations[i+1])
+	spr:setParent(loc)
+	spr:addState(1, 0.5)
+	spr:setPosition(spacing*(i-1.5)*2,0,0)
+end

@@ -7,8 +7,8 @@
 #include "Logger.h"
 #include "PNGFile.h"
 
-Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)), m_texture(),
-	m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(1.0)), m_frame(0)
+Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)),
+	m_texture(), m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(1.0)), m_frame(0)
 {
 	m_shader.SetProjectionMatrix(Game->ProjectionMatrix); // XXX
 	m_shader.Bind();
@@ -18,7 +18,7 @@ Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)
 		
 	// Register in scene.
 	Register();
-	AddState();
+	addState(0,0);
 }
 
 Object::~Object()
@@ -29,12 +29,12 @@ Object::~Object()
 		ResourceManager::FreeResource(m_texture);
 }
 
-void Object::SetParent(Object *obj)
+void Object::setParent(Object *obj)
 {
 	m_parent = obj;
 }
 
-void Object::AddChild(Object *obj)
+void Object::addChild(Object *obj)
 {
 	m_children.push_back(obj);
 }
@@ -77,7 +77,7 @@ void Object::Load(std::string _path)
 		Texture tex;
 		
 		if (!ResourceManager::GetResource(path,tex))
-		{			
+		{
 			PNGFile png;
 			tex = png.Load(path);
 			
@@ -99,38 +99,38 @@ void Object::HandleMessage(std::string _msg)
 	// TODO
 }
 
-void Object::AddState()
+void Object::addState(int tweentype, double length)
 {
 	// Push a copy of the current state onto the back.
 	AnimationState state;
 	if (m_states.size() > 0)
 		state = m_states.back();
+	state.type = (TweenType)tweentype;
+	state.duration = length;
 	m_states.push_back(state);
 }
 
-void Object::Color(rgba col)
+void Object::setColor(float r, float g, float b, float a)
 {
-	m_states.back().color = col;
+	m_states.back().color = rgba(r, g, b, a);
 	QueueUpdate();
 }
 
-
-// TODO: add to tweens
-void Object::Translate(vec3 pos)
+void Object::setPosition(float x, float y, float z)
 {
-	m_states.back().pos = pos;
+	m_states.back().position = vec3(x, y, z);
 	QueueUpdate();
 }
 
-void Object::Rotate(vec3 rot)
+void Object::setRotation(float x, float y, float z)
 {
-	m_states.back().rot = rot;
+	m_states.back().rotation = vec3(x, y, z);
 	QueueUpdate();
 }
 
-void Object::Scale(vec3 scale)
+void Object::setScale(float x, float y, float z)
 {
-	m_states.back().scale = scale;
+	m_states.back().scale = vec3(x, y, z);
 	QueueUpdate();
 }
 
@@ -138,53 +138,54 @@ void Object::Scale(vec3 scale)
 void Object::Update(double delta)
 {
 	double time = m_timer.Ago();
-
-	if (m_states.size() > m_frame+1)
+		
+	// State 0 is the initial state.
+	// XXX: buggy.
+	if (m_states.size() > 1 && m_frame != 0)
 	{
-		if (time > m_states.back().duration)
+		if (m_timer.Ago() >= m_states[m_frame].duration)
+		{
+			m_timer.Touch();
 			m_frame++;
+		}
 		else
 		{
-			m_pos = interpolate(m_states[m_frame-1].tween_type,
-								m_states[m_frame-1].pos,
-								m_states[m_frame].pos,
-								m_states[m_frame-1].duration, time);
-			
-			m_rot = interpolate(m_states[m_frame-1].tween_type,
-								m_states[m_frame-1].rot,
-								m_states[m_frame].rot,
-								m_states[m_frame-1].duration, time);
-			
-			m_scale = interpolate(m_states[m_frame].tween_type,
-								m_states[m_frame-1].scale,
-								m_states[m_frame].scale,
-								m_states[m_frame-1].duration, time);
-			QueueUpdate();
+			m_pos	= interpolate(m_states[m_frame].type, m_states[m_frame].position, m_states[m_frame+1].position, m_states[m_frame].duration, time);
+			m_rot	= interpolate(m_states[m_frame].type, m_states[m_frame].rotation, m_states[m_frame+1].rotation, m_states[m_frame].duration, time);
+			m_scale	= interpolate(m_states[m_frame].type, m_states[m_frame].scale, m_states[m_frame+1].scale, m_states[m_frame].duration, time);
+			m_color	= interpolate(m_states[m_frame].type, m_states[m_frame].color, m_states[m_frame+1].color, m_states[m_frame].duration, time);
 		}
 	}
 	else
 	{
-		m_pos = m_states.back().pos;
-		m_rot = m_states.back().rot;
-		m_scale = m_states.back().scale;
+		m_pos	= m_states[m_frame].position;
+		m_rot	= m_states[m_frame].rotation;
+		m_scale	= m_states[m_frame].scale;
+		m_color	= m_states[m_frame].color;
+		
+		if (m_states.size() > m_frame+1)
+		{
+			m_timer.Touch();
+			m_frame++;
+		}
 	}
-
+	
 	if (m_bNeedsUpdate)
 	{
 		m_matrix.Identity();
 		
 		// if we have a parent, copy the translation/rotation/scale.
 		if (m_parent)
-			m_matrix.Translate(m_parent->GetTranslation());
+			m_matrix.Translate(m_parent->getTranslation());
 		m_matrix.Translate(m_pos);
 		
 		if (m_parent)
-			m_matrix.Scale(m_parent->GetScale());
+			m_matrix.Scale(m_parent->getScale());
 		m_matrix.Scale(m_scale);
 		m_matrix.Scale(m_texture.width, m_texture.height, 1.0);
 		
 		if (m_parent)
-			m_matrix.Rotate(m_parent->GetRotation());
+			m_matrix.Rotate(m_parent->getRotation());
 		m_matrix.Rotate(m_rot);
 		
 		m_bNeedsUpdate = false;
@@ -221,9 +222,11 @@ void Object_Binding()
 	SLB::Class<Object>("Object")
 	.constructor()
 	.set("Load", &Object::Load)
-	.set("Translate", &Object::Translate3f)
-	.set("Rotate", &Object::Rotate3f)
-	.set("Scale", &Object::Scale3f)
-	.set("Parent", &Object::SetParent)
-	.set("Color", &Object::Color4f);
+	.set("addState", &Object::addState)
+	.set("addChild", &Object::addChild)
+	.set("setParent", &Object::setParent)
+	.set("setPosition", &Object::setPosition)
+	.set("setRotate", &Object::setRotation)
+	.set("setScale", &Object::setScale)
+	.set("setColor", &Object::setColor);
 }
