@@ -32,14 +32,13 @@ public:
 	
 	std::string path[2];	// paths for dupe checking.
 	
-	GLuint ptr;
+	GLuint id;
 	
 private:
 	const char *vss, *fss;	// shader sources, needed so we can rebuild after
-	GLuint vs, fs,			// shader IDs
-	       m_mv_uniform,		// uniforms
-	       m_proj_uniform,
-	       m_tex_uniform;
+	GLuint	m_mv_uniform,
+			m_proj_uniform,
+			m_tex_uniform;
 	       
 	Matrix *m_proj, *m_model;
 };

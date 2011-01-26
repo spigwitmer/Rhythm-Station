@@ -12,7 +12,7 @@ Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)
 {
 	m_shader.SetProjectionMatrix(Game->ProjectionMatrix); // XXX
 	m_shader.Bind();
-	m_color_uniform = glGetUniformLocation(m_shader.ptr, "Color");
+	m_color_uniform = glGetUniformLocation(m_shader.id, "Color");
 	m_texture.width = m_texture.height = 1;
 	m_parent = NULL;
 		
@@ -138,22 +138,21 @@ void Object::setScale(float x, float y, float z)
 void Object::Update(double delta)
 {
 	double time = m_timer.Ago();
-		
+	
 	// State 0 is the initial state.
-	// XXX: buggy.
-	if (m_states.size() > 1 && m_frame != 0)
+	if (m_frame && m_frame < m_states.size())
 	{
-		if (m_timer.Ago() >= m_states[m_frame].duration)
+//		if (m_timer.Ago() >= m_states[m_frame].duration)
+//		{
+//			m_timer.Touch();
+//			m_frame++;
+//		}
+//		else
 		{
-			m_timer.Touch();
-			m_frame++;
-		}
-		else
-		{
-			m_pos	= interpolate(m_states[m_frame].type, m_states[m_frame].position, m_states[m_frame+1].position, m_states[m_frame].duration, time);
-			m_rot	= interpolate(m_states[m_frame].type, m_states[m_frame].rotation, m_states[m_frame+1].rotation, m_states[m_frame].duration, time);
-			m_scale	= interpolate(m_states[m_frame].type, m_states[m_frame].scale, m_states[m_frame+1].scale, m_states[m_frame].duration, time);
-			m_color	= interpolate(m_states[m_frame].type, m_states[m_frame].color, m_states[m_frame+1].color, m_states[m_frame].duration, time);
+			m_pos	= interpolate( m_states[m_frame].type, m_states[m_frame-1].position, m_states[m_frame].position, m_states[m_frame].duration, time );
+			m_rot	= interpolate( m_states[m_frame].type, m_states[m_frame-1].rotation, m_states[m_frame].rotation, m_states[m_frame].duration, time );
+			m_scale	= interpolate( m_states[m_frame].type, m_states[m_frame-1].scale, m_states[m_frame].scale, m_states[m_frame].duration, time );
+			m_color	= interpolate( m_states[m_frame].type, m_states[m_frame-1].color, m_states[m_frame].color, m_states[m_frame].duration, time );
 		}
 	}
 	else
@@ -162,12 +161,9 @@ void Object::Update(double delta)
 		m_rot	= m_states[m_frame].rotation;
 		m_scale	= m_states[m_frame].scale;
 		m_color	= m_states[m_frame].color;
-		
-		if (m_states.size() > m_frame+1)
-		{
-			m_timer.Touch();
-			m_frame++;
-		}
+
+		if (m_states.size() > 1)
+			m_frame = 1;
 	}
 	
 	if (m_bNeedsUpdate)

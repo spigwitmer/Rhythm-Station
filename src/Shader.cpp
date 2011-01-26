@@ -45,7 +45,7 @@ std::string getProgramLog(GLuint obj)
 
 Shader::Shader()
 {
-	vs = fs = ptr = m_mv_uniform = m_proj_uniform = m_tex_uniform = 0;
+	id = m_mv_uniform = m_proj_uniform = m_tex_uniform = 0;
 	// can leak.
 	m_model = new Matrix();
 	m_proj = new Matrix();
@@ -56,11 +56,7 @@ Shader::Shader()
 Shader::~Shader()
 {
 	this->Unbind();
-	glDetachShader(ptr, vs);
-	glDetachShader(ptr, fs);
-	glDeleteShader(vs);
-	glDeleteShader(fs);
-	glDeleteProgram(ptr);
+	glDeleteProgram(id);
 }
 
 void Shader::SetModelViewMatrix(Matrix *mat)
@@ -104,7 +100,9 @@ void Shader::Load(std::string _vs, std::string _fs)
 
 void Shader::Reload()
 {
-	// create pointers for our vertex and frag shaders
+	GLuint vs, fs;
+	
+	// create ids for our vertex and frag shaders
 	vs = glCreateShader(GL_VERTEX_SHADER);
 	fs = glCreateShader(GL_FRAGMENT_SHADER);
 	
@@ -115,14 +113,20 @@ void Shader::Reload()
 	glCompileShader(fs);
 	
 	// create program, attach shaders, link.
-	ptr = glCreateProgram();
-	glAttachShader(ptr, vs);
-	glAttachShader(ptr, fs);
+	id = glCreateProgram();
+	glAttachShader(id, vs);
+	glAttachShader(id, fs);
 	
-	glBindAttribLocation(ptr, VERTEX_ARRAY, "VPos");
-	glBindAttribLocation(ptr, NORMAL_ARRAY, "VNor");
-	glBindAttribLocation(ptr, COORD_ARRAY, "VCoords");
-	glLinkProgram(ptr);
+	glBindAttribLocation(id, VERTEX_ARRAY, "VPos");
+	glBindAttribLocation(id, NORMAL_ARRAY, "VNor");
+	glBindAttribLocation(id, COORD_ARRAY, "VCoords");
+	glLinkProgram(id);
+	
+	// We're done with these now.
+	glDetachShader(id, vs);
+	glDetachShader(id, fs);
+	glDeleteShader(vs);
+	glDeleteShader(fs);
 	
 	// print out shader logs.
 	std::string log = getShaderLog(vs);
@@ -135,7 +139,7 @@ void Shader::Reload()
 	if (!log.empty())
 		Log->Print("Fragment shader log: %s", log.c_str());
 		
-	log = getProgramLog(ptr);
+	log = getProgramLog(id);
 	
 	if (!log.empty())
 	{
@@ -146,17 +150,17 @@ void Shader::Reload()
 	}
 	
 	this->Bind();
-	m_mv_uniform = glGetUniformLocation(ptr, "ModelViewMatrix");
-	m_proj_uniform = glGetUniformLocation(ptr, "ProjectionMatrix");
-	m_tex_uniform = glGetUniformLocation(ptr, "Texture0");
+	m_mv_uniform = glGetUniformLocation(id, "ModelViewMatrix");
+	m_proj_uniform = glGetUniformLocation(id, "ProjectionMatrix");
+	m_tex_uniform = glGetUniformLocation(id, "Texture0");
 }
 
 void Shader::Bind()
 {
-	if (ptr != Game->GetCurrentShader())
+	if (id != Game->GetCurrentShader())
 	{
-		glUseProgram(ptr);
-		Game->SetCurrentShader(ptr);
+		glUseProgram(id);
+		Game->SetCurrentShader(id);
 	}
 	
 	SetUniforms();
