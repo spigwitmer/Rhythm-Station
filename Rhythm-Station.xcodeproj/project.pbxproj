@@ -45,6 +45,7 @@
 		EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = EE51F2E812EB4B74003A241E /* ConvertUTF.c */; };
 		EE51F31012EB4BBE003A241E /* INIFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F30E12EB4BBE003A241E /* INIFile.cpp */; };
 		EE51F31612EB4BE7003A241E /* PreferencesFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F31412EB4BE7003A241E /* PreferencesFile.cpp */; };
+		EE51F80012F1F2AB003A241E /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE51F7FF12F1F2AB003A241E /* libfreetype.a */; };
 		EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */ = {isa = PBXBuildFile; fileRef = EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
@@ -93,7 +94,6 @@
 		EEAB1AF9126F5440004FE58D /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AD5126F5440004FE58D /* lvm.c */; };
 		EEAB1AFA126F5440004FE58D /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AD7126F5440004FE58D /* lzio.c */; };
 		EEAB1AFD126F5440004FE58D /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1ADB126F5440004FE58D /* print.c */; };
-		EEAB1B18126F5DAF004FE58D /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEAB1B17126F5DAF004FE58D /* libfreetype.a */; };
 		EEC5285F127375570064054A /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = EEC5285E127375570064054A /* init.lua */; };
 		EEC5287312737C8F0064054A /* PNGFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC5287012737C8F0064054A /* PNGFile.cpp */; };
 		EEC52D7B1273803E0064054A /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52B9B1273803D0064054A /* adler32.c */; };
@@ -197,6 +197,7 @@
 		EE51F30F12EB4BBE003A241E /* INIFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INIFile.h; sourceTree = "<group>"; };
 		EE51F31412EB4BE7003A241E /* PreferencesFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PreferencesFile.cpp; sourceTree = "<group>"; };
 		EE51F31512EB4BE7003A241E /* PreferencesFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesFile.h; sourceTree = "<group>"; };
+		EE51F7FF12F1F2AB003A241E /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = src/osx/libfreetype.a; sourceTree = "<group>"; };
 		EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "get-it-by-your-hands.ogg"; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -279,7 +280,6 @@
 		EEAB1AD7126F5440004FE58D /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
 		EEAB1AD8126F5440004FE58D /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
 		EEAB1ADB126F5440004FE58D /* print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = print.c; sourceTree = "<group>"; };
-		EEAB1B17126F5DAF004FE58D /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = /opt/local/lib/libfreetype.a; sourceTree = "<absolute>"; };
 		EEC5285E127375570064054A /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
 		EEC5287012737C8F0064054A /* PNGFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PNGFile.cpp; sourceTree = "<group>"; };
 		EEC5287112737C8F0064054A /* PNGFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGFile.h; sourceTree = "<group>"; };
@@ -358,10 +358,10 @@
 				EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */,
 				EE915EA01255D7B200F0B0B3 /* OpenGL.framework in Frameworks */,
 				EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */,
-				EEAB1B18126F5DAF004FE58D /* libfreetype.a in Frameworks */,
 				EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */,
 				EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */,
 				EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */,
+				EE51F80012F1F2AB003A241E /* libfreetype.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,9 +403,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EE51F7FF12F1F2AB003A241E /* libfreetype.a */,
 				EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */,
 				EE41FED81288A6CB001F0C56 /* libvorbisfile.a */,
-				EEAB1B17126F5DAF004FE58D /* libfreetype.a */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				EE915DE21255CB9300F0B0B3 /* Cocoa.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
@@ -967,6 +967,7 @@
 					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/i386\"",
 					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/x86_64\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/src/osx\"",
 				);
 				PRODUCT_NAME = "Rhythm-Station";
 			};
@@ -990,6 +991,7 @@
 					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/i386\"",
 					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/x86_64\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/src/osx\"",
 				);
 				PRODUCT_NAME = "Rhythm-Station";
 			};
