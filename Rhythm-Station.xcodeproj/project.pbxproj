@@ -1018,10 +1018,10 @@
 					"$(PROJECT_DIR)/extern/glew-1.5.6/include",
 					"$(PROJECT_DIR)/extern/glfw3/include",
 					"$(PROJECT_DIR)/extern/fftw-3.2.2/api",
-					/opt/local/include,
-					/opt/local/include/freetype2,
+					"$(PROJECT_DIR)/extern/freetype-2.4.4/include",
+					"$(PROJECT_DIR)/extern/lua-5.1.4/src",
+					"$(PROJECT_DIR)/extern/freetype-2.4.4/include/freetype",
 				);
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
@@ -1046,10 +1046,11 @@
 					"$(PROJECT_DIR)/extern/sqlite-3.7.3",
 					"$(PROJECT_DIR)/extern/glew-1.5.6/include",
 					"$(PROJECT_DIR)/extern/glfw3/include",
-					/opt/local/include,
-					/opt/local/include/freetype2,
+					"$(PROJECT_DIR)/extern/fftw-3.2.2/api",
+					"$(PROJECT_DIR)/extern/freetype-2.4.4/include",
+					"$(PROJECT_DIR)/extern/lua-5.1.4/src",
+					"$(PROJECT_DIR)/extern/freetype-2.4.4/include/freetype",
 				);
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 				VALID_ARCHS = "i386 x86_64";
