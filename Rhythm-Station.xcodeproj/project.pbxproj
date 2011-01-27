@@ -143,6 +143,7 @@
 /* Begin PBXFileReference section */
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2BB0123312F132CF008221C8 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fftw3.h; path = api/fftw3.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Rhythm-Station-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Rhythm-Station.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rhythm-Station.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE07CC0A1279FF1400AAA31F /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png.c; sourceTree = "<group>"; };
@@ -415,6 +416,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2BB0121F12F132CF008221C8 /* fftw-3.2.2 */ = {
+			isa = PBXGroup;
+			children = (
+				2BB0123312F132CF008221C8 /* fftw3.h */,
+			);
+			path = "fftw-3.2.2";
+			sourceTree = "<group>";
+		};
 		EE07CB921279FF1400AAA31F /* libpng-1.4.4 */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,6 +537,7 @@
 		EE915DED1255CBB100F0B0B3 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				2BB0121F12F132CF008221C8 /* fftw-3.2.2 */,
 				EE51F2E712EB4B74003A241E /* simpleini-4.13 */,
 				EE07CDC8127A279000AAA31F /* slb-1.6.3 */,
 				EE0A64221270438600F5F134 /* glew-1.5.6 */,
@@ -1007,6 +1017,7 @@
 					"$(PROJECT_DIR)/extern/sqlite-3.7.3",
 					"$(PROJECT_DIR)/extern/glew-1.5.6/include",
 					"$(PROJECT_DIR)/extern/glfw3/include",
+					"$(PROJECT_DIR)/extern/fftw-3.2.2/api",
 					/opt/local/include,
 					/opt/local/include/freetype2,
 				);
