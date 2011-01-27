@@ -15,7 +15,7 @@ Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)
 	m_color_uniform = glGetUniformLocation(m_shader.id, "Color");
 	m_texture.width = m_texture.height = 1;
 	m_parent = NULL;
-		
+	
 	// Register in scene.
 	Register();
 	addState(0,0);
@@ -27,11 +27,6 @@ Object::~Object()
 	
 	if (m_texture.ptr != 0)
 		ResourceManager::FreeResource(m_texture);
-}
-
-void Object::setParent(Object *obj)
-{
-	m_parent = obj;
 }
 
 void Object::addChild(Object *obj)
@@ -110,6 +105,11 @@ void Object::addState(int tweentype, double length)
 	m_states.push_back(state);
 }
 
+void Object::setParent(Object *obj)
+{
+	m_parent = obj;
+}
+
 void Object::setColor(float r, float g, float b, float a)
 {
 	m_states.back().color = rgba(r, g, b, a);
@@ -142,17 +142,17 @@ void Object::Update(double delta)
 	// State 0 is the initial state.
 	if (m_frame && m_frame < m_states.size())
 	{
-//		if (m_timer.Ago() >= m_states[m_frame].duration)
-//		{
-//			m_timer.Touch();
-//			m_frame++;
-//		}
-//		else
+		if (m_timer.Ago() >= m_states[m_frame].duration)
 		{
-			m_pos	= interpolate( m_states[m_frame].type, m_states[m_frame-1].position, m_states[m_frame].position, m_states[m_frame].duration, time );
-			m_rot	= interpolate( m_states[m_frame].type, m_states[m_frame-1].rotation, m_states[m_frame].rotation, m_states[m_frame].duration, time );
-			m_scale	= interpolate( m_states[m_frame].type, m_states[m_frame-1].scale, m_states[m_frame].scale, m_states[m_frame].duration, time );
-			m_color	= interpolate( m_states[m_frame].type, m_states[m_frame-1].color, m_states[m_frame].color, m_states[m_frame].duration, time );
+			m_timer.Touch();
+			m_frame++;
+		}
+		else
+		{
+			m_pos	= interpolate(m_states[m_frame].type, m_states[m_frame-1].position, m_states[m_frame].position, m_states[m_frame].duration, time);
+			m_rot	= interpolate(m_states[m_frame].type, m_states[m_frame-1].rotation, m_states[m_frame].rotation, m_states[m_frame].duration, time);
+			m_scale	= interpolate(m_states[m_frame].type, m_states[m_frame-1].scale, m_states[m_frame].scale, m_states[m_frame].duration, time);
+			m_color	= interpolate(m_states[m_frame].type, m_states[m_frame-1].color, m_states[m_frame].color, m_states[m_frame].duration, time);
 		}
 	}
 	else
