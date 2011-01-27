@@ -14,8 +14,8 @@
 
 struct AnimationState
 {
-	AnimationState() : type(TWEEN_SLEEP), duration(0.0), position(vec3(0.0)),
-		rotation(vec3(0.0)), scale(vec3(1.0)), color(rgba(1.0))
+	AnimationState() : type(TWEEN_SLEEP), duration(0.0), color(rgba(1.0)),
+	position(vec3(0.0)), rotation(vec3(0.0)), scale(vec3(1.0))
 	{ }
 	AnimationState operator = (const AnimationState &anim)
 	{

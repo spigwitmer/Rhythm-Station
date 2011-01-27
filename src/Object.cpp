@@ -7,8 +7,8 @@
 #include "Logger.h"
 #include "PNGFile.h"
 
-Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_color(rgba(1.0)),
-	m_texture(), m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(1.0)), m_frame(0)
+Object::Object() : m_bNeedsUpdate(true), m_bDepthClear(false), m_frame(0),
+	m_color(rgba(1.0)),m_texture(), m_pos(vec3(0.0)), m_rot(vec3(0.0)), m_scale(vec3(1.0))
 {
 	m_shader.SetProjectionMatrix(Game->ProjectionMatrix); // XXX
 	m_shader.Bind();
@@ -140,7 +140,8 @@ void Object::Update(double delta)
 	double time = m_timer.Ago();
 	
 	// State 0 is the initial state.
-	if (m_frame && m_frame < m_states.size())
+	// XXX: not so buggy (atleast it doesn't go out of bounds anymore).
+	if (m_states.size() > 1 && m_frame != 0 && m_frame < m_states.size())
 	{
 		if (m_timer.Ago() >= m_states[m_frame].duration)
 		{

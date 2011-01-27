@@ -55,7 +55,7 @@ float smooth_cubic(float change, double time, double elapsed)
 	return change * (powf(elapsed-1, 3) + 1);
 }
 
-TweenFn SetTweenType(int type)
+TweenFn SetTweenType(TweenType type)
 {
 	TweenFn Tween = NULL;
 	
