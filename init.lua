@@ -26,10 +26,15 @@ local rotations = { 90, 0, 180, -90 }
 
 for i = 0,3 do
 	spr = LoadActor("Data/arrow.png")
+	spr:setParent(loc)
 	spr:setPosition(spacing*(i-1.5),0,0)
 	spr:setScale(0.5,0.5,0.5)
 	spr:setRotate(0,0,rotations[i+1])
 	spr:setParent(loc)
-	spr:addState(1, 0.5)
+	spr:addState(0, 0.25) -- sleep
+	spr:addState(6, 0.5)
 	spr:setPosition(spacing*(i-1.5)*2,0,0)
+	spr:setScale(0.75,0.75,0.75)
+	spr:addState(2,0.5)
+	spr:setPosition(spacing*(i-1.5),0,0)
 end

@@ -96,12 +96,13 @@ void Object::HandleMessage(std::string _msg)
 
 void Object::addState(int tweentype, double length)
 {
-	// Push a copy of the current state onto the back.
+	// Push a copy of the current state onto the stack.
 	AnimationState state;
 	if (m_states.size() > 0)
 		state = m_states.back();
 	state.type = (TweenType)tweentype;
 	state.duration = length;
+	
 	m_states.push_back(state);
 }
 
@@ -139,36 +140,39 @@ void Object::Update(double delta)
 {
 	double time = m_timer.Ago();
 	
-	// State 0 is the initial state.
-	// XXX: not so buggy (atleast it doesn't go out of bounds anymore).
-	if (m_states.size() > 1 && m_frame != 0 && m_frame < m_states.size())
+	// need to update when a) it's queued and b) there's more animation to do.
+	if (m_bNeedsUpdate || m_frame < m_states.size())
 	{
-		if (m_timer.Ago() >= m_states[m_frame].duration)
+		// update animation states.
+		if (m_frame < m_states.size())
 		{
-			m_timer.Touch();
-			m_frame++;
+			if (m_frame > 0) {
+				AnimationState prev = m_states[m_frame-1];
+				AnimationState next = m_states[m_frame];
+				double duration = next.duration;
+				
+				m_pos = interpolate(next.type, prev.position, next.position, duration, time);
+				m_rot = interpolate(next.type, prev.rotation, next.rotation, duration, time);
+				m_scale = interpolate(next.type, prev.scale, next.scale, duration, time);
+				
+				QueueUpdate();
+			}
+			else
+			{
+				// update is already queued in this case, since it's usually only the first update.
+				m_pos = m_states[m_frame].position;
+				m_rot = m_states[m_frame].rotation;
+				m_scale = m_states[m_frame].scale;
+			}
+			
+			// this frame is done, next!
+			if (time > m_states[m_frame].duration)
+			{
+				m_timer.Touch();
+				m_frame++;
+			}
 		}
-		else
-		{
-			m_pos	= interpolate(m_states[m_frame].type, m_states[m_frame-1].position, m_states[m_frame].position, m_states[m_frame].duration, time);
-			m_rot	= interpolate(m_states[m_frame].type, m_states[m_frame-1].rotation, m_states[m_frame].rotation, m_states[m_frame].duration, time);
-			m_scale	= interpolate(m_states[m_frame].type, m_states[m_frame-1].scale, m_states[m_frame].scale, m_states[m_frame].duration, time);
-			m_color	= interpolate(m_states[m_frame].type, m_states[m_frame-1].color, m_states[m_frame].color, m_states[m_frame].duration, time);
-		}
-	}
-	else
-	{
-		m_pos	= m_states[m_frame].position;
-		m_rot	= m_states[m_frame].rotation;
-		m_scale	= m_states[m_frame].scale;
-		m_color	= m_states[m_frame].color;
-
-		if (m_states.size() > 1)
-			m_frame = 1;
-	}
-	
-	if (m_bNeedsUpdate)
-	{
+		
 		m_matrix.Identity();
 		
 		// if we have a parent, copy the translation/rotation/scale.
@@ -202,6 +206,8 @@ void Object::Draw()
 	// Use so 3D objects don't collide.
 	if (m_bDepthClear)
 		glClear(GL_DEPTH_BUFFER_BIT);
+	
+	glDisable(GL_DEPTH_TEST); // XXX
 	
 	// Bind shader and set uniforms
 	m_shader.Bind();
