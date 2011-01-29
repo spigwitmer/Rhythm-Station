@@ -13,6 +13,7 @@ Sound::Sound() : m_use_eq(false), sd_loop(false), loaded(false), sd_pitch(1.0), 
 		
 	in = new double[BUFFER_SIZE];
 	out = new fftw_complex[BUFFER_SIZE];
+	
 	Register();
 }
 
@@ -27,12 +28,6 @@ Sound::~Sound()
 	fftw_cleanup();
 	delete[] in;
 	delete[] out;
-}
-
-void Sound::Register()
-{
-	Screen *scr = Game->GetTopScreen();
-	scr->AddObject(this);
 }
 
 void Sound::Load(std::string _path)
@@ -180,6 +175,26 @@ bool Sound::Stream(ALuint buffer)
 	return true;
 }
 
+void Sound::setLoop(bool _loop)
+{
+	sd_loop = _loop;
+}
+
+void Sound::setVolume(float _volume)
+{
+	sd_volume = _volume;
+}
+
+void Sound::setPitch(float _pitch)
+{
+	sd_pitch = _pitch;
+}
+
+void Sound::setPan(float _pan)
+{
+	sd_pan = _pan;
+}
+
 void Sound::UseEqualizer(bool enabled)
 {
 	m_use_eq = enabled;
@@ -194,7 +209,7 @@ void Sound_Binding()
 	.constructor()
 	.set("UseEqualizer", &Sound::UseEqualizer)
 	.set("Load", &Sound::Load)
-	.set("Volume", &Sound::Volume)
-	.set("Pitch", &Sound::Pitch)
-	.set("Loop", &Sound::Loop);
+	.set("setVolume", &Sound::setVolume)
+	.set("setPitch", &Sound::setPitch)
+	.set("setLoop", &Sound::setLoop);
 }

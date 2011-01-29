@@ -8,9 +8,14 @@ namespace Window
 	bool Create(int width, int height, bool fullscreen = false);
 	void Destroy();
 	
-	bool GetFocus();
+	bool CheckFocus();
 	
-	GLFWwindow GetWindow();
+	void UpdateTitle(double delta);
+	
+	int getWidth();
+	int getHeight();
+	
+	GLFWwindow getWindow();
 }
 
 #endif

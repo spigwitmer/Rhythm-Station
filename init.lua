@@ -1,6 +1,6 @@
 -- yes, the infamous LoadActor from StepMania.
 function LoadActor(filename)
-	obj = Object()
+	obj = Sprite()
 	obj:Load(filename)
 	return obj
 end
@@ -12,7 +12,7 @@ function LoadSound(filename)
 end
 
 sound = LoadSound("get-it-by-your-hands.ogg")
-sound:Loop(true)
+sound:setLoop(true)
 sound:UseEqualizer(true)
 
 loc = Object()

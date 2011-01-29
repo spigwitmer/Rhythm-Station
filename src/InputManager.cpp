@@ -54,8 +54,8 @@ static void _mPosCallback(GLFWwindow window, int x, int y)
 	// Log->Print("x = %d, y = %d", x, y);
 	Input->status.mouse.x = x;
 	Input->status.mouse.y = y;
-	Input->status.mouse.nx = float(x / Game->ScreenWidth);
-	Input->status.mouse.ny = float(y / Game->ScreenHeight);
+	Input->status.mouse.nx = float(x / Window::getWidth());
+	Input->status.mouse.ny = float(y / Window::getHeight());
 	Input->SendEvent();
 }
 
@@ -74,7 +74,7 @@ static void _mScrollCallback(GLFWwindow window, int x, int y)
 // on window resize
 static void _resizeCallback(GLFWwindow window, int width, int height)
 {
-	glfwSetWindowTitle(Window::GetWindow(), Log->SPrint("%dx%d", width, height).c_str());
+	glfwSetWindowTitle(Window::getWindow(), Log->SPrint("%dx%d", width, height).c_str());
 
 	// Set new size preference (should this only be saved explicitely by user?)
 	Preferences->SetValue("Graphics", "WindowWidth", width);
@@ -160,7 +160,10 @@ Controller::~Controller()
 
 void InputManager::SendEvent()
 {
-	Game->SendInput(status);
+	Message msg;
+	msg.name = "Input";
+//	msg.data["Event"] = (void*)status;
+	msg.Send();
 }
 
 void InputManager::DetectControllers()

@@ -45,6 +45,9 @@
 		EE51F31612EB4BE7003A241E /* PreferencesFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F31412EB4BE7003A241E /* PreferencesFile.cpp */; };
 		EE51F80012F1F2AB003A241E /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE51F7FF12F1F2AB003A241E /* libfreetype.a */; };
 		EE51F8C912F43045003A241E /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F8C812F43045003A241E /* Object.cpp */; };
+		EE51F8DD12F492CC003A241E /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F8DB12F492CC003A241E /* Mesh.cpp */; };
+		EE51F8E012F492D7003A241E /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F8DE12F492D7003A241E /* Sprite.cpp */; };
+		EE51F93C12F49AC6003A241E /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F93A12F49AC6003A241E /* Sound.cpp */; };
 		EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */ = {isa = PBXBuildFile; fileRef = EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
@@ -192,6 +195,13 @@
 		EE51F7FF12F1F2AB003A241E /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = src/osx/libfreetype.a; sourceTree = "<group>"; };
 		EE51F8C712F43045003A241E /* Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
 		EE51F8C812F43045003A241E /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
+		EE51F8DB12F492CC003A241E /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		EE51F8DC12F492CC003A241E /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
+		EE51F8DE12F492D7003A241E /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
+		EE51F8DF12F492D7003A241E /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		EE51F92012F499E9003A241E /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		EE51F93A12F49AC6003A241E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
+		EE51F93B12F49AC6003A241E /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "get-it-by-your-hands.ogg"; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -460,10 +470,17 @@
 		EE0907A112C096DD00ADFA57 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				EE51F8DB12F492CC003A241E /* Mesh.cpp */,
+				EE51F8DC12F492CC003A241E /* Mesh.h */,
 				EE51F8C812F43045003A241E /* Object.cpp */,
 				EE51F8C712F43045003A241E /* Object.h */,
 				EE915F81125669ED00F0B0B3 /* Shader.cpp */,
 				EE915F80125669ED00F0B0B3 /* Shader.h */,
+				EE51F93A12F49AC6003A241E /* Sound.cpp */,
+				EE51F93B12F49AC6003A241E /* Sound.h */,
+				EE51F8DE12F492D7003A241E /* Sprite.cpp */,
+				EE51F8DF12F492D7003A241E /* Sprite.h */,
+				EE51F92012F499E9003A241E /* Texture.h */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -916,6 +933,9 @@
 				EE51F31012EB4BBE003A241E /* INIFile.cpp in Sources */,
 				EE51F31612EB4BE7003A241E /* PreferencesFile.cpp in Sources */,
 				EE51F8C912F43045003A241E /* Object.cpp in Sources */,
+				EE51F8DD12F492CC003A241E /* Mesh.cpp in Sources */,
+				EE51F8E012F492D7003A241E /* Sprite.cpp in Sources */,
+				EE51F93C12F49AC6003A241E /* Sound.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

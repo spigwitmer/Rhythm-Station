@@ -9,7 +9,9 @@
 GLFWwindow hwnd = 0;
 bool focused = false;
 
-bool Window::Create(int width, int height, bool fullscreen)
+int width = 1, height = 1;
+
+bool Window::Create(int w, int h, bool fullscreen)
 {	
 	// AA makes things pretty
 	if (Preferences->GetBoolValue("Graphics", "AntiAliasing", false))
@@ -19,7 +21,7 @@ bool Window::Create(int width, int height, bool fullscreen)
 	glfwOpenWindowHint(GLFW_ALPHA_BITS, 8);
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 32);
 	int fs = fullscreen ? GLFW_FULLSCREEN : GLFW_WINDOWED;
-	hwnd = glfwOpenWindow(width, height, fs, "", NULL);
+	hwnd = glfwOpenWindow(w, h, fs, "", NULL);
 	
 	glewInit();
 	
@@ -32,8 +34,11 @@ bool Window::Create(int width, int height, bool fullscreen)
 	
 	Message msg;
 	msg.name = "WindowOpened";
-	msg.data["Size"] = (void *)vec2(width, height);
+	msg.data["Size"] = (void *)vec2(w, h);
 	msg.Send();
+	
+	width = w;
+	height = h;
 	
 	return true;
 }
@@ -47,7 +52,7 @@ void Window::Destroy()
 	glfwCloseWindow(hwnd);
 }
 
-GLFWwindow Window::GetWindow()
+GLFWwindow Window::getWindow()
 {
 	if (!hwnd)
 		Log->Print("Window doesn't exist!");
@@ -55,7 +60,23 @@ GLFWwindow Window::GetWindow()
 	return hwnd;
 }
 
-bool Window::GetFocus()
+bool Window::CheckFocus()
 {
-	return focused;
+	return glfwGetWindowParam(Window::getWindow(), GLFW_ACTIVE) ? true : false;
+}
+
+void Window::UpdateTitle(double delta)
+{
+	glfwSetWindowTitle(Window::getWindow(), Log->SPrint("Rhythm-Station - FPS: %0.1f, Delta: %0.05f",
+		int((1.0 / delta) * 10) * 0.1f, delta).c_str());
+}
+
+int Window::getWidth()
+{
+	return width;
+}
+
+int Window::getHeight()
+{
+	return height;
 }

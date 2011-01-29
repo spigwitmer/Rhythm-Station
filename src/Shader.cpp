@@ -153,6 +153,7 @@ void Shader::Reload()
 	m_mv_uniform = glGetUniformLocation(id, "ModelViewMatrix");
 	m_proj_uniform = glGetUniformLocation(id, "ProjectionMatrix");
 	m_tex_uniform = glGetUniformLocation(id, "Texture0");
+	m_color_uniform = glGetUniformLocation(id, "Color");
 }
 
 void Shader::Bind()

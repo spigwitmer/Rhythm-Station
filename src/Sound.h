@@ -30,23 +30,14 @@ public:
 	void Play();
 	void Update(double delta);
 	
-	void Loop(bool _loop) {
-		sd_loop = _loop;
-	}
-	void Volume(float _volume) {
-		sd_volume = _volume;
-	}
-	void Pitch(float _pitch) {
-		sd_pitch = _pitch;
-	}
-	void Pan(float _pan) {
-		sd_pan = _pan;
-	}
+	void setLoop(bool _loop);
+	void setVolume(float _volume);
+	void setPitch(float _pitch);
+	void setPan(float _pan);
+	
 	void UseEqualizer(bool enabled);
 	
-private:
-	void Register();
-	
+private:	
 	SoundData *sd_sound;
 	OggVorbis_File ogg_file;
 	

@@ -4,6 +4,7 @@
 #include "Logger.h"
 #include <SLB/SLB.hpp>
 #include "Object.h"
+#include "Sprite.h"
 #include "Sound.h"
 
 LuaManager *Lua = NULL;
@@ -16,6 +17,7 @@ LuaManager::LuaManager()
 	// Register stuff with Lua.
 	SLB::Manager::getInstance().registerSLB(L);
 	Object_Binding();
+	Sprite_Binding();
 	Sound_Binding();
 }
 

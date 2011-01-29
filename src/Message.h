@@ -17,7 +17,7 @@ struct MessageListener
 {
 	// Don't use pure virtual so that descended classes can omit these.
 	// Might change later.
-	virtual ~MessageListener() { }
+	virtual ~MessageListener() { } // silence warning
 	virtual void HandleMessage(const Message &msg) { }
 };
 

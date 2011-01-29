@@ -38,7 +38,8 @@ private:
 	const char *vss, *fss;	// shader sources, needed so we can rebuild after
 	GLuint	m_mv_uniform,
 			m_proj_uniform,
-			m_tex_uniform;
+			m_tex_uniform,
+			m_color_uniform;
 	       
 	Matrix *m_proj, *m_model;
 };

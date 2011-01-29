@@ -28,10 +28,9 @@ int main (int argc, char **argv)
 		Preferences->GetLongValue("Graphics", "WindowHeight", 480),
 		Preferences->GetBoolValue("Graphics", "FullScreen", false));
 	glfwSwapInterval(Preferences->GetBoolValue("Graphics", "VSync", true));
-	glEnable(GL_DEPTH_TEST);
 	
 	// Start up all our singletons.
-	Game	= new GameManager(Window::GetWindow());
+	Game	= new GameManager(Window::getWindow());
 	Input	= new InputManager();
 	Lua		= new LuaManager();
 	
@@ -44,7 +43,6 @@ int main (int argc, char **argv)
 	SoundManager::Open();
 	
 	// Start running Lua and begin the first screen.
-	Game->Start();
 	Lua->Run("init.lua");
 	
 	// we'll be using these everywhere, enable them and leave it that way.
@@ -55,9 +53,9 @@ int main (int argc, char **argv)
 	double then = glfwGetTime(); // prevent registering a skip on first update
 	double max_delta = (1.0/60.0) * 3.0;
 	
-	while (glfwIsWindow(Window::GetWindow()))
+	while (glfwIsWindow(Window::getWindow()))
 	{
-		if (glfwGetKey(Window::GetWindow(), GLFW_KEY_ESC))
+		if (glfwGetKey(Window::getWindow(), GLFW_KEY_ESC))
 			break;
 
 		double now = glfwGetTime();
@@ -67,10 +65,8 @@ int main (int argc, char **argv)
 		 * Check that the window is active and update the title twice per second.
 		 * Do this before limiting the delta so it always reports the true value.
 		 */
-		if (int(then * 2) != int(now * 2)) {
-			Game->UpdateWindowTitle(delta);
-			Game->SetWindowActive();
-		}
+		if (int(then * 2) != int(now * 2))
+			Window::UpdateTitle(delta);
 		
 		// Prevent large jumps. Note: audio should be updated before doing this.
 		if (delta > max_delta) {

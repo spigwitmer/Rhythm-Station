@@ -12,13 +12,6 @@ Logger::Logger() : m_cColor(FG_RED), m_bUseColors(false)
 {
 }
 
-// don't forget to define _DEBUG_!
-void Logger::DebugPrint(std::string input)
-{
-	if (Game->IsDebugMode())
-		Print("%s (debug)", input.c_str());
-}
-
 std::string Logger::SPrint(const char *in, ...)
 {
 	va_list va;
