@@ -1,22 +1,21 @@
 #ifndef _OBJECT_H_
 #define _OBJECT_H_
 
-#include "Shader.h"
-#include "Message.h"
-#include "ResourceManager.h"
-#include "Type.h"
-#include "Mesh.h"
-#include "Matrix.h"
-#include "Timer.h"
-#include "Tween.h"
 #include <vector>
 #include <map>
 
-struct AnimationState
+#include "Matrix.h"
+#include "Message.h"
+#include "Timer.h"
+#include "Tween.h"
+#include "Type.h"
+
+class AnimationState
 {
+	// Make sure things don't go uninitialized!
 	AnimationState() : type(TWEEN_SLEEP), duration(0.0), color(rgba(1.0)),
-	position(vec3(0.0)), rotation(vec3(0.0)), scale(vec3(1.0))
-	{ }
+	position(vec3(0.0)), rotation(vec3(0.0)), scale(vec3(1.0)) { }
+	
 	AnimationState operator = (const AnimationState &anim)
 	{
 		type = anim.type;
@@ -41,63 +40,47 @@ public:
 	Object();
 	virtual ~Object();
 	
-	void Load(std::string path);
+	virtual void Load(std::string path) = 0;
 	
+	void HandleMessage(std::string msg);
+	void Update(double delta);
+	
+	void DrawPrimitives();
+	virtual void Draw();
+	
+	// parenting... needs a getChild function still.
 	void setParent(Object *obj);
 	void addChild(Object *obj);
+	
+	// animation
+	void addState(int tweentype, double length);
 	
 	void setPosition(float x, float y, float z);
 	void setRotation(float x, float y, float z);
 	void setScale(float x, float y, float z);
-	void setColor(float r, float g, float b, float a);
+			
+	Matrix getMatrix();
+	vec3 getPosition();
+	vec3 getRotation();
+	vec3 getScale();
 	
-	void addState(int tweentype, double length);
-	
-	void HandleMessage(std::string msg);
-	void Update(double delta);
-	void Draw();
-	
-	Matrix GetMatrix() {
-		return m_matrix;
-	}
-	
-	void DepthClear(bool enabled);
-	
-	vec3 getTranslation() {
-		return m_pos;
-	}
-	vec3 getRotation() {
-		return m_rot;
-	}
-	vec3 getScale() {
-		return m_scale;
-	}
-	
+	std::string name;
 	
 protected:
+	
 	void Register();
 	
-	void QueueUpdate();
-	
-	Mesh mesh;
-	GLuint m_color_uniform;
-	
-	std::vector<AnimationState> m_states;
-	std::vector<Object*> m_children;
-	
-	bool m_bNeedsUpdate, m_bDepthClear;
-	
+	bool m_bNeedsUpdate;
 	unsigned m_frame;
+	std::vector<AnimationState> m_states;
 	
-	rgba	m_color;
-	Shader	m_shader;
-	Matrix	m_matrix;
-	Texture	m_texture;
-	Timer	m_timer;
-	
+	std::vector<Object*> m_children;
 	Object *m_parent;
 	
-	vec3 m_pos, m_rot, m_scale;
+	Matrix m_matrix;
+	Timer m_timer;
+
+	vec3 m_position, m_rotation, m_scale;
 };
 
 void Object_Binding();
