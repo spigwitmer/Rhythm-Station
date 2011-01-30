@@ -69,6 +69,11 @@ void Shader::SetProjectionMatrix(Matrix *mat)
 	m_proj = mat;
 }
 
+void Shader::setColor(float r, float g, float b, float a)
+{
+	glUniform4f(m_color_uniform, r, g, b, a);
+}
+
 void Shader::LoadFromDisk(std::string _vs, std::string _fs)
 {
 	if (_vs.empty() || _fs.empty())

@@ -60,7 +60,6 @@
 		EE915F82125669ED00F0B0B3 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915F81125669ED00F0B0B3 /* Shader.cpp */; };
 		EE915F9312567C1600F0B0B3 /* ResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915F9212567C1600F0B0B3 /* ResourceManager.cpp */; };
 		EE915FE21256829D00F0B0B3 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915FE01256829D00F0B0B3 /* Logger.cpp */; };
-		EE945CD812B77CEF0029ADB0 /* shield-9.ogg in Resources */ = {isa = PBXBuildFile; fileRef = EE945CD712B77CEF0029ADB0 /* shield-9.ogg */; };
 		EEA552C9125A6E4B0065F811 /* HandleArguments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA552C8125A6E4B0065F811 /* HandleArguments.cpp */; };
 		EEA552D2125A7FE30065F811 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA552D1125A7FE30065F811 /* Matrix.cpp */; };
 		EEA552D7125A80920065F811 /* Type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA552D5125A80920065F811 /* Type.cpp */; };
@@ -220,7 +219,6 @@
 		EE915F9212567C1600F0B0B3 /* ResourceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResourceManager.cpp; sourceTree = "<group>"; };
 		EE915FE01256829D00F0B0B3 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
 		EE915FE11256829D00F0B0B3 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
-		EE945CD712B77CEF0029ADB0 /* shield-9.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "shield-9.ogg"; sourceTree = "<group>"; };
 		EEA552C7125A6E4B0065F811 /* HandleArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleArguments.h; sourceTree = "<group>"; };
 		EEA552C8125A6E4B0065F811 /* HandleArguments.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HandleArguments.cpp; sourceTree = "<group>"; };
 		EEA552D1125A7FE30065F811 /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
@@ -390,7 +388,6 @@
 			isa = PBXGroup;
 			children = (
 				EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */,
-				EE945CD712B77CEF0029ADB0 /* shield-9.ogg */,
 				EE747FC5127E55B200E4A8FA /* Data */,
 				EEC5285E127375570064054A /* init.lua */,
 				8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */,
@@ -470,17 +467,12 @@
 		EE0907A112C096DD00ADFA57 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				EE51F8DB12F492CC003A241E /* Mesh.cpp */,
-				EE51F8DC12F492CC003A241E /* Mesh.h */,
 				EE51F8C812F43045003A241E /* Object.cpp */,
 				EE51F8C712F43045003A241E /* Object.h */,
-				EE915F81125669ED00F0B0B3 /* Shader.cpp */,
-				EE915F80125669ED00F0B0B3 /* Shader.h */,
 				EE51F93A12F49AC6003A241E /* Sound.cpp */,
 				EE51F93B12F49AC6003A241E /* Sound.h */,
 				EE51F8DE12F492D7003A241E /* Sprite.cpp */,
 				EE51F8DF12F492D7003A241E /* Sprite.h */,
-				EE51F92012F499E9003A241E /* Texture.h */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -573,9 +565,14 @@
 		EE9160861256A60100F0B0B3 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
+				EE51F8DB12F492CC003A241E /* Mesh.cpp */,
+				EE51F8DC12F492CC003A241E /* Mesh.h */,
 				EE48488812D716EA00534E26 /* Message.cpp */,
 				EE48488912D716EA00534E26 /* Message.h */,
+				EE915F81125669ED00F0B0B3 /* Shader.cpp */,
+				EE915F80125669ED00F0B0B3 /* Shader.h */,
 				EE4848A412D717B800534E26 /* Singleton.h */,
+				EE51F92012F499E9003A241E /* Texture.h */,
 				EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */,
 				EED312E512D1262A00A15AC5 /* ThreadGroup.h */,
 				EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */,
@@ -805,7 +802,6 @@
 			files = (
 				EEC5285F127375570064054A /* init.lua in Resources */,
 				EE747FCB127E55B200E4A8FA /* Data in Resources */,
-				EE945CD812B77CEF0029ADB0 /* shield-9.ogg in Resources */,
 				EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -94,7 +94,16 @@ void Object::Update(double delta)
 
 // These are up to derived classes.
 void Object::DrawPrimitives() { }
-void Object::Draw() { }
+void Object::Draw()
+{
+	// Bind shader and set uniforms
+	m_shader.Bind();
+	m_shader.setColor(m_color.r, m_color.g, m_color.b, m_color.a);
+	
+	m_texture.Bind();
+	
+	this->DrawPrimitives();
+}
 
 // parenting... needs a getChild function still.
 void Object::setParent(Object *obj)

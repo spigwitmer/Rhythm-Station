@@ -1,7 +1,6 @@
 #include "Sound.h"
 #include "GameManager.h"
 #include "FileManager.h"
-#include "Screen.h"
 #include "Logger.h"
 
 Sound::Sound() : m_use_eq(false), sd_loop(false), loaded(false), sd_pitch(1.0), sd_volume(1.0)

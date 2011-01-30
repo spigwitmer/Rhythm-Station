@@ -3,7 +3,6 @@
 #include "GameManager.h"
 #include "ResourceManager.h"
 #include "FileManager.h"
-#include "Screen.h"
 #include "Logger.h"
 #include "PNGFile.h"
 
@@ -65,13 +64,8 @@ void Sprite::Load(std::string _path)
 	QueueUpdate();
 }
 
-void Sprite::Draw()
-{	
-	// Bind shader and set uniforms
-	m_shader.Bind();
-	m_texture.Bind();
-	glUniform4f(m_color_uniform, m_color.r, m_color.g, m_color.b, m_color.a);
-	
+void Sprite::DrawPrimitives()
+{
 	// Draw!
 	mesh.Draw();
 }

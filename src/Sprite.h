@@ -18,18 +18,13 @@ public:
 	
 	void Load(std::string path);
 	
-	void Draw();
 	void DrawPrimitives();
 	
 protected:	
-	Mesh mesh;
-	GLuint m_color_uniform;
-		
+	Mesh mesh;		
 	bool m_bDepthClear;
 	
 	rgba	m_color;
-	Shader	m_shader;
-	Texture	m_texture;
 };
 
 void Sprite_Binding();

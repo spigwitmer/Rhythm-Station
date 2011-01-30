@@ -34,6 +34,8 @@ public:
 	
 	GLuint id;
 	
+	void setColor(float r, float g, float b, float a);
+	
 private:
 	const char *vss, *fss;	// shader sources, needed so we can rebuild after
 	GLuint	m_mv_uniform,
