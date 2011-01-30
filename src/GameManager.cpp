@@ -101,7 +101,7 @@ void GameManager::Render()
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	for (size_t i = 0; i < vpObjects.size(); i++)
+	for (size_t i = 0; i<vpObjects.size(); i++)
 		vpObjects[i]->Draw();
 	
 	glfwSwapBuffers();

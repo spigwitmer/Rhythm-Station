@@ -46,7 +46,7 @@ public:
 	void HandleMessage(std::string msg);
 	void Update(double delta);
 	
-	void DrawPrimitives();
+	virtual void DrawPrimitives();
 	virtual void Draw();
 	
 	// parenting... needs a getChild function still.
