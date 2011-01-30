@@ -57,6 +57,11 @@ void GameManager::AddObject(Object *obj)
 	vpObjects.push_back(obj);
 }
 
+void GameManager::AddSound(Sound *snd)
+{
+	vpSounds.push_back(snd);
+}
+
 std::string GameManager::GetExtensions()
 {
 	std::ostringstream extensions;
@@ -73,6 +78,9 @@ void GameManager::Update(double delta)
 {
 	for (size_t i = 0; i<vpObjects.size(); i++)
 		vpObjects[i]->Update(delta);
+	
+	for (size_t i = 0; i<vpSounds.size(); i++)
+		vpSounds[i]->Update(delta);
 }
 
 // this should probably be in scenemanager.

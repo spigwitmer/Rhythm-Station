@@ -6,6 +6,7 @@
 #include <map>
 #include "InputManager.h"
 #include "Object.h"
+#include "Sound.h"
 #include "Window.h"
 #include "Matrix.h"
 
@@ -19,6 +20,7 @@ public:
 	GLuint GetCurrentShader() { return current_shader; }
 	
 	void AddObject(Object *obj);
+	void AddSound(Sound *snd);
 	
 	void Update(double delta);
 	void QueueRendering();
@@ -37,6 +39,7 @@ private:
 	bool m_bFirstUpdate, m_bQueuedRender;
 	
 	std::vector<Object*> vpObjects;
+	std::vector<Sound*> vpSounds;
 };
 
 extern GameManager *Game;

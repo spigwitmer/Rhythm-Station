@@ -13,7 +13,7 @@ Sound::Sound() : m_use_eq(false), sd_loop(false), loaded(false), sd_pitch(1.0), 
 	in = new double[BUFFER_SIZE];
 	out = new fftw_complex[BUFFER_SIZE];
 	
-	Register();
+	Game->AddSound(this);
 }
 
 Sound::~Sound()
