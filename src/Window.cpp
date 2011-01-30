@@ -5,11 +5,27 @@
 #include "Window.h"
 #include "PreferencesFile.h"
 #include "Type.h"
+#include "GameManager.h"
 
 GLFWwindow hwnd = 0;
 bool focused = false;
 
 int width = 1, height = 1;
+
+// on window resize
+static void _resizeCallback(GLFWwindow window, int width, int height)
+{
+	glfwSetWindowTitle(Window::getWindow(), Log->SPrint("%dx%d", width, height).c_str());
+	
+	// Set new size preference (should this only be saved explicitely by user?)
+	Preferences->SetValue("Graphics", "WindowWidth", width);
+	Preferences->SetValue("Graphics", "WindowHeight", height);
+	
+	// Set new projection matrix, queue screen update.
+	Game->ProjectionMatrix->Ortho(width, height);
+	
+	Game->QueueRendering();
+}
 
 bool Window::Create(int w, int h, bool fullscreen)
 {	
@@ -22,7 +38,7 @@ bool Window::Create(int w, int h, bool fullscreen)
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 32);
 	int fs = fullscreen ? GLFW_FULLSCREEN : GLFW_WINDOWED;
 	hwnd = glfwOpenWindow(w, h, fs, "", NULL);
-	
+
 	glewInit();
 	
 	int status = glfwGetError();
@@ -41,6 +57,12 @@ bool Window::Create(int w, int h, bool fullscreen)
 	height = h;
 	
 	return true;
+}
+
+// Set callbacks
+void Window::Connect()
+{
+	glfwSetWindowSizeCallback(_resizeCallback);	
 }
 
 void Window::Destroy()

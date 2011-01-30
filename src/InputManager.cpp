@@ -71,21 +71,6 @@ static void _mScrollCallback(GLFWwindow window, int x, int y)
 	Input->SendEvent();
 }
 
-// on window resize
-static void _resizeCallback(GLFWwindow window, int width, int height)
-{
-	glfwSetWindowTitle(Window::getWindow(), Log->SPrint("%dx%d", width, height).c_str());
-
-	// Set new size preference (should this only be saved explicitely by user?)
-	Preferences->SetValue("Graphics", "WindowWidth", width);
-	Preferences->SetValue("Graphics", "WindowHeight", height);
-	
-	// Set new projection matrix, queue screen update.
-	Game->ProjectionMatrix->Ortho(width, height);
-	
-	Game->QueueRendering();
-}
-
 InputManager::InputManager()
 {
 	DetectControllers();
@@ -103,7 +88,6 @@ void InputManager::Connect()
 {
 	glfwSetKeyCallback(_keyCallback);
 	glfwSetCharCallback(_charCallback);
-	glfwSetWindowSizeCallback(_resizeCallback);
 	glfwSetMousePosCallback(_mPosCallback);
 	glfwSetMouseButtonCallback(_mButtonCallback);
 	glfwSetScrollCallback(_mScrollCallback);
@@ -113,7 +97,6 @@ InputManager::~InputManager()
 {
 	glfwSetKeyCallback(NULL);
 	glfwSetCharCallback(NULL);
-	glfwSetWindowSizeCallback(NULL);
 	glfwSetMousePosCallback(NULL);
 	glfwSetMouseButtonCallback(NULL);
 	glfwSetScrollCallback(NULL);

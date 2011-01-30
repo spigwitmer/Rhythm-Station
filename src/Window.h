@@ -6,10 +6,10 @@
 namespace Window
 {
 	bool Create(int width, int height, bool fullscreen = false);
+	void Connect();
 	void Destroy();
 	
 	bool CheckFocus();
-	
 	void UpdateTitle(double delta);
 	
 	int getWidth();

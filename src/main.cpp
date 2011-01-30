@@ -36,6 +36,7 @@ int main (int argc, char **argv)
 	
 	// Connect event callbacks
 	Input->Connect();
+	Window::Connect();
 	
 	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);
