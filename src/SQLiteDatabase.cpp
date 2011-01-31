@@ -29,7 +29,7 @@ void SQLiteDatabase::Query(string sql_str)
 }
 
 // returns false until it's done.
-bool SQLiteDatabase::Step()
+bool SQLiteDatabase::Next()
 {
 	int status = sqlite3_step(last_query);
 	ostringstream err;

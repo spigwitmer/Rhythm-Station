@@ -19,7 +19,7 @@
  *
  * // run an sql statement and get results
  * db->Query("SELECT * FROM foo");
- * while (db->Step()) {
+ * while (db->Next()) {
  * 	std::map<std::string, std::string> row = db->GetRow();
  *	Log->Print(row["bar"]);
  * }
@@ -29,14 +29,21 @@
  * delete db;
 */
 
+// WARNING: There aren't any safety functions yet. Be careful!
 class SQLiteDatabase
 {
 public:
+	// Open/Close a given database file. Creates one if it doesn't exist.
 	void Open(std::string db);
 	void Close();
 	
+	// Run an SQL query
 	void Query(std::string sql_str);
-	bool Step();
+	
+	// Get the next result
+	bool Next();
+	
+	// Get all columns in the current row
 	std::map<std::string, std::string> GetRow();
 	
 private:
