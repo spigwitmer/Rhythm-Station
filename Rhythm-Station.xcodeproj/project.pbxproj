@@ -37,6 +37,7 @@
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
+		EE4263E312F72B690080D740 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4263E112F72B690080D740 /* Font.cpp */; };
 		EE48488C12D716EA00534E26 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48488812D716EA00534E26 /* Message.cpp */; };
 		EE48489412D7178D00534E26 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48489212D7178D00534E26 /* Window.cpp */; };
 		EE4849B612D9CC7A00534E26 /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4849B512D9CC7A00534E26 /* MessageManager.cpp */; };
@@ -177,6 +178,8 @@
 		EE0A64231270439C00F5F134 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "glew-1.5.6/src/glew.c"; sourceTree = "<group>"; };
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
+		EE4263E112F72B690080D740 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
+		EE4263E212F72B690080D740 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 		EE48488812D716EA00534E26 /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
 		EE48488912D716EA00534E26 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		EE48489212D7178D00534E26 /* Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
@@ -467,6 +470,8 @@
 		EE0907A112C096DD00ADFA57 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				EE4263E112F72B690080D740 /* Font.cpp */,
+				EE4263E212F72B690080D740 /* Font.h */,
 				EE51F8C812F43045003A241E /* Object.cpp */,
 				EE51F8C712F43045003A241E /* Object.h */,
 				EE51F93A12F49AC6003A241E /* Sound.cpp */,
@@ -932,6 +937,7 @@
 				EE51F8DD12F492CC003A241E /* Mesh.cpp in Sources */,
 				EE51F8E012F492D7003A241E /* Sprite.cpp in Sources */,
 				EE51F93C12F49AC6003A241E /* Sound.cpp in Sources */,
+				EE4263E312F72B690080D740 /* Font.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,6 +1043,8 @@
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/extern/libogg-1.2.2/include",
+					"$(PROJECT_DIR)/extern/libvorbis-1.3.2/include",
 					"$(PROJECT_DIR)/extern/slb-1.63/include",
 					"$(PROJECT_DIR)/extern/libpng-1.4.4",
 					"$(PROJECT_DIR)/extern/sqlite-3.7.3",

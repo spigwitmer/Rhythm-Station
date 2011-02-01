@@ -2,21 +2,19 @@
 #define _FONT_H_
 
 #include "Object.h"
+#include "Mesh.h"
 #include <string>
-
-/*
- * A simple class for loading bitmap fonts (monospace, currently)
- * TODO: Proportional width, ttf/otf support via freetype2.
- */
 
 class Font : public Object
 {
 public:
-	void Load(std::string);
+	void Load(std::string, int size);
 	void Set(std::string);
+	void DrawPrimitives();
 	
 private:
 	std::string m_text;
+	Mesh mesh;
 };
 
 #endif
