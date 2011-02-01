@@ -8,10 +8,12 @@
 
 void Font::Load(std::string path, int size)
 {
+	Log->Print("Loading font \"%s\"", path.c_str());
+	
 	FT_Library lib;
 	FT_Face face;
 	
-	const char* fullpath = FileManager::GetFile(path).c_str();
+	path = FileManager::GetFile(path);
 	
 	int err = FT_Init_FreeType(&lib);
 	if (err)
@@ -20,7 +22,7 @@ void Font::Load(std::string path, int size)
 		return;
 	}
 	// TODO: keep fonts in memory and handle with ResourceManager
-	err = FT_New_Face(lib, fullpath, 0, &face);
+	err = FT_New_Face(lib, path.c_str(), 0, &face);
 	
 	if (err == FT_Err_Unknown_File_Format)
 	{
@@ -32,7 +34,6 @@ void Font::Load(std::string path, int size)
 		Log->Print("Could not read font file.");
 		return;
 	}
-	Log->Print("Loaded font \"%s\"", path.c_str());
 	
 	// 12pt font size
 	err = FT_Set_Char_Size(face, 0, size*64, 0, 0);
