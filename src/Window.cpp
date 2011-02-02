@@ -36,6 +36,7 @@ static void _resizeCallback(GLFWwindow window, int width, int height)
 
 bool Window::Create(int w, int h, bool fullscreen)
 {
+	// XXX: work around a GLFW bug.
 	is_fullscreen = fullscreen;
 	
 	// AA makes things pretty
@@ -47,7 +48,7 @@ bool Window::Create(int w, int h, bool fullscreen)
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 32);
 	int fs = fullscreen ? GLFW_FULLSCREEN : GLFW_WINDOWED;
 	hwnd = glfwOpenWindow(w, h, fs, "", NULL);
-
+	
 	glewInit();
 	
 	int status = glfwGetError();
@@ -87,7 +88,7 @@ GLFWwindow Window::getWindow()
 {
 	if (!hwnd)
 		Log->Print("Window doesn't exist!");
-		
+	
 	return hwnd;
 }
 

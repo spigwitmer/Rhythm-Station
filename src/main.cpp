@@ -27,7 +27,7 @@ int main (int argc, char **argv)
 		Preferences->GetLongValue("Graphics", "WindowWidth", 854),
 		Preferences->GetLongValue("Graphics", "WindowHeight", 480),
 		Preferences->GetBoolValue("Graphics", "FullScreen", false));
-	glfwSwapInterval(Preferences->GetBoolValue("Graphics", "VSync", true));
+	glfwSwapInterval(Preferences->GetBoolValue("Graphics", "VSync", false));
 	
 	// Start up all our singletons.
 	Game	= new GameManager(Window::getWindow());
