@@ -30,7 +30,17 @@ spr:setPosition(0,0,0)
 local spacing = 64
 local rotations = { 90, 0, 180, -90 }
 
-text = LoadFont("")
+for i = 1,2 do
+	for j = -10,10 do
+		spr = LoadActor("Data/arrow.png")
+		spr:setPosition(j*spacing, 400, 0)
+		spr:setScale(0.5,0.5,0.5)
+		spr:addState(0, math.random(1,500)*0.005)
+		spr:addState(1, math.random(10,50)*0.1)
+		spr:setPosition(j*spacing, -400, 0)
+		spr:setLoop(true);
+	end
+end
 
 --[=[
 for i = 0,3 do

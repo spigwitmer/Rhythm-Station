@@ -58,6 +58,7 @@ public:
 	
 	void setPosition(float x, float y, float z);
 	void setRotation(float x, float y, float z);
+	void setLoop(bool enabled);
 	void setScale(float x, float y, float z);
 	void setColor(float r, float g, float b, float a);
 	
@@ -72,7 +73,7 @@ protected:
 	void QueueUpdate();
 	void Register();
 	
-	bool m_bNeedsUpdate;
+	bool m_bNeedsUpdate, m_loop;
 	
 	// animation
 	unsigned m_frame;

@@ -1,7 +1,7 @@
 #include "Object.h"
 #include "GameManager.h"
 
-Object::Object() : m_bNeedsUpdate(true), m_frame(0), m_position(vec3(0.0)),
+Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_position(vec3(0.0)),
 	m_rotation(vec3(0.0)), m_scale(vec3(1.0)), m_color(rgba(1.0))
 {
 	m_parent = NULL;
@@ -65,6 +65,8 @@ void Object::Update(double delta)
 			{
 				m_timer.Touch();
 				m_frame++;
+				if (m_loop && m_frame == m_states.size())
+					m_frame = 0;
 			}
 		}
 		
@@ -160,6 +162,11 @@ void Object::setColor(float r, float g, float b, float a)
 	QueueUpdate();
 }
 
+void Object::setLoop(bool enabled)
+{
+	m_loop = true;
+}
+
 Matrix Object::getMatrix()
 {
 	return m_matrix;
@@ -188,6 +195,7 @@ void Object_Binding()
 	.constructor()
 	.set("addState", &Object::addState)
 	.set("addChild", &Object::addChild)
+	.set("setLoop", &Object::setLoop)
 	.set("setParent", &Object::setParent)
 	.set("setPosition", &Object::setPosition)
 	.set("setRotate", &Object::setRotation)
