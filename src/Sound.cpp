@@ -3,7 +3,7 @@
 #include "FileManager.h"
 #include "Logger.h"
 
-Sound::Sound() : m_use_eq(false), sd_loop(false), loaded(false), sd_pitch(1.0), sd_volume(1.0)
+Sound::Sound() : m_use_eq(false), sd_loop(false), loaded(false), waiting(false), sd_pitch(1.0), sd_volume(1.0)
 {
 	sd_sound = new SoundData();
 	
@@ -69,9 +69,7 @@ void Sound::Load(std::string _path)
 	alSourcei(sd_sound->source, AL_LOOPING, sd_loop);
 	alSourcei(sd_sound->source, AL_SOURCE_RELATIVE, true);
 	
-	loaded = true;
-	
-	Play();	
+	loaded = waiting = true;
 }
 
 bool Sound::IsPlaying()
@@ -83,6 +81,12 @@ bool Sound::IsPlaying()
 
 void Sound::Update(double delta)
 {
+	if (waiting)
+	{
+		Play();
+		waiting = false;
+	}
+	
 	if (!IsPlaying())
 		return;
 		
