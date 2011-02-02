@@ -114,10 +114,10 @@ src/Object.cpp \
 src/PNGFile.cpp \
 src/PreferencesFile.cpp \
 src/ResourceManager.cpp \
-src/Screen.cpp \
 src/Shader.cpp \
 src/Sound.cpp \
 src/SoundManager.cpp \
+src/Sprite.cpp \
 src/SQLiteDatabase.cpp \
 src/StringUtils.cpp \
 src/ThreadGroup.cpp \
