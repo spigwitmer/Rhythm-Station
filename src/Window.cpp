@@ -9,6 +9,7 @@
 
 GLFWwindow hwnd = 0;
 bool focused = false;
+bool is_fullscreen = false;
 
 int width = 1, height = 1;
 
@@ -21,6 +22,12 @@ static void _resizeCallback(GLFWwindow window, int width, int height)
 	Preferences->SetValue("Graphics", "WindowWidth", width);
 	Preferences->SetValue("Graphics", "WindowHeight", height);
 	
+	Message msg;
+	msg.name = "WindowResized";
+	msg.Send();
+	
+	glViewport(0, 0, width, height);
+	
 	// Set new projection matrix, queue screen update.
 	Game->ProjectionMatrix->Ortho(width, height);
 	
@@ -28,7 +35,9 @@ static void _resizeCallback(GLFWwindow window, int width, int height)
 }
 
 bool Window::Create(int w, int h, bool fullscreen)
-{	
+{
+	is_fullscreen = fullscreen;
+	
 	// AA makes things pretty
 	if (Preferences->GetBoolValue("Graphics", "AntiAliasing", false))
 		glfwOpenWindowHint(GLFW_FSAA_SAMPLES, Preferences->GetLongValue("Graphics", "AntiAliasingSamples", 4));
@@ -84,7 +93,8 @@ GLFWwindow Window::getWindow()
 
 bool Window::CheckFocus()
 {
-	return glfwGetWindowParam(Window::getWindow(), GLFW_ACTIVE) ? true : false;
+	bool windowfocus = glfwGetWindowParam(Window::getWindow(), GLFW_ACTIVE) ? true : false;
+	return windowfocus || is_fullscreen;
 }
 
 void Window::UpdateTitle(double delta)

@@ -30,15 +30,21 @@ spr:setPosition(0,0,0)
 local spacing = 64
 local rotations = { 90, 0, 180, -90 }
 
-for i = 1,2 do
+for i = 2,2 do
 	for j = -10,10 do
 		spr = LoadActor("Data/arrow.png")
-		spr:setPosition(j*spacing, 400, 0)
-		spr:setScale(0.5,0.5,0.5)
+		spr:setPosition(j*spacing, 500, 0)
+		size = math.random(50)*(i/200)+0.4;
+		spr:setScale(size, size, size)
 		spr:addState(0, math.random(1,500)*0.005)
 		spr:addState(1, math.random(10,50)*0.1)
-		spr:setPosition(j*spacing, -400, 0)
+		spr:setPosition(j*spacing, -500, 0)
 		spr:setLoop(true);
+		
+		shadow = LoadActor("Data/arrow.png")
+		shadow:setParent(spr)
+		shadow:setColor(0,0,0,0.5)
+		shadow:setPosition(10,10,0)
 	end
 end
 
