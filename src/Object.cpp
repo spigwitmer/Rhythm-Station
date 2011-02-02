@@ -21,7 +21,7 @@ void Object::Register()
 
 void Object::QueueUpdate()
 {
-	m_bNeedsUpdate = true;
+	m_bNeedsUpdate = true;	
 }
 
 void Object::HandleMessage(std::string msg)
@@ -34,7 +34,8 @@ void Object::Update(double delta)
 	double time = m_timer.Ago();
 	
 	// need to update when a) it's queued and b) there's more animation to do.
-	if (m_bNeedsUpdate || m_frame < m_states.size())
+	// XXX: extra updates when parented... most actors will be children of another.
+	if (m_bNeedsUpdate || m_frame < m_states.size() || m_parent)
 	{
 		// update animation states.
 		if (m_frame < m_states.size())
@@ -87,7 +88,7 @@ void Object::Update(double delta)
 		m_matrix.Scale(m_texture.width, m_texture.height, 1.0);
 		
 		m_bNeedsUpdate = false;
-		
+				
 		Game->QueueRendering();
 	}
 	
