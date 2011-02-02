@@ -53,13 +53,18 @@ int main (int argc, char **argv)
 	
 	double then = glfwGetTime(); // prevent registering a skip on first update
 	double max_delta = (1.0/60.0) * 3.0;
+	double now = then;
 	
 	while (glfwIsWindow(Window::getWindow()))
 	{
 		if (glfwGetKey(Window::getWindow(), GLFW_KEY_ESC))
 			break;
-
-		double now = glfwGetTime();
+		
+		if (now < then)
+			now += fabs(now - then);
+		else
+			now = glfwGetTime();
+		
 		double delta = fabs(now - then);
 		
 		/*
@@ -76,6 +81,7 @@ int main (int argc, char **argv)
 		}
 		
 		then = now;
+		
 		Game->Update(delta);
 		Input->Update(); // objects will update on the message
 		Game->Render();
