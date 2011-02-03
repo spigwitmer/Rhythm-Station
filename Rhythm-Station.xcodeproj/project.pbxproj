@@ -50,7 +50,6 @@
 		EE51F8DD12F492CC003A241E /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F8DB12F492CC003A241E /* Mesh.cpp */; };
 		EE51F8E012F492D7003A241E /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F8DE12F492D7003A241E /* Sprite.cpp */; };
 		EE51F93C12F49AC6003A241E /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE51F93A12F49AC6003A241E /* Sound.cpp */; };
-		EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */ = {isa = PBXBuildFile; fileRef = EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
 		EE7814931271FFAE00B01960 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7814911271FFAE00B01960 /* Tween.cpp */; };
@@ -204,7 +203,6 @@
 		EE51F92012F499E9003A241E /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		EE51F93A12F49AC6003A241E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
 		EE51F93B12F49AC6003A241E /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
-		EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "get-it-by-your-hands.ogg"; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		EE7814911271FFAE00B01960 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
@@ -389,7 +387,6 @@
 			children = (
 				EE747FC5127E55B200E4A8FA /* Data */,
 				EE230EC912F9D94300E4C77B /* Themes */,
-				EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */,
 				8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */,
 			);
 			name = Resources;
@@ -801,7 +798,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE747FCB127E55B200E4A8FA /* Data in Resources */,
-				EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */,
 				EE230ED012F9D94300E4C77B /* Themes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

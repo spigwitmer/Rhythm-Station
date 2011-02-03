@@ -23,7 +23,7 @@ local vec3 = {
 	end
 }
 
-sound = LoadSound("/get-it-by-your-hands.ogg")
+sound = LoadSound("Sounds/get-it-by-your-hands.ogg")
 sound:setLoop(true)
 sound:UseEqualizer(true)
 
