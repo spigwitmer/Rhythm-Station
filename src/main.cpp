@@ -46,7 +46,7 @@ int main (int argc, char **argv)
 	
 	// Start running Lua and begin the first screen.
 	
-	Lua->Run(Log->SPrint("Themes/%s/init.lua", Preferences->GetValue("Game", "CurrentTheme")).c_str());
+	Lua->Run("init.lua");
 	
 	// we'll be using these everywhere, enable them and leave it that way.
 	glEnableVertexAttribArray(VERTEX_ARRAY);

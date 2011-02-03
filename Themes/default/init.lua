@@ -23,14 +23,14 @@ local vec3 = {
 	end
 }
 
-sound = LoadSound("get-it-by-your-hands.ogg")
+sound = LoadSound("/get-it-by-your-hands.ogg")
 sound:setLoop(true)
 sound:UseEqualizer(true)
 
 loc = Object()
 loc:setPosition(0,-160,0)
 
-spr = LoadActor("Data/logo.png")
+spr = LoadActor("Graphics/logo.png")
 spr:setPosition(vec3.zero())
 
 local size = 0.5
@@ -38,7 +38,7 @@ local spacing = 64
 local rotations = { 90, 0, 180, -90 }
 
 for i = 0,3 do
-	spr = LoadActor("Data/arrow.png")
+	spr = LoadActor("Graphics/arrow.png")
 	spr:setParent(loc)
 	spr:setPosition(spacing*(i-1.5),0,0)
 	spr:setRotation(0,0,rotations[i+1])
@@ -46,7 +46,7 @@ for i = 0,3 do
 end
 
 for i = 0,3 do
-	spr = LoadActor("Data/arrow.png")
+	spr = LoadActor("Graphics/arrow.png")
 	spr:setColor(0,0,0,0.5)
 	spr:setRotation(0,0,rotations[i+1])
 	spr:setScale(size,size,size)

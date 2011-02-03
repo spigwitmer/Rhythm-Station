@@ -50,7 +50,7 @@ Shader::Shader()
 	m_model = new Matrix();
 	m_proj = new Matrix();
 	this->SetProjectionMatrix(Game->ProjectionMatrix);
-	this->LoadFromDisk("Data/Shaders/generic.vs", "Data/Shaders/generic.fs");
+	this->LoadFromDisk("/Data/Shaders/generic.vs", "/Data/Shaders/generic.fs");
 }
 
 Shader::~Shader()

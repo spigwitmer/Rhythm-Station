@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <fstream>
 #include <sys/stat.h>
+#include "PreferencesFile.h"
 
 bool FileManager::FileExists(std::string _file)
 {
@@ -68,6 +69,14 @@ std::string FileManager::GetWorkingDirectory()
 
 std::string FileManager::GetFile(std::string _path)
 {
+	if (_path[0] != '/' && Preferences != NULL)
+		_path = Log->SPrint("Themes/%s/%s",
+			Preferences->GetValue("Game", "CurrentTheme"),
+			_path.c_str());
+	else
+		_path = _path.substr(1);
+
+	
 	return GetWorkingDirectory() + _path;
 }
 
