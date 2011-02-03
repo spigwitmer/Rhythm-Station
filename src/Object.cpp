@@ -199,7 +199,7 @@ void Object_Binding()
 	.set("setLoop", &Object::setLoop)
 	.set("setParent", &Object::setParent)
 	.set("setPosition", &Object::setPosition)
-	.set("setRotate", &Object::setRotation)
+	.set("setRotation", &Object::setRotation)
 	.set("setScale", &Object::setScale)
 	.set("setColor", &Object::setColor);
 }
