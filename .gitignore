@@ -62,3 +62,6 @@ depcomp
 install-sh
 missing
 .deps
+
+
+Preferences.ini
