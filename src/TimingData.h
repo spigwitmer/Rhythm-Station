@@ -6,17 +6,17 @@
 // this should probably be a bitmask instead!
 enum NoteType
 {
-	NOTE_TAP,
-	NOTE_HOLD,
-	NOTE_ROLL,
-	NOTE_TAIL,
-	NOTE_MINE
+	Note_Tap = 0,
+	Note_Hold,	// hold "heads" = first hold, tail is the second.
+	Note_Roll,	// same rule as holds.
+	Note_Mine
 };
 
 enum NoteAttribute
 {
-	NOTE_ATTR_FAKE,
-	NOTE_ATTR_VISIBLE
+	NoteAttribute_None = 0,
+	NoteAttribute_Fake,
+	NoteAttribute_Invisible
 };
 
 struct Note
@@ -25,27 +25,20 @@ struct Note
 	NoteType type;
 	std::vector<NoteAttribute> flags;
 	
-	int column;	// For games which use columns (e.g. StepMania)
-	int width;	// cover multiple columns
-	
-	// For mouse-based games which use coords (osu!-esque)
-	float scale;
-	vec3 position;
+	unsigned char column;	// For games which use columns (e.g. StepMania)
 };
 
 struct NoteRow
 {
 	std::vector<Note> notes;	// Notes on this row
-	int time;					// Time in milliseconds.
+	unsigned int time;		// Time in milliseconds.
 	
-	// This is independent of time - use for stops, delays, warping, whatever.
-	float scroll_speed;
+	float scroll_speed;		// A stop would just be setting this to 0.
 };
 
 struct NoteRegion
 {
-	int combo_rate; // aka tickcount
-	float bpm;		// For display purposes, not timing.
+	unsigned int combo_rate; // aka tickcount
 	
 	struct TimeSignature
 	{
@@ -53,7 +46,7 @@ struct NoteRegion
 		int denominator;
 	} time_sig;
 	
-	int time;
+	unsigned int time;
 };
 
 struct TimingData
