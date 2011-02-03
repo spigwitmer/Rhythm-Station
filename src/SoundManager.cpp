@@ -19,14 +19,14 @@ std::vector<SoundData *> vpSounds;
 
 SoundData::SoundData()
 {
-	alGenBuffers(2, buffers);
+	alGenBuffers(8, buffers);
 	alGenSources(1, &source);
 	error = alGetError();
 }
 
 SoundData::~SoundData()
 {
-	alDeleteBuffers(2, buffers);
+	alDeleteBuffers(8, buffers);
 	alDeleteSources(1, &source);
 }
 

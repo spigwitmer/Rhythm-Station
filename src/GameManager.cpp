@@ -4,6 +4,7 @@
 #include "GameManager.h"
 #include "InputManager.h"
 #include "Logger.h"
+#include "PreferencesFile.h"
 #include "Object.h"
 #include "Timer.h"
 #include <iostream>
@@ -45,6 +46,8 @@ GameManager::GameManager(GLFWwindow window) :
 	lazy_updates = false;
 #endif
 	ProjectionMatrix = new Matrix();
+	
+	Log->Print("Current Theme: %s", Preferences->GetValue("Game", "CurrentTheme", "default"));
 }
 
 GameManager::~GameManager()

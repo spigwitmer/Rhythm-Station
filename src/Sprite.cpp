@@ -60,7 +60,7 @@ void Sprite::Load(std::string _path)
 	}
 	else
 		Log->Print("Unknown file type: %s.", ext.c_str());
-		
+	
 	QueueUpdate();
 }
 

@@ -17,7 +17,7 @@
 #include "SoundManager.h"
 
 // 8k is the smallest size which (consistently) works for me. Use 32k for now.
-#define BUFFER_SIZE 4096*8
+#define BUFFER_SIZE 4096*2
 
 class Sound : public Object
 {

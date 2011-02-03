@@ -29,4 +29,6 @@ void PreferencesFile::SetDefaults()
 	
 	this->SetValue("Graphics", "AntiAliasing", false);
 	this->SetValue("Graphics", "AntiAliasingSamples", 4);
+	
+	this->SetValue("Game", "CurrentTheme", "default");
 }

@@ -33,6 +33,7 @@ int main (int argc, char **argv)
 	Game	= new GameManager(Window::getWindow());
 	Input	= new InputManager();
 	Lua		= new LuaManager();
+//	Theme	= new ThemeManager();
 	
 	// Connect event callbacks
 	Input->Connect();
@@ -44,7 +45,8 @@ int main (int argc, char **argv)
 	SoundManager::Open();
 	
 	// Start running Lua and begin the first screen.
-	Lua->Run("init.lua");
+	
+	Lua->Run(Log->SPrint("Themes/%s/init.lua", Preferences->GetValue("Game", "CurrentTheme")).c_str());
 	
 	// we'll be using these everywhere, enable them and leave it that way.
 	glEnableVertexAttribArray(VERTEX_ARRAY);
@@ -75,7 +77,8 @@ int main (int argc, char **argv)
 			Window::UpdateTitle(delta);
 		
 		// Prevent large jumps. Note: audio should be updated before doing this.
-		if (delta > max_delta) {
+		if (delta > max_delta)
+		{
 			Log->Print("Frame took too long; time has been limited.");
 			delta = max_delta;
 		}

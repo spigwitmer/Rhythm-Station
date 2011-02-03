@@ -35,7 +35,8 @@ void Sound::Load(std::string _path)
 	std::string path = FileManager::GetFile(_path);
 	FILE *f;
 	
-	if (!(f = fopen(path.c_str(), "rb"))) {
+	if (!(f = fopen(path.c_str(), "rb")))
+	{
 		Log->Print("Could not open file \"%s\"", path.c_str());
 		return;
 	}
@@ -108,14 +109,18 @@ void Sound::Play()
 	
 	if (IsPlaying())
 		return;
-		
-	if (!Stream(sd_sound->buffers[0]))
+
+	if (!Stream(sd_sound->buffers[0]) ||
+		!Stream(sd_sound->buffers[1]) ||
+		!Stream(sd_sound->buffers[2]) ||
+		!Stream(sd_sound->buffers[3]) ||
+		!Stream(sd_sound->buffers[4]) ||
+		!Stream(sd_sound->buffers[5]) ||
+		!Stream(sd_sound->buffers[6]) ||
+		!Stream(sd_sound->buffers[7]))
 		return;
-		
-	if (!Stream(sd_sound->buffers[1]))
-		return;
-		
-	alSourceQueueBuffers(sd_sound->source, 2, sd_sound->buffers);
+	
+	alSourceQueueBuffers(sd_sound->source, 8, sd_sound->buffers);
 	alSourcePlay(sd_sound->source);
 }
 

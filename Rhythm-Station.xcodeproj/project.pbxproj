@@ -36,6 +36,7 @@
 		EE07CE3E127A279000AAA31F /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0E127A279000AAA31F /* Table.cpp */; };
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
+		EE230ED012F9D94300E4C77B /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = EE230EC912F9D94300E4C77B /* Themes */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
 		EE4263E312F72B690080D740 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4263E112F72B690080D740 /* Font.cpp */; };
 		EE48488C12D716EA00534E26 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48488812D716EA00534E26 /* Message.cpp */; };
@@ -53,7 +54,6 @@
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
 		EE7814931271FFAE00B01960 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7814911271FFAE00B01960 /* Tween.cpp */; };
-		EE7815131272144800B01960 /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7815101272144800B01960 /* StringUtils.cpp */; };
 		EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
 		EE915E511255CD9500F0B0B3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE915E501255CD9500F0B0B3 /* main.cpp */; };
 		EE915EA01255D7B200F0B0B3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE61255CB9300F0B0B3 /* OpenGL.framework */; };
@@ -95,7 +95,6 @@
 		EEAB1AF9126F5440004FE58D /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AD5126F5440004FE58D /* lvm.c */; };
 		EEAB1AFA126F5440004FE58D /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AD7126F5440004FE58D /* lzio.c */; };
 		EEAB1AFD126F5440004FE58D /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1ADB126F5440004FE58D /* print.c */; };
-		EEC5285F127375570064054A /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = EEC5285E127375570064054A /* init.lua */; };
 		EEC5287312737C8F0064054A /* PNGFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC5287012737C8F0064054A /* PNGFile.cpp */; };
 		EEC52D7B1273803E0064054A /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52B9B1273803D0064054A /* adler32.c */; };
 		EEC52DF71273803E0064054A /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52C3F1273803E0064054A /* crc32.c */; };
@@ -177,6 +176,7 @@
 		EE07CE0E127A279000AAA31F /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
 		EE0A64231270439C00F5F134 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "glew-1.5.6/src/glew.c"; sourceTree = "<group>"; };
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
+		EE230EC912F9D94300E4C77B /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
 		EE4263E112F72B690080D740 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		EE4263E212F72B690080D740 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
@@ -209,8 +209,6 @@
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		EE7814911271FFAE00B01960 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
 		EE7814921271FFAE00B01960 /* Tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tween.h; sourceTree = "<group>"; };
-		EE7815101272144800B01960 /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
-		EE7815111272144800B01960 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
 		EE915DE21255CB9300F0B0B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EE915DE61255CB9300F0B0B3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EE915E501255CD9500F0B0B3 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -283,7 +281,6 @@
 		EEAB1AD7126F5440004FE58D /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
 		EEAB1AD8126F5440004FE58D /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
 		EEAB1ADB126F5440004FE58D /* print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = print.c; sourceTree = "<group>"; };
-		EEC5285E127375570064054A /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
 		EEC5287012737C8F0064054A /* PNGFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PNGFile.cpp; sourceTree = "<group>"; };
 		EEC5287112737C8F0064054A /* PNGFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGFile.h; sourceTree = "<group>"; };
 		EEC52B9B1273803D0064054A /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
@@ -390,9 +387,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */,
 				EE747FC5127E55B200E4A8FA /* Data */,
-				EEC5285E127375570064054A /* init.lua */,
+				EE230EC912F9D94300E4C77B /* Themes */,
+				EE549FDD12C4AC20009C0A02 /* get-it-by-your-hands.ogg */,
 				8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */,
 			);
 			name = Resources;
@@ -594,8 +591,6 @@
 			children = (
 				EEA552C8125A6E4B0065F811 /* HandleArguments.cpp */,
 				EEA552C7125A6E4B0065F811 /* HandleArguments.h */,
-				EE7815101272144800B01960 /* StringUtils.cpp */,
-				EE7815111272144800B01960 /* StringUtils.h */,
 				EE48489212D7178D00534E26 /* Window.cpp */,
 				EE48489312D7178D00534E26 /* Window.h */,
 			);
@@ -805,9 +800,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEC5285F127375570064054A /* init.lua in Resources */,
 				EE747FCB127E55B200E4A8FA /* Data in Resources */,
 				EE549FDE12C4AC20009C0A02 /* get-it-by-your-hands.ogg in Resources */,
+				EE230ED012F9D94300E4C77B /* Themes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,7 +858,6 @@
 				EEAB1AFD126F5440004FE58D /* print.c in Sources */,
 				EE0A64241270439C00F5F134 /* glew.c in Sources */,
 				EE7814931271FFAE00B01960 /* Tween.cpp in Sources */,
-				EE7815131272144800B01960 /* StringUtils.cpp in Sources */,
 				EEC5287312737C8F0064054A /* PNGFile.cpp in Sources */,
 				EEC52D7B1273803E0064054A /* adler32.c in Sources */,
 				EEC52DF71273803E0064054A /* crc32.c in Sources */,
