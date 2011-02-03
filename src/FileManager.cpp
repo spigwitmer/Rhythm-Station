@@ -73,9 +73,8 @@ std::string FileManager::GetFile(std::string _path)
 		_path = Log->SPrint("Themes/%s/%s",
 			Preferences->GetValue("Game", "CurrentTheme"),
 			_path.c_str());
-	else
+	else if (Preferences != NULL) // prevent "references.ini" and such.
 		_path = _path.substr(1);
-
 	
 	return GetWorkingDirectory() + _path;
 }
