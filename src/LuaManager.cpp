@@ -9,10 +9,36 @@
 
 LuaManager *Lua = NULL;
 
+static const luaL_Reg libs[] =
+{
+	{ "base",	luaopen_base },
+	{ "table",	luaopen_table },
+	{ "string",	luaopen_string },
+	{ "math",	luaopen_math },
+	{ "debug",	luaopen_debug },
+/*
+	{ "io", luaopen_io },
+	{ "os", luaopen_os },
+	{ "package", luaopen_package },
+*/
+	{ NULL, NULL }
+};
+
+// load the list of libs
+static void open_libs(lua_State *L)
+{
+	const luaL_reg *lib = libs;
+	for ( ; lib->func; lib++)
+	{
+		lib->func(L);		// open library
+		lua_settop(L, 0);	// discard any results
+	}
+}
+
 LuaManager::LuaManager()
 {
 	L = lua_open();
-	luaL_openlibs(L);
+	open_libs(L);
 	
 	// Register stuff with Lua.
 	SLB::Manager::getInstance().registerSLB(L);

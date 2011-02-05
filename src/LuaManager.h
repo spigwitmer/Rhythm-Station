@@ -18,7 +18,6 @@ public:
 	
 	void Run(const char *file);
 	
-private:
 	lua_State *L;
 };
 

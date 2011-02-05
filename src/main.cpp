@@ -33,7 +33,6 @@ int main (int argc, char **argv)
 	Game	= new GameManager(Window::getWindow());
 	Input	= new InputManager();
 	Lua		= new LuaManager();
-//	Theme	= new ThemeManager();
 	
 	// Connect event callbacks
 	Input->Connect();
@@ -44,8 +43,7 @@ int main (int argc, char **argv)
 	
 	SoundManager::Open();
 	
-	// Start running Lua and begin the first screen.
-	
+	// Run the theme's lua.
 	Lua->Run("init.lua");
 	
 	// we'll be using these everywhere, enable them and leave it that way.
