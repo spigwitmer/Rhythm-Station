@@ -17,8 +17,8 @@ static const luaL_Reg libs[] =
 	{ "math",	luaopen_math },
 	{ "debug",	luaopen_debug },
 /*
-	{ "io", luaopen_io },
-	{ "os", luaopen_os },
+	{ "io",	luaopen_io },
+	{ "os",	luaopen_os },
 	{ "package", luaopen_package },
 */
 	{ NULL, NULL }

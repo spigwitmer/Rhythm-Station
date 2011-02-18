@@ -1,5 +1,4 @@
 #include <GL/glew.h>
-#include "Mesh.h"
 #include "Logger.h"
 #include "Font.h"
 #include "FileManager.h"

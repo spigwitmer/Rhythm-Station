@@ -1,5 +1,7 @@
 #include "Object.h"
 #include "GameManager.h"
+#include "LuaManager.h"
+#include <SLB/SLB.hpp>
 
 Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_color(rgba(1.0)),
 	m_position(vec3(0.0)), m_rotation(vec3(0.0)), m_scale(vec3(1.0))

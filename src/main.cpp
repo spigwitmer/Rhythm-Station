@@ -54,7 +54,7 @@ int main (int argc, char **argv)
 	double then = glfwGetTime(); // prevent registering a skip on first update
 	double max_delta = (1.0/60.0) * 3.0;
 	double now = then;
-	
+		
 	while (glfwIsWindow(Window::getWindow()))
 	{
 		if (glfwGetKey(Window::getWindow(), GLFW_KEY_ESC))

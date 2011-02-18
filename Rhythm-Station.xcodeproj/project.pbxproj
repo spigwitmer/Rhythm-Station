@@ -39,6 +39,8 @@
 		EE230ED012F9D94300E4C77B /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = EE230EC912F9D94300E4C77B /* Themes */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
 		EE4263E312F72B690080D740 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4263E112F72B690080D740 /* Font.cpp */; };
+		EE44CCC5130DACDC0047E657 /* NoteField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE44CCC4130DACDC0047E657 /* NoteField.cpp */; };
+		EE44CCCA130E86F80047E657 /* Threads_pthreads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE44CCC8130E86F80047E657 /* Threads_pthreads.cpp */; };
 		EE48488C12D716EA00534E26 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48488812D716EA00534E26 /* Message.cpp */; };
 		EE48489412D7178D00534E26 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE48489212D7178D00534E26 /* Window.cpp */; };
 		EE4849B612D9CC7A00534E26 /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4849B512D9CC7A00534E26 /* MessageManager.cpp */; };
@@ -179,6 +181,10 @@
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
 		EE4263E112F72B690080D740 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		EE4263E212F72B690080D740 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
+		EE44CCC3130DACDC0047E657 /* NoteField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteField.h; sourceTree = "<group>"; };
+		EE44CCC4130DACDC0047E657 /* NoteField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoteField.cpp; sourceTree = "<group>"; };
+		EE44CCC8130E86F80047E657 /* Threads_pthreads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Threads_pthreads.cpp; sourceTree = "<group>"; };
+		EE44CCC9130E86F80047E657 /* Threads_pthreads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Threads_pthreads.h; sourceTree = "<group>"; };
 		EE48488812D716EA00534E26 /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
 		EE48488912D716EA00534E26 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		EE48489212D7178D00534E26 /* Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
@@ -472,6 +478,8 @@
 				EE51F93B12F49AC6003A241E /* Sound.h */,
 				EE51F8DE12F492D7003A241E /* Sprite.cpp */,
 				EE51F8DF12F492D7003A241E /* Sprite.h */,
+				EE44CCC3130DACDC0047E657 /* NoteField.h */,
+				EE44CCC4130DACDC0047E657 /* NoteField.cpp */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -564,6 +572,8 @@
 		EE9160861256A60100F0B0B3 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
+				EE44CCC8130E86F80047E657 /* Threads_pthreads.cpp */,
+				EE44CCC9130E86F80047E657 /* Threads_pthreads.h */,
 				EE51F8DB12F492CC003A241E /* Mesh.cpp */,
 				EE51F8DC12F492CC003A241E /* Mesh.h */,
 				EE48488812D716EA00534E26 /* Message.cpp */,
@@ -928,6 +938,8 @@
 				EE51F8E012F492D7003A241E /* Sprite.cpp in Sources */,
 				EE51F93C12F49AC6003A241E /* Sound.cpp in Sources */,
 				EE4263E312F72B690080D740 /* Font.cpp in Sources */,
+				EE44CCC5130DACDC0047E657 /* NoteField.cpp in Sources */,
+				EE44CCCA130E86F80047E657 /* Threads_pthreads.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
