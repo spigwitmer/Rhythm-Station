@@ -6,7 +6,9 @@ AM_CXXFLAGS= $(AM_CFLAGS)
 # Stuff to install (make install not working yet as there's no reason
 # to install rstation to a system yet..)
 #
-noinst_PROGRAMS = rstation
+TestSuite = rs-test-threads
+
+noinst_PROGRAMS = rstation $(TestSuite)
 noinst_LIBRARIES = libglfw3.a libslb.a
 
 #
@@ -93,6 +95,18 @@ extern/lua-5.1.4/src/print.c
 liblua_a_CPPFLAGS = -Iextern/lua-5.1.4/src
 
 #
+# RStation components
+#
+
+# Threads
+RSTHREADS = src/ThreadGroup.cpp
+RSTHREADSLD = 
+#if LINUX
+RSTHREADS += src/Threads_pthreads.cpp
+RSTHREADSLD += -lpthread
+#endif
+
+#
 # RStation binary
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a
@@ -120,16 +134,16 @@ src/SoundManager.cpp \
 src/Sprite.cpp \
 src/SQLiteDatabase.cpp \
 src/StringUtils.cpp \
-src/ThreadGroup.cpp \
 src/Timer.cpp \
 src/Tween.cpp \
 src/Type.cpp \
 src/Window.cpp
 
-#if LINUX
-rstation_SOURCES += src/Threads_pthreads.cpp
-rstation_LDADD += -lpthread
-#endif
+rstation_SOURCES += $(RSTHREADS)
+rstation_LDADD += $(RSTHREADSLD)
+
+rs_test_threads_SOURCES = $(RSTHREADS) src/RSTestThreads.cpp
+rs_test_threads_LDADD = $(RSTHREADSLD)
 
 rstation_CPPFLAGS = -DDEBUG \
 $(EXT_DEPENDS_CFLAGS) \
