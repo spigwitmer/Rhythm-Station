@@ -125,6 +125,12 @@ src/Timer.cpp \
 src/Tween.cpp \
 src/Type.cpp \
 src/Window.cpp
+
+#if LINUX
+rstation_SOURCES += src/Threads_pthreads.cpp
+rstation_LDADD += -lpthread
+#endif
+
 rstation_CPPFLAGS = -DDEBUG \
 $(EXT_DEPENDS_CFLAGS) \
 $(FFTW3_CFLAGS) \
