@@ -12,6 +12,15 @@
 #include "Logger.h"
 #include "Window.h"
 #include "PreferencesFile.h"
+#include "ThreadGroup.h"
+
+void *MyWin32ThreadTest(void *data)
+{
+	Log->Print("Hello from child thread!");
+	SleepEx(3000,false);
+
+	return NULL;
+}
 
 #include "NoteField.h"
 
@@ -20,6 +29,15 @@ int main (int argc, char **argv)
 {
 	// Startup Logger singleton first
 	Log = new Logger();
+
+#if 0
+	Log->Print("RStation win32 thread test");
+	RSThread mythread;
+	mythread.Start( MyWin32ThreadTest );
+	mythread.Wait();
+	delete Log;//XXX
+	exit(0);//XXX
+#endif
 	
 	// Load Preferences
 	Preferences = new PreferencesFile("Preferences.ini");
