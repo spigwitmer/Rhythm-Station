@@ -162,12 +162,12 @@ void Matrix::LookAt(vec3 eye, vec3 center, vec3 up)
 	forward = center;
 	
 	// side = forward x up
-	side = side.cross(forward, up);
-	side.normalize();
+	side = glm::cross(forward, up);
+	side = glm::normalize(side);
 	
 	// up = side x forward
-	up = up.cross(side, forward);
-	forward.flip();
+	up = glm::cross(side, forward);
+	forward = -forward;
 	
 	this->Identity();
 	m[0][0] = side.x;

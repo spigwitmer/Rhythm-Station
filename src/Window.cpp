@@ -57,12 +57,7 @@ bool Window::Create(int w, int h, bool fullscreen)
 	
 	if (!hwnd)
 		return false;
-	
-	Message msg;
-	msg.name = "WindowOpened";
-	msg.data["Size"] = (void *)vec2(w, h);
-	msg.Send();
-	
+		
 	width = w;
 	height = h;
 	
