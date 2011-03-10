@@ -983,6 +983,7 @@
 					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/Release\"",
 				);
 				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				INFOPLIST_FILE = "Rhythm-Station-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (

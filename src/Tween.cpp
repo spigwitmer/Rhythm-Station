@@ -1,6 +1,7 @@
 #include "Tween.h"
 #include "Logger.h"
 #include <math.h>
+#include <glm/glm.hpp>
 
 typedef float (*TweenFn) (float,double,double);
 
@@ -9,7 +10,7 @@ float sleep(float change, double time, double elapsed)
 {
 	if (elapsed == 1)
 		return change;
-		
+	
 	return 0.0f;
 }
 
@@ -153,21 +154,5 @@ rgba interpolate(TweenType tweentype, rgba _old, rgba _new, double duration, dou
 	temp.g -= Tween(change.g, time, elapsed);
 	temp.b -= Tween(change.b, time, elapsed);
 	temp.a -= Tween(change.a, time, elapsed);
-	return temp;
-}
-
-Matrix interpolate(TweenType tweentype, Matrix _new, Matrix _old, double duration, double time)
-{
-	TweenFn Tween = SetTweenType(tweentype);
-	
-	if (duration == 0 || !Tween)
-		return _new;
-		
-	Matrix temp = _old;
-	double elapsed = time / duration;
-	
-	for (int i = 0; i<16; i++)
-		temp.matrix[i] -= Tween(_old.matrix[i] - _new.matrix[i], time, elapsed);
-		
 	return temp;
 }

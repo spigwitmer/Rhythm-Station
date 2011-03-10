@@ -25,27 +25,22 @@ struct Matrix
 		this->Ortho(-width*0.5, width*0.5, height*0.5, -height*0.5, depth.x, depth.y);
 	}
 	void LookAt(vec3 eye, vec3 center, vec3 up);
-	
-	// utils
-	void Print();
-	void Multiply(const float *m);
-	
+		
 	// vec3 overloads
 	void Translate(vec3 pos);
 	void Rotate(vec3 rot);
 	void Scale(vec3 size);
 	
-	// doesn't work for (Matrix*)?
 	Matrix &operator * (const Matrix &m) {
-		this->Multiply(m.matrix);
+		m.matrix * matrix;
 		return *this;
 	}
 	Matrix &operator = (const Matrix &m)  {
-		memcpy(matrix, m.matrix, 16 * sizeof(float));
+		memcpy(&matrix[0][0], &m.matrix[0][0], 16 * sizeof(float));
 		return *this;
 	}
 	
-	float matrix[16];
+	glm::mat4 matrix;
 };
 
 #endif

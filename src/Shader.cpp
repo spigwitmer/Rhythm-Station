@@ -174,8 +174,8 @@ void Shader::Bind()
 
 void Shader::SetUniforms()
 {
-	glUniformMatrix4fv(m_mv_uniform, 1, false, m_model->matrix);
-	glUniformMatrix4fv(m_proj_uniform, 1, false, m_proj->matrix);
+	glUniformMatrix4fv(m_mv_uniform, 1, false, &m_model->matrix[0][0]);
+	glUniformMatrix4fv(m_proj_uniform, 1, false, &m_proj->matrix[0][0]);
 	glUniform1i(m_tex_uniform, 0);
 }
 

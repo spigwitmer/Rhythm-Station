@@ -11,11 +11,11 @@ float radf(float val)
 	return val;
 }
 
-static const float identity_matrix[4][4] = {
-	{ 1, 0, 0, 0 },
-	{ 0, 1, 0, 0 },
-	{ 0, 0, 1, 0 },
-	{ 0, 0, 0, 1 }
+static const float identity_matrix[16] = {
+	1, 0, 0, 0,
+	0, 1, 0, 0,
+	0, 0, 1, 0,
+	0, 0, 0, 1
 };
 
 Matrix::Matrix()
@@ -23,64 +23,42 @@ Matrix::Matrix()
 	this->Identity();
 }
 
-// useful for debugging.
-void Matrix::Print()
-{
-	for (int i = 0; i<4; i++)
-	{
-		int ind = i<<2;
-		Log->Print("%f %f %f %f", matrix[ind], matrix[ind+1], matrix[ind+2], matrix[ind+3]);
-	}
-}
-
 void Matrix::Load(float *m)
 {
-	memcpy(matrix, m, sizeof(matrix));
+	memcpy(&matrix[0][0], m, sizeof(identity_matrix));
 }
 
 void Matrix::Zero()
 {
-	memset(matrix, 0, sizeof(matrix));
+	memset(&matrix[0][0], 0, sizeof(identity_matrix));
 }
 
 void Matrix::Identity()
 {
-	memcpy(matrix, identity_matrix, sizeof(matrix));
-}
-
-void Matrix::Multiply(const float *mat)
-{
-	for (int i = 0; i < 4; i++)
-	{
-		const float c0 = matrix[i], c1 = matrix[4+i],
-		            c2 = matrix[8+i], c3 = matrix[12+i];
-		            
-		for (int cur = 0; cur < 16; cur+=4)
-			matrix[cur+i] = c0 * mat[cur] + c1 * mat[cur+1] + c2 * mat[cur+2] + c3 * mat[cur+3];
-	}
+	memcpy(&matrix[0][0], identity_matrix, sizeof(identity_matrix));
 }
 
 // implemented from GL2.1 documentation
 void Matrix::Translate(float x, float y, float z)
 {
-	float mat[4][4] = {
-		{ 1, 0, 0, 0 },
-		{ 0, 1, 0, 0 },
-		{ 0, 0, 1, 0 },
-		{ x, y, z, 1 }
-	};
-	this->Multiply(&mat[0][0]);
+	glm::mat4 mat;
+	mat[0] = vec4(1, 0, 0, 0);
+	mat[1] = vec4(0, 1, 0, 0);
+	mat[2] = vec4(0, 0, 1, 0);
+	mat[3] = vec4(x, y, z, 1);
+
+	this->matrix *= mat;
 }
 
 void Matrix::Scale(float x, float y, float z)
 {
-	float mat[4][4] = {
-		{ x, 0, 0, 0 },
-		{ 0, y, 0, 0 },
-		{ 0, 0, z, 0 },
-		{ 0, 0, 0, 1 }
-	};
-	this->Multiply(&mat[0][0]);
+	glm::mat4 mat;
+	mat[0] = vec4(x, 0, 0, 0);
+	mat[1] = vec4(0, y, 0, 0);
+	mat[2] = vec4(0, 0, z, 0);
+	mat[3] = vec4(0, 0, 0, 1);
+
+	this->matrix *= mat;
 }
 
 void Matrix::Rotate(float angle, float x, float y, float z)
@@ -92,13 +70,14 @@ void Matrix::Rotate(float angle, float x, float y, float z)
 	xs = x * s;
 	ys = y * s;
 	zs = z * s;
-	float mat[4][4] = {
-		{ x * x * oc + c, y * x * oc + zs, (x * z * oc) - ys, 0, },
-		{ x * y * oc - zs, y * y * oc + c, (y * z * oc) + xs, 0, },
-		{ x * z * oc + ys, y * z * oc - xs, z * z * oc + c, 0, },
-		{ 0, 0, 0, 1 }
-	};
-	this->Multiply(&mat[0][0]);
+	
+	glm::mat4 mat;
+	mat[0] = vec4(x * x * oc + c, y * x * oc + zs, (x * z * oc) - ys, 0);
+	mat[1] = vec4(x * y * oc - zs, y * y * oc + c, (y * z * oc) + xs, 0);
+	mat[2] = vec4(x * z * oc + ys, y * z * oc - xs, z * z * oc + c, 0);
+	mat[3] = vec4(0, 0, 0, 1);
+	
+	this->matrix *= mat;
 }
 
 // overloads
@@ -125,19 +104,19 @@ void Matrix::Ortho(float left, float right, float bottom, float top, float near,
 	tx = -((right+left) / (right-left));
 	ty = -((top+bottom) / (top-bottom));
 	tz = -((far+near) / (far-near));
-	float m[4][4] = {
-		{ 2.f / (right - left), 0, 0, 0 },
-		{ 0, 2.f / (top - bottom), 0, 0 },
-		{ 0, 0, -2.f / (far - near), 0 },
-		{ tx, ty, tz, 1 }
-	};
-	this->Multiply(&m[0][0]);
+	
+	glm::mat4 mat;
+	mat[0] = vec4(2.f / (right - left), 0, 0, 0);
+	mat[1] = vec4(0, 2.f / (top - bottom), 0, 0);
+	mat[2] = vec4(0, 0, -2.f / (far - near), 0);
+	mat[3] = vec4(tx, ty, tz, 1);
+
+	this->matrix *= mat;
 }
 
 // based on Mesa - there is a way to do this with less trig, but I don't remember.
 void Matrix::Perspective(float fov, float aspect, double near, double far)
 {
-	float m[4][4] = {{0}};
 	float radians = radf(fov * 0.5f);
 	float sine = sinf(radians), delta = far - near, ctan = 0.0f;
 	delta = far - near;
@@ -146,19 +125,21 @@ void Matrix::Perspective(float fov, float aspect, double near, double far)
 		return;
 		
 	ctan = cos(radians) / sine;
-	m[0][0] = ctan / aspect;
-	m[1][1] = ctan;
-	m[2][2] = -(far + near) / delta;
-	m[2][3] = -1;
-	m[3][2] = -2 * near * far / delta;
+	glm::mat4 mat;
 	
-	this->Multiply(&m[0][0]);
+	mat[0].x = ctan / aspect;
+	mat[1].y = ctan;
+	mat[2].z = -(far + near) / delta;
+	mat[2].w = -1;
+	mat[3].z = -2 * near * far / delta;
+	
+	this->matrix *= mat;
 }
 
 void Matrix::LookAt(vec3 eye, vec3 center, vec3 up)
 {
 	vec3 forward, side;
-	float m[4][4];
+	glm::mat4 mat;
 	forward = center;
 	
 	// side = forward x up
@@ -170,16 +151,13 @@ void Matrix::LookAt(vec3 eye, vec3 center, vec3 up)
 	forward = -forward;
 	
 	this->Identity();
-	m[0][0] = side.x;
-	m[1][0] = side.y;
-	m[2][0] = side.z;
-	m[0][1] = up.x;
-	m[1][1] = up.y;
-	m[2][1] = up.z;
-	m[0][2] = forward.x;
-	m[1][2] = forward.y;
-	m[2][2] = forward.z;
+
+	mat[0] = vec4(side.x, side.y, side.z, 0);
+	mat[1] = vec4(up.x, up.y, up.z, 0);
+	mat[2] = vec4(forward.x, forward.y, forward.z, 0);
+	mat[3].w = 1;
 	
-	this->Multiply(&m[0][0]);
+	mat = glm::transpose(mat);
+	this->matrix *= mat;	
 	this->Translate(-eye);
 }

@@ -4,7 +4,7 @@
 template <class T>
 struct Singleton
 {
-	static T *getInstance()
+	static T *getSingleton()
 	{
 		static T ptr;
 		return &ptr;
