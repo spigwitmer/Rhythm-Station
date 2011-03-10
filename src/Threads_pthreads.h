@@ -8,7 +8,7 @@ class ThreadImpl_pthreads: public ThreadImpl
 {
 public:
 	//ThreadImpl_pthreads();
-	//~ThreadImpl_pthreads();
+	virtual ~ThreadImpl_pthreads();
 	void Start( THREAD_FUNC_ARG(func) );
 	void Pause();
 	void Wait();

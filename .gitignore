@@ -65,3 +65,5 @@ missing
 
 
 Preferences.ini
+*.xc*
+xcuserdata

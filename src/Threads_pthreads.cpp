@@ -12,11 +12,11 @@ ThreadImpl_pthreads::ThreadImpl_pthreads()
 {
 	//pthread_attr_init(&m_attr);
 }
+ */
 
 ThreadImpl_pthreads::~ThreadImpl_pthreads()
 {
 }
-*/
 
 void ThreadImpl_pthreads::Start( THREAD_FUNC_ARG(func) )
 {

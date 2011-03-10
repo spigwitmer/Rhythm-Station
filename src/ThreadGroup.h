@@ -7,6 +7,8 @@
 class ThreadImpl
 {
 public:
+    // exists to shut up a compiler warning.
+    virtual ~ThreadImpl() { };
 	virtual void Start( THREAD_FUNC_ARG(func) ) = 0;
 	virtual void Pause() = 0;
 	virtual void Wait() = 0;
