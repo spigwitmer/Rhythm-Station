@@ -150,7 +150,8 @@ $(EXT_DEPENDS_CFLAGS) \
 $(FFTW3_CFLAGS) \
 $(libglfw3_a_CPPFLAGS) \
 $(libslb_a_CPPFLAGS) \
--Iextern/simpleini-4.13
+-Iextern/simpleini-4.13 \
+-Iextern/ogl-math
 
 #
 # Optional bundled lua
