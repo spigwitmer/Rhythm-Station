@@ -8,11 +8,11 @@
 #include "PreferencesFile.h"
 #include "Window.h"
 
-InputManager *Input = NULL;
-
 // keyboard. key for specials, char for text input and such.
 static void _keyCallback(GLFWwindow window, int key, int state)
 {
+	InputManager *Input = InputManager::getSingleton();
+	
 	double cur_time = glfwGetTime();
 	
 	switch (state) {
@@ -43,6 +43,8 @@ static void _keyCallback(GLFWwindow window, int key, int state)
 
 static void _charCallback(GLFWwindow window, int key)
 {
+	InputManager *Input = InputManager::getSingleton();
+	
 	char buf[2];
 	sprintf(buf, "%c", key);
 	Input->status.cur_string.push_back(buf[0]);
@@ -51,6 +53,8 @@ static void _charCallback(GLFWwindow window, int key)
 // mouse actions
 static void _mPosCallback(GLFWwindow window, int x, int y)
 {
+	InputManager *Input = InputManager::getSingleton();
+	
 	// Log->Print("x = %d, y = %d", x, y);
 	Input->status.mouse.x = x;
 	Input->status.mouse.y = y;
@@ -61,12 +65,16 @@ static void _mPosCallback(GLFWwindow window, int x, int y)
 
 static void _mButtonCallback(GLFWwindow window, int button, int state)
 {
+	InputManager *Input = InputManager::getSingleton();
+	
 	Input->status.mouse.buttons[button] = state == GLFW_PRESS ? KEY_PRESSED : KEY_NONE;
 	Input->SendEvent();
 }
 
 static void _mScrollCallback(GLFWwindow window, int x, int y)
 {
+	InputManager *Input = InputManager::getSingleton();
+	
 	Input->status.mouse.scroll = vec2(x, y);
 	Input->SendEvent();
 }

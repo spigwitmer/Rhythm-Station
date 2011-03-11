@@ -22,7 +22,11 @@ int main (int argc, char **argv)
 	// Load Preferences
 	Preferences = new PreferencesFile("Preferences.ini");
 	
-	glfwInit();
+	if (!glfwInit()) {
+		Log->Print("Something is terribly wrong!");
+		return 0;
+	}
+	
 	Window::Create(
 		Preferences->GetLongValue("Graphics", "WindowWidth", 854),
 		Preferences->GetLongValue("Graphics", "WindowHeight", 480),
@@ -30,9 +34,11 @@ int main (int argc, char **argv)
 	glfwSwapInterval(Preferences->GetBoolValue("Graphics", "VSync", false));
 	
 	// Start up all our singletons.
-	Game	= new GameManager(Window::getWindow());
-	Input	= new InputManager();
-	Lua		= new LuaManager();
+	Game = new GameManager(Window::getWindow());
+	
+	// These ones should clean themselves up.
+	InputManager *Input = InputManager::getSingleton();
+	LuaManager *Lua = LuaManager::getSingleton();
 	
 	// Connect event callbacks
 	Input->Connect();
@@ -90,9 +96,7 @@ int main (int argc, char **argv)
 	
 	SoundManager::Close();
 	
-	delete Lua;
 	delete Game;
-	delete Input;
 	delete Log;
 	delete Preferences;
 	

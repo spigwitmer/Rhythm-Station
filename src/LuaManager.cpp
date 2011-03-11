@@ -7,8 +7,6 @@
 #include "Sprite.h"
 #include "Sound.h"
 
-LuaManager *Lua = NULL;
-
 static const luaL_Reg libs[] =
 {
 	{ "base",	luaopen_base },

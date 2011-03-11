@@ -2,6 +2,7 @@
 #define _LUA_MANAGER_H_
 
 #include <string>
+#include "Singleton.h"
 
 extern "C"
 {
@@ -10,7 +11,7 @@ extern "C"
 #include "lauxlib.h"
 }
 
-class LuaManager
+class LuaManager : public Singleton<LuaManager>
 {
 public:
 	LuaManager();
@@ -20,7 +21,5 @@ public:
 	
 	lua_State *L;
 };
-
-extern LuaManager *Lua;
 
 #endif

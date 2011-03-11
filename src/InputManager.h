@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Type.h"
+#include "Singleton.h"
 
 enum KeyState
 {
@@ -58,7 +59,7 @@ struct IEvent
 	double *timestamp;
 };
 
-class InputManager
+class InputManager : public Singleton<InputManager>
 {
 public:
 	InputManager();
@@ -80,7 +81,5 @@ private:
 	
 	bool queuedUpdate;
 };
-
-extern InputManager *Input;
 
 #endif

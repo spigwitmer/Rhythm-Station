@@ -505,8 +505,6 @@
 		EE78150D1272143200B01960 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
-				EE51F31412EB4BE7003A241E /* PreferencesFile.cpp */,
-				EE51F31512EB4BE7003A241E /* PreferencesFile.h */,
 				EE51F30E12EB4BBE003A241E /* INIFile.cpp */,
 				EE51F30F12EB4BBE003A241E /* INIFile.h */,
 				EEC5287012737C8F0064054A /* PNGFile.cpp */,
@@ -549,6 +547,8 @@
 		EE9160851256A5F700F0B0B3 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				EE51F31412EB4BE7003A241E /* PreferencesFile.cpp */,
+				EE51F31512EB4BE7003A241E /* PreferencesFile.h */,
 				EECBDF86125CFFD000BA2BA4 /* FileManager.cpp */,
 				EECBDF87125CFFD000BA2BA4 /* FileManager.h */,
 				EE915F471256471E00F0B0B3 /* GameManager.cpp */,
