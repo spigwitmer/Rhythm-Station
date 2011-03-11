@@ -15,7 +15,10 @@ public:
 	void Update(double delta);
 	void Draw();
 	
-	void setColumns(char cols);
+	// Debug.
+	void Print();
+	
+	void setColumns(int cols);
 	void setNoteskin(std::string name);
 	void setSpeed(float multiplier);
 	
@@ -24,7 +27,7 @@ private:
 	std::string mNoteskin;
 	
 	// Number of columns
-	char mColumns;
+	int mColumns;
 	
 	// Scroll rate multiplier
 	float mSpeed;
