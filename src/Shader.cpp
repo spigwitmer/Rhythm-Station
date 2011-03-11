@@ -7,6 +7,9 @@
 #include "ResourceManager.h"
 #include "GameManager.h"
 
+// for value_ptr
+#include <glm/gtc/type_ptr.hpp>
+
 std::string getShaderLog(GLuint obj)
 {
 	int infologLength = 0, charsWritten = 0;
@@ -43,12 +46,12 @@ std::string getProgramLog(GLuint obj)
 	return log;
 }
 
-Shader::Shader()
+Shader::Shader() : id(0)
 {
-	id = m_mv_uniform = m_proj_uniform = m_tex_uniform = 0;
-	// can leak.
+	// XXX: drip drip drip (leaky)
 	m_model = new Matrix();
 	m_proj = new Matrix();
+	
 	this->SetProjectionMatrix(Game->ProjectionMatrix);
 	this->LoadFromDisk("/Data/Shaders/generic.vs", "/Data/Shaders/generic.fs");
 }
@@ -67,11 +70,6 @@ void Shader::SetModelViewMatrix(Matrix *mat)
 void Shader::SetProjectionMatrix(Matrix *mat)
 {
 	m_proj = mat;
-}
-
-void Shader::setColor(float r, float g, float b, float a)
-{
-	glUniform4f(m_color_uniform, r, g, b, a);
 }
 
 void Shader::LoadFromDisk(std::string _vs, std::string _fs)
@@ -155,28 +153,25 @@ void Shader::Reload()
 	}
 	
 	this->Bind();
-	m_mv_uniform = glGetUniformLocation(id, "ModelViewMatrix");
-	m_proj_uniform = glGetUniformLocation(id, "ProjectionMatrix");
-	m_tex_uniform = glGetUniformLocation(id, "Texture0");
-	m_color_uniform = glGetUniformLocation(id, "Color");
 }
 
 void Shader::Bind()
 {
-	if (id != Game->GetCurrentShader())
-	{
-		glUseProgram(id);
-		Game->SetCurrentShader(id);
-	}
+	/*
+	 * changing the shader is a cheap operation. It's not worth the hassle
+	 * of checking GameManager for the current shader in use.
+	 */
+	glUseProgram(id);
 	
 	SetUniforms();
 }
 
 void Shader::SetUniforms()
 {
-	glUniformMatrix4fv(m_mv_uniform, 1, false, &m_model->matrix[0][0]);
-	glUniformMatrix4fv(m_proj_uniform, 1, false, &m_proj->matrix[0][0]);
-	glUniform1i(m_tex_uniform, 0);
+	// As above, getting uniform locations is nearly free.
+	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewMatrix"), 1, false, glm::value_ptr(m_model->matrix));
+	glUniformMatrix4fv(glGetUniformLocation(id, "ProjectionMatrix"), 1, false, glm::value_ptr(m_proj->matrix));
+	glUniform1i(glGetUniformLocation(id, "Texture0"), 0);
 }
 
 void Shader::Unbind()

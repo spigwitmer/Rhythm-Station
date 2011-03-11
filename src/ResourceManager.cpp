@@ -15,7 +15,7 @@ bool ResourceManager::GetResource(std::string path, Texture &texture)
 	{
 		if (path.compare((*rit).path) == 0)
 		{
-			(*rit).usecount++;
+			rit->refcount++;
 			texture = *rit;
 			return true;
 		}
@@ -37,7 +37,7 @@ void ResourceManager::FreeResource(Texture texture)
 	for (it = m_textures.begin(); it < m_textures.end(); ++it)
 	{
 		if (texture.path.compare((*it).path) == 0)
-			if (--(*it).usecount == 0)
+			if (--it->refcount == 0)
 				m_textures.erase(it);
 	}
 }

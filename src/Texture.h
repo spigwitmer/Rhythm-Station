@@ -5,7 +5,7 @@
 
 struct Texture
 {
-	Texture() : ptr(0),usecount(1) { }
+	Texture() : ptr(0), refcount(1) { }
 	void Delete() {
 		glDeleteTextures(1, &ptr);
 	}
@@ -18,7 +18,7 @@ struct Texture
 	GLuint ptr;
 	std::string path;
 	unsigned int width, height;
-	unsigned int usecount;
+	unsigned int refcount;
 };
 
 #endif

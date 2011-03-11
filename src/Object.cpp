@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include "Object.h"
 #include "GameManager.h"
 #include "LuaManager.h"
@@ -103,7 +104,7 @@ void Object::Draw()
 {
 	// Bind shader and set uniforms
 	m_shader.Bind();
-	m_shader.setColor(m_color.r, m_color.g, m_color.b, m_color.a);
+	glUniform4fv(glGetUniformLocation(m_shader.id, "Color"), 1, &m_color[0]);
 	
 	m_texture.Bind();
 	
@@ -133,8 +134,10 @@ void Object::addState(int tweentype, double length)
 {
 	// Push a copy of the current state onto the stack.
 	AnimationState state;
-	if (m_states.size() > 0)
+	
+	if (!m_states.empty())
 		state = m_states.back();
+	
 	state.type = (TweenType)tweentype;
 	state.duration = length;
 	

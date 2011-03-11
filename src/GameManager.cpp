@@ -18,8 +18,7 @@
 GameManager *Game = NULL;
 bool lazy_updates = true;
 
-GameManager::GameManager(GLFWwindow window) :
-	current_shader(0), m_bFirstUpdate(true)
+GameManager::GameManager(GLFWwindow window) : m_bFirstUpdate(true)
 {
 	// Don't take over mouse, alt+f4/cmd+q, etc.
 	glfwEnable(window, GLFW_SYSTEM_KEYS);

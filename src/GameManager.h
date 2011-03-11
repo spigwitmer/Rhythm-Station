@@ -9,15 +9,13 @@
 #include "Sound.h"
 #include "Window.h"
 #include "Matrix.h"
+#include "Singleton.h"
 
-class GameManager
+class GameManager : public Singleton<GameManager>
 {
 public:
 	GameManager(GLFWwindow window);
 	virtual ~GameManager();
-		
-	void SetCurrentShader(GLuint _shader) { current_shader = _shader; }
-	GLuint GetCurrentShader() { return current_shader; }
 	
 	void AddObject(Object *obj);
 	void AddSound(Sound *snd);
@@ -35,7 +33,6 @@ public:
 	double CurrentEqualizerFrame[20];
 	
 private:
-	GLuint current_shader;
 	bool m_bFirstUpdate, m_bQueuedRender;
 	
 	std::vector<Object*> vpObjects;

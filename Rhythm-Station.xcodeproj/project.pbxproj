@@ -951,10 +951,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/Release\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -964,8 +961,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/local/lib,
-					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/i386\"",
-					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/x86_64\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/src/osx\"",
 				);
@@ -978,10 +973,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/Release\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				INFOPLIST_FILE = "Rhythm-Station-Info.plist";
@@ -989,8 +981,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/local/lib,
-					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/i386\"",
-					"\"$(SRCROOT)/extern/libpng-1.2.44/projects/xcode/build/libpng.build/Release/libpng.build/Objects-normal/x86_64\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/src/osx\"",
 				);

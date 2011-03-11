@@ -33,16 +33,9 @@ public:
 	std::string path[2];	// paths for dupe checking.
 	
 	GLuint id;
-	
-	void setColor(float r, float g, float b, float a);
-	
+		
 private:
-	const char *vss, *fss;	// shader sources, needed so we can rebuild after
-	GLuint	m_mv_uniform,
-			m_proj_uniform,
-			m_tex_uniform,
-			m_color_uniform;
-	       
+	const char *vss, *fss;	// shader sources.
 	Matrix *m_proj, *m_model;
 };
 
