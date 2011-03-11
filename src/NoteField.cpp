@@ -32,7 +32,7 @@ void NoteField::setSpeed(float multiplier)
 	mSpeed = (multiplier > 0.0f) ? multiplier : 1.0f;
 }
 
-int wrap(int a, int b)
+static int wrap(int a, int b)
 {
 	while (a>b)
 		a -= b;
@@ -48,7 +48,7 @@ void NoteField::Load(std::string path)
 		row.time = (1.f/bpm) * i * 1000;
 		
 		Note note;
-		note.column = wrap(i, mColumns);
+		note.column = wrap(i+1, mColumns);
 		note.type = Note_Tap;
 		
 		row.notes.push_back(note);
@@ -62,11 +62,11 @@ void NoteField::Print()
 {
 	for (size_t i = 0; i<mChart.note_rows.size(); i++) {
 		NoteRow currow = mChart.note_rows[i];
-		Log->Print("Notes at time: %0.3fs:", float(currow.time/1000.f));
+		Log->Print("Row at %0.3fs:", float(currow.time/1000.f));
 		for (size_t j = 0; j<currow.notes.size(); j++) {
 			Note curnote = currow.notes[j];
-			Log->Print("%d in column %d",
-				curnote.type+1, curnote.column);
+			Log->Print("- Type %d in column %d",
+				curnote.type, curnote.column);
 		}
 	}
 }
