@@ -20,6 +20,9 @@ end
 local vec3 = {
 	zero = function()
 		return 0, 0, 0
+	end,
+	create = function(input)
+		return input, input, input
 	end
 }
 
@@ -31,8 +34,12 @@ loc = Object()
 loc:setPosition(0,-160,0)
 
 spr = LoadActor("Graphics/logo.png")
-spr:setPosition(vec3.zero())
+spr:setColor(1,1,1,0.5)
+spr:setPosition(0, 200, 0)
+spr:setScale(vec3.create(0.75))
 
+
+--[[
 local size = 0.5
 local spacing = 64
 local rotations = { 90, 0, 180, -90 }
@@ -55,3 +62,4 @@ for i = 0,3 do
 	spr:setPosition(spacing*(i-1.5),-500,0)
 	spr:setLoop(true)
 end
+]]

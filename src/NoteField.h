@@ -27,7 +27,7 @@ public:
 	
 private:
 	std::string mNoteskin;
-	bool mIsLoaded, mStarted;
+	bool mIsLoaded, mStarted, mFinished;
 	int mColumns;
 	
 	float mSpeed;
@@ -40,7 +40,7 @@ private:
 	Timer mTimer;
 	
 	// Notes
-	std::vector<Object*> mObjects;
+	std::vector<std::pair<NoteRow, Object*> > mObjects;
 };
 
 #endif
