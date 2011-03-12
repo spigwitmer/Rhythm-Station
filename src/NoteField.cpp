@@ -3,13 +3,14 @@
 
 NoteField::NoteField()
 {
-	mColumns = 4;
+	setColumns(4);
+	setSpeed(1.0);
+	
+	mIsLoaded = mStarted = false;
 }
 
-NoteField::~NoteField()
-{
-	// TODO
-}
+// Nothing to do yet.
+NoteField::~NoteField() { }
 
 void NoteField::setColumns(int cols)
 {
@@ -55,9 +56,10 @@ void NoteField::Load(std::string path)
 		
 		mChart.note_rows.push_back(row);
 	}
-	this->Print();
+	mIsLoaded = true;
 }
 
+/*
 void NoteField::Print()
 {
 	for (size_t i = 0; i<mChart.note_rows.size(); i++) {
@@ -70,13 +72,42 @@ void NoteField::Print()
 		}
 	}
 }
+*/
+
+void NoteField::onStart()
+{
+	mTimer.Touch();
+	mStarted = true;
+	
+	Message msg;
+	msg.name = "SongStarted";
+	msg.Send();
+	
+	this->Update(0.0);
+}
+
+void NoteField::onFinish()
+{
+	Message msg;
+	msg.name = "SongFinished";
+	msg.Send();
+	
+	Log->Print("Song finished in %s", mTimer.strAgo().c_str());
+}
 
 void NoteField::Update(double delta)
 {
-	// TODO
+	if (mIsLoaded && !mStarted)
+		onStart();
+	
+	std::vector<Object*>::iterator it = mObjects.begin();
+	for ( ; it != mObjects.end(); it++)
+		(*it)->Update(delta);
 }
 
 void NoteField::Draw()
 {
-	// TODO
+	std::vector<Object*>::iterator it = mObjects.begin();
+	for ( ; it != mObjects.end(); it++)
+		(*it)->Draw();
 }

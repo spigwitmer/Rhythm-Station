@@ -44,7 +44,9 @@ public:
 	virtual void Load(std::string path) { }
 	
 	void HandleMessage(std::string msg);
-	void Update(double delta);
+	void UpdateTweens(double delta);
+	
+	virtual void Update(double delta);
 	
 	virtual void DrawPrimitives();
 	virtual void Draw();

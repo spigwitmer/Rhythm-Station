@@ -32,7 +32,7 @@ void Object::HandleMessage(std::string msg)
 	// TODO
 }
 
-void Object::Update(double delta)
+void Object::UpdateTweens(double delta)
 {
 	double time = m_timer.Ago();
 	
@@ -80,22 +80,27 @@ void Object::Update(double delta)
 		if (m_parent)
 			m_matrix.Translate(m_parent->getPosition());
 		m_matrix.Translate(m_position);
-				
+		
 		if (m_parent)
 			m_matrix.Rotate(m_parent->getRotation());
 		m_matrix.Rotate(m_rotation);
-
+		
 		if (m_parent)
 			m_matrix.Scale(m_parent->getScale());
 		m_matrix.Scale(m_scale);
 		m_matrix.Scale(m_texture.width, m_texture.height, 1.0);
 		
 		m_bNeedsUpdate = false;
-				
+		
 		Game->QueueRendering();
 	}
 	
 	m_shader.SetModelViewMatrix(&m_matrix);
+}
+
+void Object::Update(double delta)
+{
+	this->UpdateTweens(delta);
 }
 
 // These are up to derived classes.

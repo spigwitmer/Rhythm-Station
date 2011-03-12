@@ -15,6 +15,9 @@ public:
 	void Update(double delta);
 	void Draw();
 	
+	void onStart();
+	void onFinish();
+	
 	// Debug.
 	void Print();
 	
@@ -23,20 +26,21 @@ public:
 	void setSpeed(float multiplier);
 	
 private:
-	// Noteskin to load/store
 	std::string mNoteskin;
-	
-	// Number of columns
+	bool mIsLoaded, mStarted;
 	int mColumns;
 	
-	// Scroll rate multiplier
 	float mSpeed;
 	
-	// Song position
-	double mPosition, mOffset;
+	unsigned long mPosition;
+	unsigned long mOffset;
 	
 	// Step/Chart data.
 	TimingData mChart;
+	Timer mTimer;
+	
+	// Notes
+	std::vector<Object*> mObjects;
 };
 
 #endif

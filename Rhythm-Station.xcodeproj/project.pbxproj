@@ -478,8 +478,8 @@
 				EE51F93B12F49AC6003A241E /* Sound.h */,
 				EE51F8DE12F492D7003A241E /* Sprite.cpp */,
 				EE51F8DF12F492D7003A241E /* Sprite.h */,
-				EE44CCC3130DACDC0047E657 /* NoteField.h */,
 				EE44CCC4130DACDC0047E657 /* NoteField.cpp */,
+				EE44CCC3130DACDC0047E657 /* NoteField.h */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
