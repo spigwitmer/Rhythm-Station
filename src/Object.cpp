@@ -3,6 +3,7 @@
 #include "GameManager.h"
 #include "LuaManager.h"
 #include <SLB/SLB.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_color(rgba(1.0)),
 	m_position(vec3(0.0)), m_rotation(vec3(0.0)), m_scale(vec3(1.0))
@@ -13,8 +14,6 @@ Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_color(rgba
 	m_texture.width = m_texture.height = 1;	
 	
 	addState(0,0);
-	
-	Register();
 }
 
 void Object::Register()
@@ -94,8 +93,6 @@ void Object::UpdateTweens(double delta)
 		
 		Game->QueueRendering();
 	}
-	
-	m_shader.SetModelViewMatrix(&m_matrix);
 }
 
 void Object::Update(double delta)
@@ -107,9 +104,11 @@ void Object::Update(double delta)
 void Object::DrawPrimitives() { }
 void Object::Draw()
 {
+	m_shader.SetModelViewMatrix(&m_matrix);
+	
 	// Bind shader and set uniforms
 	m_shader.Bind();
-	glUniform4fv(glGetUniformLocation(m_shader.id, "Color"), 1, &m_color[0]);
+	glUniform4fv(glGetUniformLocation(m_shader.id, "Color"), 1, glm::value_ptr(m_color));
 	
 	m_texture.Bind();
 	
@@ -204,6 +203,7 @@ void Object_Binding()
 {
 	SLB::Class<Object>("Object")
 	.constructor()
+	.set("Register", &Object::Register)
 	.set("addState", &Object::addState)
 	.set("addChild", &Object::addChild)
 	.set("setLoop", &Object::setLoop)

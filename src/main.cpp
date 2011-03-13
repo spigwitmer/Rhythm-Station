@@ -65,6 +65,7 @@ int main (int argc, char **argv)
 	
 	// Test!
 	NoteField field;
+	field.Register();
 	field.Load("");
 	
 	while (glfwIsWindow(Window::getWindow()))

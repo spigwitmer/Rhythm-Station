@@ -2,6 +2,7 @@
 #define _NOTE_FIELD_H_
 
 #include "Object.h"
+#include "Sprite.h"
 #include "TimingData.h"
 
 class NoteField : public Object
@@ -36,11 +37,12 @@ private:
 	unsigned long mOffset;
 	
 	// Step/Chart data.
-	TimingData mChart;
 	Timer mTimer;
+	TimingData mChart;
+	std::vector<NoteRow> mValidRows;
 	
-	// Notes
-	std::vector<std::pair<NoteRow, Object*> > mObjects;
+	// Secretly, all our note drawing is the same one being thrown around.
+	Sprite mNote;
 };
 
 #endif

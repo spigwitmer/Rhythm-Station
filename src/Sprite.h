@@ -17,7 +17,6 @@ public:
 	virtual ~Sprite();
 	
 	void Load(std::string path);
-	
 	void DrawPrimitives();
 	
 protected:	

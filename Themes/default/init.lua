@@ -1,6 +1,7 @@
 -- yes, the infamous LoadActor from StepMania.
 function LoadActor(filename)
 	obj = Sprite()
+	obj:Register()
 	obj:Load(filename)
 	return obj
 end
@@ -13,6 +14,7 @@ end
 
 function LoadFont(filename)
 	obj = Font()
+	obj:Register()
 	obj:Load(filename)
 	return obj
 end

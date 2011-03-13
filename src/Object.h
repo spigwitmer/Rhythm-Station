@@ -51,6 +51,8 @@ public:
 	virtual void DrawPrimitives();
 	virtual void Draw();
 	
+	void Register();
+	
 	// parenting... needs a getChild function still.
 	void setParent(Object *obj);
 	void addChild(Object *obj);
@@ -73,7 +75,6 @@ public:
 	
 protected:
 	void QueueUpdate();
-	void Register();
 	
 	bool m_bNeedsUpdate, m_loop;
 	

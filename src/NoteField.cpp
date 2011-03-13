@@ -1,5 +1,6 @@
 #include "NoteField.h"
 #include "Logger.h"
+#include "Sprite.h"
 #include <cmath>
 
 NoteField::NoteField()
@@ -57,6 +58,10 @@ void NoteField::Load(std::string path)
 		
 		mChart.note_rows.push_back(row);
 	}
+	
+	// XXX: should load mNoteskin later.
+	mNote.Load("Graphics/arrow.png");
+	
 	mIsLoaded = true;
 }
 
@@ -104,30 +109,45 @@ void NoteField::Update(double delta)
 	if (mFinished)
 		return;
 	
-	std::vector<NoteRow> valid_rows;
 	std::vector<NoteRow>::iterator row = mChart.note_rows.begin();
-	std::vector<std::pair<NoteRow, Object*> >::iterator obj;
 	
 	unsigned int maxtime = 0;
 	for ( ; row != mChart.note_rows.end(); row++) {
 		maxtime = (row->time > maxtime) ? row->time : maxtime;
-		/* ...wtf? 10x scale difference. */
-		if (row->time > static_cast<unsigned int>(mTimer.Ago()*10)) {
-			for (size_t j = 0; j < row->notes.size(); j++) {
-//				Log->Print("Does it work? @ %0.2f", row->time/10.f);
-			}
-		}
+		// XXX: ...what.
+		if (row->time > static_cast<unsigned int>(mTimer.Ago()*10))
+			mValidRows.push_back(*row);
 	}
 	if (mTimer.Ago()*10 > maxtime)
 		onFinish();
-
-	for (obj = mObjects.begin(); obj != mObjects.end(); obj++)
-		obj->second->Update(delta);
 }
 
 void NoteField::Draw()
 {
-	std::vector<std::pair<NoteRow, Object*> >::iterator obj;
-	for (obj = mObjects.begin() ; obj != mObjects.end(); obj++)
-		obj->second->Draw();
+//	std::vector<NoteRow>::iterator row = mValidRows.begin();
+//	std::vector<Note>::iterator notes;
+//	for ( ; row != mValidRows.end(); row++) {
+//		for (notes = row->notes.begin(); notes != row->notes.end(); notes++) {
+//			// TODO
+//		}
+//	}
+
+	// wtf? this doesn't work?
+	// TODO: draw raw mesh data and do simpler transform to increase speed.
+	float spacing = 64.0f;
+	mNote.setPosition(spacing * -1.5, 0, 0);
+	mNote.Update(0.0);
+	mNote.Draw();
+	
+	mNote.setPosition(spacing * -0.5, 0, 0);
+	mNote.Update(0.0);
+	mNote.Draw();
+	
+	mNote.setPosition(spacing * 0.5, 0, 0);
+	mNote.Update(0.0);
+	mNote.Draw();
+	
+	mNote.setPosition(spacing * 1.5, 0, 0);
+	mNote.Update(0.0);
+	mNote.Draw();
 }
