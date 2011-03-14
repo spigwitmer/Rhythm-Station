@@ -4,6 +4,7 @@
 #include "Object.h"
 #include "Sprite.h"
 #include "TimingData.h"
+#include "Mesh.h"
 
 class NoteField : public Object
 {
@@ -40,9 +41,11 @@ private:
 	Timer mTimer;
 	TimingData mChart;
 	std::vector<NoteRow> mValidRows;
+	Matrix mMatrix;
+	Shader mShader;
 	
 	// Secretly, all our note drawing is the same one being thrown around.
-	Sprite mNote;
+	Mesh mMesh;
 };
 
 #endif

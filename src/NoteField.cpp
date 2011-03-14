@@ -2,6 +2,7 @@
 #include "Logger.h"
 #include "Sprite.h"
 #include <cmath>
+#include <glm/gtc/type_ptr.hpp>
 
 NoteField::NoteField()
 {
@@ -9,6 +10,20 @@ NoteField::NoteField()
 	setSpeed(1.0);
 	
 	mIsLoaded = mStarted = mFinished = false;
+	
+	MeshData verts[4];
+	float vertices[] = {
+		-0.5, -0.5, 0, 0, 0, 0, 0, 0,
+		-0.5,  0.5, 0, 0, 0, 0, 0, 1,
+		0.5, -0.5, 0, 0, 0, 0, 1, 0,
+		0.5,  0.5, 0, 0, 0, 0, 1, 1,
+	};
+	unsigned indices[] = {
+		0, 1, 2,
+		1, 2, 3
+	};
+	memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
+	mMesh.Load(verts, indices, 4, 6);
 }
 
 // Nothing to do yet.
@@ -58,10 +73,6 @@ void NoteField::Load(std::string path)
 		
 		mChart.note_rows.push_back(row);
 	}
-	
-	// XXX: should load mNoteskin later.
-	mNote.Load("Graphics/arrow.png");
-	
 	mIsLoaded = true;
 }
 
@@ -124,30 +135,20 @@ void NoteField::Update(double delta)
 
 void NoteField::Draw()
 {
-//	std::vector<NoteRow>::iterator row = mValidRows.begin();
-//	std::vector<Note>::iterator notes;
-//	for ( ; row != mValidRows.end(); row++) {
-//		for (notes = row->notes.begin(); notes != row->notes.end(); notes++) {
-//			// TODO
-//		}
-//	}
-
-	// wtf? this doesn't work?
-	// TODO: draw raw mesh data and do simpler transform to increase speed.
 	float spacing = 64.0f;
-	mNote.setPosition(spacing * -1.5, 0, 0);
-	mNote.Update(0.0);
-	mNote.Draw();
 	
-	mNote.setPosition(spacing * -0.5, 0, 0);
-	mNote.Update(0.0);
-	mNote.Draw();
-	
-	mNote.setPosition(spacing * 0.5, 0, 0);
-	mNote.Update(0.0);
-	mNote.Draw();
-	
-	mNote.setPosition(spacing * 1.5, 0, 0);
-	mNote.Update(0.0);
-	mNote.Draw();
+	std::vector<NoteRow>::iterator row = mValidRows.begin();
+	std::vector<Note>::iterator notes;
+	for ( ; row != mValidRows.end(); row++) {
+		for (notes = row->notes.begin(); notes != row->notes.end(); notes++) {
+			mMatrix.Identity();
+			mMatrix.Translate(vec3((notes->column-(mColumns/2))*spacing, ((row->time/10.f)*row->scroll_speed*mSpeed)-mTimer.Ago()*row->scroll_speed, 0));
+			mMatrix.Scale(16, 16, 16);
+			mShader.SetModelViewMatrix(&mMatrix);
+			mShader.Bind();
+			glUniform4fv(glGetUniformLocation(mShader.id, "Color"), 1, glm::value_ptr(vec4(1.0, 1.0, 1.0, 1.0)));
+			glBindTexture(GL_TEXTURE_2D, 0);
+			mMesh.Draw();
+		}
+	}
 }
