@@ -2,6 +2,7 @@
 #define _TEXTURE_H_
 
 #include <GL/glfw3.h>
+#include <string>
 
 struct Texture
 {
@@ -15,6 +16,7 @@ struct Texture
 	void Unbind() {
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
+	void Load(std::string path);
 	GLuint ptr;
 	std::string path;
 	unsigned int width, height;

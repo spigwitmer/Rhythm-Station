@@ -52,27 +52,27 @@ Shader::Shader() : id(0)
 	m_model = new Matrix();
 	m_proj = new Matrix();
 	
-	this->SetProjectionMatrix(Game->ProjectionMatrix);
-	this->LoadFromDisk("/Data/Shaders/generic.vs", "/Data/Shaders/generic.fs");
+	this->setProjectionMatrix(Game->ProjectionMatrix);
+	this->loadFromDisk("/Data/Shaders/generic.vs", "/Data/Shaders/generic.fs");
 }
 
 Shader::~Shader()
 {
-	this->Unbind();
+	glUseProgram(0);
 	glDeleteProgram(id);
 }
 
-void Shader::SetModelViewMatrix(Matrix *mat)
+void Shader::setModelViewMatrix(Matrix *mat)
 {
 	m_model = mat;
 }
 
-void Shader::SetProjectionMatrix(Matrix *mat)
+void Shader::setProjectionMatrix(Matrix *mat)
 {
 	m_proj = mat;
 }
 
-void Shader::LoadFromDisk(std::string _vs, std::string _fs)
+void Shader::loadFromDisk(std::string _vs, std::string _fs)
 {
 	if (_vs.empty() || _fs.empty())
 		return;
@@ -157,24 +157,29 @@ void Shader::Reload()
 
 void Shader::Bind()
 {
-	/*
-	 * changing the shader is a cheap operation. It's not worth the hassle
-	 * of checking GameManager for the current shader in use.
-	 */
+	if (Game->getCurrentShader() == id)
+		return;
+
+	Game->setCurrentShader(id);
+	
 	glUseProgram(id);
 	
-	SetUniforms();
+	setUniforms();
 }
 
-void Shader::SetUniforms()
+void Shader::setUniforms()
 {
 	// As above, getting uniform locations is nearly free.
-	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewMatrix"), 1, false, glm::value_ptr(m_model->matrix));
-	glUniformMatrix4fv(glGetUniformLocation(id, "ProjectionMatrix"), 1, false, glm::value_ptr(m_proj->matrix));
-	glUniform1i(glGetUniformLocation(id, "Texture0"), 0);
+	glUniformMatrix4fv(getUniform("ModelViewMatrix"), 1, false, glm::value_ptr(m_model->matrix));
+	glUniformMatrix4fv(getUniform("ProjectionMatrix"), 1, false, glm::value_ptr(m_proj->matrix));
+	
+	glUniform1i(getUniform("Texture0"), 0);
 }
 
-void Shader::Unbind()
+GLuint Shader::getUniform(std::string name)
 {
-	glUseProgram(0);
+	if (!mUniforms[name])
+		mUniforms[name] = glGetUniformLocation(id, name.c_str());
+
+	return mUniforms[name];
 }

@@ -3,6 +3,7 @@
 
 #include <GL/glfw3.h>
 #include <string>
+#include <map>
 #include "Matrix.h"
 
 enum
@@ -20,21 +21,23 @@ public:
 	
 	void Load(const char **vs, const char **fs);
 	void Load(std::string vs, std::string fs);
-	void LoadFromDisk(std::string vs, std::string fs);
+	void loadFromDisk(std::string vs, std::string fs);
 	void Reload();
 	
-	void SetModelViewMatrix(Matrix *mat);
-	void SetProjectionMatrix(Matrix *mat);
-	void SetUniforms();
+	void setModelViewMatrix(Matrix *mat);
+	void setProjectionMatrix(Matrix *mat);
+	void setUniforms();
+	
+	GLuint getUniform(std::string name);
 	
 	void Bind();
-	void Unbind();
 	
 	std::string path[2];	// paths for dupe checking.
-	
+
 	GLuint id;
 		
 private:
+	std::map<std::string, GLuint> mUniforms;
 	const char *vss, *fss;	// shader sources.
 	Matrix *m_proj, *m_model;
 };

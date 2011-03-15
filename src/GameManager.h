@@ -26,6 +26,9 @@ public:
 	
 	Matrix *ProjectionMatrix;
 	
+	GLuint getCurrentShader();
+	void setCurrentShader(GLuint shader);
+	
 	std::map<std::string, bool> IsExtSupported;
 	std::string GetExtensions();
 	void CheckExtensions();
@@ -37,6 +40,8 @@ private:
 	
 	std::vector<Object*> vpObjects;
 	std::vector<Sound*> vpSounds;
+	
+	GLuint mShaderID;
 };
 
 extern GameManager *Game;

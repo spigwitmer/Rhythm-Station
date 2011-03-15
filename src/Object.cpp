@@ -10,7 +10,7 @@ Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_color(rgba
 {
 	m_parent = NULL;
 	
-	m_shader.SetProjectionMatrix(Game->ProjectionMatrix);
+	m_shader.setProjectionMatrix(Game->ProjectionMatrix);
 	m_texture.width = m_texture.height = 1;	
 	
 	addState(0,0);
@@ -104,7 +104,7 @@ void Object::Update(double delta)
 void Object::DrawPrimitives() { }
 void Object::Draw()
 {
-	m_shader.SetModelViewMatrix(&m_matrix);
+	m_shader.setModelViewMatrix(&m_matrix);
 	
 	// Bind shader and set uniforms
 	m_shader.Bind();

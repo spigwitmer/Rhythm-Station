@@ -76,6 +76,16 @@ void GameManager::QueueRendering()
 	m_bQueuedRender = true;
 }
 
+GLuint GameManager::getCurrentShader()
+{
+	return mShaderID;
+}
+
+void GameManager::setCurrentShader(GLuint shader)
+{
+	mShaderID = shader;
+}
+
 void GameManager::Update(double delta)
 {
 	for (size_t i = 0; i<vpObjects.size(); i++)

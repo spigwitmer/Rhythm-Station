@@ -4,11 +4,12 @@
 #include <cmath>
 #include <glm/gtc/type_ptr.hpp>
 #include "GameManager.h"
+#include "FileManager.h"
 
 NoteField::NoteField()
 {
 	setColumns(4);
-	setSpeed(350.f/140.f);
+	setSpeed(1.0);
 	
 	mIsLoaded = mStarted = mFinished = false;
 	
@@ -25,8 +26,11 @@ NoteField::NoteField()
 	};
 	memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
 	mMesh.Load(verts, indices, 4, 6);
-	mShader.SetModelViewMatrix(&mMatrix);
+	mShader.setModelViewMatrix(&m_matrix);
+	mTexture.Load(FileManager::GetFile("Graphics/arrow.png"));
 }
+
+float columnRotations[] = { 90, 0, 180, -90 };
 
 // Nothing to do yet.
 NoteField::~NoteField() { }
@@ -76,6 +80,9 @@ void NoteField::Load(std::string path)
 		mChart.note_rows.push_back(row);
 	}
 	mIsLoaded = true;
+	
+	mShader.Bind();
+	mShader.getUniform("Color");
 }
 
 /*
@@ -128,7 +135,8 @@ void NoteField::Update(double delta)
 	for ( ; row != mChart.note_rows.end(); row++) {
 		maxtime = (row->time > maxtime) ? row->time : maxtime;
 		// XXX: ...what.
-		if (row->time > static_cast<unsigned int>(mTimer.Ago()*10))
+		if (row->time > static_cast<unsigned int>(mTimer.Ago()*10) &&
+			mTimer.Ago()*10 - row->time < 100)
 			mValidRows.push_back(*row);
 	}
 	if (mTimer.Ago()*10 > maxtime)
@@ -137,26 +145,48 @@ void NoteField::Update(double delta)
 
 void NoteField::Draw()
 {
-	float spacing = 64.0f;
-	
 	std::vector<NoteRow>::iterator row = mValidRows.begin();
 	std::vector<Note>::iterator notes;
-
-	glBindTexture(GL_TEXTURE_2D, 0);
+	
+	mTexture.Bind();
+	mShader.Bind();
+	
+	// Set ProjectionMatrix and Texture0. We'll need to keep updating ModelView.
+	mShader.setUniforms();
 	
 	for ( ; row != mValidRows.end(); row++) {
-		mShader.Bind();
-		glUniform4fv(glGetUniformLocation(mShader.id, "Color"), 1, glm::value_ptr(vec4(1.0, 1.0, 1.0, 1.0)));
+		float scroll_speed = row->scroll_speed * mSpeed;
+		float y = (((row->time-mChart.timing_offset)/10.f) - mTimer.Ago()) * scroll_speed;
 		
+		// _Basic_ (manual) view culling. StepMania uses a similar method.
+		if (y > 250 || y < -200)
+			continue;
+		
+		// Draw all the notes in this column
 		for (notes = row->notes.begin(); notes != row->notes.end(); notes++) {
-			mMatrix.Identity();
-			mMatrix.Translate(vec3(
-				(notes->column-(mColumns/2))*spacing,
-				((row->time/10.f)*row->scroll_speed*mSpeed)-mTimer.Ago()*row->scroll_speed*mSpeed,
-				0));
+			float x = 0.0f;
+			
+			// Copy the parent transformation.
+			if (!m_parent)
+				m_matrix.Identity();
+			else
+				m_matrix = m_parent->getMatrix();
+			
+			// This should explain itself, a comment looks good here though.
+			m_matrix.Translate(vec3((notes->column-(mColumns/2))*64.0f, y, 0));
+			
+			// Rotate if we have the numbers for it.
+			if (mColumns == 4)
+				m_matrix.Rotate(columnRotations[notes->column-1], 0, 0, 1);
+			
+			// Update color and transformation.
+			glUniform4fv(mShader.getUniform("Color"), 1, glm::value_ptr(vec4(1.0, 1.0, 1.0, 1.0)));
+			glUniformMatrix4fv(mShader.getUniform("ModelViewMatrix"), 1, false, glm::value_ptr(m_matrix.matrix));
+			
 			mMesh.Draw();
 		}
 	}
 	
+	// Yes game, we actually are doing something here.
 	Game->QueueRendering();
 }

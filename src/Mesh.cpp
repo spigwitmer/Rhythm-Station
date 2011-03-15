@@ -63,9 +63,11 @@ void Mesh::Draw()
 	GLubyte stride = sizeof(GLfloat) * 8;
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
+	
 	glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (0)));
 	glVertexAttribPointer(NORMAL_ARRAY, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (3)));
 	glVertexAttribPointer(COORD_ARRAY, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*) (sizeof(GLfloat) * (6)));
+	
 	glDrawElements(GL_TRIANGLES, num_verts, GL_UNSIGNED_INT, NULL);
 }
 

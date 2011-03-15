@@ -2,9 +2,10 @@
 #define _NOTE_FIELD_H_
 
 #include "Object.h"
-#include "Sprite.h"
 #include "TimingData.h"
+
 #include "Mesh.h"
+#include "Texture.h"
 
 class NoteField : public Object
 {
@@ -36,7 +37,7 @@ private:
 	
 	unsigned long mPosition;
 	unsigned long mOffset;
-	
+		
 	// Step/Chart data.
 	Timer mTimer;
 	TimingData mChart;
@@ -46,6 +47,7 @@ private:
 	
 	// Secretly, all our note drawing is the same one being thrown around.
 	Mesh mMesh;
+	Texture mTexture;
 };
 
 #endif

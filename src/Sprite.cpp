@@ -8,7 +8,7 @@
 
 Sprite::Sprite()
 {
-	m_shader.SetProjectionMatrix(Game->ProjectionMatrix);
+	m_shader.setProjectionMatrix(Game->ProjectionMatrix);
 	m_texture.width = m_texture.height = 1;
 }
 
@@ -44,19 +44,7 @@ void Sprite::Load(std::string _path)
 		memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
 		mesh.Load(verts, indices, 4, 6);
 
-		Texture tex;
-		
-		if (!ResourceManager::GetResource(path,tex))
-		{
-			PNGFile png;
-			tex = png.Load(path);
-			
-			// register this so we don't load it again.
-			ResourceManager::Add(tex);
-		}
-		
-		if (tex.ptr != 0)
-			m_texture = tex;
+		m_texture.Load(path);
 	}
 	else
 		Log->Print("Unknown file type: %s.", ext.c_str());

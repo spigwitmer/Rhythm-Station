@@ -37,6 +37,7 @@
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
 		EE230ED012F9D94300E4C77B /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = EE230EC912F9D94300E4C77B /* Themes */; };
+		EE2D1C5D132F4707005E2B87 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2D1C5C132F4707005E2B87 /* Texture.cpp */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
 		EE4263E312F72B690080D740 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4263E112F72B690080D740 /* Font.cpp */; };
 		EE44CCC5130DACDC0047E657 /* NoteField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE44CCC4130DACDC0047E657 /* NoteField.cpp */; };
@@ -178,6 +179,7 @@
 		EE0A64231270439C00F5F134 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "glew-1.5.6/src/glew.c"; sourceTree = "<group>"; };
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
 		EE230EC912F9D94300E4C77B /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
+		EE2D1C5C132F4707005E2B87 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
 		EE4263E112F72B690080D740 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		EE4263E212F72B690080D740 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 				EE915F81125669ED00F0B0B3 /* Shader.cpp */,
 				EE915F80125669ED00F0B0B3 /* Shader.h */,
 				EE4848A412D717B800534E26 /* Singleton.h */,
+				EE2D1C5C132F4707005E2B87 /* Texture.cpp */,
 				EE51F92012F499E9003A241E /* Texture.h */,
 				EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */,
 				EED312E512D1262A00A15AC5 /* ThreadGroup.h */,
@@ -940,6 +943,7 @@
 				EE4263E312F72B690080D740 /* Font.cpp in Sources */,
 				EE44CCC5130DACDC0047E657 /* NoteField.cpp in Sources */,
 				EE44CCCA130E86F80047E657 /* Threads_pthreads.cpp in Sources */,
+				EE2D1C5D132F4707005E2B87 /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
