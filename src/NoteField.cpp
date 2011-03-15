@@ -6,6 +6,10 @@
 #include "GameManager.h"
 #include "FileManager.h"
 
+// Long!
+typedef std::vector<NoteRow>::iterator RowIterator;
+typedef std::vector<Note>::iterator NoteIterator;
+
 NoteField::NoteField() : mColumns(4), mSpeed(1.0)
 {	
 	m_position = vec3(0.0);
@@ -148,15 +152,10 @@ void NoteField::Update(double delta)
 	if (mFinished)
 		return;
 	
-	std::vector<NoteRow>::iterator row = mChart.note_rows.begin();
-	
+	// Work out the end time of the chart.
 	unsigned int maxtime = 0;
-	for ( ; row != mChart.note_rows.end(); row++) {
+	for (RowIterator row = mChart.note_rows.begin(); row != mChart.note_rows.end(); row++) {
 		maxtime = (row->time > maxtime) ? row->time : maxtime;
-		// XXX: ...what.
-		if (row->time > static_cast<unsigned int>(mTimer.Ago()*10) &&
-			mTimer.Ago()*10 - row->time < 100)
-			mValidRows.push_back(*row);
 	}
 	if (mTimer.Ago()*10 > maxtime)
 		onFinish();
@@ -165,16 +164,16 @@ void NoteField::Update(double delta)
 void NoteField::Draw()
 {
 	Matrix noteMatrix;
-	
-	std::vector<NoteRow>::iterator row = mValidRows.begin();
-	std::vector<Note>::iterator notes;
-	
+		
 	mTexture.Bind();
 	mShader.Bind();
 	
-	glUniform4fv(mShader.getUniform("Color"), 1, glm::value_ptr(vec4(1.0, 1.0, 1.0, 1.0)));
+	glUniform4fv(mShader.getUniform("Color"), 1, glm::value_ptr(vec4(1.0)));
 	
-	for ( ; row != mValidRows.end(); row++) {
+	if (mChart.note_rows.empty())
+		return;
+	
+	for (RowIterator row = mChart.note_rows.begin(); row != mChart.note_rows.end(); row++) {
 		float speed, row_time, position, y_pos;
 		speed		= row->scroll_speed * mSpeed;
 		row_time	= (row->time - mChart.timing_offset) / 10.f;
@@ -186,8 +185,8 @@ void NoteField::Draw()
 			continue;
 		
 		// Draw all notes in this column
-		for (notes = row->notes.begin(); notes != row->notes.end(); notes++) {
-			noteMatrix.Identity();			
+		for (NoteIterator notes = row->notes.begin(); notes != row->notes.end(); notes++) {
+			noteMatrix.Identity();
 			noteMatrix.Translate(vec3((notes->column-(mColumns/2))*64.0f, y_pos, 0));
 			
 			// TODO: Should be able to pass these values in (via Lua, even)
