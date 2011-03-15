@@ -3,20 +3,21 @@
 #include "Sprite.h"
 #include <cmath>
 #include <glm/gtc/type_ptr.hpp>
+#include "GameManager.h"
 
 NoteField::NoteField()
 {
 	setColumns(4);
-	setSpeed(1.0);
+	setSpeed(350.f/140.f);
 	
 	mIsLoaded = mStarted = mFinished = false;
 	
 	MeshData verts[4];
 	float vertices[] = {
-		-0.5, -0.5, 0, 0, 0, 0, 0, 0,
-		-0.5,  0.5, 0, 0, 0, 0, 0, 1,
-		0.5, -0.5, 0, 0, 0, 0, 1, 0,
-		0.5,  0.5, 0, 0, 0, 0, 1, 1,
+		-0.5*64, -0.5*64, 0, 0, 0, 0, 0, 0,
+		-0.5*64,  0.5*64, 0, 0, 0, 0, 0, 1,
+		 0.5*64, -0.5*64, 0, 0, 0, 0, 1, 0,
+		 0.5*64,  0.5*64, 0, 0, 0, 0, 1, 1,
 	};
 	unsigned indices[] = {
 		0, 1, 2,
@@ -24,6 +25,7 @@ NoteField::NoteField()
 	};
 	memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
 	mMesh.Load(verts, indices, 4, 6);
+	mShader.SetModelViewMatrix(&mMatrix);
 }
 
 // Nothing to do yet.
@@ -139,16 +141,22 @@ void NoteField::Draw()
 	
 	std::vector<NoteRow>::iterator row = mValidRows.begin();
 	std::vector<Note>::iterator notes;
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+	
 	for ( ; row != mValidRows.end(); row++) {
+		mShader.Bind();
+		glUniform4fv(glGetUniformLocation(mShader.id, "Color"), 1, glm::value_ptr(vec4(1.0, 1.0, 1.0, 1.0)));
+		
 		for (notes = row->notes.begin(); notes != row->notes.end(); notes++) {
 			mMatrix.Identity();
-			mMatrix.Translate(vec3((notes->column-(mColumns/2))*spacing, ((row->time/10.f)*row->scroll_speed*mSpeed)-mTimer.Ago()*row->scroll_speed, 0));
-			mMatrix.Scale(16, 16, 16);
-			mShader.SetModelViewMatrix(&mMatrix);
-			mShader.Bind();
-			glUniform4fv(glGetUniformLocation(mShader.id, "Color"), 1, glm::value_ptr(vec4(1.0, 1.0, 1.0, 1.0)));
-			glBindTexture(GL_TEXTURE_2D, 0);
+			mMatrix.Translate(vec3(
+				(notes->column-(mColumns/2))*spacing,
+				((row->time/10.f)*row->scroll_speed*mSpeed)-mTimer.Ago()*row->scroll_speed*mSpeed,
+				0));
 			mMesh.Draw();
 		}
 	}
+	
+	Game->QueueRendering();
 }
