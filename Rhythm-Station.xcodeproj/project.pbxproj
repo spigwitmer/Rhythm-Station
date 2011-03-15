@@ -38,6 +38,8 @@
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
 		EE230ED012F9D94300E4C77B /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = EE230EC912F9D94300E4C77B /* Themes */; };
 		EE2D1C5D132F4707005E2B87 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2D1C5C132F4707005E2B87 /* Texture.cpp */; };
+		EE2D1C5F132F6F9E005E2B87 /* opengl.c in Sources */ = {isa = PBXBuildFile; fileRef = EE2D1C5E132F6F9E005E2B87 /* opengl.c */; };
+		EE2D1C61132F701B005E2B87 /* cocoa_opengl.m in Sources */ = {isa = PBXBuildFile; fileRef = EE2D1C60132F701B005E2B87 /* cocoa_opengl.m */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
 		EE4263E312F72B690080D740 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4263E112F72B690080D740 /* Font.cpp */; };
 		EE44CCC5130DACDC0047E657 /* NoteField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE44CCC4130DACDC0047E657 /* NoteField.cpp */; };
@@ -115,7 +117,6 @@
 		EEC8D81F128DB44D00351601 /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F68127559C40064054A /* cocoa_enable.m */; };
 		EEC8D820128DB44D00351601 /* cocoa_fullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F69127559C40064054A /* cocoa_fullscreen.m */; };
 		EEC8D821128DB44D00351601 /* cocoa_gamma.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6A127559C40064054A /* cocoa_gamma.m */; };
-		EEC8D822128DB44D00351601 /* cocoa_glext.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6B127559C40064054A /* cocoa_glext.m */; };
 		EEC8D823128DB44D00351601 /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6C127559C40064054A /* cocoa_init.m */; };
 		EEC8D824128DB44D00351601 /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6D127559C40064054A /* cocoa_joystick.m */; };
 		EEC8D825128DB44D00351601 /* cocoa_time.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6E127559C40064054A /* cocoa_time.m */; };
@@ -124,7 +125,6 @@
 		EEC8D828128DB44D00351601 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F74127559C40064054A /* error.c */; };
 		EEC8D829128DB44D00351601 /* fullscreen.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F75127559C40064054A /* fullscreen.c */; };
 		EEC8D82A128DB44D00351601 /* gamma.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F76127559C40064054A /* gamma.c */; };
-		EEC8D82B128DB44D00351601 /* glext.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F77127559C40064054A /* glext.c */; };
 		EEC8D82C128DB44D00351601 /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F78127559C40064054A /* init.c */; };
 		EEC8D82D128DB44D00351601 /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F79127559C40064054A /* input.c */; };
 		EEC8D82E128DB44D00351601 /* joystick.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7B127559C40064054A /* joystick.c */; };
@@ -180,6 +180,8 @@
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
 		EE230EC912F9D94300E4C77B /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		EE2D1C5C132F4707005E2B87 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		EE2D1C5E132F6F9E005E2B87 /* opengl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = opengl.c; sourceTree = "<group>"; };
+		EE2D1C60132F701B005E2B87 /* cocoa_opengl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_opengl.m; sourceTree = "<group>"; };
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
 		EE4263E112F72B690080D740 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		EE4263E212F72B690080D740 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
@@ -317,7 +319,6 @@
 		EEC52F68127559C40064054A /* cocoa_enable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_enable.m; sourceTree = "<group>"; };
 		EEC52F69127559C40064054A /* cocoa_fullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_fullscreen.m; sourceTree = "<group>"; };
 		EEC52F6A127559C40064054A /* cocoa_gamma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_gamma.m; sourceTree = "<group>"; };
-		EEC52F6B127559C40064054A /* cocoa_glext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_glext.m; sourceTree = "<group>"; };
 		EEC52F6C127559C40064054A /* cocoa_init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_init.m; sourceTree = "<group>"; };
 		EEC52F6D127559C40064054A /* cocoa_joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_joystick.m; sourceTree = "<group>"; };
 		EEC52F6E127559C40064054A /* cocoa_time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_time.m; sourceTree = "<group>"; };
@@ -327,7 +328,6 @@
 		EEC52F74127559C40064054A /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
 		EEC52F75127559C40064054A /* fullscreen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fullscreen.c; sourceTree = "<group>"; };
 		EEC52F76127559C40064054A /* gamma.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gamma.c; sourceTree = "<group>"; };
-		EEC52F77127559C40064054A /* glext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glext.c; sourceTree = "<group>"; };
 		EEC52F78127559C40064054A /* init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = init.c; sourceTree = "<group>"; };
 		EEC52F79127559C40064054A /* input.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = input.c; sourceTree = "<group>"; };
 		EEC52F7A127559C40064054A /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
@@ -709,11 +709,11 @@
 				EEC52F74127559C40064054A /* error.c */,
 				EEC52F75127559C40064054A /* fullscreen.c */,
 				EEC52F76127559C40064054A /* gamma.c */,
-				EEC52F77127559C40064054A /* glext.c */,
 				EEC52F78127559C40064054A /* init.c */,
 				EEC52F79127559C40064054A /* input.c */,
 				EEC52F7A127559C40064054A /* internal.h */,
 				EEC52F7B127559C40064054A /* joystick.c */,
+				EE2D1C5E132F6F9E005E2B87 /* opengl.c */,
 				EEC52F7C127559C40064054A /* time.c */,
 				EEC52F8A127559C40064054A /* window.c */,
 			);
@@ -727,9 +727,9 @@
 				EEC52F68127559C40064054A /* cocoa_enable.m */,
 				EEC52F69127559C40064054A /* cocoa_fullscreen.m */,
 				EEC52F6A127559C40064054A /* cocoa_gamma.m */,
-				EEC52F6B127559C40064054A /* cocoa_glext.m */,
 				EEC52F6C127559C40064054A /* cocoa_init.m */,
 				EEC52F6D127559C40064054A /* cocoa_joystick.m */,
+				EE2D1C60132F701B005E2B87 /* cocoa_opengl.m */,
 				EEC52F6E127559C40064054A /* cocoa_time.m */,
 				EEC52F6F127559C40064054A /* cocoa_window.m */,
 				EEC52F71127559C40064054A /* platform.h */,
@@ -913,7 +913,6 @@
 				EEC8D81F128DB44D00351601 /* cocoa_enable.m in Sources */,
 				EEC8D820128DB44D00351601 /* cocoa_fullscreen.m in Sources */,
 				EEC8D821128DB44D00351601 /* cocoa_gamma.m in Sources */,
-				EEC8D822128DB44D00351601 /* cocoa_glext.m in Sources */,
 				EEC8D823128DB44D00351601 /* cocoa_init.m in Sources */,
 				EEC8D824128DB44D00351601 /* cocoa_joystick.m in Sources */,
 				EEC8D825128DB44D00351601 /* cocoa_time.m in Sources */,
@@ -922,7 +921,6 @@
 				EEC8D828128DB44D00351601 /* error.c in Sources */,
 				EEC8D829128DB44D00351601 /* fullscreen.c in Sources */,
 				EEC8D82A128DB44D00351601 /* gamma.c in Sources */,
-				EEC8D82B128DB44D00351601 /* glext.c in Sources */,
 				EEC8D82C128DB44D00351601 /* init.c in Sources */,
 				EEC8D82D128DB44D00351601 /* input.c in Sources */,
 				EEC8D82E128DB44D00351601 /* joystick.c in Sources */,
@@ -944,6 +942,8 @@
 				EE44CCC5130DACDC0047E657 /* NoteField.cpp in Sources */,
 				EE44CCCA130E86F80047E657 /* Threads_pthreads.cpp in Sources */,
 				EE2D1C5D132F4707005E2B87 /* Texture.cpp in Sources */,
+				EE2D1C5F132F6F9E005E2B87 /* opengl.c in Sources */,
+				EE2D1C61132F701B005E2B87 /* cocoa_opengl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,7 +1008,7 @@
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/extern/ogl-math",
