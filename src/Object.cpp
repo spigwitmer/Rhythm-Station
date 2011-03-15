@@ -75,19 +75,13 @@ void Object::UpdateTweens(double delta)
 		
 		m_matrix.Identity();
 		
-		// if we have a parent, copy the translation/rotation/scale.
-		if (m_parent)
-			m_matrix.Translate(m_parent->getPosition());
-		m_matrix.Translate(m_position);
-		
-		if (m_parent)
-			m_matrix.Rotate(m_parent->getRotation());
-		m_matrix.Rotate(m_rotation);
-		
-		if (m_parent)
-			m_matrix.Scale(m_parent->getScale());
+		m_matrix.Translate(m_position);		
+		m_matrix.Rotate(m_rotation);		
 		m_matrix.Scale(m_scale);
 		m_matrix.Scale(m_texture.width, m_texture.height, 1.0);
+		
+		if (m_parent)
+			m_matrix.matrix = m_parent->getMatrix().matrix * m_matrix.matrix;
 		
 		m_bNeedsUpdate = false;
 		
@@ -108,7 +102,7 @@ void Object::Draw()
 	
 	// Bind shader and set uniforms
 	m_shader.Bind();
-	glUniform4fv(glGetUniformLocation(m_shader.id, "Color"), 1, glm::value_ptr(m_color));
+	glUniform4fv(m_shader.getUniform("Color"), 1, glm::value_ptr(m_color));
 	
 	m_texture.Bind();
 	

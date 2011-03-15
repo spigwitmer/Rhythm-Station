@@ -28,26 +28,27 @@ public:
 	void setNoteskin(std::string name);
 	void setSpeed(float multiplier);
 	
+	void setMaxBeforeReceptors(int max);
+	void setMaxAfterReceptors(int max);
+
 private:
 	std::string mNoteskin;
 	bool mIsLoaded, mStarted, mFinished;
-	int mColumns;
+	int mColumns, mMaxBeforeReceptors, mMaxAfterReceptors;
 	
 	float mSpeed;
-	
-	unsigned long mPosition;
-	unsigned long mOffset;
 		
 	// Step/Chart data.
 	Timer mTimer;
 	TimingData mChart;
 	std::vector<NoteRow> mValidRows;
-	Matrix mMatrix;
-	Shader mShader;
-	
+		
 	// Secretly, all our note drawing is the same one being thrown around.
 	Mesh mMesh;
 	Texture mTexture;
+	Shader mShader;
 };
+
+void NoteField_Binding();
 
 #endif

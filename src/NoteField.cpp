@@ -6,10 +6,15 @@
 #include "GameManager.h"
 #include "FileManager.h"
 
-NoteField::NoteField()
-{
-	setColumns(4);
-	setSpeed(1.0);
+NoteField::NoteField() : mColumns(4), mSpeed(1.0)
+{	
+	m_position = vec3(0.0);
+	m_color = vec4(vec3(0.0), 1.0);
+	m_scale = vec3(1.0);
+	
+	// Set intentionall small to encourage setting it in-theme.
+	setMaxBeforeReceptors(350);
+	setMaxAfterReceptors(-90);
 	
 	mIsLoaded = mStarted = mFinished = false;
 	
@@ -49,11 +54,23 @@ void NoteField::setNoteskin(std::string name)
 		name = "default";
 
 	mNoteskin = name;
+//	mTexture.Load(FileManager::GetFile(name + "Graphics/arrow.png"));
 }
 
 void NoteField::setSpeed(float multiplier)
 {
 	mSpeed = (multiplier > 0.0f) ? multiplier : 1.0f;
+}
+
+
+void NoteField::setMaxBeforeReceptors(int max)
+{
+	mMaxBeforeReceptors = max;
+}
+
+void NoteField::setMaxAfterReceptors(int max)
+{
+	mMaxAfterReceptors = max;
 }
 
 static int wrap(int a, int b)
@@ -123,6 +140,8 @@ void NoteField::onFinish()
 
 void NoteField::Update(double delta)
 {
+	this->UpdateTweens(delta);
+	
 	if (mIsLoaded && !mStarted)
 		onStart();
 	
@@ -145,48 +164,70 @@ void NoteField::Update(double delta)
 
 void NoteField::Draw()
 {
+	Matrix noteMatrix;
+	
 	std::vector<NoteRow>::iterator row = mValidRows.begin();
 	std::vector<Note>::iterator notes;
 	
 	mTexture.Bind();
 	mShader.Bind();
 	
-	// Set ProjectionMatrix and Texture0. We'll need to keep updating ModelView.
-	mShader.setUniforms();
+	glUniform4fv(mShader.getUniform("Color"), 1, glm::value_ptr(vec4(1.0, 1.0, 1.0, 1.0)));
 	
 	for ( ; row != mValidRows.end(); row++) {
-		float scroll_speed = row->scroll_speed * mSpeed;
-		float y = (((row->time-mChart.timing_offset)/10.f) - mTimer.Ago()) * scroll_speed;
+		float speed, row_time, position, y_pos;
+		speed		= row->scroll_speed * mSpeed;
+		row_time	= (row->time - mChart.timing_offset) / 10.f;
+		position	= row_time - mTimer.Ago();
+		y_pos		= position * speed;
 		
-		// _Basic_ (manual) view culling. StepMania uses a similar method.
-		if (y > 250 || y < -200)
+		// Simple, yet effective culling.
+		if (y_pos > mMaxBeforeReceptors || y_pos < mMaxAfterReceptors)
 			continue;
 		
-		// Draw all the notes in this column
+		// Draw all notes in this column
 		for (notes = row->notes.begin(); notes != row->notes.end(); notes++) {
-			float x = 0.0f;
+			noteMatrix.Identity();			
+			noteMatrix.Translate(vec3((notes->column-(mColumns/2))*64.0f, y_pos, 0));
 			
-			// Copy the parent transformation.
-			if (!m_parent)
-				m_matrix.Identity();
-			else
-				m_matrix = m_parent->getMatrix();
-			
-			// This should explain itself, a comment looks good here though.
-			m_matrix.Translate(vec3((notes->column-(mColumns/2))*64.0f, y, 0));
-			
-			// Rotate if we have the numbers for it.
+			// TODO: Should be able to pass these values in (via Lua, even)
 			if (mColumns == 4)
-				m_matrix.Rotate(columnRotations[notes->column-1], 0, 0, 1);
+				noteMatrix.Rotate(columnRotations[notes->column-1], 0, 0, 1);
 			
-			// Update color and transformation.
-			glUniform4fv(mShader.getUniform("Color"), 1, glm::value_ptr(vec4(1.0, 1.0, 1.0, 1.0)));
-			glUniformMatrix4fv(mShader.getUniform("ModelViewMatrix"), 1, false, glm::value_ptr(m_matrix.matrix));
+			// Update transformation.
+			noteMatrix.matrix = m_matrix.matrix * noteMatrix.matrix;
+			
+			glUniformMatrix4fv(mShader.getUniform("ModelViewMatrix"), 1, false, glm::value_ptr(noteMatrix.matrix));
 			
 			mMesh.Draw();
-		}
+		}		
 	}
 	
 	// Yes game, we actually are doing something here.
 	Game->QueueRendering();
+}
+
+// Lua
+#include <SLB/SLB.hpp>
+void NoteField_Binding()
+{
+	SLB::Class<NoteField>("NoteField")
+	.constructor()
+	
+	// Actor stuff.
+	.set("Register", &NoteField::Register)
+	.set("addChild", &NoteField::addChild)
+	.set("addState", &NoteField::addState)
+	.set("setParent", &NoteField::setParent)
+	.set("setPosition", &NoteField::setPosition)
+	.set("setRotation", &NoteField::setRotation)
+	.set("setScale", &NoteField::setScale)
+	
+	// NoteField specifics
+	.set("setMaxBeforeReceptors", &NoteField::setMaxBeforeReceptors)
+	.set("setMaxAfterReceptors", &NoteField::setMaxAfterReceptors)
+	.set("setColumns", &NoteField::setColumns)
+	.set("setNoteskin", &NoteField::setNoteskin)
+	.set("setSpeed", &NoteField::setSpeed)
+	.set("Load", &NoteField::Load);
 }

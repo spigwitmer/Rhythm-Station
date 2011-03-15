@@ -13,8 +13,6 @@
 #include "Window.h"
 #include "PreferencesFile.h"
 
-#include "NoteField.h"
-
 // Initialize everything and set up the GL states used throughout the program.
 int main (int argc, char **argv)
 {
@@ -62,11 +60,6 @@ int main (int argc, char **argv)
 	double then = glfwGetTime(); // prevent registering a skip on first update
 	double max_delta = (1.0/60.0) * 3.0;
 	double now = then;
-	
-	// Test!
-	NoteField field;
-	field.Register();
-	field.Load("");
 	
 	while (glfwIsWindow(Window::getWindow()))
 	{

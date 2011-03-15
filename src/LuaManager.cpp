@@ -6,6 +6,7 @@
 #include "Object.h"
 #include "Sprite.h"
 #include "Sound.h"
+#include "NoteField.h"
 
 static const luaL_Reg libs[] =
 {
@@ -43,6 +44,7 @@ LuaManager::LuaManager()
 	Object_Binding();
 	Sprite_Binding();
 	Sound_Binding();
+	NoteField_Binding();
 }
 
 LuaManager::~LuaManager()
