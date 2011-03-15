@@ -41,9 +41,9 @@ GameManager::GameManager(GLFWwindow window) : m_bFirstUpdate(true)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glClearColor(0.25, 0.25, 0.25, 1.0);
 
-#ifdef DEBUG
+//#ifdef DEBUG
 	lazy_updates = false;
-#endif
+//#endif
 	ProjectionMatrix = new Matrix();
 	
 	Log->Print("Current Theme: %s", Preferences->GetValue("Game", "CurrentTheme", "default"));
