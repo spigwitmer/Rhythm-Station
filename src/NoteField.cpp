@@ -13,7 +13,7 @@ typedef std::vector<Note>::iterator NoteIterator;
 NoteField::NoteField() : mColumns(4), mSpeed(1.0)
 {	
 	m_position = vec3(0.0);
-	m_color = vec4(vec3(0.0), 1.0);
+	m_color = vec4(1.0);
 	m_scale = vec3(1.0);
 	
 	// Set intentionall small to encourage setting it in-theme.
@@ -168,7 +168,7 @@ void NoteField::Draw()
 	mTexture.Bind();
 	mShader.Bind();
 	
-	glUniform4fv(mShader.getUniform("Color"), 1, glm::value_ptr(vec4(1.0)));
+	glUniform4fv(mShader.getUniform("Color"), 1, glm::value_ptr(m_color));
 	
 	if (mChart.note_rows.empty())
 		return;
@@ -212,6 +212,8 @@ void NoteField_Binding()
 {
 	SLB::Class<NoteField>("NoteField")
 	.constructor()
+	
+	.set("SubscribeTo", &NoteField::SubscribeTo)
 	
 	// Actor stuff.
 	.set("Register", &NoteField::Register)

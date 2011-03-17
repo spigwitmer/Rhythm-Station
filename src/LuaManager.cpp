@@ -65,7 +65,7 @@ void LuaManager::Run(const char *path)
 	
 	if (!status)
 		return;
-		
+	
 	// If we're here, something is wrong.
 	Log->Print("***** Lua runtime error in %s *****", path);
 	Log->Print(lua_tostring(L, -1));

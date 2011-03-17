@@ -51,13 +51,9 @@ local tween = {
 }
 
 sound = LoadSound("Sounds/get-it-by-your-hands.ogg")
-sound:setLoop(true)
+--sound:SubscribeTo("SongStarted")
 sound:UseEqualizer(true)
-
-field = NoteField()
-field:Register()
-field:setPosition(-32, -160, 0)
-field:Load("")
+sound:setLoop(true)
 
 for i = 1,4 do
 	local size = 0.5
@@ -70,6 +66,11 @@ for i = 1,4 do
 	spr:setScale(size,size,size)
 	spr:setColor(0,0,0,0.5)
 end
+
+field = NoteField()
+field:Register()
+field:setPosition(-32, -160, 1)
+field:Load("")
 
 spr = LoadActor("Graphics/logo.png")
 spr:addState(tween.sleep, 0.75)
