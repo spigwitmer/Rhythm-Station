@@ -19,6 +19,7 @@ struct MessageListener
 	// Might change later.
 	virtual ~MessageListener() { } // silence warning
 	virtual void HandleMessage(const Message &msg) { }
+	virtual void SubscribeTo(std::string name);
 };
 
 #endif
