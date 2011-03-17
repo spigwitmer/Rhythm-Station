@@ -14,20 +14,56 @@
 #define getcwd _getcwd
 #endif
 
-#include <stdio.h>
+#include <dirent.h>
+#include <cstdio>
 #include <fstream>
 #include <sys/stat.h>
 #include "PreferencesFile.h"
 
-bool FileManager::FileExists(std::string _file)
+static bool checkExt(std::string *str, std::string ext) {
+	if (!ext.empty())
+	{
+		size_t pos = str->find_last_of(".");
+		if (str->substr(pos+1) != ext || pos == std::string::npos)
+			return false;
+	}
+	return true;
+}
+
+std::vector<std::string> FileManager::GetDirectoryListing(std::string dir, std::string ext)
+{
+	std::vector<std::string> files;
+	DIR *dp;
+	struct dirent *dirp;
+	
+	if((dp  = opendir(dir.c_str())) == NULL)
+	{
+		Log->Print("Error (%d) opening %s", errno, dir.c_str());
+		return files;
+	}
+	
+	while ((dirp = readdir(dp)) != NULL)
+	{
+		std::string str = dirp->d_name;
+		if (!checkExt(&str, ext))
+			continue;
+		files.push_back(str);
+	}
+	
+	closedir(dp);
+	
+	return files;
+}
+
+bool FileManager::FileExists(std::string _file, std::string ext)
 {
 	struct stat stFileInfo;
 	int iStat;
 	iStat = stat(_file.c_str(),&stFileInfo);
 	
-	if (iStat == 0)
+	if (iStat == 0 && checkExt(&_file, ext))
 		return true;
-		
+	
 	return false;
 }
 
