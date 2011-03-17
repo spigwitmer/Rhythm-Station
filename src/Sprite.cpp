@@ -22,32 +22,31 @@ Sprite::~Sprite()
 
 void Sprite::Load(std::string _path)
 {
+	if (!FileManager::FileExists(FileManager::GetFile(_path), "png")) {
+		Log->Print("File \"%s\" not found or had invalid extension.", _path.c_str());
+		return;
+	}
 	std::string path = FileManager::GetFile(_path);
 	std::string ext = path.substr(path.size()-3, path.size());
-	Log->Print("Loading \"%s\" (type = %s)", _path.c_str(), ext.c_str());
-	
-	if (ext.compare("png") == 0)
-	{
-		// XXX: All sprites could be using the same 1u square here.
-		// Create a VBO (1u square)
-		MeshData verts[4];
-		float vertices[] = {
-			-0.5, -0.5, 0, 0, 0, 0, 0, 0,
-			-0.5,  0.5, 0, 0, 0, 0, 0, 1,
-			0.5, -0.5, 0, 0, 0, 0, 1, 0,
-			0.5,  0.5, 0, 0, 0, 0, 1, 1,
-		};
-		unsigned indices[] = {
-			0, 1, 2,
-			1, 2, 3
-		};
-		memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
-		mesh.Load(verts, indices, 4, 6);
+	Log->Print("Loading \"%s\"", _path.c_str(), ext.c_str());
 
-		m_texture.Load(path);
-	}
-	else
-		Log->Print("Unknown file type: %s.", ext.c_str());
+	m_texture.Load(path);
+
+	// XXX: All sprites could be using the same 1u square here.
+	// Create a VBO (1u square)
+	MeshData verts[4];
+	float vertices[] = {
+		-0.5, -0.5, 0, 0, 0, 0, 0, 0,
+		-0.5,  0.5, 0, 0, 0, 0, 0, 1,
+		0.5, -0.5, 0, 0, 0, 0, 1, 0,
+		0.5,  0.5, 0, 0, 0, 0, 1, 1,
+	};
+	unsigned indices[] = {
+		0, 1, 2,
+		1, 2, 3
+	};
+	memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
+	mesh.Load(verts, indices, 4, 6);
 	
 	QueueUpdate();
 }

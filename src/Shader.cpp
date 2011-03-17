@@ -76,7 +76,7 @@ void Shader::loadFromDisk(std::string _vs, std::string _fs)
 {
 	if (_vs.empty() || _fs.empty())
 		return;
-		
+	
 	_vs = FileManager::GetFile(_vs);
 	_vs = FileManager::GetFileContents(_vs);
 	_fs = FileManager::GetFile(_fs);
