@@ -12,10 +12,6 @@ typedef std::vector<Note>::iterator NoteIterator;
 
 NoteField::NoteField() : mColumns(4), mSpeed(1.0)
 {	
-	m_position = vec3(0.0);
-	m_color = vec4(1.0);
-	m_scale = vec3(1.0);
-	
 	// Set intentionall small to encourage setting it in-theme.
 	setMaxBeforeReceptors(350);
 	setMaxAfterReceptors(-90);
@@ -101,25 +97,8 @@ void NoteField::Load(std::string path)
 		mChart.note_rows.push_back(row);
 	}
 	mIsLoaded = true;
-	
-	mShader.Bind();
-	mShader.getUniform("Color");
+	Log->Print("Loaded. (%zd rows, mIsLoaded = %d)", mChart.note_rows.size(), mIsLoaded);
 }
-
-/*
-void NoteField::Print()
-{
-	for (size_t i = 0; i<mChart.note_rows.size(); i++) {
-		NoteRow currow = mChart.note_rows[i];
-		Log->Print("Row at %0.3fs:", float(currow.time/1000.f));
-		for (size_t j = 0; j<currow.notes.size(); j++) {
-			Note curnote = currow.notes[j];
-			Log->Print("- Type %d in column %d",
-				curnote.type, curnote.column);
-		}
-	}
-}
-*/
 
 void NoteField::onStart()
 {
@@ -151,7 +130,7 @@ void NoteField::Update(double delta)
 	
 	if (mFinished)
 		return;
-	
+		
 	// Work out the end time of the chart.
 	unsigned int maxtime = 0;
 	for (RowIterator row = mChart.note_rows.begin(); row != mChart.note_rows.end(); row++) {
@@ -199,7 +178,7 @@ void NoteField::Draw()
 			glUniformMatrix4fv(mShader.getUniform("ModelViewMatrix"), 1, false, glm::value_ptr(noteMatrix.matrix));
 			
 			mMesh.Draw();
-		}		
+		}
 	}
 	
 	// Yes game, we actually are doing something here.

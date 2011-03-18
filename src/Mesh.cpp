@@ -14,7 +14,7 @@ void Mesh::Load(MeshData *data, unsigned *indices, unsigned n_verts, unsigned n_
 	if (indices == NULL)
 	{
 		gen_indices = true;
-		// If we don't have an index buffer, it's probably just 0-n
+		// If we don't have an index buffer, it's probably just 0..n
 		indices = new unsigned[n_verts];
 		
 		for (unsigned i = 0; i<n_verts; i++)

@@ -1,7 +1,6 @@
 -- yes, the infamous LoadActor from StepMania.
 function LoadActor(filename)
 	obj = Sprite()
-	obj:Register()
 	obj:Load(filename)
 	return obj
 end
@@ -14,7 +13,6 @@ end
 
 function LoadFont(filename)
 	obj = Font()
-	obj:Register()
 	obj:Load(filename)
 	return obj
 end
@@ -68,7 +66,6 @@ for i = 1,4 do
 end
 
 field = NoteField()
-field:Register()
 field:setPosition(-32, -160, 1)
 field:Load("")
 

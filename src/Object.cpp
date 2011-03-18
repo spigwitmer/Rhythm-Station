@@ -14,6 +14,8 @@ Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_color(rgba
 	m_texture.width = m_texture.height = 1;	
 	
 	addState(0,0);
+	
+	this->Register();
 }
 
 void Object::Register()

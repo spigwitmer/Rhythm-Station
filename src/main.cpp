@@ -13,6 +13,8 @@
 #include "Window.h"
 #include "PreferencesFile.h"
 
+#include "NoteField.h"
+
 // Initialize everything and set up the GL states used throughout the program.
 int main (int argc, char **argv)
 {
