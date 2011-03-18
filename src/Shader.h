@@ -35,7 +35,9 @@ public:
 	std::string path[2];	// paths for dupe checking.
 
 	GLuint id;
-		
+	
+	Shader operator= (const Shader&) { return *this; }
+	
 private:
 	std::map<std::string, GLuint> mUniforms;
 	const char *vss, *fss;	// shader sources.
