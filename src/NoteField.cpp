@@ -82,12 +82,12 @@ static int wrap(int a, int b)
 
 void NoteField::Load(std::string path)
 {	
-	mChart.timing_offset = 150;
+	mChart.timing_offset = 130;
 	float bpm = 132.0f;
 	for (int i = 0; i<360; i++) {
 		NoteRow row;
 		row.scroll_speed = bpm;
-		row.time = (60.f/bpm) * 1000 * i * 2;
+		row.time = (60.f/bpm) * 1000 * i;
 		
 		Note note;
 		note.column = wrap(i+1, mColumns);

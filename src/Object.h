@@ -16,7 +16,7 @@ struct AnimationState
 {
 	// Make sure things don't go uninitialized!
 	AnimationState() : type(TWEEN_SLEEP), duration(0.0), color(rgba(1.0)),
-	position(vec3(0.0)), rotation(vec3(0.0)), scale(vec3(1.0)) { }
+	position(vec3(0.0)), rotation(vec3(0.0)), scale(vec3(1.0)), size(vec3(1.0)) { }
 	
 	AnimationState operator = (const AnimationState &anim)
 	{
@@ -26,6 +26,7 @@ struct AnimationState
 		rotation = anim.rotation;
 		scale = anim.scale;
 		color = anim.color;
+		size = anim.size;
 		return *this;
 	}
 	
@@ -33,7 +34,7 @@ struct AnimationState
 	double duration;
 	
 	rgba color;
-	vec3 position, rotation, scale;
+	vec3 position, rotation, scale, size;
 };
 
 class Object : public MessageListener
@@ -64,12 +65,18 @@ public:
 	void setRotation(float x, float y, float z);
 	void setLoop(bool enabled);
 	void setScale(float x, float y, float z);
+	void setSize(float x, float y, float z);
 	void setColor(float r, float g, float b, float a);
 	
 	Matrix getMatrix();
+	
+	float getWidth();
+	float getHeight();
+	
 	vec3 getPosition();
 	vec3 getRotation();
 	vec3 getScale();
+	vec3 getSize();
 	
 	std::string name;
 	
@@ -93,7 +100,7 @@ protected:
 	Shader m_shader;
 	
 	rgba m_color;
-	vec3 m_position, m_rotation, m_scale;
+	vec3 m_position, m_rotation, m_scale, m_size;
 };
 
 void Object_Binding();

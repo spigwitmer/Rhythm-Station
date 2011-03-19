@@ -88,11 +88,13 @@ void GameManager::setCurrentShader(GLuint shader)
 
 void GameManager::Update(double delta)
 {
-	for (size_t i = 0; i<vpObjects.size(); i++)
-		vpObjects[i]->Update(delta);
+	std::vector<Object*>::iterator it;
+	for (it = vpObjects.begin(); it != vpObjects.end(); it++)
+		(*it)->Update(delta);
 	
-	for (size_t i = 0; i<vpSounds.size(); i++)
-		vpSounds[i]->Update(delta);
+	std::vector<Sound*>::iterator it2;
+	for (it2 = vpSounds.begin(); it2 != vpSounds.end(); it2++)
+		(*it2)->Update(delta);
 }
 
 // this should probably be in scenemanager.
@@ -114,8 +116,9 @@ void GameManager::Render()
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	for (size_t i = 0; i<vpObjects.size(); i++)
-		vpObjects[i]->Draw();
+	std::vector<Object*>::iterator it;
+	for (it = vpObjects.begin(); it != vpObjects.end(); it++)
+		(*it)->Draw();
 	
 	glfwSwapBuffers();
 	

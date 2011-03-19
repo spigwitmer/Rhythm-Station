@@ -22,8 +22,6 @@ public:
 protected:	
 	Mesh mesh;		
 	bool m_bDepthClear;
-	
-	rgba	m_color;
 };
 
 void Sprite_Binding();

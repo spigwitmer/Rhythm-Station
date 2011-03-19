@@ -5,11 +5,9 @@
 #include <SLB/SLB.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_color(rgba(1.0)),
-	m_position(vec3(0.0)), m_rotation(vec3(0.0)), m_scale(vec3(1.0))
+Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_parent(NULL), m_color(rgba(1.0)),
+	m_position(vec3(0.0)), m_rotation(vec3(0.0)), m_scale(vec3(1.0)), m_size(vec3(1.0)), m_texture()
 {
-	m_parent = NULL;
-	
 	m_shader.setProjectionMatrix(Game->ProjectionMatrix);
 	m_texture.width = m_texture.height = 1;	
 	
@@ -52,6 +50,7 @@ void Object::UpdateTweens(double delta)
 				m_position = interpolate(next.type, prev.position, next.position, duration, time);
 				m_rotation = interpolate(next.type, prev.rotation, next.rotation, duration, time);
 				m_scale = interpolate(next.type, prev.scale, next.scale, duration, time);
+				m_size = interpolate(next.type, prev.size, next.size, duration, time);
 				m_color = interpolate(next.type, prev.color, next.color, duration, time);
 				
 				QueueUpdate();
@@ -62,6 +61,7 @@ void Object::UpdateTweens(double delta)
 				m_position = m_states[m_frame].position;
 				m_rotation = m_states[m_frame].rotation;
 				m_scale = m_states[m_frame].scale;
+				m_size = m_states[m_frame].size;
 				m_color = m_states[m_frame].color;
 			}
 			
@@ -80,7 +80,7 @@ void Object::UpdateTweens(double delta)
 		m_matrix.Translate(m_position);		
 		m_matrix.Rotate(m_rotation);		
 		m_matrix.Scale(m_scale);
-		m_matrix.Scale(m_texture.width, m_texture.height, 1.0);
+		m_matrix.Scale(m_size);
 		
 		if (m_parent)
 			m_matrix.matrix = m_parent->getMatrix().matrix * m_matrix.matrix;
@@ -156,6 +156,12 @@ void Object::setRotation(float x, float y, float z)
 	QueueUpdate();
 }
 
+void Object::setSize(float x, float y, float z)
+{
+	m_states.back().size = vec3(x, y, z);
+	QueueUpdate();
+}
+
 void Object::setScale(float x, float y, float z)
 {
 	m_states.back().scale = vec3(x, y, z);
@@ -178,6 +184,17 @@ Matrix Object::getMatrix()
 	return m_matrix;
 }
 
+// Get object texture size.
+float Object::getWidth()
+{
+	return m_size.x;
+}
+
+float Object::getHeight()
+{
+	return m_size.y;
+}
+
 vec3 Object::getPosition()
 {
 	return m_position;
@@ -186,6 +203,11 @@ vec3 Object::getPosition()
 vec3 Object::getRotation()
 {
 	return m_rotation;
+}
+
+vec3 Object::getSize()
+{
+	return m_size;
 }
 
 vec3 Object::getScale()
