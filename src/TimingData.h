@@ -31,9 +31,9 @@ struct Note
 struct NoteRow
 {
 	std::vector<Note> notes;	// Notes on this row
-	unsigned int time;		// Time in milliseconds.
+	unsigned int time;			// Time in milliseconds.
 	
-	float scroll_speed;		// A stop would just be setting this to 0.
+	float scroll_speed;			// A stop would just be setting this to 0.
 };
 
 struct NoteRegion

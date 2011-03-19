@@ -35,6 +35,7 @@ private:
 	std::string mNoteskin;
 	bool mIsLoaded, mStarted, mFinished;
 	int mColumns, mMaxBeforeReceptors, mMaxAfterReceptors;
+	unsigned int mMaxTime;
 	
 	float mSpeed;
 		

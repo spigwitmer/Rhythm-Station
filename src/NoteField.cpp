@@ -81,12 +81,13 @@ static int wrap(int a, int b)
 }
 
 void NoteField::Load(std::string path)
-{
-	float bpm = 140.0f;
-	for (int i = 0; i<10; i++) {
+{	
+	mChart.timing_offset = 150;
+	float bpm = 132.0f;
+	for (int i = 0; i<360; i++) {
 		NoteRow row;
 		row.scroll_speed = bpm;
-		row.time = (1.f/bpm) * 1000 * i;
+		row.time = (60.f/bpm) * 1000 * i * 2;
 		
 		Note note;
 		note.column = wrap(i+1, mColumns);
@@ -95,6 +96,8 @@ void NoteField::Load(std::string path)
 		row.notes.push_back(note);
 		
 		mChart.note_rows.push_back(row);
+		
+		mMaxTime = (row.time > mMaxTime) ? row.time : mMaxTime;
 	}
 	mIsLoaded = true;
 	Log->Print("Loaded. (%zd rows, mIsLoaded = %d)", mChart.note_rows.size(), mIsLoaded);
@@ -130,13 +133,8 @@ void NoteField::Update(double delta)
 	
 	if (mFinished)
 		return;
-		
-	// Work out the end time of the chart.
-	unsigned int maxtime = 0;
-	for (RowIterator row = mChart.note_rows.begin(); row != mChart.note_rows.end(); row++) {
-		maxtime = (row->time > maxtime) ? row->time : maxtime;
-	}
-	if (mTimer.Ago()*10 > maxtime)
+	
+	if (mTimer.Ago() * 1000 > mMaxTime)
 		onFinish();
 }
 
@@ -155,7 +153,7 @@ void NoteField::Draw()
 	for (RowIterator row = mChart.note_rows.begin(); row != mChart.note_rows.end(); row++) {
 		float speed, row_time, position, y_pos;
 		speed		= row->scroll_speed * mSpeed;
-		row_time	= (row->time - mChart.timing_offset) / 10.f;
+		row_time	= (row->time - mChart.timing_offset) / 1000.f;
 		position	= row_time - mTimer.Ago();
 		y_pos		= position * speed;
 		
