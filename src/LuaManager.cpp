@@ -52,41 +52,44 @@ LuaManager::~LuaManager()
 	lua_close(L);
 }
 
-static int runstring(lua_State *L, std::string path)
-{	
-	luaL_loadstring(L, path.c_str());
-	
-	return lua_pcall(L, 0, LUA_MULTRET, 0);	
-}
-
-void LuaManager::Run(const char *path)
+void LuaManager::Run()
 {
+	Log->Print("Searching for Lua scripts...");
+	// Get all scripts in current theme folder.
 	std::vector<std::string> vScripts = FileManager::GetDirectoryListing(FileManager::GetFile(""), "lua");
+	
+	// Sort them. We need this in order.
+	std::sort(vScripts.begin(), vScripts.end());
+
 	std::vector<std::string>::iterator it;
-	for (it = vScripts.begin(); it != vScripts.end(); it++) {
-		Log->Print("Found script \"%s\"", (*it).c_str());
+	for (it = vScripts.begin(); it != vScripts.end(); it++)
+	{
+		Log->Print("-> Found \"%s\"", (*it).c_str());
 	}
 
 	// Fix path and get contents
 	std::string file = "SLB.using(SLB)\n";
-	runstring(L, file);
+	luaL_loadstring(L, file.c_str());
+	int status = lua_pcall(L, 0, LUA_MULTRET, 0);
+	if (status)
+	{
+		Log->Print("Irrecoverable Lua error. Aborting.");
+		return;
+	}
+	
+	Log->Print("Running all scripts...");
 	
 	for (it = vScripts.begin(); it != vScripts.end(); it++)
 	{
+		Log->Print("-> Running \"%s\"", (*it).c_str());
 		file = FileManager::GetFile((*it));
-		file = FileManager::GetFileContents(file);
+		luaL_loadfile(L, file.c_str());
 		
-		if (runstring(L, file))
+		status = lua_pcall(L, 0, LUA_MULTRET, 0);
+		if (status)
 		{
-			// Load into Lua, run.
-			luaL_loadstring(L, file.c_str());
-			int status = lua_pcall(L, 0, LUA_MULTRET, 0);
-			
-			if (!status)
-				return;
-			
 			// If we're here, something is wrong.
-			Log->Print("***** Lua runtime error in %s *****", path);
+			Log->Print("[ERROR] Lua error! Please check script.");
 			Log->Print(lua_tostring(L, -1));
 			
 			// pop error message from the stack.
@@ -95,4 +98,6 @@ void LuaManager::Run(const char *path)
 			break;
 		}
 	}
+	
+	Log->Print("Script execution complete.");
 }

@@ -17,7 +17,7 @@ public:
 	LuaManager();
 	virtual ~LuaManager();
 	
-	void Run(const char *file);
+	void Run();
 	
 	lua_State *L;
 };

@@ -51,8 +51,8 @@ int main (int argc, char **argv)
 	
 	SoundManager::Open();
 	
-	// Run the theme's lua.
-	Lua->Run("init.lua");
+	// Run the theme's lua scripts.
+	Lua->Run();
 	
 	// we'll be using these everywhere, enable them and leave it that way.
 	glEnableVertexAttribArray(VERTEX_ARRAY);
