@@ -44,7 +44,7 @@ LuaManager::LuaManager()
 	Object_Binding();
 	Sprite_Binding();
 	Sound_Binding();
-	NoteField_Binding();
+	NoteField_Binding();	
 }
 
 LuaManager::~LuaManager()
@@ -52,24 +52,47 @@ LuaManager::~LuaManager()
 	lua_close(L);
 }
 
+static int runstring(lua_State *L, std::string path)
+{	
+	luaL_loadstring(L, path.c_str());
+	
+	return lua_pcall(L, 0, LUA_MULTRET, 0);	
+}
+
 void LuaManager::Run(const char *path)
 {
+	std::vector<std::string> vScripts = FileManager::GetDirectoryListing(FileManager::GetFile(""), "lua");
+	std::vector<std::string>::iterator it;
+	for (it = vScripts.begin(); it != vScripts.end(); it++) {
+		Log->Print("Found script \"%s\"", (*it).c_str());
+	}
+
 	// Fix path and get contents
-	std::string file = FileManager::GetFile(path);
-	file = FileManager::GetFileContents(file);
-	file = "SLB.using(SLB)\n" + file;
+	std::string file = "SLB.using(SLB)\n";
+	runstring(L, file);
 	
-	// Load into Lua, run.
-	luaL_loadstring(L, file.c_str());
-	int status = lua_pcall(L, 0, LUA_MULTRET, 0);
-	
-	if (!status)
-		return;
-	
-	// If we're here, something is wrong.
-	Log->Print("***** Lua runtime error in %s *****", path);
-	Log->Print(lua_tostring(L, -1));
-	
-	// pop error message from the stack.
-	lua_pop(L, 1);
+	for (it = vScripts.begin(); it != vScripts.end(); it++)
+	{
+		file = FileManager::GetFile((*it));
+		file = FileManager::GetFileContents(file);
+		
+		if (runstring(L, file))
+		{
+			// Load into Lua, run.
+			luaL_loadstring(L, file.c_str());
+			int status = lua_pcall(L, 0, LUA_MULTRET, 0);
+			
+			if (!status)
+				return;
+			
+			// If we're here, something is wrong.
+			Log->Print("***** Lua runtime error in %s *****", path);
+			Log->Print(lua_tostring(L, -1));
+			
+			// pop error message from the stack.
+			lua_pop(L, 1);
+			
+			break;
+		}
+	}
 }
