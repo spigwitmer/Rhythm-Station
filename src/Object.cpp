@@ -5,7 +5,7 @@
 #include <SLB/SLB.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_parent(NULL), m_color(rgba(1.0)),
+Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_parent(NULL), m_align(glm::ivec2(0,0)), m_color(rgba(1.0)),
 	m_position(vec3(0.0)), m_rotation(vec3(0.0)), m_scale(vec3(1.0)), m_size(vec3(1.0)), m_texture()
 {
 	m_shader.setProjectionMatrix(Game->ProjectionMatrix);
@@ -77,7 +77,28 @@ void Object::UpdateTweens(double delta)
 		
 		m_matrix.Identity();
 		
-		m_matrix.Translate(m_position);		
+		m_matrix.Translate(m_position);
+		
+		// handle alignment
+		if (m_align.x || m_align.y)
+		{
+			vec3 align;
+			
+			// X align
+			if (m_align.x == 1)
+				align.x = m_size.x*0.5;
+			else if (m_align.x == 2)
+				align.x = -m_size.x*0.5;
+			
+			// Y align
+			if (m_align.y == 1)
+				align.y = m_size.y*0.5;
+			else if (m_align.y == 2)
+				align.y = -m_size.y*0.5;
+			
+			m_matrix.Translate(align);
+		}
+		
 		m_matrix.Rotate(m_rotation);		
 		m_matrix.Scale(m_scale);
 		m_matrix.Scale(m_size);
@@ -142,6 +163,11 @@ void Object::addState(int tweentype, double length)
 	state.duration = length;
 	
 	m_states.push_back(state);	
+}
+
+void Object::setAlign(int x, int y)
+{
+	m_align = glm::ivec2(x, y);
 }
 
 void Object::setPosition(float x, float y, float z)
@@ -224,6 +250,7 @@ void Object_Binding()
 	.set("Register", &Object::Register)
 	.set("addState", &Object::addState)
 	.set("addChild", &Object::addChild)
+	.set("setAlign", &Object::setAlign)
 	.set("setLoop", &Object::setLoop)
 	.set("setParent", &Object::setParent)
 	.set("setPosition", &Object::setPosition)

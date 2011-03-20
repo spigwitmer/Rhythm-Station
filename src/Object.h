@@ -60,7 +60,7 @@ public:
 	
 	// animation
 	void addState(int tweentype, double length);
-	
+	void setAlign(int x, int y);
 	void setPosition(float x, float y, float z);
 	void setRotation(float x, float y, float z);
 	void setLoop(bool enabled);
@@ -99,6 +99,7 @@ protected:
 	Texture m_texture;
 	Shader m_shader;
 	
+	glm::ivec2 m_align;
 	rgba m_color;
 	vec3 m_position, m_rotation, m_scale, m_size;
 };
