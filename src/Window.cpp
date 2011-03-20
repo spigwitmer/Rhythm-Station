@@ -27,9 +27,28 @@ static void _resizeCallback(GLFWwindow window, int width, int height)
 	msg.Send();
 	
 	glViewport(0, 0, width, height);
+		
+	/*
+	 * Work out aspect ratio and set game resolution accordingly. Having
+	 * this based on 640x480 is much less work for themers. If they want
+	 * the actual size in pixels, it's easy enough to scale back to the
+	 * real size. A base_size square is guaranteed usable.
+	 */
+	float base_size = 480;
+	vec2 game_size = vec2(0.0);
 	
-	// Set new projection matrix, queue screen update.
-	Game->ProjectionMatrix->Ortho(width, height);
+	// Wide screen (e.g. computer monitor)
+	vec2 ws = vec2(width, height);
+	if (ws.x >= ws.y) {
+		game_size.x = base_size * (ws.x/ws.y);
+		game_size.y = base_size;
+	}
+	// Tall screen (e.g. tablet, phone)
+	else {
+		game_size.x = base_size;
+		game_size.y = base_size * (ws.y/ws.x);
+	}
+	Game->ProjectionMatrix->Ortho(game_size.x, game_size.y);
 	
 	Game->QueueRendering();
 }
