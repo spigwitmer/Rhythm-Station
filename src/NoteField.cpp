@@ -81,10 +81,12 @@ static int wrap(int a, int b)
 }
 
 void NoteField::Load(std::string path)
-{	
-	mChart.timing_offset = 130;
-	float bpm = 132.0f;
-	for (int i = 0; i<360; i++) {
+{
+	// TODO: search path for chart + song file
+	
+	mChart.timing_offset = -50;
+	float bpm = 144.0f;
+	for (int i = 0; i<200; i++) {
 		NoteRow row;
 		row.scroll_speed = bpm;
 		row.time = (60.f/bpm) * 1000 * i;

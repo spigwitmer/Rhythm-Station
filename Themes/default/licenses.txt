@@ -1,0 +1,8 @@
+Sounds/sgx_-_and_all_that_between.ogg
+ * SGX - And All That Between
+ * CC BY-SA (http://creativecommons.org/licenses/by-sa/3.0/) according to: http://albums.sgxmusic.com/album/wonderful-bite-free
+ * Cut from the first section of the song. Go buy a copy of the album if you like it!
+
+All included graphics are CC-NC licensed.
+All included scripts are MIT licensed.
+For font licensing, see specific font folder.

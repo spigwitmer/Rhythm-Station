@@ -1,4 +1,4 @@
-sound = LoadSound("Sounds/get-it-by-your-hands.ogg")
+sound = LoadSound("Sounds/sgx_-_and_all_that_between.ogg")
 --sound:SubscribeTo("SongStarted")
 sound:UseEqualizer(true)
 sound:setLoop(true)
