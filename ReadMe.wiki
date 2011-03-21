@@ -19,7 +19,7 @@ in the file you're in, generally I write code like so:
  * Multi-line comment.
  * Hello there.
  */
-void foo(_bar) : baz()
+void foo(int _bar) : baz()
 {
 	baz = _bar;
 
@@ -29,13 +29,7 @@ void foo(_bar) : baz()
 
 	// omit braces for single-line ifs
 	if (foo == bar)
-		baz();
-
-	for (int i = 0; i < 20; i++)
-	{
-		hello();
-		there(i);
-	}
+		baz(1, 2, SOME_ENUM);
 }
 
 class Test : public Stuff
@@ -46,11 +40,9 @@ public:
 };
 </pre>
 
-Note, variable names should use hungarian notation if it isn't obvious by the
-name what it would be anyways. Example: <code>vpActors</code> for a vector of pointers to
-Actors. However one would assume that <code>deltaTime</code> is always a float, so no "f"
-prefix is needed. For multi-word variables use underscores for space, for
-vars passed in as arguments prefix names with underscores, and CamelCase funcs.
+Variables should be named in such a way that they make sense. There is no need
+to strictly follow hungarian notation or whatever else. Public functions should
+be CamelCase (or for getters/setters: setCamelCase).
 
 The code is rather inconsistent right now, I apologize.
 
