@@ -33,6 +33,8 @@ NoteField::NoteField() : mColumns(4), mSpeed(1.0)
 	mMesh.Load(verts, indices, 4, 6);
 	mShader.setModelViewMatrix(&m_matrix);
 	mTexture.Load(FileManager::GetFile("Graphics/arrow.png"));
+	
+	this->SubscribeTo("Input");
 }
 
 float columnRotations[] = { 90, 0, 180, -90 };
@@ -89,7 +91,7 @@ void NoteField::Load(std::string path)
 	for (int i = 0; i<200; i++) {
 		NoteRow row;
 		row.scroll_speed = bpm;
-		row.time = (60.f/bpm) * 1000 * i;
+		row.time = (60.f/bpm) * 1000 * i * 4;
 		
 		Note note;
 		note.column = wrap(i+1, mColumns);
@@ -126,6 +128,58 @@ void NoteField::onFinish()
 	mFinished = true;
 }
 
+static bool within(float in, float limit)
+{
+	if (fabsf(in) <= limit)
+		return true;
+	return false;
+}
+
+static void judge_note(float timing)
+{
+	if (timing <= 0.0225)
+		Log->Print("Fantastic!");
+	else if (timing <= 0.055)
+		Log->Print("Perfect");
+	else if (timing <= 0.11)
+		Log->Print("Great");
+	else if (timing <= 0.22)
+		Log->Print("Good");
+	else
+		Log->Print("Almost...");
+}
+
+void NoteField::HandleMessage(const Message &msg)
+{
+	if (msg.name != "Input")
+		return;
+	
+	std::map<std::string, void*> evt;
+	evt = msg.data;
+	
+	// ¡¡¡ Voodoo alert !!!
+	IEvent* status;
+	status = (IEvent*)evt["Event"];
+	
+	char key = 'A';
+	
+	if (status->last_type == KEY_LETGO)
+		return;
+	
+	float timeDifference;
+	// Get difference (timestamp is relative to the game, timer to this)
+	timeDifference = status->timestamp[key] - mTimer.Ago();
+	
+	// Subtract difference
+	float now = status->timestamp[key] - timeDifference;
+	float then = (mCurrentRow.time - mChart.timing_offset) / 1000.f;
+	
+	// TODO: only handles hitting the row itself. Should judge *notes*
+	float timing = then - now;
+	if (within(timing, 0.5))
+		judge_note(timing);
+}
+
 void NoteField::Update(double delta)
 {
 	this->UpdateTweens(delta);
@@ -138,6 +192,26 @@ void NoteField::Update(double delta)
 	
 	if (mTimer.Ago() * 1000 > mMaxTime)
 		onFinish();
+	
+	// Re-populate notes to judge on every update.
+	mCurrentRow.notes.clear();
+	for (RowIterator row = mChart.note_rows.begin(); row != mChart.note_rows.end(); row++)
+	{
+		float row_time = (row->time - mChart.timing_offset) / 1000.f;
+		if (within(row_time - mTimer.Ago(), 0.5))
+		{
+			for (NoteIterator note = row->notes.begin(); note != row->notes.end(); note++)
+			{
+				if (!note->hit) {
+					Note *cur = note.base();
+					mCurrentRow.notes.push_back(cur);
+				}
+			}
+			mCurrentRow.time = row->time;
+		}
+		if (row_time + 0.5 > mTimer.Ago())
+			break;
+	}
 }
 
 void NoteField::Draw()
@@ -152,7 +226,8 @@ void NoteField::Draw()
 	if (mChart.note_rows.empty())
 		return;
 	
-	for (RowIterator row = mChart.note_rows.begin(); row != mChart.note_rows.end(); row++) {
+	for (RowIterator row = mChart.note_rows.begin(); row != mChart.note_rows.end(); row++)
+	{
 		float speed, row_time, position, y_pos;
 		speed		= row->scroll_speed * mSpeed;
 		row_time	= (row->time - mChart.timing_offset) / 1000.f;
@@ -164,7 +239,8 @@ void NoteField::Draw()
 			continue;
 		
 		// Draw all notes in this column
-		for (NoteIterator notes = row->notes.begin(); notes != row->notes.end(); notes++) {
+		for (NoteIterator notes = row->notes.begin(); notes != row->notes.end(); notes++)
+		{
 			noteMatrix.Identity();
 			noteMatrix.Translate(vec3((notes->column-(mColumns/2))*64.0f, y_pos, 0));
 			

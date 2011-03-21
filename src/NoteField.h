@@ -18,6 +18,8 @@ public:
 	void Update(double delta);
 	void Draw();
 	
+	void HandleMessage(const Message &msg);
+	
 	void onStart();
 	void onFinish();
 	
@@ -42,8 +44,11 @@ private:
 	// Step/Chart data.
 	Timer mTimer;
 	TimingData mChart;
-	std::vector<NoteRow> mValidRows;
-		
+	struct {
+		double time;
+		std::vector<Note*> notes;
+	} mCurrentRow;
+	
 	// Secretly, all our note drawing is the same one being thrown around.
 	Mesh mMesh;
 	Texture mTexture;

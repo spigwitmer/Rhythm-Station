@@ -18,7 +18,7 @@ static void _keyCallback(GLFWwindow window, int key, int state)
 	switch (state) {
 	case GLFW_PRESS:
 		Input->status.keys[key] = KEY_PRESSED;
-		
+		Input->status.last_type = KEY_PRESSED;
 		switch (key)
 		{
 		case 294:
@@ -36,6 +36,9 @@ static void _keyCallback(GLFWwindow window, int key, int state)
 		Input->status.keys[key] = KEY_NONE;
 		break;
 	}
+	
+	if (state == GLFW_RELEASE)
+		Input->status.last_type = KEY_LETGO;
 	
 	Input->status.timestamp[key] = cur_time;
 	Input->SendEvent();
@@ -153,7 +156,7 @@ void InputManager::SendEvent()
 {
 	Message msg;
 	msg.name = "Input";
-//	msg.data["Event"] = (void*)status;
+	msg.data["Event"] = (void*)&status;
 	msg.Send();
 }
 

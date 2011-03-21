@@ -26,6 +26,8 @@ struct Note
 	std::vector<NoteAttribute> flags;
 	
 	unsigned char column;	// For games which use columns (e.g. StepMania)
+	
+	bool hit;
 };
 
 struct NoteRow

@@ -57,6 +57,8 @@ struct IEvent
 	int num_keys;
 	
 	double *timestamp;
+	
+	int last_type;
 };
 
 class InputManager : public Singleton<InputManager>
