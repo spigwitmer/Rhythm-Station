@@ -47,11 +47,12 @@ std::string getProgramLog(GLuint obj)
 }
 
 Shader::Shader() : id(0)
-{
-	// XXX: drip drip drip (leaky)
-	m_model = new Matrix();
-	m_proj = new Matrix();
-	
+{	
+	/*
+	 * Use the game's projection matrix just to init this with – it's
+	 * not actually going to be used, it only prevents a crash.
+	 */
+	this->setModelViewMatrix(Game->ProjectionMatrix);
 	this->setProjectionMatrix(Game->ProjectionMatrix);
 	this->loadFromDisk("/Data/Shaders/generic.vs", "/Data/Shaders/generic.fs");
 }
@@ -169,7 +170,7 @@ void Shader::Bind()
 
 void Shader::setUniforms()
 {
-	// As above, getting uniform locations is nearly free.
+	// Note: m_proj is (er, should be) guaranteed to exist by GameManager.
 	glUniformMatrix4fv(getUniform("ModelViewMatrix"), 1, false, glm::value_ptr(m_model->matrix));
 	glUniformMatrix4fv(getUniform("ProjectionMatrix"), 1, false, glm::value_ptr(m_proj->matrix));
 	

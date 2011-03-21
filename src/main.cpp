@@ -14,6 +14,7 @@
 #include "PreferencesFile.h"
 #include "ThreadGroup.h"
 
+#if 0
 void *MyWin32ThreadTest(void *data)
 {
 	Log->Print("Hello from child thread!");
@@ -21,8 +22,7 @@ void *MyWin32ThreadTest(void *data)
 
 	return NULL;
 }
-
-#include "NoteField.h"
+#endif
 
 // Initialize everything and set up the GL states used throughout the program.
 int main (int argc, char **argv)

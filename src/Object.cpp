@@ -77,27 +77,25 @@ void Object::UpdateTweens(double delta)
 		
 		m_matrix.Identity();
 		
-		m_matrix.Translate(m_position);
-		
+		// Copy position to adjust for alignment.
+		vec3 align = m_position;
+
 		// handle alignment
 		if (m_align.x || m_align.y)
-		{
-			vec3 align;
-			
+		{			
 			// X align
 			if (m_align.x == 1)
-				align.x = m_size.x*0.5;
+				align.x += m_size.x*0.5;
 			else if (m_align.x == 2)
-				align.x = -m_size.x*0.5;
+				align.x += -m_size.x*0.5;
 			
 			// Y align
 			if (m_align.y == 1)
-				align.y = m_size.y*0.5;
+				align.y += m_size.y*0.5;
 			else if (m_align.y == 2)
-				align.y = -m_size.y*0.5;
-			
-			m_matrix.Translate(align);
+				align.y += -m_size.y*0.5;			
 		}
+		m_matrix.Translate(align);
 		
 		m_matrix.Rotate(m_rotation);		
 		m_matrix.Scale(m_scale);

@@ -36,7 +36,7 @@ public:
 
 	GLuint id;
 	
-	Shader operator= (const Shader&) { return *this; }
+	Shader& operator= (const Shader&) { return *this; }
 	
 private:
 	std::map<std::string, GLuint> mUniforms;
