@@ -15,7 +15,6 @@ and flesh out some of the stubs. As for coding style, just follow the source
 in the file you're in, generally I write code like so:
 
 <pre>
-<code>
 /*
  * Multi-line comment.
  * Hello there.
@@ -45,7 +44,6 @@ public:
 	Test();
 	virtual ~Test();
 };
-</code>
 </pre>
 
 Note, variable names should use hungarian notation if it isn't obvious by the
