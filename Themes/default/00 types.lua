@@ -1,4 +1,19 @@
-vec3 = {
+-- http://www.lua.org/pil/13.4.5.html
+function read_only(t)
+	local proxy = {}
+
+	-- create metatable
+	local mt = {
+		__index = t,
+		__newindex = function(t, k, v)
+			error("Attempt to update a read-only table", 2)
+		end
+	}
+	setmetatable(proxy, mt)
+	return proxy
+end
+
+vec3 = read_only {
 	zero = function()
 		return 0, 0, 0
 	end,
@@ -7,7 +22,7 @@ vec3 = {
 	end
 }
 
-vec4 = {
+vec4 = read_only {
 	zero = function()
 		return 0, 0, 0, 0
 	end,
@@ -16,7 +31,7 @@ vec4 = {
 	end
 }
 
-tween = {
+tween = read_only {
 	-- basic
 	sleep = 0,
 	linear = 1,
@@ -32,7 +47,7 @@ tween = {
 	smooth_cubic = 7
 }
 
-align = {
+align = read_only {
 	center = 0,
 	middle = 0,
 
@@ -43,7 +58,7 @@ align = {
 	bottom = 2
 }
 
-screen = {
+screen = read_only {
 	left = -(854/2),
 	right = 854/2,
 	top = -(480/2),
