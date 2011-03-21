@@ -14,7 +14,7 @@ to it later. Currently the code is rather messy and I am working to improve it
 and flesh out some of the stubs. As for coding style, just follow the source
 in the file you're in, generally I write code like so:
 
-[code]
+<syntaxhighlight lang="cpp">
 /*
  * Multi-line comment.
  * Hello there.
@@ -44,7 +44,8 @@ public:
 	Test();
 	virtual ~Test();
 };
-[/code]
+</syntaxhighlight>
+
 Note, variable names should use hungarian notation if it isn't obvious by the
 name what it would be anyways. Example: vpActors for a vector of pointers to
 Actors. However one would assume that deltaTime is always a float, so no "f"
