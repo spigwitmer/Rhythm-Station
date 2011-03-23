@@ -18,7 +18,7 @@
 void *MyWin32ThreadTest(void *data)
 {
 	Log->Print("Hello from child thread!");
-	SleepEx(3000,false);
+	SleepEx(3000, false);
 
 	return NULL;
 }
@@ -33,8 +33,9 @@ int main (int argc, char **argv)
 #if 0
 	Log->Print("RStation win32 thread test");
 	RSThread mythread;
-	mythread.Start( MyWin32ThreadTest );
+	mythread.Start(MyWin32ThreadTest);
 	mythread.Wait();
+	
 	delete Log;	// XXX
 	exit(0);	// XXX
 #endif
