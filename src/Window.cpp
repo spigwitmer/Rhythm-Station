@@ -16,7 +16,8 @@ int width = 1, height = 1;
 // on window resize
 static void _resizeCallback(GLFWwindow window, int width, int height)
 {
-	glfwSetWindowTitle(Window::getWindow(), Log->SPrint("%dx%d", width, height).c_str());
+	Window *wnd = Window::getSingleton();
+	glfwSetWindowTitle(wnd->getWindow(), Log->SPrint("%dx%d", width, height).c_str());
 	
 	// Set new size preference (should this only be saved explicitely by user?)
 	Preferences->SetValue("Graphics", "WindowWidth", width);
@@ -108,13 +109,13 @@ GLFWwindow Window::getWindow()
 
 bool Window::CheckFocus()
 {
-	bool windowfocus = glfwGetWindowParam(Window::getWindow(), GLFW_ACTIVE) ? true : false;
+	bool windowfocus = glfwGetWindowParam(this->getWindow(), GLFW_ACTIVE) ? true : false;
 	return windowfocus || is_fullscreen;
 }
 
 void Window::UpdateTitle(double delta)
 {
-	glfwSetWindowTitle(Window::getWindow(), Log->SPrint("Rhythm-Station - FPS: %0.1f, Delta: %0.05f",
+	glfwSetWindowTitle(this->getWindow(), Log->SPrint("Rhythm-Station - FPS: %0.1f, Delta: %0.05f",
 		int((1.0 / delta) * 10) * 0.1f, delta).c_str());
 }
 

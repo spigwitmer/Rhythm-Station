@@ -2,9 +2,11 @@
 #define _WINDOW_H_
 
 #include <GL/glfw3.h>
+#include "Singleton.h"
 
-namespace Window
+class Window : public Singleton<Window>
 {
+public:
 	bool Create(int width, int height, bool fullscreen = false);
 	void Connect();
 	void Destroy();
@@ -16,6 +18,6 @@ namespace Window
 	int getHeight();
 	
 	GLFWwindow getWindow();
-}
+};
 
 #endif

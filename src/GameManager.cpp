@@ -101,12 +101,13 @@ void GameManager::Update(double delta)
 // this should probably be in scenemanager.
 void GameManager::Render()
 {
+	Window *wnd = Window::getSingleton();
 	/*
 	 * Ideally, we would only redraw objects which need it, however this is still
 	 * useful when there isn't much going on.
 	 */
 	if ((!m_bQueuedRender && !m_bFirstUpdate && lazy_updates) ||
-		(!Window::CheckFocus() && !m_bFirstUpdate))
+		(!wnd->CheckFocus() && !m_bFirstUpdate))
 	{
 		usleep(12500); // reduce CPU usage when not updating.
 		return;

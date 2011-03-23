@@ -57,12 +57,13 @@ static void _charCallback(GLFWwindow window, int key)
 static void _mPosCallback(GLFWwindow window, int x, int y)
 {
 	InputManager *Input = InputManager::getSingleton();
+	Window *wnd = Window::getSingleton();
 	
 	// Log->Print("x = %d, y = %d", x, y);
 	Input->status.mouse.x = x;
 	Input->status.mouse.y = y;
-	Input->status.mouse.nx = float(x / Window::getWidth());
-	Input->status.mouse.ny = float(y / Window::getHeight());
+	Input->status.mouse.nx = float(x / wnd->getWidth());
+	Input->status.mouse.ny = float(y / wnd->getHeight());
 	Input->SendEvent();
 }
 

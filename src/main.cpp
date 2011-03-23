@@ -35,8 +35,8 @@ int main (int argc, char **argv)
 	RSThread mythread;
 	mythread.Start( MyWin32ThreadTest );
 	mythread.Wait();
-	delete Log;//XXX
-	exit(0);//XXX
+	delete Log;	// XXX
+	exit(0);	// XXX
 #endif
 	
 	// Load Preferences
@@ -47,14 +47,16 @@ int main (int argc, char **argv)
 		return 0;
 	}
 	
-	Window::Create(
+	Window *wnd = Window::getSingleton();
+	
+	wnd->Create(
 		Preferences->GetLongValue("Graphics", "WindowWidth", 854),
 		Preferences->GetLongValue("Graphics", "WindowHeight", 480),
 		Preferences->GetBoolValue("Graphics", "FullScreen", false));
 	glfwSwapInterval(Preferences->GetBoolValue("Graphics", "VSync", false));
 	
 	// Start up all our singletons.
-	Game = new GameManager(Window::getWindow());
+	Game = new GameManager(wnd->getWindow());
 	
 	// These ones should clean themselves up.
 	InputManager *Input = InputManager::getSingleton();
@@ -62,7 +64,7 @@ int main (int argc, char **argv)
 	
 	// Connect event callbacks
 	Input->Connect();
-	Window::Connect();
+	wnd->Connect();
 	
 	// Handle the arguments before doing anything else
 	HandleArguments(argc, argv);
@@ -81,9 +83,9 @@ int main (int argc, char **argv)
 	double max_delta = (1.0/60.0) * 3.0;
 	double now = then;
 	
-	while (glfwIsWindow(Window::getWindow()))
+	while (glfwIsWindow(wnd->getWindow()))
 	{
-		if (glfwGetKey(Window::getWindow(), GLFW_KEY_ESC))
+		if (glfwGetKey(wnd->getWindow(), GLFW_KEY_ESC))
 			break;
 		
 		if (now < then)
@@ -98,7 +100,7 @@ int main (int argc, char **argv)
 		 * Do this before limiting the delta so it always reports the true value.
 		 */
 		if (int(then * 2) != int(now * 2))
-			Window::UpdateTitle(delta);
+			wnd->UpdateTitle(delta);
 		
 		// Prevent large jumps. Note: audio should be updated before doing this.
 		if (delta > max_delta)
