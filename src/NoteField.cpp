@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include "NoteField.h"
 #include "Logger.h"
 #include "Sprite.h"

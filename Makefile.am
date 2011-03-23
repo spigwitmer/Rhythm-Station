@@ -21,7 +21,7 @@ extern/glfw3/src/enable.c \
 extern/glfw3/src/error.c \
 extern/glfw3/src/fullscreen.c \
 extern/glfw3/src/gamma.c \
-extern/glfw3/src/glext.c \
+extern/glfw3/src/opengl.c \
 extern/glfw3/src/init.c \
 extern/glfw3/src/input.c \
 extern/glfw3/src/joystick.c \
@@ -30,7 +30,7 @@ extern/glfw3/src/window.c \
 extern/glfw3/src/x11/x11_enable.c \
 extern/glfw3/src/x11/x11_fullscreen.c \
 extern/glfw3/src/x11/x11_gamma.c \
-extern/glfw3/src/x11/x11_glext.c \
+extern/glfw3/src/x11/x11_opengl.c \
 extern/glfw3/src/x11/x11_init.c \
 extern/glfw3/src/x11/x11_joystick.c \
 extern/glfw3/src/x11/x11_keysym2unicode.c \
@@ -124,6 +124,7 @@ src/Matrix.cpp \
 src/Mesh.cpp \
 src/Message.cpp \
 src/MessageManager.cpp \
+src/NoteField.cpp \
 src/Object.cpp \
 src/PNGFile.cpp \
 src/PreferencesFile.cpp \
@@ -134,6 +135,7 @@ src/SoundManager.cpp \
 src/Sprite.cpp \
 src/SQLiteDatabase.cpp \
 src/StringUtils.cpp \
+src/Texture.cpp \
 src/Timer.cpp \
 src/Tween.cpp \
 src/Type.cpp \

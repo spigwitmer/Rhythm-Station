@@ -14,6 +14,7 @@
 #define getcwd _getcwd
 #endif
 
+#include <errno.h>
 #include <dirent.h>
 #include <cstdio>
 #include <fstream>

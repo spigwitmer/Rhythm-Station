@@ -7,6 +7,7 @@
 #include "Sprite.h"
 #include "Sound.h"
 #include "NoteField.h"
+#include <algorithm>
 
 static const luaL_Reg libs[] =
 {
