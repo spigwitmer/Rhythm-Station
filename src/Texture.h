@@ -6,17 +6,12 @@
 
 struct Texture
 {
-	Texture() : ptr(0), refcount(1) { }
-	void Delete() {
-		glDeleteTextures(1, &ptr);
-	}
-	void Bind() {
-		glBindTexture(GL_TEXTURE_2D, ptr);
-	}
-	void Unbind() {
-		glBindTexture(GL_TEXTURE_2D, 0);
-	}
+	Texture();
+	void Delete();
+	void Bind();
+	void Unbind();
 	void Load(std::string path);
+	
 	GLuint ptr;
 	std::string path;
 	unsigned int width, height;

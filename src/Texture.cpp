@@ -2,6 +2,14 @@
 #include "ResourceManager.h"
 #include "PNGFile.h"
 
+Texture::Texture() :
+	ptr(0), path(), width(0),
+	height(0), refcount(1)
+{
+	// init only
+}
+
+
 void Texture::Load(std::string path)
 {
 	if (!ResourceManager::GetResource(path,*this))
@@ -12,6 +20,21 @@ void Texture::Load(std::string path)
 		// register this so we don't load it again.
 		ResourceManager::Add(*this);
 	}
+}
+
+void Texture::Delete()
+{
+	glDeleteTextures(1, &ptr);
+}
+
+void Texture::Bind()
+{
+	glBindTexture(GL_TEXTURE_2D, ptr);
+}
+
+void Texture::Unbind()
+{
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 /**
