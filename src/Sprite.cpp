@@ -76,5 +76,7 @@ void Sprite_Binding()
 	.set("setSize", &Sprite::setSize)
 	.set("getWidth", &Sprite::getWidth)
 	.set("getHeight", &Sprite::getHeight)
-	.set("setColor", &Sprite::setColor);
+	.set("setColor", &Sprite::setColor)
+	.set("Update", &Sprite::Update)
+	.set("Draw", &Sprite::Draw);
 }

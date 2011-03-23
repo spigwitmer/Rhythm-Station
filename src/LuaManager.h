@@ -18,6 +18,7 @@ public:
 	virtual ~LuaManager();
 	
 	void Run();
+	bool CheckError(int status);
 	
 	lua_State *L;
 };

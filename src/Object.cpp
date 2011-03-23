@@ -254,5 +254,7 @@ void Object_Binding()
 	.set("setPosition", &Object::setPosition)
 	.set("setRotation", &Object::setRotation)
 	.set("setScale", &Object::setScale)
-	.set("setColor", &Object::setColor);
+	.set("setColor", &Object::setColor)
+	.set("Update", &Object::Update)
+	.set("Draw", &Object::Draw);
 }

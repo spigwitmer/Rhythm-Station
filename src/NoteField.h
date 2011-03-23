@@ -22,10 +22,7 @@ public:
 	
 	void onStart();
 	void onFinish();
-	
-	// Debug.
-	void Print();
-	
+		
 	void setColumns(int cols);
 	void setNoteskin(std::string name);
 	void setSpeed(float multiplier);

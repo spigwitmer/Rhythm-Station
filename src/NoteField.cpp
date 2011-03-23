@@ -13,13 +13,12 @@ typedef std::vector<Note>::iterator NoteIterator;
 
 NoteField::NoteField() : mColumns(4), mSpeed(1.0)
 {	
-	// Set intentionall small to encourage setting it in-theme.
+	// Set intentionally small to encourage setting it in-theme.
 	setMaxBeforeReceptors(350);
 	setMaxAfterReceptors(-90);
 	
 	mIsLoaded = mStarted = mFinished = false;
 	
-	MeshData verts[4];
 	float vertices[] = {
 		-0.5*64, -0.5*64, 0, 0, 0, 0, 0, 0,
 		-0.5*64,  0.5*64, 0, 0, 0, 0, 0, 1,
@@ -30,8 +29,10 @@ NoteField::NoteField() : mColumns(4), mSpeed(1.0)
 		0, 1, 2,
 		1, 2, 3
 	};
+	MeshData verts[4];
 	memcpy(&verts[0].Position.x, vertices, sizeof(vertices));
 	mMesh.Load(verts, indices, 4, 6);
+	
 	mShader.setModelViewMatrix(&m_matrix);
 	mTexture.Load(FileManager::GetFile("Graphics/arrow.png"));
 	
@@ -167,9 +168,8 @@ void NoteField::HandleMessage(const Message &msg)
 	if (status->last_type == KEY_LETGO)
 		return;
 	
-	float timeDifference;
 	// Get difference (timestamp is relative to the game, timer to this)
-	timeDifference = status->timestamp[key] - mTimer.Ago();
+	float timeDifference = status->timestamp[key] - mTimer.Ago();
 	
 	// Subtract difference
 	float now = status->timestamp[key] - timeDifference;
@@ -279,6 +279,8 @@ void NoteField_Binding()
 	.set("setPosition", &NoteField::setPosition)
 	.set("setRotation", &NoteField::setRotation)
 	.set("setScale", &NoteField::setScale)
+	.set("Update", &NoteField::Update)
+	.set("Draw", &NoteField::Draw)
 	
 	// NoteField specifics
 	.set("setMaxBeforeReceptors", &NoteField::setMaxBeforeReceptors)

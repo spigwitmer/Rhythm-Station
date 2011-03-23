@@ -53,6 +53,20 @@ LuaManager::~LuaManager()
 	lua_close(L);
 }
 
+bool LuaManager::CheckError(int status)
+{
+	if (status) {		
+		// If we're here, something is wrong.
+		Log->Print("[ERROR] Lua error! -> %s", lua_tostring(L, -1));
+		
+		// pop error message from the stack.
+		lua_pop(L, 1);
+		
+		return true;
+	}
+	return false;
+}
+
 void LuaManager::Run()
 {
 	Log->Print("Searching for Lua scripts...");
@@ -72,11 +86,8 @@ void LuaManager::Run()
 	std::string file = "SLB.using(SLB)\n";
 	luaL_loadstring(L, file.c_str());
 	int status = lua_pcall(L, 0, LUA_MULTRET, 0);
-	if (status)
-	{
-		Log->Print("Irrecoverable Lua error. Aborting.");
+	if (CheckError(status))
 		return;
-	}
 	
 	Log->Print("Running all scripts...");
 	
@@ -87,17 +98,8 @@ void LuaManager::Run()
 		luaL_loadfile(L, file.c_str());
 		
 		status = lua_pcall(L, 0, LUA_MULTRET, 0);
-		if (status)
-		{
-			// If we're here, something is wrong.
-			Log->Print("[ERROR] Lua error! Please check script.");
-			Log->Print(lua_tostring(L, -1));
-			
-			// pop error message from the stack.
-			lua_pop(L, 1);
-			
+		if (CheckError(status))
 			break;
-		}
 	}
 	
 	Log->Print("Script execution complete.");

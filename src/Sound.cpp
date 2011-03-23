@@ -219,5 +219,9 @@ void Sound_Binding()
 	.set("Load", &Sound::Load)
 	.set("setVolume", &Sound::setVolume)
 	.set("setPitch", &Sound::setPitch)
-	.set("setLoop", &Sound::setLoop);
+	.set("setLoop", &Sound::setLoop)
+	.set("Update", &Sound::Update)
+	
+	// Yeah, I know sounds don't draw.
+	.set("Draw", &Sound::Draw);
 }

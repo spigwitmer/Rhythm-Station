@@ -99,6 +99,7 @@
 		EEAB1AF9126F5440004FE58D /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AD5126F5440004FE58D /* lvm.c */; };
 		EEAB1AFA126F5440004FE58D /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AD7126F5440004FE58D /* lzio.c */; };
 		EEAB1AFD126F5440004FE58D /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1ADB126F5440004FE58D /* print.c */; };
+		EEB0CBE91337BA8200DE0724 /* rhythm-station.icns in Resources */ = {isa = PBXBuildFile; fileRef = EEB0CBE81337BA8200DE0724 /* rhythm-station.icns */; };
 		EEC5287312737C8F0064054A /* PNGFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC5287012737C8F0064054A /* PNGFile.cpp */; };
 		EEC52D7B1273803E0064054A /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52B9B1273803D0064054A /* adler32.c */; };
 		EEC52DF71273803E0064054A /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52C3F1273803E0064054A /* crc32.c */; };
@@ -289,6 +290,7 @@
 		EEAB1AD7126F5440004FE58D /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
 		EEAB1AD8126F5440004FE58D /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
 		EEAB1ADB126F5440004FE58D /* print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = print.c; sourceTree = "<group>"; };
+		EEB0CBE81337BA8200DE0724 /* rhythm-station.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "rhythm-station.icns"; path = "assets/rhythm-station.icns"; sourceTree = "<group>"; };
 		EEC5287012737C8F0064054A /* PNGFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PNGFile.cpp; sourceTree = "<group>"; };
 		EEC5287112737C8F0064054A /* PNGFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGFile.h; sourceTree = "<group>"; };
 		EEC52B9B1273803D0064054A /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EEB0CBE81337BA8200DE0724 /* rhythm-station.icns */,
 				EE747FC5127E55B200E4A8FA /* Data */,
 				EE230EC912F9D94300E4C77B /* Themes */,
 				8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */,
@@ -812,6 +815,7 @@
 			files = (
 				EE747FCB127E55B200E4A8FA /* Data in Resources */,
 				EE230ED012F9D94300E4C77B /* Themes in Resources */,
+				EEB0CBE91337BA8200DE0724 /* rhythm-station.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
