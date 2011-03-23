@@ -9,7 +9,6 @@ Texture::Texture() :
 	// init only
 }
 
-
 void Texture::Load(std::string path)
 {
 	if (!ResourceManager::GetResource(path,*this))
