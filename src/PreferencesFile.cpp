@@ -23,10 +23,9 @@ void PreferencesFile::SetDefaults()
 	this->SetValue("Graphics", "WindowWidth", 1024);
 	this->SetValue("Graphics", "WindowHeight", 640);
 	
-	// Note: VSync doesn't work properly in windowed mode, at least on OS X.
+	// Note: VSync doesn't work properly in windowed mode.
 	this->SetValue("Graphics", "VSync", false);
 	this->SetValue("Graphics", "FullScreen", false);
-	
 	this->SetValue("Graphics", "AntiAliasing", false);
 	this->SetValue("Graphics", "AntiAliasingSamples", 4);
 	

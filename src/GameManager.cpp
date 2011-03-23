@@ -89,10 +89,11 @@ void GameManager::setCurrentShader(GLuint shader)
 void GameManager::Update(double delta)
 {
 	std::vector<Object*>::iterator it;
+	std::vector<Sound*>::iterator it2;
+	
 	for (it = vpObjects.begin(); it != vpObjects.end(); it++)
 		(*it)->Update(delta);
 	
-	std::vector<Sound*>::iterator it2;
 	for (it2 = vpSounds.begin(); it2 != vpSounds.end(); it2++)
 		(*it2)->Update(delta);
 }

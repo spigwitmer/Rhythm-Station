@@ -1,7 +1,7 @@
 -- http://www.lua.org/pil/13.4.5.html
 function read_only(t)
 	local proxy = {}
-
+	
 	-- create metatable
 	local mt = {
 		__index = t,
@@ -12,6 +12,15 @@ function read_only(t)
 	setmetatable(proxy, mt)
 	return proxy
 end
+
+vec2 = read_only {
+	zero = function()
+		return 0, 0
+	end,
+	create = function(input)
+		return input, input
+	end
+}
 
 vec3 = read_only {
 	zero = function()
@@ -32,37 +41,31 @@ vec4 = read_only {
 }
 
 tween = read_only {
-	-- basic
-	sleep = 0,
-	linear = 1,
-
-	-- ^2
-	ease_in = 2,
-	ease_out = 3,
-	smooth = 4,
-
-	-- ^3
-	ease_in_cubic = 5,
-	ease_out_cubic = 6,
-	smooth_cubic = 7
+	sleep			= 0, -- basic
+	linear			= 1,
+	ease_in			= 2, -- ^2
+	ease_out		= 3,
+	smooth			= 4,
+	ease_in_cubic	= 5, -- ^3
+	ease_out_cubic	= 6,
+	smooth_cubic	= 7
 }
 
 align = read_only {
-	center = 0,
-	middle = 0,
-
-	left = 1,
-	top = 1,
-
-	right = 2,	
-	bottom = 2
+	center	= 0,
+	middle	= 0,
+	left	= 1,
+	top		= 1,
+	right	= 2,	
+	bottom	= 2
 }
 
+local width, height = 854, 480
 screen = read_only {
-	left = -(854/2),
-	right = 854/2,
-	top = -(480/2),
-	bottom = 480/2,
-	width = 854,
-	height = 480
+	left	= -(width	* 0.5),
+	right	=  (width	* 0.5),
+	top		= -(height	* 0.5),
+	bottom	=  (height	* 0.5),
+	width	= width,
+	height	= height
 }
