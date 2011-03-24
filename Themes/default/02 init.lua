@@ -13,12 +13,32 @@ for i = 1,4 do
 
 	ob = LoadActor("Graphics/arrow.png")
 	ob:setParent(loc)
-	ob:setPosition(spacing*(i-2.5),0,0)
-	ob:setRotation(0,0,rotations[i])
-	ob:setScale(size,size,size)
-	ob:setColor(0,0,0,0.5)
+	ob:setPosition(spacing*(i-2.5), 0, 0)
+	ob:setRotation(0, 0, rotations[i])
+	ob:setScale(size, size, size)
+	ob:setColor(0, 0, 0, 0.5)
 end
 
+local t = {
+	LoadActor("Graphics/logo.png") {
+		InitCommand=function(self)
+			print("Test!")
+			self:setPosition(100, 100, 0)
+			self:addState(tween.sleep, 0.75)
+			self:addState(tween.ease_in, 1.5)
+			self:setScale(vec3.create(0.35))
+			self:setColor(vec4.zero())
+		end
+	},
+	LoadActor("Graphics/frame-top-bg.png") {
+		InitCommand=function(self)
+			print("Test!")
+		end
+	}
+}
+--return t
+
+--[[
 field = NoteField()
 field:setPosition(-32, 0, 0)
 field:setParent(loc)
@@ -36,7 +56,6 @@ ob = LoadActor("Graphics/frame-top-bg.png")
 ob:setSize(screen.width, 62, 1)
 ob:setAlign(0,1)
 ob:setPosition(0, screen.top, 0)
-
 
 ob = LoadActor("Graphics/frame-top-clock.png")
 ob:setAlign(align.left, align.top)
@@ -66,3 +85,4 @@ ob:setPosition(screen.right, screen.bottom-17, 0)
 ob:addState(tween.sleep, 0.25)
 ob:addState(tween.east_out, 1.0)
 ob:setPosition(screen.right+1, screen.bottom-17, 0)
+]]

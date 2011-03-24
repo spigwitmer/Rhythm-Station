@@ -577,8 +577,6 @@
 		EE9160861256A60100F0B0B3 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
-				EE44CCC8130E86F80047E657 /* Threads_pthreads.cpp */,
-				EE44CCC9130E86F80047E657 /* Threads_pthreads.h */,
 				EE51F8DB12F492CC003A241E /* Mesh.cpp */,
 				EE51F8DC12F492CC003A241E /* Mesh.h */,
 				EE48488812D716EA00534E26 /* Message.cpp */,
@@ -590,6 +588,8 @@
 				EE51F92012F499E9003A241E /* Texture.h */,
 				EED312E412D1262A00A15AC5 /* ThreadGroup.cpp */,
 				EED312E512D1262A00A15AC5 /* ThreadGroup.h */,
+				EE44CCC8130E86F80047E657 /* Threads_pthreads.cpp */,
+				EE44CCC9130E86F80047E657 /* Threads_pthreads.h */,
 				EECBDF5A125CFC4F00BA2BA4 /* Timer.cpp */,
 				EECBDF5B125CFC4F00BA2BA4 /* Timer.h */,
 				EED312E612D1262A00A15AC5 /* TimingData.h */,
