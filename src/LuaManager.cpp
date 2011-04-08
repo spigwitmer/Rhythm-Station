@@ -1,4 +1,5 @@
 #include <cstring>
+#include <algorithm>
 #include "LuaManager.h"
 #include "FileManager.h"
 #include "Logger.h"

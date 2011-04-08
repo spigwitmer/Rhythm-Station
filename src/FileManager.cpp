@@ -6,6 +6,7 @@
 #endif
 
 #if defined(__WINDOWS__) || defined(_WIN32)
+#include <windows.h>
 #include <direct.h>
 #endif
 
@@ -15,8 +16,12 @@
 #endif
 
 #include <errno.h>
+#if !(defined(__WINDOWS__) || defined(_WIN32))
 #include <dirent.h>
+#endif
+
 #include <cstdio>
+#include <string>
 #include <fstream>
 #include <sys/stat.h>
 #include "PreferencesFile.h"
@@ -31,9 +36,35 @@ static bool checkExt(std::string *str, std::string ext) {
 	return true;
 }
 
+HANDLE FindFirstFile_Fixed( std::string dir, WIN32_FIND_DATAA *fd )
+{
+	return FindFirstFileA( dir.c_str(), fd );
+}
+
 std::vector<std::string> FileManager::GetDirectoryListing(std::string dir, std::string ext)
 {
 	std::vector<std::string> files;
+
+#if defined(_WIN32)
+	WIN32_FIND_DATAA fd;
+
+	HANDLE hFind;
+	if ( ext.empty() )
+		hFind = FindFirstFile_Fixed( dir+"/*", &fd );
+	else
+		hFind = FindFirstFile_Fixed( dir+"/*."+ext, &fd );
+
+	if ( hFind != INVALID_HANDLE_VALUE )
+	{
+		do {
+			if( !strcmp(fd.cFileName, ".") || !strcmp(fd.cFileName, "..") )
+				continue;
+
+			files.push_back( std::string(fd.cFileName) );
+		} while( FindNextFileA( hFind, &fd ) );
+		FindClose( hFind );
+	}
+#else
 	DIR *dp;
 	struct dirent *dirp;
 	
@@ -52,6 +83,7 @@ std::vector<std::string> FileManager::GetDirectoryListing(std::string dir, std::
 	}
 	
 	closedir(dp);
+#endif
 	
 	return files;
 }
