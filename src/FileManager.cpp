@@ -36,10 +36,12 @@ static bool checkExt(std::string *str, std::string ext) {
 	return true;
 }
 
+#if defined(_WIN32)
 HANDLE FindFirstFile_Fixed( std::string dir, WIN32_FIND_DATAA *fd )
 {
 	return FindFirstFileA( dir.c_str(), fd );
 }
+#endif
 
 std::vector<std::string> FileManager::GetDirectoryListing(std::string dir, std::string ext)
 {
