@@ -11,7 +11,7 @@
 #include "ResourceManager.h"
 #include "utils/Logger.h"
 #include "Window.h"
-#include "PreferencesFile.h"
+#include "utils/PreferencesFile.h"
 #include "threads/ThreadGroup.h"
 
 #if 0

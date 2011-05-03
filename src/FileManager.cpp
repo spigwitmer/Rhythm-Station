@@ -24,7 +24,7 @@
 #include <string>
 #include <fstream>
 #include <sys/stat.h>
-#include "PreferencesFile.h"
+#include "utils/PreferencesFile.h"
 
 static bool checkExt(std::string *str, std::string ext) {
 	if (!ext.empty())

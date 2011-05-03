@@ -3,9 +3,9 @@
 #include "InputManager.h"
 #include "GameManager.h"
 #include "LuaManager.h"
-#include "INIFile.h"
+#include "utils/INIFile.h"
 #include "utils/Logger.h"
-#include "PreferencesFile.h"
+#include "utils/PreferencesFile.h"
 #include "Window.h"
 
 // keyboard. key for specials, char for text input and such.

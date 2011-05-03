@@ -2,7 +2,7 @@
 #define _WINDOW_H_
 
 #include <GL/glfw3.h>
-#include "Singleton.h"
+#include "utils/Singleton.h"
 
 class Window : public Singleton<Window>
 {

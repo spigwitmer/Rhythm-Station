@@ -2,7 +2,7 @@
 #define _LUA_MANAGER_H_
 
 #include <string>
-#include "Singleton.h"
+#include "utils/Singleton.h"
 
 extern "C"
 {

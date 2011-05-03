@@ -106,40 +106,46 @@ RSTHREADS += src/threads/Threads_pthreads.cpp
 RSTHREADSLD += -lpthread
 #endif
 
+# RStation source groups
+Utils = \
+	src/utils/INIFile.cpp src/utils/INIFile.h \
+	src/utils/Logger.cpp src/utils/Logger.h \
+	src/utils/PreferencesFile.cpp src/utils/PreferencesFile.h \
+	src/utils/StringUtils.cpp src/utils/StringUtils.h \
+	src/utils/Timer.cpp src/utils/Timer.h
+
+Drawables = \
+	src/drawables/Font.cpp src/drawables/Font.h \
+	src/drawables/NoteField.cpp src/drawables/NoteField.h \
+	src/drawables/Object.cpp src/drawables/Object.h \
+	src/drawables/Sprite.cpp src/drawables/Sprite.h
+
 #
 # RStation binary
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a
 rstation_SOURCES = \
-src/drawables/Font.cpp \
-src/drawables/NoteField.cpp \
-src/drawables/Object.cpp \
-src/drawables/Sprite.cpp \
-src/FileManager.cpp \
-src/GameManager.cpp \
-src/HandleArguments.cpp \
-src/INIFile.cpp \
-src/InputManager.cpp \
-src/LuaManager.cpp \
-src/main.cpp \
-src/Matrix.cpp \
-src/Mesh.cpp \
-src/Message.cpp \
-src/MessageManager.cpp \
-src/PNGFile.cpp \
-src/PreferencesFile.cpp \
-src/ResourceManager.cpp \
-src/Shader.cpp \
-src/Sound.cpp \
-src/SoundManager.cpp \
-src/SQLiteDatabase.cpp \
-src/StringUtils.cpp \
-src/Texture.cpp \
-src/Timer.cpp \
-src/Tween.cpp \
-src/Type.cpp \
-src/utils/Logger.cpp \
-src/Window.cpp
+	$(Utils) \
+	src/FileManager.cpp \
+	src/GameManager.cpp \
+	src/HandleArguments.cpp \
+	src/InputManager.cpp \
+	src/LuaManager.cpp \
+	src/main.cpp \
+	src/Matrix.cpp \
+	src/Mesh.cpp \
+	src/Message.cpp \
+	src/MessageManager.cpp \
+	src/PNGFile.cpp \
+	src/ResourceManager.cpp \
+	src/Shader.cpp \
+	src/Sound.cpp \
+	src/SoundManager.cpp \
+	src/SQLiteDatabase.cpp \
+	src/Texture.cpp \
+	src/Tween.cpp \
+	src/Type.cpp \
+	src/Window.cpp
 
 rstation_SOURCES += $(RSTHREADS)
 rstation_LDADD += $(RSTHREADSLD)
@@ -153,7 +159,8 @@ $(FFTW3_CFLAGS) \
 $(libglfw3_a_CPPFLAGS) \
 $(libslb_a_CPPFLAGS) \
 -Iextern/simpleini-4.13 \
--Iextern/ogl-math
+-Iextern/ogl-math \
+-I./src
 
 #
 # Optional bundled lua
@@ -173,4 +180,3 @@ endif
 # Yeah, this is strange (but convenient).
 run:
 	exec ./rstation
-

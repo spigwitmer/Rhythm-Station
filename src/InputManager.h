@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include "Type.h"
-#include "Singleton.h"
+#include "utils/Singleton.h"
 
 enum KeyState
 {

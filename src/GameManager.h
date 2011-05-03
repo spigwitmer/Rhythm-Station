@@ -9,7 +9,7 @@
 #include "Sound.h"
 #include "Window.h"
 #include "Matrix.h"
-#include "Singleton.h"
+#include "utils/Singleton.h"
 
 class GameManager : public Singleton<GameManager>
 {
