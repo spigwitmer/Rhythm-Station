@@ -5,7 +5,7 @@
 #include <vector>
 #include <map>
 #include "InputManager.h"
-#include "Object.h"
+#include "drawables/Object.h"
 #include "Sound.h"
 #include "Window.h"
 #include "Matrix.h"

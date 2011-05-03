@@ -12,7 +12,7 @@
 #include "utils/Logger.h"
 #include "Window.h"
 #include "PreferencesFile.h"
-#include "ThreadGroup.h"
+#include "threads/ThreadGroup.h"
 
 #if 0
 void *MyWin32ThreadTest(void *data)

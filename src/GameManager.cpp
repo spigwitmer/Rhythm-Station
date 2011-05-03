@@ -5,7 +5,7 @@
 #include "InputManager.h"
 #include "utils/Logger.h"
 #include "PreferencesFile.h"
-#include "Object.h"
+#include "drawables/Object.h"
 #include "Timer.h"
 #include <iostream>
 #include "Type.h"

@@ -4,13 +4,13 @@
 #include <vector>
 #include <map>
 
-#include "Matrix.h"
-#include "Message.h"
-#include "Timer.h"
-#include "Tween.h"
-#include "Type.h"
-#include "Shader.h"
-#include "Texture.h"
+#include "../Matrix.h"
+#include "../Message.h"
+#include "../Timer.h"
+#include "../Tween.h"
+#include "../Type.h"
+#include "../Shader.h"
+#include "../Texture.h"
 
 struct AnimationState
 {

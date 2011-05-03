@@ -13,7 +13,7 @@
 
 #include <fftw3.h>
 
-#include "Object.h"
+#include "drawables/Object.h"
 #include "SoundManager.h"
 
 // 8k is the smallest size which (consistently) works for me. Use 32k for now.

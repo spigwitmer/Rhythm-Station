@@ -99,10 +99,10 @@ liblua_a_CPPFLAGS = -Iextern/lua-5.1.4/src
 #
 
 # Threads
-RSTHREADS = src/ThreadGroup.cpp
+RSTHREADS = src/threads/ThreadGroup.cpp
 RSTHREADSLD = 
 #if LINUX
-RSTHREADS += src/Threads_pthreads.cpp
+RSTHREADS += src/threads/Threads_pthreads.cpp
 RSTHREADSLD += -lpthread
 #endif
 
@@ -111,34 +111,34 @@ RSTHREADSLD += -lpthread
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a
 rstation_SOURCES = \
+src/drawables/Font.cpp \
+src/drawables/NoteField.cpp \
+src/drawables/Object.cpp \
+src/drawables/Sprite.cpp \
 src/FileManager.cpp \
-src/Font.cpp \
 src/GameManager.cpp \
 src/HandleArguments.cpp \
 src/INIFile.cpp \
 src/InputManager.cpp \
-src/utils/Logger.cpp \
 src/LuaManager.cpp \
 src/main.cpp \
 src/Matrix.cpp \
 src/Mesh.cpp \
 src/Message.cpp \
 src/MessageManager.cpp \
-src/NoteField.cpp \
-src/Object.cpp \
 src/PNGFile.cpp \
 src/PreferencesFile.cpp \
 src/ResourceManager.cpp \
 src/Shader.cpp \
 src/Sound.cpp \
 src/SoundManager.cpp \
-src/Sprite.cpp \
 src/SQLiteDatabase.cpp \
 src/StringUtils.cpp \
 src/Texture.cpp \
 src/Timer.cpp \
 src/Tween.cpp \
 src/Type.cpp \
+src/utils/Logger.cpp \
 src/Window.cpp
 
 rstation_SOURCES += $(RSTHREADS)

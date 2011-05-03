@@ -2,7 +2,7 @@
 #define _FONT_H_
 
 #include "Object.h"
-#include "Mesh.h"
+#include "../Mesh.h"
 #include <string>
 
 class Font : public Object

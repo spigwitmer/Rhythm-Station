@@ -4,10 +4,10 @@
 #include "FileManager.h"
 #include "utils/Logger.h"
 #include <SLB/SLB.hpp>
-#include "Object.h"
-#include "Sprite.h"
+#include "drawables/Object.h"
+#include "drawables/Sprite.h"
 #include "Sound.h"
-#include "NoteField.h"
+#include "drawables/NoteField.h"
 #include <algorithm>
 
 static const luaL_Reg libs[] =

@@ -1,7 +1,7 @@
 #include <GL/glew.h>
 #include "Object.h"
-#include "GameManager.h"
-#include "LuaManager.h"
+#include "../GameManager.h"
+#include "../LuaManager.h"
 #include <SLB/SLB.hpp>
 #include <glm/gtc/type_ptr.hpp>
 

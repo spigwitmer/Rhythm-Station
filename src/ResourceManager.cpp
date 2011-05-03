@@ -1,6 +1,6 @@
 #include <vector>
 #include "ResourceManager.h"
-#include "Object.h"
+#include "drawables/Object.h"
 
 // all the scene stuff.
 std::vector<Object *> m_objects;

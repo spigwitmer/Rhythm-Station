@@ -2,10 +2,10 @@
 #define _NOTE_FIELD_H_
 
 #include "Object.h"
-#include "TimingData.h"
+#include "../TimingData.h"
 
-#include "Mesh.h"
-#include "Texture.h"
+#include "../Mesh.h"
+#include "../Texture.h"
 
 class NoteField : public Object
 {
