@@ -3,11 +3,12 @@
 #include <cstdarg>
 
 #include <GL/glfw3.h>
-#include "GameManager.h"
+#include "../GameManager.h"
 #include "Logger.h"
 
 Logger *Log = NULL;
 
+// TODO: Log to file(s)
 Logger::Logger() : m_cColor(FG_RED), m_bUseColors(false)
 {
 }
@@ -104,7 +105,6 @@ void Logger::InlinePrint(const char *in, ...)
 	if (buf != staticbuf)
 		free(buf);
 }
-
 
 /**
  * @file

@@ -1,5 +1,5 @@
 #include "Type.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 
 std::string toString(int _in)
 {

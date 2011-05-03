@@ -1,6 +1,6 @@
 #include <string>
 #include "FileManager.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 #include "INIFile.h"
 
 INIFile::INIFile(std::string _path)

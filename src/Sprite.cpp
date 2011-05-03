@@ -3,7 +3,7 @@
 #include "GameManager.h"
 #include "ResourceManager.h"
 #include "FileManager.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 #include "PNGFile.h"
 
 Sprite::Sprite()

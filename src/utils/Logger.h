@@ -21,6 +21,9 @@ class Logger
 public:
 	Logger();
 	
+	// TODO
+	void SetFile(std::string path);
+	std::string GetFile();
 	
 	std::string SPrint(const char *in, ...);
 	void DebugPrint(std::string input);

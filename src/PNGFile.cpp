@@ -2,7 +2,7 @@
 #include <png.h>
 #include "FileManager.h"
 #include "PNGFile.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 
 Texture PNGFile::Load(std::string _path)
 {

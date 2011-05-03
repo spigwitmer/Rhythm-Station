@@ -1,7 +1,7 @@
 #include <cstring>
 #include "HandleArguments.h"
 #include "GameManager.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 
 void HandleArguments(int argc, char **argv)
 {

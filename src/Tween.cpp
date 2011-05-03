@@ -1,5 +1,5 @@
 #include "Tween.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 #include <math.h>
 #include <glm/glm.hpp>
 

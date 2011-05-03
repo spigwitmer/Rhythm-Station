@@ -3,7 +3,7 @@
 #include "SoundManager.h"
 #include "GameManager.h"
 #include "InputManager.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 #include "PreferencesFile.h"
 #include "Object.h"
 #include "Timer.h"

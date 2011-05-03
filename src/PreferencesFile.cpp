@@ -1,5 +1,5 @@
 #include <string>
-#include "Logger.h"
+#include "utils/Logger.h"
 #include "PreferencesFile.h"
 
 PreferencesFile *Preferences = NULL;

@@ -9,7 +9,7 @@
 #include "InputManager.h"
 #include "LuaManager.h"
 #include "ResourceManager.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 #include "Window.h"
 #include "PreferencesFile.h"
 #include "ThreadGroup.h"

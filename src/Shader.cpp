@@ -1,7 +1,7 @@
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 #include <cstdlib>
-#include "Logger.h"
+#include "utils/Logger.h"
 #include "Shader.h"
 #include "FileManager.h"
 #include "ResourceManager.h"

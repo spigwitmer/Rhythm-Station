@@ -1,7 +1,7 @@
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 #include "Message.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 #include "Window.h"
 #include "PreferencesFile.h"
 #include "Type.h"

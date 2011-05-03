@@ -2,7 +2,7 @@
 #include <algorithm>
 #include "LuaManager.h"
 #include "FileManager.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 #include <SLB/SLB.hpp>
 #include "Object.h"
 #include "Sprite.h"

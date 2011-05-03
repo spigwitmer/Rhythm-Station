@@ -1,6 +1,6 @@
 #include <GL/glew.h>
 #include "NoteField.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 #include "Sprite.h"
 #include <cmath>
 #include <glm/gtc/type_ptr.hpp>

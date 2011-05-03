@@ -117,7 +117,7 @@ src/GameManager.cpp \
 src/HandleArguments.cpp \
 src/INIFile.cpp \
 src/InputManager.cpp \
-src/Logger.cpp \
+src/utils/Logger.cpp \
 src/LuaManager.cpp \
 src/main.cpp \
 src/Matrix.cpp \

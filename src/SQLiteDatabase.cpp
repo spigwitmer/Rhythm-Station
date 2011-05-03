@@ -1,5 +1,5 @@
 #include "SQLiteDatabase.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 #include <sstream>
 #include <map>
 

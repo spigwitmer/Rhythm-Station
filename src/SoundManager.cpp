@@ -10,7 +10,7 @@
 #include <math.h>
 #include <vector>
 #include "SoundManager.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 
 ALCdevice *device;
 ALCcontext *context;

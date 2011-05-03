@@ -4,7 +4,7 @@
 #include "GameManager.h"
 #include "LuaManager.h"
 #include "INIFile.h"
-#include "Logger.h"
+#include "utils/Logger.h"
 #include "PreferencesFile.h"
 #include "Window.h"
 

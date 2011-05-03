@@ -1,5 +1,5 @@
 #include <GL/glew.h>
-#include "Logger.h"
+#include "utils/Logger.h"
 #include "Font.h"
 #include "FileManager.h"
 #include <ft2build.h>
