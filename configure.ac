@@ -1,5 +1,5 @@
 # Initialization
-AC_INIT([Rhythm-Station], [git], [shakeshoda+rstation@gmail.com], [], [http://github.com/shakesoda/Rhythm-Station])
+AC_INIT([Rhythm-Station], [git], [shakesoda+rstation@gmail.com], [], [http://github.com/shakesoda/Rhythm-Station])
 AM_INIT_AUTOMAKE([foreign -Wall])
 AM_SILENT_RULES([yes])
 
