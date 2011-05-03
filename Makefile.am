@@ -169,3 +169,8 @@ rstation_CPPFLAGS += $(liblua_a_CPPFLAGS)
 libslb_a_LIBADD = liblua.a
 libslb_a_CPPFLAGS += $(liblua_a_CPPFLAGS)
 endif
+
+# Yeah, this is strange (but convenient).
+run:
+	exec ./rstation
+
