@@ -169,10 +169,10 @@ void NoteField::HandleMessage(const Message &msg)
 		return;
 	
 	// Get difference (timestamp is relative to the game, timer to this)
-	float timeDifference = status->timestamp[key] - mTimer.Ago();
+	float timeDifference = status->timestamp[(int)key] - mTimer.Ago();
 	
 	// Subtract difference
-	float now = status->timestamp[key] - timeDifference;
+	float now = status->timestamp[(int)key] - timeDifference;
 	float then = (mCurrentRow.time - mChart.timing_offset) / 1000.f;
 	
 	// TODO: only handles hitting the row itself. Should judge *notes*

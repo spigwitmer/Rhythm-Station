@@ -5,8 +5,10 @@
 #include <SLB/SLB.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0), m_parent(NULL), m_align(glm::ivec2(0,0)), m_color(rgba(1.0)),
-	m_position(vec3(0.0)), m_rotation(vec3(0.0)), m_scale(vec3(1.0)), m_size(vec3(1.0)), m_texture()
+Object::Object() : m_bNeedsUpdate(true), m_loop(false), m_frame(0),
+	m_parent(NULL), m_align(glm::ivec2(0,0)), m_color(rgba(1.0)),
+	m_position(vec3(0.0)), m_rotation(vec3(0.0)), m_scale(vec3(1.0)),
+	m_size(vec3(1.0))
 {
 	m_shader.setProjectionMatrix(Game->ProjectionMatrix);
 	m_texture.width = m_texture.height = 1;	
