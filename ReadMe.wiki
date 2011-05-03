@@ -64,18 +64,11 @@ shakesoda+rstation at gmail dot com.
       pass --with-bundled-lua to the configure script)
   2. Clone current git head with command:
        git clone git://github.com/shakesoda/Rhythm-Station.git rstation
-  3. After cloning, move to the rstation directory and update glfw3
-     source by running:
-       git submodule init
-       git submodule update
-  4. Prepare glfw3 source by moving to extern/glfw3 directory and running:
-       cmake ./
-  5. Move back to rstation directory and run following to prepare 
-     configure scripts:
-       autoreconf --install
-  6. Run "./configure"
-  7. If everything went well, you can now run "make"
-  8. After compiling, "./rstation"
+  3. Run "./autogen.sh" to download and build the glfw submodule and prepare
+     automake.
+  4. Run "./configure"
+  5. If everything went well, you can now run "make"
+  6. After compiling, "./rstation"
 
 Ubuntu users need to have atleast these packages installed 
 in order to compile rstation:
