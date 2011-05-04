@@ -1,13 +1,5 @@
-#include <vector>
 #include "ResourceManager.h"
-#include "drawables/Object.h"
 #include "utils/Logger.h"
-
-// XXX: put in class
-// all the scene stuff.
-std::vector<Object *> m_objects;
-std::vector<Texture> m_textures;
-std::vector<Shader *> m_shaders;
 
 void ResourceManager::Load(std::string path)
 {
