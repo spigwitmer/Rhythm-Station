@@ -17,81 +17,82 @@ noinst_LIBRARIES = libglfw3.a libslb.a
 #  - cmake extern/glfw3/ must be run before trying to make rstation
 #
 libglfw3_a_SOURCES = \
-extern/glfw3/src/enable.c \
-extern/glfw3/src/error.c \
-extern/glfw3/src/fullscreen.c \
-extern/glfw3/src/gamma.c \
-extern/glfw3/src/opengl.c \
-extern/glfw3/src/init.c \
-extern/glfw3/src/input.c \
-extern/glfw3/src/joystick.c \
-extern/glfw3/src/time.c \
-extern/glfw3/src/window.c \
-extern/glfw3/src/x11/x11_enable.c \
-extern/glfw3/src/x11/x11_fullscreen.c \
-extern/glfw3/src/x11/x11_gamma.c \
-extern/glfw3/src/x11/x11_opengl.c \
-extern/glfw3/src/x11/x11_init.c \
-extern/glfw3/src/x11/x11_joystick.c \
-extern/glfw3/src/x11/x11_keysym2unicode.c \
-extern/glfw3/src/x11/x11_time.c \
-extern/glfw3/src/x11/x11_window.c
+	extern/glfw3/src/enable.c \
+	extern/glfw3/src/error.c \
+	extern/glfw3/src/fullscreen.c \
+	extern/glfw3/src/gamma.c \
+	extern/glfw3/src/opengl.c \
+	extern/glfw3/src/init.c \
+	extern/glfw3/src/input.c \
+	extern/glfw3/src/joystick.c \
+	extern/glfw3/src/time.c \
+	extern/glfw3/src/window.c \
+	extern/glfw3/src/x11/x11_enable.c \
+	extern/glfw3/src/x11/x11_fullscreen.c \
+	extern/glfw3/src/x11/x11_gamma.c \
+	extern/glfw3/src/x11/x11_opengl.c \
+	extern/glfw3/src/x11/x11_init.c \
+	extern/glfw3/src/x11/x11_joystick.c \
+	extern/glfw3/src/x11/x11_keysym2unicode.c \
+	extern/glfw3/src/x11/x11_time.c \
+	extern/glfw3/src/x11/x11_window.c
+
 libglfw3_a_CPPFLAGS = -Iextern/glfw3/include -Iextern/glfw3/src -Iextern/glfw3/src/x11
 
 #
 # Bundled SLB
 #
 libslb_a_SOURCES = \
-extern/slb-1.63/src/Error.cpp \
-extern/slb-1.63/src/Hybrid.cpp \
-extern/slb-1.63/src/Object.cpp \
-extern/slb-1.63/src/LuaCall.cpp \
-extern/slb-1.63/src/Manager.cpp \
-extern/slb-1.63/src/Debug.cpp \
-extern/slb-1.63/src/ClassInfo.cpp \
-extern/slb-1.63/src/Table.cpp \
-extern/slb-1.63/src/FuncCall.cpp \
-extern/slb-1.63/src/Instance.cpp \
-extern/slb-1.63/src/Script.cpp \
-extern/slb-1.63/src/Iterator.cpp
+	extern/slb-1.63/src/Error.cpp \
+	extern/slb-1.63/src/Hybrid.cpp \
+	extern/slb-1.63/src/Object.cpp \
+	extern/slb-1.63/src/LuaCall.cpp \
+	extern/slb-1.63/src/Manager.cpp \
+	extern/slb-1.63/src/Debug.cpp \
+	extern/slb-1.63/src/ClassInfo.cpp \
+	extern/slb-1.63/src/Table.cpp \
+	extern/slb-1.63/src/FuncCall.cpp \
+	extern/slb-1.63/src/Instance.cpp \
+	extern/slb-1.63/src/Script.cpp \
+	extern/slb-1.63/src/Iterator.cpp
+
 libslb_a_CPPFLAGS = -DSLB_EXTERNAL_LUA -Iextern/slb-1.63/include
 
 #
 # Bundled lua sources
 #
 liblua_a_SOURCES = \
-extern/lua-5.1.4/src/lapi.c \
-extern/lua-5.1.4/src/lauxlib.c \
-extern/lua-5.1.4/src/lbaselib.c \
-extern/lua-5.1.4/src/lcode.c \
-extern/lua-5.1.4/src/ldblib.c \
-extern/lua-5.1.4/src/ldebug.c \
-extern/lua-5.1.4/src/ldo.c \
-extern/lua-5.1.4/src/ldump.c \
-extern/lua-5.1.4/src/lfunc.c \
-extern/lua-5.1.4/src/lgc.c \
-extern/lua-5.1.4/src/linit.c \
-extern/lua-5.1.4/src/liolib.c \
-extern/lua-5.1.4/src/llex.c \
-extern/lua-5.1.4/src/lmathlib.c \
-extern/lua-5.1.4/src/lmem.c \
-extern/lua-5.1.4/src/loadlib.c \
-extern/lua-5.1.4/src/lobject.c \
-extern/lua-5.1.4/src/lopcodes.c \
-extern/lua-5.1.4/src/loslib.c \
-extern/lua-5.1.4/src/lparser.c \
-extern/lua-5.1.4/src/lstate.c \
-extern/lua-5.1.4/src/lstring.c \
-extern/lua-5.1.4/src/lstrlib.c \
-extern/lua-5.1.4/src/ltable.c \
-extern/lua-5.1.4/src/ltablib.c \
-extern/lua-5.1.4/src/ltm.c \
-extern/lua-5.1.4/src/lundump.c \
-extern/lua-5.1.4/src/lvm.c \
-extern/lua-5.1.4/src/lzio.c \
-extern/lua-5.1.4/src/print.c
-#extern/lua-5.1.4/src/lua.c 
-#extern/lua-5.1.4/src/luac.c
+	extern/lua-5.1.4/src/lapi.c \
+	extern/lua-5.1.4/src/lauxlib.c \
+	extern/lua-5.1.4/src/lbaselib.c \
+	extern/lua-5.1.4/src/lcode.c \
+	extern/lua-5.1.4/src/ldblib.c \
+	extern/lua-5.1.4/src/ldebug.c \
+	extern/lua-5.1.4/src/ldo.c \
+	extern/lua-5.1.4/src/ldump.c \
+	extern/lua-5.1.4/src/lfunc.c \
+	extern/lua-5.1.4/src/lgc.c \
+	extern/lua-5.1.4/src/linit.c \
+	extern/lua-5.1.4/src/liolib.c \
+	extern/lua-5.1.4/src/llex.c \
+	extern/lua-5.1.4/src/lmathlib.c \
+	extern/lua-5.1.4/src/lmem.c \
+	extern/lua-5.1.4/src/loadlib.c \
+	extern/lua-5.1.4/src/lobject.c \
+	extern/lua-5.1.4/src/lopcodes.c \
+	extern/lua-5.1.4/src/loslib.c \
+	extern/lua-5.1.4/src/lparser.c \
+	extern/lua-5.1.4/src/lstate.c \
+	extern/lua-5.1.4/src/lstring.c \
+	extern/lua-5.1.4/src/lstrlib.c \
+	extern/lua-5.1.4/src/ltable.c \
+	extern/lua-5.1.4/src/ltablib.c \
+	extern/lua-5.1.4/src/ltm.c \
+	extern/lua-5.1.4/src/lundump.c \
+	extern/lua-5.1.4/src/lvm.c \
+	extern/lua-5.1.4/src/lzio.c \
+	extern/lua-5.1.4/src/print.c
+
 liblua_a_CPPFLAGS = -Iextern/lua-5.1.4/src
 
 #
@@ -120,33 +121,39 @@ Drawables = \
 	src/drawables/Object.cpp src/drawables/Object.h \
 	src/drawables/Sprite.cpp src/drawables/Sprite.h
 
+Renderer = \
+	src/renderer/Matrix.cpp src/renderer/Matrix.h \
+	src/renderer/Mesh.cpp src/Renderer.Mesh.h \
+	src/renderer/Shader.cpp src/renderer/Shader.h \
+	src/renderer/Texture.cpp src/renderer/Texture.h \
+	src/renderer/Window.cpp src/renderer/Window.h
+
+Database = \
+	src/database/SQLiteDatabase.cpp src/database/SQLiteDatabase.h
+
 #
 # RStation binary
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a
 rstation_SOURCES = \
+	$(Database) \
 	$(Drawables) \
 	$(Utils) \
+	$(Renderer) \
 	src/FileManager.cpp \
 	src/GameManager.cpp \
 	src/HandleArguments.cpp \
 	src/InputManager.cpp \
 	src/LuaManager.cpp \
 	src/main.cpp \
-	src/Matrix.cpp \
-	src/Mesh.cpp \
 	src/Message.cpp \
 	src/MessageManager.cpp \
 	src/PNGFile.cpp \
 	src/ResourceManager.cpp \
-	src/Shader.cpp \
 	src/Sound.cpp \
 	src/SoundManager.cpp \
-	src/SQLiteDatabase.cpp \
-	src/Texture.cpp \
 	src/Tween.cpp \
-	src/Type.cpp \
-	src/Window.cpp
+	src/Type.cpp
 
 rstation_SOURCES += $(RSTHREADS)
 rstation_LDADD += $(RSTHREADSLD)

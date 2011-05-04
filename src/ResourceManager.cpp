@@ -1,11 +1,24 @@
 #include <vector>
 #include "ResourceManager.h"
 #include "drawables/Object.h"
+#include "utils/Logger.h"
 
 // all the scene stuff.
 std::vector<Object *> m_objects;
 std::vector<Texture> m_textures;
 std::vector<Shader *> m_shaders;
+
+void ResourceManager::Load(std::string path)
+{
+	using namespace std;
+	size_t pos = path.find_last_of(".");
+	
+	if (pos != string::npos)
+	{
+		string ext = path.substr(pos, path.length());
+		Log->Print(ext);
+	}
+}
 
 bool ResourceManager::GetResource(std::string path, Texture &texture)
 {

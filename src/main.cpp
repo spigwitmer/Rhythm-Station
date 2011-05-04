@@ -10,7 +10,7 @@
 #include "LuaManager.h"
 #include "ResourceManager.h"
 #include "utils/Logger.h"
-#include "Window.h"
+#include "renderer/Window.h"
 #include "utils/PreferencesFile.h"
 #include "threads/ThreadGroup.h"
 

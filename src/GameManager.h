@@ -7,8 +7,8 @@
 #include "InputManager.h"
 #include "drawables/Object.h"
 #include "Sound.h"
-#include "Window.h"
-#include "Matrix.h"
+#include "renderer/Window.h"
+#include "renderer/Matrix.h"
 #include "utils/Singleton.h"
 
 class GameManager : public Singleton<GameManager>

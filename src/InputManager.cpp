@@ -6,7 +6,7 @@
 #include "utils/INIFile.h"
 #include "utils/Logger.h"
 #include "utils/PreferencesFile.h"
-#include "Window.h"
+#include "renderer/Window.h"
 
 // keyboard. key for specials, char for text input and such.
 static void _keyCallback(GLFWwindow window, int key, int state)
