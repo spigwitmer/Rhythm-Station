@@ -11,13 +11,14 @@ Texture::Texture() :
 
 void Texture::Load(std::string path)
 {
-	if (!ResourceManager::GetResource(path,*this))
+	ResourceManager* rsrc = ResourceManager::GetSingleton();
+	if (!rsrc->GetResource(path,*this))
 	{
 		PNGFile png;
 		*this = png.Load(path);
 
 		// register this so we don't load it again.
-		ResourceManager::Add(*this);
+		rsrc->Add(*this);
 	}
 }
 

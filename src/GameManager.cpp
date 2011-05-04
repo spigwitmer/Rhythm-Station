@@ -101,7 +101,7 @@ void GameManager::Update(double delta)
 // this should probably be in scenemanager.
 void GameManager::Render()
 {
-	Window *wnd = Window::getSingleton();
+	Window *wnd = Window::GetSingleton();
 	/*
 	 * Ideally, we would only redraw objects which need it, however this is still
 	 * useful when there isn't much going on.

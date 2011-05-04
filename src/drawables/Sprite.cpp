@@ -17,7 +17,7 @@ Sprite::~Sprite()
 	mesh.Free();
 	
 	if (m_texture.ptr != 0)
-		ResourceManager::FreeResource(m_texture);
+		ResourceManager::GetSingleton()->FreeResource(m_texture);
 }
 
 void Sprite::Load(std::string _path)

@@ -3,6 +3,7 @@
 #include "drawables/Object.h"
 #include "utils/Logger.h"
 
+// XXX: put in class
 // all the scene stuff.
 std::vector<Object *> m_objects;
 std::vector<Texture> m_textures;

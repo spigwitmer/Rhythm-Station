@@ -16,7 +16,7 @@ int width = 1, height = 1;
 // on window resize
 static void _resizeCallback(GLFWwindow window, int width, int height)
 {
-	Window *wnd = Window::getSingleton();
+	Window *wnd = Window::GetSingleton();
 	glfwSetWindowTitle(wnd->getWindow(), Log->SPrint("%dx%d", width, height).c_str());
 	
 	// Set new size preference (should this only be saved explicitely by user?)

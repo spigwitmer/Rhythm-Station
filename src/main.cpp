@@ -48,7 +48,7 @@ int main (int argc, char **argv)
 		return 0;
 	}
 	
-	Window *wnd = Window::getSingleton();
+	Window *wnd = Window::GetSingleton();
 	
 	wnd->Create(
 		Preferences->GetLongValue("Graphics", "WindowWidth", 854),
@@ -60,8 +60,8 @@ int main (int argc, char **argv)
 	Game = new GameManager(wnd->getWindow());
 	
 	// These ones should clean themselves up.
-	InputManager *Input = InputManager::getSingleton();
-	LuaManager *Lua = LuaManager::getSingleton();
+	InputManager *Input = InputManager::GetSingleton();
+	LuaManager *Lua = LuaManager::GetSingleton();
 	
 	// Connect event callbacks
 	Input->Connect();

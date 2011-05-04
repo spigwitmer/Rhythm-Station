@@ -3,13 +3,13 @@
 
 void Message::Send()
 {
-	MessageManager *sender = MessageManager::getSingleton();
+	MessageManager *sender = MessageManager::GetSingleton();
 	sender->DispatchMessage(*this);
 }
 
 void MessageListener::SubscribeTo(std::string name)
 {
-	MessageManager *msgman = MessageManager::getSingleton();
+	MessageManager *msgman = MessageManager::GetSingleton();
 	msgman->StartListening(name, this);
 }
 
