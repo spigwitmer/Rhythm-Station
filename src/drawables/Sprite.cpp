@@ -31,7 +31,7 @@ void Sprite::Load(std::string _path)
 	Log->Print("Loading \"%s\"", _path.c_str(), ext.c_str());
 
 	m_texture.Load(path);
-	setSize(m_texture.width, m_texture.height, 1.0);
+	SetSize(m_texture.width, m_texture.height, 1.0);
 
 	// XXX: All sprites could be using the same 1u square here.
 	// Create a VBO (1u square)
@@ -66,17 +66,17 @@ void Sprite_Binding()
 	.constructor()
 	.set("Load", &Sprite::Load)
 	.set("Register", &Sprite::Register)
-	.set("addState", &Sprite::addState)
-	.set("addChild", &Sprite::addChild)
-	.set("setAlign", &Sprite::setAlign)
-	.set("setParent", &Sprite::setParent)
-	.set("setPosition", &Sprite::setPosition)
-	.set("setRotate", &Sprite::setRotation)
-	.set("setScale", &Sprite::setScale)
-	.set("setSize", &Sprite::setSize)
-	.set("getWidth", &Sprite::getWidth)
-	.set("getHeight", &Sprite::getHeight)
-	.set("setColor", &Sprite::setColor)
+	.set("addState", &Sprite::AddState)
+	.set("addChild", &Sprite::AddChild)
+	.set("setAlign", &Sprite::SetAlign)
+	.set("setParent", &Sprite::SetParent)
+	.set("setPosition", &Sprite::SetPosition)
+	.set("setRotate", &Sprite::SetRotation)
+	.set("setScale", &Sprite::SetScale)
+	.set("setSize", &Sprite::SetSize)
+	.set("getWidth", &Sprite::GetWidth)
+	.set("getHeight", &Sprite::GetHeight)
+	.set("setColor", &Sprite::SetColor)
 	.set("Update", &Sprite::Update)
 	.set("Draw", &Sprite::Draw);
 }

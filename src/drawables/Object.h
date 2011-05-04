@@ -55,28 +55,28 @@ public:
 	void Register();
 	
 	// parenting... needs a getChild function still.
-	void setParent(Object *obj);
-	void addChild(Object *obj);
+	void SetParent(Object *obj);
+	void AddChild(Object *obj);
 	
 	// animation
-	void addState(int tweentype, double length);
-	void setAlign(int x, int y);
-	void setPosition(float x, float y, float z);
-	void setRotation(float x, float y, float z);
-	void setLoop(bool enabled);
-	void setScale(float x, float y, float z);
-	void setSize(float x, float y, float z);
-	void setColor(float r, float g, float b, float a);
+	void AddState(int tweentype, double length);
+	void SetAlign(int x, int y);
+	void SetPosition(float x, float y, float z);
+	void SetRotation(float x, float y, float z);
+	void SetLoop(bool enabled);
+	void SetScale(float x, float y, float z);
+	void SetSize(float x, float y, float z);
+	void SetColor(float r, float g, float b, float a);
 	
-	Matrix getMatrix();
+	Matrix GetMatrix()	const { return m_matrix; }
 	
-	float getWidth();
-	float getHeight();
+	float GetWidth()	const { return m_size.x; }
+	float GetHeight()	const { return m_size.y; }
 	
-	vec3 getPosition();
-	vec3 getRotation();
-	vec3 getScale();
-	vec3 getSize();
+	vec3 GetPosition()	const { return m_position; }
+	vec3 GetRotation()	const { return m_rotation; }
+	vec3 GetScale() 	const { return m_scale; }
+	vec3 GetSize()		const { return m_size; }
 	
 	std::string name;
 	

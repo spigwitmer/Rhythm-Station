@@ -14,8 +14,8 @@ typedef std::vector<Note>::iterator NoteIterator;
 NoteField::NoteField() : mColumns(4), mSpeed(1.0)
 {	
 	// Set intentionally small to encourage setting it in-theme.
-	setMaxBeforeReceptors(350);
-	setMaxAfterReceptors(-90);
+	SetMaxBeforeReceptors(350);
+	SetMaxAfterReceptors(-90);
 	
 	mIsLoaded = mStarted = mFinished = false;
 	
@@ -44,7 +44,7 @@ float columnRotations[] = { 90, 0, 180, -90 };
 // Nothing to do yet.
 NoteField::~NoteField() { }
 
-void NoteField::setColumns(int cols)
+void NoteField::SetColumns(int cols)
 {
 	if (cols < 1)
 		cols = 4; // default
@@ -52,7 +52,7 @@ void NoteField::setColumns(int cols)
 	mColumns = cols;
 }
 
-void NoteField::setNoteskin(std::string name)
+void NoteField::SetNoteskin(std::string name)
 {
 	if (name.empty())
 		name = "default";
@@ -61,18 +61,18 @@ void NoteField::setNoteskin(std::string name)
 //	mTexture.Load(FileManager::GetFile(name + "Graphics/arrow.png"));
 }
 
-void NoteField::setSpeed(float multiplier)
+void NoteField::SetSpeed(float multiplier)
 {
 	mSpeed = (multiplier > 0.0f) ? multiplier : 1.0f;
 }
 
 
-void NoteField::setMaxBeforeReceptors(int max)
+void NoteField::SetMaxBeforeReceptors(int max)
 {
 	mMaxBeforeReceptors = max;
 }
 
-void NoteField::setMaxAfterReceptors(int max)
+void NoteField::SetMaxAfterReceptors(int max)
 {
 	mMaxAfterReceptors = max;
 }
@@ -109,7 +109,7 @@ void NoteField::Load(std::string path)
 	Log->Print("Loaded. (%zd rows, mIsLoaded = %d)", mChart.note_rows.size(), mIsLoaded);
 }
 
-void NoteField::onStart()
+void NoteField::OnStart()
 {
 	mTimer.Touch();
 	mStarted = true;
@@ -119,7 +119,7 @@ void NoteField::onStart()
 	msg.Send();
 }
 
-void NoteField::onFinish()
+void NoteField::OnFinish()
 {
 	Message msg;
 	msg.name = "SongFinished";
@@ -186,13 +186,13 @@ void NoteField::Update(double delta)
 	this->UpdateTweens(delta);
 	
 	if (mIsLoaded && !mStarted)
-		onStart();
+		OnStart();
 	
 	if (mFinished)
 		return;
 	
 	if (mTimer.Ago() * 1000 > mMaxTime)
-		onFinish();
+		OnFinish();
 	
 	// Re-populate notes to judge on every update.
 	mCurrentRow.notes.clear();
@@ -273,21 +273,21 @@ void NoteField_Binding()
 	
 	// Actor stuff.
 	.set("Register", &NoteField::Register)
-	.set("addChild", &NoteField::addChild)
-	.set("addState", &NoteField::addState)
-	.set("setParent", &NoteField::setParent)
-	.set("setPosition", &NoteField::setPosition)
-	.set("setRotation", &NoteField::setRotation)
-	.set("setScale", &NoteField::setScale)
+	.set("addChild", &NoteField::AddChild)
+	.set("addState", &NoteField::AddState)
+	.set("setParent", &NoteField::SetParent)
+	.set("setPosition", &NoteField::SetPosition)
+	.set("setRotation", &NoteField::SetRotation)
+	.set("setScale", &NoteField::SetScale)
 	.set("Update", &NoteField::Update)
 	.set("Draw", &NoteField::Draw)
 	
 	// NoteField specifics
-	.set("setMaxBeforeReceptors", &NoteField::setMaxBeforeReceptors)
-	.set("setMaxAfterReceptors", &NoteField::setMaxAfterReceptors)
-	.set("setColumns", &NoteField::setColumns)
-	.set("setNoteskin", &NoteField::setNoteskin)
-	.set("setSpeed", &NoteField::setSpeed)
+	.set("setMaxBeforeReceptors", &NoteField::SetMaxBeforeReceptors)
+	.set("setMaxAfterReceptors", &NoteField::SetMaxAfterReceptors)
+	.set("setColumns", &NoteField::SetColumns)
+	.set("setNoteskin", &NoteField::SetNoteskin)
+	.set("setSpeed", &NoteField::SetSpeed)
 	.set("Load", &NoteField::Load);
 }
 

@@ -13,22 +13,22 @@ public:
 	NoteField();
 	virtual ~NoteField();
 	
-	void Load(std::string path);	
+	void Load(std::string path);
 	
 	void Update(double delta);
 	void Draw();
 	
 	void HandleMessage(const Message &msg);
 	
-	void onStart();
-	void onFinish();
+	void OnStart();
+	void OnFinish();
 		
-	void setColumns(int cols);
-	void setNoteskin(std::string name);
-	void setSpeed(float multiplier);
+	void SetColumns(int cols);
+	void SetNoteskin(std::string name);
+	void SetSpeed(float multiplier);
 	
-	void setMaxBeforeReceptors(int max);
-	void setMaxAfterReceptors(int max);
+	void SetMaxBeforeReceptors(int max);
+	void SetMaxAfterReceptors(int max);
 
 private:
 	std::string mNoteskin;
