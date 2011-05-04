@@ -164,14 +164,15 @@ rs_test_threads_CPPFLAGS = -I./src
 rs_test_threads_SOURCES = $(RSTHREADS) src/tests/RSTestThreads.cpp
 rs_test_threads_LDADD = $(RSTHREADSLD)
 
-rstation_CPPFLAGS = -DDEBUG \
-$(EXT_DEPENDS_CFLAGS) \
-$(FFTW3_CFLAGS) \
-$(libglfw3_a_CPPFLAGS) \
-$(libslb_a_CPPFLAGS) \
--Iextern/simpleini-4.13 \
--Iextern/ogl-math \
--I./src
+rstation_CPPFLAGS = \
+	-DDEBUG \
+	$(EXT_DEPENDS_CFLAGS) \
+	$(FFTW3_CFLAGS) \
+	$(libglfw3_a_CPPFLAGS) \
+	$(libslb_a_CPPFLAGS) \
+	-Iextern/simpleini-4.13 \
+	-Iextern/ogl-math \
+	-I./src
 
 #
 # Optional bundled lua
