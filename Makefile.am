@@ -125,6 +125,7 @@ Drawables = \
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a
 rstation_SOURCES = \
+	$(Drawables) \
 	$(Utils) \
 	src/FileManager.cpp \
 	src/GameManager.cpp \
