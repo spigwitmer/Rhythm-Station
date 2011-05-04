@@ -3,9 +3,9 @@
 #include <cstdlib>
 #include "utils/Logger.h"
 #include "Shader.h"
-#include "FileManager.h"
-#include "ResourceManager.h"
-#include "GameManager.h"
+#include "managers/FileManager.h"
+#include "managers/ResourceManager.h"
+#include "managers/GameManager.h"
 
 // for value_ptr
 #include <glm/gtc/type_ptr.hpp>

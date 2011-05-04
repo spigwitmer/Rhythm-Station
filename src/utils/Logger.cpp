@@ -3,7 +3,7 @@
 #include <cstdarg>
 
 #include <GL/glfw3.h>
-#include "../GameManager.h"
+#include "managers/GameManager.h"
 #include "Logger.h"
 
 Logger *Log = NULL;

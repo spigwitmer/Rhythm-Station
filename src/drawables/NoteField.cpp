@@ -1,11 +1,11 @@
 #include <GL/glew.h>
 #include "NoteField.h"
-#include "../utils/Logger.h"
+#include "utils/Logger.h"
 #include "Sprite.h"
 #include <cmath>
 #include <glm/gtc/type_ptr.hpp>
-#include "../GameManager.h"
-#include "../FileManager.h"
+#include "managers/GameManager.h"
+#include "managers/FileManager.h"
 
 // Long!
 typedef std::vector<NoteRow>::iterator RowIterator;

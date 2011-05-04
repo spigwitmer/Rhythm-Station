@@ -1,5 +1,5 @@
 #include "Texture.h"
-#include "ResourceManager.h"
+#include "managers/ResourceManager.h"
 #include "PNGFile.h"
 
 Texture::Texture() :

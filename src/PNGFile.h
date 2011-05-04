@@ -1,7 +1,7 @@
 #ifndef _PNG_LOADER_H_
 #define _PNG_LOADER_H_
 
-#include "ResourceManager.h"
+#include "managers/ResourceManager.h"
 
 class PNGFile
 {

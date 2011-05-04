@@ -131,6 +131,15 @@ Renderer = \
 Database = \
 	src/database/SQLiteDatabase.cpp src/database/SQLiteDatabase.h
 
+Managers = \
+	src/managers/FileManager.cpp src/managers/FileManager.h \
+	src/managers/GameManager.cpp src/managers/GameManager.h \
+	src/managers/InputManager.cpp src/managers/InputManager.h \
+	src/managers/LuaManager.cpp src/managers/LuaManager.h \
+	src/managers/MessageManager.cpp src/managers/MessageManager.h \
+	src/managers/ResourceManager.cpp src/managers/ResourceManager.h \
+	src/managers/SoundManager.cpp src/managers/SoundManager.h
+
 #
 # RStation binary
 # 
@@ -140,25 +149,19 @@ rstation_SOURCES = \
 	$(Drawables) \
 	$(Utils) \
 	$(Renderer) \
-	src/FileManager.cpp \
-	src/GameManager.cpp \
+	$(Managers) \
 	src/HandleArguments.cpp \
-	src/InputManager.cpp \
-	src/LuaManager.cpp \
 	src/main.cpp \
 	src/Message.cpp \
-	src/MessageManager.cpp \
 	src/PNGFile.cpp \
-	src/ResourceManager.cpp \
 	src/Sound.cpp \
-	src/SoundManager.cpp \
-	src/Tween.cpp \
-	src/Type.cpp
+	src/Tween.cpp
 
 rstation_SOURCES += $(RSTHREADS)
 rstation_LDADD += $(RSTHREADSLD)
 
-rs_test_threads_SOURCES = $(RSTHREADS) src/RSTestThreads.cpp
+rs_test_threads_CPPFLAGS = -I./src
+rs_test_threads_SOURCES = $(RSTHREADS) src/tests/RSTestThreads.cpp
 rs_test_threads_LDADD = $(RSTHREADSLD)
 
 rstation_CPPFLAGS = -DDEBUG \

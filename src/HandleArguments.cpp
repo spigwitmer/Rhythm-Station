@@ -1,6 +1,6 @@
 #include <cstring>
 #include "HandleArguments.h"
-#include "GameManager.h"
+#include "managers/GameManager.h"
 #include "utils/Logger.h"
 
 void HandleArguments(int argc, char **argv)

@@ -5,7 +5,7 @@
 #include "Window.h"
 #include "utils/PreferencesFile.h"
 #include "Type.h"
-#include "GameManager.h"
+#include "managers/GameManager.h"
 
 GLFWwindow hwnd = 0;
 bool focused = false;

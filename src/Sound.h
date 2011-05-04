@@ -14,7 +14,7 @@
 #include <fftw3.h>
 
 #include "drawables/Object.h"
-#include "SoundManager.h"
+#include "managers/SoundManager.h"
 
 // 8k is the smallest size which (consistently) works for me. Use 32k for now.
 #define BUFFER_SIZE 4096*2

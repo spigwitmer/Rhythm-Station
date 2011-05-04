@@ -1,10 +1,10 @@
 #include <GL/glew.h>
 #include "Sprite.h"
-#include "../GameManager.h"
-#include "../ResourceManager.h"
-#include "../FileManager.h"
-#include "../utils/Logger.h"
-#include "../PNGFile.h"
+#include "managers/GameManager.h"
+#include "managers/ResourceManager.h"
+#include "managers/FileManager.h"
+#include "utils/Logger.h"
+#include "PNGFile.h"
 
 Sprite::Sprite()
 {

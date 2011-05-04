@@ -1,7 +1,7 @@
 #include <GL/glew.h>
-#include "../utils/Logger.h"
+#include "utils/Logger.h"
 #include "Font.h"
-#include "../FileManager.h"
+#include "managers/FileManager.h"
 #include <ft2build.h>
 #include FT_FREETYPE_H
 

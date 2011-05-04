@@ -4,11 +4,11 @@
 #include "HandleArguments.h"
 
 // All the singletons (we init them here, should do static init?)
-#include "SoundManager.h"
-#include "GameManager.h"
-#include "InputManager.h"
-#include "LuaManager.h"
-#include "ResourceManager.h"
+#include "managers/SoundManager.h"
+#include "managers/GameManager.h"
+#include "managers/InputManager.h"
+#include "managers/LuaManager.h"
+#include "managers/ResourceManager.h"
 #include "utils/Logger.h"
 #include "renderer/Window.h"
 #include "utils/PreferencesFile.h"

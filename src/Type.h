@@ -18,10 +18,6 @@
 #include <sstream>
 #include <glm/glm.hpp>
 
-std::string toString(int);
-std::string toString(double);
-std::string toString(bool);
-
 typedef uint32_t u32;
 typedef int32_t i32;
 typedef uint64_t u64;
@@ -33,3 +29,4 @@ typedef glm::vec4 vec4;
 typedef glm::vec4 rgba;
 
 #endif
+

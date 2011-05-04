@@ -1,6 +1,6 @@
 #include <GL/glfw3.h>
 #include <png.h>
-#include "FileManager.h"
+#include "managers/FileManager.h"
 #include "PNGFile.h"
 #include "utils/Logger.h"
 
