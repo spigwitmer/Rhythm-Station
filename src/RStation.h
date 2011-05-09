@@ -15,6 +15,7 @@ public:
 private:
 	int Loop();
 
+	int m_status;
 	std::vector<std::string> m_vArgs;
 };
 

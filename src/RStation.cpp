@@ -1,4 +1,5 @@
 #include "RStation.h"
+#include "managers/ScreenManager.h"
 
 using namespace std;
 
@@ -27,6 +28,8 @@ int RStation::Loop()
 	{
 		screen->Update();
 		screen->Draw();
+		
+		break;
 	}
 
 	return m_status;
