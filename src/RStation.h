@@ -1,20 +1,24 @@
+#ifndef _RSTATION_H_
+#define _RSTATION_H_
+
 #include <vector>
 #include <string>
-#include "RStation.h"
 
-using namespace std;
-
-int main(int argc, char **argv)
+class RStation
 {
-	vector<string> args;
-	for (int i = 0; i<argc; i++)
-	{
-		args.push_back(string(argv[i]));
-	}
+public:
+	RStation();
+	virtual ~RStation();
+	
+	int Start(std::vector<std::string> vArguments);
 
-	RStation rs;
-	return rs.Start(args);
-}
+private:
+	int Loop();
+
+	std::vector<std::string> m_vArgs;
+};
+
+#endif
 
 /**
  * @file
