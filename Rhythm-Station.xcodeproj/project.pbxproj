@@ -189,7 +189,6 @@
 		EE2EAF0D1379ED84007FA34A /* InputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputManager.h; sourceTree = "<group>"; };
 		EE2EAF461379F483007FA34A /* ButtonState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ButtonState.cpp; sourceTree = "<group>"; };
 		EE2EAF471379F483007FA34A /* ButtonState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonState.h; sourceTree = "<group>"; };
-		EE2EAF481379F483007FA34A /* InputExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputExtras.h; sourceTree = "<group>"; };
 		EE2EAF491379F483007FA34A /* Inputs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inputs.h; sourceTree = "<group>"; };
 		EE2EAF4D1379F4A4007FA34A /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		EE2EAF4E1379F4A4007FA34A /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
@@ -479,7 +478,6 @@
 			children = (
 				EE2EAF461379F483007FA34A /* ButtonState.cpp */,
 				EE2EAF471379F483007FA34A /* ButtonState.h */,
-				EE2EAF481379F483007FA34A /* InputExtras.h */,
 				EE2EAF491379F483007FA34A /* Inputs.h */,
 			);
 			path = input;
