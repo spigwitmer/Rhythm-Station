@@ -38,12 +38,7 @@ Logger *LOG = NULL;
 }
 
 // TODO: Log to file(s)
-Logger::Logger() : m_cColor(FG_RED), m_bUseColors(false) { }
-
-void Logger::UseColors(bool enabled)
-{
-	m_bUseColors = enabled;
-}
+Logger::Logger() { }
 
 string Logger::Format(const char *in, ...)
 {
@@ -57,11 +52,8 @@ void Logger::Info(const char *in, ...)
 {
 	string ret;
 	FORMAT(ret);
-	
-	if (m_bUseColors)
-		printf("[%0.3f] \x1b[%d;1m%s\x1b[0m\n", glfwGetTime(), m_cColor, ret.c_str());
-	else
-		printf("[%0.3f] %s\n", glfwGetTime(), ret.c_str());
+
+	printf("[%0.3f] %s\n", glfwGetTime(), ret.c_str());
 }
 
 void Logger::Info(string in)
@@ -73,11 +65,8 @@ void Logger::Warn(const char *in, ...)
 {
 	string ret;
 	FORMAT(ret);
-	
-	if (m_bUseColors)
-		printf("[%0.3f] \x1b[%d;1mWARNING:\x1b[0m %s\n", glfwGetTime(), m_cColor, ret.c_str());
-	else
-		printf("[%0.3f] WARNING: %s\n", glfwGetTime(), ret.c_str());
+
+	printf("[%0.3f] WARNING: %s\n", glfwGetTime(), ret.c_str());
 }
 
 void Logger::Warn(string in)
