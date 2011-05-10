@@ -3,12 +3,15 @@
 
 using namespace std;
 
-void ScreenManager::Update()
+void ScreenManager::Update(double time)
 {
+	double delta = time - m_LastUpdate;
+	m_LastUpdate = time;
+	
 	vector<Screen*>::iterator it;
 	for (it = m_vScreenStack.begin(); it != m_vScreenStack.end(); it++)
 	{
-		(*it)->Update(0.0);
+		(*it)->Update(delta);
 	}
 }
 

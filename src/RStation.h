@@ -4,6 +4,14 @@
 #include <vector>
 #include <string>
 
+// Helps prevent heap corruption.
+#define SAFE_DELETE(p) if( (p) != NULL ) delete (p); (p) = NULL;
+
+enum {
+	RS_SUCCESS = 0,
+	RS_INIT_FAILURE
+};
+
 class RStation
 {
 public:

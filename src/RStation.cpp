@@ -1,21 +1,31 @@
 #include "RStation.h"
 #include "managers/ScreenManager.h"
+#include "utils/Logger.h"
+#include <GL/glfw3.h>
 
 using namespace std;
 
-RStation::RStation()
+RStation::RStation() : m_status(RS_SUCCESS)
 {
-
+	LOG = new Logger();
+	int err = glfwInit();
+	if (!err)
+	{
+		LOG->Warn(glfwErrorString(err));
+		m_status = RS_INIT_FAILURE;
+	}
 }
 
 RStation::~RStation()
 {
-
+	SAFE_DELETE( LOG );
 }
 
 int RStation::Start(vector<string> vArgs)
 {
 	m_vArgs = vArgs;
+
+	LOG->Info("Loading complete.");
 
 	return Loop();
 }
@@ -26,7 +36,8 @@ int RStation::Loop()
 
 	while (true)
 	{
-		screen->Update();
+		// ScreenManager automatically calculates delta.
+		screen->Update(glfwGetTime());
 		screen->Draw();
 		
 		break;

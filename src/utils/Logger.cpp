@@ -69,6 +69,22 @@ void Logger::Info(string in)
 	Info(in.c_str());
 }
 
+void Logger::Warn(const char *in, ...)
+{
+	string ret;
+	FORMAT(ret);
+	
+	if (m_bUseColors)
+		printf("[%0.3f] \x1b[%d;1mWARNING:\x1b[0m %s\n", glfwGetTime(), m_cColor, ret.c_str());
+	else
+		printf("[%0.3f] WARNING: %s\n", glfwGetTime(), ret.c_str());
+}
+
+void Logger::Warn(string in)
+{
+	Warn(in.c_str());
+}
+
 /**
  * @file
  * @author Colby Klein, Jarno Purontakanen (c) 2011

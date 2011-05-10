@@ -17,7 +17,7 @@ typedef std::map<std::string, MakeScreenFn> MakeScreenMap;
 class ScreenManager : public Singleton<ScreenManager>
 {
 public:
-	void Update();
+	void Update(double time);
 	void Draw();
 	
 	void PushScreen(std::string sName);
@@ -29,6 +29,8 @@ public:
 	static MakeScreenMap *GetMap();
 
 private:
+	double m_LastUpdate;
+
 	std::vector<Screen*> m_vScreenStack;
 	std::map<std::string, Screen*> m_vScreenTypes;
 };
