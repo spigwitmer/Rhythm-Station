@@ -43,6 +43,7 @@
 		EE2EAC92137860E5007FA34A /* RStation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC91137860E5007FA34A /* RStation.cpp */; };
 		EE2EAC9C13786CFE007FA34A /* ScreenManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC9B13786CFE007FA34A /* ScreenManager.cpp */; };
 		EE2EAD2D13790F8B007FA34A /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAD2C13790F8B007FA34A /* Screen.cpp */; };
+		EE2EAD5513791DB4007FA34A /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAD5313791DB4007FA34A /* Logger.cpp */; };
 		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
 		EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = EE51F2E812EB4B74003A241E /* ConvertUTF.c */; };
 		EE51F80012F1F2AB003A241E /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE51F7FF12F1F2AB003A241E /* libfreetype.a */; };
@@ -164,6 +165,8 @@
 		EE2EACBC13786D9C007FA34A /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		EE2EAD2B13790F8B007FA34A /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screen.h; sourceTree = "<group>"; };
 		EE2EAD2C13790F8B007FA34A /* Screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
+		EE2EAD5313791DB4007FA34A /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
+		EE2EAD5413791DB4007FA34A /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
 		EE51F2E812EB4B74003A241E /* ConvertUTF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ConvertUTF.c; sourceTree = "<group>"; };
 		EE51F2E912EB4B74003A241E /* ConvertUTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertUTF.h; sourceTree = "<group>"; };
@@ -413,6 +416,8 @@
 		EE2EACBB13786D7E007FA34A /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				EE2EAD5313791DB4007FA34A /* Logger.cpp */,
+				EE2EAD5413791DB4007FA34A /* Logger.h */,
 				EE2EACBC13786D9C007FA34A /* Singleton.h */,
 			);
 			path = utils;
@@ -758,6 +763,7 @@
 				EE2EAC92137860E5007FA34A /* RStation.cpp in Sources */,
 				EE2EAC9C13786CFE007FA34A /* ScreenManager.cpp in Sources */,
 				EE2EAD2D13790F8B007FA34A /* Screen.cpp in Sources */,
+				EE2EAD5513791DB4007FA34A /* Logger.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

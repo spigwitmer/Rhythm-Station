@@ -2,6 +2,7 @@
 #define _Log_H_
 
 #include <string>
+#include <cstdio>
 
 enum ConsoleColor
 {
@@ -20,25 +21,31 @@ class Logger
 {
 public:
 	Logger();
+		
+	std::string Format(const char *in, ...);
 	
-	// TODO
-	void SetFile(std::string path);
-	std::string GetFile();
+	// Only shows when DEBUG is defined (either via build or prefs)
+	void Debug(const char *in, ...);
+	void Debug(std::string input);
 	
-	std::string SPrint(const char *in, ...);
-	void DebugPrint(std::string input);
-	void Print(const char *in, ...);
-	void Print(std::string in);
-	void InlinePrint(const char *in, ...);
+	// Log to file, print in terminal
+	void Info(const char *in, ...);
+	void Info(std::string in);
+	
+	// Same as Info, but with WARNING
+	void Warn(const char* in, ...);
+	void Warn(std::string in);
 	
 	void UseColors(bool enabled);
-	void SetColor(ConsoleColor color);
-	
+
 private:
+	std::string m_file;
+	FILE* file;
+
 	ConsoleColor m_cColor;
 	bool m_bUseColors;
 };
 
-extern Logger *Log;
+extern Logger *LOG;
 
 #endif

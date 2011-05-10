@@ -5,6 +5,11 @@ void Screen::Update(double delta)
 
 }
 
+void Screen::Draw()
+{
+	// TODO
+}
+
 /**
  * @file
  * @author Colby Klein (c) 2011
