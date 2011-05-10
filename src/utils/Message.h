@@ -4,17 +4,21 @@
 #include <string>
 #include <map>
 
-struct Message
+class Message
 {
-	std::string name;
-	std::map<std::string, void *> data;
-	
-	// send message to all listeners
+public:
+	// Send message to all listeners
 	void Send();
+
+	std::string name;
+	
+	// XXX: not sure how well this works.
+	std::map<std::string, void*> data;
 };
 
-struct MessageListener
+class MessageListener
 {
+public:
 	// Don't use pure virtual so that descended classes can omit these.
 	// Might change later.
 	virtual ~MessageListener() { } // silence warning

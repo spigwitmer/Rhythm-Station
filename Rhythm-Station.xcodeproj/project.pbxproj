@@ -49,6 +49,8 @@
 		EE2EAE551379CBE4007FA34A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2EAE521379CBE4007FA34A /* libfreetype.a */; };
 		EE2EAE561379CBE4007FA34A /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2EAE531379CBE4007FA34A /* libvorbis.a */; };
 		EE2EAE5E1379CDE8007FA34A /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAE5D1379CDE8007FA34A /* Screen.cpp */; };
+		EE2EAEC81379DFEC007FA34A /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAEC61379DFEC007FA34A /* MessageManager.cpp */; };
+		EE2EAECD1379DFFE007FA34A /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAECB1379DFFE007FA34A /* Message.cpp */; };
 		EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = EE51F2E812EB4B74003A241E /* ConvertUTF.c */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
@@ -176,6 +178,10 @@
 		EE2EAE521379CBE4007FA34A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = src/arch/osx/libfreetype.a; sourceTree = "<group>"; };
 		EE2EAE531379CBE4007FA34A /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = src/arch/osx/libvorbis.a; sourceTree = "<group>"; };
 		EE2EAE5D1379CDE8007FA34A /* Screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
+		EE2EAEC61379DFEC007FA34A /* MessageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageManager.cpp; sourceTree = "<group>"; };
+		EE2EAEC71379DFEC007FA34A /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		EE2EAECB1379DFFE007FA34A /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
+		EE2EAECC1379DFFE007FA34A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		EE51F2E812EB4B74003A241E /* ConvertUTF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ConvertUTF.c; sourceTree = "<group>"; };
 		EE51F2E912EB4B74003A241E /* ConvertUTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertUTF.h; sourceTree = "<group>"; };
 		EE51F2EF12EB4B74003A241E /* SimpleIni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleIni.h; sourceTree = "<group>"; };
@@ -413,6 +419,8 @@
 		EE2EAC9913786CE7007FA34A /* managers */ = {
 			isa = PBXGroup;
 			children = (
+				EE2EAEC61379DFEC007FA34A /* MessageManager.cpp */,
+				EE2EAEC71379DFEC007FA34A /* MessageManager.h */,
 				EE2EAC9B13786CFE007FA34A /* ScreenManager.cpp */,
 				EE2EAC9A13786CFE007FA34A /* ScreenManager.h */,
 			);
@@ -422,6 +430,8 @@
 		EE2EACBB13786D7E007FA34A /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				EE2EAECB1379DFFE007FA34A /* Message.cpp */,
+				EE2EAECC1379DFFE007FA34A /* Message.h */,
 				EE2EAD5313791DB4007FA34A /* Logger.cpp */,
 				EE2EAD5413791DB4007FA34A /* Logger.h */,
 				EE2EACBC13786D9C007FA34A /* Singleton.h */,
@@ -784,6 +794,8 @@
 				EE2EAE1D1379CAF4007FA34A /* ThreadGroup.cpp in Sources */,
 				EE2EAE1E1379CAF4007FA34A /* Threads_pthreads.cpp in Sources */,
 				EE2EAE5E1379CDE8007FA34A /* Screen.cpp in Sources */,
+				EE2EAEC81379DFEC007FA34A /* MessageManager.cpp in Sources */,
+				EE2EAECD1379DFFE007FA34A /* Message.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

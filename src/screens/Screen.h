@@ -4,8 +4,9 @@
 #include <string>
 #include <glm/glm.hpp>
 #include "managers/ScreenManager.h"
+#include "utils/Message.h"
 
-class Screen
+class Screen : public MessageListener
 {
 public:
 	Screen(std::string sName);
