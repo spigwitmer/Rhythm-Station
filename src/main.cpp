@@ -6,14 +6,14 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
+	// Build arguments into a vector before passing control
 	vector<string> args;
 	for (int i = 0; i<argc; i++)
 	{
 		args.push_back(string(argv[i]));
 	}
 
-	RStation *rs = RStation::GetSingleton();
-	return rs->Start(args);
+	return RStation::GetSingleton()->Start(args);
 }
 
 /**

@@ -32,9 +32,6 @@ int RStation::Start(vector<string> vArgs)
 		return RS_NO_WINDOW;
 	}
 
-	InputManager *input = InputManager::GetSingleton();
-	input->Connect();
-
 	return Loop();
 }
 
@@ -48,6 +45,9 @@ int RStation::Loop()
 		// Break if user closed the window
 		input->Update();
 		if (!glfwIsWindow(m_window))
+			break;
+
+		if (input->GetButton(RS_KEY_ESC)->IsDown())
 			break;
 
 		// ScreenManager automatically calculates delta.
