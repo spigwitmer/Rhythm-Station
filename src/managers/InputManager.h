@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "Type.h"
+#include <glm/glm.hpp>
 #include "utils/Singleton.h"
 
 enum KeyState
@@ -41,15 +41,14 @@ struct Mouse
 	// normalized coords
 	float nx, ny;
 	
-	vec2 mouse_pos;
-	vec2 scroll;
+	glm::vec2 mouse_pos;
+	glm::vec2 scroll;
 };
 
 // this should probably only handle mapped game buttons - not raw input.
 struct IEvent
 {
 	std::vector<Controller *> controllers;
-	std::string cur_string;
 	
 	Mouse mouse;
 	

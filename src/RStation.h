@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <GL/glfw3.h>
 #include "utils/Singleton.h"
 
 // Helps prevent heap corruption.
@@ -10,7 +11,8 @@
 
 enum {
 	RS_SUCCESS = 0,
-	RS_INIT_FAILURE
+	RS_INIT_FAILURE,
+	RS_NO_WINDOW
 };
 
 class RStation : public Singleton<RStation>
@@ -26,6 +28,8 @@ private:
 
 	int m_status;
 	std::vector<std::string> m_vArgs;
+
+	GLFWwindow m_window;
 };
 
 #endif

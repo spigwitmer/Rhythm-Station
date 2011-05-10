@@ -1,12 +1,8 @@
+#include <cstdio>
 #include <GL/glfw3.h>
-#include <stdio.h>
 #include "InputManager.h"
-#include "GameManager.h"
-#include "LuaManager.h"
-#include "utils/INIFile.h"
 #include "utils/Logger.h"
-#include "utils/PreferencesFile.h"
-#include "renderer/Window.h"
+#include "utils/Message.h"
 
 // keyboard. key for specials, char for text input and such.
 static void _keyCallback(GLFWwindow window, int key, int state)
@@ -18,19 +14,7 @@ static void _keyCallback(GLFWwindow window, int key, int state)
 	switch (state) {
 	case GLFW_PRESS:
 		Input->status.keys[key] = KEY_PRESSED;
-		Input->status.last_type = KEY_PRESSED;
-		switch (key)
-		{
-		case 294:
-			Log->Print(Input->status.cur_string);
-			Input->status.cur_string.clear();
-			break;
-		case 295: // backspace
-			Input->status.cur_string = Input->status.cur_string.substr(0, Input->status.cur_string.length()-1);
-		default:
-			break;
-		}
-		
+		Input->status.last_type = KEY_PRESSED;		
 		break;
 	case GLFW_RELEASE:
 		Input->status.keys[key] = KEY_NONE;
@@ -46,24 +30,22 @@ static void _keyCallback(GLFWwindow window, int key, int state)
 
 static void _charCallback(GLFWwindow window, int key)
 {
-	InputManager *Input = InputManager::GetSingleton();
+//	InputManager *Input = InputManager::GetSingleton();
 	
 	char buf[2];
 	sprintf(buf, "%c", key);
-	Input->status.cur_string.push_back(buf[0]);
 }
 
 // mouse actions
 static void _mPosCallback(GLFWwindow window, int x, int y)
 {
 	InputManager *Input = InputManager::GetSingleton();
-	Window *wnd = Window::GetSingleton();
 	
 	// Log->Print("x = %d, y = %d", x, y);
 	Input->status.mouse.x = x;
 	Input->status.mouse.y = y;
-	Input->status.mouse.nx = float(x / wnd->getWidth());
-	Input->status.mouse.ny = float(y / wnd->getHeight());
+//	Input->status.mouse.nx = float(x / wnd->getWidth());
+//	Input->status.mouse.ny = float(y / wnd->getHeight());
 	Input->SendEvent();
 }
 
@@ -79,7 +61,8 @@ static void _mScrollCallback(GLFWwindow window, int x, int y)
 {
 	InputManager *Input = InputManager::GetSingleton();
 	
-	Input->status.mouse.scroll = vec2(x, y);
+	Input->status.mouse.scroll.x = x;
+	Input->status.mouse.scroll.y = y;
 	Input->SendEvent();
 }
 
@@ -142,12 +125,12 @@ Controller::Controller(int _id)
 	// initial update.
 	glfwGetJoystickButtons(this->id, this->buttons_raw, this->num_buttons);
 	glfwGetJoystickPos(this->id, this->axes, this->num_axes);
-	Log->Print("Creating controller");
+	LOG->Info("Creating controller");
 }
 
 Controller::~Controller()
 {
-	Log->Print("Destroying controller %d", this->id+1);
+	LOG->Info("Destroying controller %d", this->id+1);
 	delete[] this->axes;
 	delete[] this->buttons;
 	delete[] this->buttons_raw;
@@ -167,28 +150,30 @@ void InputManager::DetectControllers()
 	for (int i = 0; i<GLFW_JOYSTICK_LAST; i++)
 	{
 		int present = glfwGetJoystickParam(i, GLFW_PRESENT);
-		
+
 		if (present) {
 			// joystick/controller was found - register it and get info.
 			Controller *current = new Controller(i);
 			status.controllers.push_back(current);
 		}
 	}
-	
+
 	// log what we found
 	if (status.controllers.size() > 0)
 	{
-		Log->Print("Controllers found:");
-		
+		LOG->Info("Controllers found:");
+		std::string str;
+
 		for (unsigned int i = 0; i<status.controllers.size(); i++)
 		{
-			Log->InlinePrint(
+			str += LOG->Format(
 			    "\tController %d (id=%d, buttons=%d, axes=%d)\n", i+1,
 			    status.controllers[i]->id,
 			    status.controllers[i]->num_buttons,
 			    status.controllers[i]->num_axes
 			);
 		}
+		LOG->Info(str);
 	}
 }
 
@@ -198,25 +183,25 @@ void InputManager::UpdateControllers()
 	for (unsigned int i = 0; i<status.controllers.size(); i++)
 	{
 		Controller *current = status.controllers[i];
-		
+
 		// store old values for comparison
 		unsigned char *old_buttons = new unsigned char[current->num_buttons]; // FIXME
 		float *old_axes = new float[current->num_axes]; // FIXME
 		memcpy(old_buttons, current->buttons_raw, sizeof(old_buttons));
 		memcpy(old_axes, current->axes, sizeof(old_axes));
-		
+
 		// update the current values
 		glfwGetJoystickButtons(current->id, current->buttons_raw, current->num_buttons);
 		glfwGetJoystickPos(current->id, current->axes, current->num_axes);
 		bool sendInput = false;
-		
+
 		// and now set timestamp if a button has changed.
 		for (int j = 0; j<current->num_buttons; j++)
 		{
 			if (old_buttons[j] != current->buttons_raw[j] || queuedUpdate)
 			{
 				double cur_time = glfwGetTime();
-				
+
 				switch(current->buttons_raw[j])
 				{
 				case GLFW_PRESS:
@@ -226,21 +211,21 @@ void InputManager::UpdateControllers()
 					current->buttons[j] = KEY_NONE;
 					break;
 				}
-				
+
 				current->timestamp[j] = cur_time;
 				sendInput = true;
 			}
 		}
-		
+
 		for (int j = 0; j<current->num_axes; j++)
 		{
 			if (old_axes[j] != current->axes[j] && fabs(current->axes[j]) > 7.5e-2)
 				sendInput = true;
 		}
-		
+
 		delete [] old_buttons;
 		delete [] old_axes;
-		
+
 		if (sendInput)
 			SendEvent();
 	}
@@ -249,37 +234,17 @@ void InputManager::UpdateControllers()
 void InputManager::Update()
 {
 	glfwPollEvents();
-	
+
 	// controllers aren't driven by a callback - so we have to do it here.
 	// this *REALLY* should be threaded at some point.
 	UpdateControllers();
 }
-
 
 /**
  * @file
  * @author Colby Klein (c) 2011
  * @section LICENSE
  * 
- * All rights reserved.
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a
- * copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, and/or sell copies of the Software, and to permit persons to
- * whom the Software is furnished to do so, provided that the above
- * copyright notice(s) and this permission notice appear in all copies of
- * the Software and that both the above copyright notice(s) and this
- * permission notice appear in supporting documentation.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF
- * THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS
- * INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT
- * OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
- * OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
+ * This program is licensed under the terms of the MIT license.
+ * The full text can be found in License.txt.
  */

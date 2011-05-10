@@ -1,7 +1,7 @@
 #include "RStation.h"
+#include "managers/InputManager.h"
 #include "managers/ScreenManager.h"
 #include "utils/Logger.h"
-#include <GL/glfw3.h>
 
 using namespace std;
 
@@ -25,20 +25,36 @@ int RStation::Start(vector<string> vArgs)
 {
 	m_vArgs = vArgs;
 
+	m_window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "Rhythm-Station", 0);
+	if (!glfwIsWindow(m_window))
+	{
+		LOG->Warn("Unable to create an OpenGL window. Check your drivers.");
+		return RS_NO_WINDOW;
+	}
+
+	InputManager *input = InputManager::GetSingleton();
+	input->Connect();
+
 	return Loop();
 }
 
 int RStation::Loop()
 {
 	ScreenManager *screen = ScreenManager::GetSingleton();
+	InputManager *input = InputManager::GetSingleton();
 
 	while (true)
 	{
+		// Break if user closed the window
+		input->Update();
+		if (!glfwIsWindow(m_window))
+			break;
+
 		// ScreenManager automatically calculates delta.
 		screen->Update(glfwGetTime());
 		screen->Draw();
-		
-		break;
+
+		glfwSwapBuffers();
 	}
 
 	return m_status;

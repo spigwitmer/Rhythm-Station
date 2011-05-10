@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include "ScreenManager.h"
 #include "screens/Screen.h"
 #include "RStation.h"
@@ -22,6 +23,8 @@ void ScreenManager::Update(double time)
 
 void ScreenManager::Draw()
 {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	vector<Screen*>::iterator it = m_vScreenStack.begin();
 	for (; it != m_vScreenStack.end(); it++)
 		(*it)->Draw();
