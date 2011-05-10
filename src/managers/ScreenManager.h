@@ -22,6 +22,7 @@ public:
 	
 	void PushScreen(std::string sName);
 	void PopScreen();
+	void ClearStack();
 	
 	Screen *GetTopScreen() const { return m_vScreenStack.back(); }
 

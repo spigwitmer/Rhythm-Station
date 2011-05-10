@@ -42,11 +42,14 @@
 		EE2EAC7D13785F31007FA34A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC7C13785F31007FA34A /* main.cpp */; };
 		EE2EAC92137860E5007FA34A /* RStation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC91137860E5007FA34A /* RStation.cpp */; };
 		EE2EAC9C13786CFE007FA34A /* ScreenManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC9B13786CFE007FA34A /* ScreenManager.cpp */; };
-		EE2EAD2D13790F8B007FA34A /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAD2C13790F8B007FA34A /* Screen.cpp */; };
 		EE2EAD5513791DB4007FA34A /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAD5313791DB4007FA34A /* Logger.cpp */; };
-		EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE41FED81288A6CB001F0C56 /* libvorbisfile.a */; };
+		EE2EAE1D1379CAF4007FA34A /* ThreadGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAE191379CAF4007FA34A /* ThreadGroup.cpp */; };
+		EE2EAE1E1379CAF4007FA34A /* Threads_pthreads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAE1B1379CAF4007FA34A /* Threads_pthreads.cpp */; };
+		EE2EAE541379CBE4007FA34A /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2EAE511379CBE4007FA34A /* libfftw3.a */; };
+		EE2EAE551379CBE4007FA34A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2EAE521379CBE4007FA34A /* libfreetype.a */; };
+		EE2EAE561379CBE4007FA34A /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2EAE531379CBE4007FA34A /* libvorbis.a */; };
+		EE2EAE5E1379CDE8007FA34A /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAE5D1379CDE8007FA34A /* Screen.cpp */; };
 		EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = EE51F2E812EB4B74003A241E /* ConvertUTF.c */; };
-		EE51F80012F1F2AB003A241E /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE51F7FF12F1F2AB003A241E /* libfreetype.a */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
 		EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
@@ -113,7 +116,6 @@
 		EEC8D82F128DB44D00351601 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7C127559C40064054A /* time.c */; };
 		EEC8D830128DB44D00351601 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F8A127559C40064054A /* window.c */; };
 		EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECBDF9E125D008000BA2BA4 /* OpenAL.framework */; };
-		EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,14 +166,19 @@
 		EE2EAC9B13786CFE007FA34A /* ScreenManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScreenManager.cpp; sourceTree = "<group>"; };
 		EE2EACBC13786D9C007FA34A /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		EE2EAD2B13790F8B007FA34A /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screen.h; sourceTree = "<group>"; };
-		EE2EAD2C13790F8B007FA34A /* Screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
 		EE2EAD5313791DB4007FA34A /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
 		EE2EAD5413791DB4007FA34A /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
-		EE41FED81288A6CB001F0C56 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = src/osx/libvorbisfile.a; sourceTree = "<group>"; };
+		EE2EAE191379CAF4007FA34A /* ThreadGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadGroup.cpp; sourceTree = "<group>"; };
+		EE2EAE1A1379CAF4007FA34A /* ThreadGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadGroup.h; sourceTree = "<group>"; };
+		EE2EAE1B1379CAF4007FA34A /* Threads_pthreads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Threads_pthreads.cpp; sourceTree = "<group>"; };
+		EE2EAE1C1379CAF4007FA34A /* Threads_pthreads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Threads_pthreads.h; sourceTree = "<group>"; };
+		EE2EAE511379CBE4007FA34A /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = src/arch/osx/libfftw3.a; sourceTree = "<group>"; };
+		EE2EAE521379CBE4007FA34A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = src/arch/osx/libfreetype.a; sourceTree = "<group>"; };
+		EE2EAE531379CBE4007FA34A /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = src/arch/osx/libvorbis.a; sourceTree = "<group>"; };
+		EE2EAE5D1379CDE8007FA34A /* Screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
 		EE51F2E812EB4B74003A241E /* ConvertUTF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ConvertUTF.c; sourceTree = "<group>"; };
 		EE51F2E912EB4B74003A241E /* ConvertUTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertUTF.h; sourceTree = "<group>"; };
 		EE51F2EF12EB4B74003A241E /* SimpleIni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleIni.h; sourceTree = "<group>"; };
-		EE51F7FF12F1F2AB003A241E /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = src/osx/libfreetype.a; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		EE915DE21255CB9300F0B0B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -275,7 +282,6 @@
 		EEC52F8A127559C40064054A /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = window.c; sourceTree = "<group>"; };
 		EEC52FD1127559F30064054A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = extern/config.h; sourceTree = SOURCE_ROOT; };
 		EECBDF9E125D008000BA2BA4 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
-		EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = src/osx/libfftw3.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,10 +292,10 @@
 				EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */,
 				EE915EA01255D7B200F0B0B3 /* OpenGL.framework in Frameworks */,
 				EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */,
-				EE41FEDB1288A6CC001F0C56 /* libvorbisfile.a in Frameworks */,
-				EEF5A4AD129EE5FE00ABD8AE /* libfftw3.a in Frameworks */,
 				EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */,
-				EE51F80012F1F2AB003A241E /* libfreetype.a in Frameworks */,
+				EE2EAE541379CBE4007FA34A /* libfftw3.a in Frameworks */,
+				EE2EAE551379CBE4007FA34A /* libfreetype.a in Frameworks */,
+				EE2EAE561379CBE4007FA34A /* libvorbis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,9 +336,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EE51F7FF12F1F2AB003A241E /* libfreetype.a */,
-				EEF5A4AC129EE5FE00ABD8AE /* libfftw3.a */,
-				EE41FED81288A6CB001F0C56 /* libvorbisfile.a */,
+				EE2EAE511379CBE4007FA34A /* libfftw3.a */,
+				EE2EAE521379CBE4007FA34A /* libfreetype.a */,
+				EE2EAE531379CBE4007FA34A /* libvorbis.a */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				EE915DE21255CB9300F0B0B3 /* Cocoa.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
@@ -407,8 +413,8 @@
 		EE2EAC9913786CE7007FA34A /* managers */ = {
 			isa = PBXGroup;
 			children = (
-				EE2EAC9A13786CFE007FA34A /* ScreenManager.h */,
 				EE2EAC9B13786CFE007FA34A /* ScreenManager.cpp */,
+				EE2EAC9A13786CFE007FA34A /* ScreenManager.h */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -427,9 +433,20 @@
 			isa = PBXGroup;
 			children = (
 				EE2EAD2B13790F8B007FA34A /* Screen.h */,
-				EE2EAD2C13790F8B007FA34A /* Screen.cpp */,
+				EE2EAE5D1379CDE8007FA34A /* Screen.cpp */,
 			);
 			path = screens;
+			sourceTree = "<group>";
+		};
+		EE2EAE161379CADD007FA34A /* threads */ = {
+			isa = PBXGroup;
+			children = (
+				EE2EAE191379CAF4007FA34A /* ThreadGroup.cpp */,
+				EE2EAE1A1379CAF4007FA34A /* ThreadGroup.h */,
+				EE2EAE1B1379CAF4007FA34A /* Threads_pthreads.cpp */,
+				EE2EAE1C1379CAF4007FA34A /* Threads_pthreads.h */,
+			);
+			path = threads;
 			sourceTree = "<group>";
 		};
 		EE51F2E712EB4B74003A241E /* simpleini-4.13 */ = {
@@ -445,9 +462,10 @@
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				EE2EAD2A13790F85007FA34A /* screens */,
-				EE2EACBB13786D7E007FA34A /* utils */,
 				EE2EAC9913786CE7007FA34A /* managers */,
+				EE2EAD2A13790F85007FA34A /* screens */,
+				EE2EAE161379CADD007FA34A /* threads */,
+				EE2EACBB13786D7E007FA34A /* utils */,
 				EE2EAC7C13785F31007FA34A /* main.cpp */,
 				EE2EAC90137860E5007FA34A /* RStation.h */,
 				EE2EAC91137860E5007FA34A /* RStation.cpp */,
@@ -762,8 +780,10 @@
 				EE2EAC7D13785F31007FA34A /* main.cpp in Sources */,
 				EE2EAC92137860E5007FA34A /* RStation.cpp in Sources */,
 				EE2EAC9C13786CFE007FA34A /* ScreenManager.cpp in Sources */,
-				EE2EAD2D13790F8B007FA34A /* Screen.cpp in Sources */,
 				EE2EAD5513791DB4007FA34A /* Logger.cpp in Sources */,
+				EE2EAE1D1379CAF4007FA34A /* ThreadGroup.cpp in Sources */,
+				EE2EAE1E1379CAF4007FA34A /* Threads_pthreads.cpp in Sources */,
+				EE2EAE5E1379CDE8007FA34A /* Screen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +807,7 @@
 					/opt/local/lib,
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/src/osx\"",
+					"\"$(SRCROOT)/src/arch/osx\"",
 				);
 				PRODUCT_NAME = "Rhythm-Station";
 			};
@@ -807,6 +828,7 @@
 					/opt/local/lib,
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/src/osx\"",
+					"\"$(SRCROOT)/src/arch/osx\"",
 				);
 				PRODUCT_NAME = "Rhythm-Station";
 			};

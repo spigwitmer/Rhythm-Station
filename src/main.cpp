@@ -12,8 +12,8 @@ int main(int argc, char **argv)
 		args.push_back(string(argv[i]));
 	}
 
-	RStation rs;
-	return rs.Start(args);
+	RStation *rs = RStation::GetSingleton();
+	return rs->Start(args);
 }
 
 /**

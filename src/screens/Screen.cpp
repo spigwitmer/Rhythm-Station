@@ -1,13 +1,25 @@
-#include "Screen.h"
+#include "screens/Screen.h"
+
+using namespace std;
+
+Screen::Screen(string sName)
+{
+}
+
+Screen::~Screen()
+{
+}
+
+void Screen::Init()
+{
+}
 
 void Screen::Update(double delta)
 {
-
 }
 
 void Screen::Draw()
 {
-	// TODO
 }
 
 /**

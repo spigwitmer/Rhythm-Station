@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "utils/Singleton.h"
 
 // Helps prevent heap corruption.
 #define SAFE_DELETE(p) if( (p) != NULL ) delete (p); (p) = NULL;
@@ -12,7 +13,7 @@ enum {
 	RS_INIT_FAILURE
 };
 
-class RStation
+class RStation : public Singleton<RStation>
 {
 public:
 	RStation();

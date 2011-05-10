@@ -8,10 +8,15 @@
 class Screen
 {
 public:
-	Screen(std::string sName) { }
-	void Update(double delta);
-	void Draw();
+	Screen(std::string sName);
+	virtual ~Screen();
+	
+	virtual void Init();
+	virtual void Update(double delta);
+	virtual void Draw();
+	virtual void DrawInternal();
 
+	std::string GetName() const { return m_name; }
 	glm::mat4 *GetProjection() { return &m_projection; }
 
 protected:

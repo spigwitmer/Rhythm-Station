@@ -1,7 +1,14 @@
 #include "ScreenManager.h"
 #include "screens/Screen.h"
+#include "RStation.h"
 
 using namespace std;
+
+MakeScreenMap *ScreenManager::GetMap()
+{
+	static MakeScreenMap g_ScreenMap;
+	return &g_ScreenMap;
+}
 
 void ScreenManager::Update(double time)
 {
@@ -22,13 +29,25 @@ void ScreenManager::Draw()
 
 void ScreenManager::PushScreen(string sName)
 {
-	m_vScreenStack.push_back(new Screen(sName));
+	MakeScreenMap::iterator it = GetMap()->find(sName);
+
+	if (it == GetMap()->end())
+		return;
+
+	m_vScreenStack.push_back(it->second(sName));
 }
 
 void ScreenManager::PopScreen()
 {
-	delete m_vScreenStack.back();
+	SAFE_DELETE(m_vScreenStack.back());
+
 	m_vScreenStack.pop_back();
+}
+
+void ScreenManager::ClearStack()
+{
+	while (!m_vScreenStack.empty())
+		PopScreen();
 }
 
 /**

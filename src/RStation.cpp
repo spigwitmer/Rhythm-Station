@@ -25,8 +25,6 @@ int RStation::Start(vector<string> vArgs)
 {
 	m_vArgs = vArgs;
 
-	LOG->Info("Loading complete.");
-
 	return Loop();
 }
 
