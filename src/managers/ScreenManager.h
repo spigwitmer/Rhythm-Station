@@ -7,11 +7,12 @@
 
 #include "utils/Singleton.h"
 
-class Screen
-{
-public:
-	void Update() { }
-};
+class Screen;
+
+// from Tanarux (thanks Matt)
+typedef Screen* (*MakeScreenFn)(const std::string &sName);
+typedef std::pair<std::string, MakeScreenFn> MakeScreenEntry;
+typedef std::map<std::string, MakeScreenFn> MakeScreenMap;
 
 class ScreenManager : public Singleton<ScreenManager>
 {
@@ -19,15 +20,30 @@ public:
 	void Update();
 	void Draw();
 	
-	void PushScreen();
+	void PushScreen(std::string sName);
 	void PopScreen();
 	
-	Screen* GetTopScreen();
+	Screen *GetTopScreen() const { return m_vScreenStack.back(); }
+
+	// Static map stuff, for registering
+	static MakeScreenMap *GetMap();
 
 private:
 	std::vector<Screen*> m_vScreenStack;
 	std::map<std::string, Screen*> m_vScreenTypes;
 };
+
+struct RegisterScreen
+{
+	RegisterScreen( const std::string &sName, MakeScreenFn fn )
+	{
+		ScreenManager::GetMap()->insert( MakeScreenEntry( sName, fn ) );
+	}
+};
+
+#define REGISTER_SCREEN( name ) \
+	Screen *Make##name( const string &sName ) { Screen *pRet = new name( sName ); pRet->Init(); return pRet; } \
+	static RegisterScreen g_##name( #name, Make##name );
 
 #endif
 
