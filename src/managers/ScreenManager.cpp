@@ -55,7 +55,7 @@ void ScreenManager::ClearStack()
 
 /**
  * @file
- * @author Colby Klein (c) 2011
+ * @author Matt Vandermeulen, Colby Klein (c) 2011
  * @section LICENSE
  * 
  * This program is licensed under the terms of the MIT license.

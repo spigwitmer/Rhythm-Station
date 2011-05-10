@@ -4,21 +4,16 @@
 #include "Inputs.h"
 #include "ButtonState.h"
 #include "utils/Singleton.h"
-
-// These vectors are getting a tryout!
 #include <glm/glm.hpp>
 
 class InputManager : public Singleton<InputManager>
 {
 public:
-	// Construction, destruction
 	InputManager();
 	virtual ~InputManager();
 
-	// Helper function that discards the queue
 	void DiscardQueue();
 
-	// Called every, err.. Update..
 	void Update();
 
 	// Grabs an input from the queue
@@ -32,3 +27,12 @@ public:
 };
 
 #endif // INPUT_MANAGER_H
+
+/**
+ * @file
+ * @author Matt Vandermeulen, Colby Klein (c) 2011
+ * @section LICENSE
+ * 
+ * This program is licensed under the terms of the MIT license.
+ * The full text can be found in License.txt.
+ */
