@@ -432,8 +432,8 @@
 		EE2EAD2A13790F85007FA34A /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				EE2EAD2B13790F8B007FA34A /* Screen.h */,
 				EE2EAE5D1379CDE8007FA34A /* Screen.cpp */,
+				EE2EAD2B13790F8B007FA34A /* Screen.h */,
 			);
 			path = screens;
 			sourceTree = "<group>";

@@ -15,16 +15,16 @@ void ScreenManager::Update(double time)
 	double delta = time - m_LastUpdate;
 	m_LastUpdate = time;
 	
-	vector<Screen*>::iterator it;
-	for (it = m_vScreenStack.begin(); it != m_vScreenStack.end(); it++)
-	{
+	vector<Screen*>::iterator it = m_vScreenStack.begin();
+	for (; it != m_vScreenStack.end(); it++)
 		(*it)->Update(delta);
-	}
 }
 
 void ScreenManager::Draw()
 {
-
+	vector<Screen*>::iterator it = m_vScreenStack.begin();
+	for (; it != m_vScreenStack.end(); it++)
+		(*it)->Draw();
 }
 
 void ScreenManager::PushScreen(string sName)

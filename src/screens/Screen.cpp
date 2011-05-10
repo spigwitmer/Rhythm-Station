@@ -1,25 +1,25 @@
 #include "screens/Screen.h"
+#include "utils/Logger.h"
 
 using namespace std;
 
-Screen::Screen(string sName)
+Screen::Screen(string sName) :
+	m_name(sName),
+	m_projection(1.0)
 {
-}
-
-Screen::~Screen()
-{
-}
-
-void Screen::Init()
-{
+	LOG->Info("Created screen \"%s\"", sName.c_str());
 }
 
 void Screen::Update(double delta)
 {
+	// (Update stuff)
+
+	UpdateInternal(delta);
 }
 
 void Screen::Draw()
 {
+	// TODO
 }
 
 /**
