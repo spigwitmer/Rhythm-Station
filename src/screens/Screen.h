@@ -16,6 +16,8 @@ public:
 	void Update(double delta);
 	void Draw();
 
+	void Push(Drawable* obj);
+
 	std::string GetName() const { return m_name; }
 	glm::mat4 *GetProjection() { return &m_projection; }
 

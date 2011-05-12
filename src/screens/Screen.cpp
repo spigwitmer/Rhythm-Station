@@ -14,6 +14,11 @@ Screen::~Screen()
 {
 }
 
+void Screen::Push(Drawable* obj)
+{
+	m_objects.push_back(obj);
+}
+
 void Screen::Update(double delta)
 {
 	// (Update stuff)
