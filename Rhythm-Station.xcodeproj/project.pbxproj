@@ -121,6 +121,7 @@
 		EEC8D82F128DB44D00351601 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F7C127559C40064054A /* time.c */; };
 		EEC8D830128DB44D00351601 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F8A127559C40064054A /* window.c */; };
 		EECBDF9F125D008000BA2BA4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECBDF9E125D008000BA2BA4 /* OpenAL.framework */; };
+		EED1E27D137B0085002DF644 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EED1E27C137B0085002DF644 /* Drawable.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -298,6 +299,9 @@
 		EEC52F8A127559C40064054A /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = window.c; sourceTree = "<group>"; };
 		EEC52FD1127559F30064054A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = extern/config.h; sourceTree = SOURCE_ROOT; };
 		EECBDF9E125D008000BA2BA4 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		EED1E27B137B0085002DF644 /* Drawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drawable.h; sourceTree = "<group>"; };
+		EED1E27C137B0085002DF644 /* Drawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drawable.cpp; sourceTree = "<group>"; };
+		EED1E2BC137B278B002DF644 /* Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -442,13 +446,14 @@
 		EE2EACBB13786D7E007FA34A /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				EE2EAF4D1379F4A4007FA34A /* Timer.cpp */,
-				EE2EAF4E1379F4A4007FA34A /* Timer.h */,
-				EE2EAECB1379DFFE007FA34A /* Message.cpp */,
-				EE2EAECC1379DFFE007FA34A /* Message.h */,
 				EE2EAD5313791DB4007FA34A /* Logger.cpp */,
 				EE2EAD5413791DB4007FA34A /* Logger.h */,
+				EE2EAECB1379DFFE007FA34A /* Message.cpp */,
+				EE2EAECC1379DFFE007FA34A /* Message.h */,
 				EE2EACBC13786D9C007FA34A /* Singleton.h */,
+				EE2EAF4D1379F4A4007FA34A /* Timer.cpp */,
+				EE2EAF4E1379F4A4007FA34A /* Timer.h */,
+				EED1E2BC137B278B002DF644 /* Type.h */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -496,14 +501,15 @@
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EED1E27A137B0071002DF644 /* drawables */,
 				EE2EAF451379F470007FA34A /* input */,
 				EE2EAC9913786CE7007FA34A /* managers */,
 				EE2EAD2A13790F85007FA34A /* screens */,
 				EE2EAE161379CADD007FA34A /* threads */,
 				EE2EACBB13786D7E007FA34A /* utils */,
 				EE2EAC7C13785F31007FA34A /* main.cpp */,
-				EE2EAC90137860E5007FA34A /* RStation.h */,
 				EE2EAC91137860E5007FA34A /* RStation.cpp */,
+				EE2EAC90137860E5007FA34A /* RStation.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -652,6 +658,15 @@
 				EEC52F71127559C40064054A /* platform.h */,
 			);
 			path = cocoa;
+			sourceTree = "<group>";
+		};
+		EED1E27A137B0071002DF644 /* drawables */ = {
+			isa = PBXGroup;
+			children = (
+				EED1E27C137B0085002DF644 /* Drawable.cpp */,
+				EED1E27B137B0085002DF644 /* Drawable.h */,
+			);
+			path = drawables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -824,6 +839,7 @@
 				EE2EAF0E1379ED84007FA34A /* InputManager.cpp in Sources */,
 				EE2EAF4A1379F483007FA34A /* ButtonState.cpp in Sources */,
 				EE2EAF4F1379F4A4007FA34A /* Timer.cpp in Sources */,
+				EED1E27D137B0085002DF644 /* Drawable.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,7 +862,6 @@
 					"$(inherited)",
 					/opt/local/lib,
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/src/osx\"",
 					"\"$(SRCROOT)/src/arch/osx\"",
 				);
 				PRODUCT_NAME = "Rhythm-Station";
@@ -867,7 +882,6 @@
 					"$(inherited)",
 					/opt/local/lib,
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/src/osx\"",
 					"\"$(SRCROOT)/src/arch/osx\"",
 				);
 				PRODUCT_NAME = "Rhythm-Station";

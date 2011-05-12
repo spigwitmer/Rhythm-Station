@@ -20,7 +20,7 @@ class RStation : public Singleton<RStation>
 public:
 	RStation();
 	virtual ~RStation();
-	
+
 	int Start(std::vector<std::string> vArguments);
 
 private:

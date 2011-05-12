@@ -3,6 +3,7 @@
 
 #include <string>
 #include <glm/glm.hpp>
+#include "drawables/Drawable.h"
 #include "managers/ScreenManager.h"
 #include "utils/Message.h"
 
@@ -10,7 +11,7 @@ class Screen : public MessageListener
 {
 public:
 	Screen(std::string sName);
-	virtual ~Screen() {}
+	virtual ~Screen();
 
 	void Update(double delta);
 	void Draw();
@@ -25,6 +26,8 @@ public:
 protected:
 	std::string m_name;
 	glm::mat4 m_projection;
+
+	std::vector<Drawable*> m_objects;
 };
 
 #endif

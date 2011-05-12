@@ -10,6 +10,10 @@ Screen::Screen(string sName) :
 	LOG->Info("Created screen \"%s\"", sName.c_str());
 }
 
+Screen::~Screen()
+{
+}
+
 void Screen::Update(double delta)
 {
 	// (Update stuff)
