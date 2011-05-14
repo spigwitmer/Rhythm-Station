@@ -1,19 +1,17 @@
 #include <GL/glew.h>
+#include <glm/gtc/matrix_transform.hpp>
 #include "Drawable.h"
 #include "managers/ScreenManager.h"
 #include "screens/Screen.h"
-#include <glm/gtc/matrix_transform.hpp>
 
 Drawable::Drawable() :
 	m_position(0.0), m_scale(1.0), m_size(1.0), m_rotation(0.0),
 	m_matrix(1.0), m_halign(H_ALIGN_LEFT), m_valign(V_ALIGN_TOP)
 {
-	glGenBuffers(2, m_VBO);
 }
 
 Drawable::~Drawable()
 {
-	glDeleteBuffers(2, m_VBO);
 }
 
 void Drawable::Push()
@@ -54,9 +52,6 @@ void Drawable::Draw()
 	rotate = glm::rotate(rotate, m_rotation.z, glm::vec3(0.0, 0.0, 1.0));
 
 	m_matrix = xlate * rotate * scale;
-
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO[0]);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_VBO[1]);
 
 //	glVertexAttribPointer stuff
 

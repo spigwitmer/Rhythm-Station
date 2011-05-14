@@ -71,9 +71,6 @@ protected:
 	// Our alignments
 	HorizAlign m_halign;
 	VertAlign m_valign;
-
-	// vertices + indices
-	unsigned m_VBO[2];
 };
 
 #endif

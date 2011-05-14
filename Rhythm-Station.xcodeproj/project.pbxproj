@@ -54,6 +54,8 @@
 		EE2EAF0E1379ED84007FA34A /* InputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAF0C1379ED84007FA34A /* InputManager.cpp */; };
 		EE2EAF4A1379F483007FA34A /* ButtonState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAF461379F483007FA34A /* ButtonState.cpp */; };
 		EE2EAF4F1379F4A4007FA34A /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAF4D1379F4A4007FA34A /* Timer.cpp */; };
+		EE3A2158137DAA3C00CD800F /* Quad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE3A2157137DAA3C00CD800F /* Quad.cpp */; };
+		EE3A215B137DAA4200CD800F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE3A215A137DAA4200CD800F /* Sprite.cpp */; };
 		EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = EE51F2E812EB4B74003A241E /* ConvertUTF.c */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
@@ -193,6 +195,10 @@
 		EE2EAF491379F483007FA34A /* Inputs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inputs.h; sourceTree = "<group>"; };
 		EE2EAF4D1379F4A4007FA34A /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		EE2EAF4E1379F4A4007FA34A /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		EE3A2156137DAA3C00CD800F /* Quad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quad.h; sourceTree = "<group>"; };
+		EE3A2157137DAA3C00CD800F /* Quad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quad.cpp; sourceTree = "<group>"; };
+		EE3A2159137DAA4200CD800F /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		EE3A215A137DAA4200CD800F /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		EE51F2E812EB4B74003A241E /* ConvertUTF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ConvertUTF.c; sourceTree = "<group>"; };
 		EE51F2E912EB4B74003A241E /* ConvertUTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertUTF.h; sourceTree = "<group>"; };
 		EE51F2EF12EB4B74003A241E /* SimpleIni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleIni.h; sourceTree = "<group>"; };
@@ -665,6 +671,10 @@
 			children = (
 				EED1E27C137B0085002DF644 /* Drawable.cpp */,
 				EED1E27B137B0085002DF644 /* Drawable.h */,
+				EE3A2156137DAA3C00CD800F /* Quad.h */,
+				EE3A2157137DAA3C00CD800F /* Quad.cpp */,
+				EE3A2159137DAA4200CD800F /* Sprite.h */,
+				EE3A215A137DAA4200CD800F /* Sprite.cpp */,
 			);
 			path = drawables;
 			sourceTree = "<group>";
@@ -840,6 +850,8 @@
 				EE2EAF4A1379F483007FA34A /* ButtonState.cpp in Sources */,
 				EE2EAF4F1379F4A4007FA34A /* Timer.cpp in Sources */,
 				EED1E27D137B0085002DF644 /* Drawable.cpp in Sources */,
+				EE3A2158137DAA3C00CD800F /* Quad.cpp in Sources */,
+				EE3A215B137DAA4200CD800F /* Sprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
