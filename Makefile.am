@@ -108,54 +108,40 @@ RSTHREADSLD += -lpthread
 #endif
 
 # RStation source groups
-Utils = \
-	src/utils/INIFile.cpp src/utils/INIFile.h \
-	src/utils/Logger.cpp src/utils/Logger.h \
-	src/utils/PreferencesFile.cpp src/utils/PreferencesFile.h \
-	src/utils/StringUtils.cpp src/utils/StringUtils.h \
-	src/utils/Timer.cpp src/utils/Timer.h
 
 Drawables = \
-	src/drawables/Font.cpp src/drawables/Font.h \
-	src/drawables/NoteField.cpp src/drawables/NoteField.h \
-	src/drawables/Object.cpp src/drawables/Object.h \
-	src/drawables/Sprite.cpp src/drawables/Sprite.h
+	src/drawables/Drawable.cpp \
+	src/drawables/Quad.cpp \
+	src/drawables/Sprite.cpp
 
-Renderer = \
-	src/renderer/Matrix.cpp src/renderer/Matrix.h \
-	src/renderer/Mesh.cpp src/Renderer.Mesh.h \
-	src/renderer/Shader.cpp src/renderer/Shader.h \
-	src/renderer/Texture.cpp src/renderer/Texture.h \
-	src/renderer/Window.cpp src/renderer/Window.h
-
-Database = \
-	src/database/SQLiteDatabase.cpp src/database/SQLiteDatabase.h
+Input = \
+	src/input/ButtonState.cpp
 
 Managers = \
-	src/managers/FileManager.cpp src/managers/FileManager.h \
-	src/managers/GameManager.cpp src/managers/GameManager.h \
-	src/managers/InputManager.cpp src/managers/InputManager.h \
-	src/managers/LuaManager.cpp src/managers/LuaManager.h \
-	src/managers/MessageManager.cpp src/managers/MessageManager.h \
-	src/managers/ResourceManager.cpp src/managers/ResourceManager.h \
-	src/managers/SoundManager.cpp src/managers/SoundManager.h
+	src/managers/InputManager.cpp \
+	src/managers/MessageManager.cpp \
+	src/managers/ScreenManager.cpp
+
+Screens = \
+	src/screens/Screen.cpp
+
+Utils = \
+	src/utils/Logger.cpp \
+	src/utils/Message.cpp \
+	src/utils/Timer.cpp
 
 #
 # RStation binary
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a
 rstation_SOURCES = \
-	$(Database) \
 	$(Drawables) \
-	$(Utils) \
-	$(Renderer) \
+	$(Input) \
 	$(Managers) \
-	src/HandleArguments.cpp \
+	$(Screens) \
+	$(Utils) \
 	src/main.cpp \
-	src/Message.cpp \
-	src/PNGFile.cpp \
-	src/Sound.cpp \
-	src/Tween.cpp
+	src/RStation.cpp
 
 rstation_SOURCES += $(RSTHREADS)
 rstation_LDADD += $(RSTHREADSLD)

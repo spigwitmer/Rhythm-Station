@@ -1,8 +1,8 @@
 #ifndef INPUT_MANAGER_H
 #define INPUT_MANAGER_H
 
-#include "Inputs.h"
-#include "ButtonState.h"
+#include "input/Inputs.h"
+#include "input/ButtonState.h"
 #include "utils/Singleton.h"
 #include <glm/glm.hpp>
 

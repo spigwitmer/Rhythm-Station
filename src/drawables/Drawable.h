@@ -4,7 +4,7 @@
 #include "utils/Type.h"
 #include <glm/glm.hpp>
 
-typedef struct GLData
+struct GLData
 {
 	// Basic stuff
 	glm::vec3 pos;
