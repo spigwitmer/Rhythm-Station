@@ -12,7 +12,9 @@ public:
 	void Init();
 
 protected:
-	int m_MaxAttributes, m_MaxUniforms;
+	int m_MaxAnisotropy,
+		m_MaxAttributes,
+		m_MaxUniforms;
 };
 
 #endif
