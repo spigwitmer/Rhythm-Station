@@ -7,7 +7,7 @@ enum RSButtons
 	/* START : Keyboard keys */
 	
 	// 1 - 0
-	RS_KEY_1, RS_KEY_2, RS_KEY_3, RS_KEY_4, RS_KEY_5,
+	RS_KEY_1 = 0, RS_KEY_2, RS_KEY_3, RS_KEY_4, RS_KEY_5,
 	RS_KEY_6, RS_KEY_7, RS_KEY_8, RS_KEY_9, RS_KEY_0,
 	
 	// A - Z
