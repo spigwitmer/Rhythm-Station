@@ -54,5 +54,7 @@ void Context::Init()
 
 	if (!err)
 		LOG->Info("Everything appears to be acceptable.");
+
+	LoadShaders();
 }
 
