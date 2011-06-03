@@ -12,7 +12,7 @@ void MessageManager::StopListening(std::string event, MessageListener *scr)
 {
 	std::vector<MessageListener *> listeners = vpEventListeners[event];
 
-	// find the screen and remove it.
+	// find the listener and remove it.
 	for (MessageIterator it = listeners.begin(); it != listeners.end(); ++it)
 	{
 		if (*it == scr)
