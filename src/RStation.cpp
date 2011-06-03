@@ -27,6 +27,10 @@ RStation::~RStation()
 
 int RStation::Start(vector<string> vArgs)
 {
+	// exit on glfwInit() failure
+	if (m_status == RS_INIT_FAILURE)
+		return RS_INIT_FAILURE;
+	
 	m_vArgs = vArgs;
 
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 24);
