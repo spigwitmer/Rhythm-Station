@@ -122,8 +122,18 @@ Managers = \
 	src/managers/MessageManager.cpp \
 	src/managers/ScreenManager.cpp
 
+Renderer = \
+	src/renderer/Context.cpp \
+	src/renderer/Mesh.cpp \
+	src/renderer/Shader.cpp \
+	src/renderer/Texture.cpp
+
 Screens = \
 	src/screens/Screen.cpp
+
+Threads = \
+	src/threads/Threads_pthreads.cpp \
+	src/threads/ThreadGroup.cpp
 
 Utils = \
 	src/utils/Logger.cpp \
@@ -138,6 +148,7 @@ rstation_SOURCES = \
 	$(Drawables) \
 	$(Input) \
 	$(Managers) \
+	$(Renderer) \
 	$(Screens) \
 	$(Utils) \
 	src/main.cpp \

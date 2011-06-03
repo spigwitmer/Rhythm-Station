@@ -3,6 +3,7 @@
 #include "managers/InputManager.h"
 #include "managers/ScreenManager.h"
 #include "utils/Logger.h"
+#include "renderer/Context.h"
 
 using namespace std;
 
@@ -41,20 +42,10 @@ int RStation::Start(vector<string> vArgs)
 		return RS_NO_WINDOW;
 	}
 
+	// Make sure everything is available to us before trying to do anything.
 	glewInit();
 
-	// Enable 8 attributes for all our vertex data.
-	for (int i = 0; i<8; i++)
-	{
-		glEnableVertexAttribArray(i);
-	}
-	
-	int attrs = 0;
-	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &attrs);
-	LOG->Info("Hardware supports %d vertex attributes.", attrs);
-
-	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &attrs);
-	LOG->Info("Hardware supports %d uniform components.", attrs);
+	Context::GetSingleton()->Init();
 
 	return Loop();
 }
