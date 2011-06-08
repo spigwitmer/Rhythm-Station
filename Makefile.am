@@ -139,6 +139,7 @@ Utils = \
 	src/utils/ByteBuffer.cpp \
 	src/utils/Logger.cpp \
 	src/utils/Message.cpp \
+	src/utils/TextUtil.cpp \
 	src/utils/Timer.cpp
 
 #
