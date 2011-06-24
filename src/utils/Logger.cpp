@@ -38,13 +38,16 @@ Logger *LOG = NULL;
 }
 
 // TODO: Log to file(s)
-Logger::Logger() { }
+Logger::Logger() {
+	Info("Rhythm-Station");
+	Info("------------------------------------------------------------");
+}
 
 string Logger::Format(const char *in, ...)
 {
 	string ret;
 	FORMAT(ret);
-	
+
 	return ret;
 }
 

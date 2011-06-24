@@ -28,6 +28,8 @@ PKG_CHECK_MODULES([EXT_DEPENDS],[
 		sqlite3 
 		vorbisfile 
 		xrandr
+		x11
+		xxf86vm
 	],[],[
 	AC_MSG_ERROR([All dependencies were not fulfilled: $EXT_DEPENDS_PKG_ERRORS])
 ])
