@@ -13,6 +13,8 @@ public:
 	Screen(std::string sName);
 	virtual ~Screen();
 
+	void HandleMessage(const Message &msg);
+
 	void Update(double delta);
 	void Draw();
 

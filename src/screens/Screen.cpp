@@ -8,10 +8,18 @@ Screen::Screen(string sName) :
 	m_projection(1.0)
 {
 	LOG->Info("Created screen \"%s\"", sName.c_str());
+
+	SubscribeTo("ScreenChanged");
+	SubscribeTo("Input");
 }
 
 Screen::~Screen()
 {
+}
+
+void Screen::HandleMessage(const Message &msg)
+{
+
 }
 
 void Screen::Push(Drawable* obj)
