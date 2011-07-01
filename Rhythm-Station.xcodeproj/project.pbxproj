@@ -59,6 +59,10 @@
 		EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = EE51F2E812EB4B74003A241E /* ConvertUTF.c */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
+		EE78B36113BE6D46009CCDEB /* Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE78B35913BE6D46009CCDEB /* Context.cpp */; };
+		EE78B36213BE6D46009CCDEB /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE78B35B13BE6D46009CCDEB /* Mesh.cpp */; };
+		EE78B36313BE6D46009CCDEB /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE78B35D13BE6D46009CCDEB /* Shader.cpp */; };
+		EE78B36413BE6D46009CCDEB /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE78B35F13BE6D46009CCDEB /* Texture.cpp */; };
 		EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
 		EE915EA01255D7B200F0B0B3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE61255CB9300F0B0B3 /* OpenGL.framework */; };
 		EEAB1ADC126F5440004FE58D /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AA3126F5440004FE58D /* lapi.c */; };
@@ -204,6 +208,14 @@
 		EE51F2EF12EB4B74003A241E /* SimpleIni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleIni.h; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
+		EE78B35913BE6D46009CCDEB /* Context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Context.cpp; sourceTree = "<group>"; };
+		EE78B35A13BE6D46009CCDEB /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Context.h; sourceTree = "<group>"; };
+		EE78B35B13BE6D46009CCDEB /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		EE78B35C13BE6D46009CCDEB /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
+		EE78B35D13BE6D46009CCDEB /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		EE78B35E13BE6D46009CCDEB /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		EE78B35F13BE6D46009CCDEB /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		EE78B36013BE6D46009CCDEB /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		EE915DE21255CB9300F0B0B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EE915DE61255CB9300F0B0B3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EEAB1AA3126F5440004FE58D /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
@@ -504,9 +516,25 @@
 			path = "simpleini-4.13";
 			sourceTree = "<group>";
 		};
+		EE78B35813BE6D46009CCDEB /* renderer */ = {
+			isa = PBXGroup;
+			children = (
+				EE78B35913BE6D46009CCDEB /* Context.cpp */,
+				EE78B35A13BE6D46009CCDEB /* Context.h */,
+				EE78B35B13BE6D46009CCDEB /* Mesh.cpp */,
+				EE78B35C13BE6D46009CCDEB /* Mesh.h */,
+				EE78B35D13BE6D46009CCDEB /* Shader.cpp */,
+				EE78B35E13BE6D46009CCDEB /* Shader.h */,
+				EE78B35F13BE6D46009CCDEB /* Texture.cpp */,
+				EE78B36013BE6D46009CCDEB /* Texture.h */,
+			);
+			path = renderer;
+			sourceTree = "<group>";
+		};
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EE78B35813BE6D46009CCDEB /* renderer */,
 				EED1E27A137B0071002DF644 /* drawables */,
 				EE2EAF451379F470007FA34A /* input */,
 				EE2EAC9913786CE7007FA34A /* managers */,
@@ -852,6 +880,10 @@
 				EED1E27D137B0085002DF644 /* Drawable.cpp in Sources */,
 				EE3A2158137DAA3C00CD800F /* Quad.cpp in Sources */,
 				EE3A215B137DAA4200CD800F /* Sprite.cpp in Sources */,
+				EE78B36113BE6D46009CCDEB /* Context.cpp in Sources */,
+				EE78B36213BE6D46009CCDEB /* Mesh.cpp in Sources */,
+				EE78B36313BE6D46009CCDEB /* Shader.cpp in Sources */,
+				EE78B36413BE6D46009CCDEB /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
