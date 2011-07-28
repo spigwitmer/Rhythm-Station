@@ -9,12 +9,13 @@ public:
 	Context();
 	virtual ~Context();
 
-	void Init();
+	void Init(bool using_gl3);
 
 protected:
 	int m_MaxAnisotropy,
 		m_MaxAttributes,
-		m_MaxUniforms;
+		m_MaxUniforms,
+		m_MaxTextureSize;
 };
 
 #endif

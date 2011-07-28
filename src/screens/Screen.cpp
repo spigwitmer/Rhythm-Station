@@ -3,6 +3,8 @@
 
 using namespace std;
 
+REGISTER_SCREEN( Screen );
+
 Screen::Screen(string sName) :
 	m_name(sName),
 	m_projection(1.0)
@@ -17,6 +19,11 @@ Screen::~Screen()
 {
 }
 
+void Screen::Init()
+{
+
+}
+
 void Screen::HandleMessage(const Message &msg)
 {
 
@@ -25,6 +32,10 @@ void Screen::HandleMessage(const Message &msg)
 void Screen::Push(Drawable* obj)
 {
 	m_objects.push_back(obj);
+}
+
+void Screen::UpdateInternal(double delta)
+{
 }
 
 void Screen::Update(double delta)

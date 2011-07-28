@@ -4,6 +4,8 @@
 #include "managers/ScreenManager.h"
 #include "utils/Logger.h"
 #include "renderer/Context.h"
+#include "utils/error.h"
+#include <OpenGL/gl3.h>
 
 using namespace std;
 
@@ -32,13 +34,30 @@ int RStation::Start(vector<string> vArgs)
 		return RS_INIT_FAILURE;
 	
 	m_vArgs = vArgs;
-
+	
+	// Shared window params, we always want these.
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 24);
 	glfwOpenWindowHint(GLFW_STENCIL_BITS, 8);
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 0);
 	glfwOpenWindowHint(GLFW_WINDOW_NO_RESIZE, 1);
-	m_window = glfwOpenWindow(960, 540, GLFW_WINDOWED, "Rhythm-Station", 0);
+	glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+	// First, try to create a GL 3.2 context
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
+	m_window = glfwOpenWindow(960, 540, GLFW_WINDOWED, "Rhythm-Station (GL 3.2)", NULL);
+	
+	// if we were able to create a window, then we support GL 3.2
+	bool bUsingGL3 = glfwIsWindow(m_window) ? true : false;
+	
+	// We weren't able to make a GL 3.2 window. Falling back to GL 2.1.
+	if (!bUsingGL3) {
+		LOG->Warn("Unable to create an OpenGL 3.2 context. Falling back to 2.1");
+		glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 2);
+		glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 1);
+		m_window = glfwOpenWindow(960, 540, GLFW_WINDOWED, "Rhythm-Station (GL 2.1)", NULL);
+	}
+	
 	// Make sure we were able to create a rendering context.
 	if (!glfwIsWindow(m_window))
 	{
@@ -46,10 +65,13 @@ int RStation::Start(vector<string> vArgs)
 		return RS_NO_WINDOW;
 	}
 
-	// Make sure everything is available to us before trying to do anything.
-	glewInit();
+	// We only need GLEW for legacy contexts.
+	if (!bUsingGL3)
+		glewInit();
+	
+	GetError();
 
-	Context::GetSingleton()->Init();
+	Context::GetSingleton()->Init(bUsingGL3);
 
 	return Loop();
 }
@@ -58,6 +80,8 @@ int RStation::Loop()
 {
 	ScreenManager *screen = ScreenManager::GetSingleton();
 	InputManager *input = InputManager::GetSingleton();
+
+	screen->PushScreen("Screen");
 
 	while (true)
 	{

@@ -24,8 +24,8 @@ public:
 	glm::mat4 *GetProjection() { return &m_projection; }
 
 	// For derived classes only.
-	virtual void Init() = 0;
-	virtual void UpdateInternal(double delta) = 0;
+	virtual void Init();
+	virtual void UpdateInternal(double delta);
 
 protected:
 	std::string m_name;

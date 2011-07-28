@@ -36,9 +36,16 @@
 		EE07CE3E127A279000AAA31F /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0E127A279000AAA31F /* Table.cpp */; };
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
+		EE1FCC9B13E1F48D00617627 /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1FCC9213E1F48D00617627 /* cocoa_enable.m */; };
+		EE1FCC9C13E1F48D00617627 /* cocoa_fullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1FCC9313E1F48D00617627 /* cocoa_fullscreen.m */; };
+		EE1FCC9D13E1F48D00617627 /* cocoa_gamma.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1FCC9413E1F48D00617627 /* cocoa_gamma.m */; };
+		EE1FCC9E13E1F48D00617627 /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1FCC9513E1F48D00617627 /* cocoa_init.m */; };
+		EE1FCC9F13E1F48D00617627 /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1FCC9613E1F48D00617627 /* cocoa_joystick.m */; };
+		EE1FCCA013E1F48D00617627 /* cocoa_opengl.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1FCC9713E1F48D00617627 /* cocoa_opengl.m */; };
+		EE1FCCA113E1F48D00617627 /* cocoa_time.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1FCC9913E1F48D00617627 /* cocoa_time.m */; };
+		EE1FCCA213E1F48D00617627 /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1FCC9A13E1F48D00617627 /* cocoa_window.m */; };
 		EE230ED012F9D94300E4C77B /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = EE230EC912F9D94300E4C77B /* Themes */; };
 		EE2D1C5F132F6F9E005E2B87 /* opengl.c in Sources */ = {isa = PBXBuildFile; fileRef = EE2D1C5E132F6F9E005E2B87 /* opengl.c */; };
-		EE2D1C61132F701B005E2B87 /* cocoa_opengl.m in Sources */ = {isa = PBXBuildFile; fileRef = EE2D1C60132F701B005E2B87 /* cocoa_opengl.m */; };
 		EE2EAC7D13785F31007FA34A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC7C13785F31007FA34A /* main.cpp */; };
 		EE2EAC92137860E5007FA34A /* RStation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC91137860E5007FA34A /* RStation.cpp */; };
 		EE2EAC9C13786CFE007FA34A /* ScreenManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC9B13786CFE007FA34A /* ScreenManager.cpp */; };
@@ -110,13 +117,6 @@
 		EEC52E301273803E0064054A /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52C891273803E0064054A /* trees.c */; };
 		EEC52E311273803E0064054A /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52C8B1273803E0064054A /* uncompr.c */; };
 		EEC52E441273803E0064054A /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52CA21273803E0064054A /* zutil.c */; };
-		EEC8D81F128DB44D00351601 /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F68127559C40064054A /* cocoa_enable.m */; };
-		EEC8D820128DB44D00351601 /* cocoa_fullscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F69127559C40064054A /* cocoa_fullscreen.m */; };
-		EEC8D821128DB44D00351601 /* cocoa_gamma.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6A127559C40064054A /* cocoa_gamma.m */; };
-		EEC8D823128DB44D00351601 /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6C127559C40064054A /* cocoa_init.m */; };
-		EEC8D824128DB44D00351601 /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6D127559C40064054A /* cocoa_joystick.m */; };
-		EEC8D825128DB44D00351601 /* cocoa_time.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6E127559C40064054A /* cocoa_time.m */; };
-		EEC8D826128DB44D00351601 /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F6F127559C40064054A /* cocoa_window.m */; };
 		EEC8D827128DB44D00351601 /* enable.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F73127559C40064054A /* enable.c */; };
 		EEC8D828128DB44D00351601 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F74127559C40064054A /* error.c */; };
 		EEC8D829128DB44D00351601 /* fullscreen.c in Sources */ = {isa = PBXBuildFile; fileRef = EEC52F75127559C40064054A /* fullscreen.c */; };
@@ -168,9 +168,17 @@
 		EE07CE0E127A279000AAA31F /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
 		EE0A64231270439C00F5F134 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "glew-1.5.6/src/glew.c"; sourceTree = "<group>"; };
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
+		EE1FCC9213E1F48D00617627 /* cocoa_enable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_enable.m; sourceTree = "<group>"; };
+		EE1FCC9313E1F48D00617627 /* cocoa_fullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_fullscreen.m; sourceTree = "<group>"; };
+		EE1FCC9413E1F48D00617627 /* cocoa_gamma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_gamma.m; sourceTree = "<group>"; };
+		EE1FCC9513E1F48D00617627 /* cocoa_init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_init.m; sourceTree = "<group>"; };
+		EE1FCC9613E1F48D00617627 /* cocoa_joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_joystick.m; sourceTree = "<group>"; };
+		EE1FCC9713E1F48D00617627 /* cocoa_opengl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_opengl.m; sourceTree = "<group>"; };
+		EE1FCC9813E1F48D00617627 /* cocoa_platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocoa_platform.h; sourceTree = "<group>"; };
+		EE1FCC9913E1F48D00617627 /* cocoa_time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_time.m; sourceTree = "<group>"; };
+		EE1FCC9A13E1F48D00617627 /* cocoa_window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_window.m; sourceTree = "<group>"; };
 		EE230EC912F9D94300E4C77B /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		EE2D1C5E132F6F9E005E2B87 /* opengl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = opengl.c; sourceTree = "<group>"; };
-		EE2D1C60132F701B005E2B87 /* cocoa_opengl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_opengl.m; sourceTree = "<group>"; };
 		EE2EAC7C13785F31007FA34A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EE2EAC90137860E5007FA34A /* RStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RStation.h; sourceTree = "<group>"; };
 		EE2EAC91137860E5007FA34A /* RStation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RStation.cpp; sourceTree = "<group>"; };
@@ -297,14 +305,6 @@
 		EEC52C9E1273803E0064054A /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
 		EEC52CA21273803E0064054A /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
 		EEC52CA31273803E0064054A /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
-		EEC52F68127559C40064054A /* cocoa_enable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_enable.m; sourceTree = "<group>"; };
-		EEC52F69127559C40064054A /* cocoa_fullscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_fullscreen.m; sourceTree = "<group>"; };
-		EEC52F6A127559C40064054A /* cocoa_gamma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_gamma.m; sourceTree = "<group>"; };
-		EEC52F6C127559C40064054A /* cocoa_init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_init.m; sourceTree = "<group>"; };
-		EEC52F6D127559C40064054A /* cocoa_joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_joystick.m; sourceTree = "<group>"; };
-		EEC52F6E127559C40064054A /* cocoa_time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_time.m; sourceTree = "<group>"; };
-		EEC52F6F127559C40064054A /* cocoa_window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_window.m; sourceTree = "<group>"; };
-		EEC52F71127559C40064054A /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		EEC52F73127559C40064054A /* enable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enable.c; sourceTree = "<group>"; };
 		EEC52F74127559C40064054A /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
 		EEC52F75127559C40064054A /* fullscreen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fullscreen.c; sourceTree = "<group>"; };
@@ -446,6 +446,13 @@
 				EE0A64231270439C00F5F134 /* glew.c */,
 			);
 			name = "glew-1.5.6";
+			sourceTree = "<group>";
+		};
+		EE1FCC9113E1F48D00617627 /* cocoa */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cocoa;
 			sourceTree = "<group>";
 		};
 		EE2EAC9913786CE7007FA34A /* managers */ = {
@@ -660,8 +667,17 @@
 		EEC52F65127559C40064054A /* glfw3 */ = {
 			isa = PBXGroup;
 			children = (
+				EE1FCC9113E1F48D00617627 /* cocoa */,
+				EE1FCC9213E1F48D00617627 /* cocoa_enable.m */,
+				EE1FCC9313E1F48D00617627 /* cocoa_fullscreen.m */,
+				EE1FCC9413E1F48D00617627 /* cocoa_gamma.m */,
+				EE1FCC9513E1F48D00617627 /* cocoa_init.m */,
+				EE1FCC9613E1F48D00617627 /* cocoa_joystick.m */,
+				EE1FCC9713E1F48D00617627 /* cocoa_opengl.m */,
+				EE1FCC9813E1F48D00617627 /* cocoa_platform.h */,
+				EE1FCC9913E1F48D00617627 /* cocoa_time.m */,
+				EE1FCC9A13E1F48D00617627 /* cocoa_window.m */,
 				EEC52FD1127559F30064054A /* config.h */,
-				EEC52F66127559C40064054A /* cocoa */,
 				EEC52F73127559C40064054A /* enable.c */,
 				EEC52F74127559C40064054A /* error.c */,
 				EEC52F75127559C40064054A /* fullscreen.c */,
@@ -676,22 +692,6 @@
 			);
 			name = glfw3;
 			path = glfw3/src;
-			sourceTree = "<group>";
-		};
-		EEC52F66127559C40064054A /* cocoa */ = {
-			isa = PBXGroup;
-			children = (
-				EEC52F68127559C40064054A /* cocoa_enable.m */,
-				EEC52F69127559C40064054A /* cocoa_fullscreen.m */,
-				EEC52F6A127559C40064054A /* cocoa_gamma.m */,
-				EEC52F6C127559C40064054A /* cocoa_init.m */,
-				EEC52F6D127559C40064054A /* cocoa_joystick.m */,
-				EE2D1C60132F701B005E2B87 /* cocoa_opengl.m */,
-				EEC52F6E127559C40064054A /* cocoa_time.m */,
-				EEC52F6F127559C40064054A /* cocoa_window.m */,
-				EEC52F71127559C40064054A /* platform.h */,
-			);
-			path = cocoa;
 			sourceTree = "<group>";
 		};
 		EED1E27A137B0071002DF644 /* drawables */ = {
@@ -846,13 +846,6 @@
 				EE07CE3B127A279000AAA31F /* Object.cpp in Sources */,
 				EE07CE3C127A279000AAA31F /* Script.cpp in Sources */,
 				EE07CE3E127A279000AAA31F /* Table.cpp in Sources */,
-				EEC8D81F128DB44D00351601 /* cocoa_enable.m in Sources */,
-				EEC8D820128DB44D00351601 /* cocoa_fullscreen.m in Sources */,
-				EEC8D821128DB44D00351601 /* cocoa_gamma.m in Sources */,
-				EEC8D823128DB44D00351601 /* cocoa_init.m in Sources */,
-				EEC8D824128DB44D00351601 /* cocoa_joystick.m in Sources */,
-				EEC8D825128DB44D00351601 /* cocoa_time.m in Sources */,
-				EEC8D826128DB44D00351601 /* cocoa_window.m in Sources */,
 				EEC8D827128DB44D00351601 /* enable.c in Sources */,
 				EEC8D828128DB44D00351601 /* error.c in Sources */,
 				EEC8D829128DB44D00351601 /* fullscreen.c in Sources */,
@@ -864,7 +857,6 @@
 				EEC8D830128DB44D00351601 /* window.c in Sources */,
 				EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */,
 				EE2D1C5F132F6F9E005E2B87 /* opengl.c in Sources */,
-				EE2D1C61132F701B005E2B87 /* cocoa_opengl.m in Sources */,
 				EE2EAC7D13785F31007FA34A /* main.cpp in Sources */,
 				EE2EAC92137860E5007FA34A /* RStation.cpp in Sources */,
 				EE2EAC9C13786CFE007FA34A /* ScreenManager.cpp in Sources */,
@@ -884,6 +876,14 @@
 				EE78B36213BE6D46009CCDEB /* Mesh.cpp in Sources */,
 				EE78B36313BE6D46009CCDEB /* Shader.cpp in Sources */,
 				EE78B36413BE6D46009CCDEB /* Texture.cpp in Sources */,
+				EE1FCC9B13E1F48D00617627 /* cocoa_enable.m in Sources */,
+				EE1FCC9C13E1F48D00617627 /* cocoa_fullscreen.m in Sources */,
+				EE1FCC9D13E1F48D00617627 /* cocoa_gamma.m in Sources */,
+				EE1FCC9E13E1F48D00617627 /* cocoa_init.m in Sources */,
+				EE1FCC9F13E1F48D00617627 /* cocoa_joystick.m in Sources */,
+				EE1FCCA013E1F48D00617627 /* cocoa_opengl.m in Sources */,
+				EE1FCCA113E1F48D00617627 /* cocoa_time.m in Sources */,
+				EE1FCCA213E1F48D00617627 /* cocoa_window.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -967,7 +967,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.7;
 			};
 			name = Debug;
 		};
@@ -1002,7 +1002,7 @@
 					"$(PROJECT_DIR)/src",
 				);
 				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.7;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
