@@ -47,6 +47,10 @@ void Context::Init(bool using_gl3)
 			LOG->Warn("Fragment programs don't appear to be supported!");
 	}
 
+	/*
+	 * Note: glewIsSupported can be used without calling glewInit(), as it just
+	 * parses the output of glGetString(GL_EXTENSIONS).
+	 */
 	if (glewIsSupported("GL_EXT_texture_filter_anisotropic"))
 		GetGLValue(&m_MaxAnisotropy, "Max Anisotropic Filtering", GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT);
 

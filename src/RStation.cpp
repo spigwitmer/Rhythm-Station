@@ -1,11 +1,16 @@
 #include <GL/glew.h>
+
+// Oh you.
+#if __APPLE__
+#include <OpenGL/gl3.h>
+#endif
+
 #include "RStation.h"
 #include "managers/InputManager.h"
 #include "managers/ScreenManager.h"
 #include "utils/Logger.h"
 #include "renderer/Context.h"
 #include "utils/error.h"
-#include <OpenGL/gl3.h>
 
 using namespace std;
 
@@ -17,8 +22,9 @@ RStation::RStation() :
 	int err = glfwInit();
 	if (!err)
 	{
-		LOG->Warn(glfwErrorString(err));
+		LOG->Info("FATAL %s", glfwErrorString(err));
 		m_status = RS_INIT_FAILURE;
+		assert(m_status);
 	}
 }
 
