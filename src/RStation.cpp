@@ -84,11 +84,13 @@ int RStation::Start(vector<string> vArgs)
 
 int RStation::Loop()
 {
+
+	
 	ScreenManager *screen = ScreenManager::GetSingleton();
 	InputManager *input = InputManager::GetSingleton();
 
-	screen->PushScreen("Screen");
-
+	screen->PushScreen("ScreenInit");
+	
 	while (true)
 	{
 		// Break if user closed the window

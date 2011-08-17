@@ -53,11 +53,6 @@ void Drawable::Draw()
 
 	m_matrix = xlate * rotate * scale;
 
-//	glVertexAttribPointer stuff
-
-	//m_shader.Bind();
-	//m_shader.SetUniforms();
-
 	DrawInternal();
 }
 

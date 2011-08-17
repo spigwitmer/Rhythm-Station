@@ -2,6 +2,7 @@
 #include "ScreenManager.h"
 #include "screens/Screen.h"
 #include "RStation.h"
+#include "utils/Logger.h"
 
 using namespace std;
 
@@ -35,7 +36,10 @@ void ScreenManager::PushScreen(string sName)
 	MakeScreenMap::iterator it = GetMap()->find(sName);
 
 	if (it == GetMap()->end())
+	{
+		LOG->Warn("Screen \"%s\" not found!", sName.c_str());
 		return;
+	}
 
 	m_vScreenStack.push_back(it->second(sName));
 }

@@ -1,3 +1,7 @@
+#ifndef _MESSAGE_MANAGER_H_
+#define _MESSAGE_MANAGER_H_
+
+
 #include "utils/Singleton.h"
 #include "utils/Message.h"
 #include <string>
@@ -15,6 +19,8 @@ public:
 private:
 	std::map<std::string, std::vector<MessageListener *> > vpEventListeners;
 };
+
+#endif
 
 /**
  * @file

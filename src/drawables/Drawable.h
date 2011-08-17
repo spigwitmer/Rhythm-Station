@@ -10,22 +10,6 @@ struct GLData
 	glm::vec3 pos;
 	glm::vec3 nor;
 	glm::vec2 tex;
-/*
-	// Bone info
-	struct {
-		uint32_t ID;
-		float weight;
-	} bone;
-	
-	// Texture info
-	struct {
-		uint32_t ID;
-		uint32_t blend;
-
-		// 2 vec3's instead of 3 vec2's so we can keep it at 8 attribs.
-		glm::vec3 coords[2];
-	} texture;
-*/
 };
 
 enum HorizAlign {

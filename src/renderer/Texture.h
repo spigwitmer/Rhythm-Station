@@ -5,21 +5,20 @@ class Texture
 {
 public:
 	Texture();
-	virtual ~Texture();
+
+	unsigned int width, height, id, refcount;
 };
 
 // For Render-to-Texture
-class Framebuffer
+class Framebuffer : public Texture
 {
 public:
 	Framebuffer();
-	virtual ~Framebuffer();
 
 	Texture *GetTexture() { return &m_Texture; }
-
+	
 private:
 	Texture m_Texture;
 };
 
 #endif
-
