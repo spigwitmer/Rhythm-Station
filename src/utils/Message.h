@@ -8,7 +8,7 @@ class Message
 {
 public:
 	// Send message to all listeners
-	void Send();
+	void Send() {}
 
 	std::string name;
 	
@@ -23,7 +23,7 @@ public:
 	// Might change later.
 	virtual ~MessageListener() { } // silence warning
 	virtual void HandleMessage(const Message &msg) { }
-	virtual void SubscribeTo(std::string name);
+	virtual void SubscribeTo(std::string name) { }
 };
 
 #endif

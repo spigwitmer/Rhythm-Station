@@ -99,7 +99,7 @@ static inline RSButtons TranslateGLFW(int i)
 		case '8':	return RS_KEY_8;
 		case '9':	return RS_KEY_9;
 		case '0':	return RS_KEY_0;
-		case '`':	return RS_KEY_TILDE;
+		case '`':	return RS_KEY_GRAVE;
 		case '-':	return RS_KEY_HYPHEN;
 		case '=':	return RS_KEY_EQUALS;
 		case '[':	return RS_KEY_LEFT_SQ_BRACKET;
@@ -124,8 +124,6 @@ static inline RSButtons TranslateGLFW(int i)
 		default:
 			break;
 	}
-	
-	// Fallback
 	return RS_KEY_INVALID;
 }
 
@@ -149,7 +147,7 @@ InputManager::InputManager()
 {
 	// Initialize all our buttons
 	for (unsigned i = 0; i < RS_INPUT_MAX; i++)
-		g_pButtons[i] = new ButtonState( i );
+		g_pButtons[i] = new ButtonState(i);
 	
 	// Reserve 16 slots in the queue initially
 	g_vQueue.reserve(16);
@@ -163,13 +161,12 @@ InputManager::InputManager()
 
 InputManager::~InputManager()
 {
-	// Unset the callbacks
-	glfwSetKeyCallback( NULL );
-	glfwSetMouseButtonCallback( NULL );
-	glfwSetMousePosCallback( NULL );
-	glfwSetScrollCallback( NULL );
+	// don't need these anymore
+	glfwSetKeyCallback(NULL);
+	glfwSetMouseButtonCallback(NULL);
+	glfwSetMousePosCallback(NULL);
+	glfwSetScrollCallback(NULL);
 	
-	// Clear our queue
 	DiscardQueue();
 	
 	// Deallocate the buttons
@@ -182,43 +179,32 @@ InputManager::~InputManager()
 
 void InputManager::DiscardQueue()
 {
-	// Clear it
 	g_vQueue.clear();
-	
-	// Reset the pointer
 	g_iQueuePtr = 0;
 }
 
 void InputManager::Update()
 {
-	// Discard the queue initially
 	DiscardQueue();
-	
-	// Poll updates from glfw
 	glfwPollEvents();
 }
 
 ButtonState *InputManager::GetNextInput()
 {
-	// Is there anything in the queue?
 	if (g_vQueue.empty())
 		return NULL;
 	
-	// Test the queue pointer
 	if (g_iQueuePtr >= g_vQueue.size())
 		return NULL;
 	
-	// Return the button
 	return g_vQueue[g_iQueuePtr++];
 }
 
 ButtonState *InputManager::GetButton(RSButtons b) const
 {
-	// Sanity!
 	if (b >= RS_INPUT_MAX)
 		return NULL;
 	
-	// Return the button
 	return g_pButtons[b];
 }
 
@@ -233,42 +219,33 @@ static void KeyboardCallback(GLFWwindow, int iButton, int iDown)
 	// Translate the button
 	RSButtons b = TranslateGLFW(iButton);
 	
-	// Test it
 	if (b == RS_KEY_INVALID)
 	{
 		LOG->Warn("[Input] Unknown GLFW Key '%i'", iButton);
 		return;
 	}
 	
-	// Now press it accordingly
 	g_pButtons[b]->Press(!!iDown);
-	
-	// Add this button to the queue
 	g_vQueue.push_back(g_pButtons[b]);
 }
 
+// Same thing, but for mouse.
 static void MouseButtonCallback(GLFWwindow, int iButton, int iDown)
 {
-	// Translate the button
 	RSButtons b = TranslateGLFW(iButton);
 	
-	// Test it
 	if (b == RS_KEY_INVALID)
 	{
 		LOG->Warn("[Input] Unknown GLFW Mouse button '%i'", iButton);
 		return;
 	}
 	
-	// Now press it accordingly
-	g_pButtons[b]->Press(!!iDown);
-	
-	// Add this button to the queue
+	g_pButtons[b]->Press(!!iDown);	
 	g_vQueue.push_back(g_pButtons[b]);
 }
 
 static void MousePosCallback(GLFWwindow, int iPosX, int iPosY)
 {
-	// This is simple, just set stuff
 	g_iMousePos.x = iPosX;
 	g_iMousePos.y = iPosY;
 }

@@ -13,10 +13,6 @@ Context::Context() :
 {
 }
 
-Context::~Context()
-{
-}
-
 static void GetGLValue(int *target, const char *text, int param)
 {
 	glGetIntegerv(param, target);

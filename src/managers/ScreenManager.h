@@ -6,6 +6,7 @@
 #include <map>
 
 #include "utils/Singleton.h"
+#include "utils/Message.h"
 
 class Screen;
 
@@ -38,9 +39,9 @@ private:
 
 struct RegisterScreen
 {
-	RegisterScreen( const std::string &sName, MakeScreenFn fn )
+	RegisterScreen(const std::string &sName, MakeScreenFn fn)
 	{
-		ScreenManager::GetMap()->insert( MakeScreenEntry( sName, fn ) );
+		ScreenManager::GetMap()->insert(MakeScreenEntry(sName, fn));
 	}
 };
 

@@ -7,14 +7,11 @@
 class ThreadImpl_pthreads: public ThreadImpl
 {
 public:
-	//ThreadImpl_pthreads();
 	virtual ~ThreadImpl_pthreads();
-	void Start( THREAD_FUNC_ARG(func) );
-	void Pause();
-	void Wait();
+	void start(THREAD_FUNC_ARG(func));
+	void join();
 
 private:
-	//pthread_attr_t m_attr;
 	pthread_t m_pThreadhandle;
 };
 

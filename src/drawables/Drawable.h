@@ -1,7 +1,6 @@
 #ifndef _DRAWABLE_H_
 #define _DRAWABLE_H_
 
-#include "utils/Type.h"
 #include <glm/glm.hpp>
 
 struct GLData

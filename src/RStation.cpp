@@ -2,6 +2,7 @@
 
 // Oh you.
 #if __APPLE__
+// Throws a warning because it has to unless I pull off some needless voodoo.
 #include <OpenGL/gl3.h>
 #endif
 
@@ -51,7 +52,7 @@ int RStation::Start(vector<string> vArgs)
 	// First, try to create a GL 3.2 context
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
-	m_window = glfwOpenWindow(960, 540, GLFW_WINDOWED, "Rhythm-Station (GL 3.2)", NULL);
+	m_window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "Rhythm-Station (GL 3.2)", NULL);
 	
 	// if we were able to create a window, then we support GL 3.2
 	bool bUsingGL3 = glfwIsWindow(m_window) ? true : false;
@@ -61,7 +62,7 @@ int RStation::Start(vector<string> vArgs)
 		LOG->Warn("Unable to create an OpenGL 3.2 context. Falling back to 2.1");
 		glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 2);
 		glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 1);
-		m_window = glfwOpenWindow(960, 540, GLFW_WINDOWED, "Rhythm-Station (GL 2.1)", NULL);
+		m_window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "Rhythm-Station (GL 2.1)", NULL);
 	}
 	
 	// Make sure we were able to create a rendering context.

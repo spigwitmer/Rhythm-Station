@@ -6,26 +6,12 @@ RSThread::RSThread()
 }
 RSThread::~RSThread()
 {
-	//m_impl.Wait();
-	//m_impl.Destroy();
 }
 
-void RSThread::Start( THREAD_FUNC_ARG(func) )
+void RSThread::start(THREAD_FUNC_ARG(func))
 {
 	m_impl = CreateThreadImpl();
-	m_impl->Start(func);
+	m_impl->start(func);
 }
-void RSThread::Pause() { m_impl->Pause(); }
-void RSThread::Wait() { m_impl->Wait(); }
 
-/*
-RSMutex::RSMutex()
-{
-	m_impl->Init();
-}
-RSMutex::~RSMutex()
-{
-	m_impl->Destroy();
-}*/
-
-
+void RSThread::join() { m_impl->join(); }

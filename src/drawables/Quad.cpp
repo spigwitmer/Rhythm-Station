@@ -1,13 +1,12 @@
-#include <GL/glew.h>
+#include <OpenGL/gl3.h>
 #include <vector>
 #include "Quad.h"
-#include "utils/Type.h"
 #include "utils/Logger.h"
 
 using namespace std;
 using namespace glm;
 
-Quad::Quad()
+Quad::Quad() : m_init(false)
 {
 	uint8_t indices[] = { 1, 2, 3, 4 };
 	vector<GLData> verts(4);
@@ -25,7 +24,7 @@ Quad::Quad()
 	glGenBuffers(2, m_VBO);
 
 	// Oh, also this will probably crash or otherwise not work.
-	if (!glIsBuffer(m_VBO[0]))
+	if (!glIsBuffer(m_VBO[0]) || !glIsBuffer(m_VBO[1]))
 	{
 		LOG->Warn("Could not allocate buffers.");
 		return;
@@ -36,6 +35,8 @@ Quad::Quad()
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_VBO[1]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint8_t)*4, &indices, GL_STATIC_DRAW);
+	
+	m_init = true;
 }
 
 Quad::~Quad()
@@ -45,6 +46,9 @@ Quad::~Quad()
 
 void Quad::DrawInternal()
 {
+	if (!m_init)
+		return;
+
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO[0]);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_VBO[1]);
 

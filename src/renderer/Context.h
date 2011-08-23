@@ -7,7 +7,6 @@ class Context : public Singleton<Context>
 {
 public:
 	Context();
-	virtual ~Context();
 
 	void Init(bool using_gl3);
 
