@@ -5,6 +5,8 @@
 #include <GL/glfw3.h>
 #include "Logger.h"
 
+#include <assert.h>
+
 using namespace std;
 
 Logger *LOG = NULL;
@@ -68,13 +70,28 @@ void Logger::Warn(const char *in, ...)
 {
 	string ret;
 	FORMAT(ret);
-
+	
 	printf("[%0.3f] WARNING: %s\n", glfwGetTime(), ret.c_str());
 }
 
 void Logger::Warn(string in)
 {
 	Warn(in.c_str());
+}
+
+void Logger::Fatal(const char *in, ...)
+{
+	string ret;
+	FORMAT(ret);
+	
+	printf("[%0.3f] FATAL: %s\n", glfwGetTime(), ret.c_str());
+	
+	assert(0);
+}
+
+void Logger::Fatal(string in)
+{
+	Fatal(in.c_str());
 }
 
 /**

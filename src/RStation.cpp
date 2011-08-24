@@ -9,9 +9,8 @@
 #include "RStation.h"
 #include "managers/InputManager.h"
 #include "managers/ScreenManager.h"
+#include "renderer/Display.h"
 #include "utils/Logger.h"
-#include "renderer/Context.h"
-#include "utils/error.h"
 
 using namespace std;
 
@@ -75,10 +74,9 @@ int RStation::Start(vector<string> vArgs)
 	// We only need GLEW for legacy contexts.
 	if (!bUsingGL3)
 		glewInit();
-	
-	GetError();
 
-	Context::GetSingleton()->Init(bUsingGL3);
+	Display::Init(bUsingGL3);
+	Display::CheckError();
 
 	return Loop();
 }

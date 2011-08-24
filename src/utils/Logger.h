@@ -2,7 +2,6 @@
 #define _Log_H_
 
 #include <string>
-#include <cstdio>
 
 class Logger
 {
@@ -23,9 +22,9 @@ public:
 	void Warn(const char* in, ...);
 	void Warn(std::string in);
 
-private:
-	std::string m_file;
-	FILE* file;
+	// Kills program if debug.
+	void Fatal(const char* in, ...);
+	void Fatal(std::string in);
 };
 
 extern Logger *LOG;
