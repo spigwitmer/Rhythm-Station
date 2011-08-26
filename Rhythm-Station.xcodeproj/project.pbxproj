@@ -22,18 +22,6 @@
 		EE07CCEE1279FF1400AAA31F /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = EE07CC1E1279FF1400AAA31F /* pngwrite.c */; };
 		EE07CCEF1279FF1400AAA31F /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = EE07CC1F1279FF1400AAA31F /* pngwtran.c */; };
 		EE07CCF01279FF1400AAA31F /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EE07CC201279FF1400AAA31F /* pngwutil.c */; };
-		EE07CE13127A279000AAA31F /* ClassInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCB127A279000AAA31F /* ClassInfo.cpp */; };
-		EE07CE14127A279000AAA31F /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCC127A279000AAA31F /* Debug.cpp */; };
-		EE07CE15127A279000AAA31F /* Error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCD127A279000AAA31F /* Error.cpp */; };
-		EE07CE16127A279000AAA31F /* FuncCall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCE127A279000AAA31F /* FuncCall.cpp */; };
-		EE07CE17127A279000AAA31F /* Hybrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDCF127A279000AAA31F /* Hybrid.cpp */; };
-		EE07CE18127A279000AAA31F /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDD0127A279000AAA31F /* Instance.cpp */; };
-		EE07CE19127A279000AAA31F /* Iterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CDD1127A279000AAA31F /* Iterator.cpp */; };
-		EE07CE39127A279000AAA31F /* LuaCall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE09127A279000AAA31F /* LuaCall.cpp */; };
-		EE07CE3A127A279000AAA31F /* Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0A127A279000AAA31F /* Manager.cpp */; };
-		EE07CE3B127A279000AAA31F /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0B127A279000AAA31F /* Object.cpp */; };
-		EE07CE3C127A279000AAA31F /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0C127A279000AAA31F /* Script.cpp */; };
-		EE07CE3E127A279000AAA31F /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE07CE0E127A279000AAA31F /* Table.cpp */; };
 		EE0A64241270439C00F5F134 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = EE0A64231270439C00F5F134 /* glew.c */; };
 		EE133B2B1278216F0047069E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = EE133B2A1278216F0047069E /* sqlite3.c */; };
 		EE1FCC9B13E1F48D00617627 /* cocoa_enable.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1FCC9213E1F48D00617627 /* cocoa_enable.m */; };
@@ -124,7 +112,6 @@
 /* Begin PBXFileReference section */
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		2BB0123312F132CF008221C8 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fftw3.h; path = api/fftw3.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Rhythm-Station-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Rhythm-Station-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Rhythm-Station.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rhythm-Station.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE07CC0A1279FF1400AAA31F /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png.c; sourceTree = "<group>"; };
@@ -145,18 +132,6 @@
 		EE07CC1E1279FF1400AAA31F /* pngwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwrite.c; sourceTree = "<group>"; };
 		EE07CC1F1279FF1400AAA31F /* pngwtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwtran.c; sourceTree = "<group>"; };
 		EE07CC201279FF1400AAA31F /* pngwutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwutil.c; sourceTree = "<group>"; };
-		EE07CDCB127A279000AAA31F /* ClassInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassInfo.cpp; sourceTree = "<group>"; };
-		EE07CDCC127A279000AAA31F /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
-		EE07CDCD127A279000AAA31F /* Error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Error.cpp; sourceTree = "<group>"; };
-		EE07CDCE127A279000AAA31F /* FuncCall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FuncCall.cpp; sourceTree = "<group>"; };
-		EE07CDCF127A279000AAA31F /* Hybrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hybrid.cpp; sourceTree = "<group>"; };
-		EE07CDD0127A279000AAA31F /* Instance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Instance.cpp; sourceTree = "<group>"; };
-		EE07CDD1127A279000AAA31F /* Iterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Iterator.cpp; sourceTree = "<group>"; };
-		EE07CE09127A279000AAA31F /* LuaCall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaCall.cpp; sourceTree = "<group>"; };
-		EE07CE0A127A279000AAA31F /* Manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Manager.cpp; sourceTree = "<group>"; };
-		EE07CE0B127A279000AAA31F /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
-		EE07CE0C127A279000AAA31F /* Script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Script.cpp; sourceTree = "<group>"; };
-		EE07CE0E127A279000AAA31F /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
 		EE0A64231270439C00F5F134 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "glew-1.5.6/src/glew.c"; sourceTree = "<group>"; };
 		EE133B2A1278216F0047069E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "sqlite-3.7.3/sqlite3.c"; sourceTree = "<group>"; };
 		EE1FCC9213E1F48D00617627 /* cocoa_enable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_enable.m; sourceTree = "<group>"; };
@@ -364,14 +339,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2BB0121F12F132CF008221C8 /* fftw-3.2.2 */ = {
-			isa = PBXGroup;
-			children = (
-				2BB0123312F132CF008221C8 /* fftw3.h */,
-			);
-			path = "fftw-3.2.2";
-			sourceTree = "<group>";
-		};
 		EE07CB921279FF1400AAA31F /* libpng-1.4.4 */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,39 +364,12 @@
 			path = "libpng-1.4.4";
 			sourceTree = "<group>";
 		};
-		EE07CDC8127A279000AAA31F /* slb-1.6.3 */ = {
-			isa = PBXGroup;
-			children = (
-				EE07CDCB127A279000AAA31F /* ClassInfo.cpp */,
-				EE07CDCC127A279000AAA31F /* Debug.cpp */,
-				EE07CDCD127A279000AAA31F /* Error.cpp */,
-				EE07CDCE127A279000AAA31F /* FuncCall.cpp */,
-				EE07CDCF127A279000AAA31F /* Hybrid.cpp */,
-				EE07CDD0127A279000AAA31F /* Instance.cpp */,
-				EE07CDD1127A279000AAA31F /* Iterator.cpp */,
-				EE07CE09127A279000AAA31F /* LuaCall.cpp */,
-				EE07CE0A127A279000AAA31F /* Manager.cpp */,
-				EE07CE0B127A279000AAA31F /* Object.cpp */,
-				EE07CE0C127A279000AAA31F /* Script.cpp */,
-				EE07CE0E127A279000AAA31F /* Table.cpp */,
-			);
-			name = "slb-1.6.3";
-			path = "slb-1.63/src";
-			sourceTree = "<group>";
-		};
 		EE0A64221270438600F5F134 /* glew-1.5.6 */ = {
 			isa = PBXGroup;
 			children = (
 				EE0A64231270439C00F5F134 /* glew.c */,
 			);
 			name = "glew-1.5.6";
-			sourceTree = "<group>";
-		};
-		EE1FCC9113E1F48D00617627 /* cocoa */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = cocoa;
 			sourceTree = "<group>";
 		};
 		EE2EAC9913786CE7007FA34A /* managers */ = {
@@ -526,9 +466,7 @@
 		EE915DED1255CBB100F0B0B3 /* extern */ = {
 			isa = PBXGroup;
 			children = (
-				2BB0121F12F132CF008221C8 /* fftw-3.2.2 */,
 				EE51F2E712EB4B74003A241E /* simpleini-4.13 */,
-				EE07CDC8127A279000AAA31F /* slb-1.6.3 */,
 				EE0A64221270438600F5F134 /* glew-1.5.6 */,
 				EEC52F65127559C40064054A /* glfw3 */,
 				EE07CB921279FF1400AAA31F /* libpng-1.4.4 */,
@@ -635,7 +573,6 @@
 		EEC52F65127559C40064054A /* glfw3 */ = {
 			isa = PBXGroup;
 			children = (
-				EE1FCC9113E1F48D00617627 /* cocoa */,
 				EE1FCC9213E1F48D00617627 /* cocoa_enable.m */,
 				EE1FCC9313E1F48D00617627 /* cocoa_fullscreen.m */,
 				EE1FCC9413E1F48D00617627 /* cocoa_gamma.m */,
@@ -800,18 +737,6 @@
 				EE07CCEE1279FF1400AAA31F /* pngwrite.c in Sources */,
 				EE07CCEF1279FF1400AAA31F /* pngwtran.c in Sources */,
 				EE07CCF01279FF1400AAA31F /* pngwutil.c in Sources */,
-				EE07CE13127A279000AAA31F /* ClassInfo.cpp in Sources */,
-				EE07CE14127A279000AAA31F /* Debug.cpp in Sources */,
-				EE07CE15127A279000AAA31F /* Error.cpp in Sources */,
-				EE07CE16127A279000AAA31F /* FuncCall.cpp in Sources */,
-				EE07CE17127A279000AAA31F /* Hybrid.cpp in Sources */,
-				EE07CE18127A279000AAA31F /* Instance.cpp in Sources */,
-				EE07CE19127A279000AAA31F /* Iterator.cpp in Sources */,
-				EE07CE39127A279000AAA31F /* LuaCall.cpp in Sources */,
-				EE07CE3A127A279000AAA31F /* Manager.cpp in Sources */,
-				EE07CE3B127A279000AAA31F /* Object.cpp in Sources */,
-				EE07CE3C127A279000AAA31F /* Script.cpp in Sources */,
-				EE07CE3E127A279000AAA31F /* Table.cpp in Sources */,
 				EEC8D827128DB44D00351601 /* enable.c in Sources */,
 				EEC8D828128DB44D00351601 /* error.c in Sources */,
 				EEC8D829128DB44D00351601 /* fullscreen.c in Sources */,

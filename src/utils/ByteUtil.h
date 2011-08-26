@@ -249,4 +249,3 @@ inline void Split64(const uint64_t &i, uint32_t *vals)
 }
 
 #endif // BYTE_UTIL_H
-

@@ -13,7 +13,8 @@ int main(int argc, char **argv)
 		args.push_back(string(argv[i]));
 	}
 
-	return RStation::GetSingleton()->Start(args);
+	RStation rs(args);
+	return rs.Run();
 }
 
 /**

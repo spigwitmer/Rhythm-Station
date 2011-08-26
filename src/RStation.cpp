@@ -14,18 +14,29 @@
 
 using namespace std;
 
-RStation::RStation() :
-	m_status(RS_SUCCESS),
-	m_window(0)
+class FileManager
 {
+public:
+	FileManager() {}
+};
+
+class LuaManager
+{
+public:
+	LuaManager(FileManager f) {}
+	void Init() {}
+	void Bind(string s) {}
+};
+
+RStation::RStation(std::vector<std::string> &vArgs)
+{
+	m_vArgs = vArgs;
+
 	LOG = new Logger();
+	
 	int err = glfwInit();
 	if (!err)
-	{
-		LOG->Info("FATAL %s", glfwErrorString(err));
-		m_status = RS_INIT_FAILURE;
-		assert(m_status);
-	}
+		LOG->Fatal(string(glfwErrorString(err)));
 }
 
 RStation::~RStation()
@@ -33,13 +44,11 @@ RStation::~RStation()
 	SAFE_DELETE(LOG);
 }
 
-int RStation::Start(vector<string> vArgs)
+int RStation::Run()
 {
-	// exit on glfwInit() failure
-	if (m_status == RS_INIT_FAILURE)
-		return RS_INIT_FAILURE;
-	
-	m_vArgs = vArgs;
+	FileManager fileman;
+	InputManager input;
+	ScreenManager screen;
 	
 	// Shared window params, we always want these.
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 24);
@@ -68,7 +77,7 @@ int RStation::Start(vector<string> vArgs)
 	if (!glfwIsWindow(m_window))
 	{
 		LOG->Warn("Unable to create an OpenGL window. Check your drivers.");
-		return RS_NO_WINDOW;
+		return 2;
 	}
 
 	// We only need GLEW for legacy contexts.
@@ -77,34 +86,30 @@ int RStation::Start(vector<string> vArgs)
 
 	Display::Init(bUsingGL3);
 	Display::CheckError();
-
-	return Loop();
-}
-
-int RStation::Loop()
-{
-
 	
-	ScreenManager *screen = ScreenManager::GetSingleton();
-	InputManager *input = InputManager::GetSingleton();
-
-	screen->PushScreen("ScreenInit");
+	// Input device drivers (lua based)
+	LuaManager drivers(fileman);
+	drivers.Bind("/devices/");
+	
+	// Game scripts.
+	LuaManager game(fileman);
+	game.Bind("/screens/");
 	
 	while (true)
 	{
 		// Break if user closed the window
-		input->Update();
-		if (!glfwIsWindow(m_window) || input->GetButton(RS_KEY_ESC)->IsDown())
+		input.Update();
+		if (!glfwIsWindow(m_window) || input.GetButton(RS_KEY_ESC)->IsDown())
 			break;
-
+		
 		// ScreenManager automatically calculates delta.
-		screen->Update(glfwGetTime());
-		screen->Draw();
-
+		screen.Update(glfwGetTime());
+		screen.Draw();
+		
 		glfwSwapBuffers();
 	}
-
-	return m_status;
+	
+	return 0;
 }
 
 /**

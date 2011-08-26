@@ -4,29 +4,19 @@
 #include <vector>
 #include <string>
 #include <GL/glfw3.h>
-#include "utils/Singleton.h"
 
 // Helps prevent heap corruption.
 #define SAFE_DELETE(p) if( (p) != NULL ) delete (p); (p) = NULL;
 
-enum {
-	RS_SUCCESS = 0,
-	RS_INIT_FAILURE,
-	RS_NO_WINDOW
-};
-
-class RStation : public Singleton<RStation>
+class RStation
 {
 public:
-	RStation();
+	RStation(std::vector<std::string> &vArguments);
 	virtual ~RStation();
 
-	int Start(std::vector<std::string> vArguments);
+	int Run();
 
 private:
-	int Loop();
-
-	int m_status;
 	std::vector<std::string> m_vArgs;
 
 	GLFWwindow m_window;
