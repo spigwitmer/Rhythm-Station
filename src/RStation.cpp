@@ -3,13 +3,20 @@
 #include "managers/ScreenManager.h"
 #include "managers/DisplayManager.h"
 #include "utils/Logger.h"
+#include <glsw.h>
 
 using namespace std;
 
 class FileManager
 {
 public:
-	FileManager() {}
+	FileManager() {
+		glswInit();
+		glswSetPath("", ".glsl");
+	}
+	virtual ~FileManager() {
+		glswShutdown();
+	}
 };
 
 class LuaManager
@@ -25,7 +32,6 @@ RStation::RStation(std::vector<std::string> &vArgs)
 	m_vArgs = vArgs;
 
 	LOG = new Logger();
-	
 	int err = glfwInit();
 	if (!err)
 		LOG->Fatal(string(glfwErrorString(err)));
