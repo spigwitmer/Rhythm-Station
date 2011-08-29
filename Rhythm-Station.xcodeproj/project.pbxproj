@@ -48,9 +48,11 @@
 		EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = EE51F2E812EB4B74003A241E /* ConvertUTF.c */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
-		EE78B36113BE6D46009CCDEB /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE78B35913BE6D46009CCDEB /* Display.cpp */; };
 		EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
 		EE915EA01255D7B200F0B0B3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE61255CB9300F0B0B3 /* OpenGL.framework */; };
+		EE91988E140986690072CB09 /* DisplayManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE91988C140986690072CB09 /* DisplayManager.cpp */; };
+		EE919894140C01DB0072CB09 /* bstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EE919890140C01DB0072CB09 /* bstrlib.c */; };
+		EE919895140C01DB0072CB09 /* glsw.c in Sources */ = {isa = PBXBuildFile; fileRef = EE919892140C01DB0072CB09 /* glsw.c */; };
 		EEAB1ADC126F5440004FE58D /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AA3126F5440004FE58D /* lapi.c */; };
 		EEAB1ADD126F5440004FE58D /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AA5126F5440004FE58D /* lauxlib.c */; };
 		EEAB1ADE126F5440004FE58D /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AA7126F5440004FE58D /* lbaselib.c */; };
@@ -178,10 +180,14 @@
 		EE51F2EF12EB4B74003A241E /* SimpleIni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleIni.h; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
-		EE78B35913BE6D46009CCDEB /* Display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Display.cpp; sourceTree = "<group>"; };
-		EE78B35A13BE6D46009CCDEB /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
 		EE915DE21255CB9300F0B0B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EE915DE61255CB9300F0B0B3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		EE91988C140986690072CB09 /* DisplayManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayManager.cpp; sourceTree = "<group>"; };
+		EE91988D140986690072CB09 /* DisplayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayManager.h; sourceTree = "<group>"; };
+		EE919890140C01DB0072CB09 /* bstrlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bstrlib.c; sourceTree = "<group>"; };
+		EE919891140C01DB0072CB09 /* bstrlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bstrlib.h; sourceTree = "<group>"; };
+		EE919892140C01DB0072CB09 /* glsw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glsw.c; sourceTree = "<group>"; };
+		EE919893140C01DB0072CB09 /* glsw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glsw.h; sourceTree = "<group>"; };
 		EEAB1AA3126F5440004FE58D /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
 		EEAB1AA4126F5440004FE58D /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lapi.h; sourceTree = "<group>"; };
 		EEAB1AA5126F5440004FE58D /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lauxlib.c; sourceTree = "<group>"; };
@@ -375,6 +381,8 @@
 		EE2EAC9913786CE7007FA34A /* managers */ = {
 			isa = PBXGroup;
 			children = (
+				EE91988C140986690072CB09 /* DisplayManager.cpp */,
+				EE91988D140986690072CB09 /* DisplayManager.h */,
 				EE2EAF0C1379ED84007FA34A /* InputManager.cpp */,
 				EE2EAF0D1379ED84007FA34A /* InputManager.h */,
 				EE2EAC9B13786CFE007FA34A /* ScreenManager.cpp */,
@@ -437,19 +445,9 @@
 			path = "simpleini-4.13";
 			sourceTree = "<group>";
 		};
-		EE78B35813BE6D46009CCDEB /* renderer */ = {
-			isa = PBXGroup;
-			children = (
-				EE78B35913BE6D46009CCDEB /* Display.cpp */,
-				EE78B35A13BE6D46009CCDEB /* Display.h */,
-			);
-			path = renderer;
-			sourceTree = "<group>";
-		};
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				EE78B35813BE6D46009CCDEB /* renderer */,
 				EED1E27A137B0071002DF644 /* drawables */,
 				EE2EAF451379F470007FA34A /* input */,
 				EE2EAC9913786CE7007FA34A /* managers */,
@@ -466,6 +464,7 @@
 		EE915DED1255CBB100F0B0B3 /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				EE91988F140C01DA0072CB09 /* glsw */,
 				EE51F2E712EB4B74003A241E /* simpleini-4.13 */,
 				EE0A64221270438600F5F134 /* glew-1.5.6 */,
 				EEC52F65127559C40064054A /* glfw3 */,
@@ -475,6 +474,17 @@
 				EE133B2A1278216F0047069E /* sqlite3.c */,
 			);
 			path = extern;
+			sourceTree = "<group>";
+		};
+		EE91988F140C01DA0072CB09 /* glsw */ = {
+			isa = PBXGroup;
+			children = (
+				EE919890140C01DB0072CB09 /* bstrlib.c */,
+				EE919891140C01DB0072CB09 /* bstrlib.h */,
+				EE919892140C01DB0072CB09 /* glsw.c */,
+				EE919893140C01DB0072CB09 /* glsw.h */,
+			);
+			path = glsw;
 			sourceTree = "<group>";
 		};
 		EEAB1AA2126F5440004FE58D /* lua-5.1.4 */ = {
@@ -760,7 +770,6 @@
 				EE2EAF4F1379F4A4007FA34A /* Timer.cpp in Sources */,
 				EED1E27D137B0085002DF644 /* Drawable.cpp in Sources */,
 				EE3A2158137DAA3C00CD800F /* Quad.cpp in Sources */,
-				EE78B36113BE6D46009CCDEB /* Display.cpp in Sources */,
 				EE1FCC9B13E1F48D00617627 /* cocoa_enable.m in Sources */,
 				EE1FCC9C13E1F48D00617627 /* cocoa_fullscreen.m in Sources */,
 				EE1FCC9D13E1F48D00617627 /* cocoa_gamma.m in Sources */,
@@ -769,6 +778,9 @@
 				EE1FCCA013E1F48D00617627 /* cocoa_opengl.m in Sources */,
 				EE1FCCA113E1F48D00617627 /* cocoa_time.m in Sources */,
 				EE1FCCA213E1F48D00617627 /* cocoa_window.m in Sources */,
+				EE91988E140986690072CB09 /* DisplayManager.cpp in Sources */,
+				EE919894140C01DB0072CB09 /* bstrlib.c in Sources */,
+				EE919895140C01DB0072CB09 /* glsw.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
