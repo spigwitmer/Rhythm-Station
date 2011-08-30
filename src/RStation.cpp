@@ -27,17 +27,23 @@ RStation::~RStation()
 
 string getShaderLog(GLuint obj)
 {
-	int infologLength = 0, charsWritten = 0;
-	char *infoLog;
 	string log;
-	glGetShaderiv(obj, GL_INFO_LOG_LENGTH, &infologLength);
+	GLint status, count;
+	GLchar *error;
 	
-	if (infologLength > 0)
+	glGetShaderiv(obj, GL_COMPILE_STATUS, &status);
+	if (!status)
 	{
-		infoLog = new char[infologLength];
-		glGetShaderInfoLog(obj, infologLength, &charsWritten, infoLog);
-		log = infoLog;
-		delete[] infoLog;
+		glGetShaderiv(obj, GL_INFO_LOG_LENGTH, &count);
+		
+		if (count > 0)
+		{
+			glGetShaderInfoLog(obj, count, NULL, (error = new char[count]));
+			
+			log = error;
+			
+			delete[] error;
+		}
 	}
 	
 	return log;
@@ -45,17 +51,22 @@ string getShaderLog(GLuint obj)
 
 string getProgramLog(GLuint obj)
 {
-	int infologLength = 0, charsWritten = 0;
-	char *infoLog;
 	string log;
-	glGetProgramiv(obj, GL_INFO_LOG_LENGTH, &infologLength);
+	GLint status, count;
+	GLchar *error;
 	
-	if (infologLength > 0)
+	glGetProgramiv(obj, GL_COMPILE_STATUS, &status);
+	if (!status)
 	{
-		infoLog = new char[infologLength];
-		glGetProgramInfoLog(obj, infologLength, &charsWritten, infoLog);
-		log = infoLog;
-		delete[] infoLog;
+		glGetProgramiv(obj, GL_INFO_LOG_LENGTH, &count);
+		
+		if (count > 0)
+		{
+			glGetProgramInfoLog(obj, count, NULL, (error = new char[count]));
+			log = error;
+			
+			delete[] error;
+		}
 	}
 	
 	return log;
@@ -68,30 +79,19 @@ int RStation::Run()
 	ScreenManager screen;
 	DisplayManager display;
 	
-	/*
-	char buf[1024];
-	getcwd(buf, 1024);
-
-	const char* shader = glswGetShader("Something.GL32.Vertex");
-	if (shader == NULL) 
-		LOG->Info("(%s) %s", buf, glswGetError());
-	else
-		LOG->Info("%s", shader);
-	*/
-		
-//	fileman.Mount("/", string(buf));
-	
 	// Open the display, make sure nothing went wrong on init.
 	display.OpenWindow(m_window);
 	display.CheckError();
 	
+	// TODO: non-test code
+	string log;
+
+	const char *vss, *fss;
 	GLuint vs, fs, id;
 	id = glCreateProgram();
 	vs = glCreateShader(GL_VERTEX_SHADER);
 	fs = glCreateShader(GL_FRAGMENT_SHADER);
-	//	gs = glCreateShader(GL_GEOMETRY_SHADER);
 	
-	const char *vss, *fss;
 	vss = glswGetShader("Something.GL32.Vertex");
 	fss = glswGetShader("Something.GL32.Fragment");
 	
@@ -108,25 +108,13 @@ int RStation::Run()
 	
 	glLinkProgram(id);
 	
-	// We're done with these now.
-	glDetachShader(id, vs);
-	glDetachShader(id, fs);
-	glDeleteShader(vs);
-	glDeleteShader(fs);
-	
-	// print out shader logs.
-	string log = getShaderLog(vs);
-	
-	if (!log.empty())
-		LOG->Info("Vertex shader log: %s", log.c_str());
+	log = getShaderLog(vs);
+	if (!log.empty()) LOG->Info("Vertex shader log: %s", log.c_str());
 	
 	log = getShaderLog(fs);
-	
-	if (!log.empty())
-		LOG->Info("Fragment shader log: %s", log.c_str());
-	
+	if (!log.empty()) LOG->Info("Fragment shader log: %s", log.c_str());
+
 	log = getProgramLog(id);
-	
 	if (!log.empty())
 	{
 		LOG->Info("Shader program log: %s", log.c_str());
@@ -134,11 +122,23 @@ int RStation::Run()
 		exit(1);
 	}
 	
+	if (!glIsProgram(id)) {
+		LOG->Info("something is screwed up, huh.");
+	}
+
+	// Don't need these after the program is linked.
+	glDetachShader(id, vs);
+	glDetachShader(id, fs);
+
+	glDeleteShader(vs);
+	glDeleteShader(fs);
+	
 	glUseProgram(id);
-	
-	// test is over, get your shit and get out.
+
+	display.CheckError();
+
 	glDeleteProgram(id);
-	
+		
 	// Input device drivers (lua based)
 	LuaManager drivers(fileman);
 	drivers.Bind("/devices/");
