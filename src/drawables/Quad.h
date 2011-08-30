@@ -20,3 +20,8 @@ protected:
 };
 
 #endif
+
+/**
+ * Colby Klein, Matt Vandermeulen (c) 2011
+ * Licensed under the terms of the MIT license. See License.txt.
+ */

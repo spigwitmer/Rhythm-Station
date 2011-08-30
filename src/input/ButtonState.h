@@ -1,5 +1,4 @@
-#ifndef BUTTON_STATE_H
-#define BUTTON_STATE_H
+#pragma once
 
 #include "utils/Timer.h"
 
@@ -23,4 +22,7 @@ private:
 	Timer m_Timer;
 };
 
-#endif // BUTTON_STATE_H
+/**
+ * Matt Vandermeulen, Colby Klein (c) 2011
+ * Licensed under the terms of the MIT license. See License.txt.
+ */

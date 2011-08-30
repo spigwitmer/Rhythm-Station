@@ -19,3 +19,8 @@ double ButtonState::GetHeldTime() const
 	// This is simple, <3 timer
 	return m_Timer.Ago();
 }
+
+/**
+ * Matt Vandermeulen, Colby Klein (c) 2011
+ * Licensed under the terms of the MIT license. See License.txt.
+ */

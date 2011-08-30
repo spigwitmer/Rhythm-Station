@@ -1,5 +1,4 @@
-#ifndef _MESSAGE_H_
-#define _MESSAGE_H_
+#pragma once
 
 #include <string>
 #include <map>
@@ -26,4 +25,7 @@ public:
 	virtual void SubscribeTo(std::string name) { }
 };
 
-#endif
+/**
+ * Colby Klein (c) 2011
+ * Licensed under the terms of the MIT license. See License.txt.
+ */

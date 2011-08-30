@@ -1,5 +1,4 @@
-#ifndef INPUTS_H
-#define INPUTS_H
+#pragma once
 
 // All the keys we handle
 enum RSButtons
@@ -88,4 +87,7 @@ enum GameInput
 	GI_INVALID, GI_MAX
 };
 
-#endif // INPUTS_H
+/**
+ * Matt Vandermeulen, Colby Klein (c) 2011
+ * Licensed under the terms of the MIT license. See License.txt.
+ */

@@ -174,3 +174,8 @@ void DisplayManager::Init(bool using_gl3)
 	if (!err)
 		LOG->Info("Everything appears to be acceptable.");
 }
+
+/**
+ * Colby Klein (c) 2011
+ * Licensed under the terms of the MIT license. See License.txt.
+ */

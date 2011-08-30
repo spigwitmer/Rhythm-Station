@@ -54,3 +54,8 @@ void Quad::DrawInternal()
 
 	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_BYTE, NULL);
 }
+
+/**
+ * Colby Klein, Matt Vandermeulen (c) 2011
+ * Licensed under the terms of the MIT license. See License.txt.
+ */

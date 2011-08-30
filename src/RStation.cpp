@@ -1,31 +1,12 @@
 #include "RStation.h"
-#include "managers/InputManager.h"
-#include "managers/ScreenManager.h"
 #include "managers/DisplayManager.h"
+#include "managers/InputManager.h"
+#include "managers/LuaManager.h"
+#include "managers/ScreenManager.h"
 #include "utils/Logger.h"
 #include <glsw.h>
 
 using namespace std;
-
-class FileManager
-{
-public:
-	FileManager() {
-		glswInit();
-		glswSetPath("", ".glsl");
-	}
-	virtual ~FileManager() {
-		glswShutdown();
-	}
-};
-
-class LuaManager
-{
-public:
-	LuaManager(FileManager f) {}
-	void Init() {}
-	void Bind(string s) {}
-};
 
 RStation::RStation(std::vector<std::string> &vArgs)
 {
@@ -48,6 +29,17 @@ int RStation::Run()
 	InputManager input;
 	ScreenManager screen;
 	DisplayManager display;
+	
+	char buf[1024];
+	getcwd(buf, 1024);
+	
+	const char* shader = glswGetShader("Something.Vertex.GL32");
+	if (shader == NULL) 
+		LOG->Info("(%s) %s", buf, glswGetError());
+	else
+		LOG->Info("%s", shader);
+	
+	fileman.Mount("/", string(buf));
 	
 	// Open the display, make sure nothing went wrong on init.
 	display.OpenWindow(m_window);
@@ -79,10 +71,6 @@ int RStation::Run()
 }
 
 /**
- * @file
- * @author Colby Klein (c) 2011
- * @section LICENSE
- * 
- * This program is licensed under the terms of the MIT license.
- * The full text can be found in License.txt.
+ * Colby Klein (c) 2011
+ * Licensed under the terms of the MIT license. See License.txt.
  */

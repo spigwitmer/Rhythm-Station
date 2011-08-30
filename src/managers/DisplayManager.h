@@ -1,5 +1,4 @@
-#ifndef _CONTEXT_H_
-#define _CONTEXT_H_
+#pragma once
 
 #include <GL/glfw3.h>
 #include "utils/Logger.h"
@@ -19,5 +18,7 @@ public:
 	int max_texture_size;
 };
 
-#endif
-
+/**
+ * Colby Klein (c) 2011
+ * Licensed under the terms of the MIT license. See License.txt.
+ */

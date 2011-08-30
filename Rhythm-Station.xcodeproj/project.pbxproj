@@ -53,6 +53,9 @@
 		EE91988E140986690072CB09 /* DisplayManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE91988C140986690072CB09 /* DisplayManager.cpp */; };
 		EE919894140C01DB0072CB09 /* bstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EE919890140C01DB0072CB09 /* bstrlib.c */; };
 		EE919895140C01DB0072CB09 /* glsw.c in Sources */ = {isa = PBXBuildFile; fileRef = EE919892140C01DB0072CB09 /* glsw.c */; };
+		EE919897140C23F60072CB09 /* Something.glsl in Resources */ = {isa = PBXBuildFile; fileRef = EE919896140C23F60072CB09 /* Something.glsl */; };
+		EE919899140D457B0072CB09 /* LuaManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE919898140D457A0072CB09 /* LuaManager.cpp */; };
+		EE91989C140D486F0072CB09 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE91989B140D486F0072CB09 /* FileManager.cpp */; };
 		EEAB1ADC126F5440004FE58D /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AA3126F5440004FE58D /* lapi.c */; };
 		EEAB1ADD126F5440004FE58D /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AA5126F5440004FE58D /* lauxlib.c */; };
 		EEAB1ADE126F5440004FE58D /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = EEAB1AA7126F5440004FE58D /* lbaselib.c */; };
@@ -188,6 +191,11 @@
 		EE919891140C01DB0072CB09 /* bstrlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bstrlib.h; sourceTree = "<group>"; };
 		EE919892140C01DB0072CB09 /* glsw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glsw.c; sourceTree = "<group>"; };
 		EE919893140C01DB0072CB09 /* glsw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glsw.h; sourceTree = "<group>"; };
+		EE919896140C23F60072CB09 /* Something.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Something.glsl; sourceTree = "<group>"; };
+		EE919898140D457A0072CB09 /* LuaManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaManager.cpp; sourceTree = "<group>"; };
+		EE91989A140D45860072CB09 /* LuaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaManager.h; sourceTree = "<group>"; };
+		EE91989B140D486F0072CB09 /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
+		EE91989D140D487A0072CB09 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		EEAB1AA3126F5440004FE58D /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
 		EEAB1AA4126F5440004FE58D /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lapi.h; sourceTree = "<group>"; };
 		EEAB1AA5126F5440004FE58D /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lauxlib.c; sourceTree = "<group>"; };
@@ -321,6 +329,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EE919896140C23F60072CB09 /* Something.glsl */,
 				EEB0CBE81337BA8200DE0724 /* rhythm-station.icns */,
 				EE747FC5127E55B200E4A8FA /* Data */,
 				EE230EC912F9D94300E4C77B /* Themes */,
@@ -383,8 +392,12 @@
 			children = (
 				EE91988C140986690072CB09 /* DisplayManager.cpp */,
 				EE91988D140986690072CB09 /* DisplayManager.h */,
+				EE91989B140D486F0072CB09 /* FileManager.cpp */,
+				EE91989D140D487A0072CB09 /* FileManager.h */,
 				EE2EAF0C1379ED84007FA34A /* InputManager.cpp */,
 				EE2EAF0D1379ED84007FA34A /* InputManager.h */,
+				EE919898140D457A0072CB09 /* LuaManager.cpp */,
+				EE91989A140D45860072CB09 /* LuaManager.h */,
 				EE2EAC9B13786CFE007FA34A /* ScreenManager.cpp */,
 				EE2EAC9A13786CFE007FA34A /* ScreenManager.h */,
 			);
@@ -676,6 +689,7 @@
 				EE747FCB127E55B200E4A8FA /* Data in Resources */,
 				EE230ED012F9D94300E4C77B /* Themes in Resources */,
 				EEB0CBE91337BA8200DE0724 /* rhythm-station.icns in Resources */,
+				EE919897140C23F60072CB09 /* Something.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +795,8 @@
 				EE91988E140986690072CB09 /* DisplayManager.cpp in Sources */,
 				EE919894140C01DB0072CB09 /* bstrlib.c in Sources */,
 				EE919895140C01DB0072CB09 /* glsw.c in Sources */,
+				EE919899140D457B0072CB09 /* LuaManager.cpp in Sources */,
+				EE91989C140D486F0072CB09 /* FileManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
