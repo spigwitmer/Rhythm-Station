@@ -1,8 +1,8 @@
--- Vertex.GL21
+-- GL21.Vertex
 oh
--- Fragment.GL21
+-- GL21.Fragment
 noes
--- Vertex.GL32
+-- GL32.Vertex
 hi
--- Fragment.GL32
+-- GL32.Fragment
 sup

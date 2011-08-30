@@ -33,7 +33,7 @@ int RStation::Run()
 	char buf[1024];
 	getcwd(buf, 1024);
 	
-	const char* shader = glswGetShader("Something.Vertex.GL32");
+	const char* shader = glswGetShader("Something.GL32.Vertex");
 	if (shader == NULL) 
 		LOG->Info("(%s) %s", buf, glswGetError());
 	else
