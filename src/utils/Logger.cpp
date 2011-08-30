@@ -86,7 +86,9 @@ void Logger::Fatal(const char *in, ...)
 	
 	printf("[%0.3f] FATAL: %s\n", glfwGetTime(), ret.c_str());
 	
+#ifdef DEBUG
 	assert(0);
+#endif
 }
 
 void Logger::Fatal(string in)
