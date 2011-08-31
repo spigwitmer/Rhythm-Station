@@ -6,42 +6,20 @@
 
 using namespace std;
 
+DisplayManager::DisplayManager()
+{
+}
+
+DisplayManager::~DisplayManager()
+{
+	CloseWindow();
+}
+
 void DisplayManager::GetGLValue(GLint *target, GLenum param, string text)
 {
 	glGetIntegerv(param, target);
 	LOG->Info("- %s: %d.", text.c_str(), *target);
 	CheckError();
-}
-
-static void CheckFramebufferStatus()
-{
-	// kind of nasty ugly
-	switch (glCheckFramebufferStatus(GL_FRAMEBUFFER))
-	{
-		case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
-			LOG->Fatal("GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT");
-			break;
-		case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
-			LOG->Fatal("GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT");
-			break;
-		case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE:
-			LOG->Fatal("GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE");
-			break;
-		case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER:
-			LOG->Fatal("GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER");
-			break;
-		case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER:
-			LOG->Fatal("GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER");
-			break;
-		case GL_FRAMEBUFFER_UNDEFINED:
-			LOG->Fatal("GL_FRAMEBUFFER_UNDEFINED");
-			break;
-		case GL_FRAMEBUFFER_UNSUPPORTED:
-			LOG->Fatal("GL_FRAMEBUFFER_UNSUPPORTED");
-			break;
-		default:
-			break;
-	}
 }
 
 string DisplayManager::GetInfoLog(GLuint obj)
@@ -90,8 +68,35 @@ void DisplayManager::CheckError()
 	}
 }
 
-DisplayManager::DisplayManager()
+void DisplayManager::CheckFramebuffer()
 {
+	// kind of nasty ugly
+	switch (glCheckFramebufferStatus(GL_FRAMEBUFFER))
+	{
+		case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
+			LOG->Fatal("GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT");
+			break;
+		case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
+			LOG->Fatal("GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT");
+			break;
+		case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE:
+			LOG->Fatal("GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE");
+			break;
+		case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER:
+			LOG->Fatal("GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER");
+			break;
+		case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER:
+			LOG->Fatal("GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER");
+			break;
+		case GL_FRAMEBUFFER_UNDEFINED:
+			LOG->Fatal("GL_FRAMEBUFFER_UNDEFINED");
+			break;
+		case GL_FRAMEBUFFER_UNSUPPORTED:
+			LOG->Fatal("GL_FRAMEBUFFER_UNSUPPORTED");
+			break;
+		default:
+			break;
+	}
 }
 
 void DisplayManager::Flush()
@@ -135,6 +140,12 @@ bool DisplayManager::OpenWindow()
 	GetGLValue(&m_attribs[GL_MAX_TEXTURE_SIZE], GL_MAX_TEXTURE_SIZE, "Max Texture Size");
 	
 	return true;
+}
+
+void DisplayManager::CloseWindow()
+{
+	if (glfwIsWindow(m_window))
+		glfwCloseWindow(m_window);
 }
 
 bool DisplayManager::IsFocused()

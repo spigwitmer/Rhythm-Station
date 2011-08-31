@@ -147,6 +147,8 @@ int RStation::Run()
 		display.Flush();
 	}
 	
+	display.CloseWindow();
+	
 	glDeleteVertexArrays(1, &vao);
 	
 	glDetachShader(id, vs);

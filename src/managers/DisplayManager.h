@@ -9,12 +9,17 @@ class DisplayManager
 {
 public:
 	DisplayManager();
-	void Init(bool using_gl3);
+	virtual ~DisplayManager();
+	
 	void CheckError();
-	void Flush();
+	void CheckFramebuffer();
+	
 	bool OpenWindow();
-	bool IsFocused();
+	void CloseWindow();
 	GLFWwindow GetWindow();
+	bool IsFocused();
+	
+	void Flush();
 	
 	std::string GetInfoLog(GLuint obj);
 	GLint GetMaximum(GLenum token);
