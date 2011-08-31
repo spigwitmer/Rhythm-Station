@@ -11,7 +11,10 @@ public:
 	void CheckError();
 	void Flush();
 	bool OpenWindow(GLFWwindow &wnd);
-	
+	bool IsGL3() const;
+
+private:
+	bool using_gl3;
 	int max_anisotropy;
 	int max_attributes;
 	int max_uniforms;

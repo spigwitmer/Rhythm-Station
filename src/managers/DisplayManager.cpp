@@ -140,12 +140,13 @@ bool DisplayManager::OpenWindow(GLFWwindow &m_window)
 	return true;
 }
 
-void DisplayManager::Init(bool using_gl3)
+void DisplayManager::Init(bool _gl3)
 {
 	// Clear error bit, just in case.
 	CheckError();
 
 	bool err = false;
+	using_gl3 = _gl3;
 
 	LOG->Info("Checking hardware capabilities...");
 	LOG->Info("Renderer: %s %s", glGetString(GL_RENDERER),
@@ -173,6 +174,10 @@ void DisplayManager::Init(bool using_gl3)
 
 	if (!err)
 		LOG->Info("Everything appears to be acceptable.");
+}
+
+bool DisplayManager::IsGL3() const {
+	return using_gl3;
 }
 
 /**
