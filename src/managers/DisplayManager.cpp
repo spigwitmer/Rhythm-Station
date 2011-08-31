@@ -99,7 +99,12 @@ void DisplayManager::Flush()
 	glfwSwapBuffers();
 }
 
-bool DisplayManager::OpenWindow(GLFWwindow &m_window)
+GLFWwindow DisplayManager::GetWindow()
+{
+	return m_window;
+}
+
+bool DisplayManager::OpenWindow()
 {
 	// Shared window params, we always want these.
 	glfwOpenWindowHint(GLFW_DEPTH_BITS, 24);
@@ -130,6 +135,11 @@ bool DisplayManager::OpenWindow(GLFWwindow &m_window)
 	GetGLValue(&m_attribs[GL_MAX_TEXTURE_SIZE], GL_MAX_TEXTURE_SIZE, "Max Texture Size");
 	
 	return true;
+}
+
+bool DisplayManager::IsFocused()
+{
+	return (bool)glfwGetWindowParam(m_window, GLFW_ACTIVE);
 }
 
 GLint DisplayManager::GetMaximum(GLenum token)

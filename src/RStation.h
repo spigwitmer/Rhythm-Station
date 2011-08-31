@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <string>
-#include <GL/glfw3.h>
 
 // Helps prevent heap corruption.
 #define SAFE_DELETE(p) if( (p) != NULL ) delete (p); (p) = NULL;
@@ -18,8 +17,6 @@ public:
 
 private:
 	std::vector<std::string> m_vArgs;
-
-	GLFWwindow m_window;
 };
 
 #endif

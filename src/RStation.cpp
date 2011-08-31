@@ -6,6 +6,7 @@
 #include "managers/LuaManager.h"
 #include "managers/ScreenManager.h"
 #include "utils/Logger.h"
+#include <deque>
 
 using namespace std;
 
@@ -23,8 +24,6 @@ RStation::~RStation()
 	SAFE_DELETE(LOG);
 }
 
-#include <deque>
-
 int RStation::Run()
 {
 	FileManager fileman;
@@ -37,7 +36,7 @@ int RStation::Run()
 	string log;	
 	
 	// Open the display, make sure nothing went wrong on init.
-	if (!display.OpenWindow(m_window))
+	if (!display.OpenWindow())
 		return 1;
 	
 	vss = glswGetShader("Generic.GL32.Vertex");
@@ -98,7 +97,6 @@ int RStation::Run()
 	LuaManager game(fileman);
 	game.Bind("/screens/");
 	
-	glfwSwapInterval(0);
 	int last_update = 0;
 	double then = glfwGetTime(), now = 0.0, avg = 0.0;
 	std::deque<double> times;
@@ -132,7 +130,7 @@ int RStation::Run()
 		// Break if user closed the window
 		input.Update();
 
-		if (!glfwIsWindow(m_window) || input.GetButton(RS_KEY_ESC)->IsDown())
+		if (!glfwIsWindow(display.GetWindow()) || input.GetButton(RS_KEY_ESC)->IsDown())
 			break;
 		
 		// ScreenManager automatically calculates delta.
@@ -142,7 +140,10 @@ int RStation::Run()
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT, NULL);
 		
-		display.CheckError();		
+		if (!display.IsFocused())
+			usleep(50000);
+		
+		display.CheckError();
 		display.Flush();
 	}
 	

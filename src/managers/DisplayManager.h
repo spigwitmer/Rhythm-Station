@@ -12,13 +12,16 @@ public:
 	void Init(bool using_gl3);
 	void CheckError();
 	void Flush();
-	bool OpenWindow(GLFWwindow &wnd);
+	bool OpenWindow();
+	bool IsFocused();
+	GLFWwindow GetWindow();
+	
 	std::string GetInfoLog(GLuint obj);
 	GLint GetMaximum(GLenum token);
 
 private:
 	void GetGLValue(GLint *target, GLenum param, std::string text);
-
+	GLFWwindow m_window;
 	std::map<GLenum, GLint> m_attribs;
 };
 
