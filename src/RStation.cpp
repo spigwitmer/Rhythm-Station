@@ -1,10 +1,11 @@
+#include <OpenGL/gl3.h>
+#include <glsw.h>
 #include "RStation.h"
 #include "managers/DisplayManager.h"
 #include "managers/InputManager.h"
 #include "managers/LuaManager.h"
 #include "managers/ScreenManager.h"
 #include "utils/Logger.h"
-#include <glsw.h>
 
 using namespace std;
 
@@ -22,54 +23,7 @@ RStation::~RStation()
 	SAFE_DELETE(LOG);
 }
 
-#include <OpenGL/gl3.h>
-
-string getShaderLog(GLuint obj)
-{
-	string log;
-	GLint status, count;
-	GLchar *error;
-	
-	glGetShaderiv(obj, GL_COMPILE_STATUS, &status);
-	if (!status)
-	{
-		glGetShaderiv(obj, GL_INFO_LOG_LENGTH, &count);
-		
-		if (count > 0)
-		{
-			glGetShaderInfoLog(obj, count, NULL, (error = new char[count+1]));
-			
-			log = error;
-			
-			delete[] error;
-		}
-	}
-	
-	return log;
-}
-
-string getProgramLog(GLuint obj)
-{
-	string log;
-	GLint status, count;
-	GLchar *error;
-	
-	glGetProgramiv(obj, GL_LINK_STATUS, &status);
-	if (!status)
-	{
-		glGetProgramiv(obj, GL_INFO_LOG_LENGTH, &count);
-		
-		if (count > 0)
-		{
-			glGetProgramInfoLog(obj, count, NULL, (error = new char[count+1]));
-			log = error;
-			
-			delete[] error;
-		}
-	}
-	
-	return log;
-}
+#include <deque>
 
 int RStation::Run()
 {
@@ -77,64 +31,48 @@ int RStation::Run()
 	InputManager input;
 	ScreenManager screen;
 	DisplayManager display;
+	
 	const char *vss, *fss;
-	GLuint vs, fs, id;
+	GLuint vs, fs, id, vao, buf[2];
 	string log;	
 	
 	// Open the display, make sure nothing went wrong on init.
-	display.OpenWindow(m_window); // create context
-	display.CheckError(); // perfectly fine.
+	if (!display.OpenWindow(m_window))
+		return 1;
 	
-	if (display.IsGL3())
-	{
-		vss = glswGetShader("Something.GL32.Vertex");
-		fss = glswGetShader("Something.GL32.Fragment");
-	}
-	// Fall back to 2.1
-	else
-	{
-		vss = glswGetShader("Something.GL21.Vertex");
-		fss = glswGetShader("Something.GL21.Fragment");		
-	}
-		
+	vss = glswGetShader("Generic.GL32.Vertex");
+	fss = glswGetShader("Generic.GL32.Fragment");
+	
 	// TODO: non-test code
+	glGenVertexArrays(1, &vao);
+	glGenBuffers(2, &buf[0]);
+
 	id = glCreateProgram();
 	vs = glCreateShader(GL_VERTEX_SHADER);
 	fs = glCreateShader(GL_FRAGMENT_SHADER);
+	
 	glShaderSource(vs, 1, &vss, NULL);
 	glShaderSource(fs, 1, &fss, NULL);
-
+	
 	glCompileShader(vs);
 	glCompileShader(fs);
-
+	
 	glAttachShader(id, vs);
 	glAttachShader(id, fs);
-
+	
 	glBindAttribLocation(id, 0, "Position");
-//	glBindFragDataLocation(id, 0, "FragColor");	
 	glLinkProgram(id);
 	display.CheckError();
-
-	if (!(log = getShaderLog(vs)).empty()) LOG->Info("Vertex shader log: %s", log.c_str());	
-	if (!(log = getShaderLog(fs)).empty()) LOG->Info("Fragment shader log: %s", log.c_str());
-	if (!(log = getProgramLog(id)).empty())
-	{
-		LOG->Info("Shader program log: %s", log.c_str());
-		LOG->Fatal("catastrophic shader error. committing suicide.");
-		exit(1);
-	}
 	
-	display.CheckError();
+	if (!(log = display.GetInfoLog(vs)).empty()) LOG->Info("Vertex shader log: %s", log.c_str());	
+	if (!(log = display.GetInfoLog(fs)).empty()) LOG->Info("Fragment shader log: %s", log.c_str());
+	if (!(log = display.GetInfoLog(id)).empty()) LOG->Fatal("Shader program log: %s", log.c_str());
 	
-	GLuint vao;
-	if (display.IsGL3()) {
-		glGenVertexArrays(1, &vao);
-		glBindVertexArray(vao);
-	}
+	glBindVertexArray(vao);
 	
 	glUseProgram(id);
 	display.CheckError();
-
+	
 	float verts[] = { -1.0, -1.0, 0.0, -1.0, 1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0 };
 	unsigned indices[] = { 0, 1, 2, 3 };
 	
@@ -142,18 +80,13 @@ int RStation::Run()
 	float mat[] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
 	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewProjection"), 1, false, mat);
 	
-	GLuint buf[2];
-	glGenBuffers(2, &buf[0]);
-		
 	glBindBuffer(GL_ARRAY_BUFFER, buf[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
-
+	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buf[1]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 	
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float)*3, 0);
-	display.CheckError();
-	
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float)*3, 0);	
 	glEnableVertexAttribArray(0);
 	display.CheckError();
 	
@@ -164,36 +97,63 @@ int RStation::Run()
 	// Game scripts.
 	LuaManager game(fileman);
 	game.Bind("/screens/");
-		
+	
+	glfwSwapInterval(0);
+	int last_update = 0;
+	double then = glfwGetTime(), now = 0.0, avg = 0.0;
+	std::deque<double> times;
 	while (true)
 	{
+		const size_t NUM_FRAMES = 200;
+		now = glfwGetTime();
+
+		{
+			// Calculate Average FPS.
+			times.push_back(1.0/(now-then));
+			
+			if (times.size() > NUM_FRAMES)
+				times.pop_front();
+			
+			if (times.size() == NUM_FRAMES)
+			{
+				for (std::deque<double>::iterator i = times.begin(); i != times.end(); i++)
+					avg += *i;
+				avg /= times.size();
+			}
+			if (int(now) % 1 == 0 && avg > 0.01)
+			{
+				if (last_update != int(now))
+					LOG->Info("Avg. FPS: %0.1f", avg);
+				last_update = int(now);
+			}
+		}
+
+		then = now;
 		// Break if user closed the window
 		input.Update();
+
 		if (!glfwIsWindow(m_window) || input.GetButton(RS_KEY_ESC)->IsDown())
 			break;
 		
 		// ScreenManager automatically calculates delta.
 		screen.Update(glfwGetTime());
 		screen.Draw();
-
+		
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-		glUseProgram(id);
 		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT, NULL);
-
+		
 		display.CheckError();		
 		display.Flush();
 	}
 	
-	if (display.IsGL3())
-		glDeleteVertexArrays(1, &vao);
+	glDeleteVertexArrays(1, &vao);
 	
-	// Don't need these after the program is linked.
 	glDetachShader(id, vs);
 	glDetachShader(id, fs);
-
+	
 	glDeleteShader(vs);
 	glDeleteShader(fs);
-
+	
 	glDeleteProgram(id);
 	glDeleteBuffers(2, buf);
 	

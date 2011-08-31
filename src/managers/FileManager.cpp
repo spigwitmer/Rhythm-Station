@@ -6,7 +6,7 @@ using namespace std;
 
 FileManager::FileManager() {
 	glswInit();
-	glswSetPath("", ".glsl");
+	glswSetPath("Data/Shaders/", ".glsl");
 	
 	/*
 	 * Enforce 120 for GL 2.x, and 150 for 3.x.

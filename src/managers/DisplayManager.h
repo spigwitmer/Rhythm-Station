@@ -2,6 +2,8 @@
 
 #include <GL/glfw3.h>
 #include "utils/Logger.h"
+#include <string>
+#include <map>
 
 class DisplayManager
 {
@@ -11,14 +13,13 @@ public:
 	void CheckError();
 	void Flush();
 	bool OpenWindow(GLFWwindow &wnd);
-	bool IsGL3() const;
+	std::string GetInfoLog(GLuint obj);
+	GLint GetMaximum(GLenum token);
 
 private:
-	bool using_gl3;
-	int max_anisotropy;
-	int max_attributes;
-	int max_uniforms;
-	int max_texture_size;
+	void GetGLValue(GLint *target, GLenum param, std::string text);
+
+	std::map<GLenum, GLint> m_attribs;
 };
 
 /**

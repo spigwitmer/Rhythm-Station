@@ -1,4 +1,4 @@
-#include <GL/glew.h>
+#include <GL3/gl3w.h>
 #include "ScreenManager.h"
 #include "screens/Screen.h"
 #include "RStation.h"

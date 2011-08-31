@@ -1,4 +1,4 @@
-#include <GL/glew.h>
+#include <GL3/gl3w.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Drawable.h"
 #include "managers/ScreenManager.h"
