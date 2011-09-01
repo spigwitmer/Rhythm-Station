@@ -1,4 +1,4 @@
-#include <OpenGL/gl3.h>
+#include <GL3/gl3w.h>
 #include <glsw.h>
 #include "RStation.h"
 #include "managers/DisplayManager.h"

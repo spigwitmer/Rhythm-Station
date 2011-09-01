@@ -14,11 +14,11 @@ int main(int argc, char **argv)
 	cout << "Rhythm-Station test suite: Threads" << endl;
 	RSThread thread;
 
-	thread.Start(SomeRandomFunctionThatAThreadCalls);
+	thread.start(SomeRandomFunctionThatAThreadCalls);
 
 	cout << "greetings hi hello this is parent thread yes hello" << endl;
 
-	thread.Wait();
+	thread.join();
 
 	return 0;
 }

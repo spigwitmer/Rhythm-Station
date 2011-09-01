@@ -9,7 +9,7 @@ AM_CXXFLAGS= $(AM_CFLAGS)
 TestSuite = rs-test-threads
 
 noinst_PROGRAMS = rstation $(TestSuite)
-noinst_LIBRARIES = libglfw3.a libslb.a
+noinst_LIBRARIES = libglfw3.a libslb.a libgl3w.a libglsw.a
 
 #
 # Submodule of glfw3 (no packaged release available)
@@ -27,17 +27,20 @@ libglfw3_a_SOURCES = \
 	extern/glfw3/src/joystick.c \
 	extern/glfw3/src/time.c \
 	extern/glfw3/src/window.c \
-	extern/glfw3/src/x11/x11_enable.c \
-	extern/glfw3/src/x11/x11_fullscreen.c \
-	extern/glfw3/src/x11/x11_gamma.c \
-	extern/glfw3/src/x11/x11_opengl.c \
-	extern/glfw3/src/x11/x11_init.c \
-	extern/glfw3/src/x11/x11_joystick.c \
-	extern/glfw3/src/x11/x11_keysym2unicode.c \
-	extern/glfw3/src/x11/x11_time.c \
-	extern/glfw3/src/x11/x11_window.c
+	extern/glfw3/src/x11_fullscreen.c \
+	extern/glfw3/src/x11_enable.c \
+	extern/glfw3/src/x11_gamma.c \
+	extern/glfw3/src/x11_opengl.c \
+	extern/glfw3/src/x11_init.c \
+	extern/glfw3/src/x11_joystick.c \
+	extern/glfw3/src/x11_keysym2unicode.c \
+	extern/glfw3/src/x11_time.c \
+	extern/glfw3/src/x11_window.c
 
-libglfw3_a_CPPFLAGS = -Iextern/glfw3/include -Iextern/glfw3/src -Iextern/glfw3/src/x11
+libglfw3_a_CPPFLAGS = -Iextern/glfw3/include -Iextern/glfw3/src
+
+libgl3w_a_CPPFLAGS = -Iextern/gl3w/include -lGL -lX11
+libgl3w_a_SOURCES = extern/gl3w/src/gl3w.c
 
 #
 # Bundled SLB
@@ -95,6 +98,9 @@ liblua_a_SOURCES = \
 
 liblua_a_CPPFLAGS = -Iextern/lua-5.1.4/src
 
+libglsw_a_CPPFLAGS = -Iextern/glsw
+libglsw_a_SOURCES = extern/glsw/bstrlib.c extern/glsw/glsw.c
+
 #
 # RStation components
 #
@@ -111,22 +117,17 @@ RSTHREADSLD += -lpthread
 
 Drawables = \
 	src/drawables/Drawable.cpp \
-	src/drawables/Quad.cpp \
-	src/drawables/Sprite.cpp
+	src/drawables/Quad.cpp
 
 Input = \
 	src/input/ButtonState.cpp
 
 Managers = \
+	src/managers/DisplayManager.cpp \
+	src/managers/FileManager.cpp \
 	src/managers/InputManager.cpp \
-	src/managers/MessageManager.cpp \
+	src/managers/LuaManager.cpp \
 	src/managers/ScreenManager.cpp
-
-Renderer = \
-	src/renderer/Context.cpp \
-	src/renderer/Mesh.cpp \
-	src/renderer/Shader.cpp \
-	src/renderer/Texture.cpp
 
 Screens = \
 	src/screens/Screen.cpp
@@ -136,16 +137,13 @@ Threads = \
 	src/threads/ThreadGroup.cpp
 
 Utils = \
-	src/utils/ByteBuffer.cpp \
 	src/utils/Logger.cpp \
-	src/utils/Message.cpp \
-	src/utils/TextUtil.cpp \
 	src/utils/Timer.cpp
 
 #
 # RStation binary
 # 
-rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a
+rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a libgl3w.a libglsw.a
 rstation_SOURCES = \
 	$(Drawables) \
 	$(Input) \
@@ -169,8 +167,10 @@ rstation_CPPFLAGS = \
 	$(FFTW3_CFLAGS) \
 	$(libglfw3_a_CPPFLAGS) \
 	$(libslb_a_CPPFLAGS) \
+	$(libglsw_a_CPPFLAGS) \
 	-Iextern/simpleini-4.13 \
 	-Iextern/ogl-math \
+	-Iextern/gl3w/include \
 	-I./src
 
 #
