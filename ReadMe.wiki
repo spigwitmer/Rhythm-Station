@@ -12,23 +12,20 @@ get the OS X 10.7 SDK working. 10.5 and 10.6 aren't supported currently due to
 the renderer only supporting OpenGL 3.2, which was introduced in 10.7.
 
 == Compiling on Linux/gcc ==
-1. Make sure that you have following installed:
- - autotools
- - cmake (glfw3 git source needs this)
- - gl, glew
- - libpng (zlib as dependency of libpng)
- - openal, vorbisfile, fftw3
- - sqlite3
- - xrandr
- - >=lua-5.1 (optional, if you don't have it just 
-    pass --with-bundled-lua to the configure script)
-2. Clone current git head with command:
- - git clone git://github.com/shakesoda/Rhythm-Station.git rstation
-3. Run "./autogen.sh" to download and build the glfw submodule and prepare
-   automake.
-4. Run "./configure"
-5. If everything went well, you can now run "make"
-6. After compiling, "./rstation"
+# Make sure that you have following installed:
+#* autotools
+#* cmake (glfw3 git source needs this)
+#* gl, glew
+#* libpng (zlib as dependency of libpng)
+#* openal, vorbisfile, fftw3
+#* sqlite3
+#* xrandr
+#* >=lua-5.1 (optional, if you don't have it just pass <code>--with-bundled-lua</code> to the configure script)
+# Clone current git head with command: <code>git clone git://github.com/shakesoda/Rhythm-Station.git rstation</code>
+# Run <code>"./autogen.sh"</code> to download and build the glfw submodule and prepare automake.
+# Run <code>"./configure"</code>
+# If everything went well, you can now run <code>make</code>
+# After compiling, <code>./rstation</code>
 
 Ubuntu users need to have atleast these packages installed 
 in order to compile rstation:
