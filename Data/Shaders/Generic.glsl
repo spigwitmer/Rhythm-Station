@@ -8,10 +8,41 @@ void main()
 	gl_Position = ModelViewProjection * Position;
 }
 
+--
+mandelbrot!
 -- GL32.Fragment
+out vec4 FragColor;
+
+uniform sampler1D ColorTable;
+
+const float maxIterations = 200.0;
+const vec4 insideColor = vec4(1.0, 1.0, 1.0, 1.0);
+
+void main()
+{
+	vec2 c = vec2(gl_FragCoord.xy / 256.0) - vec2(1.0);
+	c.x -= 1.0;
+	vec2 z = c;
+
+	FragColor = insideColor;
+	for (float i = 0.0; i < maxIterations; i += 1.0)
+	{
+		z = vec2(z.x*z.x - z.y*z.y, 2.0*z.x*z.y) + c;
+		if (dot(z, z) > 4.0)
+		{
+			FragColor = texture(ColorTable, i / maxIterations);
+			break;
+		}
+	}
+}
+
+-- dGL32.Fragment
+uniform float Time;
+
 out vec4 FragColor;
 
 void main()
 {
-	FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+	FragColor = vec4(cos(Time*0.5), cos(Time*0.5), sin(Time*0.5), 1.0);
 }
+

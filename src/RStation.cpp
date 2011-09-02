@@ -7,6 +7,7 @@
 #include "managers/ScreenManager.h"
 #include "utils/Logger.h"
 #include <deque>
+#include <glm/glm.hpp>
 
 using namespace std;
 
@@ -97,31 +98,68 @@ int RStation::Run()
 	LuaManager game(fileman);
 	game.Bind("/screens/");
 	
+	GLuint tex;
+	glGenTextures(1, &tex);
+	glBindTexture(GL_TEXTURE_1D, tex);
+	unsigned data[] = {
+		0x00000011,
+		0x11111111,
+		0x22222211,
+		0x33333311,
+		0x44444411,
+		0x55555511,
+		0x66666611,
+		0x77777711,
+		0x88888811,
+		0x99999911,
+		0xAAAAAA11,
+		0xBBBBBB11,
+		0xCCCCCC11,
+		0xDDDDDD11,
+		0xEEEEEE11,
+		0xFFFFFF11,
+	};
+	
+	glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, sizeof(data), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	
+	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	
+	glUniform1i(glGetUniformLocation(id, "ColorTable"), 1);
+	display.CheckError();
+	
 	int last_update = 0;
-	double then = glfwGetTime(), now = 0.0, avg = 0.0;
+	double then = glfwGetTime(), now = 0.0;
 	std::deque<double> times;
 	while (true)
 	{
-		const size_t NUM_FRAMES = 200;
+		double delta = 0.0;
 		now = glfwGetTime();
-
+		delta = now - then;
+		
+		glUniform1f(glGetUniformLocation(id, "Time"), now);
+		
 		{
+			// Keep 5 seconds worth of deltas (@60fps)
+			const size_t NUM_FRAMES = 60*5;
+			double avg = 0.0;
+			
 			// Calculate Average FPS.
-			times.push_back(1.0/(now-then));
+			times.push_back(delta);
 			
 			if (times.size() > NUM_FRAMES)
 				times.pop_front();
 			
-			if (times.size() == NUM_FRAMES)
-			{
-				for (std::deque<double>::iterator i = times.begin(); i != times.end(); i++)
-					avg += *i;
-				avg /= times.size();
-			}
-			if (int(now) % 1 == 0 && avg > 0.01)
+			for (std::deque<double>::iterator i = times.begin(); i != times.end(); i++)
+				avg += *i;
+			
+			if (int(now) % 1 == 0 && avg > 0.0001)
 			{
 				if (last_update != int(now))
-					LOG->Info("Avg. FPS: %0.1f", avg);
+					LOG->Info("Avg. FPS: %0.0f",
+					  glm::ceil(1.0 / (avg / times.size())));
 				last_update = int(now);
 			}
 		}
