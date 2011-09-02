@@ -22,8 +22,8 @@ the renderer only supporting OpenGL 3.2, which was introduced in 10.7.
 #* xrandr
 #* >=lua-5.1 (optional, if you don't have it just pass <code>--with-bundled-lua</code> to the configure script)
 # Clone current git head with command: <code>git clone git://github.com/shakesoda/Rhythm-Station.git rstation</code>
-# Run <code>"./autogen.sh"</code> to download and build the glfw submodule and prepare automake.
-# Run <code>"./configure"</code>
+# Run <code>./autogen.sh</code> to download and build the glfw submodule and prepare automake.
+# Run <code>./configure</code>
 # If everything went well, you can now run <code>make</code>
 # After compiling, <code>./rstation</code>
 
