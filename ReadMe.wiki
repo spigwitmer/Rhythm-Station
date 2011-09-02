@@ -1,55 +1,15 @@
-= RStation =
+= Rhythm-Station =
+Rhythm-Station (RStation) is intended to be a music game (like StepMania) which
+is as flexible as possible, with support for many game modes and even defining
+your own without slaving away in the source code.
 
-== Compiling ==
-You shouldn't have any trouble building with MSVC 2008 - provided the project
-files are up to date. The Xcode project is almost always up to date and should
-work just fine at any given time (unless otherwise noted).
+While the theming capabilities are planned to be extensive, note that knowledge
+of Lua will be required to get anything meaningful done.
 
-[*] Note: due to some major changes there aren't any VC project files currently.
- Hopefully in the next week or so we'll get/make some. [2010/10/27]
-
-== Development ==
-Don't worry about adding stubs and hacks - just try to get the job done and get
-to it later. Currently the code is rather messy and I am working to improve it
-and flesh out some of the stubs. As for coding style, just follow the source
-in the file you're in, generally I write code like so:
-
-<pre>
-/*
- * Multi-line comment.
- * Hello there.
- */
-void foo(int _bar) : baz()
-{
-	baz = _bar;
-
-	// * on the right
-	int *pVar = new int[1];
-	delete pVar;
-
-	// omit braces for single-line ifs
-	if (foo == bar)
-		baz(1, 2, SOME_ENUM);
-}
-
-class Test : public Stuff
-{
-public:
-	Test();
-	virtual ~Test();
-};
-</pre>
-
-Variables should be named in such a way that they make sense. There is no need
-to strictly follow hungarian notation or whatever else. Public functions should
-be CamelCase (or for getters/setters: setCamelCase).
-
-The code is rather inconsistent right now, I apologize.
-
-== Contact ==
-Feel free to drop by #rhythm-station on irc.freenode.net! If you would like to
-contact me directly you can do it there, though github, or through email at
-shakesoda+rstation at gmail dot com.
+== Compiling on OS X ==
+Compile should "just work" with Xcode 4.1, Xcode 3.2.6 should work if you can
+get the OS X 10.7 SDK working. 10.5 and 10.6 aren't supported currently due to
+the renderer only supporting OpenGL 3.2, which was introduced in 10.7.
 
 == Compiling on Linux/gcc ==
   1. Make sure that you have following installed:
@@ -63,7 +23,7 @@ shakesoda+rstation at gmail dot com.
     - >=lua-5.1 (optional, if you don't have it just 
       pass --with-bundled-lua to the configure script)
   2. Clone current git head with command:
-       git clone git://github.com/shakesoda/Rhythm-Station.git rstation
+	- git clone git://github.com/shakesoda/Rhythm-Station.git rstation
   3. Run "./autogen.sh" to download and build the glfw submodule and prepare
      automake.
   4. Run "./configure"
@@ -75,3 +35,14 @@ in order to compile rstation:
 build-essential, autoconf, libglew1.5-dev, cmake, libxrandr-dev, libpng-dev, 
 libopenal-dev, libfftw3-dev, libvorbis-dev, libfreetype6-dev, libsqlite3-dev,  
 liblua5.1-0-dev (optional)
+
+== Hacking ==
+Have at it! Coding style changes with the wind, avoid having singletons all
+over the place. Dependency injection is preferred, using namespaces is
+encouraged. Please avoid using features which MSVC doesn't support, even if
+the project files either don't exist or are outdated.
+
+== Contact ==
+Feel free to drop by #rhythm-station on irc.freenode.net! If you would like to
+contact me directly you can do it there, though github, or through email at
+shakesoda+rstation at gmail dot com. You can also follow @RStation on twitter.
