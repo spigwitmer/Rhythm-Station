@@ -58,11 +58,21 @@ if test x$bundled_lua != xyes; then
 	])
 fi
 
-# fftw3 (default to threaded version)
-PKG_CHECK_MODULES([FFTW3],[fftw3_threads],[],[
-	AC_MSG_WARN([fftw3 dependency couldn't be satisfied with 'fftw3_threads', trying 'fftw3'])
-	PKG_CHECK_MODULES([FFTW3],[fftw3],[],[
-		AC_MSG_ERROR([fftw3 dependency was not fulfilled: '$FFTW3_PKG_ERRORS'])
+# fftw-3 (default to threaded version)
+# fftw-3.3 needs different linking style
+PKG_CHECK_EXISTS([fftw3 >= 3.3],[
+	PKG_CHECK_MODULES([FFTW3],[fftw3 >= 3.3 fftw3_threads >= 3.3],[],[
+		AC_MSG_WARN([fftw3.3 dependency couldn't be satisfied with 'fftw3_threads', trying only 'fftw3'])
+		PKG_CHECK_MODULES([FFTW3],[fftw3 >= 3.3],[],[
+			AC_MSG_ERROR([fftw3.3 dependency was not fulfilled: '$FFTW3_PKG_ERRORS'])
+		])
+	])
+],[
+	PKG_CHECK_MODULES([FFTW3],[fftw3 >= 3.3 fftw3_threads >= fftw3_threads],[],[
+		AC_MSG_WARN([fftw3 dependency couldn't be satisfied with 'fftw3_threads', trying 'fftw3'])
+		PKG_CHECK_MODULES([FFTW3],[fftw3],[],[
+			AC_MSG_ERROR([fftw3 dependency was not fulfilled: '$FFTW3_PKG_ERRORS'])
+		])
 	])
 ])
 
