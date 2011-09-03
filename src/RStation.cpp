@@ -25,6 +25,33 @@ RStation::~RStation()
 	SAFE_DELETE(LOG);
 }
 
+inline void endian_swap(unsigned short &x)
+{
+    x = (x>>8) | 
+	(x<<8);
+}
+
+inline void endian_swap(unsigned int &x)
+{
+    x = (x>>24) | 
+	((x<<8) & 0x00FF0000) |
+	((x>>8) & 0x0000FF00) |
+	(x<<24);
+}
+
+// __int64 for MSVC, "long long" for gcc
+inline void endian_swap(unsigned long long &x)
+{
+    x = (x>>56) | 
+	((x<<40) & 0x00FF000000000000) |
+	((x<<24) & 0x0000FF0000000000) |
+	((x<<8)  & 0x000000FF00000000) |
+	((x>>8)  & 0x00000000FF000000) |
+	((x>>24) & 0x0000000000FF0000) |
+	((x>>40) & 0x000000000000FF00) |
+	(x<<56);
+}
+
 int RStation::Run()
 {
 	FileManager fileman;
@@ -101,33 +128,21 @@ int RStation::Run()
 	GLuint tex;
 	glGenTextures(1, &tex);
 	glBindTexture(GL_TEXTURE_1D, tex);
-	unsigned data[] = {
-		0x00000011,
-		0x11111111,
-		0x22222211,
-		0x33333311,
-		0x44444411,
-		0x55555511,
-		0x66666611,
-		0x77777711,
-		0x88888811,
-		0x99999911,
-		0xAAAAAA11,
-		0xBBBBBB11,
-		0xCCCCCC11,
-		0xDDDDDD11,
-		0xEEEEEE11,
-		0xFFFFFF11,
-	};
+	unsigned data[32];
+	int j = 0;
+	for (int i = 0; i<0xFF; i+=(0xFF/32)) {
+		data[j] = 0x110000 * (j/2);
+		j++;
+	}
 	
-	glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, sizeof(data), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, sizeof(data), 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 	
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
-	glUniform1i(glGetUniformLocation(id, "ColorTable"), 1);
+	glUniform1i(glGetUniformLocation(id, "ColorTable"), 0);
 	display.CheckError();
 	
 	int last_update = 0;
@@ -138,9 +153,7 @@ int RStation::Run()
 		double delta = 0.0;
 		now = glfwGetTime();
 		delta = now - then;
-		
-		glUniform1f(glGetUniformLocation(id, "Time"), now);
-		
+				
 		{
 			// Keep 5 seconds worth of deltas (@60fps)
 			const size_t NUM_FRAMES = 60*5;
@@ -165,6 +178,7 @@ int RStation::Run()
 		}
 
 		then = now;
+		
 		// Break if user closed the window
 		input.Update();
 
@@ -174,7 +188,7 @@ int RStation::Run()
 		// ScreenManager automatically calculates delta.
 		screen.Update(glfwGetTime());
 		screen.Draw();
-		
+				
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT, NULL);
 		

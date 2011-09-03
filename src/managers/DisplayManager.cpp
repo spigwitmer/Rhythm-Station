@@ -117,11 +117,13 @@ bool DisplayManager::OpenWindow()
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 0);
 	glfwOpenWindowHint(GLFW_WINDOW_NO_RESIZE, 1);
 	glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	
+		
 	// First, try to create a GL 3.2 context
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
 	m_window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "Rhythm-Station", NULL);
+	glfwSwapInterval(0);
+
 	
 	// Make sure we were able to create a rendering context.
 	if (!glfwIsWindow(m_window))
@@ -132,7 +134,7 @@ bool DisplayManager::OpenWindow()
 	
 	gl3wInit();
 	gl3wIsSupported(3, 2);
-		
+	
 	// make sure nothing is terribly wrong from the start.
 	CheckError();
 
