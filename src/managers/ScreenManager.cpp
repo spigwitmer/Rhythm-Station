@@ -61,6 +61,7 @@ void ScreenManager::Draw()
 
 void ScreenManager::PushScreen(string sName)
 {
+	// TODO: get screen class from lua.
 	MakeScreenMap::iterator it = GetMap()->find(sName);
 
 	if (it == GetMap()->end())
@@ -68,7 +69,7 @@ void ScreenManager::PushScreen(string sName)
 		LOG->Warn("Screen \"%s\" not found!", sName.c_str());
 		return;
 	}
-
+//	m_vScreenStack.back()->Load("foo");
 	m_vScreenStack.push_back(it->second(sName));
 }
 

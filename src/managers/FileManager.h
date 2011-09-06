@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 class FileManager
 {
@@ -8,6 +9,7 @@ public:
 	FileManager();
 	virtual ~FileManager();
 	void Mount(std::string internal, std::string real);
+	std::vector<std::string> GetDirectoryListing(std::string path);
 };
 
 /**

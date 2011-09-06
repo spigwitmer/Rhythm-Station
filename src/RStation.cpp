@@ -32,16 +32,6 @@ int RStation::Run()
 	if (!display.OpenWindow())
 		return 1;
 	
-	/*
-	// Input device drivers (lua based)
-	LuaManager drivers(fileman);
-	drivers.Bind("/devices/");
-	
-	// Game scripts.
-	LuaManager game(fileman);
-	game.Bind("/screens/");
-	*/
-	
 	while (true)
 	{		
 		// Break if user closed the window
