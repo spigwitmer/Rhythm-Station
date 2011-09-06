@@ -68,7 +68,6 @@ vector<string> GetDirectoryListing(string path)
 #include <string>
 #include <fstream>
 #include <sys/stat.h>
-#include "utils/PreferencesFile.h"
 
 static bool checkExt(std::string *str, std::string ext) {
 	if (!ext.empty())
@@ -87,9 +86,9 @@ HANDLE FindFirstFile_Fixed( std::string dir, WIN32_FIND_DATAA *fd )
 }
 #endif
 
-std::vector<std::string> FileManager::GetDirectoryListing(std::string dir, std::string ext)
+std::vector<std::string> FileManager::GetDirectoryListing(string dir, string ext)
 {
-	std::vector<std::string> files;
+	vector<string> files;
 	
 #if defined(_WIN32)
 	WIN32_FIND_DATAA fd;
@@ -116,13 +115,13 @@ std::vector<std::string> FileManager::GetDirectoryListing(std::string dir, std::
 	
 	if((dp  = opendir(dir.c_str())) == NULL)
 	{
-		Log->Print("Error (%d) opening %s", errno, dir.c_str());
+		LOG->Warn("Error (%d) opening %s", errno, dir.c_str());
 		return files;
 	}
 	
 	while ((dirp = readdir(dp)) != NULL)
 	{
-		std::string str = dirp->d_name;
+		string str = dirp->d_name;
 		if (!checkExt(&str, ext))
 			continue;
 		files.push_back(str);
@@ -134,7 +133,7 @@ std::vector<std::string> FileManager::GetDirectoryListing(std::string dir, std::
 	return files;
 }
 
-bool FileManager::FileExists(std::string _file, std::string ext)
+bool FileManager::FileExists(string _file, string ext)
 {
 	struct stat stFileInfo;
 	int iStat;
@@ -182,27 +181,27 @@ std::string FileManager::GetWorkingDirectory()
 		return std::string("./");
 }
 
-std::string FileManager::GetFile(std::string _path)
+string FileManager::GetPath(string _path)
 {
-	if (_path[0] != '/' && Preferences != NULL)
-		_path = Log->SPrint("Themes/%s/%s",
-							Preferences->GetValue("Game", "CurrentTheme"),
-							_path.c_str());
-	else if (Preferences != NULL) // prevent "references.ini" and such.
-		_path = _path.substr(1);
+//	if (_path[0] != '/' && Preferences != NULL)
+//		_path = Log->SPrint("Themes/%s/%s",
+//							Preferences->GetValue("Game", "CurrentTheme"),
+//							_path.c_str());
+//	else if (Preferences != NULL) // prevent "references.ini" and such.
+//		_path = _path.substr(1);
 	
 	return GetWorkingDirectory() + _path;
 }
 
-std::string FileManager::GetFileContents(std::string _path)
+string FileManager::GetFileContents(string _path)
 {
-	std::string out, buf;
-	std::ifstream file(_path.c_str());
+	string out, buf;
+	ifstream file(_path.c_str());
 	
 	if (!file.is_open())
 	{
-		Log->Print("Error opening %s for writing", _path.c_str());
-		return std::string();
+		LOG->Warn("Error opening %s for writing", _path.c_str());
+		return string();
 	}
 	
 	while (!file.eof())
@@ -214,17 +213,6 @@ std::string FileManager::GetFileContents(std::string _path)
 	
 	return out;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * Colby Klein (c) 2011

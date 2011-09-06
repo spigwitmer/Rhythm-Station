@@ -9,7 +9,15 @@ public:
 	FileManager();
 	virtual ~FileManager();
 	void Mount(std::string internal, std::string real);
-	std::vector<std::string> GetDirectoryListing(std::string path);
+	bool FileExists(std::string path, std::string ext = "");
+	
+	std::vector<std::string> GetDirectoryListing(std::string path, std::string ext = "");
+	std::string GetPath(std::string path);
+	std::string GetFileContents(std::string path);
+	
+private:
+	void SetWorkingDirectory();
+	std::string GetWorkingDirectory();
 };
 
 /**
