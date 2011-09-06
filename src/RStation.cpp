@@ -59,64 +59,11 @@ int RStation::Run()
 	ScreenManager screen;
 	DisplayManager display;
 	
-	const char *vss, *fss;
-	GLuint vs, fs, id, vao, buf[2];
-	string log;	
-	
 	// Open the display, make sure nothing went wrong on init.
 	if (!display.OpenWindow())
 		return 1;
 	
-	vss = glswGetShader("Generic.GL32.Vertex");
-	fss = glswGetShader("Generic.GL32.Fragment");
-	
-	// TODO: non-test code
-	glGenVertexArrays(1, &vao);
-	glGenBuffers(2, &buf[0]);
-
-	id = glCreateProgram();
-	vs = glCreateShader(GL_VERTEX_SHADER);
-	fs = glCreateShader(GL_FRAGMENT_SHADER);
-	
-	glShaderSource(vs, 1, &vss, NULL);
-	glShaderSource(fs, 1, &fss, NULL);
-	
-	glCompileShader(vs);
-	glCompileShader(fs);
-	
-	glAttachShader(id, vs);
-	glAttachShader(id, fs);
-	
-	glBindAttribLocation(id, 0, "Position");
-	glLinkProgram(id);
-	display.CheckError();
-	
-	if (!(log = display.GetInfoLog(vs)).empty()) LOG->Info("Vertex shader log: %s", log.c_str());	
-	if (!(log = display.GetInfoLog(fs)).empty()) LOG->Info("Fragment shader log: %s", log.c_str());
-	if (!(log = display.GetInfoLog(id)).empty()) LOG->Fatal("Shader program log: %s", log.c_str());
-	
-	glBindVertexArray(vao);
-	
-	glUseProgram(id);
-	display.CheckError();
-	
-	float verts[] = { -1.0, -1.0, 0.0, -1.0, 1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0 };
-	unsigned indices[] = { 0, 1, 2, 3 };
-	
-	// Identity.
-	float mat[] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
-	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewProjection"), 1, false, mat);
-	
-	glBindBuffer(GL_ARRAY_BUFFER, buf[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
-	
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buf[1]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-	
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float)*3, 0);	
-	glEnableVertexAttribArray(0);
-	display.CheckError();
-	
+	/*
 	// Input device drivers (lua based)
 	LuaManager drivers(fileman);
 	drivers.Bind("/devices/");
@@ -124,28 +71,9 @@ int RStation::Run()
 	// Game scripts.
 	LuaManager game(fileman);
 	game.Bind("/screens/");
+	*/
 	
-	GLuint tex;
-	glGenTextures(1, &tex);
-	glBindTexture(GL_TEXTURE_1D, tex);
-	unsigned data[32];
-	int j = 0;
-	for (int i = 0; i<0xFF; i+=(0xFF/32)) {
-		data[j] = 0x110000 * (j/2);
-		j++;
-	}
-	
-	glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, sizeof(data), 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
-	
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	
-	glUniform1i(glGetUniformLocation(id, "ColorTable"), 0);
-	display.CheckError();
-	
-	int last_update = 0;
+	long last_update = 0;
 	double then = glfwGetTime(), now = 0.0;
 	std::deque<double> times;
 	while (true)
@@ -153,7 +81,8 @@ int RStation::Run()
 		double delta = 0.0;
 		now = glfwGetTime();
 		delta = now - then;
-				
+
+		// TODO: Move to ScreenManager
 		{
 			// Keep 5 seconds worth of deltas (@60fps)
 			const size_t NUM_FRAMES = 60*5;
@@ -176,21 +105,17 @@ int RStation::Run()
 				last_update = int(now);
 			}
 		}
-
+		
 		then = now;
 		
 		// Break if user closed the window
 		input.Update();
-
+		
 		if (!glfwIsWindow(display.GetWindow()) || input.GetButton(RS_KEY_ESC)->IsDown())
 			break;
 		
-		// ScreenManager automatically calculates delta.
-		screen.Update(glfwGetTime());
+		screen.Update(delta);
 		screen.Draw();
-				
-		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-		glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT, NULL);
 		
 		if (!display.IsFocused())
 			usleep(50000);
@@ -200,18 +125,7 @@ int RStation::Run()
 	}
 	
 	display.CloseWindow();
-	
-	glDeleteVertexArrays(1, &vao);
-	
-	glDetachShader(id, vs);
-	glDetachShader(id, fs);
-	
-	glDeleteShader(vs);
-	glDeleteShader(fs);
-	
-	glDeleteProgram(id);
-	glDeleteBuffers(2, buf);
-	
+		
 	return 0;
 }
 
