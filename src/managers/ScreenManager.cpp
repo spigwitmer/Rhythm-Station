@@ -1,4 +1,5 @@
 #include <GL3/gl3w.h>
+#include <GL/glfw3.h>
 #include "ScreenManager.h"
 #include "screens/Screen.h"
 #include "RStation.h"
@@ -12,9 +13,36 @@ MakeScreenMap *ScreenManager::GetMap()
 	return &g_ScreenMap;
 }
 
-void ScreenManager::Update(double time)
+ScreenManager::ScreenManager()
 {
+	m_LastUpdateRounded = 0;
+	m_LastUpdate = 0.0;
+}
+
+void ScreenManager::Update()
+{
+	const size_t NUM_FRAMES = 60*5;
+	double time = glfwGetTime();
 	double delta = time - m_LastUpdate;
+	double avg = 0.0;
+	
+	// Calculate Average FPS.
+	m_Times.push_back(delta);
+	
+	if (m_Times.size() > NUM_FRAMES)
+		m_Times.pop_front();
+	
+	for (std::deque<double>::iterator i = m_Times.begin(); i != m_Times.end(); i++)
+		avg += *i;
+	
+	if (int(time) % 1 == 0 && avg > 0.0001)
+	{
+		if (m_LastUpdateRounded != int(time))
+			LOG->Info("Avg. FPS: %0.0f",
+					  glm::ceil(1.0 / (avg / m_Times.size())));
+		m_LastUpdateRounded = int(time);
+	}
+	
 	m_LastUpdate = time;
 	
 	vector<Screen*>::iterator it = m_vScreenStack.begin();

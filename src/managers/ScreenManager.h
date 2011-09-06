@@ -1,6 +1,7 @@
 #ifndef _SCREEN_MANAGER_H_
 #define _SCREEN_MANAGER_H_
 
+#include <deque>
 #include <vector>
 #include <string>
 #include <map>
@@ -18,7 +19,9 @@ typedef std::map<std::string, MakeScreenFn> MakeScreenMap;
 class ScreenManager : public Singleton<ScreenManager>
 {
 public:
-	void Update(double time);
+	ScreenManager();
+	
+	void Update();
 	void Draw();
 	
 	void PushScreen(std::string sName);
@@ -32,6 +35,8 @@ public:
 
 private:
 	double m_LastUpdate;
+	long m_LastUpdateRounded;
+	std::deque<double> m_Times;
 
 	std::vector<Screen*> m_vScreenStack;
 	std::map<std::string, Screen*> m_vScreenTypes;
