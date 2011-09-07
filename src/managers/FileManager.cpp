@@ -127,34 +127,9 @@ bool FileManager::FileExists(string _file, string ext)
 	return false;
 }
 
-void FileManager::SetWorkingDirectory()
-{
-	// For OS X, get stuff out of the application bundle (where it is expected to reside)
-#ifdef __APPLE__
-	/*
-	 * This function will locate the path to our application on OS X,
-	 * unlike windows you cannot rely on the current working directory
-	 * for locating your configuration files and resources.
-	 */
-	char path[1024];
-	CFBundleRef mainBundle = CFBundleGetMainBundle();
-	assert(mainBundle); // make sure nothing is terribly wrong here.
-	CFURLRef mainBundleURL = CFBundleCopyBundleURL(mainBundle);
-	CFStringRef cfStringRef = CFURLCopyFileSystemPath(mainBundleURL, kCFURLPOSIXPathStyle);
-	CFStringGetCString(cfStringRef, path, 1024, kCFStringEncodingUTF8);
-	CFRelease(mainBundleURL);
-	CFRelease(cfStringRef);
-	
-	std::string _path = path;
-	_path += "/Contents/Resources";
-	chdir(_path.c_str());
-#endif
-}
-
 // this will probably be removed later.
 std::string FileManager::GetWorkingDirectory()
 {
-	SetWorkingDirectory();
 	char path[1024] = "";
 	
 	if (getcwd(path, 1024) != NULL)
@@ -163,6 +138,7 @@ std::string FileManager::GetWorkingDirectory()
 		return std::string("./");
 }
 
+// TODO: VFS
 string FileManager::GetPath(string _path)
 {
 	return GetWorkingDirectory() + _path;
