@@ -1,48 +1,4 @@
 #include "FileManager.h"
-#include <glsw.h>
-#include <string>
-
-using namespace std;
-
-FileManager::FileManager() {
-	glswInit();
-	glswSetPath("Data/Shaders/", ".glsl");
-	
-	/*
-	 * Enforce 120 for GL 2.x, and 150 for 3.x.
-	 * We only actually support GL 2.1 and 3.2, 
-	 */
-	glswAddDirectiveToken("GL21", "#version 120");		
-	glswAddDirectiveToken("GL32", "#version 150");
-}
-
-FileManager::~FileManager() {
-	glswShutdown();
-}
-
-void FileManager::Mount(string internal, string real)
-{
-	// TODO
-}
-
-vector<string> GetDirectoryListing(string path)
-{
-	vector<string> ret;
-	
-	return ret;
-}
-
-
-
-
-
-
-
-
-
-
-
-#include "FileManager.h"
 #include "utils/Logger.h"
 
 #ifdef __APPLE__
@@ -68,6 +24,30 @@ vector<string> GetDirectoryListing(string path)
 #include <string>
 #include <fstream>
 #include <sys/stat.h>
+#include <glsw.h>
+
+using namespace std;
+
+FileManager::FileManager() {
+	glswInit();
+	glswSetPath("Data/Shaders/", ".glsl");
+	
+	/*
+	 * Enforce 120 for GL 2.x, and 150 for 3.x.
+	 * We only actually support GL 2.1 and 3.2, 
+	 */
+	glswAddDirectiveToken("GL21", "#version 120");		
+	glswAddDirectiveToken("GL32", "#version 150");
+}
+
+FileManager::~FileManager() {
+	glswShutdown();
+}
+
+void FileManager::Mount(string internal, string real)
+{
+	// TODO
+}
 
 static bool checkExt(std::string *str, std::string ext) {
 	if (!ext.empty())
@@ -80,36 +60,38 @@ static bool checkExt(std::string *str, std::string ext) {
 }
 
 #if defined(_WIN32)
-HANDLE FindFirstFile_Fixed( std::string dir, WIN32_FIND_DATAA *fd )
+HANDLE FindFirstFile_Fixed(string dir, WIN32_FIND_DATAA *fd)
 {
-	return FindFirstFileA( dir.c_str(), fd );
+	return FindFirstFileA(dir.c_str(), fd);
 }
 #endif
 
-std::vector<std::string> FileManager::GetDirectoryListing(string dir, string ext)
+vector<string> FileManager::GetDirectoryListing(string dir, string ext)
 {
 	vector<string> files;
 	
-#if defined(_WIN32)
+#if defined(_WIN32) // Windows
 	WIN32_FIND_DATAA fd;
 	
 	HANDLE hFind;
-	if ( ext.empty() )
-		hFind = FindFirstFile_Fixed( dir+"/*", &fd );
+	if (ext.empty())
+		hFind = FindFirstFile_Fixed(dir+"/*", &fd);
 	else
-		hFind = FindFirstFile_Fixed( dir+"/*."+ext, &fd );
+		hFind = FindFirstFile_Fixed(dir+"/*."+ext, &fd);
 	
-	if ( hFind != INVALID_HANDLE_VALUE )
+	if (hFind != INVALID_HANDLE_VALUE)
 	{
-		do {
-			if( !strcmp(fd.cFileName, ".") || !strcmp(fd.cFileName, "..") )
+		do
+		{
+			if (!strcmp(fd.cFileName, ".") || !strcmp(fd.cFileName, ".."))
 				continue;
 			
-			files.push_back( std::string(fd.cFileName) );
-		} while( FindNextFileA( hFind, &fd ) );
-		FindClose( hFind );
+			files.push_back(string(fd.cFileName));
+		}
+		while (FindNextFileA(hFind, &fd));
+		FindClose(hFind);
 	}
-#else
+#else // Unix
 	DIR *dp;
 	struct dirent *dirp;
 	
@@ -183,13 +165,6 @@ std::string FileManager::GetWorkingDirectory()
 
 string FileManager::GetPath(string _path)
 {
-//	if (_path[0] != '/' && Preferences != NULL)
-//		_path = Log->SPrint("Themes/%s/%s",
-//							Preferences->GetValue("Game", "CurrentTheme"),
-//							_path.c_str());
-//	else if (Preferences != NULL) // prevent "references.ini" and such.
-//		_path = _path.substr(1);
-	
 	return GetWorkingDirectory() + _path;
 }
 
