@@ -13,8 +13,9 @@ MakeScreenMap *ScreenManager::GetMap()
 	return &g_ScreenMap;
 }
 
-ScreenManager::ScreenManager()
+ScreenManager::ScreenManager(LuaManager &lua)
 {
+	m_LuaMan = &lua;
 	m_LastUpdateRounded = 0;
 	m_LastUpdate = 0.0;
 }
@@ -61,16 +62,37 @@ void ScreenManager::Draw()
 
 void ScreenManager::PushScreen(string sName)
 {
-	// TODO: get screen class from lua.
-	MakeScreenMap::iterator it = GetMap()->find(sName);
-
-	if (it == GetMap()->end())
+	lua_State *L = m_LuaMan->Get();
+	
+	// Make sure we've got a table to match the given name.
+	lua_getglobal(L, sName.c_str());
+	if (!lua_istable(L, -1))
 	{
-		LOG->Warn("Screen \"%s\" not found!", sName.c_str());
+		LOG->Warn("No screen named \"%s\" found.", sName.c_str());
 		return;
 	}
-//	m_vScreenStack.back()->Load("foo");
-	m_vScreenStack.push_back(it->second(sName));
+	
+	// We need the Class field, so that we know what to instantiate.
+	lua_getfield(L, -1, "Class");
+	if (lua_isstring(L, -1)) {
+		string sClass = lua_tostring(L, -1);
+		
+		MakeScreenMap::iterator it = GetMap()->find(sClass);
+		
+		if (it == GetMap()->end())
+		{
+			LOG->Warn("Invalid screen class: \"%s\".", sClass.c_str());
+			return;
+		}
+		
+		m_vScreenStack.push_back(it->second(sName));
+		m_vScreenStack.back()->SetLuaManager(m_LuaMan);
+		m_vScreenStack.back()->Init();
+	}
+	else
+	{
+		LOG->Warn("%s has no class!", sName.c_str());
+	}
 }
 
 void ScreenManager::PopScreen()

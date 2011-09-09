@@ -6,7 +6,7 @@
 #include <string>
 #include <map>
 
-#include "utils/Singleton.h"
+#include "managers/LuaManager.h"
 #include "utils/Message.h"
 
 class Screen;
@@ -16,10 +16,10 @@ typedef Screen* (*MakeScreenFn)(const std::string &sName);
 typedef std::pair<std::string, MakeScreenFn> MakeScreenEntry;
 typedef std::map<std::string, MakeScreenFn> MakeScreenMap;
 
-class ScreenManager : public Singleton<ScreenManager>
+class ScreenManager
 {
 public:
-	ScreenManager();
+	ScreenManager(LuaManager &lua);
 	
 	void Update();
 	void Draw();
@@ -40,6 +40,8 @@ private:
 
 	std::vector<Screen*> m_vScreenStack;
 	std::map<std::string, Screen*> m_vScreenTypes;
+	
+	LuaManager *m_LuaMan;
 };
 
 struct RegisterScreen
@@ -51,7 +53,7 @@ struct RegisterScreen
 };
 
 #define REGISTER_SCREEN( name ) \
-	Screen *Make##name( const string &sName ) { Screen *pRet = new name( sName ); pRet->Init(); return pRet; } \
+	Screen *Make##name( const string &sName ) { Screen *pRet = new name( sName ); return pRet; } \
 	static RegisterScreen g_##name( #name, Make##name );
 
 #endif

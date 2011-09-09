@@ -124,7 +124,6 @@ bool DisplayManager::OpenWindow()
 	m_window = glfwOpenWindow(854, 480, GLFW_WINDOWED, "Rhythm-Station", NULL);
 	glfwSwapInterval(0);
 
-	
 	// Make sure we were able to create a rendering context.
 	if (!glfwIsWindow(m_window))
 	{

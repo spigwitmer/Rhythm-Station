@@ -1,15 +1,19 @@
 #include "LuaManager.h"
 #include <vector>
 
+#include "utils/Logger.h"
+
 using namespace std;
 
 LuaManager::LuaManager(FileManager &f)
 {
 	m_Lua = lua_open();
 	m_FileMan = &f;
+	
+	luaL_openlibs(m_Lua);
 }
 
-void LuaManager::Bind(string s)
+void LuaManager::Init(string s)
 {
 	vector<string> files = m_FileMan->GetDirectoryListing(s);
 	if (files.empty())
@@ -17,12 +21,16 @@ void LuaManager::Bind(string s)
 	
 	vector<string>::iterator it;
 	for (it = files.begin(); it != files.end(); it++)
-		luaL_loadfile(m_Lua, it->c_str());
+	{
+		string str = s + "/" + (*it);
+		LOG->Info("Running \"%s\".", str.c_str());
+		luaL_dofile(m_Lua, str.c_str());
+	}
 }
 
-void LuaManager::Init()
+lua_State* LuaManager::Get()
 {
-	
+	return m_Lua;
 }
 
 /**

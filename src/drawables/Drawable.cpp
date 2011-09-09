@@ -16,7 +16,7 @@ Drawable::~Drawable()
 
 void Drawable::Push()
 {
-	ScreenManager::GetSingleton()->GetTopScreen()->Push(this);
+//	ScreenManager::GetSingleton()->GetTopScreen()->Push(this);
 }
 
 void Drawable::Update(double delta)

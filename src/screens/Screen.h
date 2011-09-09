@@ -5,19 +5,23 @@
 #include <glm/glm.hpp>
 #include "drawables/Drawable.h"
 #include "managers/ScreenManager.h"
+#include "managers/LuaManager.h"
 #include "utils/Message.h"
 
 class Screen : public MessageListener
 {
 public:
+	// Set name on creation.
 	Screen(std::string sName);
 	virtual ~Screen();
+	void Reset();
 
 	void HandleMessage(const Message &msg);
 
 	void Update(double delta);
 	void Draw();
 
+	// TODO
 	void Push(Drawable* obj);
 
 	std::string GetName() const { return m_name; }
@@ -26,8 +30,12 @@ public:
 	// For derived classes only.
 	virtual void Init();
 	virtual void UpdateInternal(double delta);
-
+	
+	void SetLuaManager(LuaManager *L) { m_Lua = L; }
+	
 protected:
+	bool m_error;
+	LuaManager *m_Lua;
 	std::string m_name;
 	glm::mat4 m_projection;
 

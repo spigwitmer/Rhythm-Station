@@ -13,8 +13,8 @@ class LuaManager
 {
 public:
 	LuaManager(FileManager &f);
-	void Init();
-	void Bind(std::string s);
+	void Init(std::string s = "");
+	lua_State* Get();
 	
 private:
 	FileManager *m_FileMan;

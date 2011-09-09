@@ -25,15 +25,20 @@ int RStation::Run()
 {
 	FileManager fileman;
 	InputManager input;
-	ScreenManager screen;
 	DisplayManager display;
+	
+	LuaManager lua(fileman);
+	ScreenManager screen(lua);
+	
+	lua.Init("Data/Scripts");
+	screen.PushScreen("ScreenTest");
 	
 	// Open the display, make sure nothing went wrong on init.
 	if (!display.OpenWindow())
 		return 1;
 	
 	while (true)
-	{		
+	{
 		// Break if user closed the window
 		input.Update();
 		

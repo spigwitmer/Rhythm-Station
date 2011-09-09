@@ -53,7 +53,7 @@ static bool checkExt(std::string *str, std::string ext) {
 	if (!ext.empty())
 	{
 		size_t pos = str->find_last_of(".");
-		if (str->substr(pos+1) != ext || pos == std::string::npos)
+		if (str->substr(pos+1) != ext || pos == string::npos)
 			return false;
 	}
 	return true;
@@ -104,6 +104,11 @@ vector<string> FileManager::GetDirectoryListing(string dir, string ext)
 	while ((dirp = readdir(dp)) != NULL)
 	{
 		string str = dirp->d_name;
+		
+		// "." and ".." are useless - we don't ever need them.
+		if (str == "." || str == "..")
+			continue;
+
 		if (!checkExt(&str, ext))
 			continue;
 		files.push_back(str);
@@ -128,14 +133,14 @@ bool FileManager::FileExists(string _file, string ext)
 }
 
 // this will probably be removed later.
-std::string FileManager::GetWorkingDirectory()
+string FileManager::GetWorkingDirectory()
 {
 	char path[1024] = "";
 	
 	if (getcwd(path, 1024) != NULL)
-		return std::string(path) + "/";
+		return string(path) + "/";
 	else
-		return std::string("./");
+		return string("./");
 }
 
 // TODO: VFS
