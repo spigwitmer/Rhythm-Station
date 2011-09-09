@@ -1,8 +1,11 @@
 #include "RStation.h"
 #include "managers/DisplayManager.h"
-#include "managers/InputManager.h"
 #include "managers/LuaManager.h"
 #include "managers/ScreenManager.h"
+#include "managers/InputManager.h"
+
+// These two are singletons for convenience, however.
+#include "managers/MessageManager.h"
 #include "utils/Logger.h"
 
 using namespace std;
@@ -55,8 +58,11 @@ int RStation::Run()
 		display.Flush();
 	}
 	
+	// Don't bother broadcasting messages after the window closes.
+	MessageManager::GetSingleton()->Clear();
+	
 	display.CloseWindow();
-		
+	
 	return 0;
 }
 

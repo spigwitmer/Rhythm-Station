@@ -3,10 +3,9 @@
 
 #include "input/Inputs.h"
 #include "input/ButtonState.h"
-#include "utils/Singleton.h"
 #include <glm/glm.hpp>
 
-class InputManager : public Singleton<InputManager>
+class InputManager
 {
 public:
 	InputManager();
@@ -26,7 +25,7 @@ public:
 	glm::ivec2 &GetMousePos() const;
 };
 
-#endif // INPUT_MANAGER_H
+#endif
 
 /**
  * Colby Klein, Matt Vandermeulen (c) 2011

@@ -20,6 +20,7 @@ class ScreenManager
 {
 public:
 	ScreenManager(LuaManager &lua);
+	virtual ~ScreenManager();
 	
 	void Update();
 	void Draw();

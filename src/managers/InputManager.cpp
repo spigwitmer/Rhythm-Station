@@ -1,5 +1,6 @@
 #include "InputManager.h"
 #include "utils/Logger.h"
+#include "utils/Message.h"
 
 #include <vector>
 #include <GL/glfw3.h>
@@ -187,6 +188,13 @@ void InputManager::Update()
 {
 	DiscardQueue();
 	glfwPollEvents();
+	
+	if (!g_vQueue.empty()) {
+		Message m;
+		m.name = "Input";
+		m.data = (void*)this;
+		m.Send();
+	}
 }
 
 ButtonState *InputManager::GetNextInput()

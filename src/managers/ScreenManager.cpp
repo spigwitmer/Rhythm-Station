@@ -20,6 +20,11 @@ ScreenManager::ScreenManager(LuaManager &lua)
 	m_LastUpdate = 0.0;
 }
 
+ScreenManager::~ScreenManager()
+{
+	ClearStack();
+}
+
 void ScreenManager::Update()
 {
 	const size_t NUM_FRAMES = 60*5;
@@ -106,6 +111,8 @@ void ScreenManager::ClearStack()
 {
 	while (!m_vScreenStack.empty())
 		PopScreen();
+
+	LOG->Info("Cleared screen stack.");
 }
 
 /**

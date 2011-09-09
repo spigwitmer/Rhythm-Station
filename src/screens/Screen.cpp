@@ -1,6 +1,7 @@
 #include "screens/Screen.h"
 #include "utils/Logger.h"
 #include "managers/LuaManager.h"
+#include "managers/InputManager.h"
 #include "utils/Timer.h"
 
 using namespace std;
@@ -21,6 +22,7 @@ Screen::Screen(string sName) :
 
 Screen::~Screen()
 {
+	LOG->Info("Deleted screen \"%s\".", m_name.c_str());
 }
 
 void Screen::Reset()
@@ -57,7 +59,13 @@ void Screen::Init()
 
 void Screen::HandleMessage(const Message &msg)
 {
-
+	InputManager *input = (InputManager*)msg.data;
+	if (msg.name == "Input") {
+		while (input->GetNextInput()) {
+			
+		}
+	}
+	LOG->Info("Got message: %s", msg.name.c_str());
 }
 
 void Screen::Push(Drawable* obj)

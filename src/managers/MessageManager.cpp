@@ -3,19 +3,22 @@
 
 using namespace std;
 
-MessageManager::MessageManager()
-{
-	// TODO
-}
-
 MessageManager::~MessageManager()
 {
-	// TODO
+	Clear();
 }
 
 void MessageManager::Broadcast(Message &m)
 {
-	
+	list<MessageListener*>::iterator it = m_listeners[m.name].begin();
+	for (; it != m_listeners[m.name].end(); it++)
+	{
+		// Just in case.
+		if (*it != NULL)
+			(*it)->HandleMessage(m);
+		else
+			LOG->Warn("Attempt to broadcast to a NULL pointer!");
+	}
 }
 
 void MessageManager::Subscribe(MessageListener *listener, string event)
@@ -52,6 +55,16 @@ void MessageManager::RemoveListener(MessageListener *listener)
 				event->second.erase(it);
 		}
 	}
+}
+
+// Make sure this is empty before other objects start destructing.
+void MessageManager::Clear()
+{
+	if (m_listeners.empty())
+		return;
+
+	m_listeners.clear();
+	LOG->Info("Cleared all message listeners.");
 }
 
 /**
