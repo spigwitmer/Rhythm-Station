@@ -44,6 +44,8 @@
 		EE2EAF4A1379F483007FA34A /* ButtonState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAF461379F483007FA34A /* ButtonState.cpp */; };
 		EE2EAF4F1379F4A4007FA34A /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAF4D1379F4A4007FA34A /* Timer.cpp */; };
 		EE3A2158137DAA3C00CD800F /* Quad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE3A2157137DAA3C00CD800F /* Quad.cpp */; };
+		EE4B7576141AB27200178A4D /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4B7575141AB27200178A4D /* MessageManager.cpp */; };
+		EE4B757A141AB33500178A4D /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4B7579141AB33500178A4D /* Message.cpp */; };
 		EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = EE51F2E812EB4B74003A241E /* ConvertUTF.c */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
@@ -176,6 +178,9 @@
 		EE2EAF4E1379F4A4007FA34A /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
 		EE3A2156137DAA3C00CD800F /* Quad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quad.h; sourceTree = "<group>"; };
 		EE3A2157137DAA3C00CD800F /* Quad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quad.cpp; sourceTree = "<group>"; };
+		EE4B7575141AB27200178A4D /* MessageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageManager.cpp; sourceTree = "<group>"; };
+		EE4B7578141AB29300178A4D /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		EE4B7579141AB33500178A4D /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
 		EE51F2E812EB4B74003A241E /* ConvertUTF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ConvertUTF.c; sourceTree = "<group>"; };
 		EE51F2E912EB4B74003A241E /* ConvertUTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertUTF.h; sourceTree = "<group>"; };
 		EE51F2EF12EB4B74003A241E /* SimpleIni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleIni.h; sourceTree = "<group>"; };
@@ -389,6 +394,8 @@
 				EE2EAF0D1379ED84007FA34A /* InputManager.h */,
 				EE919898140D457A0072CB09 /* LuaManager.cpp */,
 				EE91989A140D45860072CB09 /* LuaManager.h */,
+				EE4B7575141AB27200178A4D /* MessageManager.cpp */,
+				EE4B7578141AB29300178A4D /* MessageManager.h */,
 				EE2EAC9B13786CFE007FA34A /* ScreenManager.cpp */,
 				EE2EAC9A13786CFE007FA34A /* ScreenManager.h */,
 			);
@@ -401,6 +408,7 @@
 				EE1FCCA813E21F0200617627 /* ByteUtil.h */,
 				EE2EAD5313791DB4007FA34A /* Logger.cpp */,
 				EE2EAD5413791DB4007FA34A /* Logger.h */,
+				EE4B7579141AB33500178A4D /* Message.cpp */,
 				EE2EAECC1379DFFE007FA34A /* Message.h */,
 				EE2EACBC13786D9C007FA34A /* Singleton.h */,
 				EE2EAF4D1379F4A4007FA34A /* Timer.cpp */,
@@ -821,6 +829,8 @@
 				EE919899140D457B0072CB09 /* LuaManager.cpp in Sources */,
 				EE91989C140D486F0072CB09 /* FileManager.cpp in Sources */,
 				EE9198AE140EA4960072CB09 /* gl3w.c in Sources */,
+				EE4B7576141AB27200178A4D /* MessageManager.cpp in Sources */,
+				EE4B757A141AB33500178A4D /* Message.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

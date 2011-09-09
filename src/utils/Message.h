@@ -20,9 +20,9 @@ class MessageListener
 public:
 	// Don't use pure virtual so that descended classes can omit these.
 	// Might change later.
-	virtual ~MessageListener() { } // silence warning
-	virtual void HandleMessage(const Message &msg) { }
-	virtual void SubscribeTo(std::string name) { }
+	virtual ~MessageListener(); // silence warning
+	virtual void HandleMessage(const Message &msg);
+	virtual void SubscribeTo(std::string name);	
 };
 
 /**

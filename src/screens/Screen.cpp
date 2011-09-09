@@ -1,6 +1,7 @@
 #include "screens/Screen.h"
 #include "utils/Logger.h"
 #include "managers/LuaManager.h"
+#include "utils/Timer.h"
 
 using namespace std;
 
@@ -31,6 +32,9 @@ void Screen::Reset()
 
 void Screen::Init()
 {
+	Timer t;
+	t.Touch();
+	
 	lua_State *L = m_Lua->Get();
 	lua_getglobal(L, m_name.c_str());
 	
@@ -42,11 +46,13 @@ void Screen::Init()
 	
 	while (lua_next(L, -2)) {
 		// -1 = value, -2 = key, -3 = table
-		if (lua_isnumber(L, -2))
-			LOG->Info("oh hey %d=%d", (int)lua_tonumber(L, -2), (int)lua_tonumber(L, -1));
+		//if (lua_isnumber(L, -2))
+		//	LOG->Info("oh hey %d=%d", (int)lua_tonumber(L, -2), (int)lua_tonumber(L, -1));
 	
 		lua_pop(L, 1);
 	}
+	
+	LOG->Info("Loaded \"%s\" in %fs", m_name.c_str(), t.Ago());
 }
 
 void Screen::HandleMessage(const Message &msg)
