@@ -32,13 +32,13 @@ int RStation::Run()
 	
 	LuaManager lua(fileman);
 	ScreenManager screen(lua);
-	
-	lua.Init("Data/Scripts");
-	screen.PushScreen("ScreenTest");
-	
+		
 	// Open the display, make sure nothing went wrong on init.
 	if (!display.OpenWindow())
 		return 1;
+	
+	lua.Init("Data/Scripts");
+	screen.PushScreen("ScreenTest");
 	
 	while (true)
 	{
