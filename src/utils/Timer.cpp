@@ -2,15 +2,14 @@
 #include <GL/glfw3.h>
 #include <sstream>
 
-Timer::Timer() : m_iStart(glfwGetTime()) {}
+Timer::Timer() : m_start(glfwGetTime()) {}
 
 void Timer::Touch()
 {
-	// Reset
-	m_iStart = glfwGetTime();
+	m_start = glfwGetTime();
 }
 
 double Timer::Ago() const
 {
-	return glfwGetTime() - m_iStart;
+	return glfwGetTime() - m_start;
 }

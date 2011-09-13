@@ -6,7 +6,7 @@
 
 using namespace std;
 
-REGISTER_SCREEN( Screen );
+REGISTER_SCREEN(Screen);
 
 Screen::Screen(string sName) :
 	m_error(false),

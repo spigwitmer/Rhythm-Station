@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 class Timer
 {
 public:
@@ -15,5 +13,5 @@ public:
 	
 private:
 	// The time we were created, or touched
-	double m_iStart;
+	double m_start;
 };

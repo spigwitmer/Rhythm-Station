@@ -16,8 +16,6 @@ public:
 	virtual ~Screen();
 	void Reset();
 
-	void HandleMessage(const Message &msg);
-
 	void Update(double delta);
 	void Draw();
 
@@ -31,6 +29,8 @@ public:
 	virtual void Init();
 	virtual void UpdateInternal(double delta);
 	
+	virtual void HandleMessage(const Message &msg);
+
 	void SetLuaManager(LuaManager *L) { m_Lua = L; }
 	
 protected:
