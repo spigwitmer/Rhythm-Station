@@ -38,10 +38,11 @@ void ScreenManager::Update()
 	if (m_Times.size() > NUM_FRAMES)
 		m_Times.pop_front();
 	
+	// TODO: also get the min and max.
 	for (std::deque<double>::iterator i = m_Times.begin(); i != m_Times.end(); i++)
 		avg += *i;
 	
-	if (int(time) % 1 == 0 && avg > 0.0001)
+	if (int(time) % 1 == 0 && avg > 0.001)
 	{
 		if (m_LastUpdateRounded != int(time))
 			LOG->Info("Avg. FPS: %0.0f",
@@ -96,7 +97,7 @@ void ScreenManager::PushScreen(string sName)
 	}
 	else
 	{
-		LOG->Warn("%s has no class!", sName.c_str());
+		LOG->Warn("%s has no class! Skipping.", sName.c_str());
 	}
 }
 
