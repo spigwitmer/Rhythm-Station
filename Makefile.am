@@ -127,6 +127,7 @@ Managers = \
 	src/managers/FileManager.cpp \
 	src/managers/InputManager.cpp \
 	src/managers/LuaManager.cpp \
+	src/managers/MessageManager.cpp \
 	src/managers/ScreenManager.cpp
 
 Screens = \
@@ -138,6 +139,7 @@ Threads = \
 
 Utils = \
 	src/utils/Logger.cpp \
+	src/utils/Message.cpp \
 	src/utils/Timer.cpp
 
 #
