@@ -1,8 +1,31 @@
 ================================================================================
-G-Truc Creation
+OpenGL Mathematics (GLM)
 --------------------------------------------------------------------------------
-www.g-truc.net
+glm.g-truc.net
 glm@g-truc.net
+
+================================================================================
+The MIT License
+--------------------------------------------------------------------------------
+Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
 ================================================================================
 GLM Usage
@@ -11,15 +34,66 @@ GLM is a header only library, there is nothing to build, just include it.
 #include <glm/glm.hpp>
 
 More informations in GLM manual:
-http://glm.g-truc.net/glm-manual.pdf
+http://glm.g-truc.net/glm-0.9.2.pdf
 
 ================================================================================
-GLM 0.9.1.0: 2010-03-02
+GLM 0.9.2.4: 2011-09-03
+--------------------------------------------------------------------------------
+- Fixed extensions bugs
+
+================================================================================
+GLM 0.9.2.3: 2011-06-08
+--------------------------------------------------------------------------------
+- Fixed build issues
+
+================================================================================
+GLM 0.9.2.2: 2011-06-02
+--------------------------------------------------------------------------------
+- Expend matrix constructors flexibility
+- Improved quaternion implementation
+- Fixed many warnings across platforms and compilers
+
+================================================================================
+GLM 0.9.2.1: 2011-05-24
+--------------------------------------------------------------------------------
+- Automatically detect CUDA support
+- Improved compiler detection
+- Fixed errors and warnings in VC with C++ extensions disabled
+- Fixed and tested GLM_GTX_vector_angle
+- Fixed and tested GLM_GTX_rotate_vector
+
+================================================================================
+GLM 0.9.2.0: 2011-05-09
+--------------------------------------------------------------------------------
+- Added CUDA support
+- Added CTest test suite
+- Added GLM_GTX_ulp extension
+- Added GLM_GTX_noise extension
+- Added GLM_GTX_matrix_interpolation extension
+- Updated quaternion slerp interpolation
+
+================================================================================
+GLM 0.9.1.3: 2011-05-07
 --------------------------------------------------------------------------------
 - Fixed bugs
 
 ================================================================================
-GLM 0.9.1.B: 2010-02-13
+GLM 0.9.1.2: 2011-04-15
+--------------------------------------------------------------------------------
+- Fixed bugs
+
+================================================================================
+GLM 0.9.1.1: 2011-03-17
+--------------------------------------------------------------------------------
+- Fixed bugs
+
+================================================================================
+GLM 0.9.1.0: 2011-03-03
+--------------------------------------------------------------------------------
+- Fixed bugs
+
+================================================================================
+GLM 0.9.1.B: 2011-02-13
 --------------------------------------------------------------------------------
 - Updated API documentation
 - Improved SIMD implementation
@@ -32,7 +106,7 @@ GLM 0.9.0.8: 2011-02-13
 - Clarify that GLM is a header only library.
 
 ================================================================================
-GLM 0.9.1.A: 2010-01-31
+GLM 0.9.1.A: 2011-01-31
 --------------------------------------------------------------------------------
 - Added SIMD support
 - Added new swizzle functions

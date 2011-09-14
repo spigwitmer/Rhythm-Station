@@ -7,7 +7,7 @@
 // File    : test/core/type_mat4x4.cpp
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define GLM_MESSAGES
+#define GLM_PRECISION_HIGHP_FLOAT
 #include <glm/glm.hpp>
 #include <cstdio>
 
@@ -20,7 +20,7 @@ void print(glm::dmat4 const & Mat0)
 	printf("\tvec4(%2.3f, %2.3f, %2.3f, %2.3f))\n\n", Mat0[3][0], Mat0[3][1], Mat0[3][2], Mat0[3][3]);
 }
 
-bool test_mat4x4()
+int test_mat4x4()
 {
 	glm::dmat4 Mat0(
 		glm::dvec4(0.6f, 0.2f, 0.3f, 0.4f), 
@@ -34,7 +34,7 @@ bool test_mat4x4()
 	print(Inv0);
 	print(Res0);
 
-	return true;
+	return 0;
 }
 
 static bool test_operators()
@@ -52,16 +52,15 @@ static bool test_operators()
 	bool R = m != q;
 	bool S = m == m;
 
-	return true;
+	return (S && !R) ? 0 : 1;
 }
 
 int main()
 {
-	bool Result = true;
+	int Error = 0;
 
-	Result = Result && test_mat4x4();
-	Result = Result && test_operators();
-	
-	assert(Result);
-	return Result;
+	Error += test_mat4x4();
+	Error += test_operators();
+
+	return Error;
 }

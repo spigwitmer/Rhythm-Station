@@ -13,18 +13,18 @@ namespace compatibility{
 
 // isfinite
 template <typename genType> 
-inline bool isfinite(
+GLM_FUNC_QUALIFIER bool isfinite(
 	genType const & x)
 {
-#ifdef GLM_COMPILER_VC
+#if(GLM_COMPILER & GLM_COMPILER_VC)
 	return _finite(x);
-#else//GLM_COMPILER_GCC
-	return std::isfinite(x);
+#else//(GLM_COMPILER & GLM_COMPILER_GCC)
+	return std::isfinite(x) != 0;
 #endif
 }
 
 template <typename valType> 
-inline detail::tvec2<bool> isfinite(
+GLM_FUNC_QUALIFIER detail::tvec2<bool> isfinite(
 	detail::tvec2<valType> const & x)
 {
 	return detail::tvec2<bool>(
@@ -33,7 +33,7 @@ inline detail::tvec2<bool> isfinite(
 }
 
 template <typename valType> 
-inline detail::tvec3<bool> isfinite(
+GLM_FUNC_QUALIFIER detail::tvec3<bool> isfinite(
 	detail::tvec3<valType> const & x)
 {
 	return detail::tvec3<bool>(
@@ -43,7 +43,7 @@ inline detail::tvec3<bool> isfinite(
 }
 
 template <typename valType> 
-inline detail::tvec4<bool> isfinite(
+GLM_FUNC_QUALIFIER detail::tvec4<bool> isfinite(
 	detail::tvec4<valType> const & x)
 {
 	return detail::tvec4<bool>(
@@ -55,18 +55,18 @@ inline detail::tvec4<bool> isfinite(
 
 // isinf
 template <typename genType> 
-inline bool isinf(
+GLM_FUNC_QUALIFIER bool isinf(
 	genType const & x)
 {
-#if(defined(GLM_COMPILER) && (GLM_COMPILER & GLM_COMPILER_VC))
+#if(GLM_COMPILER & GLM_COMPILER_VC)
 	return _fpclass(x) == _FPCLASS_NINF || _fpclass(x) == _FPCLASS_PINF;
 #else
-	return std::isinf(x);
+	return std::isinf(x) != 0;
 #endif
 }
 
 template <typename valType> 
-inline detail::tvec2<bool> isinf(
+GLM_FUNC_QUALIFIER detail::tvec2<bool> isinf(
 	detail::tvec2<valType> const & x)
 {
 	return detail::tvec2<bool>(
@@ -75,7 +75,7 @@ inline detail::tvec2<bool> isinf(
 }
 
 template <typename valType> 
-inline detail::tvec3<bool> isinf(
+GLM_FUNC_QUALIFIER detail::tvec3<bool> isinf(
 	detail::tvec3<valType> const & x)
 {
 	return detail::tvec3<bool>(
@@ -85,7 +85,7 @@ inline detail::tvec3<bool> isinf(
 }
 
 template <typename valType> 
-inline detail::tvec4<bool> isinf(
+GLM_FUNC_QUALIFIER detail::tvec4<bool> isinf(
 	detail::tvec4<valType> const & x)
 {
 	return detail::tvec4<bool>(
@@ -97,17 +97,17 @@ inline detail::tvec4<bool> isinf(
 
 // isnan
 template <typename genType> 
-inline bool isnan(genType const & x)
+GLM_FUNC_QUALIFIER bool isnan(genType const & x)
 {
-#if(defined(GLM_COMPILER) && (GLM_COMPILER & GLM_COMPILER_VC))
+#if(GLM_COMPILER & GLM_COMPILER_VC)
 	return _isnan(x);
 #else
-	return std::isnan(x);
+	return std::isnan(x) != 0;
 #endif
 }
 
 template <typename valType> 
-inline detail::tvec2<bool> isnan(
+GLM_FUNC_QUALIFIER detail::tvec2<bool> isnan(
 	detail::tvec2<valType> const & x)
 {
 	return detail::tvec2<bool>(
@@ -116,7 +116,7 @@ inline detail::tvec2<bool> isnan(
 }
 
 template <typename valType> 
-inline detail::tvec3<bool> isnan(
+GLM_FUNC_QUALIFIER detail::tvec3<bool> isnan(
 	detail::tvec3<valType> const & x)
 {
 	return detail::tvec3<bool>(
@@ -126,7 +126,7 @@ inline detail::tvec3<bool> isnan(
 }
 
 template <typename valType> 
-inline detail::tvec4<bool> isnan(
+GLM_FUNC_QUALIFIER detail::tvec4<bool> isnan(
 	detail::tvec4<valType> const & x)
 {
 	return detail::tvec4<bool>(
