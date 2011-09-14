@@ -7,6 +7,7 @@
 #include <map>
 
 #include "managers/LuaManager.h"
+#include "managers/FileManager.h"
 #include "utils/Message.h"
 
 class Screen;
@@ -19,7 +20,7 @@ typedef std::map<std::string, MakeScreenFn> MakeScreenMap;
 class ScreenManager
 {
 public:
-	ScreenManager(LuaManager &lua);
+	ScreenManager(LuaManager &lua, FileManager &fm);
 	virtual ~ScreenManager();
 	
 	void Update();
@@ -43,6 +44,7 @@ private:
 	std::map<std::string, Screen*> m_vScreenTypes;
 	
 	LuaManager *m_LuaMan;
+	FileManager *m_FileMan;
 };
 
 struct RegisterScreen

@@ -14,8 +14,6 @@ Screen::Screen(string sName) :
 	m_name(sName),
 	m_projection(1.0)
 {
-	LOG->Info("Created screen \"%s\".", sName.c_str());
-
 	SubscribeTo("ScreenChanged");
 	SubscribeTo("Input");
 }
@@ -102,7 +100,6 @@ void Screen::Update(double delta)
 
 void Screen::Draw()
 {
-	// TODO
 }
 
 /**

@@ -13,8 +13,15 @@ public:
 	
 	void Init() {}
 	
-	void UpdateInternal(double delta) {}
-	void HandleMessage(const Message &msg) {}
+	void UpdateInternal(double delta);
+	void HandleMessage(const Message &msg);
+	
+	void Draw();
+	
+protected:
+	const char *vss, *fss;
+	unsigned vs, fs, id, vao, buf[2], tex;
+	std::string log;	
 };
 
 #endif

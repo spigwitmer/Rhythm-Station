@@ -13,9 +13,10 @@ MakeScreenMap *ScreenManager::GetMap()
 	return &g_ScreenMap;
 }
 
-ScreenManager::ScreenManager(LuaManager &lua)
+ScreenManager::ScreenManager(LuaManager &lua, FileManager &fm)
 {
 	m_LuaMan = &lua;
+	m_FileMan = &fm;
 	m_LastUpdateRounded = 0;
 	m_LastUpdate = 0.0;
 }
@@ -89,10 +90,12 @@ void ScreenManager::PushScreen(string sName)
 		{
 			LOG->Warn("Invalid screen class: \"%s\".", sClass.c_str());
 			return;
-		}
-		
+		}		
+		LOG->Info("Creating screen \"%s\" (Class=\"%s\").", sName.c_str(), sClass.c_str());
+
 		m_vScreenStack.push_back(it->second(sName));
 		m_vScreenStack.back()->SetLuaManager(m_LuaMan);
+		m_vScreenStack.back()->SetFileManager(m_FileMan);
 		m_vScreenStack.back()->Init();
 	}
 	else

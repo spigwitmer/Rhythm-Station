@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include "drawables/Drawable.h"
 #include "managers/ScreenManager.h"
+#include "managers/FileManager.h"
 #include "managers/LuaManager.h"
 #include "utils/Message.h"
 
@@ -17,7 +18,7 @@ public:
 	void Reset();
 
 	void Update(double delta);
-	void Draw();
+	virtual void Draw();
 
 	// TODO
 	void Push(Drawable* obj);
@@ -31,11 +32,14 @@ public:
 	
 	virtual void HandleMessage(const Message &msg);
 
-	void SetLuaManager(LuaManager *L) { m_Lua = L; }
+	void SetLuaManager(LuaManager *lm) { m_Lua = lm; }
+	void SetFileManager(FileManager *fm) { m_FileMan = fm; }
 	
 protected:
 	bool m_error;
 	LuaManager *m_Lua;
+	FileManager *m_FileMan;
+	
 	std::string m_name;
 	glm::mat4 m_projection;
 

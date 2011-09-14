@@ -31,8 +31,8 @@ int RStation::Run()
 	DisplayManager display;
 	
 	LuaManager lua(fileman);
-	ScreenManager screen(lua);
-		
+	ScreenManager screen(lua, fileman);
+	
 	// Open the display, make sure nothing went wrong on init.
 	if (!display.OpenWindow())
 		return 1;
