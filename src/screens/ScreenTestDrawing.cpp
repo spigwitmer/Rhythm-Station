@@ -56,11 +56,7 @@ ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 	
 	float verts[] = { -1.0, -1.0, 0.0, -1.0, 1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0 };
 	unsigned indices[] = { 0, 1, 2, 3 };
-	
-	// Identity.
-	glm::mat4 matrix(1.0);
-	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewProjection"), 1, false, glm::value_ptr(matrix));
-	
+		
 	glBindBuffer(GL_ARRAY_BUFFER, buf[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
 	
@@ -95,14 +91,16 @@ void ScreenTestDrawing::UpdateInternal(double delta)
 	// todo
 }
 
+// no sense making this a bunch of times.
+static glm::mat4 matrix(1.0);
+
 void ScreenTestDrawing::Draw()
-{	
+{
 	// Bind shader and VBOs
 	glBindVertexArray(vao);
 	
 	// Identity.
-	float matrix[] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
-	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewProjection"), 1, false, matrix);
+	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewProjection"), 1, false, glm::value_ptr(matrix));
 
 	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT, NULL);	
 }
