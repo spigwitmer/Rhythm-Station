@@ -69,22 +69,6 @@ ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 	
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float)*3, 0);	
 	glEnableVertexAttribArray(0);
-	
-	// generate a 1D texture
-	glGenTextures(1, &tex);
-	glBindTexture(GL_TEXTURE_1D, tex);
-	unsigned data[2048];
-	for (int i = 0; i<2048; i++)
-		data[i] = 0x001000 * i;
-	
-	// Upload the pixel data
-	glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, sizeof(data), 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
-	
-	// IMPORTANT: Min/Mag filters are essential if you actually want to see things
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
 
 ScreenTestDrawing::~ScreenTestDrawing()
@@ -116,12 +100,10 @@ void ScreenTestDrawing::Draw()
 	// Bind shader and VBOs
 	glBindVertexArray(vao);
 	
-	glBindTexture(GL_TEXTURE_1D, tex);
-	
-	glUniform1i(glGetUniformLocation(id, "ColorTable"), 0);
 	// Identity.
 	float matrix[] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
 	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewProjection"), 1, false, matrix);
 
 	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT, NULL);	
 }
+
