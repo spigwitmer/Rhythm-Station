@@ -131,7 +131,8 @@ Managers = \
 	src/managers/ScreenManager.cpp
 
 Screens = \
-	src/screens/Screen.cpp
+	src/screens/Screen.cpp \
+	src/screens/ScreenTestDrawing.cpp
 
 Threads = \
 	src/threads/Threads_pthreads.cpp \
