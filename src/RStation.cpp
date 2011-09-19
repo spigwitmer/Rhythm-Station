@@ -4,7 +4,7 @@
 #include "managers/ScreenManager.h"
 #include "managers/InputManager.h"
 
-// These two are singletons for convenience, however.
+// These two are singletons for convenience.
 #include "managers/MessageManager.h"
 #include "utils/Logger.h"
 

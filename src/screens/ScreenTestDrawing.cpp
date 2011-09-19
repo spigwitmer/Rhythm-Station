@@ -4,6 +4,11 @@
 #include "managers/DisplayManager.h"
 #include "utils/Logger.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtx/simd_vec4.hpp>
+#include <glm/gtx/simd_mat4.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 using namespace std;
 
 REGISTER_SCREEN(ScreenTestDrawing);
@@ -53,8 +58,8 @@ ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 	unsigned indices[] = { 0, 1, 2, 3 };
 	
 	// Identity.
-	float matrix[] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
-	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewProjection"), 1, false, matrix);
+	glm::mat4 matrix(1.0);
+	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewProjection"), 1, false, glm::value_ptr(matrix));
 	
 	glBindBuffer(GL_ARRAY_BUFFER, buf[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
