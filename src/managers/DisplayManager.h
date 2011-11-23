@@ -1,5 +1,7 @@
 #pragma once
 
+#define GLFW_NO_GLU
+#define GLFW_INCLUDE_GL3
 #include <GL/glfw3.h>
 #include "utils/Logger.h"
 #include <string>
