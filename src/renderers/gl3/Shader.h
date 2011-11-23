@@ -17,7 +17,7 @@ public:
 	std::string GetName();
 	void SetName();
 
-	std::string GetInfoLog(GLuint obj);
+	std::string GetInfoLog();
 
 	GLuint GetObject() const { return m_object; }
 
@@ -30,7 +30,6 @@ protected:
 class ShaderStage : public ShaderBase
 {
 public:
-	ShaderStage();
 	virtual ~ShaderStage();
 	
 	void Load(ShaderType type, std::string key, std::string name = "");
@@ -50,9 +49,10 @@ protected:
 class ShaderProgram : public ShaderBase
 {
 public:
-	ShaderProgram();
 	virtual ~ShaderProgram();
 
+	void Create();
+	
 	// Setup
 	void Attach(ShaderStage shader);
 	void Detach();

@@ -1,29 +1,22 @@
 #include "Shader.h"
+#include "utils/Logger.h"
+#include "Error.h"
 
-ShaderProgram::ShaderProgram()
-{
-	m_object = glCreateProgram();
-}
+using namespace std;
 
 ShaderProgram::~ShaderProgram()
 {
-	Detach();
-	glDeleteProgram(m_object);
+	if (glIsProgram(m_object))
+		glDeleteProgram(m_object);
 }
 
 void ShaderProgram::Attach(ShaderStage shader)
 {
-	glAttachShader(m_object, shader.GetObject());
-	m_shaders.push_back(shader);
-}
-
-void ShaderProgram::Detach()
-{
-	std::vector<ShaderStage>::iterator it;
-	for (it = m_shaders.begin(); it != m_shaders.end(); it++)
-		glDetachShader(m_object, it->GetObject());
+	if (!glIsProgram(m_object))
+		m_object = glCreateProgram();
 	
-	m_shaders.clear();
+	glAttachShader(m_object, shader.GetObject());
+	CheckError();
 }
 
 bool ShaderProgram::Link()
@@ -31,8 +24,11 @@ bool ShaderProgram::Link()
 	glLinkProgram(m_object);
 	glValidateProgram(m_object);
 	
-	// TODO: check log
-	// return false if it's broken
+	string log = GetInfoLog();
+	if (!log.empty()) {
+		LOG->Warn("Shader program link failed: %s", log.c_str());
+		return false;
+	}
 	
 	return true;
 }

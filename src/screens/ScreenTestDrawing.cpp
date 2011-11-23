@@ -1,7 +1,6 @@
 #include "ScreenTestDrawing.h"
 #include <GL3/gl3w.h>
 #include <glsw.h>
-#include "managers/DisplayManager.h"
 #include "utils/Logger.h"
 
 #include <glm/glm.hpp>
@@ -10,19 +9,18 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "renderers/gl3/Shader.h"
+#include "renderers/gl3/Error.h"
 
 using namespace std;
 
 REGISTER_SCREEN(ScreenTestDrawing);
 
 ShaderProgram *prog;
-
 ShaderStage *vs, *fs;
 
 ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 {
 	// It's safe to make one of these provided we aren't making extra windows.
-	DisplayManager display;
 	ShaderStage vs, fs;
 	
 	prog = new ShaderProgram();
@@ -35,34 +33,28 @@ ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 	// Generate a Vertex Array Object, stores 
 	glGenVertexArrays(1, &vao);
 	glGenBuffers(2, &buf[0]);
-		
+	
+	LOG->Info("Loading Vertex Shader...");
 	vs.Load(SHADER_VERTEX, "Generic.GL32.Vertex");
 	vs.Compile();
 	
-	display.CheckError();
-
+	LOG->Info("Loading Fragment Shader...");
 	fs.Load(SHADER_FRAGMENT, "Generic.GL32.Fragment");
 	fs.Compile();
-	
-	display.CheckError();
+
+	LOG->Info("Attaching shaders to program.");
 	
 	prog->Attach(vs);
 	prog->Attach(fs);
-	display.CheckError();
-	
+
 	glBindAttribLocation(prog->GetObject(), 0, "Position");
+	CheckError();
 
-	display.CheckError();
-
+	LOG->Info("Linking program");	
 	prog->Link();
 	prog->Bind();
-
-	// make sure nothing went wrong
-//	if (!(log = display.GetInfoLog(vs)).empty()) LOG->Info("Vertex shader log: %s", log.c_str());	
-//	if (!(log = display.GetInfoLog(fs)).empty()) LOG->Info("Fragment shader log: %s", log.c_str());
-//	if (!(log = display.GetInfoLog(id)).empty()) LOG->Fatal("Shader program log: %s", log.c_str());
 	
-	display.CheckError();
+	CheckError();
 	
 	glBindVertexArray(vao);
 		
@@ -82,17 +74,10 @@ ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 ScreenTestDrawing::~ScreenTestDrawing()
 {
 	// cleanup:
-	glDeleteVertexArrays(1, &vao);
-	
-//	glDetachShader(id, vs);
-//	glDetachShader(id, fs);
-//	glDeleteShader(vs);
-//	glDeleteShader(fs);
+	glDeleteVertexArrays(1, &vao);	
+	glDeleteBuffers(2, buf);	
 	
 	delete prog;
-	
-//	glDeleteProgram(id);
-	glDeleteBuffers(2, buf);	
 }
 
 void ScreenTestDrawing::HandleMessage(const Message &msg)

@@ -1,26 +1,25 @@
 #include "Shader.h"
 #include <glsw.h>
 #include <map>
+#include "utils/Logger.h"
+#include "Error.h"
+
+using namespace std;
 
 // Store shader ID's an number of users.
 namespace
 {
-	using namespace std;
-
 	map<GLuint, int> g_shaders;
 	typedef map<GLuint, int>::iterator g_shaders_iterator;
-}
-
-ShaderStage::ShaderStage()
-{
-	// TODO?
 }
 
 ShaderStage::~ShaderStage()
 {
 	// If the shader was never loaded.
-	if (!glIsShader(m_object))
+	if (!glIsShader(m_object)) {
+		LOG->Warn("Tried to delete a deleted shader!");
 		return;
+	}
 
 	if (g_shaders[m_object] <= 0)
 	{
@@ -59,22 +58,25 @@ namespace
 	}
 }
 
-void ShaderStage::LoadString(ShaderType type, std::string source, std::string name)
+void ShaderStage::LoadString(ShaderType type, string source, string name)
 {
 	LoadInternal(type, source.c_str(), name);
 }
 
-void ShaderStage::Load(ShaderType type, std::string path, std::string name)
+void ShaderStage::Load(ShaderType type, string path, string name)
 {
 	const char *src = glswGetShader(path.c_str());
 	LoadInternal(type, src, name);
 }
 
 // Use const char* internally to minimize pointless conversions.
-void ShaderStage::LoadInternal(ShaderType type, const char *source, std::string name)
+void ShaderStage::LoadInternal(ShaderType type, const char *source, string name)
 {
 	m_name = name;
+
 	m_object = glCreateShader(ShaderToGLenum(type));
+	g_shaders[m_object]++;
+
 	glShaderSource(m_object, 1, &source, NULL);
 }
 
@@ -82,6 +84,12 @@ bool ShaderStage::Compile()
 {
 	glCompileShader(m_object);
 
+	string log = GetInfoLog();
+	if (!log.empty())
+		LOG->Info(GetInfoLog());
+
+	CheckError();
+	
 	return glIsShader(m_object);
 }
 
