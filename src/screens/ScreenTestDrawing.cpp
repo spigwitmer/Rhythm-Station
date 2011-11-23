@@ -9,51 +9,63 @@
 #include <glm/gtx/simd_mat4.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "renderers/gl3/Shader.h"
+
 using namespace std;
 
 REGISTER_SCREEN(ScreenTestDrawing);
+
+ShaderProgram *prog;
+
+ShaderStage *vs, *fs;
 
 ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 {
 	// It's safe to make one of these provided we aren't making extra windows.
 	DisplayManager display;
+	ShaderStage vs, fs;
 	
-	vss = glswGetShader("Generic.GL32.Vertex");
-	fss = glswGetShader("Generic.GL32.Fragment");
+	prog = new ShaderProgram();
 	
 	const char* err = glswGetError();
+
 	if (err != NULL)
 		LOG->Info("%s", err);
 	
 	// Generate a Vertex Array Object, stores 
 	glGenVertexArrays(1, &vao);
 	glGenBuffers(2, &buf[0]);
+		
+	vs.Load(SHADER_VERTEX, "Generic.GL32.Vertex");
+	vs.Compile();
 	
-	id = glCreateProgram();
-	vs = glCreateShader(GL_VERTEX_SHADER);
-	fs = glCreateShader(GL_FRAGMENT_SHADER);
+	display.CheckError();
+
+	fs.Load(SHADER_FRAGMENT, "Generic.GL32.Fragment");
+	fs.Compile();
 	
-	glShaderSource(vs, 1, &vss, NULL);
-	glShaderSource(fs, 1, &fss, NULL);
+	display.CheckError();
 	
-	glCompileShader(vs);
-	glCompileShader(fs);
+	prog->Attach(vs);
+	prog->Attach(fs);
+	display.CheckError();
 	
-	glAttachShader(id, vs);
-	glAttachShader(id, fs);
-	
-	glBindAttribLocation(id, 0, "Position");
-	glLinkProgram(id);
-	
+	glBindAttribLocation(prog->GetObject(), 0, "Position");
+
+	display.CheckError();
+
+	prog->Link();
+	prog->Bind();
+
 	// make sure nothing went wrong
-	if (!(log = display.GetInfoLog(vs)).empty()) LOG->Info("Vertex shader log: %s", log.c_str());	
-	if (!(log = display.GetInfoLog(fs)).empty()) LOG->Info("Fragment shader log: %s", log.c_str());
-	if (!(log = display.GetInfoLog(id)).empty()) LOG->Fatal("Shader program log: %s", log.c_str());
+//	if (!(log = display.GetInfoLog(vs)).empty()) LOG->Info("Vertex shader log: %s", log.c_str());	
+//	if (!(log = display.GetInfoLog(fs)).empty()) LOG->Info("Fragment shader log: %s", log.c_str());
+//	if (!(log = display.GetInfoLog(id)).empty()) LOG->Fatal("Shader program log: %s", log.c_str());
+	
+	display.CheckError();
 	
 	glBindVertexArray(vao);
-	
-	glUseProgram(id);
-	
+		
 	float verts[] = { -1.0, -1.0, 0.0, -1.0, 1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0 };
 	unsigned indices[] = { 0, 1, 2, 3 };
 		
@@ -72,12 +84,14 @@ ScreenTestDrawing::~ScreenTestDrawing()
 	// cleanup:
 	glDeleteVertexArrays(1, &vao);
 	
-	glDetachShader(id, vs);
-	glDetachShader(id, fs);
-	glDeleteShader(vs);
-	glDeleteShader(fs);
+//	glDetachShader(id, vs);
+//	glDetachShader(id, fs);
+//	glDeleteShader(vs);
+//	glDeleteShader(fs);
 	
-	glDeleteProgram(id);
+	delete prog;
+	
+//	glDeleteProgram(id);
 	glDeleteBuffers(2, buf);	
 }
 
@@ -100,8 +114,7 @@ void ScreenTestDrawing::Draw()
 	glBindVertexArray(vao);
 	
 	// Identity.
-	glUniformMatrix4fv(glGetUniformLocation(id, "ModelViewProjection"), 1, false, glm::value_ptr(matrix));
+	glUniformMatrix4fv(glGetUniformLocation(prog->GetObject(), "ModelViewProjection"), 1, false, glm::value_ptr(matrix));
 
 	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT, NULL);	
 }
-

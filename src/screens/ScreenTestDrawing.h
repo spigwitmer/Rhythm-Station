@@ -20,7 +20,7 @@ public:
 	
 protected:
 	const char *vss, *fss;
-	unsigned vs, fs, id, vao, buf[2], tex;
+	unsigned /*vs, fs, id,*/ vao, buf[2], tex;
 	std::string log;	
 };
 

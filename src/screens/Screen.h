@@ -3,7 +3,7 @@
 
 #include <string>
 #include <glm/glm.hpp>
-#include "drawables/Drawable.h"
+#include "actors/Actor.h"
 #include "managers/ScreenManager.h"
 #include "managers/FileManager.h"
 #include "managers/LuaManager.h"
