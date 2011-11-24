@@ -33,7 +33,6 @@
 		EE1FCCA213E1F48D00617627 /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1FCC9A13E1F48D00617627 /* cocoa_window.m */; };
 		EE230ED012F9D94300E4C77B /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = EE230EC912F9D94300E4C77B /* Themes */; };
 		EE2D1C5F132F6F9E005E2B87 /* opengl.c in Sources */ = {isa = PBXBuildFile; fileRef = EE2D1C5E132F6F9E005E2B87 /* opengl.c */; };
-		EE2EAC7D13785F31007FA34A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC7C13785F31007FA34A /* main.cpp */; };
 		EE2EAC92137860E5007FA34A /* RStation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC91137860E5007FA34A /* RStation.cpp */; };
 		EE2EAC9C13786CFE007FA34A /* ScreenManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAC9B13786CFE007FA34A /* ScreenManager.cpp */; };
 		EE2EAD5513791DB4007FA34A /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE2EAD5313791DB4007FA34A /* Logger.cpp */; };
@@ -153,7 +152,6 @@
 		EE1FCCA813E21F0200617627 /* ByteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByteUtil.h; sourceTree = "<group>"; };
 		EE230EC912F9D94300E4C77B /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		EE2D1C5E132F6F9E005E2B87 /* opengl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = opengl.c; sourceTree = "<group>"; };
-		EE2EAC7C13785F31007FA34A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EE2EAC90137860E5007FA34A /* RStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RStation.h; sourceTree = "<group>"; };
 		EE2EAC91137860E5007FA34A /* RStation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RStation.cpp; sourceTree = "<group>"; };
 		EE2EAC9A13786CFE007FA34A /* ScreenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenManager.h; sourceTree = "<group>"; };
@@ -503,7 +501,6 @@
 				EE2EAD2A13790F85007FA34A /* screens */,
 				EE2EAE161379CADD007FA34A /* threads */,
 				EE2EACBB13786D7E007FA34A /* utils */,
-				EE2EAC7C13785F31007FA34A /* main.cpp */,
 				EE2EAC91137860E5007FA34A /* RStation.cpp */,
 				EE2EAC90137860E5007FA34A /* RStation.h */,
 				EE8699D1147EB547001322AF /* global.h */,
@@ -838,7 +835,6 @@
 				EEC8D830128DB44D00351601 /* window.c in Sources */,
 				EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */,
 				EE2D1C5F132F6F9E005E2B87 /* opengl.c in Sources */,
-				EE2EAC7D13785F31007FA34A /* main.cpp in Sources */,
 				EE2EAC92137860E5007FA34A /* RStation.cpp in Sources */,
 				EE2EAC9C13786CFE007FA34A /* ScreenManager.cpp in Sources */,
 				EE2EAD5513791DB4007FA34A /* Logger.cpp in Sources */,

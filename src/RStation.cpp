@@ -8,9 +8,11 @@
 #include "managers/MessageManager.h"
 #include "utils/Logger.h"
 
+#include "global.h"
+
 using namespace std;
 
-RStation::RStation(std::vector<std::string> &vArgs)
+RStation::RStation(vector<string> &vArgs)
 {
 	int err = glfwInit();
 	m_vArgs = vArgs;
@@ -45,13 +47,16 @@ int RStation::Run()
 		// Break if user closed the window
 		input.Update();
 		
-		if (!glfwIsWindow(display.GetWindow()) || input.GetButton(RS_KEY_ESC)->IsDown())
+		if (unlikely(!glfwIsWindow(display.GetWindow())))
+			break;
+		
+		if (unlikely(input.GetButton(RS_KEY_ESC)->IsDown()))
 			break;
 		
 		screen.Update();
 		screen.Draw();
 		
-		if (!display.IsFocused())
+		if (unlikely(!display.IsFocused()))
 			usleep(50000);
 		
 		display.CheckError();
@@ -64,6 +69,17 @@ int RStation::Run()
 	display.CloseWindow();
 	
 	return 0;
+}
+
+int main(int argc, char **argv)
+{
+	// Build arguments into a vector before passing control
+	vector<string> args;
+	for (int i = 0; i<argc; i++)
+		args.push_back(string(argv[i]));
+	
+	RStation rs(args);
+	return rs.Run();
 }
 
 /**
