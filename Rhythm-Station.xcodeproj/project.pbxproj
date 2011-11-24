@@ -193,6 +193,7 @@
 		EE8699BF147C762B001322AF /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = renderers/gl3/ShaderProgram.cpp; sourceTree = "<group>"; };
 		EE8699C4147D8F44001322AF /* ShaderBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderBase.cpp; path = renderers/gl3/ShaderBase.cpp; sourceTree = "<group>"; };
 		EE8699C6147D9839001322AF /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Error.h; path = renderers/gl3/Error.h; sourceTree = "<group>"; };
+		EE8699C7147E643E001322AF /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
 		EE915DE21255CB9300F0B0B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EE915DE61255CB9300F0B0B3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EE91988C140986690072CB09 /* DisplayManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayManager.cpp; sourceTree = "<group>"; };
@@ -410,6 +411,7 @@
 		EE2EACBB13786D7E007FA34A /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				EE8699C7147E643E001322AF /* global.h */,
 				EE1FCCA813E21F0200617627 /* ByteUtil.h */,
 				EE2EAD5313791DB4007FA34A /* Logger.cpp */,
 				EE2EAD5413791DB4007FA34A /* Logger.h */,
