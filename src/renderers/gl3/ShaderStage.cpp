@@ -86,7 +86,7 @@ bool ShaderStage::Compile()
 
 	string log = GetInfoLog();
 	if (!log.empty())
-		LOG->Info(GetInfoLog());
+		LOG->Info(log);
 
 	CheckError();
 	

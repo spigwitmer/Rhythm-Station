@@ -16,7 +16,6 @@ using namespace std;
 REGISTER_SCREEN(ScreenTestDrawing);
 
 ShaderProgram *prog;
-ShaderStage *vs, *fs;
 
 ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 {
@@ -25,9 +24,7 @@ ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 	
 	prog = new ShaderProgram();
 	
-	const char* err = glswGetError();
-
-	if (err != NULL)
+	if (const char* err = glswGetError())
 		LOG->Info("%s", err);
 	
 	// Generate a Vertex Array Object, stores 
