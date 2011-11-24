@@ -8,8 +8,8 @@
 #include <glm/gtx/simd_mat4.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "renderers/gl3/Shader.h"
-#include "renderers/gl3/Error.h"
+#include "renderer/gl3/Shader.h"
+#include "renderer/common/Error.h"
 
 using namespace std;
 
@@ -57,7 +57,7 @@ ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 		
 	float verts[] = { -1.0, -1.0, 0.0, -1.0, 1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0 };
 	unsigned indices[] = { 0, 1, 2, 3 };
-		
+	
 	glBindBuffer(GL_ARRAY_BUFFER, buf[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
 	

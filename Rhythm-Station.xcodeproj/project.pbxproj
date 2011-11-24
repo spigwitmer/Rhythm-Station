@@ -49,9 +49,9 @@
 		EE51F2FB12EB4B74003A241E /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = EE51F2E812EB4B74003A241E /* ConvertUTF.c */; };
 		EE5A953312A79DC900FBEFCE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5A953212A79DC900FBEFCE /* IOKit.framework */; };
 		EE747FCB127E55B200E4A8FA /* Data in Resources */ = {isa = PBXBuildFile; fileRef = EE747FC5127E55B200E4A8FA /* Data */; };
-		EE8699BE147C75BB001322AF /* ShaderStage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE8699BD147C75BB001322AF /* ShaderStage.cpp */; };
-		EE8699C0147C762B001322AF /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE8699BF147C762B001322AF /* ShaderProgram.cpp */; };
-		EE8699C5147D8F44001322AF /* ShaderBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE8699C4147D8F44001322AF /* ShaderBase.cpp */; };
+		EE8699CD147EB460001322AF /* ShaderBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE8699CA147EB460001322AF /* ShaderBase.cpp */; };
+		EE8699CE147EB460001322AF /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE8699CB147EB460001322AF /* ShaderProgram.cpp */; };
+		EE8699CF147EB460001322AF /* ShaderStage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE8699CC147EB460001322AF /* ShaderStage.cpp */; };
 		EE915E411255CCD200F0B0B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE21255CB9300F0B0B3 /* Cocoa.framework */; };
 		EE915EA01255D7B200F0B0B3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE915DE61255CB9300F0B0B3 /* OpenGL.framework */; };
 		EE91988E140986690072CB09 /* DisplayManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE91988C140986690072CB09 /* DisplayManager.cpp */; };
@@ -188,12 +188,12 @@
 		EE51F2EF12EB4B74003A241E /* SimpleIni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleIni.h; sourceTree = "<group>"; };
 		EE5A953212A79DC900FBEFCE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE747FC5127E55B200E4A8FA /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
-		EE8699BB147C4E82001322AF /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = renderers/gl3/Shader.h; sourceTree = "<group>"; };
-		EE8699BD147C75BB001322AF /* ShaderStage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderStage.cpp; path = renderers/gl3/ShaderStage.cpp; sourceTree = "<group>"; };
-		EE8699BF147C762B001322AF /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = renderers/gl3/ShaderProgram.cpp; sourceTree = "<group>"; };
-		EE8699C4147D8F44001322AF /* ShaderBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderBase.cpp; path = renderers/gl3/ShaderBase.cpp; sourceTree = "<group>"; };
-		EE8699C6147D9839001322AF /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Error.h; path = renderers/gl3/Error.h; sourceTree = "<group>"; };
-		EE8699C7147E643E001322AF /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
+		EE8699C9147EB460001322AF /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = renderer/gl3/Shader.h; sourceTree = "<group>"; };
+		EE8699CA147EB460001322AF /* ShaderBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderBase.cpp; path = renderer/gl3/ShaderBase.cpp; sourceTree = "<group>"; };
+		EE8699CB147EB460001322AF /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = renderer/gl3/ShaderProgram.cpp; sourceTree = "<group>"; };
+		EE8699CC147EB460001322AF /* ShaderStage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderStage.cpp; path = renderer/gl3/ShaderStage.cpp; sourceTree = "<group>"; };
+		EE8699D0147EB46E001322AF /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Error.h; path = renderer/common/Error.h; sourceTree = "<group>"; };
+		EE8699D1147EB547001322AF /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
 		EE915DE21255CB9300F0B0B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EE915DE61255CB9300F0B0B3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EE91988C140986690072CB09 /* DisplayManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayManager.cpp; sourceTree = "<group>"; };
@@ -411,7 +411,6 @@
 		EE2EACBB13786D7E007FA34A /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				EE8699C7147E643E001322AF /* global.h */,
 				EE1FCCA813E21F0200617627 /* ByteUtil.h */,
 				EE2EAD5313791DB4007FA34A /* Logger.cpp */,
 				EE2EAD5413791DB4007FA34A /* Logger.h */,
@@ -469,27 +468,35 @@
 		EE8699BA147C4E4B001322AF /* gl3 */ = {
 			isa = PBXGroup;
 			children = (
-				EE8699BB147C4E82001322AF /* Shader.h */,
-				EE8699C4147D8F44001322AF /* ShaderBase.cpp */,
-				EE8699BD147C75BB001322AF /* ShaderStage.cpp */,
-				EE8699BF147C762B001322AF /* ShaderProgram.cpp */,
-				EE8699C6147D9839001322AF /* Error.h */,
+				EE8699C9147EB460001322AF /* Shader.h */,
+				EE8699CA147EB460001322AF /* ShaderBase.cpp */,
+				EE8699CB147EB460001322AF /* ShaderProgram.cpp */,
+				EE8699CC147EB460001322AF /* ShaderStage.cpp */,
 			);
 			name = gl3;
 			sourceTree = "<group>";
 		};
-		EE8699BC147C51EF001322AF /* renderers */ = {
+		EE8699BC147C51EF001322AF /* renderer */ = {
 			isa = PBXGroup;
 			children = (
+				EE8699C8147EB40C001322AF /* common */,
 				EE8699BA147C4E4B001322AF /* gl3 */,
 			);
-			name = renderers;
+			name = renderer;
+			sourceTree = "<group>";
+		};
+		EE8699C8147EB40C001322AF /* common */ = {
+			isa = PBXGroup;
+			children = (
+				EE8699D0147EB46E001322AF /* Error.h */,
+			);
+			name = common;
 			sourceTree = "<group>";
 		};
 		EE915DEC1255CBA900F0B0B3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				EE8699BC147C51EF001322AF /* renderers */,
+				EE8699BC147C51EF001322AF /* renderer */,
 				EED1E27A137B0071002DF644 /* actors */,
 				EE2EAF451379F470007FA34A /* input */,
 				EE2EAC9913786CE7007FA34A /* managers */,
@@ -499,6 +506,7 @@
 				EE2EAC7C13785F31007FA34A /* main.cpp */,
 				EE2EAC91137860E5007FA34A /* RStation.cpp */,
 				EE2EAC90137860E5007FA34A /* RStation.h */,
+				EE8699D1147EB547001322AF /* global.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -857,9 +865,9 @@
 				EE4B7576141AB27200178A4D /* MessageManager.cpp in Sources */,
 				EE4B757A141AB33500178A4D /* Message.cpp in Sources */,
 				EE4B757C141E7CE100178A4D /* ScreenTestDrawing.cpp in Sources */,
-				EE8699BE147C75BB001322AF /* ShaderStage.cpp in Sources */,
-				EE8699C0147C762B001322AF /* ShaderProgram.cpp in Sources */,
-				EE8699C5147D8F44001322AF /* ShaderBase.cpp in Sources */,
+				EE8699CD147EB460001322AF /* ShaderBase.cpp in Sources */,
+				EE8699CE147EB460001322AF /* ShaderProgram.cpp in Sources */,
+				EE8699CF147EB460001322AF /* ShaderStage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

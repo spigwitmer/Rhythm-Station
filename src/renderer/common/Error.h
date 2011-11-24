@@ -2,7 +2,7 @@
 
 // Don't include GL headers in this file so that GL prior to 3 isn't an issue.
 
-#include "utils/global.h"
+#include "global.h"
 
 #ifdef DEBUG
 

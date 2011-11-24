@@ -2,7 +2,7 @@
 #include <glsw.h>
 #include <map>
 #include "utils/Logger.h"
-#include "Error.h"
+#include "renderer/common/Error.h"
 
 using namespace std;
 
@@ -36,13 +36,13 @@ ShaderStage::~ShaderStage()
 		glDeleteShader(m_object);
 		
 		shaderHandle_iterator it = g_shaderHandles.find(m_object);
-		shaderName_iterator it2 = g_shaderNames.find(m_name);
+		//shaderName_iterator it2 = g_shaderNames.find(m_name);
 		
 		if (it != g_shaderHandles.end())
 			g_shaderHandles.erase(it);
 
-		if (it2 != g_shaderNames.end())
-			g_shaderNames.erase(it2);
+//		if (it2 != g_shaderNames.end())
+//			g_shaderNames.erase(it2);
 	}
 }
 
@@ -124,7 +124,7 @@ bool ShaderStage::Compile()
 
 	// Compile went fine, register self.
 	if (glIsShader(m_object)) {
-		g_shaderNames[m_name] = *this;
+//c		g_shaderNames[m_name] = *this;
 		return true;
 	}
 	
