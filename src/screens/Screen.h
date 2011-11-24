@@ -21,7 +21,10 @@ public:
 	virtual void Draw();
 
 	// TODO
-	void Push(Drawable* obj);
+	void Push(Actor* obj);
+	
+	// Calls Init() on subclasses.
+	void InitInternal();
 
 	std::string GetName() const { return m_name; }
 	glm::mat4 *GetProjection() { return &m_projection; }
@@ -43,7 +46,7 @@ protected:
 	std::string m_name;
 	glm::mat4 m_projection;
 
-	std::vector<Drawable*> m_objects;
+	std::vector<Actor*> m_objects;
 };
 
 #endif

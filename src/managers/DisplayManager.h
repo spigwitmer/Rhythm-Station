@@ -13,7 +13,6 @@ public:
 	DisplayManager();
 	virtual ~DisplayManager();
 	
-	void CheckError();
 	void CheckFramebuffer();
 	
 	bool OpenWindow();
@@ -23,7 +22,6 @@ public:
 	
 	void Flush();
 	
-	std::string GetInfoLog(GLuint obj);
 	GLint GetMaximum(GLenum token);
 
 private:

@@ -1,33 +1,33 @@
 #include <GL3/gl3w.h>
 #include <glm/gtc/matrix_transform.hpp>
-#include "Drawable.h"
+#include "Actor.h"
 #include "managers/ScreenManager.h"
 #include "screens/Screen.h"
 
-Drawable::Drawable() :
+Actor::Actor() :
 	m_position(0.0), m_scale(1.0), m_size(1.0), m_rotation(0.0),
 	m_matrix(1.0), m_halign(H_ALIGN_LEFT), m_valign(V_ALIGN_TOP)
 {
 }
 
-Drawable::~Drawable()
+Actor::~Actor()
 {
 }
 
-void Drawable::Push()
+void Actor::Push()
 {
 //	ScreenManager::GetSingleton()->GetTopScreen()->Push(this);
 }
 
-void Drawable::Update(double delta)
+void Actor::Update(double delta)
 {
 }
 
-void Drawable::Draw()
+void Actor::Draw()
 {
 	glm::vec3 size = m_size * m_scale;	
 	glm::vec3 pos = m_position;
-	
+
 	// Base the horizontal on alignment
 	switch(m_halign)
 	{
@@ -42,7 +42,7 @@ void Drawable::Draw()
 		case V_ALIGN_BOTTOM: pos.y -= size.y; break;
 		default: break;
 	}
-	
+
 	glm::mat4 xlate = glm::translate(glm::mat4(1.0), pos);
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), size);
 

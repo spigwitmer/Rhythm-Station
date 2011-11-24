@@ -31,43 +31,40 @@ int RStation::Run()
 	FileManager fileman;
 	InputManager input;
 	DisplayManager display;
-	
+
 	LuaManager lua(fileman);
 	ScreenManager screen(lua, fileman);
-	
+
 	// Open the display, make sure nothing went wrong on init.
 	if (!display.OpenWindow())
 		return 1;
-	
+
 	lua.Init("Data/Scripts");
 	screen.PushScreen("ScreenTest");
-	
+
 	while (true)
 	{
 		// Break if user closed the window
 		input.Update();
-		
-		if (unlikely(!glfwIsWindow(display.GetWindow())))
+
+		if (unlikely(!glfwIsWindow(display.GetWindow())) ||
+			unlikely(input.GetButton(RS_KEY_ESC)->IsDown()))
 			break;
-		
-		if (unlikely(input.GetButton(RS_KEY_ESC)->IsDown()))
-			break;
-		
-		screen.Update();
-		screen.Draw();
-		
+
 		if (unlikely(!display.IsFocused()))
 			usleep(50000);
-		
-		display.CheckError();
+
+		screen.Update();
+		screen.Draw();
+
 		display.Flush();
 	}
-	
+
 	// Don't bother broadcasting messages after the window closes.
 	MessageManager::GetSingleton()->Clear();
-	
+
 	display.CloseWindow();
-	
+
 	return 0;
 }
 

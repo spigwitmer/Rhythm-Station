@@ -11,7 +11,7 @@ public:
 	ScreenTestDrawing(std::string sName);
 	virtual ~ScreenTestDrawing();
 	
-	void Init() {}
+	void Init();
 	
 	void UpdateInternal(double delta);
 	void HandleMessage(const Message &msg);

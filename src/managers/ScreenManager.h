@@ -22,14 +22,14 @@ class ScreenManager
 public:
 	ScreenManager(LuaManager &lua, FileManager &fm);
 	virtual ~ScreenManager();
-	
+
 	void Update();
 	void Draw();
-	
+
 	void PushScreen(std::string sName);
 	void PopScreen();
 	void ClearStack();
-	
+
 	Screen *GetTopScreen() const { return m_vScreenStack.back(); }
 
 	// Static map stuff, for registering
@@ -42,7 +42,7 @@ private:
 
 	std::vector<Screen*> m_vScreenStack;
 	std::map<std::string, Screen*> m_vScreenTypes;
-	
+
 	LuaManager *m_LuaMan;
 	FileManager *m_FileMan;
 };

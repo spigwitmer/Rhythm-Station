@@ -30,29 +30,31 @@ void Screen::Reset()
 	Init();
 }
 
-void Screen::Init()
+// Use Init() so that the timer works properly!
+void Screen::InitInternal()
 {
-	Timer t;
-	t.Touch();
-	
 	lua_State *L = m_Lua->Get();
 	lua_getglobal(L, m_name.c_str());
-	
+
 	if (!lua_istable(L, -1))
 		return;
 
 	// note: lua_next needs the stack to be: -1 = key(nil), -2 = table
 	lua_pushnil(L);
-	
+
 	while (lua_next(L, -2)) {
 		// -1 = value, -2 = key, -3 = table
 		//if (lua_isnumber(L, -2))
 		//	LOG->Info("oh hey %d=%d", (int)lua_tonumber(L, -2), (int)lua_tonumber(L, -1));
-	
+
 		lua_pop(L, 1);
 	}
-	
-	LOG->Info("Loaded \"%s\" in %fs", m_name.c_str(), t.Ago());
+
+	Init();
+}
+
+void Screen::Init()
+{
 }
 
 void Screen::HandleMessage(const Message &msg)
@@ -60,13 +62,14 @@ void Screen::HandleMessage(const Message &msg)
 	InputManager *input = (InputManager*)msg.data;
 	if (msg.name == "Input") {
 		while (input->GetNextInput()) {
-			
+			// TODO
 		}
 	}
+
 	LOG->Info("Got message: %s", msg.name.c_str());
 }
 
-void Screen::Push(Drawable* obj)
+void Screen::Push(Actor* obj)
 {
 	m_objects.push_back(obj);
 }
@@ -94,7 +97,7 @@ void Screen::Update(double delta)
 			}
 		}
 	}
-	
+
 	UpdateInternal(delta);
 }
 

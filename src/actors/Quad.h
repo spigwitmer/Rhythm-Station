@@ -1,9 +1,9 @@
 #ifndef _QUAD_H_
 #define _QUAD_H_
 
-#include "Drawable.h"
+#include "Actor.h"
 
-class Quad : public Drawable
+class Quad : public Actor
 {
 public:
 	Quad();

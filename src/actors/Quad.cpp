@@ -6,15 +6,16 @@
 using namespace std;
 using namespace glm;
 
-Quad::Quad() : m_init(false)
+Quad::Quad() :
+	m_init(false)
 {
 	uint8_t indices[] = { 1, 2, 3, 4 };
-	vector<GLData> verts(4);
+	GLData verts[4];
 
-	verts[0].pos = vec3(0, 0, 0);
-	verts[1].pos = vec3(1, 0, 0);
-	verts[2].pos = vec3(0, 1, 0);
-	verts[3].pos = vec3(1, 1, 0);
+	verts[0].pos = vec3(-0.5, -0.5, 0);
+	verts[1].pos = vec3( 0.5, -0.5, 0);
+	verts[2].pos = vec3(-0.5,  0.5, 0);
+	verts[3].pos = vec3( 0.5,  0.5, 0);
 
 	verts[0].tex = vec2(0, 0);
 	verts[1].tex = vec2(1, 0);
@@ -32,10 +33,10 @@ Quad::Quad() : m_init(false)
 
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GLData)*4, &verts[0].pos.x, GL_STATIC_DRAW);
-	
+
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_VBO[1]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint8_t)*4, &indices, GL_STATIC_DRAW);
-	
+
 	m_init = true;
 }
 

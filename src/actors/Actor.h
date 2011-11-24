@@ -1,5 +1,5 @@
-#ifndef _DRAWABLE_H_
-#define _DRAWABLE_H_
+#ifndef _ACTOR_H_
+#define _ACTOR_H_
 
 #include <glm/glm.hpp>
 
@@ -23,11 +23,11 @@ enum VertAlign {
 	V_ALIGN_BOTTOM
 };
 
-class Drawable
+class Actor
 {
 public:
-	Drawable();
-	virtual ~Drawable();
+	Actor();
+	virtual ~Actor();
 
 	void Push();
 

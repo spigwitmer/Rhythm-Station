@@ -19,6 +19,10 @@ ShaderProgram *prog;
 
 ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 {
+}
+
+void ScreenTestDrawing::Init()
+{
 	// It's safe to make one of these provided we aren't making extra windows.
 	ShaderStage vs, fs;
 	
@@ -38,15 +42,15 @@ ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 	LOG->Info("Loading Fragment Shader...");
 	fs.Load(SHADER_FRAGMENT, "Generic.GL32.Fragment");
 	fs.Compile();
-
+	
 	LOG->Info("Attaching shaders to program.");
 	
 	prog->Attach(vs);
 	prog->Attach(fs);
-
+	
 	glBindAttribLocation(prog->GetObject(), 0, "Position");
 	CheckError();
-
+	
 	LOG->Info("Linking program");	
 	prog->Link();
 	prog->Bind();
@@ -54,7 +58,7 @@ ScreenTestDrawing::ScreenTestDrawing(string name) : Screen(name)
 	CheckError();
 	
 	glBindVertexArray(vao);
-		
+	
 	float verts[] = { -1.0, -1.0, 0.0, -1.0, 1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0 };
 	unsigned indices[] = { 0, 1, 2, 3 };
 	
