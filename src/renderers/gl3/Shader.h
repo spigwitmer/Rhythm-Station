@@ -30,6 +30,7 @@ protected:
 class ShaderStage : public ShaderBase
 {
 public:
+	ShaderStage();
 	virtual ~ShaderStage();
 	
 	void Load(ShaderType type, std::string key, std::string name = "");
@@ -37,12 +38,12 @@ public:
 
 	bool Compile();
 	
-	ShaderType GetType();
+	ShaderType GetType() const { return m_type; }
 
 protected:
 	void LoadInternal(ShaderType type, const char *source, std::string name);
 
-	int	m_refcount;
+	bool m_cached;
 	ShaderType m_type;
 };
 

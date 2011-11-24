@@ -6,11 +6,21 @@
 
 using namespace std;
 
-// Store shader ID's an number of users.
+// cache shaders which have already been built.
 namespace
 {
-	map<GLuint, int> g_shaders;
-	typedef map<GLuint, int>::iterator g_shaders_iterator;
+	// map of opengl-generated shader id's
+	map<GLuint, int> g_shaderHandles;
+	typedef map<GLuint, int>::iterator shaderHandle_iterator;
+
+	// map of previously loaded shader stages.
+	map<string, ShaderStage> g_shaderNames;
+	typedef map<string, ShaderStage>::iterator shaderName_iterator;
+}
+
+ShaderStage::ShaderStage() :
+	m_cached(false)
+{
 }
 
 ShaderStage::~ShaderStage()
@@ -21,15 +31,18 @@ ShaderStage::~ShaderStage()
 		return;
 	}
 
-	if (g_shaders[m_object] <= 0)
+	if (g_shaderHandles[m_object] <= 0)
 	{
 		glDeleteShader(m_object);
 		
-		g_shaders_iterator it;
-		it = g_shaders.find(m_object);
+		shaderHandle_iterator it = g_shaderHandles.find(m_object);
+		shaderName_iterator it2 = g_shaderNames.find(m_name);
 		
-		if (it != g_shaders.end())
-			g_shaders.erase(it);
+		if (it != g_shaderHandles.end())
+			g_shaderHandles.erase(it);
+
+		if (it2 != g_shaderNames.end())
+			g_shaderNames.erase(it2);
 	}
 }
 
@@ -72,16 +85,35 @@ void ShaderStage::Load(ShaderType type, string path, string name)
 // Use const char* internally to minimize pointless conversions.
 void ShaderStage::LoadInternal(ShaderType type, const char *source, string name)
 {
-	m_name = name;
+	// FIXME
+#if 0
+	if (g_shaderNames.find(name) != g_shaderNames.end())
+	{
+		ShaderStage replace = g_shaderNames[name];
+		m_cached = true;
+		m_name = replace.m_name;
+		m_object = replace.m_object;
+		m_type = replace.m_type;
 
+		g_shaderHandles[m_object]++;
+		
+		return;
+	}
+#endif
+	m_name = name;
+	
 	m_object = glCreateShader(ShaderToGLenum(type));
-	g_shaders[m_object]++;
+	g_shaderHandles[m_object]++;
 
 	glShaderSource(m_object, 1, &source, NULL);
 }
 
 bool ShaderStage::Compile()
 {
+	// Already have a copy - no need to rebuild.
+	if (m_cached)
+		return true;
+
 	glCompileShader(m_object);
 
 	string log = GetInfoLog();
@@ -89,11 +121,13 @@ bool ShaderStage::Compile()
 		LOG->Info(log);
 
 	CheckError();
-	
-	return glIsShader(m_object);
-}
 
-ShaderType ShaderStage::GetType()
-{
-	return m_type;
+	// Compile went fine, register self.
+	if (glIsShader(m_object)) {
+		g_shaderNames[m_name] = *this;
+		return true;
+	}
+	
+	// bad mojo.
+	return false;
 }
