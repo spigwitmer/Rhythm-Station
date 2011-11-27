@@ -33,15 +33,14 @@ public:
 	ShaderStage();
 	virtual ~ShaderStage();
 	
-	void Load(ShaderType type, std::string key, std::string name = "");
+	bool Load(ShaderType type, std::string key);
 	void LoadString(ShaderType, std::string source, std::string name = "");
-
-	bool Compile();
 	
 	ShaderType GetType() const { return m_type; }
 
 protected:
 	void LoadInternal(ShaderType type, const char *source, std::string name);
+	bool Compile();
 
 	bool m_cached;
 	ShaderType m_type;

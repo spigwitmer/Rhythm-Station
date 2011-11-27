@@ -34,10 +34,10 @@ ShaderStage::~ShaderStage()
 	if (g_shaderHandles[m_object] <= 0)
 	{
 		glDeleteShader(m_object);
-		
+
 		shaderHandle_iterator it = g_shaderHandles.find(m_object);
 		//shaderName_iterator it2 = g_shaderNames.find(m_name);
-		
+
 		if (it != g_shaderHandles.end())
 			g_shaderHandles.erase(it);
 
@@ -76,10 +76,21 @@ void ShaderStage::LoadString(ShaderType type, string source, string name)
 	LoadInternal(type, source.c_str(), name);
 }
 
-void ShaderStage::Load(ShaderType type, string path, string name)
+bool ShaderStage::Load(ShaderType type, string path)
 {
 	const char *src = glswGetShader(path.c_str());
-	LoadInternal(type, src, name);
+
+	LOG->Info("Loading \"%s\"", path.c_str());
+
+	LoadInternal(type, src, path);
+
+	if (Compile())
+	{
+		LOG->Info("Successfully loaded.", path.c_str());
+		return true;
+	}
+
+	return false;
 }
 
 // Use const char* internally to minimize pointless conversions.
@@ -96,12 +107,12 @@ void ShaderStage::LoadInternal(ShaderType type, const char *source, string name)
 		m_type = replace.m_type;
 
 		g_shaderHandles[m_object]++;
-		
+
 		return;
 	}
 #endif
 	m_name = name;
-	
+
 	m_object = glCreateShader(ShaderToGLenum(type));
 	g_shaderHandles[m_object]++;
 
@@ -124,10 +135,10 @@ bool ShaderStage::Compile()
 
 	// Compile went fine, register self.
 	if (glIsShader(m_object)) {
-//c		g_shaderNames[m_name] = *this;
+//		g_shaderNames[m_name] = *this;
 		return true;
 	}
-	
+
 	// bad mojo.
 	return false;
 }

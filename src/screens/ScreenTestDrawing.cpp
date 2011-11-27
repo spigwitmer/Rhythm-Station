@@ -35,16 +35,9 @@ void ScreenTestDrawing::Init()
 	glGenVertexArrays(1, &vao);
 	glGenBuffers(2, &buf[0]);
 	
-	LOG->Info("Loading Vertex Shader...");
 	vs.Load(SHADER_VERTEX, "Generic.GL32.Vertex");
-	vs.Compile();
-	
-	LOG->Info("Loading Fragment Shader...");
 	fs.Load(SHADER_FRAGMENT, "Generic.GL32.Fragment");
-	fs.Compile();
-	
-	LOG->Info("Attaching shaders to program.");
-	
+
 	prog->Attach(vs);
 	prog->Attach(fs);
 	
