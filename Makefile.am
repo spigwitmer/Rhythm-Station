@@ -119,6 +119,11 @@ Drawables = \
 	src/drawables/Drawable.cpp \
 	src/drawables/Quad.cpp
 
+GL3 = \
+	src/renderer/gl3/ShaderBase.cpp \
+	src/renderer/gl3/ShaderProgram.cpp \
+	src/renderer/gl3/ShaderStage.cpp
+
 Input = \
 	src/input/ButtonState.cpp
 
@@ -148,13 +153,12 @@ Utils = \
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a libgl3w.a libglsw.a
 rstation_SOURCES = \
-	$(Drawables) \
 	$(Input) \
 	$(Managers) \
 	$(Renderer) \
 	$(Screens) \
 	$(Utils) \
-	src/main.cpp \
+	$(GL3) \
 	src/RStation.cpp
 
 rstation_SOURCES += $(RSTHREADS)
