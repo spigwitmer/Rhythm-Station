@@ -3,9 +3,8 @@
 #include <glsw.h>
 #include "utils/Logger.h"
 
+#define GLM_FORCE_SSE2 1
 #include <glm/glm.hpp>
-#include <glm/gtx/simd_vec4.hpp>
-#include <glm/gtx/simd_mat4.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 #include "renderer/gl3/Shader.h"
