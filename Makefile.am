@@ -115,9 +115,9 @@ RSTHREADSLD += -lpthread
 
 # RStation source groups
 
-Drawables = \
-	src/drawables/Drawable.cpp \
-	src/drawables/Quad.cpp
+Actors = \
+	src/actors/Actor.cpp \
+	src/actors/Quad.cpp
 
 GL3 = \
 	src/renderer/gl3/ShaderBase.cpp \
@@ -153,6 +153,7 @@ Utils = \
 # 
 rstation_LDADD  = $(EXT_DEPENDS_LIBS) $(FFTW3_LIBS) -lz libglfw3.a libslb.a libgl3w.a libglsw.a
 rstation_SOURCES = \
+	$(Actors) \
 	$(Input) \
 	$(Managers) \
 	$(Renderer) \
